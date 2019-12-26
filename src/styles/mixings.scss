@@ -1,0 +1,23 @@
+/* sizes */
+$lg: 1240px;
+$md: 992px;
+$sm: 768px;
+/* sizes */
+
+@mixin media-breakpoint-only($viewport) {
+  @if $viewport == xs {
+    @media (max-width: $sm - 1px) { @content }
+  }
+
+  @if $viewport == sm {
+    @media (min-width: $sm) and (max-width: $md - 1px) { @content }
+  }
+
+  @if $viewport == md {
+    @media (min-width: $md) and (max-width: $lg - 1px) { @content }
+  }
+
+  @if $viewport == lg {
+    @media (min-width: $lg) { @content }
+  }
+}
