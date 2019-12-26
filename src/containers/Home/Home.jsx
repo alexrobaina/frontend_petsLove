@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
 import anime from 'animejs/lib/anime.es'
+import { useTranslation } from 'react-i18next'
 import c from 'classnames'
+import InitialLogo from '../../components/InitialLogo'
 import InitialFormFilters from '../../components/InitialFormFilters'
 import Title from '../../components/commons/Title/Title'
 import styles from './home.module.scss'
+import ListPets from '../../components/ListPets'
 
 const Home = () => {
+  const { t } = useTranslation('rulesCreation')
   useEffect(() => {
     setTimeout(() => {
       anime({
@@ -14,16 +18,20 @@ const Home = () => {
         easing: 'linear',
         duration: 1000,
       })
-    }, 0)
+    }, 3500)
   })
 
   return (
     <Fragment>
-      {/* <InitialLogo /> */}
+      <InitialLogo />
       <div className={c(styles.animationOpasity, 'animationOpasity')}>
-        <Title title={`Adopt don't buy`} subTitle={'Do not buy a breed bog, buy a homeless one'} />
+        <Title
+          title={'Search for your best friend'}
+          subTitle={'Do not buy a breed pet, buy a homeless one'}
+        />
         <InitialFormFilters />
       </div>
+      <ListPets />
     </Fragment>
   )
 }
