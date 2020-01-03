@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
-import styles from './listPets.scss'
-import Card from '../commons/Card'
+import ListPetsStore from '../../stores/ListPetsStore'
 
-export default class ListPets extends Component {
+class ListPets extends Component {
+  constructor(props) {
+    super(props)
+
+    this.listPetsStore = new ListPetsStore()
+  }
+
   render() {
-    return <div>List pets
-        <Card />
-    </div>
+    return (
+      <div>
+        hola
+      </div>
+    )
   }
 }
+
+export default ListPets

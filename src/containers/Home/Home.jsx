@@ -31,7 +31,6 @@ const Home = () => {
         />
         <InitialFormFilters />
       </div>
-      <ListPets />
     </Fragment>
   )
 }
