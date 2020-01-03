@@ -1,6 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import { withRouter } from 'react-router-dom';
 import InitialFormFiltersStore from '../../stores/InitialFormFiltersStore'
+import ListPetsStore from '../../stores/ListPetsStore'
 import InputSelect from '../commons/InputSelect'
 import Button from '../commons/Button/Button'
 import styles from './initialFormFilters.module.scss'
@@ -11,6 +13,7 @@ class InitialFormFilters extends React.Component {
     super(props)
 
     this.initialFormFiltersStore = new InitialFormFiltersStore()
+    this.listPetsStore = new ListPetsStore()
   }
 
   componentDidMount() {
@@ -36,8 +39,13 @@ class InitialFormFilters extends React.Component {
     this.initialFormFiltersStore.setGender(selectValue)
   }
 
+  // Esta función tiene que enviar por params o en el local storage todos los campos de busqueda
+  // y enviar al componente listPetes que es el componente con menu de busqueda etc...
   handleSearch = () => {
-    alert('submit')
+    const { history } = this.props
+    this.initialFormFiltersStore.saveSearchLocalStorage()
+    // create routes and send components SearchPets
+    history.push('/listPets')
   }
 
   render() {
@@ -90,4 +98,4 @@ class InitialFormFilters extends React.Component {
   }
 }
 
-export default InitialFormFilters
+export default withRouter(InitialFormFilters)

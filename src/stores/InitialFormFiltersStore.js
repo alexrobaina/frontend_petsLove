@@ -10,6 +10,7 @@ class InitialFormFiltersStore {
     this.categoriesPetsService = new CategoriesPetsService()
   }
 
+  @observable pets = []
   @observable city = ''
   @observable gender = ''
   @observable cities = []
@@ -29,7 +30,7 @@ class InitialFormFiltersStore {
 
       runInAction(() => {
         this.countries = response[0].countries
-
+    
         this.setLoading()
       })
     } catch (e) {
@@ -125,6 +126,39 @@ class InitialFormFiltersStore {
   }
 
   @action
+  async searchPets() {
+    this.setLoading()
+    
+    let data = {
+      city: this.city,
+      country: this.country,
+      gender: this.gender,
+      category: this.category
+    }
+
+    try {
+      const response = await this.petsService.getPets(data)
+
+      runInAction(() => {
+        this.pets = response[0].pets
+        
+        this.setLoading()
+        console.log(this.pets);
+        console.log(this.isLoading)
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  setSearch(value) {
+    this.search = value.value
+  }
+
+  @action
   setLoading() {
     this.isLoading = !this.isLoading
   }
@@ -147,6 +181,17 @@ class InitialFormFiltersStore {
   @action
   setCategory(value) {
     this.category = value.value
+  }
+
+  @action
+  saveSearchLocalStorage() {
+    const search = {
+      country: this.country,
+      city: this.city,
+      gender: this.gender,
+      category: this.category
+    }
+    localStorage.setItem('searchPets', JSON.stringify(search))
   }
 }
 

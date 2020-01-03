@@ -1,36 +1,27 @@
 import { observable, action, runInAction } from 'mobx'
-import LocationsService from '../services/LocationsService'
-import GenderService from '../services/GenderService'
-import CategoriesPetsService from '../services/CategoriesPetsService'
+import PetsService from '../services/PetsService'
 
-class InitialFormFiltersStore {
+class ListPetsStore {
   constructor() {
-    this.locationsService = new LocationsService()
-    this.genderServices = new GenderService()
-    this.categoriesPetsService = new CategoriesPetsService()
+    this.petsService = new PetsService()
   }
 
-  @observable city = ''
-  @observable gender = ''
-  @observable cities = []
-  @observable country = ''
-  @observable category = ''
-  @observable countries = []
-  @observable typeGender = []
-  @observable categoriesPets = []
+  @observable pets = []
   @observable isLoading = false
 
   @action
-  async listGender() {
+  async searchPets() {
     this.setLoading()
-
+    console.log(this.isLoading)
     try {
-      const response = await this.genderServices.getGender()
+      const response = await this.petsService.getPets()
 
       runInAction(() => {
-        this.typeGender = response[0].gender
-
+        this.pets = response[0].pets
+        
         this.setLoading()
+        console.log(this.pets);
+        console.log(this.isLoading)
       })
     } catch (e) {
       runInAction(() => {
@@ -45,9 +36,9 @@ class InitialFormFiltersStore {
   }
 
   @action
-  setCategory(value) {
-    this.category = value.value
+  setSearch(value) {
+    this.search = value.value
   }
 }
 
-export default InitialFormFiltersStore
+export default ListPetsStore
