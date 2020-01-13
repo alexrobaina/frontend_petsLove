@@ -1,27 +1,24 @@
 import { observable, action, runInAction } from 'mobx'
 import PetsService from '../services/PetsService'
 
-class ListPetsStore {
+class SearchPetsStore {
   constructor() {
     this.petsService = new PetsService()
   }
 
   @observable pets = []
   @observable isLoading = false
+  @observable filters = []
 
   @action
   async searchPets() {
-    this.setLoading()
-    console.log(this.isLoading)
     try {
       const response = await this.petsService.getPets()
 
       runInAction(() => {
-        this.pets = response[0].pets
-        
+        this.pets = response
+
         this.setLoading()
-        console.log(this.pets);
-        console.log(this.isLoading)
       })
     } catch (e) {
       runInAction(() => {
@@ -41,4 +38,4 @@ class ListPetsStore {
   }
 }
 
-export default ListPetsStore
+export default SearchPetsStore

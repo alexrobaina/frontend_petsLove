@@ -2,7 +2,14 @@ import axios from 'axios'
 import { API_URL } from '../config'
 
 class GenderService {
-  getGender = () => axios.get(`${API_URL}/list/pets/gender`).then(response => response.data)
+  getGender = () => {
+    let gender = [
+      {value: 'female', label: 'Female'},
+      {value: 'male', label: 'Male'}
+    ]
+    
+    return gender
+  }
 }
 
 export default GenderService
