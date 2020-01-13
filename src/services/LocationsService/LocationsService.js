@@ -2,13 +2,29 @@ import axios from 'axios'
 import { API_URL } from '../config'
 
 class LocationsService {
-  getCountries = () => axios.get(`${API_URL}/list/countries`).then(response => response.data)
+  getCountries = () => {
+    let country = [
+      { value: 'unitedStates', label: 'United States' },
+      { value: 'argentina', label: 'Argentina' },
+    ]
+    return country
+  }
 
-  getCitiesArgentina = () =>
-    axios.get(`${API_URL}/list/cities/argentina`).then(response => response.data)
+  getCitiesArgentina = () => {
+    let argentina = [
+      { value: 'cordoba', label: 'Córdoba' },
+      { value: 'buenosAires', label: 'Buenos Aires CABA' },
+    ]
+    return argentina
+  }
 
-  getCitiesUnitedState = () =>
-    axios.get(`${API_URL}/list/cities/unitedState`).then(response => response.data)
+  getCitiesUnitedState = () => {
+    let unitedState = [
+      { value: 'arizona', label: 'Arizona' },
+      { value: 'california', label: 'California' },
+    ]
+    return unitedState
+  }
 }
 
 export default LocationsService

@@ -1,4 +1,5 @@
 import { observable, action, runInAction } from 'mobx'
+import _ from 'lodash'
 import LocationsService from '../services/LocationsService'
 import GenderService from '../services/GenderService'
 import CategoriesPetsService from '../services/CategoriesPetsService'
@@ -29,8 +30,8 @@ class InitialFormFiltersStore {
       const response = await this.locationsService.getCountries()
 
       runInAction(() => {
-        this.countries = response[0].countries
-    
+        this.countries = response
+
         this.setLoading()
       })
     } catch (e) {
@@ -42,7 +43,7 @@ class InitialFormFiltersStore {
 
   @action
   setCities() {
-    if (this.country === 'united states') {
+    if (this.country === 'unitedStates') {
       this.listCitiesUnitedState()
     }
     if (this.country === 'argentina') {
@@ -58,7 +59,7 @@ class InitialFormFiltersStore {
       const response = await this.locationsService.getCitiesUnitedState()
 
       runInAction(() => {
-        this.cities = response[0].cities
+        this.cities = response
 
         this.setLoading()
       })
@@ -77,7 +78,7 @@ class InitialFormFiltersStore {
       const response = await this.locationsService.getCitiesArgentina()
 
       runInAction(() => {
-        this.cities = response[0].cities
+        this.cities = response
 
         this.setLoading()
       })
@@ -96,7 +97,7 @@ class InitialFormFiltersStore {
       const response = await this.genderServices.getGender()
 
       runInAction(() => {
-        this.typeGender = response[0].gender
+        this.typeGender = response
 
         this.setLoading()
       })
@@ -114,9 +115,10 @@ class InitialFormFiltersStore {
     try {
       const response = await this.categoriesPetsService.getTypePets()
 
-      this.setLoading()
       runInAction(() => {
-        this.categoriesPets = response[0].categories
+        this.categoriesPets = this.formatData(response)
+
+        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -128,29 +130,37 @@ class InitialFormFiltersStore {
   @action
   async searchPets() {
     this.setLoading()
-    
-    let data = {
+
+    this.filters = {
       city: this.city,
       country: this.country,
       gender: this.gender,
-      category: this.category
+      category: this.category,
     }
 
     try {
-      const response = await this.petsService.getPets(data)
+      const response = await this.petsService.getPets(this.filters)
 
       runInAction(() => {
         this.pets = response[0].pets
-        
+
         this.setLoading()
-        console.log(this.pets);
-        console.log(this.isLoading)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
       })
     }
+  }
+
+  @action
+  formatData(data) {
+    let result = []
+    data.forEach(item => {
+      result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
+    })
+
+    return result
   }
 
   @action
@@ -181,17 +191,6 @@ class InitialFormFiltersStore {
   @action
   setCategory(value) {
     this.category = value.value
-  }
-
-  @action
-  saveSearchLocalStorage() {
-    const search = {
-      country: this.country,
-      city: this.city,
-      gender: this.gender,
-      category: this.category
-    }
-    localStorage.setItem('searchPets', JSON.stringify(search))
   }
 }
 

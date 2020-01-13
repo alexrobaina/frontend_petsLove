@@ -6,31 +6,32 @@ import InitialLogo from '../../components/InitialLogo'
 import InitialFormFilters from '../../components/InitialFormFilters'
 import Title from '../../components/commons/Title/Title'
 import styles from './home.module.scss'
-import ListPets from '../../components/ListPets'
+import Navbar from '../../components/commons/Navbar/Navbar'
 
 const Home = () => {
   const { t } = useTranslation('rulesCreation')
   useEffect(() => {
-    setTimeout(() => {
-      anime({
-        targets: '.animationOpasity',
-        opacity: 1,
-        easing: 'linear',
-        duration: 1000,
-      })
-    }, 3500)
+    anime({
+      targets: '.animationOpacity',
+      opacity: 1,
+      easing: 'linear',
+      duration: 1000,
+      delay: 3500,
+    })
+
   })
 
   return (
     <Fragment>
+        <Navbar timeAnimation={3600} />
       <InitialLogo />
-      <div className={c(styles.animationOpasity, 'animationOpasity')}>
+      <div className={c(styles.animationOpacity, 'animationTitle')}>
         <Title
           title={'Search for your best friend'}
-          subTitle={'Do not buy a breed pet, buy a homeless one'}
+          subTitle={'Do not buy a breed pet, adopt a homeless one'}
         />
-        <InitialFormFilters />
       </div>
+        <InitialFormFilters />
     </Fragment>
   )
 }
