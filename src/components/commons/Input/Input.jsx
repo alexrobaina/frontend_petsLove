@@ -1,22 +1,16 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './input.scss'
+import styles from './input.module.scss'
 
-const Input = ({type, handleChange}) => {
+const Input = ({ handleChange, placeholder }) => {
   return (
-    <Fragment>
-      <input
-        className={styles.input}
-        type={type}
-        onChange={handleChange}
-      />
-    </Fragment>
+    <input className={styles.input} type="text" placeholder={placeholder} onChange={handleChange} />
   )
 }
 
 Input.propTypes = {
-  type: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
 }
 
 export default Input

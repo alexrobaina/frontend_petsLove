@@ -4,6 +4,7 @@ import anime from 'animejs/lib/anime.es'
 import c from 'classnames'
 import styles from './initialLogo.module.scss'
 
+// pasar a stateless component y usar hooks
 class InitialLogo extends React.Component {
   constructor(props) {
     super(props)

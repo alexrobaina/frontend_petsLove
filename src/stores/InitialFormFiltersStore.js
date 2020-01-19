@@ -1,14 +1,16 @@
-import { observable, action, runInAction } from 'mobx'
+import { observable, action, runInAction, computed } from 'mobx'
 import _ from 'lodash'
 import LocationsService from '../services/LocationsService'
 import GenderService from '../services/GenderService'
 import CategoriesPetsService from '../services/CategoriesPetsService'
+import PetsService from '../services/PetsService/PetsService'
 
 class InitialFormFiltersStore {
   constructor() {
     this.locationsService = new LocationsService()
     this.genderServices = new GenderService()
     this.categoriesPetsService = new CategoriesPetsService()
+    this.petsService = new PetsService()
   }
 
   @observable pets = []
@@ -21,6 +23,12 @@ class InitialFormFiltersStore {
   @observable typeGender = []
   @observable categoriesPets = []
   @observable isLoading = false
+  @observable isFilter = false
+  @observable filters = false
+  @observable countryLabel = ''
+  @observable cityLabel = ''
+  @observable GenderLabel = ''
+  @observable categoryLabel = ''
 
   @action
   async listContries() {
@@ -94,10 +102,10 @@ class InitialFormFiltersStore {
     this.setLoading()
 
     try {
-      const response = await this.genderServices.getGender()
+      const response = await this.genderServices.getTypePets()
 
       runInAction(() => {
-        this.typeGender = response
+        this.typeGender = this.formatData(response)
 
         this.setLoading()
       })
@@ -127,23 +135,51 @@ class InitialFormFiltersStore {
     }
   }
 
+
+  //falta agregar filtro country
+  @action
+  formatDataSearch(response) {
+    let filterPet
+    if (this.city) {
+      filterPet = response.filter(filter => {
+        return filter.city.toLowerCase().indexOf(this.city.label.toLowerCase()) > -1
+      })
+    }
+    if (this.category) {
+      filterPet = filterPet.filter(filter => {
+        return filter.categorie._id.indexOf(this.category) > -1
+      })
+    }
+    if (this.gender) {
+      filterPet = filterPet.filter(filter => {
+        return filter.gender._id.indexOf(this.gender) > -1
+      })
+    } else {
+      return response
+    }
+    return filterPet
+  }
+
   @action
   async searchPets() {
     this.setLoading()
+    this.isLoading = true
 
-    this.filters = {
-      city: this.city,
-      country: this.country,
-      gender: this.gender,
-      category: this.category,
-    }
+    this.filters = [
+      { text: this.cityLabel },
+      { text: this.countryLabel },
+      { text: this.categoryLabel },
+      { text: this.GenderLabel },
+    ]
 
     try {
-      const response = await this.petsService.getPets(this.filters)
+      const response = await this.petsService.getPets()
 
       runInAction(() => {
-        this.pets = response[0].pets
+        this.pets = this.formatDataSearch(response)
 
+        this.isFilter = true
+        this.isLoading = false
         this.setLoading()
       })
     } catch (e) {
@@ -175,23 +211,34 @@ class InitialFormFiltersStore {
 
   @action
   setCountry(value) {
+    this.countryLabel = value.label
     this.country = value.value
   }
 
   @action
   setCity(value) {
-    this.city = value.value
+    this.cityLabel = value.label
+    this.city = value
   }
 
   @action
   setGender(value) {
+    this.GenderLabel = value.label
     this.gender = value.value
   }
 
   @action
   setCategory(value) {
+    this.categoryLabel = value.label
     this.category = value.value
   }
+
+  @action
+  deleteFilter(filter) {
+    console.log(filter)
+    this.searchPets()
+  }
+  
 }
 
 export default InitialFormFiltersStore
