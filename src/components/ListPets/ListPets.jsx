@@ -10,7 +10,7 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
   return (
     <Fragment>
       <div className={styles.containerFilters}>
-        {filters.map(filter => (
+        {filters && filters.map(filter => (
           <div onClick={() => handleDelete(filter.text)} className={styles.filter}>
             {filter.text}
             <span className={styles.icons}>

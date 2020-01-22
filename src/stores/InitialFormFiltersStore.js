@@ -25,10 +25,12 @@ class InitialFormFiltersStore {
   @observable isLoading = false
   @observable isFilter = false
   @observable filters = false
-  @observable countryLabel = ''
-  @observable cityLabel = ''
-  @observable GenderLabel = ''
-  @observable categoryLabel = ''
+
+  // validation if selects have value
+  @observable countryIsDirtry = false
+  @observable cityIsDirtry = false
+  @observable genderIsDirtry = false
+  @observable categoryIsDirtry = false
 
   @action
   async listContries() {
@@ -105,7 +107,7 @@ class InitialFormFiltersStore {
       const response = await this.genderServices.getTypePets()
 
       runInAction(() => {
-        this.typeGender = this.formatData(response)
+        this.typeGender = this.formatDataReactSelect(response)
 
         this.setLoading()
       })
@@ -124,7 +126,7 @@ class InitialFormFiltersStore {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
-        this.categoriesPets = this.formatData(response)
+        this.categoriesPets = this.formatDataReactSelect(response)
 
         this.setLoading()
       })
@@ -135,29 +137,12 @@ class InitialFormFiltersStore {
     }
   }
 
-
-  //falta agregar filtro country
   @action
-  formatDataSearch(response) {
-    let filterPet
-    if (this.city) {
-      filterPet = response.filter(filter => {
-        return filter.city.toLowerCase().indexOf(this.city.label.toLowerCase()) > -1
-      })
-    }
-    if (this.category) {
-      filterPet = filterPet.filter(filter => {
-        return filter.categorie._id.indexOf(this.category) > -1
-      })
-    }
-    if (this.gender) {
-      filterPet = filterPet.filter(filter => {
-        return filter.gender._id.indexOf(this.gender) > -1
-      })
-    } else {
-      return response
-    }
-    return filterPet
+  validation() {
+    this.countryIsDirtry = false
+    this.cityIsDirtry = false
+    this.genderIsDirtry = false
+    this.categoryIsDirtry = false
   }
 
   @action
@@ -165,18 +150,21 @@ class InitialFormFiltersStore {
     this.setLoading()
     this.isLoading = true
 
-    this.filters = [
-      { text: this.cityLabel },
-      { text: this.countryLabel },
-      { text: this.categoryLabel },
-      { text: this.GenderLabel },
-    ]
+
+    const data = {
+      country: this.country,
+      city: this.city,
+      categorie: this.category,
+      gender: this.gender,
+      birthdate: this.birthdate,
+      zone: this.zone,
+    }
 
     try {
-      const response = await this.petsService.getPets()
+      const response = await this.petsService.getPets(data)
 
       runInAction(() => {
-        this.pets = this.formatDataSearch(response)
+        this.pets = response
 
         this.isFilter = true
         this.isLoading = false
@@ -190,7 +178,7 @@ class InitialFormFiltersStore {
   }
 
   @action
-  formatData(data) {
+  formatDataReactSelect(data) {
     let result = []
     data.forEach(item => {
       result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
@@ -218,12 +206,12 @@ class InitialFormFiltersStore {
   @action
   setCity(value) {
     this.cityLabel = value.label
-    this.city = value
+    this.city = value.value
   }
 
   @action
   setGender(value) {
-    this.GenderLabel = value.label
+    this.genderLabel = value.label
     this.gender = value.value
   }
 
@@ -234,11 +222,9 @@ class InitialFormFiltersStore {
   }
 
   @action
-  deleteFilter(filter) {
-    console.log(filter)
+  deleteFilter(value) {
     this.searchPets()
   }
-  
 }
 
 export default InitialFormFiltersStore

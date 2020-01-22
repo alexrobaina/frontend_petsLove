@@ -2,7 +2,14 @@ import axios from 'axios'
 import { API_URL, API_MONGO_LOCAL } from '../config'
 
 class PetsService {
-  getPets = () => axios.get(`${API_MONGO_LOCAL}/api/pet/list`).then(response => response.data)
+  getPets = (data) => {
+    const {country, city, categorie, gender} = data
+     return axios
+        .get(
+          `${API_MONGO_LOCAL}/api/pet/list/?country=${country}&city=${city}&categorie=${categorie}&gender=${gender}`
+        )
+        .then(response => response.data)
+  }
 }
 
 export default PetsService

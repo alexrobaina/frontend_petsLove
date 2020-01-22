@@ -11,7 +11,6 @@ import styles from './initialFormFilters.module.scss'
 
 const InitialFormFilters = () => {
   const initialFormFiltersStore = useLocalStore(() => new InitialFormFiltersStore())
-  const history = useHistory()
 
   const handleChange = useCallback(selectedValue => {
     initialFormFiltersStore.setCountry(selectedValue)
@@ -66,6 +65,7 @@ const InitialFormFilters = () => {
        <div className={styles.select1}>
          <InputSelect
            handleChange={handleChange}
+           isDirty={initialFormFiltersStore.countryIsDirtry}
            options={initialFormFiltersStore.countries}
            placeholder={'Country'}
            isLoading={initialFormFiltersStore.isLoading}
@@ -74,6 +74,7 @@ const InitialFormFilters = () => {
        <div className={styles.select2}>
          <InputSelect
            handleChange={handleChanceCity}
+           isDirty={initialFormFiltersStore.cityIsDirtry}
            placeholder={'City'}
            isLoading={initialFormFiltersStore.isLoading}
            options={initialFormFiltersStore.cities}
@@ -83,6 +84,7 @@ const InitialFormFilters = () => {
          <InputSelect
            handleChange={handleChanceCategory}
            options={initialFormFiltersStore.categoriesPets}
+           isDirty={initialFormFiltersStore.categoryIsDirtry}
            placeholder={'Type of pet'}
            isLoading={initialFormFiltersStore.isLoading}
          />
@@ -91,6 +93,7 @@ const InitialFormFilters = () => {
          <InputSelect
            handleChange={handleChanceGender}
            options={initialFormFiltersStore.typeGender}
+           isDirty={initialFormFiltersStore.genderIsDirtry}
            placeholder={'Gender'}
            isLoading={initialFormFiltersStore.isLoading}
          />

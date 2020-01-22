@@ -1,0 +1,23 @@
+@import '../../../styles/variable.scss';
+
+.input {
+  width: 96%;
+  border: 1px solid $borderPrimary;
+  box-shadow: none;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: 'Noto Sans HK', sans-serif;
+
+  &:focus {
+    border-radius: 4px;
+    border: 1mapx solid $borderPrimary;
+  }
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid $secundary;
+  }
+  &::placeholder {
+    font-size: 15px;
+    font-family: 'Noto Sans HK', sans-serif;
+  }
+}

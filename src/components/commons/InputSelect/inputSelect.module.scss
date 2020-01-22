@@ -10,3 +10,19 @@ option {
   background-color: white !important;
   width: 400px !important;
 }
+
+.error {
+  margin-top: 8px;
+  color: red;
+  font-size: 12px;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
