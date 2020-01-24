@@ -76,33 +76,6 @@
   animation: fadeIn 1s;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounceInLeft {
-  0% {
-    transform: translateX(-250px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounceInRight {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-250px);
-  }
-}
-
 .animationOpacity {
   opacity: 0;
 }
