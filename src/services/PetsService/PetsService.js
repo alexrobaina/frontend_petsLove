@@ -6,7 +6,7 @@ class PetsService {
     const {country, city, categorie, gender} = data
      return axios
         .get(
-          `${API_MONGO_LOCAL}/api/pet/list/?country=${country}&city=${city}&categorie=${categorie}&gender=${gender}`
+          `${API_MONGO_LOCAL}/api/pet/queryList/?country=${country}&city=${city}&categorie=${categorie}&gender=${gender}`
         )
         .then(response => response.data)
   }

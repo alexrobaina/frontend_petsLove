@@ -14,6 +14,10 @@ class LocationsService {
     let argentina = [
       { value: 'cordoba', label: 'Córdoba' },
       { value: 'buenosAires', label: 'Buenos Aires CABA' },
+      { value: 'santaFe', label: 'Santa Fe' },
+      { value: 'mendoza', label: 'Mendoza' },
+      { value: 'salta', label: 'Salta' },
+      { value: 'tucuman', label: 'Tucuman' },
     ]
     return argentina
   }
