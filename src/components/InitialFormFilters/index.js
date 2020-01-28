@@ -1,3 +1,3 @@
-import InitialFormFiltersPets from './InitialFormFilters'
+import InitialFormFilters from './InitialFormFilters'
 
-export default InitialFormFiltersPets
+export default InitialFormFilters

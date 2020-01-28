@@ -1,0 +1,92 @@
+@import '../../styles/mixings.scss';
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 50px;
+  
+  @include media-breakpoint-only(xs) {
+    justify-content: center;
+    padding-top: 10px;
+  }
+}
+
+.btnSearch {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+  margin-right: 45px;
+  width: 100%;
+  
+  @include media-breakpoint-only(xs) {
+    justify-content: flex-end;
+    margin-right: 0;
+  }
+}
+
+.error {
+  margin-top: 8px;
+  color: red;
+  font-size: 14px;
+  margin-right: 46px;
+  animation: fadeIn 1s;
+  
+  @include media-breakpoint-only(xs) {
+    margin-top: 10px;
+    margin-right: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.selectCountry {
+  margin-top: 30px;
+  width: 40%;
+
+  @include media-breakpoint-only(xs) {
+    width: 100%;
+  }
+}
+
+.selectCity {
+  margin-top: 30px;
+  width: 40%;
+  
+  @include media-breakpoint-only(xs) {
+    width: 100%;
+  }
+}
+
+.selectCategory {
+  margin-top: 30px;
+  width: 40%;
+  
+  @include media-breakpoint-only(xs) {
+    width: 100%;
+  }
+}
+
+.selectGender {
+  margin-top: 30px;
+  width: 40%;
+  
+  @include media-breakpoint-only(xs) {
+    width: 100%;
+  }
+}
+
+.animationOpacity {
+  opacity: 0;
+}
+
+.finish {
+  height: 300px;
+}

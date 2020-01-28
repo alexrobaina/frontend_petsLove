@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './card.module.scss'
+import styles from './card.scss'
 
 const Card = ({ history, image, namePet, altImage }) => {
   const verifyText = () => {
@@ -21,6 +21,11 @@ const Card = ({ history, image, namePet, altImage }) => {
   )
 }
 
-Card.propTypes = {}
+Card.propTypes = {
+  history: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  namePet: PropTypes.string.isRequired,
+  altImage: PropTypes.string.isRequired,
+}
 
 export default Card

@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import c from 'classnames'
 import Select from 'react-select'
-import styles from './inputSelect.module.scss'
+import styles from './inputSelect.scss'
 
-const InputSelect = ({ isDirty, options, placeholder, isLoading, handleChange }) => (
+const InputSelect = ({ options, placeholder, isLoading, handleChange }) => (
   <Fragment>
     <Select
       onChange={handleChange}
-      className={c(styles.selectStyle)}
+      className={styles.selectStyle}
       isLoading={isLoading}
       placeholder={placeholder}
       options={options}
@@ -24,7 +23,6 @@ const InputSelect = ({ isDirty, options, placeholder, isLoading, handleChange })
         },
       })}
     />
-    {isDirty ? <div className={styles.error}>This select is required</div> : false}
   </Fragment>
 )
 

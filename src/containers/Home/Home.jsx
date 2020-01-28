@@ -1,38 +1,30 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import anime from 'animejs/lib/anime.es'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import InitialLogo from '../../components/InitialLogo'
-import InitialFormFilters from '../../components/InitialFormFilters'
-import Title from '../../components/commons/Title/Title'
-import styles from './home.module.scss'
-import Navbar from '../../components/commons/Navbar/Navbar'
+import InitialLogo from 'components/InitialLogo'
+import InitialFormFilters from 'components/InitialFormFilters'
+import Title from 'components/commons/Title'
+import LayoutContainer from 'components/commons/LayoutContainer'
+import Navbar from 'components/commons/Navbar'
+import styles from './home.scss'
 
 const Home = () => {
   const { t } = useTranslation('rulesCreation')
-  useEffect(() => {
-    anime({
-      targets: '.animationOpacity',
-      opacity: 1,
-      easing: 'linear',
-      duration: 1000,
-      delay: 3500,
-    })
-
-  })
 
   return (
-    <Fragment>
-        <Navbar timeAnimation={3600} />
-      <InitialLogo />
-      <div className={c(styles.animationOpacity, 'animationTitle')}>
-        <Title
-          title={'Search for your best friend'}
-          subTitle={'Do not buy a breed pet, adopt a homeless one'}
-        />
-      </div>
+    <>
+      <Navbar className={styles.fixedNavbar} timeAnimation={3200} />
+      <LayoutContainer>
+        <InitialLogo />
+          <Title
+            timeAnimation={3600}
+            title={'Search for your best friend'}
+            subTitle={'Do not buy a breed pet, adopt a homeless one'}
+          />
         <InitialFormFilters />
-    </Fragment>
+      </LayoutContainer>
+    </>
   )
 }
 export default Home
