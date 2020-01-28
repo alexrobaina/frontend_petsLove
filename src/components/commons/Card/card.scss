@@ -1,0 +1,45 @@
+@import '../../../styles/mixings.scss';
+
+.containerCard {
+  box-shadow: 0px 3px 46px -5px rgba(0, 0, 0, 0.092);
+  border-radius: 10px;
+  height: auto;
+  max-width: 290px;
+  min-width: 250px;
+  flex: 1 1 1;
+  margin-top: 50px;
+  margin: 10px;
+
+  @include media-breakpoint-only(xs) {
+    margin: 10px;
+  }
+}
+
+.imgCard {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.title {
+  color: #001b61;
+  display: flex;
+  justify-content: center;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-size: 18px;
+  margin-top: 10px;
+  letter-spacing: 0.85px;
+  text-align: justify;
+}
+
+.textHistory {
+  margin-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  color: rgba(0, 27, 97, 0.74);
+  letter-spacing: 0.37px;
+  line-height: 18px;
+  font-weight: 700;
+}

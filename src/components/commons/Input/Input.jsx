@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './input.module.scss'
+import styles from './input.scss'
 
 const Input = ({ handleChange, placeholder }) => {
   return (

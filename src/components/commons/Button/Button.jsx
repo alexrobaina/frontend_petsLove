@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './button.module.scss'
+import styles from './button.scss'
 
 const Button = ({ type, handleSearch, text }) => {
   return (

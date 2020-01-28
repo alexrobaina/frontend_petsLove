@@ -25,6 +25,7 @@ class InitialFormFiltersStore {
   @observable isLoading = false
   @observable isFilter = false
   @observable filters = false
+  @observable isDirty = false
 
   // validation if selects have value
   @observable countryIsDirtry = false
@@ -34,15 +35,11 @@ class InitialFormFiltersStore {
 
   @action
   async listContries() {
-    this.setLoading()
-
     try {
       const response = await this.locationsService.getCountries()
 
       runInAction(() => {
         this.countries = response
-
-        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -63,15 +60,11 @@ class InitialFormFiltersStore {
 
   @action
   async listCitiesUnitedState() {
-    this.setLoading()
-
     try {
       const response = await this.locationsService.getCitiesUnitedState()
 
       runInAction(() => {
         this.cities = response
-
-        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -82,15 +75,11 @@ class InitialFormFiltersStore {
 
   @action
   async listCitiesArgentina() {
-    this.setLoading()
-
     try {
       const response = await this.locationsService.getCitiesArgentina()
 
       runInAction(() => {
         this.cities = response
-
-        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -120,15 +109,11 @@ class InitialFormFiltersStore {
 
   @action
   async listCategoriesPets() {
-    this.setLoading()
-
     try {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
         this.categoriesPets = this.formatDataReactSelect(response)
-
-        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -138,18 +123,7 @@ class InitialFormFiltersStore {
   }
 
   @action
-  validation() {
-    this.countryIsDirtry = false
-    this.cityIsDirtry = false
-    this.genderIsDirtry = false
-    this.categoryIsDirtry = false
-  }
-
-  @action
   async searchPets() {
-    this.setLoading()
-    this.isLoading = true
-
 
     const data = {
       country: this.country,
@@ -165,10 +139,9 @@ class InitialFormFiltersStore {
 
       runInAction(() => {
         this.pets = response
+        this.setLoading()
 
         this.isFilter = true
-        this.isLoading = false
-        this.setLoading()
       })
     } catch (e) {
       runInAction(() => {
@@ -201,24 +174,28 @@ class InitialFormFiltersStore {
   setCountry(value) {
     this.countryLabel = value.label
     this.country = value.value
+    this.countryIsDirtry = false
   }
 
   @action
   setCity(value) {
     this.cityLabel = value.label
     this.city = value.value
+    this.cityIsDirtry = false
   }
 
   @action
   setGender(value) {
     this.genderLabel = value.label
     this.gender = value.value
+    this.genderIsDirtry = false
   }
 
   @action
   setCategory(value) {
     this.categoryLabel = value.label
     this.category = value.value
+    this.categoryIsDirtry = false
   }
 
   @action

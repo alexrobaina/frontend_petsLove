@@ -2,7 +2,7 @@ import React from 'react'
 import MaterialIcon from 'material-icons-react'
 import anime from 'animejs/lib/anime.es'
 import c from 'classnames'
-import styles from './initialLogo.module.scss'
+import styles from './initialLogo.scss'
 
 // pasar a stateless component y usar hooks
 class InitialLogo extends React.Component {
