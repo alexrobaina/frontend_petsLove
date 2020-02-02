@@ -1,8 +1,11 @@
 @import 'styles/variable.scss';
 
-.userContainer {
-  text-align: right;
-  width: 100%;
+.containerNavbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;  
+  top: 0;
 }
 
 .userImage {
@@ -16,11 +19,9 @@
 }
 
 .iconFilter {
-  position: absolute;
   z-index: 50;
-  top: 14px;
-  left: 20px;
-  text-align: left;
+  margin-top: 14px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -71,7 +72,7 @@
 
 .showShadowBack {
   z-index: 50;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 5;

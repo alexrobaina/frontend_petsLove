@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import Select from 'react-select'
 import styles from './inputSelect.scss'
 
-const InputSelect = ({ options, placeholder, isLoading, handleChange }) => (
+const InputSelect = ({ options, placeholder, isLoading, handleChange, value }) => (
   <Fragment>
     <Select
       onChange={handleChange}
       className={styles.selectStyle}
       isLoading={isLoading}
+      value={value}
       placeholder={placeholder}
       options={options}
       isRequired
