@@ -26,6 +26,7 @@ class OptionsSelectsStore {
       const response = await this.locationsService.getCountries()
 
       runInAction(() => {
+        this.countries = []
         this.countries = response
       })
     } catch (e) {
@@ -154,6 +155,11 @@ class OptionsSelectsStore {
   setCountry(value) {
     this.countryLabel = value.label
     this.country = value.value
+  }
+
+  @action
+  resetOptionValueSelects() {
+
   }
 }
 

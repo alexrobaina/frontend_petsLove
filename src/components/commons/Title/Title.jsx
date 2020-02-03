@@ -13,13 +13,15 @@ const Title = ({ title, subTitle, timeAnimation }) => (
 )
 
 Title.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subTitle: PropTypes.string,
   timeAnimation: PropTypes.number,
 }
 
 Title.defaultProps = {
-  timeAnimation: 2
+  timeAnimation: 2,
+  title: 'Pets Love',
+  subTitle: ''
 }
 
 export default Title

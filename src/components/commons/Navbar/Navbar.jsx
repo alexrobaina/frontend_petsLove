@@ -7,7 +7,7 @@ import c from 'classnames'
 import FilterNavbar from 'components/FilterNavbar'
 import styles from './navbar.scss'
 
-const Navbar = ({ timeAnimation, searchPetsStore }) => {
+const Navbar = ({ timeAnimation, searchPetsStore, optionsSelectsStore }) => {
   const [toggle, setToggle] = useState(false)
 
   const handleToggle = useCallback(() => {
@@ -20,7 +20,7 @@ const Navbar = ({ timeAnimation, searchPetsStore }) => {
         <div className={styles.iconFilter}>
           <FiFilter size={25} onClick={handleToggle} />
         </div>
-        <div className={styles.userContainer}>
+        <div>
           <img className={styles.userImage} src={user} alt="user" />
         </div>
       </div>
@@ -32,7 +32,7 @@ const Navbar = ({ timeAnimation, searchPetsStore }) => {
           <div>More filters</div>
         </div>
         <div>
-          <FilterNavbar searchPetsStore={searchPetsStore} />
+          <FilterNavbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
         </div>
       </div>
       <div className={c(toggle && styles.showShadowBack)} onClick={handleToggle}></div>
@@ -41,7 +41,13 @@ const Navbar = ({ timeAnimation, searchPetsStore }) => {
 }
 
 Navbar.propTypes = {
-  timeAnimation: PropTypes.number.isRequired,
+  timeAnimation: PropTypes.number,
+  searchPetsStore: PropTypes.object.isRequired,
+  optionsSelectsStore: PropTypes.object.isRequired,
+}
+
+Navbar.defaultProps = {
+  timeAnimation: 3
 }
 
 export default Navbar

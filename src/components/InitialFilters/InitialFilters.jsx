@@ -1,20 +1,19 @@
 import React, { useEffect, useCallback } from 'react'
-import { observer, useLocalStore } from 'mobx-react'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types';
 import anime from 'animejs'
 import c from 'classnames'
-import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
 import styles from './initialFilters.scss'
 
-const InitialFilters = ({ searchPetsStore }) => {
-  const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
+const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
 
-  const handleChange = useCallback(selectedValue => {
+  const handleChangeCountrie = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
-    searchPetsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
+    searchPetsStore.setCountry(selectedValue)
   })
 
   const handleChanceCity = useCallback(selectedValue => {
@@ -65,7 +64,7 @@ const InitialFilters = ({ searchPetsStore }) => {
           <div className={styles.selectCountry}>
             <InputSelect
               placeholder={'Country'}
-              handleChange={handleChange}
+              handleChange={handleChangeCountrie}
               options={optionsSelectsStore.countries}
               isLoading={optionsSelectsStore.isLoading}
             />
@@ -110,6 +109,11 @@ const InitialFilters = ({ searchPetsStore }) => {
       <div className={styles.finish}></div>
     </div>
   )
+}
+
+InitialFilters.Prototypes = {
+  searchPetsStore: PropTypes.object.isRequired,
+  optionsSelectsStore: PropTypes.object.isRequired,
 }
 
 export default observer(InitialFilters)

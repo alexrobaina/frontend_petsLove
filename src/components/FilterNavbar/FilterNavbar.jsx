@@ -1,19 +1,17 @@
 import React, { useCallback, useEffect } from 'react'
-import { observer, useLocalStore } from 'mobx-react'
+import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
-import SearchPetsStore from 'stores/SearchPetsStore'
-import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-function FilterNavbar({ searchPetsStore }) {
-  const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
+function FilterNavbar({ searchPetsStore, optionsSelectsStore }) {
 
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
-    searchPetsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
+    searchPetsStore.setCountry(selectedValue)
   })
 
   const handleSetCity = useCallback(selectedValue => {
@@ -66,40 +64,83 @@ function FilterNavbar({ searchPetsStore }) {
   return (
     <div className={styles.InputContainer}>
       <div className={styles.fromNewSearch}>
-        <InputSelect handleChange={handleSetLocation} options={optionsSelectsStore.countries} placeholder={'Country'}/>
+        {searchPetsStore.cLearSelectCountry &&
+        <InputSelect
+          value={optionsSelectsStore.countries[0]}
+          handleChange={handleSetLocation}
+          options={optionsSelectsStore.countries}
+          placeholder={'Country'}/>
+        }
       </div>
       <div className={styles.fromNewSearch}>
-        <InputSelect handleChange={handleSetCity} options={optionsSelectsStore.cities} placeholder={'City'}/>
+        <InputSelect
+          handleChange={handleSetCity}
+          options={optionsSelectsStore.cities}
+          placeholder={'City'}/>
       </div>
       <div className={styles.fromNewSearch}>
-        <InputSelect options={optionsSelectsStore.categories} handleChange={handleSetCategorie} placeholder={'Type of pets'}/>
+        <InputSelect
+          options={optionsSelectsStore.categories}
+          handleChange={handleSetCategorie}
+          placeholder={'Type of pets'}/>
       </div>
       <div className={styles.fromNewSearch}>
-        <InputSelect handleChange={handleSetGender} options={optionsSelectsStore.gender} placeholder={'Gender'}/>
+        <InputSelect
+          handleChange={handleSetGender}
+          options={optionsSelectsStore.gender}
+          placeholder={'Gender'}/>
       </div>
       <div className={styles.fromNewSearch}>
-        <InputSelect handleChange={handleSetAge} options={optionsSelectsStore.ages} placeholder={'Age'}/>
+        <InputSelect
+          handleChange={handleSetAge}
+          options={optionsSelectsStore.ages}
+          placeholder={'Age'}/>
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.lost} handleChange={handleSetLost} text="Lost"/>
+        <InputCheckbox
+          value={searchPetsStore.lost}
+          handleChange={handleSetLost}
+          text="Lost"/>
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.urgent} handleChange={handleSetUrgent} text="Urgent"/>
+        <InputCheckbox
+          value={searchPetsStore.urgent}
+          handleChange={handleSetUrgent}
+          text="Urgent"/>
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.dewormed} handleChange={handleSetDewormed} text="Dewormed"/>
+        <InputCheckbox
+          value={searchPetsStore.dewormed}
+          handleChange={handleSetDewormed}
+          text="Dewormed"/>
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.vaccianated} handleChange={handleSetVaccianated} text="Vaccianated"/>
+        <InputCheckbox
+          value={searchPetsStore.vaccianated}
+          handleChange={handleSetVaccianated}
+          text="Vaccianated"/>
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.sterilized} handleChange={handleSetSterilized} text="Sterilized"/>
+        <InputCheckbox
+          value={searchPetsStore.sterilized}
+          handleChange={handleSetSterilized}
+          text="Sterilized"/>
       </div>
       <div className={styles.buttonFilter}>
-        <Button circle handleSearch={submitSearch} type="button" text="Search"/>
+        <Button
+          circle
+          handleSearch={submitSearch}
+          type="button"
+          text="Search"/>
       </div>
     </div>
   )
 }
+
+FilterNavbar.Proptypes = {
+  searchPetsStore: PropTypes.object.isRequired,
+  optionsSelectsStore: PropTypes.object.isRequired,
+}
+
 
 export default observer(FilterNavbar)

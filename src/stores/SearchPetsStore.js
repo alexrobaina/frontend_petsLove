@@ -1,6 +1,8 @@
 import { observable, action, runInAction, computed } from 'mobx'
 import _uniqBy from 'lodash/uniqBy'
 import PetsService from '../services/PetsService'
+import LocationsService from '../services/LocationsService'
+import OptionsSelectsStore from './OptionsSelectsStore'
 
 class SearchPetsStore {
   constructor() {
@@ -32,6 +34,9 @@ class SearchPetsStore {
   @observable vaccianatedText = ''
   @observable sterilizedText = ''
 
+  // Reset filters
+  @observable cLearSelectCountry = true
+
   @action
   setFilters() {
     this.urgentText !== '' ? this.filters.push({ text: this.urgentText, typeFilter: 'urgent', }) : this.urgentText
@@ -54,17 +59,23 @@ class SearchPetsStore {
   @action
   deleteFilter(valueText, typeFilter) {
     let newFilter = []
-
-    this.filters.forEach(filter => {
-      if (typeFilter === filter.typeFilter) {
+    console.log(typeFilter)
+    // this.filters.forEach(filter => {
+      if (typeFilter === 'urgent') {
         this.urgent = false
         this.urgentText = ''
       }
-      if (typeFilter === filter.typeFilter) {
+      if (typeFilter === 'country') {
+        console.log('asd')
         this.country = ''
         this.countryLabel = ''
+        this.cLearSelectCountry = false
+
+        setTimeout(() => {
+          this.cLearSelectCountry = true
+        }, 500)
       }
-      if (typeFilter === filter.typeFilter) {
+      if (typeFilter === 'city') {
         this.city = ''
         this.cityLabel = ''
       }
@@ -92,7 +103,7 @@ class SearchPetsStore {
         this.sterilized = false
         this.sterilizedText = ''
       }
-    })
+    // })
 
     newFilter = this.filters.filter(filter => {
       return valueText !== filter.text
