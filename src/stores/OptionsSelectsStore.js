@@ -3,35 +3,22 @@ import _ from 'lodash'
 import LocationsService from '../services/LocationsService'
 import GenderService from '../services/GenderService'
 import CategoriesPetsService from '../services/CategoriesPetsService'
-import PetsService from '../services/PetsService/PetsService'
+import PetsAgesServices from '../services/PetsAgesService/PetesAgesServices'
 
-class InitialFormFiltersStore {
+class OptionsSelectsStore {
   constructor() {
     this.locationsService = new LocationsService()
     this.genderServices = new GenderService()
     this.categoriesPetsService = new CategoriesPetsService()
-    this.petsService = new PetsService()
+    this.petsAgesService = new PetsAgesServices()
   }
 
-  @observable pets = []
-  @observable city = ''
-  @observable gender = ''
   @observable cities = []
-  @observable country = ''
-  @observable category = ''
   @observable countries = []
-  @observable typeGender = []
-  @observable categoriesPets = []
+  @observable gender = []
+  @observable categories = []
+  @observable ages = []
   @observable isLoading = false
-  @observable isFilter = false
-  @observable filters = false
-  @observable isDirty = false
-
-  // validation if selects have value
-  @observable countryIsDirtry = false
-  @observable cityIsDirtry = false
-  @observable genderIsDirtry = false
-  @observable categoryIsDirtry = false
 
   @action
   async listContries() {
@@ -39,22 +26,13 @@ class InitialFormFiltersStore {
       const response = await this.locationsService.getCountries()
 
       runInAction(() => {
+        this.countries = []
         this.countries = response
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
       })
-    }
-  }
-
-  @action
-  setCities() {
-    if (this.country === 'unitedStates') {
-      this.listCitiesUnitedState()
-    }
-    if (this.country === 'argentina') {
-      this.listCitiesArgentina()
     }
   }
 
@@ -90,15 +68,14 @@ class InitialFormFiltersStore {
 
   @action
   async listGender() {
-    this.setLoading()
 
     try {
       const response = await this.genderServices.getTypePets()
 
       runInAction(() => {
-        this.typeGender = this.formatDataReactSelect(response)
-
-        this.setLoading()
+        this.gender = this.formatDataReactSelect(response)
+        this.gender.push({ value: '', label: 'All genders' })
+        this.gender = this.gender.reverse()
       })
     } catch (e) {
       runInAction(() => {
@@ -108,12 +85,14 @@ class InitialFormFiltersStore {
   }
 
   @action
-  async listCategoriesPets() {
+  async listCategories() {
     try {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
-        this.categoriesPets = this.formatDataReactSelect(response)
+        this.categories = this.formatDataReactSelect(response)
+        this.categories.push({ value: '', label: 'All Categories' })
+        this.categories = this.categories.reverse()
       })
     } catch (e) {
       runInAction(() => {
@@ -123,25 +102,14 @@ class InitialFormFiltersStore {
   }
 
   @action
-  async searchPets() {
-
-    const data = {
-      country: this.country,
-      city: this.city,
-      categorie: this.category,
-      gender: this.gender,
-      birthdate: this.birthdate,
-      zone: this.zone,
-    }
-
+  async listAges() {
     try {
-      const response = await this.petsService.getPets(data)
+      const response = await this.petsAgesService.getAge()
 
       runInAction(() => {
-        this.pets = response
-        this.setLoading()
-
-        this.isFilter = true
+        this.ages = this.formatDataReactSelect(response)
+        this.ages.push({ value: '', label: 'All Ages' })
+        this.ages = this.ages.reverse()
       })
     } catch (e) {
       runInAction(() => {
@@ -154,6 +122,9 @@ class InitialFormFiltersStore {
   formatDataReactSelect(data) {
     let result = []
     data.forEach(item => {
+      if (item.age) {
+        result.push(_.zipObject(['value', 'label'], [item._id, item.age]))
+      }
       result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
     })
 
@@ -161,47 +132,35 @@ class InitialFormFiltersStore {
   }
 
   @action
-  setSearch(value) {
-    this.search = value.value
+  setOptionsCities() {
+    if (this.country === 'unitedStates') {
+      this.listCitiesUnitedState()
+    }
+    if (this.country === 'argentina') {
+      this.listCitiesArgentina()
+    }
   }
 
   @action
-  setLoading() {
-    this.isLoading = !this.isLoading
+  setLoadingTrue() {
+    this.isLoading = true
+  }
+
+  @action
+  setLoadingFalse() {
+    this.isLoading = false
   }
 
   @action
   setCountry(value) {
     this.countryLabel = value.label
     this.country = value.value
-    this.countryIsDirtry = false
   }
 
   @action
-  setCity(value) {
-    this.cityLabel = value.label
-    this.city = value.value
-    this.cityIsDirtry = false
-  }
+  resetOptionValueSelects() {
 
-  @action
-  setGender(value) {
-    this.genderLabel = value.label
-    this.gender = value.value
-    this.genderIsDirtry = false
-  }
-
-  @action
-  setCategory(value) {
-    this.categoryLabel = value.label
-    this.category = value.value
-    this.categoryIsDirtry = false
-  }
-
-  @action
-  deleteFilter(value) {
-    this.searchPets()
   }
 }
 
-export default InitialFormFiltersStore
+export default OptionsSelectsStore

@@ -1,9 +1,7 @@
-import axios from 'axios'
-import { API_URL } from '../config'
-
 class LocationsService {
   getCountries = () => {
     let country = [
+      { value: '', label: 'All Countries' },
       { value: 'unitedStates', label: 'United States' },
       { value: 'argentina', label: 'Argentina' },
     ]
@@ -12,6 +10,7 @@ class LocationsService {
 
   getCitiesArgentina = () => {
     let argentina = [
+      { value: '', label: 'All Cities' },
       { value: 'cordoba', label: 'Córdoba' },
       { value: 'buenosAires', label: 'Buenos Aires CABA' },
       { value: 'santaFe', label: 'Santa Fe' },
@@ -24,6 +23,7 @@ class LocationsService {
 
   getCitiesUnitedState = () => {
     let unitedState = [
+      { value: '', label: 'All Cities' },
       { value: 'arizona', label: 'Arizona' },
       { value: 'california', label: 'California' },
     ]

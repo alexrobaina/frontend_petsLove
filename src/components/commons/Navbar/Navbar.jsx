@@ -1,14 +1,13 @@
-import React, { Fragment, useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
 import { FiFilter } from 'react-icons/fi'
 import { MdClose } from 'react-icons/md'
 import c from 'classnames'
-import { Animated } from 'react-animated-css'
-import FormFilterNavbar from 'components/FormFilterNavbar'
+import FilterNavbar from 'components/FilterNavbar'
 import styles from './navbar.scss'
 
-const Navbar = ({ timeAnimation }) => {
+const Navbar = ({ timeAnimation, searchPetsStore, optionsSelectsStore }) => {
   const [toggle, setToggle] = useState(false)
 
   const handleToggle = useCallback(() => {
@@ -17,11 +16,13 @@ const Navbar = ({ timeAnimation }) => {
 
   return (
     <>
-      <div className={styles.userContainer}>
-        <img className={styles.userImage} src={user} alt="user" />
-      </div>
-      <div className={styles.iconFilter}>
-        <FiFilter size={25} onClick={handleToggle} />
+      <div className={styles.containerNavbar}>
+        <div className={styles.iconFilter}>
+          <FiFilter size={25} onClick={handleToggle} />
+        </div>
+        <div>
+          <img className={styles.userImage} src={user} alt="user" />
+        </div>
       </div>
       <div className={c(toggle ? styles.open : styles.showMenu)}>
         <div className={styles.iconClose} onClick={handleToggle}>
@@ -31,7 +32,7 @@ const Navbar = ({ timeAnimation }) => {
           <div>More filters</div>
         </div>
         <div>
-          <FormFilterNavbar />
+          <FilterNavbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
         </div>
       </div>
       <div className={c(toggle && styles.showShadowBack)} onClick={handleToggle}></div>
@@ -40,7 +41,13 @@ const Navbar = ({ timeAnimation }) => {
 }
 
 Navbar.propTypes = {
-  timeAnimation: PropTypes.number.isRequired,
+  timeAnimation: PropTypes.number,
+  searchPetsStore: PropTypes.object.isRequired,
+  optionsSelectsStore: PropTypes.object.isRequired,
+}
+
+Navbar.defaultProps = {
+  timeAnimation: 3
 }
 
 export default Navbar

@@ -1,4 +1,4 @@
-@import '../../../styles//variable.scss';
+@import '../../../styles/variable.scss';
 @import '../../../styles/globals.scss';
 
 .primary {
@@ -15,7 +15,22 @@
   text-transform: capitalize;
   width: 175px;
   transition: 0.3s;
+}
 
+.btnCircle {
+  color: $ligth;
+  display: flex;
+  background-color: $primary;
+  border: none;
+  border-radius: 100px;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  height: 40px;
+  text-transform: capitalize;
+  width: 40px;
+  transition: 0.3s;
 }
 
 button:hover {
