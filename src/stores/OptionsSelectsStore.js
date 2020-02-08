@@ -4,6 +4,7 @@ import LocationsService from '../services/LocationsService'
 import GenderService from '../services/GenderService'
 import CategoriesPetsService from '../services/CategoriesPetsService'
 import PetsAgesServices from '../services/PetsAgesService/PetesAgesServices'
+import ActivityService from '../services/ActivityService'
 
 class OptionsSelectsStore {
   constructor() {
@@ -11,6 +12,7 @@ class OptionsSelectsStore {
     this.genderServices = new GenderService()
     this.categoriesPetsService = new CategoriesPetsService()
     this.petsAgesService = new PetsAgesServices()
+    this.activityService = new ActivityService()
   }
 
   @observable cities = []
@@ -18,6 +20,7 @@ class OptionsSelectsStore {
   @observable gender = []
   @observable categories = []
   @observable ages = []
+  @observable activity = []
   @observable isLoading = false
 
   @action
@@ -119,11 +122,31 @@ class OptionsSelectsStore {
   }
 
   @action
+  async listActiviy() {
+    try {
+      const response = await this.activityService.getActivity()
+
+      runInAction(() => {
+        this.activity = this.formatDataReactSelect(response)
+        this.activity.push({ value: '', label: 'All' })
+        this.activity = this.activity.reverse()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
+    }
+  }
+
+  @action
   formatDataReactSelect(data) {
     let result = []
     data.forEach(item => {
       if (item.age) {
         result.push(_.zipObject(['value', 'label'], [item._id, item.age]))
+      }
+      if (item.activity) {
+        result.push(_.zipObject(['value', 'label'], [item._id, item.activity]))
       }
       result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
     })
