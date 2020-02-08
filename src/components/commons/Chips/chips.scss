@@ -1,0 +1,33 @@
+@import 'styles/variable.scss';
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  background-color: $filters;
+  color: $ligth;
+  padding: 4px 12px 3px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  min-width: 140px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(92, 107, 192, 0.482);
+  }
+}
+
+.icons {
+  margin-top: -4px;
+  margin-left: 10px;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.359);
+  }
+}

@@ -1,5 +1,4 @@
 import React from 'react'
-import c from 'classnames'
 import styles from './inputCheckbox.scss'
 import PropTypes from 'prop-types'
 import Title from '../Title'
@@ -7,10 +6,10 @@ import Title from '../Title'
 const InputCheckbox = ({ text, handleChange, value }) => {
   return (
     <div className={styles.containerCheckbox}>
-      <label class={styles.container}>
+      <label className={styles.container}>
         {text}
-        <input onChange={handleChange} checked={value} type="checkbox"/>
-        <span class={styles.checkmark}></span>
+        <input onChange={handleChange} checked={value} type="checkbox" />
+        <span className={styles.checkmark}></span>
       </label>
     </div>
   )

@@ -32,7 +32,10 @@ const Navbar = ({ timeAnimation, searchPetsStore, optionsSelectsStore }) => {
           <div>More filters</div>
         </div>
         <div className={styles.containerSelects}>
-          <FilterNavbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+          <FilterNavbar
+            optionsSelectsStore={optionsSelectsStore}
+            searchPetsStore={searchPetsStore}
+          />
         </div>
       </div>
       <div className={c(toggle && styles.showShadowBack)} onClick={handleToggle}></div>
@@ -47,7 +50,7 @@ Navbar.propTypes = {
 }
 
 Navbar.defaultProps = {
-  timeAnimation: 3
+  timeAnimation: 3,
 }
 
 export default Navbar
