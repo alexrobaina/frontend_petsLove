@@ -31,7 +31,7 @@ const Navbar = ({ timeAnimation, searchPetsStore, optionsSelectsStore }) => {
         <div className={styles.titleNavbar}>
           <div>More filters</div>
         </div>
-        <div>
+        <div className={styles.containerSelects}>
           <FilterNavbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
         </div>
       </div>
