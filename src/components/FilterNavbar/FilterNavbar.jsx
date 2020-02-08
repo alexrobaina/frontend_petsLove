@@ -6,7 +6,7 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-function FilterNavbar({ searchPetsStore, optionsSelectsStore }) {
+const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
@@ -159,9 +159,9 @@ function FilterNavbar({ searchPetsStore, optionsSelectsStore }) {
   )
 }
 
-FilterNavbar.Proptypes = {
-  searchPetsStore: PropTypes.object.isRequired,
-  optionsSelectsStore: PropTypes.object.isRequired,
+FilterNavbar.propTypes = {
+  searchPetsStore: PropTypes.node.isRequired,
+  optionsSelectsStore: PropTypes.node.isRequired,
 }
 
 export default observer(FilterNavbar)
