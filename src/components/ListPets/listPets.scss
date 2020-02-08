@@ -1,22 +1,23 @@
 @import 'styles/mixings.scss';
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-top: 30px;
-    
-    @include media-breakpoint-only(xs) {
-      justify-content: center;
-      margin: 20px 20px 10px 10px;
-    }
-  }
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 30px;
 
-  .containerFilters {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-top: 100px;
-    padding-left: 200px;
-    padding-right: 200px;
+  @include media-breakpoint-only(xs) {
+    justify-content: center;
+    margin: 20px 20px 10px 10px;
   }
+}
+
+.containerFilters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-left: 200px;
+  padding-right: 200px;
+  transition: 0.3s;
+}

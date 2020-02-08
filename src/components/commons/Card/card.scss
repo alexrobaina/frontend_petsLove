@@ -8,7 +8,13 @@
   min-width: 250px;
   flex: 1 1 1;
   margin-top: 50px;
-  margin: 10px;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 28px rgba(0,0,0,0.10), 0 2px 30px rgba(0,0,0,0.10);
+  }
+
 
   @include media-breakpoint-only(xs) {
     margin: 10px;

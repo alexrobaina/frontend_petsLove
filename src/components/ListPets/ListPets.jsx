@@ -31,12 +31,11 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
                 <LazyLoad height={200} offset={100}>
                   <Animated
                     animationIn="bounceInUp"
-                    animationOut="fadeOut"
+                    animationOut="fadeInUp"
                     isVisible="true"
                     animationInDuration={2000}
                   >
                     <Card
-                      className={styles.card}
                       key={pet._id}
                       image={pet.image[0] ? `${URL_LOCAL}${pet.image[0]}` : noImage}
                       namePet={pet.name}
