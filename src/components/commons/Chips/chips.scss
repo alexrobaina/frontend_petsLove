@@ -17,6 +17,7 @@
   min-width: 140px;
   text-align: center;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: rgba(92, 107, 192, 0.482);
@@ -26,6 +27,7 @@
 .icons {
   margin-top: -4px;
   margin-left: 10px;
+  transition: 3s;
 
   &:hover {
     color: rgba(255, 255, 255, 0.359);
