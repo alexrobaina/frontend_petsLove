@@ -63,7 +63,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
         <div className={styles.container}>
           <div className={styles.selectCountry}>
             <InputSelect
-              placeholder={'Country'}
+              placeholder="Country"
               handleChange={handleChangeCountrie}
               options={optionsSelectsStore.countries}
               isLoading={optionsSelectsStore.isLoading}
@@ -71,7 +71,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectCity}>
             <InputSelect
-              placeholder={'City'}
+              placeholder="City"
               options={optionsSelectsStore.cities}
               handleChange={handleChanceCity}
               isLoading={optionsSelectsStore.isLoading}
@@ -79,7 +79,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectCategory}>
             <InputSelect
-              placeholder={'Type of pet'}
+              placeholder="Type of pet"
               options={optionsSelectsStore.categories}
               handleChange={handleChanceCategory}
               isLoading={optionsSelectsStore.isLoading}
@@ -87,7 +87,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectGender}>
             <InputSelect
-              placeholder={'Gender'}
+              placeholder="Gender"
               handleChange={handleChanceGender}
               options={optionsSelectsStore.gender}
               isLoading={optionsSelectsStore.isLoading}
@@ -99,7 +99,8 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
         </div>
       ) : (
         <div className="animationOpacity">
-          <ListPets handleDelete={deleteFilter}
+          <ListPets
+            handleDelete={deleteFilter}
             filters={searchPetsStore.filters}
             pets={searchPetsStore.pets}
             isLoading={searchPetsStore.isLoading}

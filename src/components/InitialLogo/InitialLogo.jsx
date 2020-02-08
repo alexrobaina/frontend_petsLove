@@ -43,7 +43,7 @@ class InitialLogo extends React.Component {
 
     anime({
       targets: '.catAnimation',
-      translateX: 50
+      translateX: 50,
     })
   }
 
@@ -52,67 +52,65 @@ class InitialLogo extends React.Component {
 
     return (
       <div className={c(displayNone ? styles.displayNone : '')}>
-        <div className={c(styles.cat, 'catAnimation')}></div>
+        <div className={c(styles.cat, 'catAnimation')} />
         <div className={c(styles.container, 'animationLogo')}>
           <div className={styles.firstPat1}>
             <div className={styles.pat7}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div className={styles.pat8}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={30} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={30} />
             </div>
             <div className={styles.pat9}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div className={styles.pat10}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={10} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={10} />
             </div>
           </div>
           <div className={styles.firstPat1}>
             <div className={styles.pat1}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div className={styles.pat2}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={30} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={30} />
             </div>
             <div className={styles.pat3}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={10} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={10} />
             </div>
           </div>
           <div className={styles.firstPat2}>
             <div className={styles.pat1}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={30} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={30} />
             </div>
             <div>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div className={styles.pat7}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={10} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={10} />
             </div>
           </div>
           <div className={styles.firstPat3}>
             <div className={styles.pat8}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div className={styles.pat9}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={30} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={30} />
             </div>
             <div className={styles.pat10}>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={50} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={50} />
             </div>
             <div>
-              <MaterialIcon color='#ECEFF5' icon="pets" size={10} />
+              <MaterialIcon color="#ECEFF5" icon="pets" size={10} />
             </div>
           </div>
-          <div className={styles.logoTypography}>
-            Pets Love
-          </div>
+          <div className={styles.logoTypography}>Pets Love</div>
         </div>
       </div>
     )

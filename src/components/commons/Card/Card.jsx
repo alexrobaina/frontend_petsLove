@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './card.scss'
 
 const Card = ({ history, image, namePet, altImage }) => {
+  //Format code in store this is not responsability card component
   const verifyText = () => {
     let text
     if (history) {
@@ -12,12 +13,12 @@ const Card = ({ history, image, namePet, altImage }) => {
         return (text = history)
       }
     }
-    return history = 'They did not add history'
+    return (history = 'They did not add history')
   }
 
   return (
     <div className={styles.containerCard}>
-      <img className={styles.imgCard} src={image} alt={altImage}/>
+      <img className={styles.imgCard} src={image} alt={altImage} />
       <div className={styles.title}>{namePet}</div>
       <div className={styles.textHistory}>{verifyText()}</div>
     </div>
