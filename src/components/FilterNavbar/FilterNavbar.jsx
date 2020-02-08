@@ -6,7 +6,7 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-function FilterNavbar({ searchPetsStore, optionsSelectsStore }) {
+function FilterNavbar({ searchPetsStore,    optionsSelectsStore }) {
 
     const handleSetLocation = useCallback(selectedValue => {
         optionsSelectsStore.setCountry(selectedValue)
@@ -85,7 +85,7 @@ function FilterNavbar({ searchPetsStore, optionsSelectsStore }) {
                 }
             </div>
             <div className={styles.fromNewSearch}>
-                {searchPetsStore.cLearSelectCategorie &&
+                {searchPetsStore.cLearSelectCategory &&
                 <InputSelect
                     options={optionsSelectsStore.categories}
                     handleChange={handleSetCategorie}

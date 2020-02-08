@@ -7,183 +7,184 @@ import PetsAgesServices from '../services/PetsAgesService/PetesAgesServices'
 import ActivityService from '../services/ActivityService'
 
 class OptionsSelectsStore {
-  constructor() {
-    this.locationsService = new LocationsService()
-    this.genderServices = new GenderService()
-    this.categoriesPetsService = new CategoriesPetsService()
-    this.petsAgesService = new PetsAgesServices()
-    this.activityService = new ActivityService()
-  }
-
-  @observable cities = []
-  @observable countries = []
-  @observable gender = []
-  @observable categories = []
-  @observable ages = []
-  @observable activity = []
-  @observable isLoading = false
-
-  @action
-  async listContries() {
-    try {
-      const response = await this.locationsService.getCountries()
-
-      runInAction(() => {
-        this.countries = []
-        this.countries = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+    constructor() {
+        this.locationsService = new LocationsService()
+        this.genderServices = new GenderService()
+        this.categoriesPetsService = new CategoriesPetsService()
+        this.petsAgesService = new PetsAgesServices()
+        this.activityService = new ActivityService()
     }
-  }
 
-  @action
-  async listCitiesUnitedState() {
-    try {
-      const response = await this.locationsService.getCitiesUnitedState()
+    @observable cities = []
+    @observable countries = []
+    @observable gender = []
+    @observable categories = []
+    @observable ages = []
+    @observable activity = []
+    @observable isLoading = false
 
-      runInAction(() => {
-        this.cities = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+    @action
+    async listContries() {
+        try {
+            const response = await this.locationsService.getCountries()
+
+            runInAction(() => {
+                this.countries = []
+                this.countries = response
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  async listCitiesArgentina() {
-    try {
-      const response = await this.locationsService.getCitiesArgentina()
+    @action
+    async listCitiesUnitedState() {
+        try {
+            const response = await this.locationsService.getCitiesUnitedState()
 
-      runInAction(() => {
-        this.cities = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+            runInAction(() => {
+                this.cities = response
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  async listGender() {
+    @action
+    async listCitiesArgentina() {
+        try {
+            const response = await this.locationsService.getCitiesArgentina()
 
-    try {
-      const response = await this.genderServices.getTypePets()
-
-      runInAction(() => {
-        this.gender = this.formatDataReactSelect(response)
-        this.gender.push({ value: '', label: 'All genders' })
-        this.gender = this.gender.reverse()
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+            runInAction(() => {
+                this.cities = response
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  async listCategories() {
-    try {
-      const response = await this.categoriesPetsService.getTypePets()
+    @action
+    async listGender() {
 
-      runInAction(() => {
-        this.categories = this.formatDataReactSelect(response)
-        this.categories.push({ value: '', label: 'All Categories' })
-        this.categories = this.categories.reverse()
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+        try {
+            const response = await this.genderServices.getTypePets()
+
+            runInAction(() => {
+                this.gender = this.formatDataReactSelect(response, 'name')
+                this.gender.push({ value: '', label: 'All genders' })
+                this.gender = this.gender.reverse()
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  async listAges() {
-    try {
-      const response = await this.petsAgesService.getAge()
+    @action
+    async listCategories() {
+        try {
+            const response = await this.categoriesPetsService.getTypePets()
 
-      runInAction(() => {
-        this.ages = this.formatDataReactSelect(response)
-        this.ages.push({ value: '', label: 'All Ages' })
-        this.ages = this.ages.reverse()
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+            runInAction(() => {
+                this.categories = this.formatDataReactSelect(response, 'name')
+                this.categories.push({ value: '', label: 'All Categories' })
+                this.categories = this.categories.reverse()
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  async listActiviy() {
-    try {
-      const response = await this.activityService.getActivity()
+    @action
+    async listAges() {
+        try {
+            const response = await this.petsAgesService.getAge()
 
-      runInAction(() => {
-        this.activity = this.formatDataReactSelect(response)
-        this.activity.push({ value: '', label: 'All' })
-        this.activity = this.activity.reverse()
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+            runInAction(() => {
+                this.ages = this.formatDataReactSelect(response, 'age')
+                this.ages.push({ value: '', label: 'All Ages' })
+                this.ages = this.ages.reverse()
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-  }
 
-  @action
-  formatDataReactSelect(data) {
-    let result = []
-    data.forEach(item => {
-      if (item.age) {
-        result.push(_.zipObject(['value', 'label'], [item._id, item.age]))
-      }
-      if (item.activity) {
-        result.push(_.zipObject(['value', 'label'], [item._id, item.activity]))
-      }
-      result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
-    })
+    @action
+    async listActiviy() {
+        try {
+            const response = await this.activityService.getActivity()
 
-    return result
-  }
-
-  @action
-  setOptionsCities() {
-    if (this.country === 'unitedStates') {
-      this.listCitiesUnitedState()
+            runInAction(() => {
+                this.activity = this.formatDataReactSelect(response, 'activity')
+                this.activity.push({ value: '', label: 'All' })
+                this.activity = this.activity.reverse()
+            })
+        } catch (e) {
+            runInAction(() => {
+                console.log(e)
+            })
+        }
     }
-    if (this.country === 'argentina') {
-      this.listCitiesArgentina()
+
+    @action
+    formatDataReactSelect(data, nameObject) {
+        const result = []
+        data.forEach(item => {
+            if (nameObject === 'age') {
+                result.push(_.zipObject(['value', 'label'], [item._id, item.age]))
+            }
+            if (nameObject === 'activity') {
+                result.push(_.zipObject(['value', 'label'], [item._id, item.activity]))
+            }
+            if (nameObject === 'name') {
+                result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
+            }
+        })
+        return result
     }
-  }
 
-  @action
-  setLoadingTrue() {
-    this.isLoading = true
-  }
+    @action
+    setOptionsCities() {
+        if (this.country === 'unitedStates') {
+            this.listCitiesUnitedState()
+        }
+        if (this.country === 'argentina') {
+            this.listCitiesArgentina()
+        }
+    }
 
-  @action
-  setLoadingFalse() {
-    this.isLoading = false
-  }
+    @action
+    setLoadingTrue() {
+        this.isLoading = true
+    }
 
-  @action
-  setCountry(value) {
-    this.countryLabel = value.label
-    this.country = value.value
-  }
+    @action
+    setLoadingFalse() {
+        this.isLoading = false
+    }
 
-  @action
-  resetOptionValueSelects() {
+    @action
+    setCountry(value) {
+        this.countryLabel = value.label
+        this.country = value.value
+    }
 
-  }
+    @action
+    resetOptionValueSelects() {
+
+    }
 }
 
 export default OptionsSelectsStore
