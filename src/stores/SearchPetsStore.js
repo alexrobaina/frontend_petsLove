@@ -23,6 +23,7 @@ class SearchPetsStore {
   @observable isLoading = false
   @observable sterilized = false
   @observable vaccianated = false
+  @observable isError = false
 
   // Filters
   @observable urgentText = ''
@@ -235,6 +236,7 @@ class SearchPetsStore {
     }
 
     this.setFilters()
+    this.isError = false
 
     try {
       const response = await this.petsService.getPets(data)
@@ -247,6 +249,7 @@ class SearchPetsStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isError = true
         console.log(e)
       })
     }
