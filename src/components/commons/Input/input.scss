@@ -1,12 +1,14 @@
-@import '../../../styles/variable.scss';
+@import 'styles/variable.scss';
+@import 'styles/mixings.scss';
 
 .input {
-  width: 96%;
+  width: 100%;
   border: 1px solid $borderPrimary;
   box-shadow: none;
-  padding: 8px;
+  padding: 10px 0 10px 0;
   border-radius: 4px;
   font-family: 'Noto Sans HK', sans-serif;
+  box-sizing: border-box;
 
   &:focus {
     border-radius: 4px;
@@ -20,4 +22,10 @@
     font-size: 15px;
     font-family: 'Noto Sans HK', sans-serif;
   }
+}
+
+input[type="text"] {
+  padding-left: 20px;
+  font-size: 15px;
+  font-family: 'Noto Sans HK', sans-serif;
 }
