@@ -1,10 +1,10 @@
 import React from 'react'
-import c from 'classnames'
+import { Link } from 'react-router-dom'
 import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
+import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
 import catImage from './imageCat.jpg'
 import styles from './login.scss'
-import ButtonLoginSocialMedia from '../../components/commons/ButtonLoginSocialMedia'
 
 const Login = () => {
   return (
@@ -29,8 +29,12 @@ const Login = () => {
             <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
           </div>
           <div className={styles.forgotPassword}>
-            <div className={styles.textForgot}>Forgot password</div>
-            <div className={styles.textSingIn}>Sing In</div>
+            <Link to="forgot-password" className={styles.textForgot}>
+              Forgot password
+            </Link>
+            <Link to="register" className={styles.textSingIn}>
+              Sing In
+            </Link>
           </div>
         </div>
       </div>

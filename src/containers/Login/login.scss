@@ -35,10 +35,10 @@
 }
 
 .centerLogin {
-  transform: translateY(50%);
+  margin-top: 25%;
 
   @include media-breakpoint-down(sm) {
-    transform: translateY(25%);
+    margin-top: 20%;
   }
 }
 
