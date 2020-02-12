@@ -60,48 +60,10 @@
 }
 
 .buttonSocialLogin {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 1fr 1fr;
   margin-top: 20px;
-
-  @include media-breakpoint-down(sm) {
-    justify-content: center;
-    flex-direction: column;
-  }
-}
-
-.googleLogin {
-  margin-right: 10px;
-  background-color: #d93025;
-
-  @include media-breakpoint-down(sm) {
-    margin-right: 0;
-  }
-}
-
-.facebookLogin {
-  margin-left: 10px;
-  background-color: #3b5998;
-
-  @include media-breakpoint-down(sm) {
-    margin-top: 20px;
-    margin-left: 0;
-  }
-}
-
-.btn {
-  color: $ligth;
-  display: flex;
-  border: none;
-  border-radius: 5px;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  height: 38px;
-  text-transform: capitalize;
-  width: 100%;
-  transition: 0.3s;
 }
 
 .buttonLogin {

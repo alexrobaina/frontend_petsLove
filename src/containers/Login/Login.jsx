@@ -4,6 +4,7 @@ import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
 import catImage from './imageCat.jpg'
 import styles from './login.scss'
+import ButtonLoginSocialMedia from '../../components/commons/ButtonLoginSocialMedia'
 
 const Login = () => {
   return (
@@ -24,12 +25,8 @@ const Login = () => {
             <Button bigButton text="Login" />
           </div>
           <div className={styles.buttonSocialLogin}>
-            <button type="button" className={c(styles.googleLogin, styles.btn)}>
-              Google
-            </button>
-            <button type="button" className={c(styles.facebookLogin, styles.btn)}>
-              Facebook
-            </button>
+            <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
+            <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
           </div>
           <div className={styles.forgotPassword}>
             <div className={styles.textForgot}>Forgot password</div>
