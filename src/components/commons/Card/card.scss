@@ -1,4 +1,4 @@
-@import '../../../styles/mixings.scss';
+@import 'styles/mixings.scss';
 
 .containerCard {
   box-shadow: 0px 3px 46px -5px rgba(0, 0, 0, 0.092);
@@ -14,7 +14,6 @@
   &:hover {
     box-shadow: 0 2px 28px rgba(0,0,0,0.10), 0 2px 30px rgba(0,0,0,0.10);
   }
-
 
   @include media-breakpoint-only(xs) {
     margin: 10px;

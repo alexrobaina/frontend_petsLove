@@ -1,5 +1,5 @@
-@import '../../../styles/variable.scss';
-@import '../../../styles/globals.scss';
+@import 'styles/variable.scss';
+@import 'styles/globals.scss';
 
 .primary {
   color: $ligth;
@@ -15,6 +15,10 @@
   text-transform: capitalize;
   width: 175px;
   transition: 0.3s;
+
+  &.bigButton {
+    width: 100%;
+  }
 }
 
 .btnCircle {

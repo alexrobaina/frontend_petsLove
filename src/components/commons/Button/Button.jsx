@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import c from 'classnames'
 import { MdSearch } from 'react-icons/md'
 import styles from './button.scss'
 
-const Button = ({ type, handleSearch, text, circle }) => {
+const Button = ({ type, handleSearch, text, circle, bigButton }) => {
   if (circle) {
     return (
       <button className={styles.btnCircle} type={type} onClick={handleSearch}>
@@ -12,7 +13,7 @@ const Button = ({ type, handleSearch, text, circle }) => {
     )
   }
   return (
-    <button className={styles.primary} type={type} onClick={handleSearch}>
+    <button className={c(styles.primary, bigButton && styles.bigButton)} type={type} onClick={handleSearch}>
       {text}
     </button>
   )
