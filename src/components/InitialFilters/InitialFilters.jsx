@@ -1,15 +1,15 @@
 import React, { useEffect, useCallback } from 'react'
 import { observer } from 'mobx-react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import anime from 'animejs'
 import c from 'classnames'
 import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
 import styles from './initialFilters.scss'
+import ErrorMessage from '../commons/ErrorMessage'
 
 const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
-
   const handleChangeCountrie = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
@@ -94,7 +94,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
             />
           </div>
           <div className={styles.btnSearch}>
-            <Button handleSearch={handleSearch} type="button" styleButton="primary" text="Search"/>
+            <Button handleSearch={handleSearch} type="button" styleButton="primary" text="Search" />
           </div>
         </div>
       ) : (
@@ -107,6 +107,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           />
         </div>
       )}
+      {searchPetsStore.isError && <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />}
       <div className={styles.finish}></div>
     </div>
   )
