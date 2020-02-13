@@ -4,7 +4,7 @@
   position: fixed;
   display: flex;
   justify-content: space-between;
-  width: 100%;  
+  width: 100%;
   top: 0;
 }
 
@@ -28,13 +28,13 @@
 .containerButtonslog {
   display: flex;
   justify-content: flex-end;
-   margin-right: 30px;
+  margin-right: 30px;
 }
 
 .textLogin {
-padding: 20px;
-  @include site-font('text', 500)
-
+  cursor: pointer;
+  padding: 20px;
+  @include site-font('text', 500);
 }
 
 .iconClose {
