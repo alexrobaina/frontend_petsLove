@@ -1,8 +1,6 @@
-import { observable, action, runInAction, computed } from 'mobx'
+import { observable, action, runInAction } from 'mobx'
 import _uniqBy from 'lodash/uniqBy'
 import PetsService from '../services/PetsService'
-import LocationsService from '../services/LocationsService'
-import OptionsSelectsStore from './OptionsSelectsStore'
 
 class SearchPetsStore {
   constructor() {
@@ -37,99 +35,45 @@ class SearchPetsStore {
   @observable sterilizedText = ''
   @observable activityLabel = ''
   @observable ageLabel = ''
+  @observable deleteFiltersDuplicate = []
 
   // Reset filters
-  @observable cLearSelectCountry = true
-  @observable cLearSelectCity = true
-  @observable cLearSelectGender = true
-  @observable cLearSelectCategory = true
-  @observable cLearSelectActivity = true
-  @observable cLearSelectAge = true
+  @observable clearSelectCountry = true
+  @observable clearSelectCity = true
+  @observable clearSelectGender = true
+  @observable clearSelectCategory = true
+  @observable clearSelectActivity = true
+  @observable clearSelectAge = true
+
+  setFiltersPets = (textFilter, typeFilter, arrayFilter) => {
+    if (textFilter !== '') {
+      return arrayFilter.push({
+        text: textFilter,
+        typeFilter,
+      })
+    }
+    return textFilter
+  }
 
   @action
   setFilters() {
-    this.urgentText !== ''
-      ? this.filters.push({
-          text: this.urgentText,
-          typeFilter: 'urgent',
-        })
-      : this.urgentText
+    this.setFiltersPets(this.urgentText, 'urgent', this.filters)
+    this.setFiltersPets(this.countryLabel, 'country', this.filters)
+    this.setFiltersPets(this.cityLabel, 'city', this.filters)
+    this.setFiltersPets(this.genderLabel, 'gender', this.filters)
+    this.setFiltersPets(this.categoryLabel, 'category', this.filters)
+    this.setFiltersPets(this.lostText, 'lost', this.filters)
+    this.setFiltersPets(this.dewormedText, 'dewormed', this.filters)
+    this.setFiltersPets(this.ageLabel, 'age', this.filters)
+    this.setFiltersPets(this.vaccianatedText, 'vaccianated', this.filters)
+    this.setFiltersPets(this.sterilizedText, 'sterilized', this.filters)
+    this.setFiltersPets(this.activityLabel, 'activity', this.filters)
 
-    this.countryLabel !== ''
-      ? this.filters.push({
-          text: this.countryLabel,
-          typeFilter: 'country',
-        })
-      : this.countryLabel
-
-    this.cityLabel !== ''
-      ? this.filters.push({
-          text: this.cityLabel,
-          typeFilter: 'city',
-        })
-      : this.cityLabel
-
-    this.genderLabel !== ''
-      ? this.filters.push({
-          text: this.genderLabel,
-          typeFilter: 'gender',
-        })
-      : this.genderLabel
-
-    this.categoryLabel !== ''
-      ? this.filters.push({
-          text: this.categoryLabel,
-          typeFilter: 'category',
-        })
-      : this.categoryLabel
-
-    this.lostText !== ''
-      ? this.filters.push({
-          text: this.lostText,
-          typeFilter: 'lost',
-        })
-      : this.lostText
-
-    this.dewormedText !== ''
-      ? this.filters.push({
-          text: this.dewormedText,
-          typeFilter: 'dewormed',
-        })
-      : this.dewormedText
-
-    this.ageLabel !== ''
-      ? this.filters.push({
-          text: this.ageLabel,
-          typeFilter: 'age',
-        })
-      : this.ageLabel
-
-    this.vaccianatedText !== ''
-      ? this.filters.push({
-          text: this.vaccianatedText,
-          typeFilter: 'vaccianated',
-        })
-      : this.vaccianatedText
-
-    this.sterilizedText !== ''
-      ? this.filters.push({
-          text: this.sterilizedText,
-          typeFilter: 'sterilized',
-        })
-      : this.sterilizedText
-
-    this.activityLabel !== ''
-      ? this.filters.push({
-          text: this.activityLabel,
-          typeFilter: 'activity',
-        })
-      : this.activityLabel
-
-    const deleteFiltersDuplicate = _uniqBy(this.filters, function(e) {
+    this.deleteFiltersDuplicate = _uniqBy(this.filters, e => {
       return e.typeFilter
     })
 
-    this.filters = deleteFiltersDuplicate
+    this.filters = this.deleteFiltersDuplicate
   }
 
   @action
@@ -142,46 +86,46 @@ class SearchPetsStore {
     if (typeFilter === 'country') {
       this.country = ''
       this.countryLabel = ''
-      this.cLearSelectCountry = false
+      this.clearSelectCountry = false
 
       setTimeout(() => {
-        this.cLearSelectCountry = true
+        this.clearSelectCountry = true
       }, 500)
     }
     if (typeFilter === 'age') {
       this.age = ''
       this.ageLabel = ''
-      this.cLearSelectAge = false
+      this.clearSelectAge = false
 
       setTimeout(() => {
-        this.cLearSelectAge = true
+        this.clearSelectAge = true
       }, 500)
     }
     if (typeFilter === 'city') {
       this.city = ''
       this.cityLabel = ''
-      this.cLearSelectCity = false
+      this.clearSelectCity = false
 
       setTimeout(() => {
-        this.cLearSelectCity = true
+        this.clearSelectCity = true
       }, 500)
     }
     if (typeFilter === 'gender') {
       this.gender = ''
       this.genderLabel = ''
-      this.cLearSelectGender = false
+      this.clearSelectGender = false
 
       setTimeout(() => {
-        this.cLearSelectGender = true
+        this.clearSelectGender = true
       }, 500)
     }
     if (typeFilter === 'category') {
       this.category = ''
       this.categoryLabel = ''
-      this.cLearSelectCategory = false
+      this.clearSelectCategory = false
 
       setTimeout(() => {
-        this.cLearSelectCategory = true
+        this.clearSelectCategory = true
       }, 500)
     }
     if (typeFilter === 'lost') {
@@ -191,10 +135,10 @@ class SearchPetsStore {
     if (typeFilter === 'activity') {
       this.activity = ''
       this.activityLabel = ''
-      this.cLearSelectActivity = false
+      this.clearSelectActivity = false
 
       setTimeout(() => {
-        this.cLearSelectActivity = true
+        this.clearSelectActivity = true
       }, 500)
     }
     if (typeFilter === 'dewormed') {

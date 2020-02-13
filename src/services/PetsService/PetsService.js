@@ -23,6 +23,10 @@ class PetsService {
       )
       .then(response => response.data)
   }
+
+  getPetId = id => {
+    return axios.get(`${API_MONGO_LOCAL}/api/pet/query/?_id=${id}`).then(response => response.data)
+  }
 }
 
 export default PetsService

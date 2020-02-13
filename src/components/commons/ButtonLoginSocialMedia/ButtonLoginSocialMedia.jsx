@@ -16,6 +16,9 @@ const ButtonLoginSocialMedia = ({ socialButton, textButton }) => (
   </button>
 )
 
-ButtonLoginSocialMedia.propTypes = {}
+ButtonLoginSocialMedia.propTypes = {
+  socialButton: PropTypes.string.isRequired,
+  textButton: PropTypes.string.isRequired,
+}
 
 export default ButtonLoginSocialMedia

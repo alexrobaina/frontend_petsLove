@@ -28,9 +28,9 @@ const InputSelect = ({ options, placeholder, isLoading, handleChange }) => (
 
 InputSelect.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.oneOfType([PropTypes.array]).isRequired,
   placeholder: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
 }
 
 InputSelect.defaultProps = {

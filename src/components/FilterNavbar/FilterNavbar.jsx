@@ -68,7 +68,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
   return (
     <div className={styles.InputContainer}>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectCountry && (
+        {searchPetsStore.clearSelectCountry && (
           <InputSelect
             handleChange={handleSetLocation}
             options={optionsSelectsStore.countries}
@@ -77,7 +77,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         )}
       </div>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectCity && (
+        {searchPetsStore.clearSelectCity && (
           <InputSelect
             handleChange={handleSetCity}
             options={optionsSelectsStore.cities}
@@ -86,7 +86,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         )}
       </div>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectCategory && (
+        {searchPetsStore.clearSelectCategory && (
           <InputSelect
             options={optionsSelectsStore.categories}
             handleChange={handleSetCategorie}
@@ -95,7 +95,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         )}
       </div>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectGender && (
+        {searchPetsStore.clearSelectGender && (
           <InputSelect
             handleChange={handleSetGender}
             options={optionsSelectsStore.gender}
@@ -104,7 +104,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         )}
       </div>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectAge && (
+        {searchPetsStore.clearSelectAge && (
           <InputSelect
             handleChange={handleSetAge}
             options={optionsSelectsStore.ages}
@@ -113,7 +113,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         )}
       </div>
       <div className={styles.fromNewSearch}>
-        {searchPetsStore.cLearSelectActivity && (
+        {searchPetsStore.clearSelectActivity && (
           <InputSelect
             handleChange={handleSetActivity}
             options={optionsSelectsStore.activity}

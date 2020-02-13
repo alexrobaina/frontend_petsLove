@@ -1,10 +1,10 @@
-import { observable, action, runInAction, computed } from 'mobx'
-import _ from 'lodash'
-import LocationsService from '../services/LocationsService'
-import GenderService from '../services/GenderService'
-import CategoriesPetsService from '../services/CategoriesPetsService'
-import PetsAgesServices from '../services/PetsAgesService/PetsAgesServices'
-import ActivityService from '../services/ActivityService'
+import { observable, action, runInAction } from 'mobx'
+import LocationsService from 'services/LocationsService'
+import GenderService from 'services/GenderService'
+import CategoriesPetsService from 'services/CategoriesPetsService'
+import PetsAgesServices from 'services/PetsAgesService/PetsAgesServices'
+import ActivityService from 'services/ActivityService'
+import Utils from 'utils'
 
 class OptionsSelectsStore {
   constructor() {
@@ -13,6 +13,7 @@ class OptionsSelectsStore {
     this.categoriesPetsService = new CategoriesPetsService()
     this.petsAgesService = new PetsAgesServices()
     this.activityService = new ActivityService()
+    this.utils = new Utils()
   }
 
   @observable cities = []
@@ -75,7 +76,7 @@ class OptionsSelectsStore {
       const response = await this.genderServices.getTypePets()
 
       runInAction(() => {
-        this.gender = this.formatDataReactSelect(response, 'name')
+        this.gender = this.utils.formatDataReactSelect(response, 'name')
         this.gender.push({ value: '', label: 'All genders' })
         this.gender = this.gender.slice().reverse()
       })
@@ -92,7 +93,7 @@ class OptionsSelectsStore {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
-        this.categories = this.formatDataReactSelect(response, 'name')
+        this.categories = this.utils.formatDataReactSelect(response, 'name')
         this.categories.push({ value: '', label: 'All Categories' })
         this.categories = this.categories.slice().reverse()
       })
@@ -109,7 +110,7 @@ class OptionsSelectsStore {
       const response = await this.petsAgesService.getAge()
 
       runInAction(() => {
-        this.ages = this.formatDataReactSelect(response, 'age')
+        this.ages = this.utils.formatDataReactSelect(response, 'age')
         this.ages.push({ value: '', label: 'All Ages' })
         this.ages = this.ages.slice().reverse()
       })
@@ -126,7 +127,7 @@ class OptionsSelectsStore {
       const response = await this.activityService.getActivity()
 
       runInAction(() => {
-        this.activity = this.formatDataReactSelect(response, 'activity')
+        this.activity = this.utils.formatDataReactSelect(response, 'activity')
         this.activity.push({ value: '', label: 'All' })
         this.activity = this.activity.slice().reverse()
       })
@@ -135,23 +136,6 @@ class OptionsSelectsStore {
         console.log(e)
       })
     }
-  }
-
-  @action
-  formatDataReactSelect(data, nameObject) {
-    const result = []
-    data.forEach(item => {
-      if (nameObject === 'age') {
-        result.push(_.zipObject(['value', 'label'], [item._id, item.age]))
-      }
-      if (nameObject === 'activity') {
-        result.push(_.zipObject(['value', 'label'], [item._id, item.activity]))
-      }
-      if (nameObject === 'name') {
-        result.push(_.zipObject(['value', 'label'], [item._id, item.name]))
-      }
-    })
-    return result
   }
 
   @action
@@ -179,9 +163,6 @@ class OptionsSelectsStore {
     this.countryLabel = value.label
     this.country = value.value
   }
-
-  @action
-  resetOptionValueSelects() {}
 }
 
 export default OptionsSelectsStore

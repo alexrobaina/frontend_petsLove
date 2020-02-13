@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './inputCheckbox.scss'
 import PropTypes from 'prop-types'
-import Title from '../Title'
+import Title from 'components/commons/Title'
+import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ text, handleChange, value }) => {
   return (
@@ -9,7 +9,7 @@ const InputCheckbox = ({ text, handleChange, value }) => {
       <label className={styles.container}>
         {text}
         <input onChange={handleChange} checked={value} type="checkbox" />
-        <span className={styles.checkmark}></span>
+        <span className={styles.checkmark} />
       </label>
     </div>
   )

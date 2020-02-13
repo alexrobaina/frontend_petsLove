@@ -35,7 +35,9 @@ const Register = () => {
             <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
           </div>
           <div className={styles.forgotPassword}>
-            <Link to="/login" className={styles.textForgot}>Go to Login</Link>
+            <Link to="/login" className={styles.textForgot}>
+              Go to Login
+            </Link>
           </div>
         </div>
       </div>

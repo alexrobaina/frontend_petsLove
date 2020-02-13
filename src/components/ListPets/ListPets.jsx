@@ -1,26 +1,31 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Animated } from 'react-animated-css'
 import LazyLoad from 'react-lazyload'
+import { useHistory } from 'react-router'
+
+// import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { MdCancel } from 'react-icons/md'
-import noImage from './noImage.svg'
-import URL_LOCAL from 'config/config'
-import Card from 'components/commons/Card'
+import CardPets from 'components/commons/CardPets'
 import styles from './listPets.scss'
 import Chips from '../commons/Chips'
 
 const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
+  const history = useHistory()
+  const goToPet = useCallback(id => history.push(`profile-pets/${id}`), [])
   return (
     <>
       <div className={styles.containerFilters}>
         {filters !== []
-          ? filters.map(filter => (
-              <Chips
-                key={filter.text}
-                handleChips={() => handleDelete(filter.text, filter.typeFilter)}
-                text={filter.text}
-                icon={<MdCancel size={16} />}
-              />
-            ))
+          ? filters.map(filter => {
+              return (
+                <Chips
+                  key={filter.text}
+                  handleChips={() => handleDelete(filter.text, filter.typeFilter)}
+                  text={filter.text}
+                  icon={<MdCancel size={16} />}
+                />
+              )
+            })
           : ''}
       </div>
       <div className={styles.container}>
@@ -28,19 +33,16 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
           ? 'Loading...'
           : pets.map(pet => {
               return (
-                <LazyLoad height={200} offset={100}>
+                <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
                   <Animated
                     animationIn="bounceInUp"
                     animationOut="fadeInUp"
                     isVisible="true"
                     animationInDuration={2000}
                   >
-                    <Card
-                      key={pet._id}
-                      image={pet.image[0] ? `${URL_LOCAL}${pet.image[0]}` : noImage}
-                      namePet={pet.name}
-                      history={pet.history}
-                    />
+                    <div onClick={() => goToPet(pet._id)}>
+                      <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
+                    </div>
                   </Animated>
                 </LazyLoad>
               )

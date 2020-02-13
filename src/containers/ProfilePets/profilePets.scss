@@ -1,0 +1,40 @@
+@import 'styles/mixings.scss';
+
+.containerCard {
+  display: flex;
+  flex-direction: row;
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.imagePet {
+  width: 200px;
+  height: auto;
+}
+
+.name {
+  margin-top: 5px;
+  font-size: 18px;
+  color: #001b61;
+  letter-spacing: 0.85px;
+  text-align: justify;
+}
+
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 36px 30px 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  margin-left: 30px;
+}
+

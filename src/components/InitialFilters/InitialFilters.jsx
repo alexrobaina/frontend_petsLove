@@ -6,6 +6,7 @@ import c from 'classnames'
 import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
+import Footer from '../commons/Footer/Footer'
 import styles from './initialFilters.scss'
 import ErrorMessage from '../commons/ErrorMessage'
 
@@ -107,8 +108,10 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           />
         </div>
       )}
-      {searchPetsStore.isError && <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />}
-      <div className={styles.finish}></div>
+      {searchPetsStore.isError && (
+        <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />
+      )}
+      <Footer />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 class LocationsService {
   getCountries = () => {
-    let country = [
+    const country = [
       { value: '', label: 'All Countries' },
       { value: 'unitedStates', label: 'United States' },
       { value: 'argentina', label: 'Argentina' },
@@ -9,7 +9,7 @@ class LocationsService {
   }
 
   getCitiesArgentina = () => {
-    let argentina = [
+    const argentina = [
       { value: '', label: 'All Cities' },
       { value: 'cordoba', label: 'Córdoba' },
       { value: 'buenosAires', label: 'Buenos Aires CABA' },
@@ -22,7 +22,7 @@ class LocationsService {
   }
 
   getCitiesUnitedState = () => {
-    let unitedState = [
+    const unitedState = [
       { value: '', label: 'All Cities' },
       { value: 'arizona', label: 'Arizona' },
       { value: 'california', label: 'California' },
