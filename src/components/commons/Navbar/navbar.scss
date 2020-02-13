@@ -1,10 +1,10 @@
-@import 'styles/variable.scss';
+@import 'styles/mixings.scss';
 
 .containerNavbar {
   position: fixed;
   display: flex;
   justify-content: space-between;
-  width: 100%;  
+  width: 100%;
   top: 0;
 }
 
@@ -23,6 +23,18 @@
   margin-top: 14px;
   margin-left: 20px;
   cursor: pointer;
+}
+
+.containerButtonslog {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+}
+
+.textLogin {
+  cursor: pointer;
+  padding: 20px;
+  @include site-font('text', 500);
 }
 
 .iconClose {

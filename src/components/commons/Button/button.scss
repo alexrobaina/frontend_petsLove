@@ -15,6 +15,7 @@
   text-transform: capitalize;
   width: 175px;
   transition: 0.3s;
+  cursor: pointer;
 
   &.bigButton {
     width: 100%;
@@ -35,6 +36,7 @@
   text-transform: capitalize;
   width: 40px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 button:hover {
