@@ -3,6 +3,7 @@
 .containerCard {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   @include media-breakpoint-down(sm) {
     flex-direction: column;

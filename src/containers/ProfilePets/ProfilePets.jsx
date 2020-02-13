@@ -27,7 +27,7 @@ const ProfilePets = () => {
       <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
       <LayoutContainer>
         <div className={styles.containerCard}>
-          <LayoutCards>
+          <LayoutCards width="100%" margin="10px">
             <img
               className={styles.imagePet}
               src={petIdStore.imagesPet[0] ? `${API_URL}${petIdStore.imagesPet[0]}` : noImage}
@@ -35,8 +35,7 @@ const ProfilePets = () => {
             />
             <div className={styles.name}>{petIdStore.pet.name}</div>
           </LayoutCards>
-
-          <LayoutCards>
+          <LayoutCards width="100%" margin="10px">
             <div className={styles.containerInfo}>
               <div className={styles.info}>
                 <TextCardInformation text="Country" value={petIdStore.pet.country} />
