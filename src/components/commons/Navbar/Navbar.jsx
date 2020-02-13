@@ -1,14 +1,22 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { FiFilter } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 import { MdClose } from 'react-icons/md'
 import c from 'classnames'
 import FilterNavbar from 'components/FilterNavbar'
 import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
+import noImg from './noimg.png'
 import styles from './navbar.scss'
 
 const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
+  const history = useHistory()
   const [toggle, setToggle] = useState(false)
+  const isUserLogin = true
+
+  const goToLogin = useCallback(() => history.push('/login'), [])
+  const goToRegister = useCallback(() => history.push('/register'), [])
 
   const handleToggle = useCallback(() => {
     setToggle(!toggle)
@@ -20,9 +28,20 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
         <div className={styles.iconFilter}>
           <FiFilter size={25} onClick={handleToggle} />
         </div>
-        <div>
-          <img className={styles.userImage} src={user} alt="user" />
-        </div>
+        {isUserLogin ? (
+          <div className={styles.containerButtonslog}>
+            <div onClick={goToLogin} className={styles.textLogin}>
+              Login
+            </div>
+            <div onClick={goToRegister} className={styles.textLogin}>
+              Register
+            </div>
+          </div>
+        ) : (
+          <div>
+            <img className={styles.userImage} src={user ? user : noImg} alt="user" />
+          </div>
+        )}
       </div>
       <div className={c(toggle ? styles.open : styles.showMenu)}>
         <div className={styles.iconClose} onClick={handleToggle}>

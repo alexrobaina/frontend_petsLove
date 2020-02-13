@@ -1,4 +1,4 @@
-@import 'styles/variable.scss';
+@import 'styles/mixings.scss';
 
 .containerNavbar {
   position: fixed;
@@ -23,6 +23,18 @@
   margin-top: 14px;
   margin-left: 20px;
   cursor: pointer;
+}
+
+.containerButtonslog {
+  display: flex;
+  justify-content: flex-end;
+   margin-right: 30px;
+}
+
+.textLogin {
+padding: 20px;
+  @include site-font('text', 500)
+
 }
 
 .iconClose {
