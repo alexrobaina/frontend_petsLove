@@ -1,18 +1,21 @@
 @import 'styles/mixings.scss';
 
-.containerCard {
+.row {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
 
   @include media-breakpoint-down(sm) {
     flex-direction: column;
   }
 }
 
+.column {
+  padding: 10px;
+  width: calc(50% - 1.5%);
+}
+
 .imagePet {
-  width: 200px;
-  height: auto;
+  height: 400px;
 }
 
 .name {
@@ -38,4 +41,3 @@
 .icon {
   margin-left: 30px;
 }
-
