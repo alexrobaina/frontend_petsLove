@@ -1,33 +1,53 @@
 @import 'styles/mixings.scss';
 
 .containerCard {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
 
   @include media-breakpoint-down(sm) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
 
+.containerButtons {
+  display: flex;
+  margin-top: 10px;
+}
+
+.layourCard {
+  padding-top: 15px;
+}
+
+.column {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.containerImagePet {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .imagePet {
-  width: 200px;
-  height: auto;
+  width: 100%;
+  object-fit: cover;
+  height: 400px;
+  border-radius: 3px;
 }
 
 .name {
-  margin-top: 5px;
-  font-size: 18px;
-  color: #001b61;
-  letter-spacing: 0.85px;
-  text-align: justify;
+  margin-left: 10px;
 }
 
 .containerInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 36px 30px 0;
+  padding: 10px 0 10px 0;
 }
 
 .info {
@@ -39,3 +59,28 @@
   margin-left: 30px;
 }
 
+.historyPets {
+  padding: 20px 20px 20px 20px;
+}
+
+.titleHistory {
+  text-align: center;
+  @include site-font('text', 600);
+  color: $filters;
+}
+
+.history {
+  margin-top: 20px;
+  font-size: 14px;
+  @include site-font('text', 400);
+  color: $filters;
+}
+
+
+.button {
+  width: 100%;
+}
+
+.btnMargin {
+  margin-right: 10px;
+}

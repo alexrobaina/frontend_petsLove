@@ -1,6 +1,7 @@
-@import '../../../styles/mixings.scss';
+@import 'styles/mixings.scss';
 
 .containerLayout {
+
   @include media-breakpoint-only(xs) {
     padding-left: 20px;
     padding-right: 20px;

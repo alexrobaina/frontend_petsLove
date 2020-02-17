@@ -1,25 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { GiWorld } from 'react-icons/gi'
 import styles from './textCardInformation.scss'
 
-const TextCardInformation = ({ text, value }) => {
+const TextCardInformation = ({ text, valueBool, value, icon }) => {
   return (
     <div className={styles.containerData}>
       <div className={styles.iconTitle}>
-        <div className={styles.icon}>
-          <GiWorld classNa size={20} />
-        </div>
+        <div className={styles.icon}>{icon}</div>
         <div className={styles.title}>{text}:</div>
       </div>
-      <div className={styles.infoTitle}>{value}</div>
+      {valueBool === true && <div className={styles.infoTitle}>Si</div>}
+      {valueBool === false && <div className={styles.infoTitle}>No</div>}
+      {value && <div className={styles.infoTitle}>{value}</div>}
     </div>
   )
 }
 
 TextCardInformation.propTypes = {
+  icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  valueBool: PropTypes.bool.isRequired,
 }
 
 export default TextCardInformation

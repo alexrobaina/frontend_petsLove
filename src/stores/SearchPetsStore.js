@@ -206,7 +206,9 @@ class SearchPetsStore {
 
   @action
   setLoadingFalse() {
-    this.isLoading = false
+    setTimeout(() => {
+      this.isLoading = false
+    }, 2000)
   }
 
   // set items for search
