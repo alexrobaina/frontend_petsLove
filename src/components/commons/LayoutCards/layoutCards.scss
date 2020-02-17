@@ -10,12 +10,12 @@
   &.isButton {
     cursor: pointer;
 
+    @include media-breakpoint-down(md) {
+      margin: 0;
+    }
+
     &:hover {
       box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1), 0 2px 30px rgba(0, 0, 0, 0.1);
     }
-  }
-
-  @include media-breakpoint-only(xs) {
-    margin: 10px;
   }
 }

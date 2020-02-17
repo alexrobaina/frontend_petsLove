@@ -142,13 +142,13 @@ $grid-breakpoints: (
   }
 }
 
-@mixin site-font($type: 'client', $weight: 400) {
-  @if $type == 'client' {
-    font-family: $font-family-clients;
+@mixin site-font($type: 'text', $weight: 400) {
+  @if $type == 'text' {
+    font-family: $NotoSansHk;
   }
 
-  @if ($type == 'developers') or ($type == 'devs') {
-    font-family: $font-family-developers;
+  @if ($type == 'logo') {
+    font-family: $BowlbyOneSC;
   }
 
   font-weight: $weight;

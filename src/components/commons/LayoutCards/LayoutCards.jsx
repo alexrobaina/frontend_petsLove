@@ -17,12 +17,15 @@ const LayoutCards = ({ children, isButton, width, margin }) => {
 
 LayoutCards.propTypes = {
   children: PropTypes.node.isRequired,
-  width: PropTypes.string.isRequired,
   isButton: PropTypes.bool,
+  width: PropTypes.string,
+  margin: PropTypes.string,
 }
 
 LayoutCards.defaultProps = {
   isButton: false,
+  width: '',
+  margin: '',
 }
 
 export default LayoutCards

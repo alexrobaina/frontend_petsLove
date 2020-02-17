@@ -6,6 +6,7 @@
   justify-content: space-between;
   width: 100%;
   top: 0;
+  z-index: 100;
 }
 
 .userImage {
@@ -19,7 +20,7 @@
 }
 
 .iconFilter {
-  z-index: 50;
+  z-index: 40;
   margin-top: 14px;
   margin-left: 20px;
   cursor: pointer;
@@ -39,7 +40,7 @@
 
 .iconClose {
   position: absolute;
-  z-index: 100;
+  z-index: 50;
   top: 14px;
   left: 20px;
   text-align: left;
@@ -62,7 +63,7 @@
 
 .showMenu {
   position: fixed;
-  z-index: 90;
+  z-index: 95;
   top: 0;
   left: 0px;
   background-color: white;
@@ -76,7 +77,7 @@
 .open {
   overflow-y: auto;
   position: fixed;
-  z-index: 90;
+  z-index: 1000;
   top: 0;
   left: 0px;
   background-color: white;
