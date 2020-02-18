@@ -15,6 +15,13 @@ class PetIdStore {
   @observable categorie = ''
   @observable activity = ''
   @observable isLoading = false
+  @observable mapPosition = []
+  @observable defaultPosition = [
+    {
+      lat: -34.61315,
+      lng: -58.37723,
+    },
+  ]
 
   @action
   async getPetId(id) {
@@ -33,8 +40,8 @@ class PetIdStore {
         this.age = this.pet.age.age
         this.imagePet = this.pet.image
         this.images = this.pet.image
-
-        console.log(this.age)
+        this.mapPosition = this.pet.mapPosition
+        console.log(this.pet)
       })
     } catch (e) {
       runInAction(() => {

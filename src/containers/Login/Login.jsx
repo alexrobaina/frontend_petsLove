@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
 import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
-import catImage from './imageCat.jpg'
+import catImage from './photo-1526336024174-e58f5cdd8e13.jpeg'
 import styles from './login.scss'
 
 const Login = () => {

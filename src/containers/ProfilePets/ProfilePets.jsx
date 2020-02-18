@@ -14,7 +14,7 @@ import PlaceMarkMap from 'components/commons/PlaceMarkMap'
 import LayoutCards from 'components/commons/LayoutCards'
 import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
-import { GiWorld, GiJumpingDog, GiLoveInjection } from 'react-icons/gi'
+import { GiJumpingDog, GiLoveInjection } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import { MdPets } from 'react-icons/md'
 import { FaTransgender, FaBirthdayCake, FaCat, FaStreetView } from 'react-icons/fa'
@@ -62,7 +62,8 @@ const ProfilePets = () => {
           </div>
           <div className={c(styles.column, styles.containerMap)}>
             <PlaceMarkMap
-              // addressPet={addressPet}
+              defaultPosition={petIdStore.defaultPosition}
+              mapPosition={petIdStore.mapPosition}
               contactMessage={`You can call for adopt to ${petIdStore.pet.name} phone: ${
                 petIdStore.pet.phone ? petIdStore.pet.phone : ''
               }`}
@@ -75,7 +76,7 @@ const ProfilePets = () => {
                   <TextCardInformation
                     icon={<FaBirthdayCake size={25} />}
                     text="Age"
-                    value={petIdStore.age}
+                    value={petIdStore.age ? petIdStore.age : 'No information'}
                   />
                   <TextCardInformation
                     icon={<FaCat size={25} />}
