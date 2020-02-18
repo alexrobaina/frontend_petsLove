@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useLocalStore, observer } from 'mobx-react'
 import c from 'classnames'
 import { useParams } from 'react-router'
@@ -21,8 +22,9 @@ import { FaTransgender, FaBirthdayCake, FaCat, FaStreetView } from 'react-icons/
 import Footer from 'components/commons/Footer/Footer'
 import GaleryImages from 'components/commons/GaleryImages'
 import styles from './profilePets.scss'
+import Modal from '../../components/commons/Modal'
 
-const ProfilePets = () => {
+const ProfilePets = ({ isEdit }) => {
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const petIdStore = useLocalStore(() => new PetIdStore())
@@ -52,11 +54,13 @@ const ProfilePets = () => {
               />
             </div>
             <div className={styles.containerButtons}>
-              <div className={c(styles.button, styles.btnMargin)}>
-                <Button bigButton text="adopt" />
-              </div>
+              {isEdit && (
+                <div className={c(styles.button, styles.btnMargin)}>
+                  <Button bigButton text="Edit" />
+                </div>
+              )}
               <div className={styles.button}>
-                <Button bigButton text="Contact Protecctionist" />
+                <Modal title="Contact to protectionist" textButtonOpen="Adopt pet" />
               </div>
             </div>
           </div>
@@ -139,6 +143,14 @@ const ProfilePets = () => {
       <Footer />
     </>
   )
+}
+
+ProfilePets.propTypes = {
+  isEdit: PropTypes.bool,
+}
+
+ProfilePets.defaultProps = {
+  isEdit: true,
 }
 
 export default observer(ProfilePets)

@@ -1,0 +1,60 @@
+.button {
+  margin-top: 150px;
+  padding-top: 100px;
+}
+
+.modalCard {
+  display: none;
+
+  &.openModal {
+    position: fixed;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 1500;
+    top: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width: 500px;
+    height: 400px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 30px 146px -5px rgba(0, 0, 0, 0.36);
+  }
+}
+
+.showModal {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+}
+
+.form {
+  width: 100%;
+}
+
+.displayNone {
+  display: none;
+}
+
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  top: 0;
+  left: 0;
+  z-index: 1400;
+  opacity: 0.6;
+  position: fixed;
+  cursor: pointer;
+}
+
+.containerButtonModals {
+  display: flex;
+  justify-content: space-around;
+}
