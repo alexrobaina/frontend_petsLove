@@ -12,7 +12,12 @@ import styles from './listPets.scss'
 
 const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
   const history = useHistory()
-  const goToPet = useCallback(id => history.push(`profile-pets/${id}`), [])
+  const goToPet = useCallback(id => {
+    history.push(`/`)
+    history.push(`profile-pets/${id}`)
+    // eslint-disable-next-line no-restricted-globals
+    location.reload()
+  }, [])
   return (
     <>
       <div className={styles.containerFilters}>

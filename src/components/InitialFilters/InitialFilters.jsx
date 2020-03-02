@@ -6,9 +6,10 @@ import c from 'classnames'
 import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
-import Footer from '../commons/Footer/Footer'
+import Footer from 'components/commons/Footer/Footer'
+import ErrorMessage from 'components/commons/ErrorMessage'
+import { MdSearch } from 'react-icons/md'
 import styles from './initialFilters.scss'
-import ErrorMessage from '../commons/ErrorMessage'
 
 const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
   const handleChangeCountrie = useCallback(selectedValue => {
@@ -95,7 +96,13 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
             />
           </div>
           <div className={styles.btnSearch}>
-            <Button handleSearch={handleSearch} type="button" styleButton="primary" text="Search" />
+            <Button
+              icon={<MdSearch size={18} />}
+              handleSearch={handleSearch}
+              type="button"
+              styleButton="primary"
+              text="Search"
+            />
           </div>
         </div>
       ) : (

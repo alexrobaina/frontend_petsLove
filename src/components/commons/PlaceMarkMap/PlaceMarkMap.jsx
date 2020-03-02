@@ -17,7 +17,7 @@ const PlaceMarkMap = ({ mapPosition, contactMessage, defaultPosition }) => {
     <div>
       <Map
         className={styles.map}
-        center={mapPosition ? mapPosition[0] : defaultPosition[0]}
+        center={mapPosition === [] ? mapPosition[0] : defaultPosition[0]}
         zoom="15"
       >
         <TileLayer attribution={THEME_COPY} url={THEME_MAP} />

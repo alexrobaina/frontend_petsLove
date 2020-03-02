@@ -10,23 +10,8 @@
   }
 }
 
-.containerButtons {
-  display: flex;
-  margin-top: 10px;
-}
-
 .layourCard {
   padding-top: 15px;
-}
-
-.column {
-  padding-left: 10px;
-  padding-right: 10px;
-
-  @include media-breakpoint-down(md) {
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 .containerImagePet {
@@ -43,16 +28,13 @@
 }
 
 .name {
-  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .containerInfo {
   padding: 10px 0 10px 0;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
 }
 
 .icon {
@@ -74,13 +56,4 @@
   font-size: 14px;
   @include site-font('text', 400);
   color: $filters;
-}
-
-
-.button {
-  width: 100%;
-}
-
-.btnMargin {
-  margin-right: 10px;
 }

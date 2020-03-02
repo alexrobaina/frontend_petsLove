@@ -1,44 +1,59 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import Input from 'components/commons/Input'
+import { MdClose, MdSend } from 'react-icons/md'
 import Button from 'components/commons/Button'
-import styles from './modal.scss'
-import Title from '../Title'
 import Textarea from '../Textarea'
+import styles from './modal.scss'
 
-const Modal = ({ textButtonOpen, title }) => {
+const Modal = ({ textButtonOpen, title, icon, text }) => {
   const [toggle, setToggle] = useState(false)
-  console.log(toggle)
 
   const handleToggle = () => {
     if (toggle === false) {
-      return setToggle(true)
+      setToggle(true)
+    } else {
+      setToggle(false)
     }
-    setToggle(false)
   }
 
   return (
     <>
-      <Button bigButton text={textButtonOpen} handleSearch={handleToggle} />
+      <Button icon={icon} circle text={textButtonOpen} handleSearch={handleToggle} />
       <div className={c(styles.modalCard, toggle && styles.openModal)}>
-        <Title withMargin title={title} />
+        <div className={styles.title}>{title}</div>
+        <div className={styles.text}>{text}</div>
         <div className={styles.form}>
-          <Input placeholder="Name" />
-          <Textarea placeholder="Message" cols="4" rows="4" />
+          <div className={styles.inputForm}>
+            <Input type="text" placeholder="Name" />
+          </div>
+          <div className={styles.inputForm}>
+            <Input type="number" placeholder="Phone" />
+          </div>
+          <div className={styles.inputForm}>
+            <Input type="email" placeholder="Email" />
+          </div>
+          <div className={styles.inputForm}>
+            <Textarea placeholder="Message" cols="4" rows="6" />
+          </div>
         </div>
         <div className={styles.containerButtonModals}>
-          <Button text="Close" handleSearch={handleToggle} />
-          <Button text="Send Message" handleSearch={handleToggle} />
+          <Button icon={<MdSend size={25} />} text="Send Message" handleSearch={handleToggle} />
+          <Button icon={<MdClose size={25} />} text="Close" handleSearch={handleToggle} />
         </div>
       </div>
-      <div onClick={handleToggle} className={c(toggle === true ? styles.shadow : styles.displayNone)} />
+      <div
+        onClick={handleToggle}
+        className={c(toggle === true ? styles.shadow : styles.displayNone)}
+      />
     </>
   )
 }
 
 Modal.propTypes = {
   title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 }
 
 export default Modal

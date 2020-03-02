@@ -5,7 +5,7 @@ import styles from './textarea.scss'
 const Textarea = ({ handleChange, placeholder, rows, cols }) => {
   return (
     <textarea
-      className={styles.input}
+      className={styles.textarea}
       rows={rows}
       cols={cols}
       placeholder={placeholder}

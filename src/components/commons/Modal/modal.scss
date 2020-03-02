@@ -1,3 +1,5 @@
+@import 'styles/mixings';
+
 .button {
   margin-top: 150px;
   padding-top: 100px;
@@ -7,19 +9,21 @@
   display: none;
 
   &.openModal {
-    position: fixed;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     z-index: 1500;
     top: 20%;
-    display: block;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    width: 500px;
-    height: 400px;
+    max-width: 500px;
+    height: auto;
     padding: 10px;
+    padding-bottom: 20px;
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 30px 146px -5px rgba(0, 0, 0, 0.36);
@@ -28,13 +32,33 @@
 
 .showModal {
   display: flex;
-  width: 200px;
-  height: 200px;
   padding: 10px;
 }
 
+.title {
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  color: #001B61;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 700;
+}
+
 .form {
-  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.text {
+  font-size: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  font-family: "Noto Sans HK", sans-serif;
+  font-weight: 400;
+  color: #5C6BC0;
+
+  @include site-font('text', 400)
 }
 
 .displayNone {
@@ -42,19 +66,25 @@
 }
 
 .shadow {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 100vw;
   height: 100%;
   background-color: #000000;
   top: 0;
   left: 0;
   z-index: 1400;
   opacity: 0.6;
-  position: fixed;
   cursor: pointer;
 }
 
 .containerButtonModals {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10px;
+}
+
+.inputForm {
+  margin-top: 30px;
 }

@@ -8,18 +8,23 @@
   }
 
   @include media-breakpoint-only(sm) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include media-breakpoint-between(sm, xs) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include media-breakpoint-only(md) {
     padding-left: 50px;
     padding-right: 50px;
   }
 
-  @include media-breakpoint-only(md) {
+  @include media-breakpoint-between(md, xl) {
     padding-left: 100px;
     padding-right: 100px;
-  }
-
-  @include media-breakpoint-only(xl) {
-    padding-left: 150px;
-    padding-right: 150px;
   }
 
   @include media-breakpoint-only(xxl) {
