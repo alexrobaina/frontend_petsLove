@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
 import URL_LOCAL from 'config/config'
+import i18n from 'utils/i18n'
+import { Translation } from 'react-i18next'
 import noImage from './noImage.svg'
 import LayoutCards from '../LayoutCards'
 import styles from './cardPets.scss'
@@ -18,9 +20,13 @@ const CardPets = ({ history, image, namePet }) => {
           alt="photos-pets"
         />
         <div className={styles.title}>{namePet}</div>
-        <div className={styles.textHistory}>
-          {history ? utils.shortenText(history, 110) : 'They did not add history'}
-        </div>
+        <Translation i18n={i18n}>
+          {(t, { i18n }) => (
+            <div className={styles.textHistory}>
+              {history ? t(utils.shortenText(history, 110)) : t('They did not add history')}
+            </div>
+          )}
+        </Translation>
       </div>
     </LayoutCards>
   )
