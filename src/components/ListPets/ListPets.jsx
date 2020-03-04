@@ -7,11 +7,14 @@ import { MdCancel } from 'react-icons/md'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import Loading from 'components/commons/Loading/Loading'
+import { Translation, useTranslation } from 'react-i18next'
 import Chips from '../commons/Chips'
+import LayoutContainer from '../commons/LayoutContainer'
 import styles from './listPets.scss'
 
 const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
   const history = useHistory()
+  const { t } = useTranslation()
   const goToPet = useCallback(id => {
     history.push(`/`)
     history.push(`profile-pets/${id}`)
@@ -24,12 +27,14 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
         {filters !== []
           ? filters.map(filter => {
               return (
-                <Chips
-                  key={filter.text}
-                  handleChips={() => handleDelete(filter.text, filter.typeFilter)}
-                  text={filter.text}
-                  icon={<MdCancel size={16} />}
-                />
+                <Translation>
+                  <Chips
+                    key={filter.text}
+                    handleChips={() => handleDelete(filter.text, filter.typeFilter)}
+                    text={t(filter.text)}
+                    icon={<MdCancel size={16} />}
+                  />
+                </Translation>
               )
             })
           : ''}
@@ -40,18 +45,20 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
         ) : (
           pets.map(pet => {
             return (
-              <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
-                <Animated
-                  animationIn="bounceInUp"
-                  animationOut="fadeInUp"
-                  isVisible="true"
-                  animationInDuration={2000}
-                >
-                  <div onClick={() => goToPet(pet._id)}>
-                    <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
-                  </div>
-                </Animated>
-              </LazyLoad>
+              <LayoutContainer>
+                <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
+                  <Animated
+                    animationIn="bounceInUp"
+                    animationOut="fadeInUp"
+                    isVisible="true"
+                    animationInDuration={2000}
+                  >
+                    <div onClick={() => goToPet(pet._id)}>
+                      <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
+                    </div>
+                  </Animated>
+                </LazyLoad>
+              </LayoutContainer>
             )
           })
         )}

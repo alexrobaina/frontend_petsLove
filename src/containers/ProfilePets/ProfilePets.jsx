@@ -79,20 +79,18 @@ const ProfilePets = ({ isEdit }) => {
           <GaleryImages isLoading={isLoading} arrayImages={images} />
         </LayoutContainer>
       ) : (
-        <LayoutContainer>
-          <div className="animationOpacity">
-            <ListPets
-              handleDelete={deleteFilter}
-              filters={searchPetsStore.filters}
-              pets={searchPetsStore.pets}
-              isLoading={searchPetsStore.isLoading}
-            />
-          </div>
-        </LayoutContainer>
+        <ListPets
+          handleDelete={deleteFilter}
+          filters={searchPetsStore.filters}
+          pets={searchPetsStore.pets}
+          isLoading={searchPetsStore.isLoading}
+        />
       )}
-      {searchPetsStore.isError && (
-        <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />
-      )}
+      <ErrorMessage
+        isError={searchPetsStore.isError}
+        text="No pets found, Change filters"
+        typeMessage="warning"
+      />
       <Footer />
     </>
   )
