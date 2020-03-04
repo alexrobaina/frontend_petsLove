@@ -1,43 +1,32 @@
 @import 'styles/variable.scss';
 @import 'styles/mixings.scss';
 
-.input {
+.textarea {
   width: 100%;
   border: 1px solid $borderPrimary;
   box-shadow: none;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 10px 20px;
   border-radius: 4px;
   font-family: 'Noto Sans HK', sans-serif;
   box-sizing: border-box;
+  outline: none;
 
   &:focus {
     border-radius: 4px;
     border: 1mapx solid $borderPrimary;
   }
+
   &:hover {
     border-radius: 4px;
     border: 1px solid $secundary;
   }
+
   &::placeholder {
     font-size: 15px;
     font-family: 'Noto Sans HK', sans-serif;
   }
 }
 
-input[type="text"] {
-  padding-left: 20px;
-  font-size: 15px;
-  font-family: 'Noto Sans HK', sans-serif;
-}
-
-input[type="email"] {
-  padding-left: 20px;
-  font-size: 15px;
-  font-family: 'Noto Sans HK', sans-serif;
-}
-
-input[type="number"] {
-  padding-left: 20px;
-  font-size: 15px;
-  font-family: 'Noto Sans HK', sans-serif;
+textarea {
+  padding: 5px;
 }

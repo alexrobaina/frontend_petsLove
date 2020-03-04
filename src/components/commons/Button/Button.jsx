@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import { MdSearch } from 'react-icons/md'
 import styles from './button.scss'
 
-const Button = ({ handleSearch, text, circle, bigButton }) => {
+const Button = ({ handleSearch, text, circle, bigButton, icon }) => {
   if (circle) {
     return (
       <button className={styles.btnCircle} type="button" onClick={handleSearch}>
-        <MdSearch size={18} />
+        {icon}
       </button>
     )
   }
