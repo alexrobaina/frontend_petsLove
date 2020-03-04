@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { useLocalStore, observer } from 'mobx-react'
 import c from 'classnames'
 import { useParams } from 'react-router'
-import noImage from 'components/commons/CardPets/noImage.svg'
-import API_URL from 'config/config'
 import PetIdStore from 'stores/PetIdStore'
 import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import SearchPetsStore from 'stores/SearchPetsStore'
@@ -15,11 +13,13 @@ import LayoutCards from 'components/commons/LayoutCards'
 import Title from 'components/commons/Title'
 import Footer from 'components/commons/Footer/Footer'
 import GaleryImages from 'components/commons/GaleryImages'
-import styles from './profilePets.scss'
+import InformationPet from 'components/InformationPet'
+import ListPets from 'components/ListPets'
+import ErrorMessage from 'components/commons/ErrorMessage'
+import ImageProfilePet from 'components/ImageProfilePet'
+import TextCard from 'components/commons/TextCard'
 import ButtonsPet from './ButtonsPet'
-import InformationPet from '../../components/InformationPet'
-import ListPets from '../../components/ListPets'
-import ErrorMessage from '../../components/commons/ErrorMessage'
+import styles from './profilePets.scss'
 
 const ProfilePets = ({ isEdit }) => {
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
@@ -51,13 +51,7 @@ const ProfilePets = ({ isEdit }) => {
           </div>
           <div className={c(styles.containerCard, styles.layourCard)}>
             <div className={c(styles.column, styles.containerImagePet)}>
-              <div>
-                <img
-                  className={styles.imagePet}
-                  src={petIdStore.images !== [] ? `${API_URL}${petIdStore.images[0]}` : noImage}
-                  alt="photos-pet"
-                />
-              </div>
+              <ImageProfilePet petIdStore={petIdStore} />
             </div>
             <div className={c(styles.column, styles.containerMap)}>
               <PlaceMarkMap
@@ -77,18 +71,8 @@ const ProfilePets = ({ isEdit }) => {
             </div>
             <div className={styles.column}>
               <div className={styles.containerhistory}>
-                <LayoutCards>
-                  <div className={styles.historyPets}>
-                    <div className={styles.titleHistory}>History</div>
-                    <div className={styles.history}>{petIdStore.pet.history}</div>
-                  </div>
-                </LayoutCards>
-                <LayoutCards>
-                  <div className={styles.historyPets}>
-                    <div className={styles.titleHistory}>Required to Adoption</div>
-                    <div className={styles.history}>{petIdStore.pet.requiredToAdoption}</div>
-                  </div>
-                </LayoutCards>
+                <TextCard title="History" text={petIdStore.pet.history} />
+                <TextCard title="Required to Adoption" text={petIdStore.pet.requiredToAdoption} />
               </div>
             </div>
           </div>

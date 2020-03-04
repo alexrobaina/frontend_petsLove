@@ -1,0 +1,18 @@
+@import 'styles/mixings';
+
+.historyPets {
+  padding: 20px 20px 20px 20px;
+}
+
+.titleHistory {
+  text-align: center;
+  @include site-font('text', 600);
+  color: $filters;
+}
+
+.history {
+  margin-top: 20px;
+  font-size: 14px;
+  @include site-font('text', 400);
+  color: $filters;
+}

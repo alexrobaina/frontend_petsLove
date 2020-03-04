@@ -14,7 +14,6 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
   const [toggle, setToggle] = useState(false)
 
   const goToLogin = useCallback(() => history.push('/login'), [])
-
   const goToRegister = useCallback(() => history.push('/register'), [])
 
   const handleToggle = useCallback(() => {

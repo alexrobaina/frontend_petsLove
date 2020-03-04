@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
+import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import Button from 'components/commons/Button'
@@ -153,7 +154,13 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         />
       </div>
       <div className={styles.buttonFilter}>
-        <Button circle handleSearch={submitSearch} type="button" text="Search" />
+        <Button
+          circle
+          handleSearch={submitSearch}
+          type="button"
+          text="Search"
+          icon={<MdSearch size={20} />}
+        />
       </div>
     </div>
   )
