@@ -1,6 +1,38 @@
 {
+  "common": {
+    "errorMessage": "No pets found, Change filters"
+  },
   "home": {
     "title": "Search for your best friend",
     "subTitle": "Do not buy a breed pet, adopt a homeless one"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "titleLogin": "Login",
+    "forgotPassword": "Forgot password",
+    "singIn": "Sing In"
+  },
+  "register": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirmar password",
+    "singIn": "Regístrate",
+    "login": "Iniciar Sesión"
+  },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "enterYourEmail": "Enter your email",
+    "changePassword": "Change password",
+    "login": "Login"
+  },
+  "initialFilters": {
+    "country": "Country",
+    "city": "City",
+    "category": "Category pets",
+    "gender": "Gender",
+    "search": "Search"
   }
+
 }

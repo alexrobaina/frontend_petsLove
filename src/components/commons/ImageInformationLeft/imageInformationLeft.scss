@@ -1,0 +1,15 @@
+@import 'styles/mixings';
+
+.imageInformationLogin {
+  object-fit: cover;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.imageInformation {
+  width: 100%;
+  height: auto;
+}
+

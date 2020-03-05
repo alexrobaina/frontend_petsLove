@@ -173,9 +173,9 @@ class SearchPetsStore {
       gender: this.gender,
       country: this.country,
       dewormed: this.dewormed,
+      activity: this.activity,
       categorie: this.category,
       sterilized: this.sterilized,
-      activity: this.activity,
       vaccianated: this.vaccianated,
     }
 

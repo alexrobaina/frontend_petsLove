@@ -6,10 +6,10 @@ import { useHistory } from 'react-router'
 import { MdCancel } from 'react-icons/md'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
+import LayoutContainer from 'components/commons/LayoutContainer'
 import Loading from 'components/commons/Loading/Loading'
 import { Translation, useTranslation } from 'react-i18next'
-import Chips from '../commons/Chips'
-import LayoutContainer from '../commons/LayoutContainer'
+import Chips from 'components/commons/Chips'
 import styles from './listPets.scss'
 
 const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
@@ -71,6 +71,7 @@ TextCardInformation.propTypes = {
   filters: PropTypes.oneOfType([PropTypes.array]).isRequired,
   pets: PropTypes.oneOfType([PropTypes.array]).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
   handleDelete: PropTypes.func.isRequired,
 }
 

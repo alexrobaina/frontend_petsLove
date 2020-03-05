@@ -1,6 +1,37 @@
 {
+  "common": {
+    "errorMessage": "Mascotas no encontradas, cambie los filtros"
+  },
   "home": {
     "title": "Buscá un gran amigo",
     "subTitle": "No combres una mascota, adopta una sin hogar"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Contraseña",
+    "titleLogin": "Iniciar Sesión",
+    "forgotPassword": "Olvidé la contraseña",
+    "singIn": "Regístrate"
+  },
+  "register": {
+    "name": "Nombre",
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmPassword": "Confirm Password",
+    "singIn": "Regístrate",
+    "login": "Iniciar Sesión"
+  },
+  "forgotPassword": {
+    "title": "Olvidé mi contraseña",
+    "enterYourEmail": "Igresa tu email",
+    "changePassword": "Cambiar contraseña",
+    "login": "Iniciar sesión"
+  },
+  "initialFilters": {
+    "country": "País",
+    "city": "Ciudad",
+    "category": "Tipo de mascota",
+    "gender": "Genero",
+    "search": "Buscar"
   }
 }
