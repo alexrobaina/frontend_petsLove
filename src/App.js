@@ -5,6 +5,7 @@ import Login from 'containers/Login'
 import Home from 'containers/Home'
 import Register from 'containers/Register'
 import ForgotPassword from 'containers/ForgotPassword'
+import CreatePet from './components/CreatePet'
 import './App.scss'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/create-pet" component={CreatePet} />
         <Route path="/profile-pets/:id" component={ProfilePets} />
         <Route path="/" component={Home} />
       </Switch>

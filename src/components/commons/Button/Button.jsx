@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './button.scss'
 
-const Button = ({ handleSearch, text, circle, bigButton, icon }) => {
+const Button = ({ handleClick, text, circle, bigButton, icon }) => {
   if (circle) {
     return (
-      <button className={styles.btnCircle} type="button" onClick={handleSearch}>
+      <button className={styles.btnCircle} type="button" onClick={handleClick}>
         {icon}
       </button>
     )
@@ -15,7 +15,7 @@ const Button = ({ handleSearch, text, circle, bigButton, icon }) => {
     <button
       className={c(styles.primary, bigButton && styles.bigButton)}
       type="button"
-      onClick={handleSearch}
+      onClick={handleClick}
     >
       {text}
     </button>
@@ -24,7 +24,7 @@ const Button = ({ handleSearch, text, circle, bigButton, icon }) => {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  handleSearch: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   circle: PropTypes.bool,
 }
 

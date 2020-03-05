@@ -20,7 +20,7 @@ const Modal = ({ textButtonOpen, title, icon, text }) => {
 
   return (
     <>
-      <Button icon={icon} circle text={textButtonOpen} handleSearch={handleToggle} />
+      <Button icon={icon} circle text={textButtonOpen} handleClick={handleToggle} />
       <div className={c(styles.modalCard, toggle && styles.openModal)}>
         <div className={styles.title}>{title}</div>
         <div className={styles.text}>{text}</div>
@@ -39,8 +39,8 @@ const Modal = ({ textButtonOpen, title, icon, text }) => {
           </div>
         </div>
         <div className={styles.containerButtonModals}>
-          <Button icon={<MdSend size={25} />} text="Send Message" handleSearch={handleToggle} />
-          <Button icon={<MdClose size={25} />} text="Close" handleSearch={handleToggle} />
+          <Button icon={<MdSend size={25} />} text="Send Message" handleClick={handleToggle} />
+          <Button icon={<MdClose size={25} />} text="Close" handleClick={handleToggle} />
         </div>
       </div>
       <div
