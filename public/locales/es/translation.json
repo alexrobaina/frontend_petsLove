@@ -55,7 +55,23 @@
     "singIn": "Regístrate",
     "login": "Iniciar Sesión"
   },
-  "las": {
+  "ModalContact": {
+    "last": "last"
+  },
+  "buttonsPet": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "title": "Contactar al proteccionista",
+    "edit": "Editar mascota"
+  },
+  "modalContact": {
+    "name": "Nombre",
+    "phone": "Telefono",
+    "email": "Email",
+    "message": "Mensaje",
+    "sendMessage": "Enviar mensaje",
+    "close": "cerrar"
+  },
+  "last": {
     "last": "last"
   }
 }
