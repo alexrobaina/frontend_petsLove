@@ -126,7 +126,11 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
         )}
       </div>
       <div className={styles.togoleContainer}>
-        <InputCheckbox value={searchPetsStore.lost} handleChange={handleSetLost} text="Lost" />
+        <InputCheckbox
+          value={searchPetsStore.lost}
+          handleChange={handleSetLost}
+          text={t('filterNavbar.lost')}
+        />
       </div>
       <div className={styles.togoleContainer}>
         <InputCheckbox

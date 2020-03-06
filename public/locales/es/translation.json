@@ -43,14 +43,15 @@
     "age": "Edad",
     "activity": "Actividad",
     "urgent": "Urgente",
+    "lost": "Mascota perdida",
     "dewormed": "Desparasitado",
     "vaccianated": "Vacunado",
     "sterilized": "Esterilizado"
   },
   "navbar": {
+    "moreFilters": "Más filtros",
     "login": "Login",
     "singIn": "Sing In",
-    "moreFilters": "More filters",
     "singIn": "Regístrate",
     "login": "Iniciar Sesión"
   },

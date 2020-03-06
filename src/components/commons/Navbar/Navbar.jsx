@@ -48,7 +48,7 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
           <MdClose size={25} />
         </div>
         <div className={styles.titleNavbar}>
-          <div>{t('moreFilters')}</div>
+          <div>{t('navbar.moreFilters')}</div>
         </div>
         <div className={styles.containerSelects}>
           <FilterNavbar

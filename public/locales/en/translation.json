@@ -43,14 +43,15 @@
     "age": "Age",
     "activity": "Activity",
     "urgent": "Urgent",
+    "lost": "Lost pet",
     "dewormed": "Dewormed",
     "vaccianated": "Vaccianated",
     "sterilized": "Sterilized"
   },
   "navbar": {
+    "moreFilters": "More filters",
     "login": "Login",
     "singIn": "Sing In",
-    "moreFilters": "More filters",
     "singIn": "Sing In",
     "login": "Login"
   },
