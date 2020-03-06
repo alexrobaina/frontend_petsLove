@@ -9,7 +9,7 @@
   "login": {
     "email": "Email",
     "password": "Password",
-    "titleLogin": "Login",
+    "login": "Login",
     "forgotPassword": "Forgot password",
     "singIn": "Sing In"
   },
@@ -18,8 +18,8 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirmar password",
-    "singIn": "Regístrate",
-    "login": "Iniciar Sesión"
+    "singIn": "Sing In",
+    "login": "Login"
   },
   "forgotPassword": {
     "title": "Forgot password",
@@ -33,6 +33,29 @@
     "category": "Category pets",
     "gender": "Gender",
     "search": "Search"
+  },
+  "filterNavbar": {
+    "country": "Country",
+    "city": "City",
+    "category": "Category pets",
+    "gender": "Gender",
+    "search": "Search",
+    "age": "Age",
+    "activity": "Activity",
+    "urgent": "Urgent",
+    "dewormed": "Dewormed",
+    "vaccianated": "Vaccianated",
+    "sterilized": "Sterilized"
+  },
+  "navbar": {
+    "login": "Login",
+    "singIn": "Sing In",
+    "moreFilters": "More filters",
+    "singIn": "Sing In",
+    "login": "Login"
+  },
+  "las": {
+    "last": "last"
   }
-
 }
+

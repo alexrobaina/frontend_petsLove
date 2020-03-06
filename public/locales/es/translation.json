@@ -33,5 +33,28 @@
     "category": "Tipo de mascota",
     "gender": "Genero",
     "search": "Buscar"
+  },
+  "filterNavbar": {
+    "country": "País",
+    "city": "Ciudad",
+    "category": "Tipo de mascota",
+    "gender": "Genero",
+    "search": "Buscar",
+    "age": "Edad",
+    "activity": "Actividad",
+    "urgent": "Urgente",
+    "dewormed": "Desparasitado",
+    "vaccianated": "Vacunado",
+    "sterilized": "Esterilizado"
+  },
+  "navbar": {
+    "login": "Login",
+    "singIn": "Sing In",
+    "moreFilters": "More filters",
+    "singIn": "Regístrate",
+    "login": "Iniciar Sesión"
+  },
+  "las": {
+    "last": "last"
   }
 }

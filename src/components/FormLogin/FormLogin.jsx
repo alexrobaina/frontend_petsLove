@@ -13,7 +13,7 @@ const FormLogin = () => {
   return (
     <div className={styles.login}>
       <div className={styles.centerLogin}>
-        <div className={styles.title}>{t('titleLogin.login')}</div>
+        <div className={styles.title}>{t('login.login')}</div>
         <div className={styles.inputForm}>
           <Input placeholder={t('login.email')} />
         </div>
@@ -21,7 +21,7 @@ const FormLogin = () => {
           <Input placeholder={t('login.password')} />
         </div>
         <div className={styles.buttonLogin}>
-          <Button bigButton text={t('login.login')} />
+          <Button bigButton text={t('login.titleLogin')} />
         </div>
         <div className={styles.buttonSocialLogin}>
           <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />

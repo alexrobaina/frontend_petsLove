@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
@@ -7,7 +8,8 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
+const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) => {
+  const { t } = useTranslation()
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
@@ -55,6 +57,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
   })
 
   const submitSearch = useCallback(() => {
+    handleToggle()
     searchPetsStore.searchPets()
   })
 
@@ -73,7 +76,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             handleChange={handleSetLocation}
             options={optionsSelectsStore.countries}
-            placeholder="Country"
+            placeholder={t('filterNavbar.country')}
           />
         )}
       </div>
@@ -82,7 +85,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             handleChange={handleSetCity}
             options={optionsSelectsStore.cities}
-            placeholder="City"
+            placeholder={t('filterNavbar.city')}
           />
         )}
       </div>
@@ -91,7 +94,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             options={optionsSelectsStore.categories}
             handleChange={handleSetCategorie}
-            placeholder="Type of pets"
+            placeholder={t('filterNavbar.category')}
           />
         )}
       </div>
@@ -100,7 +103,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             handleChange={handleSetGender}
             options={optionsSelectsStore.gender}
-            placeholder="Gender"
+            placeholder={t('filterNavbar.gender')}
           />
         )}
       </div>
@@ -109,7 +112,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             handleChange={handleSetAge}
             options={optionsSelectsStore.ages}
-            placeholder="Age"
+            placeholder={t('filterNavbar.age')}
           />
         )}
       </div>
@@ -118,7 +121,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           <InputSelect
             handleChange={handleSetActivity}
             options={optionsSelectsStore.activity}
-            placeholder="Activity"
+            placeholder={t('filterNavbar.activity')}
           />
         )}
       </div>
@@ -129,28 +132,28 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
         <InputCheckbox
           value={searchPetsStore.urgent}
           handleChange={handleSetUrgent}
-          text="Urgent"
+          text={t('filterNavbar.urgent')}
         />
       </div>
       <div className={styles.togoleContainer}>
         <InputCheckbox
           value={searchPetsStore.dewormed}
           handleChange={handleSetDewormed}
-          text="Dewormed"
+          text={t('filterNavbar.dewormed')}
         />
       </div>
       <div className={styles.togoleContainer}>
         <InputCheckbox
           value={searchPetsStore.vaccianated}
           handleChange={handleSetVaccianated}
-          text="Vaccianated"
+          text={t('filterNavbar.vaccianated')}
         />
       </div>
       <div className={styles.togoleContainer}>
         <InputCheckbox
           value={searchPetsStore.sterilized}
           handleChange={handleSetSterilized}
-          text="Sterilized"
+          text={t('filterNavbar.sterilized')}
         />
       </div>
       <div className={styles.buttonFilter}>
@@ -158,7 +161,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           circle
           handleSearch={submitSearch}
           type="button"
-          text="Search"
+          text={t('filterNavbar.search')}
           icon={<MdSearch size={20} />}
         />
       </div>
@@ -169,6 +172,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
 FilterNavbar.propTypes = {
   searchPetsStore: PropTypes.node.isRequired,
   optionsSelectsStore: PropTypes.node.isRequired,
+  handleToggle: PropTypes.func.isRequired,
 }
 
 export default observer(FilterNavbar)

@@ -6,7 +6,6 @@ import SearchPetsStore from 'stores/SearchPetsStore'
 import Navbar from 'components/commons/Navbar'
 import ListPets from 'components/ListPets'
 import ErrorMessage from 'components/commons/ErrorMessage'
-import Footer from 'components/commons/Footer/Footer'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import FormRegister from 'components/FormRegister'
 import catImage from './imageCat.jpg'
@@ -38,7 +37,6 @@ const Register = () => {
         />
       )}
       {searchPetsStore.isError && <ErrorMessage text={t('errorMessage')} typeMessage="warning" />}
-      <Footer />
     </>
   )
 }

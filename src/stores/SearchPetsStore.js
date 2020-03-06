@@ -179,6 +179,13 @@ class SearchPetsStore {
       vaccianated: this.vaccianated,
     }
 
+    const searchPets = {
+      country: this.country,
+      city: this.city,
+    }
+
+    localStorage.setItem('searchPets', JSON.stringify(searchPets))
+
     this.setFilters()
     this.isError = false
 

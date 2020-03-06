@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
+// import { useTranslation } from 'react-i18next'
 import { Animated } from 'react-animated-css'
 import LazyLoad from 'react-lazyload'
 import { useHistory } from 'react-router'
@@ -8,13 +9,12 @@ import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Loading from 'components/commons/Loading/Loading'
-import { Translation, useTranslation } from 'react-i18next'
 import Chips from 'components/commons/Chips'
 import styles from './listPets.scss'
 
 const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
+  // const { t } = useTranslation()
   const history = useHistory()
-  const { t } = useTranslation()
   const goToPet = useCallback(id => {
     history.push(`/`)
     history.push(`profile-pets/${id}`)
@@ -27,14 +27,12 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
         {filters !== []
           ? filters.map(filter => {
               return (
-                <Translation>
-                  <Chips
-                    key={filter.text}
-                    handleChips={() => handleDelete(filter.text, filter.typeFilter)}
-                    text={t(filter.text)}
-                    icon={<MdCancel size={16} />}
-                  />
-                </Translation>
+                <Chips
+                  key={filter.text}
+                  handleChips={() => handleDelete(filter.text, filter.typeFilter)}
+                  text={filter.text}
+                  icon={<MdCancel size={16} />}
+                />
               )
             })
           : ''}
