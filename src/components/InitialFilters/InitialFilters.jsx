@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import anime from 'animejs'
@@ -12,6 +13,7 @@ import { MdSearch } from 'react-icons/md'
 import styles from './initialFilters.scss'
 
 const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
+  const { t } = useTranslation()
   const handleChangeCountrie = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
@@ -65,7 +67,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
         <div className={styles.container}>
           <div className={styles.selectCountry}>
             <InputSelect
-              placeholder="Country"
+              placeholder={t('initialFilters.country')}
               handleChange={handleChangeCountrie}
               options={optionsSelectsStore.countries}
               isLoading={optionsSelectsStore.isLoading}
@@ -73,7 +75,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectCity}>
             <InputSelect
-              placeholder="City"
+              placeholder={t('initialFilters.city')}
               options={optionsSelectsStore.cities}
               handleChange={handleChanceCity}
               isLoading={optionsSelectsStore.isLoading}
@@ -81,7 +83,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectCategory}>
             <InputSelect
-              placeholder="Type of pet"
+              placeholder={t('initialFilters.category')}
               options={optionsSelectsStore.categories}
               handleChange={handleChanceCategory}
               isLoading={optionsSelectsStore.isLoading}
@@ -89,7 +91,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           </div>
           <div className={styles.selectGender}>
             <InputSelect
-              placeholder="Gender"
+              placeholder={t('initialFilters.gender')}
               handleChange={handleChanceGender}
               options={optionsSelectsStore.gender}
               isLoading={optionsSelectsStore.isLoading}
@@ -101,22 +103,20 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
               handleSearch={handleSearch}
               type="button"
               styleButton="primary"
-              text="Search"
+              text={t('initialFilters.search')}
             />
           </div>
         </div>
       ) : (
-        <div className="animationOpacity">
-          <ListPets
-            handleDelete={deleteFilter}
-            filters={searchPetsStore.filters}
-            pets={searchPetsStore.pets}
-            isLoading={searchPetsStore.isLoading}
-          />
-        </div>
+        <ListPets
+          handleDelete={deleteFilter}
+          filters={searchPetsStore.filters}
+          pets={searchPetsStore.pets}
+          isLoading={searchPetsStore.isLoading}
+        />
       )}
       {searchPetsStore.isError && (
-        <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />
+        <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
       )}
       <Footer />
     </div>

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import Input from 'components/commons/Input'
 import { MdClose, MdSend } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import Textarea from '../Textarea'
-import styles from './modal.scss'
+import styles from './modalContact.scss'
 
-const Modal = ({ textButtonOpen, title, icon, text }) => {
+const ModalContact = ({ title, icon, text }) => {
   const [toggle, setToggle] = useState(false)
+  const { t } = useTranslation()
 
   const handleToggle = () => {
     if (toggle === false) {
@@ -20,27 +22,35 @@ const Modal = ({ textButtonOpen, title, icon, text }) => {
 
   return (
     <>
-      <Button icon={icon} circle text={textButtonOpen} handleSearch={handleToggle} />
+      <Button icon={icon} circle handleSearch={handleToggle} />
       <div className={c(styles.modalCard, toggle && styles.openModal)}>
         <div className={styles.title}>{title}</div>
         <div className={styles.text}>{text}</div>
         <div className={styles.form}>
           <div className={styles.inputForm}>
-            <Input type="text" placeholder="Name" />
+            <Input type="text" placeholder={t('modalContact.name')} />
           </div>
           <div className={styles.inputForm}>
-            <Input type="number" placeholder="Phone" />
+            <Input type="number" placeholder={t('modalContact.phone')} />
           </div>
           <div className={styles.inputForm}>
-            <Input type="email" placeholder="Email" />
+            <Input type="email" placeholder={t('modalContact.email')} />
           </div>
           <div className={styles.inputForm}>
-            <Textarea placeholder="Message" cols="4" rows="6" />
+            <Textarea placeholder={t('modalContact.message')} cols="4" rows="6" />
           </div>
         </div>
         <div className={styles.containerButtonModals}>
-          <Button icon={<MdSend size={25} />} text="Send Message" handleSearch={handleToggle} />
-          <Button icon={<MdClose size={25} />} text="Close" handleSearch={handleToggle} />
+          <Button
+            icon={<MdSend size={25} />}
+            text={t('modalContact.sendMessage')}
+            handleSearch={handleToggle}
+          />
+          <Button
+            icon={<MdClose size={25} />}
+            text={t('modalContact.close')}
+            handleSearch={handleToggle}
+          />
         </div>
       </div>
       <div
@@ -51,9 +61,9 @@ const Modal = ({ textButtonOpen, title, icon, text }) => {
   )
 }
 
-Modal.propTypes = {
+ModalContact.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 }
 
-export default Modal
+export default ModalContact

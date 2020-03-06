@@ -1,0 +1,77 @@
+{
+  "common": {
+    "errorMessage": "Mascotas no encontradas, cambie los filtros"
+  },
+  "home": {
+    "title": "Buscá un gran amigo",
+    "subTitle": "No combres una mascota, adopta una sin hogar"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Contraseña",
+    "titleLogin": "Iniciar Sesión",
+    "forgotPassword": "Olvidé la contraseña",
+    "singIn": "Regístrate"
+  },
+  "register": {
+    "name": "Nombre",
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmPassword": "Confirm Password",
+    "singIn": "Regístrate",
+    "login": "Iniciar Sesión"
+  },
+  "forgotPassword": {
+    "title": "Olvidé mi contraseña",
+    "enterYourEmail": "Igresa tu email",
+    "changePassword": "Cambiar contraseña",
+    "login": "Iniciar sesión"
+  },
+  "initialFilters": {
+    "country": "País",
+    "city": "Ciudad",
+    "category": "Tipo de mascota",
+    "gender": "Genero",
+    "search": "Buscar"
+  },
+  "filterNavbar": {
+    "country": "País",
+    "city": "Ciudad",
+    "category": "Tipo de mascota",
+    "gender": "Genero",
+    "search": "Buscar",
+    "age": "Edad",
+    "activity": "Actividad",
+    "urgent": "Urgente",
+    "lost": "Mascota perdida",
+    "dewormed": "Desparasitado",
+    "vaccianated": "Vacunado",
+    "sterilized": "Esterilizado"
+  },
+  "navbar": {
+    "moreFilters": "Más filtros",
+    "login": "Login",
+    "singIn": "Sing In",
+    "singIn": "Regístrate",
+    "login": "Iniciar Sesión"
+  },
+  "ModalContact": {
+    "last": "last"
+  },
+  "buttonsPet": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "title": "Contactar al proteccionista",
+    "edit": "Editar mascota"
+  },
+  "modalContact": {
+    "name": "Nombre",
+    "phone": "Telefono",
+    "email": "Email",
+    "message": "Mensaje",
+    "sendMessage": "Enviar mensaje",
+    "close": "cerrar"
+  },
+  "last": {
+    "last": "last"
+  }
+}
