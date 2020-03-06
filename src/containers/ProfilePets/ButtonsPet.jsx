@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import { MdCall, MdEdit, MdShare } from 'react-icons/md'
@@ -7,7 +8,7 @@ import Button from 'components/commons/Button'
 import ModalContact from 'components/commons/ModalContact'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ isEdit }) => {
+const ButtonsPet = ({ isEdit, contactProtectionistEmailStore }) => {
   const { t } = useTranslation()
   return (
     <div className={styles.containerButtons}>
@@ -21,7 +22,7 @@ const ButtonsPet = ({ isEdit }) => {
           text={t('buttonsPet.text')}
           icon={<MdCall size={20} />}
           title={t('buttonsPet.title')}
-          textButtonOpen="Adopt pet"
+          contactProtectionistEmailStore={contactProtectionistEmailStore}
         />
       </div>
       <div className={c(styles.button, styles.btnMargin)}>
@@ -39,4 +40,4 @@ ButtonsPet.defaultProps = {
   isEdit: false,
 }
 
-export default ButtonsPet
+export default observer(ButtonsPet)
