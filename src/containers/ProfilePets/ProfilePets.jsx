@@ -4,6 +4,7 @@ import { useLocalStore, observer } from 'mobx-react'
 import c from 'classnames'
 import { useParams } from 'react-router'
 import PetIdStore from 'stores/PetIdStore'
+import ContactProtectionistEmailStore from 'stores/ContactProtectionistEmailStore'
 import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import Navbar from 'components/commons/Navbar'
@@ -22,6 +23,7 @@ import ButtonsPet from './ButtonsPet'
 import styles from './profilePets.scss'
 
 const ProfilePets = ({ isEdit }) => {
+  const contactProtectionistEmailStore = useLocalStore(() => new ContactProtectionistEmailStore())
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const petIdStore = useLocalStore(() => new PetIdStore())
@@ -47,7 +49,10 @@ const ProfilePets = ({ isEdit }) => {
         <LayoutContainer>
           <div className={styles.name}>
             <Title mTop="120px" title={`My name is ${name}`} />
-            <ButtonsPet isEdit={isEdit} />
+            <ButtonsPet
+              contactProtectionistEmailStore={contactProtectionistEmailStore}
+              isEdit={isEdit}
+            />
           </div>
           <div className={c(styles.containerCard, styles.layourCard)}>
             <ImageProfilePet petIdStore={petIdStore} />
