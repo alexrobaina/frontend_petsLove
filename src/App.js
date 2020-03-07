@@ -5,7 +5,7 @@ import Login from 'containers/Login'
 import Home from 'containers/Home'
 import Register from 'containers/Register'
 import ForgotPassword from 'containers/ForgotPassword'
-import CreatePet from './components/CreatePet'
+import CreatePet from './containers/CreatePet'
 import './App.scss'
 
 function App() {

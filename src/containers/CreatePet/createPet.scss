@@ -1,0 +1,45 @@
+@import 'styles/mixings';
+
+.containerForm {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-down(md) {
+    justify-content: center;
+  }
+}
+
+.containerImagePreview {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imagePreview {
+  padding: 10px;
+  width: 150px;
+  height: auto;
+  animation-name: fadeIn;
+  animation-duration: 500ms;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.col {
+  width: 45%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+  }
+}
