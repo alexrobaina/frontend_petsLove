@@ -1,13 +1,13 @@
 @import 'styles/mixings';
 
 .containerForm {
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 
   @include media-breakpoint-down(md) {
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 
@@ -18,7 +18,7 @@
 
 .imagePreview {
   padding: 10px;
-  width: 150px;
+  width: 100px;
   height: auto;
   animation-name: fadeIn;
   animation-duration: 500ms;

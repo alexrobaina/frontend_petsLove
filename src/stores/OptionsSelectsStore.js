@@ -15,7 +15,7 @@ class OptionsSelectsStore {
     this.activityService = new ActivityService()
     this.utils = new Utils()
   }
-
+  
   @observable cities = []
   @observable countries = []
   @observable gender = []
