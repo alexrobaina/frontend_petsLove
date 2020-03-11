@@ -8,7 +8,7 @@ import styles from './buttonsPet.scss'
 
 const ButtonsPet = ({ isEdit }) => {
   const editPet = useCallback(() => {
-    alert('editpet')
+    console.log('listo')
   }, [])
 
   return (

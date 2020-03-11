@@ -23,7 +23,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   type: 'text',
-  multiple: false
+  multiple: false,
 }
 
 export default Input

@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { useLocalStore } from 'mobx-react'
 import Input from 'components/commons/Input'
@@ -10,13 +9,15 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import Textarea from 'components/commons/Textarea'
 import Footer from 'components/commons/Footer/Footer'
 import Button from 'components/commons/Button'
-import CreatePetStore from '../../stores/CreatePetStore'
+import CreatePetStore from 'stores/CreatePetStore'
+import SearchMapStore from 'stores/SearchMapStore'
+import MapSearch from 'components/commons/MapSearch'
 import styles from './createPet.scss'
-import MapSearch from '../../components/commons/MapSearch'
 
 const CreatePet = () => {
-  const { t } = useTranslation()
   const createPetStore = useLocalStore(() => new CreatePetStore())
+  const searchMapStore = useLocalStore(() => new SearchMapStore())
+  const { t } = useTranslation()
 
   const [previews, setPreviews] = useState([])
 
@@ -36,9 +37,10 @@ const CreatePet = () => {
     createPetStore.setName(e.target.value)
   }, [])
 
-  const handleChangeLocation = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setLocation(e.target.value)
+  const handleChangeLocation = useCallback(location => {
+    if (location) {
+      createPetStore.setLocation(location)
+    }
   }, [])
 
   const handleChangeCountry = useCallback(e => {
@@ -105,8 +107,7 @@ const CreatePet = () => {
           <Input handleChange={handleChangeName} placeholder={t('Name')} />
         </div>
         <div className={styles.col}>
-          <MapSearch />
-          <Input handleChange={handleChangeLocation} placeholder={t('Location')} />
+          <MapSearch handleChangeLocation={handleChangeLocation} searchMapStore={searchMapStore} />
         </div>
         <div className={styles.col}>
           <InputSelect handleChange={handleChangeCountry} placeholder={t('country')} />
@@ -152,7 +153,5 @@ const CreatePet = () => {
     </LayoutContainer>
   )
 }
-
-CreatePet.propTypes = {}
 
 export default CreatePet

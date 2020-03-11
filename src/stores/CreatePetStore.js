@@ -1,9 +1,9 @@
 import { action, observable, runInAction } from 'mobx'
 
 class CreatePetStore {
-  constructor() {
-    // this.createPetServices = new CreatePetStore()
-  }
+  // constructor() {
+  // this.createPetServices = new CreatePetStore()
+  // }
 
   @observable image = []
   @observable name = ''

@@ -1,13 +1,8 @@
-import { observable, action, runInAction } from 'mobx'
+import { observable, action } from 'mobx'
 
 class SearchMapStore {
   @observable search = ''
-  // @observable lat = undefined
-  // @observable lng = undefined
-  @observable location = {
-    lat: undefined,
-    lng: undefined,
-  }
+  @observable location = []
 
   @action
   setSearch(value) {
@@ -15,15 +10,8 @@ class SearchMapStore {
   }
 
   @action
-  setLat(value) {
-    console.log('lat', value)
-    this.location.lat = value
-  }
-
-  @action
-  setLng(value) {
-    console.log('lng', value)
-    this.location.lng = value
+  setResultSearchMap(results) {
+    this.location = results
   }
 }
 

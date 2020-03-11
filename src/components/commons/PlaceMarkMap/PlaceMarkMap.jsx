@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import L from 'leaflet'
+import THEME_MAP, { THEME_COPY } from 'utils/configMap'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import iconMarket from './call.svg'
-import THEME_MAP, { THEME_COPY } from './config'
 import styles from './placeMarkMap.scss'
 
 const PlaceMarkMap = ({ mapPosition, contactMessage, defaultPosition }) => {
