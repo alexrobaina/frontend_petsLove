@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
+import { useTranslation } from 'react-i18next'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
 const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
+  const { t } = useTranslation()
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)
@@ -66,6 +68,8 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
     optionsSelectsStore.listActiviy()
   }, [])
 
+  console.log(t(`filterPets.${optionsSelectsStore.categories.label}`))
+
   return (
     <div className={styles.InputContainer}>
       <div className={styles.fromNewSearch}>
@@ -122,31 +126,31 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore }) => {
           />
         )}
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox value={searchPetsStore.lost} handleChange={handleSetLost} text="Lost" />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.urgent}
           handleChange={handleSetUrgent}
           text="Urgent"
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.dewormed}
           handleChange={handleSetDewormed}
           text="Dewormed"
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.vaccianated}
           handleChange={handleSetVaccianated}
           text="Vaccianated"
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.sterilized}
           handleChange={handleSetSterilized}

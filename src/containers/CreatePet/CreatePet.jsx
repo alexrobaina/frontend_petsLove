@@ -119,6 +119,20 @@ const CreatePet = () => {
         <div className={styles.colLarge}>
           <MapSearch handleChangeLocation={handleChangeLocation} searchMapStore={searchMapStore} />
         </div>
+        <div className={styles.rowCheckbox}>
+          <div className={styles.colCheckbox}>
+            <InputCheckbox text={t('urgent')} />
+          </div>
+          <div className={styles.colCheckbox}>
+            <InputCheckbox text={t('lost')} />
+          </div>
+          <div className={styles.colCheckbox}>
+            <InputCheckbox text={t('sterilized')} />
+          </div>
+          <div className={styles.colCheckbox}>
+            <InputCheckbox text={t('vaccinated')} />
+          </div>
+        </div>
         <div className={styles.col}>
           <InputSelect handleChange={handleChangeGender} placeholder={t('gender')} />
         </div>
@@ -133,18 +147,6 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <InputSelect handleChange={handleChangeActivity} placeholder={t('activity')} />
-        </div>
-        <div className={styles.col}>
-          <InputCheckbox text={t('urgent')} />
-        </div>
-        <div className={styles.col}>
-          <InputCheckbox text={t('lost')} />
-        </div>
-        <div className={styles.col}>
-          <InputCheckbox text={t('sterilized')} />
-        </div>
-        <div className={styles.col}>
-          <InputCheckbox text={t('vaccinated')} />
         </div>
         <div className={styles.col}>
           <Button bigButton text="Create Pet" />

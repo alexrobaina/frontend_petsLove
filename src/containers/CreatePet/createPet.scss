@@ -43,9 +43,26 @@
 
   @include media-breakpoint-down(sm) {
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     width: 100%;
   }
+}
+
+.rowCheckbox {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  @include media-breakpoint-only(xs) {
+    width: 0;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}
+
+.colCheckbox {
+  padding-left: 30px;
+  padding-top: 20px;
 }
 
 .label {
@@ -59,7 +76,7 @@
 
   @include media-breakpoint-down(sm) {
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     width: 100%;
   }
 }

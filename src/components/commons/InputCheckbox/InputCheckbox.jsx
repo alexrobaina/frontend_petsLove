@@ -5,13 +5,11 @@ import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ text, handleChange, value }) => {
   return (
-    <div className={styles.containerCheckbox}>
-      <label className={styles.container}>
-        {text}
-        <input onChange={handleChange} checked={value} type="checkbox" />
-        <span className={styles.checkmark} />
-      </label>
-    </div>
+    <label className={styles.container}>
+      {text}
+      <input onChange={handleChange} checked={value} type="checkbox" />
+      <span className={styles.checkmark} />
+    </label>
   )
 }
 

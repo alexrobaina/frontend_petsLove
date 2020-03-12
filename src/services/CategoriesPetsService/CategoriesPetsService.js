@@ -1,9 +1,12 @@
-import axios from 'axios'
-import { API_MONGO_LOCAL } from '../config'
-
 class CategoriesPetsService {
-  getTypePets = () =>
-    axios.get(`${API_MONGO_LOCAL}/api/categorie/list`).then(response => response.data)
+  getTypePets = () => {
+    const category = [
+      { value: '', label: 'allcategory' },
+      { value: 'dog', label: 'dogs' },
+      { value: 'cat', label: 'cats' },
+    ]
+    return category
+  }
 }
 
 export default CategoriesPetsService

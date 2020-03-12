@@ -7,7 +7,6 @@ import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
 import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import Navbar from 'components/commons/Navbar'
-import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
 import ErrorMessage from 'components/commons/ErrorMessage'
 import Footer from 'components/commons/Footer/Footer'
@@ -58,16 +57,12 @@ const Login = () => {
           </div>
         </div>
       ) : (
-        <LayoutContainer>
-          <div className="animationOpacity">
-            <ListPets
-              handleDelete={deleteFilter}
-              filters={searchPetsStore.filters}
-              pets={searchPetsStore.pets}
-              isLoading={searchPetsStore.isLoading}
-            />
-          </div>
-        </LayoutContainer>
+        <ListPets
+          handleDelete={deleteFilter}
+          filters={searchPetsStore.filters}
+          pets={searchPetsStore.pets}
+          isLoading={searchPetsStore.isLoading}
+        />
       )}
       {searchPetsStore.isError && (
         <ErrorMessage text="No pets found, Change filters" typeMessage="warning" />
