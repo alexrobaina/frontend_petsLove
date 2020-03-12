@@ -16,11 +16,15 @@
   justify-content: space-between;
 }
 
+.rowImagePets {
+}
+
 .imagePreview {
   padding: 10px;
-  width: 100px;
-  height: auto;
+  width: 150px;
+  height: 150px;
   animation-name: fadeIn;
+  object-fit: cover;
   animation-duration: 500ms;
 }
 
@@ -31,6 +35,22 @@
   100% {
     opacity: 1;
   }
+}
+
+.colLarge {
+  width: 100%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+  }
+}
+
+.label {
+  margin-bottom: 10px;
+  color: $secundaryTitle;
 }
 
 .col {

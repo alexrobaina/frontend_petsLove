@@ -85,7 +85,7 @@ const CreatePet = () => {
 
   return (
     <LayoutContainer>
-      <Title title={t('Create pet')} subTitle={t('Crea la identidad de esta mascota')} />
+      <Title title={t('Create pet')} subTitle={t('Create your pets identity')} />
       <div className={styles.containerImagePreview}>
         <div className={styles.rowImagePets}>
           {previews &&
@@ -95,7 +95,8 @@ const CreatePet = () => {
         </div>
       </div>
       <div className={styles.containerForm}>
-        <div className={styles.col}>
+        <div className={styles.colLarge}>
+          <div className={styles.label}>Add images of pet</div>
           <Input
             multiple="true"
             handleChange={handleImageChange}
@@ -107,9 +108,6 @@ const CreatePet = () => {
           <Input handleChange={handleChangeName} placeholder={t('Name')} />
         </div>
         <div className={styles.col}>
-          <MapSearch handleChangeLocation={handleChangeLocation} searchMapStore={searchMapStore} />
-        </div>
-        <div className={styles.col}>
           <InputSelect handleChange={handleChangeCountry} placeholder={t('country')} />
         </div>
         <div className={styles.col}>
@@ -117,6 +115,9 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <InputSelect handleChange={handleChangeCategory} placeholder={t('categoryPets')} />
+        </div>
+        <div className={styles.colLarge}>
+          <MapSearch handleChangeLocation={handleChangeLocation} searchMapStore={searchMapStore} />
         </div>
         <div className={styles.col}>
           <InputSelect handleChange={handleChangeGender} placeholder={t('gender')} />
