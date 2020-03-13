@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import { FiFilter } from 'react-icons/fi'
 import { useHistory } from 'react-router'
 import { MdClose } from 'react-icons/md'
@@ -10,6 +11,7 @@ import noImg from './noimg.png'
 import styles from './navbar.scss'
 
 const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
+  const { t } = useTranslation()
   const history = useHistory()
   const [toggle, setToggle] = useState(false)
 
@@ -29,10 +31,10 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
         {isUserLogin ? (
           <div className={styles.containerButtonslog}>
             <div onClick={goToLogin} className={styles.textLogin}>
-              Login
+              {t('navbar.login')}
             </div>
             <div onClick={goToRegister} className={styles.textLogin}>
-              Register
+              {t('navbar.singIn')}
             </div>
           </div>
         ) : (
@@ -46,10 +48,11 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
           <MdClose size={25} />
         </div>
         <div className={styles.titleNavbar}>
-          <div>More filters</div>
+          <div>{t('navbar.moreFilters')}</div>
         </div>
         <div className={styles.containerSelects}>
           <FilterNavbar
+            handleToggle={handleToggle}
             optionsSelectsStore={optionsSelectsStore}
             searchPetsStore={searchPetsStore}
           />

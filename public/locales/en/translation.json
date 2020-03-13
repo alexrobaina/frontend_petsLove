@@ -1,0 +1,71 @@
+{
+  "common": {
+    "errorMessage": "No pets found, Change filters"
+  },
+  "home": {
+    "title": "Search for your best friend",
+    "subTitle": "Do not buy a breed pet, adopt a homeless one"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "forgotPassword": "Forgot password",
+    "singIn": "Sing In"
+  },
+  "register": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirmar password",
+    "singIn": "Sing In",
+    "login": "Login"
+  },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "enterYourEmail": "Enter your email",
+    "changePassword": "Change password",
+    "login": "Login"
+  },
+  "initialFilters": {
+    "country": "Country",
+    "city": "City",
+    "category": "Category pets",
+    "gender": "Gender",
+    "search": "Search"
+  },
+  "filterNavbar": {
+    "country": "Country",
+    "city": "City",
+    "category": "Category pets",
+    "gender": "Gender",
+    "search": "Search",
+    "age": "Age",
+    "activity": "Activity",
+    "urgent": "Urgent",
+    "lost": "Lost pet",
+    "dewormed": "Dewormed",
+    "vaccianated": "Vaccianated",
+    "sterilized": "Sterilized"
+  },
+  "navbar": {
+    "moreFilters": "More filters",
+    "login": "Login",
+    "singIn": "Sing In",
+    "singIn": "Sing In",
+    "login": "Login"
+  },
+  "buttonsPet": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "title": "Contact to protectionist",
+    "edit": "Edit pet"
+  },
+  "modalContact": {
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "Message",
+    "sendMessage": "Send Message",
+    "close": "Close"
+  }
+}

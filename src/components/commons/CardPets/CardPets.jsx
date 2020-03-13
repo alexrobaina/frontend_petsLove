@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
 import URL_LOCAL from 'config/config'
+import LayoutCards from 'components/commons/LayoutCards'
 import noImage from './noImage.svg'
-import LayoutCards from '../LayoutCards'
 import styles from './cardPets.scss'
 
 const CardPets = ({ history, image, namePet }) => {
