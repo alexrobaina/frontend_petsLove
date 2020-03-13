@@ -71,10 +71,48 @@
     "sendMessage": "Enviar mensaje",
     "close": "cerrar"
   },
-  "filterPets": {
+  "selectCategory": {
     "allCategory": "Todas las categorias",
     "dogs": "Perros",
     "cats": "Gatos"
+  },
+  "selectGender": {
+    "allGenders": "Todos los Generos",
+    "female": "Hembra",
+    "male": "Macho"
+  },
+  "selectactivity": {
+    "allActivity": "Todos los niveles de actividad",
+    "quiet": "Quieto, tranquilo",
+    "energetic": "Enérgico",
+    "superEnergetic": "Super Enérgico"
+  },
+  "selectAge": {
+    "allAges": "Todas las edades",
+    "1month": "1 Mes",
+    "2month": "2 Meses",
+    "3month": "3 Meses",
+    "4month": "4 Meses",
+    "5month": "5 Meses",
+    "6month": "6 Meses",
+    "7month": "7 Meses",
+    "8month": "8 Meses",
+    "9month": "9 Meses",
+    "10month": "10 Meses",
+    "11month": "11 Meses",
+    "12month": "12 Meses",
+    "1year": "1 Año",
+    "2year": "2 Años",
+    "3year": "3 Años",
+    "4year": "4 Años",
+    "5year": "5 Años",
+    "6year": "6 Años",
+    "7year": "7 Años",
+    "8year": "8 Años",
+    "9year": "9 Años",
+    "10year": "10 Años",
+    "11year": "11 Años",
+    "12year": "12 Años +"
   },
   "last": {
     "last": "last"

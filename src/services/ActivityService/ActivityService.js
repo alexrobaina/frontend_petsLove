@@ -1,10 +1,12 @@
+import i18next from 'i18next'
+
 class ActivityService {
   getActivity = () => {
     const activity = [
-      { value: '', label: 'All Activity' },
-      { value: 'quiet', label: 'quiet' },
-      { value: 'energetic', label: 'energetic' },
-      { value: 'superEnergetic', label: 'super energetic' },
+      { value: '', label: i18next.t('selectActivity.allActivity') },
+      { value: 'quiet', label: i18next.t('selectActivity.quiet') },
+      { value: 'energetic', label: i18next.t('selectActivity.energetic') },
+      { value: 'superEnergetic', label: i18next.t('selectActivity.superEnergetic') },
     ]
     return activity
   }

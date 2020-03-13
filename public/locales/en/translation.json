@@ -68,9 +68,47 @@
     "sendMessage": "Send Message",
     "close": "Close"
   },
-  "filterPets": {
+  "selectCategory": {
     "allCategory": "All Categories",
     "dogs": "Dogs",
     "cats": "Cats"
+  },
+  "selectGender": {
+    "allGenders": "All Genders",
+    "female": "Female",
+    "male": "Male"
+  },
+  "selectActivity": {
+    "allActivity": "All level activities",
+    "quiet": "Quiet",
+    "energetic": "Energetic",
+    "superEnergetic": "Super Energetic"
+  },
+  "selectAge": {
+    "allAges": "All Ages",
+    "1month": "1 Month",
+    "2month": "2 Month",
+    "3month": "3 Month",
+    "4month": "4 Month",
+    "5month": "5 Month",
+    "6month": "6 Month",
+    "7month": "7 Month",
+    "8month": "8 Month",
+    "9month": "9 Month",
+    "10month": "10 Month",
+    "11month": "11 Month",
+    "12month": "12 Month",
+    "1year": "1 Year",
+    "2year": "2 Years",
+    "3year": "3 Years",
+    "4year": "4 Years",
+    "5year": "5 Years",
+    "6year": "6 Years",
+    "7year": "7 Years",
+    "8year": "8 Years",
+    "9year": "9 Years",
+    "10year": "10 Years",
+    "11year": "11 Years",
+    "12year": "12 Years +"
   }
 }

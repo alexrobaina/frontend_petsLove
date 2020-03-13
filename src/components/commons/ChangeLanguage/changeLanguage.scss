@@ -1,0 +1,7 @@
+@import 'styles/mixings';
+
+.textLanguage {
+  cursor: pointer;
+  padding: 20px;
+  @include site-font('text', 500);
+}

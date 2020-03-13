@@ -9,11 +9,12 @@ import FilterNavbar from 'components/FilterNavbar'
 import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
 import noImg from './noimg.png'
 import styles from './navbar.scss'
+import ChangeLanguage from '../ChangeLanguage/ChangeLanguage'
 
 const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
+  const [toggle, setToggle] = useState(false)
   const { t } = useTranslation()
   const history = useHistory()
-  const [toggle, setToggle] = useState(false)
 
   const goToLogin = useCallback(() => history.push('/login'), [])
   const goToRegister = useCallback(() => history.push('/register'), [])
@@ -36,6 +37,7 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
             <div onClick={goToRegister} className={styles.textLogin}>
               {t('navbar.singIn')}
             </div>
+            <ChangeLanguage />
           </div>
         ) : (
           <div>

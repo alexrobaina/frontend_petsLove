@@ -1,9 +1,11 @@
+import i18next from 'i18next'
+
 class GenderService {
   getGender = () => {
     const gender = [
-      { value: '', label: 'All Genders' },
-      { value: 'female', label: 'Female' },
-      { value: 'male', label: 'Male' },
+      { value: '', label: i18next.t('selectGender.allGenders') },
+      { value: 'female', label: i18next.t('selectGender.female') },
+      { value: 'male', label: i18next.t('selectGender.male') },
     ]
     return gender
   }
