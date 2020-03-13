@@ -1,13 +1,17 @@
-import { observable, action, runInAction } from 'mobx'
+import { observable, action } from 'mobx'
 
 class SearchMapStore {
   @observable search = ''
-  @observable lat: -34.61315
-  @observable lng: -58.37723
+  @observable location = []
 
   @action
   setSearch(value) {
     this.search = value
+  }
+
+  @action
+  setResultSearchMap(results) {
+    this.location = results
   }
 }
 

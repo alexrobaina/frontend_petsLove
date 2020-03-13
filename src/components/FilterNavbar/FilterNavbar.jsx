@@ -69,6 +69,8 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
     optionsSelectsStore.listActiviy()
   }, [])
 
+  console.log(t(`filterPets.${optionsSelectsStore.categories.label}`))
+
   return (
     <div className={styles.InputContainer}>
       <div className={styles.fromNewSearch}>
@@ -125,35 +127,35 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           />
         )}
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.lost}
           handleChange={handleSetLost}
           text={t('filterNavbar.lost')}
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.urgent}
           handleChange={handleSetUrgent}
           text={t('filterNavbar.urgent')}
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.dewormed}
           handleChange={handleSetDewormed}
           text={t('filterNavbar.dewormed')}
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.vaccianated}
           handleChange={handleSetVaccianated}
           text={t('filterNavbar.vaccianated')}
         />
       </div>
-      <div className={styles.togoleContainer}>
+      <div className={styles.containerCheckbox}>
         <InputCheckbox
           value={searchPetsStore.sterilized}
           handleChange={handleSetSterilized}

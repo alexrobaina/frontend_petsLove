@@ -8,6 +8,7 @@ class Utils {
     return text
   }
 
+  // this function format data for selects
   formatDataReactSelect = (data, nameObject) => {
     const result = []
     data.forEach(item => {

@@ -1,0 +1,82 @@
+@import 'styles/mixings';
+
+.containerForm {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-down(md) {
+    justify-content: space-between;
+  }
+}
+
+.containerImagePreview {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rowImagePets {
+}
+
+.imagePreview {
+  padding: 10px;
+  width: 150px;
+  height: 150px;
+  animation-name: fadeIn;
+  object-fit: cover;
+  animation-duration: 500ms;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.colLarge {
+  width: 100%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+}
+
+.rowCheckbox {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  @include media-breakpoint-only(xs) {
+    width: 0;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}
+
+.colCheckbox {
+  padding-left: 30px;
+  padding-top: 20px;
+}
+
+.label {
+  margin-bottom: 10px;
+  color: $secundaryTitle;
+}
+
+.col {
+  width: 45%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+}

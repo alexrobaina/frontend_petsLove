@@ -23,6 +23,7 @@
   font-family: 'Noto Sans HK', sans-serif;
   font-size: 32px;
   font-weight: 700;
+  padding-left: 10px;
 
   @include media-breakpoint-only(xs) {
     font-size: 22px;
@@ -30,11 +31,12 @@
 }
 
 .subTitle {
+  padding-left: 10px;
   color: $colorLight;
   font-size: 32px;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
-  margin-top: -15px;
+  margin-top: 0;
 
   @include media-breakpoint-only(xs) {
     font-size: 22px;

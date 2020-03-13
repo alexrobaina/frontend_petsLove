@@ -73,12 +73,10 @@ class OptionsSelectsStore {
   @action
   async listGender() {
     try {
-      const response = await this.genderServices.getTypePets()
+      const response = await this.genderServices.getGender()
 
       runInAction(() => {
-        this.gender = this.utils.formatDataReactSelect(response, 'name')
-        this.gender.push({ value: '', label: 'All genders' })
-        this.gender = this.gender.slice().reverse()
+        this.gender = response
       })
     } catch (e) {
       runInAction(() => {
@@ -93,9 +91,7 @@ class OptionsSelectsStore {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
-        this.categories = this.utils.formatDataReactSelect(response, 'name')
-        this.categories.push({ value: '', label: 'All Categories' })
-        this.categories = this.categories.slice().reverse()
+        this.categories = response
       })
     } catch (e) {
       runInAction(() => {
@@ -110,9 +106,7 @@ class OptionsSelectsStore {
       const response = await this.petsAgesService.getAge()
 
       runInAction(() => {
-        this.ages = this.utils.formatDataReactSelect(response, 'age')
-        this.ages.push({ value: '', label: 'All Ages' })
-        this.ages = this.ages.slice().reverse()
+        this.ages = response
       })
     } catch (e) {
       runInAction(() => {
@@ -127,9 +121,7 @@ class OptionsSelectsStore {
       const response = await this.activityService.getActivity()
 
       runInAction(() => {
-        this.activity = this.utils.formatDataReactSelect(response, 'activity')
-        this.activity.push({ value: '', label: 'All' })
-        this.activity = this.activity.slice().reverse()
+        this.activity = response
       })
     } catch (e) {
       runInAction(() => {

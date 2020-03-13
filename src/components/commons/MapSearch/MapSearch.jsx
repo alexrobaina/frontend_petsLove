@@ -1,43 +1,41 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { observer } from 'mobx-react'
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
-import L from 'leaflet'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
-import SearchMapStore from 'stores/SearchMapStore'
-import { useLocalStore } from 'mobx-react'
+import L from 'leaflet'
+import THEME_MAP, { THEME_COPY } from 'utils/configMap'
+import Input from 'components/commons/Input'
 import iconMarket from './call.svg'
 import styles from './placeMarkMap.scss'
 
-const MapSearch = () => {
-  const searchMapStore = useLocalStore(() => new SearchMapStore())
+const MapSearch = ({ handleChangeLocation, searchMapStore }) => {
+  const [locationDefault, setLocationDefault] = useState()
+  const [location, setLocation] = useState(false)
 
   const provider = new OpenStreetMapProvider()
-  const [location, setLocation] = useState({
-    lat: -34.61315,
-    lng: -58.37723,
-  })
 
-  const handleMap = useCallback(() => {
-    if (searchMapStore.search !== '') {
-      provider.search({ query: searchMapStore.search }).then(result => {
-        if (result[0] !== undefined) {
-          setLocation({
-            lat: result[0].bounds[0][0],
-            lng: result[0].bounds[0][1],
-          })
-        }
-      })
+  const handleMap = async search => {
+    if (search !== '') {
+      await provider
+        .search({ query: searchMapStore.search })
+        .then(result => {
+          if (result[0].bounds !== undefined) {
+            setLocation({
+              lat: result[0].bounds[0][0],
+              lng: result[0].bounds[0][1],
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error.message)
+        })
     }
-    if (searchMapStore.search === '') {
-      setLocation({
-        lat: -34.61315,
-        lng: -58.37723,
-      })
-    }
-  }, [])
+    handleChangeLocation(location)
+  }
 
   const handleSearch = useCallback(e => {
     searchMapStore.setSearch(e.target.value)
-    handleMap()
+    handleMap(searchMapStore.search)
   })
 
   const icon = L.icon({
@@ -46,17 +44,19 @@ const MapSearch = () => {
     popupAnchor: [0, -18], // point from which the popup should open relative to the iconAnchor
   })
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    setLocationDefault({
+      lat: -34.603722,
+      lng: -58.381592,
+    })
+  }, [])
 
   return (
     <div>
-      {/*<input onChange={handleSearch} type="text" placeholder="map" />*/}
-      <Map className={styles.map} center={location} zoom="15">
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={location} icon={icon}>
+      <Input handleChange={handleSearch} type="text" placeholder="Location Pet" />
+      <Map className={styles.map} center={location || locationDefault} zoom="15">
+        <TileLayer attribution={THEME_COPY} url={THEME_MAP} />
+        <Marker position={location || locationDefault} icon={icon}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
@@ -66,4 +66,4 @@ const MapSearch = () => {
   )
 }
 
-export default MapSearch
+export default observer(MapSearch)

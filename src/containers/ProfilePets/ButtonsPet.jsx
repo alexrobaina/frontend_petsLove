@@ -10,6 +10,11 @@ import styles from './buttonsPet.scss'
 
 const ButtonsPet = ({ isEdit, contactProtectionistEmailStore }) => {
   const { t } = useTranslation()
+
+  const editPet = useCallback(() => {
+    console.log('listo')
+  }, [])
+
   return (
     <div className={styles.containerButtons}>
       {isEdit && (
@@ -26,7 +31,7 @@ const ButtonsPet = ({ isEdit, contactProtectionistEmailStore }) => {
         />
       </div>
       <div className={c(styles.button, styles.btnMargin)}>
-        <Button icon={<MdEdit size={20} />} circle text={t('buttonsPet.edit')} />
+        <Button handleClick={editPet} icon={<MdEdit size={20} />} circle text={t('buttonsPet.edit')} />
       </div>
     </div>
   )
