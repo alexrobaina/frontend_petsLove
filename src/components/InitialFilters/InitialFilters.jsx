@@ -100,7 +100,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           <div className={styles.btnSearch}>
             <Button
               icon={<MdSearch size={18} />}
-              handleSearch={handleSearch}
+              handleClick={handleSearch}
               type="button"
               styleButton="primary"
               text={t('initialFilters.search')}

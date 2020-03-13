@@ -71,6 +71,11 @@
     "sendMessage": "Enviar mensaje",
     "close": "cerrar"
   },
+  "filterPets": {
+    "allCategory": "Todas las categorias",
+    "dogs": "Perros",
+    "cats": "Gatos"
+  },
   "last": {
     "last": "last"
   }

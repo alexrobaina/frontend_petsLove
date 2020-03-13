@@ -67,5 +67,10 @@
     "message": "Message",
     "sendMessage": "Send Message",
     "close": "Close"
+  },
+  "filterPets": {
+    "allCategory": "All Categories",
+    "dogs": "Dogs",
+    "cats": "Cats"
   }
 }

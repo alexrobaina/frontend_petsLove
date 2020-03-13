@@ -69,8 +69,6 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
     optionsSelectsStore.listActiviy()
   }, [])
 
-  console.log(t(`filterPets.${optionsSelectsStore.categories.label}`))
-
   return (
     <div className={styles.InputContainer}>
       <div className={styles.fromNewSearch}>
@@ -165,7 +163,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       <div className={styles.buttonFilter}>
         <Button
           circle
-          handleSearch={submitSearch}
+          handleClick={submitSearch}
           type="button"
           text={t('filterNavbar.search')}
           icon={<MdSearch size={20} />}

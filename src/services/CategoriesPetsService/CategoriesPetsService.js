@@ -1,7 +1,7 @@
 class CategoriesPetsService {
   getTypePets = () => {
     const category = [
-      { value: '', label: 'allcategory' },
+      { value: '', label: 'allCategory' },
       { value: 'dog', label: 'dogs' },
       { value: 'cat', label: 'cats' },
     ]
