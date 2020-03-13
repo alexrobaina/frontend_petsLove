@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import styles from './changeLanguage.scss'
 
 const ChangeLanguage = () => {
-  const [language, setLenguage] = useState('English')
+  const [language, setLenguage] = useState('')
   const { i18n } = useTranslation()
 
   useEffect(() => {
-    const languages = navigator.languages
-    if (languages === 'Español') {
-      setLenguage('Español')
-    }
-    if (languages === 'English') {
+    const { languages } = navigator
+    if (languages[0] === 'en') {
       setLenguage('English')
+    }
+    if (languages[0] === 'es') {
+      setLenguage('Español')
     }
   }, [])
 
   const translate = () => {
-    if (language === 'es') {
-      i18n.changeLanguage('Español')
+    if (language === 'English') {
       setLenguage('Español')
+      i18n.changeLanguage('es')
     }
-    if (language === 'en') {
-      i18n.changeLanguage('English')
+    if (language === 'Español') {
       setLenguage('English')
+      i18n.changeLanguage('en')
     }
   }
 
@@ -34,9 +33,5 @@ const ChangeLanguage = () => {
     </div>
   )
 }
-//
-// ChangeLanguage.propTypes = {
-//   language: PropTypes.string.isRequired,
-// }
 
 export default ChangeLanguage
