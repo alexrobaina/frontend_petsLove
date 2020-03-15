@@ -8,22 +8,23 @@ const ChangeLanguage = () => {
 
   useEffect(() => {
     const { languages } = navigator
-    if (languages[0] === 'en') {
-      setLenguage('English')
-    }
-    if (languages[0] === 'es') {
+    console.log(languages)
+    if (languages[1] === 'en' || languages[0] === 'en-US') {
       setLenguage('Español')
+    }
+    if (languages[1] === 'es' || languages[0] === 'es-ES') {
+      setLenguage('English')
     }
   }, [])
 
   const translate = () => {
     if (language === 'English') {
       setLenguage('Español')
-      i18n.changeLanguage('es')
+      i18n.changeLanguage('en')
     }
     if (language === 'Español') {
       setLenguage('English')
-      i18n.changeLanguage('en')
+      i18n.changeLanguage('es')
     }
   }
 
