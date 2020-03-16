@@ -41,7 +41,7 @@ const ProfilePets = ({ isEdit }) => {
     searchPetsStore.deleteFilter(selectedValue, typeFilter)
   })
 
-  console.log(searchPetsStore.isError)
+  console.log(images)
   return (
     <>
       <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
@@ -69,7 +69,11 @@ const ProfilePets = ({ isEdit }) => {
               <TextCard title="Required to Adoption" text={petIdStore.pet.requiredToAdoption} />
             </div>
           </div>
-          <GaleryImages isLoading={isLoading} arrayImages={images} />
+          {images !== [] ? (
+            <GaleryImages isLoading={isLoading} arrayImages={images} />
+          ) : (
+            <ErrorMessage text="This pet has no images" typeMessage="warning" />
+          )}
         </LayoutContainer>
       ) : (
         <ListPets

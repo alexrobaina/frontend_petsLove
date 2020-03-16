@@ -4,7 +4,7 @@ import c from 'classnames'
 import Input from 'components/commons/Input'
 import { MdClose, MdSend } from 'react-icons/md'
 import Button from 'components/commons/Button'
-import Textarea from '../Textarea'
+import Textarea from 'components/commons/Textarea'
 import styles from './modal.scss'
 
 const Modal = ({ textButtonOpen, title, icon, text }) => {
