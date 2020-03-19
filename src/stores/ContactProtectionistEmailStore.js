@@ -1,5 +1,6 @@
 import { action, observable, runInAction } from 'mobx'
-import EmailServices from '../services/EmailServices'
+import EmailServices from 'services/EmailServices'
+import { SERVER } from 'services/config'
 
 class ContactProtectionistEmailStore {
   constructor() {
@@ -10,9 +11,12 @@ class ContactProtectionistEmailStore {
   @observable isloading = false
   @observable isError = false
   @observable name = ''
+  @observable petName = ''
+  @observable images = []
   @observable phone = ''
   @observable email = ''
   @observable message = ''
+  @observable emailUser = ''
 
   @action
   async contactProtectionist() {
@@ -23,6 +27,9 @@ class ContactProtectionistEmailStore {
       phone: this.phone,
       email: this.email,
       message: this.message,
+      emailUser: this.emailUser,
+      image: `${SERVER}/${this.images[0]}`,
+      petName: this.petName,
     }
 
     try {
@@ -58,6 +65,21 @@ class ContactProtectionistEmailStore {
   @action
   setMessage(value) {
     this.message = value
+  }
+
+  @action
+  setUserEmail(value) {
+    this.emailUser = value
+  }
+
+  @action
+  setImage(value) {
+    this.images = value
+  }
+
+  @action
+  setPetName(value) {
+    this.petName = value
   }
 }
 

@@ -40,7 +40,6 @@ const ProfilePets = ({ isEdit }) => {
   const deleteFilter = useCallback((selectedValue, typeFilter) => {
     searchPetsStore.deleteFilter(selectedValue, typeFilter)
   })
-
   console.log(images)
   return (
     <>
@@ -50,6 +49,7 @@ const ProfilePets = ({ isEdit }) => {
           <div className={styles.name}>
             <Title mTop="120px" title={`My name is ${name}`} />
             <ButtonsPet
+              petIdStore={petIdStore}
               contactProtectionistEmailStore={contactProtectionistEmailStore}
               isEdit={isEdit}
             />

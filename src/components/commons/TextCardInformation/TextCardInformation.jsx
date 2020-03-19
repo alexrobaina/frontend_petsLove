@@ -9,9 +9,9 @@ const TextCardInformation = ({ text, informationPet, value, icon }) => {
         <div className={styles.icon}>{icon}</div>
         <div className={styles.title}>{text}:</div>
       </div>
-      {informationPet === true && <div className={styles.infoTitle}>Si</div>}
-      {informationPet === false && <div className={styles.infoTitle}>No</div>}
-      {value && <div className={styles.infoTitle}>{value}</div>}
+      {value === undefined && informationPet === true && <div className={styles.infoTitle}>Si</div>}
+      {value === undefined && informationPet === false && <div className={styles.infoTitle}>No</div>}
+      {value !== undefined && <div className={styles.infoTitle}>{value}</div>}
     </div>
   )
 }

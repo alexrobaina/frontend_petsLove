@@ -22,7 +22,7 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
     location.reload()
   }, [])
   return (
-    <>
+    <LayoutContainer>
       <div className={styles.containerFilters}>
         {filters !== []
           ? filters.map(filter => {
@@ -43,25 +43,23 @@ const ListPets = ({ filters, pets, isLoading, handleDelete }) => {
         ) : (
           pets.map(pet => {
             return (
-              <LayoutContainer>
-                <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
-                  <Animated
-                    animationIn="bounceInUp"
-                    animationOut="fadeInUp"
-                    isVisible="true"
-                    animationInDuration={2000}
-                  >
-                    <div onClick={() => goToPet(pet._id)}>
-                      <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
-                    </div>
-                  </Animated>
-                </LazyLoad>
-              </LayoutContainer>
+              <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
+                <Animated
+                  animationIn="bounceInUp"
+                  animationOut="fadeInUp"
+                  isVisible="true"
+                  animationInDuration={2000}
+                >
+                  <div onClick={() => goToPet(pet._id)}>
+                    <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
+                  </div>
+                </Animated>
+              </LazyLoad>
             )
           })
         )}
       </div>
-    </>
+    </LayoutContainer>
   )
 }
 

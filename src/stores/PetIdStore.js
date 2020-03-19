@@ -8,7 +8,9 @@ class PetIdStore {
 
   @observable id = ''
   @observable pet = []
+  @observable name = []
   @observable images = []
+  @observable userEmail = []
   @observable gender = ''
   @observable age = ''
   @observable categorie = ''
@@ -34,11 +36,14 @@ class PetIdStore {
         }, 2000)
         this.pet = response
         this.categorie = this.pet.categorie
+        this.name = this.pet.name
+        this.userEmail = this.pet.user.email
         this.gender = this.pet.gender
         this.activity = this.pet.activity
         this.age = this.pet.age
         this.images = this.pet.image
         this.mapPosition = this.pet.mapPosition
+        console.log(this.images)
       })
     } catch (e) {
       runInAction(() => {

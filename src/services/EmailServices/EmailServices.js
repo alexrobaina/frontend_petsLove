@@ -1,6 +1,9 @@
+import axios from 'axios'
+import { SERVER } from 'services/config'
+
 class EmailServices {
   contactProtectionist = data => {
-    console.log(data)
+    axios.post(`${SERVER}/api/sendEmail/send`, data).then(response => response.data)
   }
 }
 

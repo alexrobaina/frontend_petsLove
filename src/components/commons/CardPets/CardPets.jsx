@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
-import URL_LOCAL from 'config/config'
+import { SERVER } from 'services/config'
 import LayoutCards from 'components/commons/LayoutCards'
 import noImage from './noImage.svg'
 import styles from './cardPets.scss'
@@ -14,7 +14,7 @@ const CardPets = ({ history, image, namePet }) => {
       <div className={styles.containerCard}>
         <img
           className={styles.imgCard}
-          src={image ? `${URL_LOCAL}${image}` : noImage}
+          src={image ? `${SERVER}/${image}` : noImage}
           alt="photos-pets"
         />
         <div className={styles.title}>{namePet}</div>
