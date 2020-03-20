@@ -1,0 +1,408 @@
+
+.lpQuizAlternatives {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 500px;
+}
+
+.lpQuizAlternatives .lpButton {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lpQuizAlternatives li {
+  padding: 5px 0;
+}
+
+.lpButton {
+  font-family: 'Helvetica Neue';
+  font-size: 14px;
+  color: #000;
+  padding: 12px 30px;
+  font-size: 13px;
+  font-weight: bold;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  position: relative;
+  display: inline-block;
+  background: #fdc800;
+  border: 1px solid #fdc800;
+  text-decoration: none;
+  transition: .2s linear;
+}
+
+.lpButton:hover {
+  background: #fedf6f;
+}
+.sweetIcon {
+  $red:    #f27474;
+  $orange: #f8bb86;
+  $blue:   #c9dae1;
+  $green:  #a5dc86;
+
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+
+  width: 80px;
+  height: 80px;
+  border: 4px solid #808080;
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  box-sizing: content-box;
+  cursor: default;
+
+  /* http://stackoverflow.com/a/4407335/1331425 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.sweetError {
+    border-color: $red;
+
+    XMark {
+      position: relative;
+      display: block;
+    }
+
+    .line {
+      position: absolute;
+      height: 5px;
+      width: 47px;
+      background-color: $red;
+      display: block;
+      top: 37px;
+      border-radius: 2px;
+
+      &.left {
+        transform: rotate(45deg);
+        left: 17px;
+      }
+
+      &.right {
+        transform: rotate(-45deg);
+        right: 16px;
+      }
+    }
+  }
+
+  &.sweetSuccess {
+    border-color: $green;
+
+    &::before,
+    &::after { // Emulate moving circular line
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      width: 60px;
+      height: 120px;
+      background: #fff;
+      transform: rotate(45deg);
+    }
+
+    &::before {
+      border-radius: 120px 0 0 120px;
+      top: -7px;
+      left: -33px;
+
+      transform: rotate(-45deg);
+      transform-origin: 60px 60px;
+    }
+
+    &::after {
+      border-radius: 0 120px 120px 0;
+      top: -11px;
+      left: 30px;
+
+      transform: rotate(-45deg);
+      transform-origin: 0 60px;
+    }
+
+    .placeholder { // Ring
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba($green, .2);
+      border-radius: 50%;
+      box-sizing: content-box;
+
+      position: absolute;
+      left: -4px;
+      top: -4px;
+      z-index: 2;
+    }
+
+    .fix {  // Hide corners left from animation
+      width: 7px;
+      height: 90px;
+      background-color: #fff;
+
+      position: absolute;
+      left: 28px;
+      top: 8px;
+      z-index: 1;
+
+      transform: rotate(-45deg);
+    }
+
+    .line {
+      height: 5px;
+      background-color: $green;
+      display: block;
+      border-radius: 2px;
+
+      position: absolute;
+      z-index: 2;
+
+      &.tip {
+        width: 25px;
+
+        left: 14px;
+        top: 46px;
+
+        transform: rotate(45deg);
+      }
+
+      &.long {
+        width: 47px;
+
+        right: 8px;
+        top: 38px;
+
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+// Animations
+
+@mixin keyframes($animationName) {
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  animation: #{$str};
+}
+
+
+// Modal animation
+
+@include keyframes(showSweetAlert) {
+  0% {
+    transform: scale(.7);
+  }
+
+  45% {
+    transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@include keyframes(hideSweetAlert) {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(.5);
+  }
+}
+
+.showSweetAlert {
+  @include animation('showSweetAlert 0.3s');
+
+  &.noAnimation {
+    @include animation('none');
+  }
+}
+
+.hideSweetAlert {
+  @include animation('hideSweetAlert 0.2s');
+
+  &.no-animation {
+    @include animation('none');
+  }
+}
+
+
+
+// Success icon animation
+
+@include keyframes(animateSuccessTip) {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+
+@include keyframes(animateSuccessLong) {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+
+  84% {
+    width: 55px;
+    right: 0;
+    top: 35px;
+  }
+
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+
+@include keyframes(rotatePlaceholder) {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  5% {
+    transform: rotate(-45deg);
+  }
+
+  12% {
+    transform: rotate(-405deg);
+  }
+
+  100% {
+    transform: rotate(-405deg);
+  }
+}
+
+.animateSuccessTip {
+  @include animation('animateSuccessTip 0.75s');
+}
+
+.animateSuccessLong {
+  @include animation('animateSuccessLong 0.75s');
+}
+
+.sweetIcon.sweetSuccess.animate::after {
+  @include animation('rotatePlaceholder 4.25s ease-in');
+}
+
+
+// Error icon animation
+
+@include keyframes(animateErrorIcon) {
+  0% {
+    transform: rotateX(100deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.animateErrorIcon {
+  @include animation('animate-error-icon 0.5s');
+}
+
+@include keyframes(animateXMark) {
+  0% {
+    transform: scale(.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.15);
+    margin-top: -6px;
+  }
+
+  100% {
+    transform: scale(1);
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+.animateXMark {
+  @include animation('animateXMark 0.5s');
+}
+
+@include keyframes(pulse-warning) {
+  0% {
+    border-color: #f8d486;
+  }
+
+  100% {
+    border-color: #f8bb86;
+  }
+}
+
+.pulseWarning {
+  @include animation('pulseWarning 0.75s infinite alternate');
+}
+
+@include keyframes(rotateLoading) {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
