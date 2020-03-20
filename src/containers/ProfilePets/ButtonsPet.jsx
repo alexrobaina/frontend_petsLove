@@ -8,7 +8,7 @@ import Button from 'components/commons/Button'
 import ModalContact from 'components/commons/ModalContact'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ isEdit, contactProtectionistEmailStore }) => {
+const ButtonsPet = ({ isEdit, contactProtectionistEmailStore, petIdStore }) => {
   const { t } = useTranslation()
 
   const editPet = useCallback(() => {
@@ -24,6 +24,7 @@ const ButtonsPet = ({ isEdit, contactProtectionistEmailStore }) => {
       )}
       <div className={c(styles.button, styles.btnMargin)}>
         <ModalContact
+          petIdStore={petIdStore}
           text={t('buttonsPet.text')}
           icon={<MdCall size={20} />}
           title={t('buttonsPet.title')}

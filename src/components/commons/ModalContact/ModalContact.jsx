@@ -9,7 +9,7 @@ import Button from 'components/commons/Button'
 import Textarea from 'components/commons/Textarea'
 import styles from './modalContact.scss'
 
-const ModalContact = ({ title, icon, text, contactProtectionistEmailStore }) => {
+const ModalContact = ({ title, icon, text, contactProtectionistEmailStore, petIdStore }) => {
   const [toggle, setToggle] = useState(false)
   const { t } = useTranslation()
 
@@ -38,8 +38,11 @@ const ModalContact = ({ title, icon, text, contactProtectionistEmailStore }) => 
   }
 
   const handleSend = useCallback(() => {
+    contactProtectionistEmailStore.setPetName(petIdStore.name)
+    contactProtectionistEmailStore.setImage(petIdStore.images)
+    contactProtectionistEmailStore.setUserEmail(petIdStore.userEmail)
     contactProtectionistEmailStore.contactProtectionist()
-    handleToggle()
+    // handleToggle()
   })
 
   return (

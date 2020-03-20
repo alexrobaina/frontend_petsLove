@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_MONGO_LOCAL } from '../config'
+import { SERVER } from 'services/config'
 
 class PetsService {
   getPets = data => {
@@ -19,13 +19,13 @@ class PetsService {
 
     return axios
       .get(
-        `${API_MONGO_LOCAL}/api/pet/queryList/?country=${country}&city=${city}&categorie=${categorie}&gender=${gender}&age=${age}&lost=${lost}&dewormed=${dewormed}&vaccianated=${vaccianated}&urgent=${urgent}&sterilized=${sterilized}&activity=${activity}`
+        `${SERVER}/api/pet/queryList/?country=${country}&city=${city}&categorie=${categorie}&gender=${gender}&age=${age}&lost=${lost}&dewormed=${dewormed}&vaccianated=${vaccianated}&urgent=${urgent}&sterilized=${sterilized}&activity=${activity}`
       )
       .then(response => response.data)
   }
 
   getPetId = id => {
-    return axios.get(`${API_MONGO_LOCAL}/api/pet/query/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/query/?_id=${id}`).then(response => response.data)
   }
 }
 
