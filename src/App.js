@@ -6,6 +6,7 @@ import Home from 'containers/Home'
 import Register from 'containers/Register'
 import ForgotPassword from 'containers/ForgotPassword'
 import CreatePet from './containers/CreatePet'
+import 'aos/dist/aos.css'
 import './App.scss'
 
 function App() {

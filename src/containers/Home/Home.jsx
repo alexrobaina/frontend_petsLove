@@ -7,6 +7,7 @@ import InitialLogo from 'components/InitialLogo'
 import InitialFilters from 'components/InitialFilters'
 import Title from 'components/commons/Title'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import ErrorMessage from 'components/commons/ErrorMessage'
 import Navbar from 'components/commons/Navbar'
 
 const Home = () => {
@@ -24,6 +25,9 @@ const Home = () => {
           optionsSelectsStore={optionsSelectsStore}
           searchPetsStore={searchPetsStore}
         />
+        {searchPetsStore.isError && (
+          <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
+        )}
       </LayoutContainer>
     </>
   )

@@ -1,0 +1,34 @@
+@import 'styles/mixings.scss';
+
+.containerLayout {
+  padding: 20px;
+  @include media-breakpoint-only(xs) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include media-breakpoint-only(sm) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include media-breakpoint-between(sm, xs) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include media-breakpoint-only(md) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @include media-breakpoint-between(md, xl) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @include media-breakpoint-only(xxl) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

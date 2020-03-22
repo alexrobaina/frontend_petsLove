@@ -9,7 +9,7 @@
   "login": {
     "email": "Email",
     "password": "Contraseña",
-    "titleLogin": "Iniciar Sesión",
+    "login": "Iniciar Sesión",
     "forgotPassword": "Olvidé la contraseña",
     "singIn": "Regístrate"
   },
@@ -19,7 +19,15 @@
     "password": "Contraseña",
     "confirmPassword": "Confirm Password",
     "singIn": "Regístrate",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "protectionist": "Soy proteccionista",
+    "adopter": "Quiero adoptar",
+    "lost": "Mi mascota se perdió",
+    "typeUser": "Que quieres hacer?",
+    "provider": "Soy proveedor",
+    "errorMessage": "El password es diferente",
+    "successMessage": "Genial! Podés continuar",
+    "terms": "Signing up signifies that you have read and agree to the Terms of Service and our Privacy Policy."
   },
   "forgotPassword": {
     "title": "Olvidé mi contraseña",
@@ -59,7 +67,7 @@
     "last": "last"
   },
   "buttonsPet": {
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "text": "Podes comunicarte con el responsable de {{ name }} o escribirle por whatsapp {{ phone }}",
     "title": "Contactar al proteccionista",
     "edit": "Editar mascota"
   },
@@ -113,6 +121,15 @@
     "10year": "10 Años",
     "11year": "11 Años",
     "12year": "12 Años +"
+  },
+  "profilePets": {
+    "sendEmailError": "Ocurrió un error. Por favor intente enviar el mensaje de nuevo.",
+    "titleError": "Error!",
+    "titleSuccess": "Genial :D",
+    "sendEmailSuccess": "Tu email fué enviado con exito! Si el telefono está disponible podes escribirle al proteccionista",
+    "title": "Mi nombre es {{ name }}",
+    "contactMessage": "You can write whatsapp for adopt to {{ name }}. Protecctionist phone: {{ phone }}",
+    "notFoundNumber": "Not Found Number"
   },
   "last": {
     "last": "last"

@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import styles from './changeLanguage.scss'
+import ButtonLink from 'components/commons/ButtonLink'
 
 const ChangeLanguage = () => {
   const [language, setLenguage] = useState('')
   const { i18n } = useTranslation()
-
-  useEffect(() => {
-    const { languages } = navigator
-    console.log(languages)
-    if (languages[1] === 'en' || languages[0] === 'en-US') {
-      setLenguage('Español')
-    }
-    if (languages[1] === 'es' || languages[0] === 'es-ES') {
-      setLenguage('English')
-    }
-  }, [])
 
   const translate = () => {
     if (language === 'English') {
@@ -28,11 +17,18 @@ const ChangeLanguage = () => {
     }
   }
 
-  return (
-    <div onClick={() => translate()} className={styles.textLanguage}>
-      {language}
-    </div>
-  )
+  useEffect(() => {
+    const { languages } = navigator
+
+    if (languages[1] === 'en' || languages[0] === 'en-US') {
+      setLenguage('Español')
+    }
+    if (languages[1] === 'es' || languages[0] === 'es-ES') {
+      setLenguage('English')
+    }
+  }, [])
+
+  return <ButtonLink onclick={translate} text={language} />
 }
 
 export default ChangeLanguage

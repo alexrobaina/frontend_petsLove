@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useLocalStore, observer } from 'mobx-react'
-import c from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import PetIdStore from 'stores/PetIdStore'
 import ContactProtectionistEmailStore from 'stores/ContactProtectionistEmailStore'
@@ -9,18 +9,13 @@ import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import Navbar from 'components/commons/Navbar'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import PlaceMarkMap from 'components/commons/PlaceMarkMap'
-import Title from 'components/commons/Title'
 import Footer from 'components/commons/Footer/Footer'
 import GaleryImages from 'components/commons/GaleryImages'
-import InformationPet from 'components/InformationPet'
 import ListPets from 'components/ListPets'
 import ErrorMessage from 'components/commons/ErrorMessage'
-import ImageProfilePet from 'components/ImageProfilePet'
-import TextCard from 'components/commons/TextCard'
-import { useTranslation } from 'react-i18next'
-import ButtonsPet from './ButtonsPet'
-import styles from './profilePets.scss'
+import Modal from 'components/commons/Modal/Modal'
+import LayoutProfilePets from 'components/LayoutProfilePets'
+import Loading from '../../components/commons/Loading/Loading'
 
 const ProfilePets = ({ isEdit }) => {
   const contactProtectionistEmailStore = useLocalStore(() => new ContactProtectionistEmailStore())
@@ -40,41 +35,35 @@ const ProfilePets = ({ isEdit }) => {
   const deleteFilter = useCallback((selectedValue, typeFilter) => {
     searchPetsStore.deleteFilter(selectedValue, typeFilter)
   })
-  console.log(images)
+
+  const { isError, isSuccess } = contactProtectionistEmailStore
+
   return (
     <>
+      {isError && (
+        <Modal error text={t('profilePets.sendEmailError')} title={t('profilePets.titleError')} />
+      )}
+      {isSuccess && (
+        <Modal text={t('profilePets.sendEmailSuccess')} title={t('profilePets.titleSuccess')} />
+      )}
       <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+      {/* eslint-disable-next-line no-nested-ternary */}
       {!searchPetsStore.pets ? (
         <LayoutContainer>
-          <div className={styles.name}>
-            <Title mTop="120px" title={`My name is ${name}`} />
-            <ButtonsPet
-              petIdStore={petIdStore}
-              contactProtectionistEmailStore={contactProtectionistEmailStore}
-              isEdit={isEdit}
-            />
-          </div>
-          <div className={c(styles.containerCard, styles.layourCard)}>
-            <ImageProfilePet petIdStore={petIdStore} />
-            <PlaceMarkMap
-              defaultPosition={petIdStore.defaultPosition}
-              mapPosition={petIdStore.mapPosition}
-              contactMessage={`You can call for adopt to ${petIdStore.pet.name} phone: ${
-                petIdStore.pet.phone ? petIdStore.pet.phone : ''
-              }`}
-            />
-            <InformationPet petIdStore={petIdStore} />
-            <div>
-              <TextCard title="History" text={petIdStore.pet.history} />
-              <TextCard title="Required to Adoption" text={petIdStore.pet.requiredToAdoption} />
-            </div>
-          </div>
+          <LayoutProfilePets
+            name={name}
+            isEdit={isEdit}
+            petIdStore={petIdStore}
+            contactProtectionistEmailStore={contactProtectionistEmailStore}
+          />
           {images !== [] ? (
             <GaleryImages isLoading={isLoading} arrayImages={images} />
           ) : (
             <ErrorMessage text="This pet has no images" typeMessage="warning" />
           )}
         </LayoutContainer>
+      ) : searchPetsStore.isLoading ? (
+        <Loading />
       ) : (
         <ListPets
           handleDelete={deleteFilter}

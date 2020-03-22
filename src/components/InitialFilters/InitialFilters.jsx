@@ -8,8 +8,8 @@ import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
 import Footer from 'components/commons/Footer/Footer'
-import ErrorMessage from 'components/commons/ErrorMessage'
 import { MdSearch } from 'react-icons/md'
+import Loading from 'components/commons/Loading/Loading'
 import styles from './initialFilters.scss'
 
 const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
@@ -63,6 +63,7 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
   }
   return (
     <div className={c(styles.animationOpacity, 'animationOpacity')}>
+      {/* eslint-disable-next-line no-nested-ternary */}
       {!searchPetsStore.pets ? (
         <div className={styles.container}>
           <div className={styles.selectCountry}>
@@ -107,6 +108,8 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
             />
           </div>
         </div>
+      ) : searchPetsStore.isLoading ? (
+        <Loading />
       ) : (
         <ListPets
           handleDelete={deleteFilter}
@@ -114,9 +117,6 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
           pets={searchPetsStore.pets}
           isLoading={searchPetsStore.isLoading}
         />
-      )}
-      {searchPetsStore.isError && (
-        <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
       )}
       <Footer />
     </div>

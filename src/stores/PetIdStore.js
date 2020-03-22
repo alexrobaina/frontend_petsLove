@@ -13,6 +13,7 @@ class PetIdStore {
   @observable userEmail = []
   @observable gender = ''
   @observable age = ''
+  @observable phone = ''
   @observable categorie = ''
   @observable activity = ''
   @observable isLoading = false
@@ -41,9 +42,9 @@ class PetIdStore {
         this.gender = this.pet.gender
         this.activity = this.pet.activity
         this.age = this.pet.age
+        this.phone = this.pet.user.phone
         this.images = this.pet.image
         this.mapPosition = this.pet.mapPosition
-        console.log(this.images)
       })
     } catch (e) {
       runInAction(() => {

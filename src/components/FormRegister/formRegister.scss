@@ -59,3 +59,17 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+.errorMessage {
+  margin-top: 5px;
+  font-size: 10px;
+  transition: 0.3ms;
+  color: red;
+}
+
+.successMessage {
+  margin-top: 5px;
+  transition: 0.3ms;
+  font-size: 10px;
+  color: green;
+}

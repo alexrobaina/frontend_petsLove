@@ -1,0 +1,12 @@
+@import 'styles/mixings';
+
+.textLink {
+  cursor: pointer;
+  padding: 30px;
+  @include site-font('text', 500);
+
+  &:hover {
+    transition: 3ms;
+    color: $secundary;
+  }
+}

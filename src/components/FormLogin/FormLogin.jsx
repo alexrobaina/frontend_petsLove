@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Input from '../commons/Input'
@@ -21,7 +20,7 @@ const FormLogin = () => {
           <Input placeholder={t('login.password')} />
         </div>
         <div className={styles.buttonLogin}>
-          <Button bigButton text={t('login.titleLogin')} />
+          <Button bigButton text={t('login.login')} />
         </div>
         <div className={styles.buttonSocialLogin}>
           <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
@@ -39,7 +38,5 @@ const FormLogin = () => {
     </div>
   )
 }
-
-// FormLogin.propTypes = {}
 
 export default FormLogin

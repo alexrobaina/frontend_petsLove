@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
+import { Animated } from 'react-animated-css'
 import { MdClose } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import ErrorIcon from 'components/commons/ErrorIcon'
@@ -21,14 +22,21 @@ const Modal = ({ title, text, error }) => {
   return (
     <>
       <div className={c(styles.modalCard, toggle && styles.openModal)}>
-        {error ? <ErrorIcon /> : <SuccessIcon />}
-        <div className={styles.contentModals}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.text}>{text}</div>
-        </div>
-        <div className={styles.containerButtonModals}>
-          <Button icon={<MdClose size={25} />} text="Close" handleClick={handleToggle} />
-        </div>
+        <Animated
+          animationIn="bounceInDown"
+          animationOut="fadeInUp"
+          isVisible="true"
+          animationInDuration={500}
+        >
+          {error ? <ErrorIcon /> : <SuccessIcon />}
+          <div className={styles.contentModals}>
+            <div className={styles.title}>{title}</div>
+            <div className={styles.text}>{text}</div>
+          </div>
+          <div className={styles.containerButtonModals}>
+            <Button icon={<MdClose size={25} />} text="Close" handleClick={handleToggle} />
+          </div>
+        </Animated>
       </div>
       <div
         onClick={handleToggle}
