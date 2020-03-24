@@ -15,8 +15,10 @@ class RegisterStore {
   @observable token = []
   @observable user = []
   @observable isLoading = false
+  @observable isError = false
   @observable passwordSuccess = false
   @observable passwordError = false
+  @observable isRegister = false
 
   @action
   async getRols() {
@@ -52,12 +54,17 @@ class RegisterStore {
       const response = await this.registerService.register(data)
 
       runInAction(() => {
-        this.isLoading = false
+        setTimeout(() => {
+          this.isLoading = false
+        }, 2000)
         this.user = response
+        this.isRegister = true
       })
     } catch (e) {
       runInAction(() => {
+        this.isRegister = false
         this.isLoading = false
+        this.isError = true
         console.log(e)
       })
     }

@@ -11,7 +11,8 @@
     "password": "Password",
     "login": "Login",
     "forgotPassword": "Forgot password",
-    "singIn": "Sing In"
+    "singIn": "Sing In",
+    "errorLogin": "Wrong email or password"
   },
   "register": {
     "name": "Name",

@@ -1,6 +1,7 @@
 @import 'styles/mixings';
 
 .imageInformationRegister {
+  height: 100vh;
   object-fit: cover;
 
   @include media-breakpoint-down(sm) {

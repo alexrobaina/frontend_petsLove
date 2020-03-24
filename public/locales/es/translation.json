@@ -61,7 +61,8 @@
     "login": "Login",
     "singIn": "Sing In",
     "singIn": "Regístrate",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "errorLogin": "Email o password incorrectos"
   },
   "ModalContact": {
     "last": "last"

@@ -6,9 +6,9 @@ import SearchPetsStore from 'stores/SearchPetsStore'
 import InitialLogo from 'components/InitialLogo'
 import InitialFilters from 'components/InitialFilters'
 import Title from 'components/commons/Title'
+import Navbar from 'components/commons/Navbar'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ErrorMessage from 'components/commons/ErrorMessage'
-import Navbar from 'components/commons/Navbar'
 
 const Home = () => {
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())

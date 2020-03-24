@@ -1,24 +1,27 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { FiFilter } from 'react-icons/fi'
 import { useHistory } from 'react-router'
+import { LOGIN, REGISTER } from 'routing/routes'
 import { MdClose } from 'react-icons/md'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
+import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
 import FilterNavbar from 'components/FilterNavbar'
+import ImageUserLog from 'components/commons/ImageUserLog'
+import ButtonIcon from 'components/commons/ButtonIcon'
 import styles from './navbar.scss'
-import ImageUserLog from '../ImageUserLog'
-import ButtonIcon from '../ButtonIcon'
 
-const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
+const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
+  const rootStore = useContext(UserContext)
   const [toggle, setToggle] = useState(false)
   const { t } = useTranslation()
   const history = useHistory()
 
-  const goToLogin = useCallback(() => history.push('/login'))
-  const goToRegister = useCallback(() => history.push('/register'))
+  const goToLogin = useCallback(() => history.push(LOGIN))
+  const goToRegister = useCallback(() => history.push(REGISTER))
 
   const handleToggle = useCallback(() => {
     setToggle(!toggle)
@@ -28,10 +31,10 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
     <>
       <div className={styles.containerNavbar}>
         <ButtonIcon onclick={handleToggle} icon={<FiFilter size={25} />} />
-        {isUserLogin ? (
+        {rootStore.authStore.isLogin ? (
           <div className={styles.contectImageUser}>
             <ChangeLanguage />
-            <ImageUserLog isUserLogin={isUserLogin} />
+            <ImageUserLog isUserLogin={rootStore.authStore.isLogin} />
           </div>
         ) : (
           <div className={styles.containerButtonslog}>
@@ -62,11 +65,6 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
 Navbar.propTypes = {
   searchPetsStore: PropTypes.node.isRequired,
   optionsSelectsStore: PropTypes.node.isRequired,
-  isUserLogin: PropTypes.bool,
-}
-
-Navbar.defaultProps = {
-  isUserLogin: false,
 }
 
 export default Navbar
