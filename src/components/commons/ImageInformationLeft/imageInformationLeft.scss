@@ -1,6 +1,7 @@
 @import 'styles/mixings';
 
-.imageInformationLogin {
+.imageInformationRegister {
+  height: 100vh;
   object-fit: cover;
 
   @include media-breakpoint-down(sm) {
@@ -10,7 +11,5 @@
 
 .imageInformation {
   width: 100%;
-  object-fit: cover;
-  height: 100vh;
+  height: auto;
 }
-

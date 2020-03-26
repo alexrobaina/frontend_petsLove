@@ -7,7 +7,7 @@ class ContactProtectionistEmailStore {
     this.emailServices = new EmailServices()
   }
 
-  @observable successful = false
+  @observable isSuccess = false
   @observable isloading = false
   @observable isError = false
   @observable name = ''
@@ -17,10 +17,53 @@ class ContactProtectionistEmailStore {
   @observable email = ''
   @observable message = ''
   @observable emailUser = ''
+  @observable errorEmail = false
+  @observable errorName = false
+  @observable errorMessage = false
+  @observable errorPhone = false
+  @observable isDirty = false
+
+  @action
+  validate() {
+    // eslint-disable-next-line no-useless-escape
+    const emailTest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+    if (emailTest.test(this.email)) {
+      this.isDirty = true
+      this.errorEmail = false
+    } else {
+      this.errorEmail = true
+    }
+
+    if (this.phone > 0) {
+      this.isDirty = true
+      this.errorPhone = false
+    } else {
+      this.errorPhone = true
+      this.isDirty = false
+    }
+
+    if (this.message !== '') {
+      this.isDirty = true
+      this.errorMessage = false
+    } else {
+      this.errorMessage = true
+      this.isDirty = false
+    }
+
+    if (this.name !== '') {
+      this.isDirty = true
+      this.errorName = false
+    } else {
+      this.errorName = true
+      this.isDirty = false
+    }
+  }
 
   @action
   async contactProtectionist() {
     this.isloading = true
+    this.isSuccess = false
 
     const data = {
       name: this.name,
@@ -36,13 +79,13 @@ class ContactProtectionistEmailStore {
       await this.emailServices.contactProtectionist(data)
 
       runInAction(() => {
+        this.isSuccess = true
         this.isloading = false
-        this.successful = true
       })
     } catch (e) {
       runInAction(() => {
+        this.isSuccess = false
         console.log(e)
-        this.isError = true
       })
     }
   }

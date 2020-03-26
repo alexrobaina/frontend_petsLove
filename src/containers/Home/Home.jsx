@@ -6,8 +6,9 @@ import SearchPetsStore from 'stores/SearchPetsStore'
 import InitialLogo from 'components/InitialLogo'
 import InitialFilters from 'components/InitialFilters'
 import Title from 'components/commons/Title'
-import LayoutContainer from 'components/commons/LayoutContainer'
 import Navbar from 'components/commons/Navbar'
+import LayoutContainer from 'components/commons/LayoutContainer'
+import ErrorMessage from 'components/commons/ErrorMessage'
 
 const Home = () => {
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
@@ -24,6 +25,9 @@ const Home = () => {
           optionsSelectsStore={optionsSelectsStore}
           searchPetsStore={searchPetsStore}
         />
+        {searchPetsStore.isError && (
+          <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
+        )}
       </LayoutContainer>
     </>
   )

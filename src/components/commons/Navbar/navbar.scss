@@ -1,29 +1,16 @@
 @import 'styles/mixings.scss';
 
 .containerNavbar {
+  background-color: $colorNavbar;
   position: fixed;
   display: flex;
+  height: 70px;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   top: 0;
   z-index: 100;
-}
-
-.userImage {
-  margin-top: 10px;
-  margin-right: 20px;
-  border-radius: 100%;
-  width: 45px;
-  height: 45px;
-  cursor: pointer;
-  object-fit: cover;
-}
-
-.iconFilter {
-  z-index: 40;
-  margin-top: 14px;
-  margin-left: 20px;
-  cursor: pointer;
+  box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.08);
 }
 
 .containerButtonslog {
@@ -32,15 +19,16 @@
   margin-right: 30px;
 }
 
-.textLogin {
-  cursor: pointer;
-  padding: 20px;
-  @include site-font('text', 500);
+.contectImageUser {
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .iconClose {
   position: absolute;
-  z-index: 50;
+  z-index: 150;
   top: 14px;
   left: 20px;
   text-align: left;
@@ -52,7 +40,7 @@
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
-  margin-top: 80px;
+  margin-top: 20px;
   margin-left: 20px;
   animation: fadeIn 3s;
 }

@@ -3,7 +3,7 @@ import { SERVER } from 'services/config'
 
 class EmailServices {
   contactProtectionist = data => {
-    axios.post(`${SERVER}/api/sendEmail/send`, data).then(response => response.data)
+    axios.post(`${SERVER}/api/sendEmail/send`, data).then(response => response)
   }
 }
 

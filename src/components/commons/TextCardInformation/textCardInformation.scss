@@ -16,6 +16,7 @@
 }
 
 .title {
+  letter-spacing: 1px;
   text-align: center;
   @include site-font('text', 600);
   color: $filters;
@@ -23,6 +24,7 @@
 }
 
 .infoTitle {
+  letter-spacing: 1px;
   margin-left: 15px;
   text-align: right;
   width: 150px;
@@ -37,6 +39,7 @@
   padding: 15px 44px 15px 20px;
 
   &:hover {
+    border-radius: 5px;
     background-color: $colorLight;
   }
 }

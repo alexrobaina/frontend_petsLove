@@ -11,15 +11,24 @@
     "password": "Password",
     "login": "Login",
     "forgotPassword": "Forgot password",
-    "singIn": "Sing In"
+    "singIn": "Sing In",
+    "errorLogin": "Wrong email or password"
   },
   "register": {
     "name": "Name",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirmar password",
+    "confirmPassword": "Confirm password",
     "singIn": "Sing In",
-    "login": "Login"
+    "login": "Login",
+    "protectionist": "I am Protectionis",
+    "adopter": "I want adopt",
+    "lost": "My pet lost",
+    "typeUser": "You want to do?",
+    "provider": "I am provider",
+    "errorMessage": "The password is different",
+    "successMessage": "Great! You can continue",
+    "terms": "Signing up signifies that you have read and agree to the Terms of Service and our Privacy Policy."
   },
   "forgotPassword": {
     "title": "Forgot password",
@@ -51,12 +60,10 @@
   "navbar": {
     "moreFilters": "More filters",
     "login": "Login",
-    "singIn": "Sing In",
-    "singIn": "Sing In",
-    "login": "Login"
+    "singIn": "Sing In"
   },
   "buttonsPet": {
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "text": "You can contact the responsible of {{name}} or write to him by WhatsApp {{ phone }}",
     "title": "Contact to protectionist",
     "edit": "Edit pet"
   },
@@ -110,5 +117,21 @@
     "10year": "10 Years",
     "11year": "11 Years",
     "12year": "12 Years +"
+  },
+  "profilePets": {
+    "sendEmailError": "Sorry. Please try again!.",
+    "titleError": "Error!",
+    "titleSuccess": "Great. :D.",
+    "sendEmailSuccess": "Your email was sent successfully! If the phone is available you can write to the protectionist",
+    "title": "My name is {{ name }}",
+    "contactMessage": "Podés escribir por whatsapp para adoptar a {{ name }}. Telefono del proteccionista: {{ phone }}",
+    "notFoundNumber": "No encontramos su numero"
+  },
+  "menuProfile": {
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "last": {
+    "last": "last"
   }
 }

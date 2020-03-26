@@ -10,19 +10,21 @@ const CardPets = ({ history, image, namePet }) => {
   const utils = new Utils()
 
   return (
-    <LayoutCards isButton>
-      <div className={styles.containerCard}>
-        <img
-          className={styles.imgCard}
-          src={image ? `${SERVER}/${image}` : noImage}
-          alt="photos-pets"
-        />
-        <div className={styles.title}>{namePet}</div>
-        <div className={styles.textHistory}>
-          {history ? utils.shortenText(history, 110) : 'They did not add history'}
+    <div className={styles.rowCard}>
+      <LayoutCards isButton>
+        <div className={styles.containerCard}>
+          <img
+            className={styles.imgCard}
+            src={image ? `${SERVER}/${image}` : noImage}
+            alt="photos-pets"
+          />
+          <div className={styles.title}>{namePet}</div>
+          <div className={styles.textHistory}>
+            {history ? utils.shortenText(history, 110) : 'They did not add history'}
+          </div>
         </div>
-      </div>
-    </LayoutCards>
+      </LayoutCards>
+    </div>
   )
 }
 

@@ -1,6 +1,9 @@
 @import 'styles/mixings.scss';
 
 .login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding-right: 100px;
   padding-left: 100px;
 
@@ -11,10 +14,9 @@
 }
 
 .centerLogin {
-  margin-top: 25%;
 
   @include media-breakpoint-down(sm) {
-    margin-top: 20%;
+    margin-top: 30%;
   }
 }
 
@@ -29,6 +31,12 @@
   @include media-breakpoint-only(xs) {
     font-size: 22px;
   }
+}
+
+.errorLogin {
+  margin-top: 5px;
+  font-size: 12px;
+  color: red;
 }
 
 .inputForm {

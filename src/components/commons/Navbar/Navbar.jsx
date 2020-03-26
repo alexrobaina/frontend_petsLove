@@ -1,54 +1,61 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
+import c from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { FiFilter } from 'react-icons/fi'
 import { useHistory } from 'react-router'
+import { LOGIN, REGISTER } from 'routing/routes'
 import { MdClose } from 'react-icons/md'
-import c from 'classnames'
+import ChangeLanguage from 'components/commons/ChangeLanguage'
+import UserContext from 'Context/UserContext'
+import ButtonLink from 'components/commons/ButtonLink'
 import FilterNavbar from 'components/FilterNavbar'
-import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
-import noImg from './noimg.png'
+import MenuProfile from 'components/commons/MenuProfile'
+import ImageUserLog from 'components/commons/ImageUserLog'
+import ButtonIcon from 'components/commons/ButtonIcon'
 import styles from './navbar.scss'
-import ChangeLanguage from '../ChangeLanguage/ChangeLanguage'
 
-const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
+const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
+  const rootStore = useContext(UserContext)
   const [toggle, setToggle] = useState(false)
+  const [viewMenuProfile, setViewMenuProfile] = useState(true)
   const { t } = useTranslation()
   const history = useHistory()
 
-  const goToLogin = useCallback(() => history.push('/login'), [])
-  const goToRegister = useCallback(() => history.push('/register'), [])
+  const goToLogin = useCallback(() => history.push(LOGIN))
+  const goToRegister = useCallback(() => history.push(REGISTER))
 
   const handleToggle = useCallback(() => {
     setToggle(!toggle)
   })
 
+  const handleToggleMenu = useCallback(() => {
+    setViewMenuProfile(!viewMenuProfile)
+  })
+
   return (
     <>
       <div className={styles.containerNavbar}>
-        <div className={styles.iconFilter}>
-          <FiFilter size={25} onClick={handleToggle} />
-        </div>
-        {isUserLogin ? (
-          <div className={styles.containerButtonslog}>
-            <div onClick={goToLogin} className={styles.textLogin}>
-              {t('navbar.login')}
-            </div>
-            <div onClick={goToRegister} className={styles.textLogin}>
-              {t('navbar.singIn')}
-            </div>
+        <ButtonIcon onclick={handleToggle} icon={<FiFilter size={25} />} />
+        {rootStore.authStore.isLogin ? (
+          <div className={styles.contectImageUser}>
+            <MenuProfile handleToggleMenu={handleToggleMenu} viewMenuProfile={viewMenuProfile} />
+            <ImageUserLog
+              handleToggleMenu={handleToggleMenu}
+              isUserLogin={rootStore.authStore.isLogin}
+            />
             <ChangeLanguage />
           </div>
         ) : (
-          <div>
-            <img className={styles.userImage} src={isUserLogin ? user : noImg} alt="user" />
+          <div className={styles.containerButtonslog}>
+            <ButtonLink onclick={goToLogin} text={t('navbar.login')} />
+            <ButtonLink onclick={goToRegister} text={t('navbar.singIn')} />
+            <ChangeLanguage />
           </div>
         )}
       </div>
       <div className={c(toggle ? styles.open : styles.showMenu)}>
-        <div className={styles.iconClose} onClick={handleToggle}>
-          <MdClose size={25} />
-        </div>
+        <ButtonIcon onclick={handleToggle} icon={<MdClose size={25} />} />
         <div className={styles.titleNavbar}>
           <div>{t('navbar.moreFilters')}</div>
         </div>
@@ -60,7 +67,7 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
           />
         </div>
       </div>
-      <div className={c(toggle && styles.showShadowBack)} onClick={handleToggle} />
+      <div className={c(toggle && styles.showShadowBack)} onClick={() => setToggle(!toggle)} />
     </>
   )
 }
@@ -68,11 +75,6 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore, isUserLogin }) => {
 Navbar.propTypes = {
   searchPetsStore: PropTypes.node.isRequired,
   optionsSelectsStore: PropTypes.node.isRequired,
-  isUserLogin: PropTypes.bool,
-}
-
-Navbar.defaultProps = {
-  isUserLogin: true,
 }
 
 export default Navbar
