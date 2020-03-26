@@ -127,6 +127,10 @@
     "contactMessage": "Podés escribir por whatsapp para adoptar a {{ name }}. Telefono del proteccionista: {{ phone }}",
     "notFoundNumber": "No encontramos su numero"
   },
+  "menuProfile": {
+    "profile": "Profile",
+    "logout": "Logout"
+  },
   "last": {
     "last": "last"
   }

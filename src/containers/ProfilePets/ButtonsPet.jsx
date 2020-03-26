@@ -7,7 +7,7 @@ import Button from 'components/commons/Button'
 import ModalContact from 'components/commons/ModalContact'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ isEdit, contactProtectionistEmailStore, petIdStore }) => {
+const ButtonsPet = ({ petIsEdit, contactProtectionistEmailStore, petIdStore }) => {
   const { name, phone } = petIdStore
   const { t } = useTranslation()
 
@@ -17,11 +17,9 @@ const ButtonsPet = ({ isEdit, contactProtectionistEmailStore, petIdStore }) => {
 
   return (
     <div className={styles.containerButtons}>
-      {isEdit && (
-        <div className={styles.btnMargin}>
-          <Button icon={<MdShare size={20} />} circle text="Edit" />
-        </div>
-      )}
+      <div className={styles.btnMargin}>
+        <Button icon={<MdShare size={20} />} circle text="Edit" />
+      </div>
       <div className={styles.btnMargin}>
         <ModalContact
           petIdStore={petIdStore}
@@ -31,24 +29,26 @@ const ButtonsPet = ({ isEdit, contactProtectionistEmailStore, petIdStore }) => {
           contactProtectionistEmailStore={contactProtectionistEmailStore}
         />
       </div>
-      <div className={styles.btnMargin}>
-        <Button
-          handleClick={editPet}
-          icon={<MdEdit size={20} />}
-          circle
-          text={t('buttonsPet.edit')}
-        />
-      </div>
+      {petIsEdit && (
+        <div className={styles.btnMargin}>
+          <Button
+            handleClick={editPet}
+            icon={<MdEdit size={20} />}
+            circle
+            text={t('buttonsPet.edit')}
+          />
+        </div>
+      )}
     </div>
   )
 }
 
 ButtonsPet.propTypes = {
-  isEdit: PropTypes.bool,
+  petIsEdit: PropTypes.bool,
 }
 
 ButtonsPet.defaultProps = {
-  isEdit: false,
+  petIsEdit: false,
 }
 
 export default observer(ButtonsPet)

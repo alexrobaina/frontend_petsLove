@@ -1,9 +1,11 @@
 import { observable, action, runInAction } from 'mobx'
+import SetLocalStorage from 'utils/setLocalStorage'
 import PetsService from 'services/PetsService'
 
 class PetIdStore {
   constructor() {
     this.petsService = new PetsService()
+    this.setLocalStorage = new SetLocalStorage()
   }
 
   @observable id = ''
@@ -17,6 +19,7 @@ class PetIdStore {
   @observable categorie = ''
   @observable activity = ''
   @observable isLoading = false
+  @observable petIsEdit = false
   @observable mapPosition = []
   @observable defaultPosition = [
     {
@@ -24,6 +27,14 @@ class PetIdStore {
       lng: -58.37723,
     },
   ]
+
+  @action
+  setPetIsEdit() {
+    const userConnected = JSON.parse(this.setLocalStorage.getUser())
+    if (userConnected.email === this.userEmail) {
+      this.petIsEdit = true
+    }
+  }
 
   @action
   async getPetId(id) {
@@ -45,6 +56,7 @@ class PetIdStore {
         this.phone = this.pet.user.phone
         this.images = this.pet.image
         this.mapPosition = this.pet.mapPosition
+        this.setPetIsEdit()
       })
     } catch (e) {
       runInAction(() => {

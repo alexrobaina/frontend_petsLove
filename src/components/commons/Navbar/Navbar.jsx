@@ -10,6 +10,7 @@ import ChangeLanguage from 'components/commons/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
 import FilterNavbar from 'components/FilterNavbar'
+import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import styles from './navbar.scss'
@@ -17,6 +18,7 @@ import styles from './navbar.scss'
 const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
   const rootStore = useContext(UserContext)
   const [toggle, setToggle] = useState(false)
+  const [viewMenuProfile, setViewMenuProfile] = useState(true)
   const { t } = useTranslation()
   const history = useHistory()
 
@@ -27,14 +29,22 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
     setToggle(!toggle)
   })
 
+  const handleToggleMenu = useCallback(() => {
+    setViewMenuProfile(!viewMenuProfile)
+  })
+
   return (
     <>
       <div className={styles.containerNavbar}>
         <ButtonIcon onclick={handleToggle} icon={<FiFilter size={25} />} />
         {rootStore.authStore.isLogin ? (
           <div className={styles.contectImageUser}>
+            <MenuProfile handleToggleMenu={handleToggleMenu} viewMenuProfile={viewMenuProfile} />
+            <ImageUserLog
+              handleToggleMenu={handleToggleMenu}
+              isUserLogin={rootStore.authStore.isLogin}
+            />
             <ChangeLanguage />
-            <ImageUserLog isUserLogin={rootStore.authStore.isLogin} />
           </div>
         ) : (
           <div className={styles.containerButtonslog}>

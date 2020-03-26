@@ -10,7 +10,7 @@ import InformationPet from 'components/InformationPet'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
-const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, isEdit, name }) => {
+const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEdit, name }) => {
   const { t } = useTranslation()
   return (
     <>
@@ -19,7 +19,7 @@ const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, isEdit,
         <ButtonsPet
           petIdStore={petIdStore}
           contactProtectionistEmailStore={contactProtectionistEmailStore}
-          isEdit={isEdit}
+          petIsEdit={petIsEdit}
         />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
@@ -43,11 +43,11 @@ LayoutProfilePets.propTypes = {
   petIdStore: PropTypes.node.isRequired,
   contactProtectionistEmailStore: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
-  isEdit: PropTypes.bool,
+  petIsEdit: PropTypes.bool,
 }
 
 LayoutProfilePets.defaultProps = {
-  isEdit: false,
+  petIsEdit: false,
 }
 
 export default LayoutProfilePets

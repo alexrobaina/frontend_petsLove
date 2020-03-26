@@ -4,9 +4,9 @@ import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
 import noImg from './noimg.png'
 import styles from './imageUserLog.scss'
 
-const ImageUserLog = ({ isUserLogin, imgUser }) => {
+const ImageUserLog = ({ handleToggleMenu, isUserLogin, imgUser }) => {
   return (
-    <div>
+    <div onMouseUp={handleToggleMenu}>
       {isUserLogin && <img className={styles.userImage} src={user ? imgUser : noImg} alt="user" />}
     </div>
   )

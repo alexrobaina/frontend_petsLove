@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useLocalStore, observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
@@ -17,7 +16,7 @@ import Modal from 'components/commons/Modal/Modal'
 import LayoutProfilePets from 'components/LayoutProfilePets'
 import Loading from '../../components/commons/Loading/Loading'
 
-const ProfilePets = ({ isEdit }) => {
+const ProfilePets = () => {
   const contactProtectionistEmailStore = useLocalStore(() => new ContactProtectionistEmailStore())
   const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
@@ -29,21 +28,16 @@ const ProfilePets = ({ isEdit }) => {
     petIdStore.getPetId(id)
   }, [])
 
-  const { name } = petIdStore.pet
-  const { isLoading, images } = petIdStore
-
   const deleteFilter = useCallback((selectedValue, typeFilter) => {
     searchPetsStore.deleteFilter(selectedValue, typeFilter)
   })
 
-  const { isError, isSuccess } = contactProtectionistEmailStore
-
   return (
     <>
-      {isError && (
+      {contactProtectionistEmailStore.isError && (
         <Modal error text={t('profilePets.sendEmailError')} title={t('profilePets.titleError')} />
       )}
-      {isSuccess && (
+      {contactProtectionistEmailStore.isSuccess && (
         <Modal text={t('profilePets.sendEmailSuccess')} title={t('profilePets.titleSuccess')} />
       )}
       <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
@@ -51,13 +45,13 @@ const ProfilePets = ({ isEdit }) => {
       {!searchPetsStore.pets ? (
         <LayoutContainer>
           <LayoutProfilePets
-            name={name}
-            isEdit={isEdit}
+            name={petIdStore.pet.name}
+            petIsEdit={petIdStore.petIsEdit}
             petIdStore={petIdStore}
             contactProtectionistEmailStore={contactProtectionistEmailStore}
           />
-          {images !== [] ? (
-            <GaleryImages isLoading={isLoading} arrayImages={images} />
+          {petIdStore.images !== [] ? (
+            <GaleryImages isLoading={petIdStore.isLoading} arrayImages={petIdStore.images} />
           ) : (
             <ErrorMessage text="This pet has no images" typeMessage="warning" />
           )}
@@ -79,14 +73,6 @@ const ProfilePets = ({ isEdit }) => {
       <Footer />
     </>
   )
-}
-
-ProfilePets.propTypes = {
-  isEdit: PropTypes.bool,
-}
-
-ProfilePets.defaultProps = {
-  isEdit: true,
 }
 
 export default observer(ProfilePets)

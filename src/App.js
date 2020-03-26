@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
-import { FORGOT_PASSWORD, LOGIN, HOME, REGISTER, CREATE_PET, PROFILE_PET } from 'routing/routes'
+import { FORGOT_PASSWORD, LOGIN, HOME, REGISTER, CREATE_PET, PROFILE_PET, USER_PROFILE } from 'routing/routes'
 import Login from 'containers/Login'
 import Register from 'containers/Register'
 import RootStore from 'stores/RootStore'
@@ -30,6 +30,7 @@ function App() {
           <Route exact path={LOGIN} component={Login} />
           <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
           <Route exact path={HOME} component={Home} />
+          <Route exact path={PROFILE_PET} component={ProfilePets} />
           <PrivateRoute
             exact
             isLogin={rootStore.authStore.isLogin}
@@ -44,13 +45,13 @@ function App() {
             path={CREATE_PET}
             component={CreatePet}
           />
-          <PrivateRoute
-            exact
-            isLogin={rootStore.authStore.isLogin}
-            redirectPath={LOGIN}
-            path={PROFILE_PET}
-            component={ProfilePets}
-          />
+          {/*<PrivateRoute*/}
+          {/*  exact*/}
+          {/*  isLogin={rootStore.authStore.isLogin}*/}
+          {/*  redirectPath={LOGIN}*/}
+          {/*  path={USER_PROFILE}*/}
+          {/*  component={ProfileUser}*/}
+          {/*/>*/}
           <Route component={PageNotFound} />
         </Switch>
       </Router>

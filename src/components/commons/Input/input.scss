@@ -1,6 +1,10 @@
 @import 'styles/variable.scss';
 @import 'styles/mixings.scss';
 
+input:focus {
+  outline: none;
+}
+
 .input {
   width: 100%;
   border: 1px solid $borderPrimary;
@@ -27,25 +31,25 @@
   }
 }
 
-input[type="text"] {
+input[type='text'] {
   padding-left: 10px;
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
 }
 
-input[type="email"] {
+input[type='email'] {
   padding-left: 10px;
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
 }
 
-input[type="password"] {
+input[type='password'] {
   padding-left: 10px;
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
 }
 
-input[type="number"] {
+input[type='number'] {
   padding-left: 10px;
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;

@@ -52,7 +52,12 @@ const ListPets = ({ filters, pets, handleDelete }) => {
                   animationInDuration={2000}
                 >
                   <div onClick={() => goToPet(pet._id)}>
-                    <CardPets image={pet.image[0]} namePet={pet.name} history={pet.history} />
+                    <CardPets
+                      onClick={() => goToPet(pet._id)}
+                      image={pet.image[0]}
+                      namePet={pet.name}
+                      history={pet.history}
+                    />
                   </div>
                 </Animated>
               </LazyLoad>

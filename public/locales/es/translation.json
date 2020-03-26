@@ -132,6 +132,10 @@
     "contactMessage": "You can write whatsapp for adopt to {{ name }}. Protecctionist phone: {{ phone }}",
     "notFoundNumber": "Not Found Number"
   },
+  "menuProfile": {
+    "profile": "Perfil",
+    "logout": "Salir"
+  },
   "last": {
     "last": "last"
   }
