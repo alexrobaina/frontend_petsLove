@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import Title from 'components/commons/Title'
 import ButtonsPet from 'containers/ProfilePets/ButtonsPet'
 import ImageProfilePet from 'components/ImageProfilePet'
-import PlaceMarkMap from 'components/commons/PlaceMarkMap'
 import InformationPet from 'components/InformationPet'
+import GoogleMap from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
@@ -15,7 +15,7 @@ const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEd
   return (
     <>
       <div className={styles.name}>
-        <Title mTop="120px" title={t('profilePets.title', { name })} />
+        <Title title={t('profilePets.title', { name })} />
         <ButtonsPet
           petIdStore={petIdStore}
           contactProtectionistEmailStore={contactProtectionistEmailStore}
@@ -24,10 +24,14 @@ const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEd
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <ImageProfilePet petIdStore={petIdStore} />
-        <PlaceMarkMap
-          defaultPosition={petIdStore.defaultPosition}
-          mapPosition={petIdStore.mapPosition}
-          contactMessage={c('profilePets.contactMessage')}
+        <GoogleMap
+          userName={petIdStore.userName}
+          phone={petIdStore.phone}
+          email={petIdStore.userEmail}
+          location={{
+            lat: -34.603722,
+            lng: -58.381592,
+          }}
         />
         <InformationPet petIdStore={petIdStore} />
         <div>

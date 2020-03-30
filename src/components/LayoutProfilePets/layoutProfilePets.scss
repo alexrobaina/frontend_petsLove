@@ -12,7 +12,10 @@
   grid-gap: 10px;
 
   @include media-breakpoint-down(sm) {
-    grid-template-columns: 1fr;
+    display: flex;
+    padding-top: 15px;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 

@@ -18,6 +18,7 @@ class PetIdStore {
   @observable phone = ''
   @observable categorie = ''
   @observable activity = ''
+  @observable userName = ''
   @observable isLoading = false
   @observable petIsEdit = false
   @observable mapPosition = []
@@ -50,6 +51,7 @@ class PetIdStore {
         this.categorie = this.pet.categorie
         this.name = this.pet.name
         this.userEmail = this.pet.user.email
+        this.userName = this.pet.user.name
         this.gender = this.pet.gender
         this.activity = this.pet.activity
         this.age = this.pet.age

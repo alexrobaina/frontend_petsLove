@@ -17,6 +17,7 @@ import 'aos/dist/aos.css'
 import './App.scss'
 import CreatePet from './containers/CreatePet'
 import ProfilePets from './containers/ProfilePets/ProfilePets'
+import ProfileUser from './containers/ProfileUser'
 
 const rootStore = new RootStore()
 
@@ -45,13 +46,13 @@ function App() {
             path={CREATE_PET}
             component={CreatePet}
           />
-          {/*<PrivateRoute*/}
-          {/*  exact*/}
-          {/*  isLogin={rootStore.authStore.isLogin}*/}
-          {/*  redirectPath={LOGIN}*/}
-          {/*  path={USER_PROFILE}*/}
-          {/*  component={ProfileUser}*/}
-          {/*/>*/}
+          <PrivateRoute
+            exact
+            isLogin={rootStore.authStore.isLogin}
+            redirectPath={LOGIN}
+            path={USER_PROFILE}
+            component={ProfileUser}
+          />
           <Route component={PageNotFound} />
         </Switch>
       </Router>

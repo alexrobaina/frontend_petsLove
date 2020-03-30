@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './input.scss'
 
-const Input = ({ required, handleChange, placeholder, type, isError, isErrorEmail }) => {
+const Input = ({ required, handleChange, placeholder, type, isError, isErrorEmail, multiple }) => {
   return (
     <>
       <input
+        multiple={multiple}
         required={required}
         className={styles.input}
         type={type}
@@ -22,6 +23,7 @@ Input.propTypes = {
   type: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  multiple: PropTypes.bool,
   isError: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
 }
@@ -29,6 +31,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   isError: false,
+  multiple: false,
   isErrorEmail: false,
 }
 

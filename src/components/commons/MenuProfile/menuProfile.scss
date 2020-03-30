@@ -1,17 +1,14 @@
 @import 'styles/mixings';
 
 .containerMenu {
-  background-color: $ligth;
   position: absolute;
+  background-color: $ligth;
   z-index: 1500 !important;
-  margin-top: 60px;
   min-width: 110px;
-  height: auto;
   border-radius: 5px;
-  box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.54);
+  box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.18);
   transition: 200ms ease;
-  top: 8px;
-  right: 100px;
+  top: 70px;
 }
 
 .viewMenu {
@@ -22,7 +19,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100px;
   width: 100%;
 }
 
@@ -39,8 +35,12 @@
   color: $title;
 
   &:hover {
-    background-color: $colorNavbar;
     border-radius: 5px;
     color: $filters;
+  }
+
+  &:target {
+    background-color: $colorNavbar;
+    color: red;
   }
 }

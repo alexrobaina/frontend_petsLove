@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useHistory } from 'react-router-dom'
-import { USER_PROFILE } from 'routing/routes'
+import { DASHBOARD, LOGIN, USER_PROFILE } from 'routing/routes'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import styles from './menuProfile.scss'
@@ -13,7 +13,7 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
   const handleLogout = useCallback(() => {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
-    history.push('/')
+    history.push(LOGIN)
     window.location.reload()
   }, [])
 
@@ -23,6 +23,9 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
       className={c(styles.containerMenu, viewMenuProfile && styles.viewMenu)}
     >
       <div className={styles.contentButtos}>
+        <Link to={DASHBOARD} className={styles.buttons}>
+          {t('menuProfile.dashboard')}
+        </Link>
         <Link to={USER_PROFILE} className={styles.buttons}>
           {t('menuProfile.profile')}
         </Link>

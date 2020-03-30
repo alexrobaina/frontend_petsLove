@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -33,18 +33,30 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
     setViewMenuProfile(!viewMenuProfile)
   })
 
+  useEffect(() => {
+    if (!viewMenuProfile) {
+      setTimeout(() => {
+        setViewMenuProfile(true)
+      }, 3500)
+    }
+  }, [viewMenuProfile])
+
   return (
     <>
       <div className={styles.containerNavbar}>
         <ButtonIcon onclick={handleToggle} icon={<FiFilter size={25} />} />
         {rootStore.authStore.isLogin ? (
-          <div className={styles.contectImageUser}>
-            <MenuProfile handleToggleMenu={handleToggleMenu} viewMenuProfile={viewMenuProfile} />
-            <ImageUserLog
-              handleToggleMenu={handleToggleMenu}
-              isUserLogin={rootStore.authStore.isLogin}
-            />
-            <ChangeLanguage />
+          <div className={styles.containerProfile}>
+            <div className={styles.contectImageUser}>
+              <MenuProfile handleToggleMenu={handleToggleMenu} viewMenuProfile={viewMenuProfile} />
+              <ImageUserLog
+                handleToggleMenu={handleToggleMenu}
+                isUserLogin={rootStore.authStore.isLogin}
+              />
+            </div>
+            <div>
+              <ChangeLanguage />
+            </div>
           </div>
         ) : (
           <div className={styles.containerButtonslog}>

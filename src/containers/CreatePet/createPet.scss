@@ -61,8 +61,8 @@
 }
 
 .colCheckbox {
+  width: 100%;
   padding-left: 30px;
-  padding-top: 20px;
 }
 
 .label {
@@ -79,4 +79,21 @@
     padding: 20px;
     width: 100%;
   }
+}
+
+.colContainerCheckbox {
+  width: 45%;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.containerMap {
+  margin-bottom: 20px;
+}
+
+.containerButton {
+  width: 100%;
 }

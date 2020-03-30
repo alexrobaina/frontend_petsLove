@@ -7,7 +7,7 @@ class CreatePetStore {
 
   @observable image = []
   @observable name = ''
-  @observable location = ''
+  @observable location = {}
   @observable country = ''
   @observable city = ''
   @observable category = ''
@@ -18,6 +18,7 @@ class CreatePetStore {
   @observable activity = ''
   @observable isLoading = false
   @observable isError = false
+  @observable defaultLocation = { lat: '-34.603722', lng: '-58.381592' }
 
   @action
   async createPet() {
