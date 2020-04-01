@@ -1,9 +1,8 @@
-import React, { useCallback, useContext } from 'react'
-import { useHistory } from 'react-router'
+import React, { useContext } from 'react'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Navbar from 'components/commons/Navbar'
 import { Link } from 'react-router-dom'
-import { CREATE_PET, HOME, PROFILE } from 'routing/routes'
+import { CREATE_PET, PROFILE } from 'routing/routes'
 import UserContext from 'Context/UserContext'
 import LayoutContainerCard from 'components/commons/LayoutContainerCard'
 import iconProfesionals from './businessman.svg'
@@ -12,16 +11,6 @@ import styles from './dashboard.scss'
 const Dashboard = () => {
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, searchPetsStore } = rootStore
-
-  const history = useHistory()
-
-  const createPet = useCallback(() => {
-    history.push(Routes.CREATE_PET)
-  }, [])
-
-  const profilePet = useCallback(() => {
-    history.push(Routes.PROFILE_PET)
-  }, [])
 
   return (
     <>
@@ -71,7 +60,5 @@ const Dashboard = () => {
     </>
   )
 }
-
-Dashboard.propTypes = {}
 
 export default Dashboard

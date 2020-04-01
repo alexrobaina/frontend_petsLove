@@ -7,10 +7,12 @@ import styles from './googleAutocomplete.scss'
 const GoogleAutocomplete = ({ handleChangeLocation }) => {
   const [address, setAddress] = useState('')
 
+  // eslint-disable-next-line no-shadow
   const handleChange = useCallback(address => {
     setAddress(address)
   }, [])
 
+  // eslint-disable-next-line no-shadow
   const handleSelect = useCallback(address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))

@@ -3,7 +3,15 @@ import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
-import { FORGOT_PASSWORD, LOGIN, HOME, REGISTER, CREATE_PET, PROFILE_PET, USER_PROFILE } from 'routing/routes'
+import {
+  FORGOT_PASSWORD,
+  LOGIN,
+  HOME,
+  REGISTER,
+  CREATE_PET,
+  PROFILE_PET,
+  USER_PROFILE,
+} from 'routing/routes'
 import Login from 'containers/Login'
 import Register from 'containers/Register'
 import RootStore from 'stores/RootStore'

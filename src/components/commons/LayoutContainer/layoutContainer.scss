@@ -4,13 +4,14 @@
   padding-top: 100px;
 
   @include media-breakpoint-only(xs) {
+    margin-top: 50px;
     padding-left: 20px;
     padding-right: 20px;
   }
 
   @include media-breakpoint-only(sm) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 80px;
+    padding-right: 50px;
   }
 
   @include media-breakpoint-between(sm, xs) {

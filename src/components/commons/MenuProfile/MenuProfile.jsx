@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useHistory } from 'react-router-dom'
-import { DASHBOARD, LOGIN, USER_PROFILE } from 'routing/routes'
+import { LOGIN, USER_PROFILE } from 'routing/routes'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import styles from './menuProfile.scss'
@@ -23,9 +23,6 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
       className={c(styles.containerMenu, viewMenuProfile && styles.viewMenu)}
     >
       <div className={styles.contentButtos}>
-        <Link to={DASHBOARD} className={styles.buttons}>
-          {t('menuProfile.dashboard')}
-        </Link>
         <Link to={USER_PROFILE} className={styles.buttons}>
           {t('menuProfile.profile')}
         </Link>
