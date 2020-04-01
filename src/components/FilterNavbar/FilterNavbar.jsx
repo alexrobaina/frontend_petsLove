@@ -10,6 +10,7 @@ import styles from './filterNavbar.scss'
 
 const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) => {
   const { t } = useTranslation()
+
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
     optionsSelectsStore.setOptionsCities(selectedValue)

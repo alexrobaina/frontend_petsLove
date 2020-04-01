@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocalStore } from 'mobx-react'
+import { observer, useLocalStore } from 'mobx-react'
 import Input from 'components/commons/Input'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Title from 'components/commons/Title'
@@ -10,14 +10,17 @@ import Textarea from 'components/commons/Textarea'
 import Footer from 'components/commons/Footer/Footer'
 import Button from 'components/commons/Button'
 import CreatePetStore from 'stores/CreatePetStore'
-import SearchMapStore from 'stores/SearchMapStore'
-import MapSearch from 'components/commons/MapSearch'
+import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
+import Navbar from 'components/commons/Navbar'
+import UserContext from 'Context/UserContext'
+import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
 const CreatePet = () => {
-  const createPetStore = useLocalStore(() => new CreatePetStore())
-  const searchMapStore = useLocalStore(() => new SearchMapStore())
   const { t } = useTranslation()
+  const rootStore = useContext(UserContext)
+  const { optionsSelectsStore, searchPetsStore } = rootStore
+  const createPetStore = useLocalStore(() => new CreatePetStore())
 
   const [previews, setPreviews] = useState([])
 
@@ -33,128 +36,166 @@ const CreatePet = () => {
   })
 
   const handleChangeName = useCallback(e => {
-    console.log(e.target.value)
     createPetStore.setName(e.target.value)
   }, [])
 
   const handleChangeLocation = useCallback(location => {
-    if (location) {
-      createPetStore.setLocation(location)
-    }
+    createPetStore.setLocation(location)
   }, [])
 
-  const handleChangeCountry = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setCountry(e.target.value)
+  const handleChangeCountry = useCallback(selectedValue => {
+    optionsSelectsStore.setOptionsCities(selectedValue)
+    createPetStore.setCountry(selectedValue)
   }, [])
 
-  const handleChangeCity = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setCity(e.target.value)
+  const handleChangeCity = useCallback(selectedValue => {
+    createPetStore.setCity(selectedValue)
   }, [])
 
-  const handleChangeCategory = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setCategory(e.target.value)
+  const handleChangeCategory = useCallback(selectedValue => {
+    createPetStore.setCategory(selectedValue)
   }, [])
 
-  const handleChangeGender = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setGender(e.target.value)
+  const handleChangeGender = useCallback(selectedValue => {
+    createPetStore.setGender(selectedValue)
   }, [])
 
-  const handleChangeAge = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setAge(e.target.value)
+  const handleChangeAge = useCallback(selectedValue => {
+    createPetStore.setAge(selectedValue)
   }, [])
 
   const handleChangeHistory = useCallback(e => {
-    console.log(e.target.value)
     createPetStore.setHistory(e.target.value)
   }, [])
 
   const handleChangeRequired = useCallback(e => {
-    console.log(e.target.value)
     createPetStore.setRequiredToAdoption(e.target.value)
   }, [])
 
-  const handleChangeActivity = useCallback(e => {
-    console.log(e.target.value)
-    createPetStore.setActivity(e.target.value)
+  const handleChangeActivity = useCallback(selectedValue => {
+    createPetStore.setActivity(selectedValue)
+  }, [])
+
+  useEffect(() => {
+    optionsSelectsStore.listContries()
+    optionsSelectsStore.listGender()
+    optionsSelectsStore.listActiviy()
+    optionsSelectsStore.listAges()
   }, [])
 
   return (
-    <LayoutContainer>
-      <Title title={t('Create pet')} subTitle={t('Create your pets identity')} />
-      <div className={styles.containerImagePreview}>
-        <div className={styles.rowImagePets}>
-          {previews &&
-            previews.map(image => {
-              return <img className={styles.imagePreview} src={image.preview} alt="pets" />
-            })}
-        </div>
-      </div>
-      <div className={styles.containerForm}>
-        <div className={styles.colLarge}>
-          <div className={styles.label}>Add images of pet</div>
-          <Input
-            multiple="true"
-            handleChange={handleImageChange}
-            type="file"
-            placeholder={t('images')}
-          />
-        </div>
-        <div className={styles.col}>
-          <Input handleChange={handleChangeName} placeholder={t('Name')} />
-        </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeCountry} placeholder={t('country')} />
-        </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeCity} placeholder={t('city')} />
-        </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeCategory} placeholder={t('categoryPets')} />
-        </div>
-        <div className={styles.colLarge}>
-          <MapSearch handleChangeLocation={handleChangeLocation} searchMapStore={searchMapStore} />
-        </div>
-        <div className={styles.rowCheckbox}>
-          <div className={styles.colCheckbox}>
-            <InputCheckbox text={t('urgent')} />
-          </div>
-          <div className={styles.colCheckbox}>
-            <InputCheckbox text={t('lost')} />
-          </div>
-          <div className={styles.colCheckbox}>
-            <InputCheckbox text={t('sterilized')} />
-          </div>
-          <div className={styles.colCheckbox}>
-            <InputCheckbox text={t('vaccinated')} />
+    <>
+      <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+      <LayoutContainer>
+        <Title title={t('createPet.title')} subTitle={t('createPet.subtitle')} />
+        <div className={styles.containerImagePreview}>
+          <div className={styles.rowImagePets}>
+            {previews &&
+              previews.map(image => {
+                return <img className={styles.imagePreview} src={image.preview} alt="pets" />
+              })}
           </div>
         </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeGender} placeholder={t('gender')} />
+        <div className={styles.containerForm}>
+          <div className={styles.colLarge}>
+            <div className={styles.label}>{t('createPet.placeholderImages')}</div>
+            <Input
+              multiple="true"
+              handleChange={handleImageChange}
+              type="file"
+              placeholder={t('createPet.placeholderImages')}
+            />
+          </div>
+          <div className={styles.col}>
+            <Input handleChange={handleChangeName} placeholder={t('createPet.placeholderName')} />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.countries}
+              handleChange={handleChangeCountry}
+              placeholder={t('createPet.country')}
+            />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.cities}
+              handleChange={handleChangeCity}
+              placeholder={t('createPet.city')}
+            />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.categories}
+              handleChange={handleChangeCategory}
+              placeholder={t('createPet.categoryPets')}
+            />
+          </div>
+          <div className={styles.colLarge}>
+            {createPetStore.location.lat && (
+              <div className={styles.containerMap}>
+                <GoogleMapsLocation
+                  showAddress
+                  location={createPetStore.location}
+                  title={t('createPet.messageMap')}
+                />
+              </div>
+            )}
+            <GoogleAutocomplete handleChangeLocation={handleChangeLocation} />
+          </div>
+          <div className={styles.colContainerCheckbox}>
+            <div className={styles.colCheckbox}>
+              <InputCheckbox text={t('createPet.urgent')} />
+            </div>
+            <div className={styles.colCheckbox}>
+              <InputCheckbox text={t('createPet.lost')} />
+            </div>
+          </div>
+          <div className={styles.colContainerCheckbox}>
+            <div className={styles.colCheckbox}>
+              <InputCheckbox text={t('createPet.sterilized')} />
+            </div>
+            <div className={styles.colCheckbox}>
+              <InputCheckbox text={t('createPet.vaccinated')} />
+            </div>
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.gender}
+              handleChange={handleChangeGender}
+              placeholder={t('createPet.gender')}
+            />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.ages}
+              handleChange={handleChangeAge}
+              placeholder={t('createPet.age')}
+            />
+          </div>
+          <div className={styles.col}>
+            <Textarea handleChange={handleChangeHistory} placeholder={t('createPet.history')} />
+          </div>
+          <div className={styles.col}>
+            <Textarea
+              handleChange={handleChangeRequired}
+              placeholder={t('createPet.RequiredToAdoption')}
+            />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              options={optionsSelectsStore.activity}
+              handleChange={handleChangeActivity}
+              placeholder={t('createPet.activity')}
+            />
+          </div>
+          <div className={styles.containerButton}>
+            <Button bigButton text="createPet.buttonCreation" />
+          </div>
         </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeAge} placeholder={t('age')} />
-        </div>
-        <div className={styles.col}>
-          <Textarea handleChange={handleChangeHistory} placeholder={t('history')} />
-        </div>
-        <div className={styles.col}>
-          <Textarea handleChange={handleChangeRequired} placeholder={t('RequiredToAdoption')} />
-        </div>
-        <div className={styles.col}>
-          <InputSelect handleChange={handleChangeActivity} placeholder={t('activity')} />
-        </div>
-        <div className={styles.col}>
-          <Button bigButton text="Create Pet" />
-        </div>
-      </div>
-      <Footer />
-    </LayoutContainer>
+        <Footer />
+      </LayoutContainer>
+    </>
   )
 }
 
-export default CreatePet
+export default observer(CreatePet)

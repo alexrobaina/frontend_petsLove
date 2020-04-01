@@ -1,18 +1,16 @@
-import React from 'react'
-import { useLocalStore } from 'mobx-react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import OptionsSelectsStore from 'stores/OptionsSelectsStore'
-import SearchPetsStore from 'stores/SearchPetsStore'
 import InitialLogo from 'components/InitialLogo'
 import InitialFilters from 'components/InitialFilters'
 import Title from 'components/commons/Title'
 import Navbar from 'components/commons/Navbar'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ErrorMessage from 'components/commons/ErrorMessage'
+import UserContext from '../../Context/UserContext'
 
 const Home = () => {
-  const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
-  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
+  const rootStore = useContext(UserContext)
+  const { optionsSelectsStore, searchPetsStore } = rootStore
   const { t } = useTranslation()
 
   return (

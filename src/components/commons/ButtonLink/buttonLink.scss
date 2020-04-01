@@ -4,6 +4,8 @@
   cursor: pointer;
   padding: 30px;
   @include site-font('text', 500);
+  font-size: 12px;
+  letter-spacing: 1px;
 
   &:hover {
     transition: 3ms;

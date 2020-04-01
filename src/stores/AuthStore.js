@@ -6,6 +6,7 @@ class AuthStore {
   constructor() {
     this.authService = new AuthService()
     this.validateToken()
+    this.getUser()
   }
 
   @observable token = ''

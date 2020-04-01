@@ -1,0 +1,45 @@
+@import "styles/variable";
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+}
+
+.open {
+  z-index: 500;
+  left: 0px;
+  width: 50px;
+  height: 100%;
+}
+
+.showMenu {
+  position: fixed;
+  z-index: 95;
+  top: 0;
+  left: 0px;
+  background-color: white;
+  width: 300px;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: 0.3s;
+}
+
+.titleNavbar {
+  color: $title;
+  font-size: 14px;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-left: 20px;
+  animation: fadeIn 3s;
+}
+
+.containerSelects {
+  z-index: 530;
+  position: absolute;
+  margin-top: 75px;
+  margin-left: 10px;
+}
+
