@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import { MdSave, MdUpdate } from 'react-icons/md'
 import UserContext from 'Context/UserContext'
 import Navbar from 'components/commons/Navbar'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Input from 'components/commons/Input'
-import InputSelect from 'components/commons/InputSelect'
-import InputCheckbox from 'components/commons/InputCheckbox'
 import Footer from 'components/commons/Footer/Footer'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import styles from './profileUser.scss'
@@ -16,7 +14,7 @@ import GoogleAutocomplete from '../../components/commons/GoogleAutocomplete/Goog
 import Button from '../../components/commons/Button'
 
 const ProfileUser = () => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, searchPetsStore } = rootStore
 
@@ -63,7 +61,7 @@ const ProfileUser = () => {
           </div>
         </div>
         <div className={styles.buttonSave}>
-          <Button text='Save Change' icon={<MdSave size={20} />} />
+          <Button text="Save Change" icon={<MdSave size={20} />} />
         </div>
         <Footer />
       </LayoutContainer>
