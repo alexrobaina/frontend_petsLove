@@ -16,7 +16,7 @@ import Button from '../../components/commons/Button'
 const ProfileUser = () => {
   // const { t } = useTranslation()
   const rootStore = useContext(UserContext)
-  const { optionsSelectsStore, searchPetsStore } = rootStore
+  const { optionsSelectsStore, searchPetsStore, authStore } = rootStore
 
   return (
     <>
@@ -36,28 +36,19 @@ const ProfileUser = () => {
         </div>
         <div className={styles.containerForm}>
           <div className={styles.colInpur}>
-            <Input placeholder="Name" />
+            <Input value={authStore.user.name} placeholder="Name" />
           </div>
           <div className={styles.colInpur}>
-            <Input placeholder="Email" />
+            <Input value={authStore.user.email} placeholder="Email" />
           </div>
           <div className={styles.colInpur}>
-            <Input placeholder="Nickname" />
+            <Input value={authStore.user.nickname} placeholder="Nickname" />
           </div>
           <div className={styles.colInpur}>
-            <Input placeholder="Phone" />
+            <Input value={authStore.user.phone} placeholder="Phone" />
           </div>
           <div className={styles.colGoogle}>
             <GoogleAutocomplete />
-          </div>
-        </div>
-        <div className={styles.title}>bank account for donations</div>
-        <div className={styles.containerForm}>
-          <div className={styles.colInpur}>
-            <Input placeholder="CBU or number account" />
-          </div>
-          <div className={styles.colInpur}>
-            <Input placeholder="Alias" />
           </div>
         </div>
         <div className={styles.buttonSave}>

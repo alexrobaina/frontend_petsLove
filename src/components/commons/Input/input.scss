@@ -31,6 +31,17 @@ input:focus {
   }
 }
 
+.value {
+  color: $title;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid $borderPrimary;
+}
+
+.label {
+  color: $title;
+}
+
 input[type='text'] {
   padding-left: 10px;
   font-size: 14px;

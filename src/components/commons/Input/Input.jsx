@@ -2,19 +2,40 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './input.scss'
 
-const Input = ({ required, handleChange, placeholder, type, isError, isErrorEmail, multiple }) => {
+const Input = ({
+  isEdit,
+  value,
+  required,
+  handleChange,
+  placeholder,
+  type,
+  isError,
+  isErrorEmail,
+  multiple,
+}) => {
   return (
     <>
-      <input
-        multiple={multiple}
-        required={required}
-        className={styles.input}
-        type={type}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
-      {isErrorEmail && <div className={styles.errorMessage}>Error!, verify your email please</div>}
-      {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
+      {isEdit ? (
+        <>
+          <input
+            multiple={multiple}
+            required={required}
+            className={styles.input}
+            type={type}
+            placeholder={placeholder}
+            onChange={handleChange}
+          />
+          {isErrorEmail && (
+            <div className={styles.errorMessage}>Error!, verify your email please</div>
+          )}
+          {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
+        </>
+      ) : (
+        <>
+          <label className={styles.label}>{placeholder}</label>
+          <div className={styles.value}>{value}</div>
+        </>
+      )}
     </>
   )
 }
@@ -26,9 +47,13 @@ Input.propTypes = {
   multiple: PropTypes.bool,
   isError: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  value: PropTypes.string,
 }
 
 Input.defaultProps = {
+  isEdit: false,
+  value: '',
   type: 'text',
   isError: false,
   multiple: false,
