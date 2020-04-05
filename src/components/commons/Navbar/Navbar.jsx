@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { FiFilter } from 'react-icons/fi'
+import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
+import ErrorMessage from 'components/commons/ErrorMessage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
+import ListPets from 'components/ListPets'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import ButtonIcon from 'components/commons/ButtonIcon'
@@ -15,11 +18,14 @@ import ToggleFilter from './ToggleFilter/ToggleFilter'
 import ToggleMenuUser from './ToggleMenuUser/ToggleMenuUser'
 import styles from './navbar.scss'
 
-const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
+const Navbar = ({ children }) => {
   const rootStore = useContext(UserContext)
+  const { searchPetsStore, optionsSelectsStore, authStore } = rootStore
+
   const [toggleNavegationUser, setToggleNavegationUser] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [viewMenuProfile, setViewMenuProfile] = useState(true)
+
   const { t } = useTranslation()
   const history = useHistory()
 
@@ -34,7 +40,14 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
     setViewMenuProfile(!viewMenuProfile)
   })
 
+  const deleteFilter = useCallback((selectedValue, typeFilter) => {
+    searchPetsStore.deleteFilter(selectedValue, typeFilter)
+  })
+
   useEffect(() => {
+    authStore.getUser()
+    authStore.loadUser(authStore.user._id)
+
     if (!viewMenuProfile) {
       setTimeout(() => {
         setViewMenuProfile(true)
@@ -45,7 +58,7 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
   const handleMenu = useCallback(link => {
     history.push(link)
   }, [])
-
+  console.log(searchPetsStore.pets)
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -68,6 +81,7 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
               </div>
               <div className={styles.contectImageUser}>
                 <MenuProfile
+                  userId={authStore.user._id}
                   handleToggleMenu={handleToggleMenu}
                   viewMenuProfile={viewMenuProfile}
                 />
@@ -94,14 +108,24 @@ const Navbar = ({ searchPetsStore, optionsSelectsStore }) => {
         handleToggle={handleToggle}
         toggle={toggle}
       />
+      {!searchPetsStore.pets ? (
+        <>{children}</>
+      ) : (
+        <ListPets
+          handleDelete={deleteFilter}
+          filters={searchPetsStore.filters}
+          pets={searchPetsStore.pets}
+          isLoading={searchPetsStore.isLoading}
+        />
+      )}
+      {searchPetsStore.isError && <ErrorMessage text={t('errorMessage')} typeMessage="warning" />}
       <div className={c(toggle && styles.showShadowBack)} onClick={() => setToggle(!toggle)} />
     </>
   )
 }
 
 Navbar.propTypes = {
-  searchPetsStore: PropTypes.node.isRequired,
-  optionsSelectsStore: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
-export default Navbar
+export default observer(Navbar)

@@ -4,7 +4,6 @@ import { useLocalStore } from 'mobx-react'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import Navbar from 'components/commons/Navbar'
 import FormForgotPassword from 'components/FormForgotPassword'
-import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import ListPets from 'components/ListPets'
 import ErrorMessage from 'components/commons/ErrorMessage'
@@ -13,7 +12,6 @@ import styles from './forgotPassword.scss'
 
 const ForgotPassword = () => {
   const { t } = useTranslation()
-  const optionsSelectsStore = useLocalStore(() => new OptionsSelectsStore())
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
 
   const deleteFilter = useCallback((selectedValue, typeFilter) => {
@@ -22,7 +20,7 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+      <Navbar />
       {!searchPetsStore.pets ? (
         <div className={styles.containerForgotPassword}>
           <ImageInformationLeft image={catImage} />

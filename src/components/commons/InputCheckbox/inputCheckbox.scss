@@ -61,3 +61,14 @@
   left: 5px;
   background-color: white;
 }
+
+.value {
+  color: $title;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid $borderPrimary;
+}
+
+.label {
+  color: $title;
+}

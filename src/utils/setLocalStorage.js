@@ -1,7 +1,10 @@
 class SetLocalStorage {
+  setUser = user => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
   getUser = () => {
-    const user = localStorage.getItem('user')
-    return user
+    return JSON.parse(localStorage.getItem('user'))
   }
 }
 

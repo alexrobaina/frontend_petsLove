@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx'
 import _uniqBy from 'lodash/uniqBy'
-import PetsService from '../services/PetsService'
+import PetsService from 'services/PetsService'
 
 class SearchPetsStore {
   constructor() {

@@ -10,17 +10,13 @@ import GoogleMap from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
-const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEdit, name }) => {
+const LayoutProfilePets = ({ petIdStore, petIsEdit, name }) => {
   const { t } = useTranslation()
   return (
     <>
       <div className={styles.name}>
         <Title title={t('profilePets.title', { name })} />
-        <ButtonsPet
-          petIdStore={petIdStore}
-          contactProtectionistEmailStore={contactProtectionistEmailStore}
-          petIsEdit={petIsEdit}
-        />
+        <ButtonsPet petIdStore={petIdStore} petIsEdit={petIsEdit} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <ImageProfilePet petIdStore={petIdStore} />
@@ -35,8 +31,11 @@ const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEd
         />
         <InformationPet petIdStore={petIdStore} />
         <div>
-          <TextCard title="History" text={petIdStore.pet.history} />
-          <TextCard title="Required to Adoption" text={petIdStore.pet.requiredToAdoption} />
+          <TextCard title={t('profilePets.history')} text={petIdStore.pet.history} />
+          <TextCard
+            title={t('profilePets.requiredToAdoption')}
+            text={petIdStore.pet.requiredToAdoption}
+          />
         </div>
       </div>
     </>
@@ -45,7 +44,6 @@ const LayoutProfilePets = ({ petIdStore, contactProtectionistEmailStore, petIsEd
 
 LayoutProfilePets.propTypes = {
   petIdStore: PropTypes.node.isRequired,
-  contactProtectionistEmailStore: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   petIsEdit: PropTypes.bool,
 }

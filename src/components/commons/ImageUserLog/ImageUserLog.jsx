@@ -1,25 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import user from './anton-darius-thesollers-LH-NYOZmENI-unsplash.jpg'
-import noImg from './noimg.png'
+import c from 'classnames'
+import { SERVER } from 'services/config'
+import UserContext from 'Context/UserContext'
 import styles from './imageUserLog.scss'
 
-const ImageUserLog = ({ handleToggleMenu, isUserLogin, imgUser }) => {
+const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
+
   return (
     <div onMouseUp={handleToggleMenu}>
-      {isUserLogin && <img className={styles.userImage} src={user ? imgUser : noImg} alt="user" />}
+      {isUserLogin && (
+        <img
+          className={c(isProfile ? styles.imageProfile : styles.userImage)}
+          src={`${SERVER}/${authStore.user.image}`}
+          alt="user"
+        />
+      )}
     </div>
   )
 }
 
 ImageUserLog.propTypes = {
   isUserLogin: PropTypes.bool,
-  imgUser: PropTypes.string,
+  isProfile: PropTypes.bool,
 }
 
 ImageUserLog.defaultProps = {
   isUserLogin: false,
-  imgUser: 'https://areajugones.sport.es/wp-content/uploads/2018/08/one-punch-man.png',
+  isProfile: false,
 }
 
 export default ImageUserLog

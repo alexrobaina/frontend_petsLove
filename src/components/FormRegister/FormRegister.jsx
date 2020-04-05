@@ -56,16 +56,23 @@ const FormRegister = ({ registerStore }) => {
         ) : (
           <>
             <div className={styles.inputForm}>
-              <Input handleChange={handleName} placeholder={t('register.name')} />
+              <Input canEdit isEdit handleChange={handleName} placeholder={t('register.name')} />
             </div>
             <div className={styles.inputForm}>
-              <Input handleChange={handleEmail} placeholder={t('register.email')} />
-            </div>
-            <div className={styles.inputForm}>
-              <Input handleChange={handlePassword} placeholder={t('register.password')} />
+              <Input canEdit isEdit handleChange={handleEmail} placeholder={t('register.email')} />
             </div>
             <div className={styles.inputForm}>
               <Input
+                canEdit
+                isEdit
+                handleChange={handlePassword}
+                placeholder={t('register.password')}
+              />
+            </div>
+            <div className={styles.inputForm}>
+              <Input
+                canEdit
+                isEdit
                 handleChange={handleConfirmPassword}
                 placeholder={t('register.confirmPassword')}
               />

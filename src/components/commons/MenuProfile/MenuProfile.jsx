@@ -1,20 +1,27 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Link, useHistory } from 'react-router-dom'
-import { LOGIN, USER_PROFILE } from 'routing/routes'
+import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
+import { LOGIN } from 'routing/routes'
+import UserContext from 'Context/UserContext'
 import styles from './menuProfile.scss'
 
 const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
   const history = useHistory()
   const { t } = useTranslation()
-
   const handleLogout = useCallback(() => {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     history.push(LOGIN)
     window.location.reload()
+  }, [])
+
+  const goToProfile = useCallback(() => {
+    history.push(`/`)
+    history.push(`profile/${authStore.user._id}`)
   }, [])
 
   return (
@@ -23,12 +30,12 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
       className={c(styles.containerMenu, viewMenuProfile && styles.viewMenu)}
     >
       <div className={styles.contentButtos}>
-        <Link to={USER_PROFILE} className={styles.buttons}>
+        <div onClick={goToProfile} className={styles.buttons}>
           {t('menuProfile.profile')}
-        </Link>
-        <Link onClick={handleLogout} className={styles.buttons}>
+        </div>
+        <div onClick={handleLogout} className={styles.buttons}>
           {t('menuProfile.logout')}
-        </Link>
+        </div>
       </div>
     </div>
   )

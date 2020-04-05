@@ -1,20 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Navbar from 'components/commons/Navbar'
 import { Link } from 'react-router-dom'
 import { CREATE_PET, PROFILE } from 'routing/routes'
-import UserContext from 'Context/UserContext'
 import LayoutContainerCard from 'components/commons/LayoutContainerCard'
 import iconProfesionals from './businessman.svg'
 import styles from './dashboard.scss'
 
 const Dashboard = () => {
-  const rootStore = useContext(UserContext)
-  const { optionsSelectsStore, searchPetsStore } = rootStore
-
   return (
-    <>
-      <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+    <Navbar>
       <LayoutContainer>
         <div className={styles.container}>
           <Link to={PROFILE}>
@@ -57,7 +52,7 @@ const Dashboard = () => {
           </div>
         </div>
       </LayoutContainer>
-    </>
+    </Navbar>
   )
 }
 

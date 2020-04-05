@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+      <Navbar />
       <LayoutContainer>
         <InitialLogo />
         <Title timeAnimation={3600} title={t('home.title')} subTitle={t('home.subTitle')} />

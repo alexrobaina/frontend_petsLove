@@ -128,6 +128,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       </div>
       <div className={styles.containerCheckbox}>
         <InputCheckbox
+          isEdit
           value={searchPetsStore.lost}
           handleChange={handleSetLost}
           text={t('filterNavbar.lost')}
@@ -135,6 +136,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       </div>
       <div className={styles.containerCheckbox}>
         <InputCheckbox
+          isEdit
           value={searchPetsStore.urgent}
           handleChange={handleSetUrgent}
           text={t('filterNavbar.urgent')}
@@ -142,6 +144,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       </div>
       <div className={styles.containerCheckbox}>
         <InputCheckbox
+          isEdit
           value={searchPetsStore.dewormed}
           handleChange={handleSetDewormed}
           text={t('filterNavbar.dewormed')}
@@ -149,6 +152,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       </div>
       <div className={styles.containerCheckbox}>
         <InputCheckbox
+          isEdit
           value={searchPetsStore.vaccianated}
           handleChange={handleSetVaccianated}
           text={t('filterNavbar.vaccianated')}
@@ -156,6 +160,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
       </div>
       <div className={styles.containerCheckbox}>
         <InputCheckbox
+          isEdit
           value={searchPetsStore.sterilized}
           handleChange={handleSetSterilized}
           text={t('filterNavbar.sterilized')}

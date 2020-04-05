@@ -2,16 +2,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './textarea.scss'
 
-const Textarea = ({ handleChange, placeholder, rows, cols, isError }) => {
+const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isError }) => {
   return (
     <>
-      <textarea
-        className={styles.textarea}
-        rows={rows}
-        cols={cols}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
+      {isEdit ? (
+        <textarea
+          className={styles.textarea}
+          rows={rows}
+          cols={cols}
+          defaultValue={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+        />
+      ) : (
+        <>
+          {value ? (
+            <>
+              <label className={styles.label}>{placeholder}</label>
+              <div className={styles.value}>{value}</div>
+            </>
+          ) : (
+            <>
+              <label className={styles.label}>{placeholder}</label>
+              <div className={styles.value}>-</div>
+            </>
+          )}
+        </>
+      )}
       {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
     </>
   )
@@ -22,13 +39,17 @@ Textarea.propTypes = {
   rows: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string,
   isError: PropTypes.bool,
+  isEdit: PropTypes.bool,
 }
 
 Textarea.defaultProps = {
   cols: '4',
   rows: '4',
+  value: '',
   isError: false,
+  isEdit: false,
 }
 
 export default Textarea
