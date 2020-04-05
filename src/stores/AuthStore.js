@@ -6,7 +6,6 @@ class AuthStore {
   constructor() {
     this.authService = new AuthService()
     this.validateToken()
-    this.getUser()
   }
 
   @observable token = ''
@@ -45,6 +44,21 @@ class AuthStore {
         this.isLoading = false
         this.isErrorLogin = true
         this.isLogin = false
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async loadUser(id) {
+    try {
+      const response = await this.authService.getUserId(id)
+
+      runInAction(() => {
+        this.user = response
+      })
+    } catch (e) {
+      runInAction(() => {
         console.log(e)
       })
     }

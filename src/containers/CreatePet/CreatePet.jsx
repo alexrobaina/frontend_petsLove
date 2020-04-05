@@ -19,7 +19,7 @@ import styles from './createPet.scss'
 const CreatePet = () => {
   const { t } = useTranslation()
   const rootStore = useContext(UserContext)
-  const { optionsSelectsStore, searchPetsStore } = rootStore
+  const { optionsSelectsStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
 
   const [previews, setPreviews] = useState([])
@@ -84,8 +84,7 @@ const CreatePet = () => {
   }, [])
 
   return (
-    <>
-      <Navbar optionsSelectsStore={optionsSelectsStore} searchPetsStore={searchPetsStore} />
+    <Navbar>
       <LayoutContainer>
         <Title title={t('createPet.title')} subTitle={t('createPet.subtitle')} />
         <div className={styles.containerImagePreview}>
@@ -194,7 +193,7 @@ const CreatePet = () => {
         </div>
         <Footer />
       </LayoutContainer>
-    </>
+    </Navbar>
   )
 }
 

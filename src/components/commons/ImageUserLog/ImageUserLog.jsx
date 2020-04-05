@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import noImg from './noimg.png'
+import { SERVER } from 'services/config'
+import UserContext from 'Context/UserContext'
 import styles from './imageUserLog.scss'
 
-const ImageUserLog = ({ handleToggleMenu, isUserLogin, imgUser, isProfile }) => {
+const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
+
   return (
     <div onMouseUp={handleToggleMenu}>
       {isUserLogin && (
         <img
           className={c(isProfile ? styles.imageProfile : styles.userImage)}
-          src={imgUser}
+          src={`${SERVER}/${authStore.user.image}`}
           alt="user"
         />
       )}
@@ -21,13 +25,11 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, imgUser, isProfile }) => 
 ImageUserLog.propTypes = {
   isUserLogin: PropTypes.bool,
   isProfile: PropTypes.bool,
-  imgUser: PropTypes.string,
 }
 
 ImageUserLog.defaultProps = {
   isUserLogin: false,
   isProfile: false,
-  imgUser: noImg,
 }
 
 export default ImageUserLog

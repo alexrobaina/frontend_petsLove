@@ -1,14 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import LayoutContainer from '../LayoutContainer'
+import Navbar from '../Navbar/Navbar'
 
 const PageNotFound = ({ image, title, text }) => {
   return (
-    <div>
-      notfound
-      {image}
-      {title}
-      {text}
-    </div>
+    <>
+      <Navbar />
+      <LayoutContainer>
+        notfound
+        {image}
+        {title}
+        {text}
+      </LayoutContainer>
+    </>
   )
 }
 

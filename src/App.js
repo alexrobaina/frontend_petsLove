@@ -11,21 +11,27 @@ import {
   CREATE_PET,
   PROFILE_PET,
   USER_PROFILE,
+  USER_TRANSIT,
+  PETS_ADOPTER,
+  MY_PETS,
 } from 'routing/routes'
-import Login from 'containers/Login'
-import Register from 'containers/Register'
 import RootStore from 'stores/RootStore'
-import Home from 'containers/Home'
-import ForgotPassword from 'containers/ForgotPassword'
-import Dashboard from 'containers/Dashboard'
-import UserContext from 'Context/UserContext'
 import PageNotFound from 'components/commons/PageNotFound'
+import UserContext from 'Context/UserContext'
+import ForgotPassword from 'containers/ForgotPassword'
+import ProfilePets from 'containers/ProfilePets'
+import ProfileUser from 'containers/ProfileUser'
+import TransitUser from 'containers/TransitUser'
+import PetsAdopted from 'containers/PetsAdopted'
+import MyPets from 'containers/MyPets/MyPets'
+import Dashboard from 'containers/Dashboard'
+import CreatePet from 'containers/CreatePet'
+import Register from 'containers/Register'
+import Login from 'containers/Login'
+import Home from 'containers/Home'
 import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
-import CreatePet from './containers/CreatePet'
-import ProfilePets from './containers/ProfilePets/ProfilePets'
-import ProfileUser from './containers/ProfileUser'
 
 const rootStore = new RootStore()
 
@@ -60,6 +66,27 @@ function App() {
             redirectPath={LOGIN}
             path={USER_PROFILE}
             component={ProfileUser}
+          />
+          <PrivateRoute
+            exact
+            isLogin={rootStore.authStore.isLogin}
+            redirectPath={LOGIN}
+            path={USER_TRANSIT}
+            component={TransitUser}
+          />
+          <PrivateRoute
+            exact
+            isLogin={rootStore.authStore.isLogin}
+            redirectPath={LOGIN}
+            path={PETS_ADOPTER}
+            component={PetsAdopted}
+          />
+          <PrivateRoute
+            exact
+            isLogin={rootStore.authStore.isLogin}
+            redirectPath={LOGIN}
+            path={MY_PETS}
+            component={MyPets}
           />
           <Route component={PageNotFound} />
         </Switch>

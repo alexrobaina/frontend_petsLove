@@ -3,19 +3,42 @@ import PropTypes from 'prop-types'
 import Title from 'components/commons/Title'
 import styles from './inputCheckbox.scss'
 
-const InputCheckbox = ({ text, handleChange, value }) => {
+const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
   return (
-    <label className={styles.container}>
-      {text}
-      <input onChange={handleChange} checked={value} type="checkbox" />
-      <span className={styles.checkmark} />
-    </label>
+    <>
+      {isEdit && (
+        <label className={styles.container}>
+          {text}
+          <input onChange={handleChange} type="checkbox" />
+          <span className={styles.checkmark} />
+        </label>
+      )}
+      <>
+        {isEdit === false && (
+          <>
+            <label className={styles.label}>{text}</label>
+            {value ? (
+              <div className={styles.value}>Yes</div>
+            ) : (
+              <div className={styles.value}>No</div>
+            )}
+          </>
+        )}
+      </>
+    </>
   )
 }
 
 Title.propTypes = {
   text: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  isEdit: PropTypes.bool,
+}
+
+Title.defaultProps = {
+  value: '',
+  isEdit: false,
 }
 
 export default InputCheckbox

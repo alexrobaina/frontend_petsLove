@@ -124,8 +124,9 @@
     "titleSuccess": "Great. :D.",
     "sendEmailSuccess": "Your email was sent successfully! If the phone is available you can write to the protectionist",
     "title": "My name is {{ name }}",
-    "contactMessage": "Podés escribir por whatsapp para adoptar a {{ name }}. Telefono del proteccionista: {{ phone }}",
-    "notFoundNumber": "No encontramos su numero"
+    "notImage": "This pet has no images",
+    "history": "History",
+    "requiredToAdoption": "Required to Adoption"
   },
   "menuProfile": {
     "profile": "Profile",
@@ -133,24 +134,24 @@
     "dashboard": "Dashboard"
   },
   "createPet": {
-    "title": "Crear una mascta",
-    "subtitle": "Es muy importante que complete todos los campos",
-    "placeholderImages": "Agregue imágenes de la mascota",
-    "placeholderName": "Nombre de la mascota",
-    "country": "País",
-    "city": "Ciudad",
-    "categoryPets": "Tipo de mascota",
-    "messageMap": "Esta es la dirección de la mascota",
-    "urgent": "Necesita ayuda urgente",
-    "lost": "Es una mascota perdida",
-    "sterilized": "Está esterilizada",
-    "vaccinated": "Está vacunada",
-    "gender": "Genero",
-    "age": "Edad",
-    "history": "Historia",
-    "RequiredToAdoption": "Requisitos para adoptar",
-    "activity": "Nivel de actividad",
-    "buttonCreation": "Crear mascota"
+    "title": "Create Pet",
+    "subtitle": "Its very important complete all inputs",
+    "placeholderImages": "Add images pet",
+    "placeholderName": "Pet Name",
+    "country": "country",
+    "city": "city",
+    "categoryPets": "Type pet",
+    "messageMap": "This is location pet",
+    "urgent": "Need help urgent",
+    "lost": "The pet is lost",
+    "sterilized": "Its sterilized",
+    "vaccinated": "Its vaccinated",
+    "gender": "Gender",
+    "age": "Age",
+    "history": "History",
+    "RequiredToAdoption": "Required for adopt",
+    "activity": "Level activity",
+    "buttonCreation": "Create Pet"
   },
   "last": {
     "last": "last"

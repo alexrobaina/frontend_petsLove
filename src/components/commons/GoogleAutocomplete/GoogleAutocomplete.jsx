@@ -4,7 +4,14 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import styles from './googleAutocomplete.scss'
 
-const GoogleAutocomplete = ({ handleChangeLocation }) => {
+const GoogleAutocomplete = ({
+  handleChangeAddress,
+  handleChangeLocation,
+  placeholder,
+  value,
+  isEdit,
+  label,
+}) => {
   const [address, setAddress] = useState('')
 
   // eslint-disable-next-line no-shadow
@@ -14,6 +21,7 @@ const GoogleAutocomplete = ({ handleChangeLocation }) => {
 
   // eslint-disable-next-line no-shadow
   const handleSelect = useCallback(address => {
+    handleChangeAddress(address)
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => handleChangeLocation(latLng))
@@ -25,12 +33,23 @@ const GoogleAutocomplete = ({ handleChangeLocation }) => {
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
         return (
           <div>
-            <input
-              className={styles.input}
-              {...getInputProps({
-                placeholder: 'Search your address...',
-              })}
-            />
+            {isEdit === false ? (
+              <>
+                <label className={styles.label}>{label}</label>
+                {value ? (
+                  <div className={styles.value}>{value}</div>
+                ) : (
+                  <div className={styles.value}>-</div>
+                )}
+              </>
+            ) : (
+              <input
+                className={styles.input}
+                {...getInputProps({
+                  placeholder,
+                })}
+              />
+            )}
             <div className={styles.dropdown}>
               {loading && <div className={styles.text}>Loading...</div>}
               {suggestions.map(suggestion => {
@@ -64,6 +83,15 @@ const GoogleAutocomplete = ({ handleChangeLocation }) => {
 
 GoogleAutocomplete.propTypes = {
   handleChangeLocation: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  isEdit: PropTypes.bool,
+}
+
+GoogleAutocomplete.defaultProps = {
+  value: '',
+  isEdit: false,
 }
 
 export default GoogleApiWrapper({

@@ -82,7 +82,7 @@
   }
 }
 
-.colInpur {
+.colInput {
   margin-top: 30px;
   width: 48%;
 
@@ -91,7 +91,16 @@
   }
 }
 
-.colGoogle {
+.colCheckBox {
+  margin-top: 30px;
+  width: 48%;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
+
+.colbig {
   margin-top: 30px;
   width: 100%;
 }
@@ -102,10 +111,4 @@
   color: $title;
   text-align: center;
   margin-top: 30px;
-}
-
-.buttonSave {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
 }

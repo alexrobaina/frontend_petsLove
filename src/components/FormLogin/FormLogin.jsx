@@ -40,10 +40,22 @@ const FormLogin = () => {
           <div className={styles.errorLogin}>{t('login.errorLogin')}</div>
         )}
         <div className={styles.inputForm}>
-          <Input type="text" handleChange={handleEmail} placeholder={t('login.email')} />
+          <Input
+            canEdit
+            isEdit
+            type="text"
+            handleChange={handleEmail}
+            placeholder={t('login.email')}
+          />
         </div>
         <div className={styles.inputForm}>
-          <Input type="password" handleChange={handlePassword} placeholder={t('login.password')} />
+          <Input
+            canEdit
+            isEdit
+            type="password"
+            handleChange={handlePassword}
+            placeholder={t('login.password')}
+          />
         </div>
         <div className={styles.buttonLogin}>
           <Button handleClick={login} bigButton text={t('login.login')} />

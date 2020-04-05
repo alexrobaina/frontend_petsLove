@@ -1,18 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdPets, MdDashboard, MdAssignmentInd, MdMenu } from 'react-icons/md'
-import { FaHandHoldingHeart } from 'react-icons/fa'
-import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
-import ButtonIcon from '../ButtonIcon'
+import { MdPets, MdDashboard, MdMenu } from 'react-icons/md'
+import { FaClipboardList, FaHandHoldingHeart } from 'react-icons/fa'
+import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
-import styles from './buttonMenu.scss'
+import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
+import styles from './buttonsMenuNavBar.scss'
 
-const routesUser = [
-  {
-    icon: <MdAssignmentInd size={25} />,
-    text: 'My profile',
-    link: '/profile',
-  },
+const routesUserProtectionist = [
   {
     icon: <MdDashboard size={25} />,
     text: 'Dashboard',
@@ -20,17 +15,22 @@ const routesUser = [
   },
   {
     icon: <FaHandHoldingHeart size={25} />,
-    text: 'Transit home',
-    link: '/transit-home',
+    text: 'Transit user',
+    link: '/user-transit',
   },
   {
     icon: <MdPets size={25} />,
     text: 'Pets adopted',
-    link: '/adopted',
+    link: '/pets-adopted',
+  },
+  {
+    icon: <FaClipboardList size={25} />,
+    text: 'My pets',
+    link: '/my-pets',
   },
 ]
 
-const ButtonMenu = ({ handleMenu }) => {
+const ButtonsMenuNavBar = ({ handleMenu }) => {
   const [toggleViewMenuUser, setHandleToggleViewMenuUser] = useState(false)
 
   const handleToggleViewMenuUser = useCallback(() => {
@@ -43,11 +43,11 @@ const ButtonMenu = ({ handleMenu }) => {
         <ButtonIcon onclick={handleToggleViewMenuUser} icon={<MdMenu size={25} />} />
       </div>
       <ToggleNavegationUser
-        routesUser={routesUser}
+        routesUser={routesUserProtectionist}
         handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
       />
-      {routesUser.map(route => (
+      {routesUserProtectionist.map(route => (
         <div className={styles.containerLinks}>
           <LinkNavbarUser route={route} handleMenu={handleMenu} />
         </div>
@@ -56,8 +56,8 @@ const ButtonMenu = ({ handleMenu }) => {
   )
 }
 
-ButtonMenu.propTypes = {
+ButtonsMenuNavBar.propTypes = {
   handleMenu: PropTypes.func.isRequired,
 }
 
-export default ButtonMenu
+export default ButtonsMenuNavBar

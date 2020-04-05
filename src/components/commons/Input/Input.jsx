@@ -4,6 +4,7 @@ import styles from './input.scss'
 
 const Input = ({
   isEdit,
+  canEdit,
   value,
   required,
   handleChange,
@@ -15,7 +16,7 @@ const Input = ({
 }) => {
   return (
     <>
-      {isEdit ? (
+      {isEdit && canEdit ? (
         <>
           <input
             multiple={multiple}
@@ -24,6 +25,7 @@ const Input = ({
             type={type}
             placeholder={placeholder}
             onChange={handleChange}
+            defaultValue={value}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>
@@ -33,7 +35,11 @@ const Input = ({
       ) : (
         <>
           <label className={styles.label}>{placeholder}</label>
-          <div className={styles.value}>{value}</div>
+          {value ? (
+            <div className={styles.value}>{value}</div>
+          ) : (
+            <div className={styles.value}>-</div>
+          )}
         </>
       )}
     </>
@@ -48,11 +54,13 @@ Input.propTypes = {
   isError: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
   isEdit: PropTypes.bool,
+  canEdit: PropTypes.bool,
   value: PropTypes.string,
 }
 
 Input.defaultProps = {
   isEdit: false,
+  canEdit: false,
   value: '',
   type: 'text',
   isError: false,

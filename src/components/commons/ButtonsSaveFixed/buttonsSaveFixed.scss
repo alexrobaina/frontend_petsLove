@@ -1,0 +1,17 @@
+
+.buttonsContainer {
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+  z-index: 2500;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
