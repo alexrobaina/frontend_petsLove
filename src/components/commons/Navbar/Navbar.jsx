@@ -14,6 +14,7 @@ import ListPets from 'components/ListPets'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import ButtonIcon from 'components/commons/ButtonIcon'
+import LayoutContainer from 'components/commons/LayoutContainer'
 import ToggleFilter from './ToggleFilter/ToggleFilter'
 import ToggleMenuUser from './ToggleMenuUser/ToggleMenuUser'
 import styles from './navbar.scss'
@@ -45,8 +46,9 @@ const Navbar = ({ children }) => {
   })
 
   useEffect(() => {
-    authStore.getUser()
-    authStore.loadUser(authStore.user._id)
+    if (authStore.user) {
+      authStore.loadUser(authStore.user._id)
+    }
 
     if (!viewMenuProfile) {
       setTimeout(() => {
@@ -58,7 +60,7 @@ const Navbar = ({ children }) => {
   const handleMenu = useCallback(link => {
     history.push(link)
   }, [])
-  console.log(searchPetsStore.pets)
+
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -109,7 +111,7 @@ const Navbar = ({ children }) => {
         toggle={toggle}
       />
       {!searchPetsStore.pets ? (
-        <>{children}</>
+        <>{!searchPetsStore.isError && <>{children}</>}</>
       ) : (
         <ListPets
           handleDelete={deleteFilter}
@@ -118,8 +120,12 @@ const Navbar = ({ children }) => {
           isLoading={searchPetsStore.isLoading}
         />
       )}
-      {searchPetsStore.isError && <ErrorMessage text={t('errorMessage')} typeMessage="warning" />}
       <div className={c(toggle && styles.showShadowBack)} onClick={() => setToggle(!toggle)} />
+      {searchPetsStore.isError && (
+        <LayoutContainer>
+          <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
+        </LayoutContainer>
+      )}
     </>
   )
 }

@@ -6,6 +6,7 @@ class AuthStore {
   constructor() {
     this.authService = new AuthService()
     this.validateToken()
+    this.getUser()
   }
 
   @observable token = ''
@@ -50,12 +51,13 @@ class AuthStore {
   }
 
   @action
-  async loadUser(id) {
+  async loadUser() {
     try {
-      const response = await this.authService.getUserId(id)
+      const response = await this.authService.getUserId(this.user._id)
 
       runInAction(() => {
         this.user = response
+        this.setUser(response)
       })
     } catch (e) {
       runInAction(() => {
@@ -78,8 +80,8 @@ class AuthStore {
     localStorage.setItem('token', this.token)
   }
 
-  setUser = () => {
-    localStorage.setItem('user', JSON.stringify(this.user))
+  setUser = (user) => {
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   @action

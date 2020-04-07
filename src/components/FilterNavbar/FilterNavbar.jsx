@@ -1,14 +1,17 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
+import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) => {
+const FilterNavbar = ({ handleToggle }) => {
+  const rootStore = useContext(UserContext)
+  const { searchPetsStore, optionsSelectsStore } = rootStore
   const { t } = useTranslation()
 
   const handleSetLocation = useCallback(selectedValue => {

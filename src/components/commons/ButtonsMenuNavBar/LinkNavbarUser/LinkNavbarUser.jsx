@@ -31,7 +31,7 @@ const LinkNavbarUser = ({ route, handleMenu }) => {
 }
 
 LinkNavbarUser.propTypes = {
-  route: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  route: PropTypes.object.isRequired,
   handleMenu: PropTypes.bool.isRequired,
 }
 

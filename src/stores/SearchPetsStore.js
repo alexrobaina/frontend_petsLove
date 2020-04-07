@@ -195,7 +195,6 @@ class SearchPetsStore {
       runInAction(() => {
         this.pets = response
         this.setLoadingFalse()
-
         this.isFilter = true
       })
     } catch (e) {
@@ -283,6 +282,11 @@ class SearchPetsStore {
   setSterilized() {
     this.sterilizedText = 'sterilized'
     this.sterilized = !this.sterilized
+  }
+
+  @action
+  setIsError() {
+    this.isError = false
   }
 }
 

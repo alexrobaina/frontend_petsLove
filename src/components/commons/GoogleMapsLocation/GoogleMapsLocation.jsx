@@ -13,7 +13,7 @@ const GoogleMapsLocation = observer(
       setActiveMarker(marker)
       setShowingInfoWindow(true)
     }
-
+    console.log(location)
     return (
       <div className={styles.containerMap}>
         <Map

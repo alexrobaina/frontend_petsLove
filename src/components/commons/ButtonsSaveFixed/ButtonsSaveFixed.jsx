@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MdEdit, MdSave } from 'react-icons/md'
-import EditUserStore from 'stores/EditUserStore'
 import Button from 'components/commons/Button'
 import styles from './buttonsSaveFixed.scss'
 
-const ButtonsSaveFixed = ({ handleSave, editUserStore, handleCancelEdit, handleEdit }) => {
+const ButtonsSaveFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit }) => {
   return (
     <div className={styles.buttonsContainer}>
       <div className={styles.button}>
         <Button handleClick={handleSave} text="Save Change" icon={<MdSave size={20} />} />
       </div>
-      {editUserStore.isEdit ? (
+      {isEdit ? (
         <div className={styles.button}>
           <Button handleClick={handleCancelEdit} text="Cancel Edit" icon={<MdEdit size={20} />} />
         </div>
@@ -25,7 +24,8 @@ const ButtonsSaveFixed = ({ handleSave, editUserStore, handleCancelEdit, handleE
 }
 
 ButtonsSaveFixed.propTypes = {
-  editUserStore: PropTypes.instanceOf(EditUserStore).isRequired,
+  store: PropTypes.node.isRequired,
+  isEdit: PropTypes.bool.isRequired,
 }
 
 export default ButtonsSaveFixed

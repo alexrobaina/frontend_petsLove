@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdPets, MdDashboard, MdMenu } from 'react-icons/md'
+import { MdPets, MdDashboard, MdMenu, MdSearch } from 'react-icons/md'
 import { FaClipboardList, FaHandHoldingHeart } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
@@ -12,6 +12,11 @@ const routesUserProtectionist = [
     icon: <MdDashboard size={25} />,
     text: 'Dashboard',
     link: '/dashboard',
+  },
+  {
+    icon: <MdSearch size={25} />,
+    text: 'Search pets',
+    link: '/',
   },
   {
     icon: <FaHandHoldingHeart size={25} />,
@@ -48,7 +53,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         toggleViewMenuUser={toggleViewMenuUser}
       />
       {routesUserProtectionist.map(route => (
-        <div className={styles.containerLinks}>
+        <div key={route.link} className={styles.containerLinks}>
           <LinkNavbarUser route={route} handleMenu={handleMenu} />
         </div>
       ))}

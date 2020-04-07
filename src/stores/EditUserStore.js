@@ -47,6 +47,9 @@ class EditUserStore {
       runInAction(() => {
         this.user = response
         this.loadUser(this.user._id)
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
       })
     } catch (e) {
       runInAction(() => {

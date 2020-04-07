@@ -83,13 +83,15 @@ const GoogleAutocomplete = ({
 
 GoogleAutocomplete.propTypes = {
   handleChangeLocation: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   isEdit: PropTypes.bool,
 }
 
 GoogleAutocomplete.defaultProps = {
+  placeholder: '',
+  label: '',
   value: '',
   isEdit: false,
 }

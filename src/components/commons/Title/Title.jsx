@@ -12,7 +12,7 @@ const Title = ({ title, subTitle, timeAnimation, withMargin, mTop }) => {
       animationIn="fadeIn"
       animationInDelay={timeAnimation}
       animationOut="fadeIn"
-      isVisible="true"
+      isVisible
     >
       <div style={marginTop} className={c(styles.container, withMargin && styles.withMargin)}>
         <h1 className={styles.title}>{title}</h1>

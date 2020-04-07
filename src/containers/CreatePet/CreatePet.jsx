@@ -15,6 +15,7 @@ import Navbar from 'components/commons/Navbar'
 import UserContext from 'Context/UserContext'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
+import ButtonsSaveFixed from '../../components/commons/ButtonsSaveFixed'
 
 const CreatePet = () => {
   const { t } = useTranslation()
@@ -76,6 +77,14 @@ const CreatePet = () => {
     createPetStore.setActivity(selectedValue)
   }, [])
 
+  const handleCancelEdit = useCallback(() => {
+    createPetStore.setIsEdit()
+  }, [])
+
+  const handleEdit = useCallback(() => {
+    createPetStore.setIsEdit()
+  }, [])
+
   useEffect(() => {
     optionsSelectsStore.listContries()
     optionsSelectsStore.listGender()
@@ -97,19 +106,26 @@ const CreatePet = () => {
         </div>
         <div className={styles.containerForm}>
           <div className={styles.colLarge}>
-            <div className={styles.label}>{t('createPet.placeholderImages')}</div>
             <Input
-              multiple="true"
+              isEdit={createPetStore.isEdit}
+              multiple
               handleChange={handleImageChange}
               type="file"
               placeholder={t('createPet.placeholderImages')}
+              value={createPetStore.image}
             />
           </div>
           <div className={styles.col}>
-            <Input handleChange={handleChangeName} placeholder={t('createPet.placeholderName')} />
+            <Input
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.name}
+              handleChange={handleChangeName}
+              placeholder={t('createPet.placeholderName')}
+            />
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
               options={optionsSelectsStore.countries}
               handleChange={handleChangeCountry}
               placeholder={t('createPet.country')}
@@ -117,6 +133,7 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
               options={optionsSelectsStore.cities}
               handleChange={handleChangeCity}
               placeholder={t('createPet.city')}
@@ -124,6 +141,7 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
               options={optionsSelectsStore.categories}
               handleChange={handleChangeCategory}
               placeholder={t('createPet.categoryPets')}
@@ -139,26 +157,54 @@ const CreatePet = () => {
                 />
               </div>
             )}
-            <GoogleAutocomplete handleChangeLocation={handleChangeLocation} />
+            <GoogleAutocomplete
+              placeholder="Add address pet"
+              label="Address pet"
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.textAddress}
+              handleChangeLocation={handleChangeLocation}
+            />
           </div>
           <div className={styles.colContainerCheckbox}>
             <div className={styles.colCheckbox}>
-              <InputCheckbox text={t('createPet.urgent')} />
+              <InputCheckbox
+                isEdit={createPetStore.isEdit}
+                canEdit
+                value={createPetStore.urgent}
+                text={t('createPet.urgent')}
+              />
             </div>
             <div className={styles.colCheckbox}>
-              <InputCheckbox text={t('createPet.lost')} />
+              <InputCheckbox
+                isEdit={createPetStore.isEdit}
+                canEdit
+                value={createPetStore.lost}
+                text={t('createPet.lost')}
+              />
             </div>
           </div>
           <div className={styles.colContainerCheckbox}>
             <div className={styles.colCheckbox}>
-              <InputCheckbox text={t('createPet.sterilized')} />
+              <InputCheckbox
+                isEdit={createPetStore.isEdit}
+                canEdit
+                value={createPetStore.sterilized}
+                text={t('createPet.sterilized')}
+              />
             </div>
             <div className={styles.colCheckbox}>
-              <InputCheckbox text={t('createPet.vaccinated')} />
+              <InputCheckbox
+                isEdit={createPetStore.isEdit}
+                canEdit
+                value={createPetStore.vaccinated}
+                text={t('createPet.vaccinated')}
+              />
             </div>
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.gender}
               options={optionsSelectsStore.gender}
               handleChange={handleChangeGender}
               placeholder={t('createPet.gender')}
@@ -166,30 +212,48 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.age}
               options={optionsSelectsStore.ages}
               handleChange={handleChangeAge}
               placeholder={t('createPet.age')}
             />
           </div>
           <div className={styles.col}>
-            <Textarea handleChange={handleChangeHistory} placeholder={t('createPet.history')} />
+            <Textarea
+              isEdit={createPetStore.isEdit}
+              rows={4}
+              canEdit
+              value={createPetStore.history}
+              handleChange={handleChangeHistory}
+              placeholder={t('createPet.history')}
+            />
           </div>
           <div className={styles.col}>
             <Textarea
+              isEdit={createPetStore.isEdit}
+              rows={4}
+              canEdit
+              value={createPetStore.requiredToAdoption}
               handleChange={handleChangeRequired}
               placeholder={t('createPet.RequiredToAdoption')}
             />
           </div>
           <div className={styles.col}>
             <InputSelect
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.activity}
               options={optionsSelectsStore.activity}
               handleChange={handleChangeActivity}
               placeholder={t('createPet.activity')}
             />
           </div>
-          <div className={styles.containerButton}>
-            <Button bigButton text="createPet.buttonCreation" />
-          </div>
+          <ButtonsSaveFixed
+            isEdit={createPetStore.isEdit}
+            handleEdit={handleEdit}
+            // handleSave={handleSave}
+            handleCancelEdit={handleCancelEdit}
+          />
         </div>
         <Footer />
       </LayoutContainer>

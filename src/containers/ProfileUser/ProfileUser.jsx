@@ -73,7 +73,6 @@ const ProfileUser = () => {
 
   const handleSave = useCallback(() => {
     editUserStore.saveUser(authStore.user._id)
-    window.location.reload()
   }, [])
 
   useEffect(() => {
@@ -198,7 +197,7 @@ const ProfileUser = () => {
           </div>
         </div>
         <ButtonsSaveFixed
-          editUserStore={editUserStore}
+          isEdit={editUserStore.isEdit}
           handleEdit={handleEdit}
           handleSave={handleSave}
           handleCancelEdit={handleCancelEdit}

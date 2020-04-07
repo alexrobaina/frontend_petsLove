@@ -18,6 +18,7 @@ class CreatePetStore {
   @observable activity = ''
   @observable isLoading = false
   @observable isError = false
+  @observable isEdit = false
   @observable defaultLocation = { lat: '-34.603722', lng: '-58.381592' }
 
   @action
@@ -87,6 +88,12 @@ class CreatePetStore {
   @action
   setActivity(value) {
     this.activity = value
+  }
+
+  @action
+  setIsEdit() {
+    this.isEdit = !this.isEdit
+    console.log(this.isEdit)
   }
 }
 
