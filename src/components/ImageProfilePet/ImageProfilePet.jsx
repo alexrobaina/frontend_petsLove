@@ -5,12 +5,12 @@ import { SERVER } from 'services/config'
 import noImage from '../commons/CardPets/noImage.svg'
 import styles from './imageProfilePet.scss'
 
-const ImageProfilePet = ({ petIdStore }) => {
+const ImageProfilePet = ({ images }) => {
   return (
     <div>
       <img
         className={styles.imagePet}
-        src={petIdStore.images !== [] ? `${SERVER}/${petIdStore.images[0]}` : noImage}
+        src={images.length > 0 ? `${SERVER}/${images[0]}` : noImage}
         alt="photos-pet"
       />
     </div>
@@ -18,7 +18,7 @@ const ImageProfilePet = ({ petIdStore }) => {
 }
 
 ImageProfilePet.propTypes = {
-  petIdStore: PropTypes.node.isRequired,
+  images: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
 
 export default observer(ImageProfilePet)

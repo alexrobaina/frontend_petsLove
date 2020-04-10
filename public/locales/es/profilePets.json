@@ -1,0 +1,18 @@
+{
+  "sendEmailError": "Ocurrió un error. Por favor intente enviar el mensaje de nuevo.",
+  "titleError": "Error!",
+  "titleSuccess": "Genial :D",
+  "sendEmailSuccess": "Tu email fué enviado con exito! Si el telefono está disponible podes escribirle al proteccionista",
+  "title": "Mi nombre es {{ name }}",
+  "notImage": "Esta mascota no tiene imagenes",
+  "requiredToAdoption": "Requisitos pada adoptar",
+  "age": "Edad",
+  "category": "Tipo de mascota",
+  "gender": "Genero",
+  "activity": "Nivel de actividad",
+  "lost": "Esta Perdida",
+  "vaccinated": "Vacunado",
+  "urgent": "Urgente",
+  "sterilized": "Esterilizado",
+  "last": "last"
+}

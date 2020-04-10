@@ -1,0 +1,8 @@
+{
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "forgotPassword": "Forgot password",
+    "singIn": "Sing In",
+    "errorLogin": "Wrong email or password"
+}

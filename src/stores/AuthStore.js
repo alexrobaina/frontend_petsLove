@@ -80,7 +80,7 @@ class AuthStore {
     localStorage.setItem('token', this.token)
   }
 
-  setUser = (user) => {
+  setUser = user => {
     localStorage.setItem('user', JSON.stringify(user))
   }
 

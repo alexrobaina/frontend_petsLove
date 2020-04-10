@@ -11,7 +11,7 @@ import styles from './formLogin.scss'
 
 const FormLogin = () => {
   const rootStore = useContext(UserContext)
-  const { t } = useTranslation()
+  const { t } = useTranslation('formLogin')
   const history = useHistory()
 
   const handleEmail = useCallback(e => {
@@ -35,9 +35,9 @@ const FormLogin = () => {
   return (
     <div className={styles.login}>
       <div className={styles.centerLogin}>
-        <div className={styles.title}>{t('login.login')}</div>
+        <div className={styles.title}>{t('login')}</div>
         {rootStore.authStore.isErrorLogin && (
-          <div className={styles.errorLogin}>{t('login.errorLogin')}</div>
+          <div className={styles.errorLogin}>{t('errorLogin')}</div>
         )}
         <div className={styles.inputForm}>
           <Input
@@ -45,7 +45,7 @@ const FormLogin = () => {
             isEdit
             type="text"
             handleChange={handleEmail}
-            placeholder={t('login.email')}
+            placeholder={t('email')}
           />
         </div>
         <div className={styles.inputForm}>
@@ -54,11 +54,11 @@ const FormLogin = () => {
             isEdit
             type="password"
             handleChange={handlePassword}
-            placeholder={t('login.password')}
+            placeholder={t('password')}
           />
         </div>
         <div className={styles.buttonLogin}>
-          <Button handleClick={login} bigButton text={t('login.login')} />
+          <Button handleClick={login} bigButton text={t('login')} />
         </div>
         <div className={styles.buttonSocialLogin}>
           <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
@@ -66,10 +66,10 @@ const FormLogin = () => {
         </div>
         <div className={styles.forgotPassword}>
           <Link to="forgot-password" className={styles.textForgot}>
-            {t('login.forgotPassword')}
+            {t('forgotPassword')}
           </Link>
           <Link to="register" className={styles.textSingIn}>
-            {t('login.singIn')}
+            {t('singIn')}
           </Link>
         </div>
       </div>

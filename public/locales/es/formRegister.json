@@ -1,0 +1,16 @@
+{
+  "name": "Nombre",
+  "email": "Email",
+  "password": "Contraseña",
+  "confirmPassword": "Confirmar Contraseña",
+  "singIn": "Regístrate",
+  "login": "Iniciar Sesión",
+  "protectionist": "Soy proteccionista",
+  "adopter": "Quiero adoptar",
+  "lost": "Mi mascota se perdió",
+  "typeUser": "Que quieres hacer?",
+  "provider": "Soy proveedor",
+  "errorMessage": "El password es diferente",
+  "successMessage": "Genial! Podés continuar",
+  "terms": "Registrarse significa que ha leído y acepta los Términos de servicio y nuestra Política de privacidad."
+}

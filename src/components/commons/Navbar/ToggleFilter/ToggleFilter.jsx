@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { useTranslation } from 'react-i18next'
-import UserContext from 'Context/UserContext'
 import FilterNavbar from 'components/FilterNavbar'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import { MdClose } from 'react-icons/md'
@@ -18,9 +17,7 @@ const ToggleFilter = ({ handleToggle, toggle }) => {
         <div>{t('navbar.moreFilters')}</div>
       </div>
       <div className={styles.containerSelects}>
-        <FilterNavbar
-          handleToggle={handleToggle}
-        />
+        <FilterNavbar handleToggle={handleToggle} />
       </div>
     </div>
   )

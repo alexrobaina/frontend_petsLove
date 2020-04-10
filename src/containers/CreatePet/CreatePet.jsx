@@ -8,24 +8,26 @@ import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import Textarea from 'components/commons/Textarea'
 import Footer from 'components/commons/Footer/Footer'
-import Button from 'components/commons/Button'
 import CreatePetStore from 'stores/CreatePetStore'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import Navbar from 'components/commons/Navbar'
 import UserContext from 'Context/UserContext'
+import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
-import ButtonsSaveFixed from '../../components/commons/ButtonsSaveFixed'
 
 const CreatePet = () => {
-  const { t } = useTranslation()
+  const [addressLocation, setAddress] = useState({})
+  const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
-  const { optionsSelectsStore } = rootStore
+  const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
 
   const [previews, setPreviews] = useState([])
 
-  const handleImageChange = useCallback(e => {
+  const handleChangeImage = useCallback(e => {
+    createPetStore.setImage(e.target.files)
+
     const fileList = Array.from(e.target.files)
 
     const mappedFiles = fileList.map(file => ({
@@ -40,21 +42,33 @@ const CreatePet = () => {
     createPetStore.setName(e.target.value)
   }, [])
 
-  const handleChangeLocation = useCallback(location => {
-    createPetStore.setLocation(location)
-  }, [])
-
-  const handleChangeCountry = useCallback(selectedValue => {
-    optionsSelectsStore.setOptionsCities(selectedValue)
-    createPetStore.setCountry(selectedValue)
-  }, [])
-
-  const handleChangeCity = useCallback(selectedValue => {
-    createPetStore.setCity(selectedValue)
-  }, [])
-
   const handleChangeCategory = useCallback(selectedValue => {
     createPetStore.setCategory(selectedValue)
+  }, [])
+
+  const handleChangeAddress = useCallback(address => {
+    setAddress(address)
+    createPetStore.setAddress(address)
+  }, [])
+
+  const handleChangeTextAddress = useCallback(address => {
+    createPetStore.setTextAddress(address)
+  }, [])
+
+  const handleChangeUrgent = useCallback(() => {
+    createPetStore.setUrgent()
+  }, [])
+
+  const handleChangeLost = useCallback(() => {
+    createPetStore.setLost()
+  }, [])
+
+  const handleChangeSterilized = useCallback(() => {
+    createPetStore.setSterilized()
+  }, [])
+
+  const handleChangeVaccinated = useCallback(() => {
+    createPetStore.setVaccinated()
   }, [])
 
   const handleChangeGender = useCallback(selectedValue => {
@@ -81,21 +95,21 @@ const CreatePet = () => {
     createPetStore.setIsEdit()
   }, [])
 
-  const handleEdit = useCallback(() => {
-    createPetStore.setIsEdit()
+  const handleSave = useCallback(() => {
+    createPetStore.save(authStore.user._id)
   }, [])
 
   useEffect(() => {
-    optionsSelectsStore.listContries()
     optionsSelectsStore.listGender()
     optionsSelectsStore.listActiviy()
     optionsSelectsStore.listAges()
+    optionsSelectsStore.listCategories()
   }, [])
 
   return (
     <Navbar>
-      <LayoutContainer>
-        <Title title={t('createPet.title')} subTitle={t('createPet.subtitle')} />
+      <LayoutContainer title={t('title')}>
+        <Title subTitle={t('subtitle')} />
         <div className={styles.containerImagePreview}>
           <div className={styles.rowImagePets}>
             {previews &&
@@ -106,154 +120,137 @@ const CreatePet = () => {
         </div>
         <div className={styles.containerForm}>
           <div className={styles.colLarge}>
-            <Input
-              isEdit={createPetStore.isEdit}
+            <input
               multiple
-              handleChange={handleImageChange}
+              className={styles.input}
+              onChange={handleChangeImage}
               type="file"
-              placeholder={t('createPet.placeholderImages')}
-              value={createPetStore.image}
+              placeholder={t('placeholderImages')}
             />
           </div>
           <div className={styles.col}>
             <Input
-              isEdit={createPetStore.isEdit}
+              canEdit
+              isEdit
               value={createPetStore.name}
               handleChange={handleChangeName}
-              placeholder={t('createPet.placeholderName')}
+              placeholder={t('placeholderName')}
             />
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit={createPetStore.isEdit}
-              options={optionsSelectsStore.countries}
-              handleChange={handleChangeCountry}
-              placeholder={t('createPet.country')}
-            />
-          </div>
-          <div className={styles.col}>
-            <InputSelect
-              isEdit={createPetStore.isEdit}
-              options={optionsSelectsStore.cities}
-              handleChange={handleChangeCity}
-              placeholder={t('createPet.city')}
-            />
-          </div>
-          <div className={styles.col}>
-            <InputSelect
-              isEdit={createPetStore.isEdit}
+              isEdit
               options={optionsSelectsStore.categories}
               handleChange={handleChangeCategory}
-              placeholder={t('createPet.categoryPets')}
+              placeholder={t('categoryPets')}
             />
           </div>
           <div className={styles.colLarge}>
-            {createPetStore.location.lat && (
+            <GoogleAutocomplete
+              isEdit
+              label="Address pet"
+              placeholder="Add address pet"
+              handleChangeTextAddress={handleChangeTextAddress}
+              handleChangeAddress={handleChangeAddress}
+            />
+            {addressLocation.lat && (
               <div className={styles.containerMap}>
                 <GoogleMapsLocation
                   showAddress
-                  location={createPetStore.location}
-                  title={t('createPet.messageMap')}
+                  location={addressLocation}
+                  title={t('messageMap')}
                 />
               </div>
             )}
-            <GoogleAutocomplete
-              placeholder="Add address pet"
-              label="Address pet"
-              isEdit={createPetStore.isEdit}
-              value={createPetStore.textAddress}
-              handleChangeLocation={handleChangeLocation}
-            />
           </div>
           <div className={styles.colContainerCheckbox}>
             <div className={styles.colCheckbox}>
               <InputCheckbox
-                isEdit={createPetStore.isEdit}
+                isEdit
                 canEdit
+                handleChange={handleChangeUrgent}
                 value={createPetStore.urgent}
-                text={t('createPet.urgent')}
+                text={t('urgent')}
               />
             </div>
             <div className={styles.colCheckbox}>
               <InputCheckbox
-                isEdit={createPetStore.isEdit}
+                handleChange={handleChangeLost}
+                isEdit
                 canEdit
                 value={createPetStore.lost}
-                text={t('createPet.lost')}
+                text={t('lost')}
               />
             </div>
           </div>
           <div className={styles.colContainerCheckbox}>
             <div className={styles.colCheckbox}>
               <InputCheckbox
-                isEdit={createPetStore.isEdit}
+                isEdit
                 canEdit
+                handleChange={handleChangeSterilized}
                 value={createPetStore.sterilized}
-                text={t('createPet.sterilized')}
+                text={t('sterilized')}
               />
             </div>
             <div className={styles.colCheckbox}>
               <InputCheckbox
-                isEdit={createPetStore.isEdit}
+                isEdit
                 canEdit
+                handleChange={handleChangeVaccinated}
                 value={createPetStore.vaccinated}
-                text={t('createPet.vaccinated')}
+                text={t('vaccinated')}
               />
             </div>
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit={createPetStore.isEdit}
+              isEdit
               value={createPetStore.gender}
               options={optionsSelectsStore.gender}
               handleChange={handleChangeGender}
-              placeholder={t('createPet.gender')}
+              placeholder={t('gender')}
             />
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit={createPetStore.isEdit}
+              isEdit
               value={createPetStore.age}
               options={optionsSelectsStore.ages}
               handleChange={handleChangeAge}
-              placeholder={t('createPet.age')}
+              placeholder={t('age')}
             />
           </div>
           <div className={styles.col}>
             <Textarea
-              isEdit={createPetStore.isEdit}
+              isEdit
               rows={4}
               canEdit
               value={createPetStore.history}
               handleChange={handleChangeHistory}
-              placeholder={t('createPet.history')}
+              placeholder={t('history')}
             />
           </div>
           <div className={styles.col}>
             <Textarea
-              isEdit={createPetStore.isEdit}
+              isEdit
               rows={4}
               canEdit
               value={createPetStore.requiredToAdoption}
               handleChange={handleChangeRequired}
-              placeholder={t('createPet.RequiredToAdoption')}
+              placeholder={t('RequiredToAdoption')}
             />
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit={createPetStore.isEdit}
+              isEdit
               value={createPetStore.activity}
               options={optionsSelectsStore.activity}
               handleChange={handleChangeActivity}
-              placeholder={t('createPet.activity')}
+              placeholder={t('activity')}
             />
           </div>
-          <ButtonsSaveFixed
-            isEdit={createPetStore.isEdit}
-            handleEdit={handleEdit}
-            // handleSave={handleSave}
-            handleCancelEdit={handleCancelEdit}
-          />
+          <ButtonsSaveFixed onlySave handleSave={handleSave} handleCancelEdit={handleCancelEdit} />
         </div>
         <Footer />
       </LayoutContainer>

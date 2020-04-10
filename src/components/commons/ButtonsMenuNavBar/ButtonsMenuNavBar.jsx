@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdPets, MdDashboard, MdMenu, MdSearch } from 'react-icons/md'
+import { MdPets, MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
 import { FaClipboardList, FaHandHoldingHeart } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
@@ -10,27 +10,27 @@ import styles from './buttonsMenuNavBar.scss'
 const routesUserProtectionist = [
   {
     icon: <MdDashboard size={25} />,
-    text: 'Dashboard',
+    text: 'dashboard',
     link: '/dashboard',
   },
   {
-    icon: <MdSearch size={25} />,
-    text: 'Search pets',
-    link: '/',
-  },
-  {
     icon: <FaHandHoldingHeart size={25} />,
-    text: 'Transit user',
+    text: 'transitUser',
     link: '/user-transit',
   },
   {
+    icon: <MdCreate size={25} />,
+    text: 'createPet',
+    link: '/create-pet',
+  },
+  {
     icon: <MdPets size={25} />,
-    text: 'Pets adopted',
+    text: 'petsAdopted',
     link: '/pets-adopted',
   },
   {
     icon: <FaClipboardList size={25} />,
-    text: 'My pets',
+    text: 'myPets',
     link: '/my-pets',
   },
 ]

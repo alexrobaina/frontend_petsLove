@@ -35,12 +35,12 @@ const ProfileUser = () => {
     editUserStore.setImage(e.target.files[0])
   }, [])
 
-  const handleChangeLocation = useCallback(location => {
-    editUserStore.setAddress(location)
+  const handleChangeTextAddress = useCallback(location => {
+    editUserStore.setTextAddress(location)
   }, [])
 
   const handleChangeAddress = useCallback(address => {
-    editUserStore.setTextAddress(address)
+    editUserStore.setAddress(address)
   }, [])
 
   const handleChangePhone = useCallback(e => {
@@ -178,8 +178,8 @@ const ProfileUser = () => {
           </div>
           <div className={styles.colbig}>
             <GoogleAutocomplete
+              handleChangeTextAddress={handleChangeTextAddress}
               handleChangeAddress={handleChangeAddress}
-              handleChangeLocation={handleChangeLocation}
               isEdit={editUserStore.isEdit}
               value={editUserStore.user.textAddress}
               label="Your Address"

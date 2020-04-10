@@ -1,52 +1,47 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import UserContext from 'Context/UserContext'
+import { observer, useLocalStore } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import DashboardCard from 'components/commons/DashboardCard'
+import SearchPetsStore from 'stores/SearchPetsStore'
 import Navbar from 'components/commons/Navbar'
-import LayoutContainerCard from 'components/commons/LayoutContainerCard'
-import iconProfesionals from './businessman.svg'
+import ListPets from 'components/ListPets'
+import icon from './businessman.svg'
 import styles from './dashboard.scss'
 
 const Dashboard = () => {
+  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
+
+  const { t } = useTranslation('dashboard')
+
+  useEffect(() => {
+    searchPetsStore.getPetForUser(authStore.user._id)
+    searchPetsStore.getPetAdopted(authStore.user._id)
+  }, [])
+
+  console.log(searchPetsStore.pets)
   return (
     <Navbar>
       <LayoutContainer>
         <div className={styles.container}>
-          <LayoutContainerCard>
-            <div className={styles.cardContainar}>
-              <div className={styles.card}>
-                <div className={styles.containerText}>
-                  <div className={styles.title}>Pets adopted</div>
-                  <div className={styles.number}>0</div>
-                </div>
-                <img className={styles.icon} src={iconProfesionals} alt="profesional-images" />
-              </div>
-            </div>
-          </LayoutContainerCard>
-          <LayoutContainerCard>
-            <div className={styles.cardContainar}>
-              <div className={styles.card}>
-                <div className={styles.containerText}>
-                  <div className={styles.title}>active volunteers</div>
-                  <div className={styles.number}>0</div>
-                </div>
-                <img className={styles.icon} src={iconProfesionals} alt="profesional-images" />
-              </div>
-            </div>
-          </LayoutContainerCard>
-          <LayoutContainerCard>
-            <div className={styles.cardContainar}>
-              <div className={styles.card}>
-                <div className={styles.containerText}>
-                  <div className={styles.title}>In the shelter</div>
-                  <div className={styles.number}>0</div>
-                </div>
-                <img className={styles.icon} src={iconProfesionals} alt="profesional-images" />
-              </div>
-            </div>
-          </LayoutContainerCard>
+          <DashboardCard
+            icon={icon}
+            numberCard={searchPetsStore.petsAdopted.length}
+            titleCard={t('petsAdopted')}
+          />
+          <DashboardCard
+            icon={icon}
+            numberCard={searchPetsStore.pets.length}
+            titleCard={t('petsForAdoption')}
+          />
         </div>
+        <ListPets pets={searchPetsStore.pets} />
       </LayoutContainer>
     </Navbar>
   )
 }
 
-export default Dashboard
+export default observer(Dashboard)

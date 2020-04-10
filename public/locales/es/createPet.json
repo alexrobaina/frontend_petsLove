@@ -1,0 +1,23 @@
+{
+  "title": "Crear una mascta",
+  "subtitle": "Es muy importante que complete todos los campos",
+  "placeholderImages": "Agregue imágenes de la mascota",
+  "placeholderName": "Nombre de la mascota",
+  "country": "País",
+  "city": "Ciudad",
+  "categoryPets": "Tipo de mascota",
+  "messageMap": "Esta es la dirección de la mascota",
+  "urgent": "Necesita ayuda urgente",
+  "lost": "Es una mascota perdida",
+  "sterilized": "Está esterilizada",
+  "vaccinated": "Está vacunada",
+  "gender": "Genero",
+  "age": "Edad",
+  "history": "Historia",
+  "RequiredToAdoption": "Requisitos para adoptar",
+  "activity": "Nivel de actividad",
+  "buttonCreation": "Crear mascota",
+  "allCategories": "Todas las categorias",
+  "dogs": "Perros",
+  "cats": "Gatos"
+}

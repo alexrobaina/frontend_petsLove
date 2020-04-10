@@ -23,10 +23,19 @@ class EditUserStore {
   @observable nickname = ''
   @observable isEdit = false
   @observable canEdit = false
+  @observable isLoading = false
+  @observable isError = false
 
   @action
   async saveUser() {
     const data = new FormData()
+    console.log(this.image)
+    if (this.image) {
+      data.append('image', this.image)
+    }
+    if (this.user.image) {
+      data.append('image', this.user.image)
+    }
 
     data.append('_id', this.user._id)
     data.append('name', this.user.name)
@@ -35,7 +44,6 @@ class EditUserStore {
     data.append('phone', this.phone)
     data.append('aboutUs', this.aboutUs)
     data.append('requirementsToAdopt', this.requirementsToAdopt)
-    data.append('image', this.image)
     data.append('canTransit', this.canTransit)
     data.append('address', this.address)
     data.append('textAddress', this.textAddress)
@@ -112,7 +120,6 @@ class EditUserStore {
   @action
   setImage(value) {
     this.image = value
-    console.log(this.image)
   }
 
   @action

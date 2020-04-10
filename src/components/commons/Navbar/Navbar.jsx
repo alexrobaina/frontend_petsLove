@@ -1,48 +1,33 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import c from 'classnames'
 import { useTranslation } from 'react-i18next'
-import { FiFilter } from 'react-icons/fi'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
-import { LOGIN, REGISTER } from 'routing/routes'
+import { HOME, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
-import ErrorMessage from 'components/commons/ErrorMessage'
+import { MdSearch } from 'react-icons/md'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
-import ListPets from 'components/ListPets'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import ButtonIcon from 'components/commons/ButtonIcon'
-import LayoutContainer from 'components/commons/LayoutContainer'
-import ToggleFilter from './ToggleFilter/ToggleFilter'
 import ToggleMenuUser from './ToggleMenuUser/ToggleMenuUser'
 import styles from './navbar.scss'
 
 const Navbar = ({ children }) => {
+  const { t } = useTranslation('navbar')
+  const history = useHistory()
   const rootStore = useContext(UserContext)
-  const { searchPetsStore, optionsSelectsStore, authStore } = rootStore
+  const { authStore } = rootStore
 
   const [toggleNavegationUser, setToggleNavegationUser] = useState(false)
-  const [toggle, setToggle] = useState(false)
   const [viewMenuProfile, setViewMenuProfile] = useState(true)
-
-  const { t } = useTranslation()
-  const history = useHistory()
 
   const goToLogin = useCallback(() => history.push(LOGIN))
   const goToRegister = useCallback(() => history.push(REGISTER))
 
-  const handleToggle = useCallback(() => {
-    setToggle(!toggle)
-  })
-
   const handleToggleMenu = useCallback(() => {
     setViewMenuProfile(!viewMenuProfile)
-  })
-
-  const deleteFilter = useCallback((selectedValue, typeFilter) => {
-    searchPetsStore.deleteFilter(selectedValue, typeFilter)
   })
 
   useEffect(() => {
@@ -61,12 +46,16 @@ const Navbar = ({ children }) => {
     history.push(link)
   }, [])
 
+  const goToSeach = useCallback(() => {
+    history.push(HOME)
+  }, [])
+
   return (
     <>
       <div className={styles.containerNavbar}>
         <div className={styles.containerFilter}>
           {/* this is button that open filters */}
-          <ButtonIcon onclick={handleToggle} icon={<FiFilter size={25} />} />
+          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
         </div>
         {rootStore.authStore.isLogin ? (
           <>
@@ -97,35 +86,13 @@ const Navbar = ({ children }) => {
         ) : (
           // if user is logout view buttons Login and Sing In
           <div className={styles.containerButtonslog}>
-            <ButtonLink onclick={goToLogin} text={t('navbar.login')} />
-            <ButtonLink onclick={goToRegister} text={t('navbar.singIn')} />
+            <ButtonLink onclick={goToLogin} text={t('login')} />
+            <ButtonLink onclick={goToRegister} text={t('singIn')} />
             <ChangeLanguage />
           </div>
         )}
       </div>
-      {/* this components view all filtes for search pets */}
-      <ToggleFilter
-        searchPetsStore={searchPetsStore}
-        optionsSelectsStore={optionsSelectsStore}
-        handleToggle={handleToggle}
-        toggle={toggle}
-      />
-      {!searchPetsStore.pets ? (
-        <>{!searchPetsStore.isError && <>{children}</>}</>
-      ) : (
-        <ListPets
-          handleDelete={deleteFilter}
-          filters={searchPetsStore.filters}
-          pets={searchPetsStore.pets}
-          isLoading={searchPetsStore.isLoading}
-        />
-      )}
-      <div className={c(toggle && styles.showShadowBack)} onClick={() => setToggle(!toggle)} />
-      {searchPetsStore.isError && (
-        <LayoutContainer>
-          <ErrorMessage text={t('common.errorMessage')} typeMessage="warning" />
-        </LayoutContainer>
-      )}
+      {children}
     </>
   )
 }

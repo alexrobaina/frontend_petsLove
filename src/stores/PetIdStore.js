@@ -12,12 +12,13 @@ class PetIdStore {
   @observable pet = []
   @observable name = []
   @observable images = []
-  @observable userEmail = []
   @observable gender = ''
   @observable age = ''
   @observable phone = ''
   @observable categorie = ''
   @observable activity = ''
+  @observable lat = null
+  @observable lng = null
   @observable userName = ''
   @observable isLoading = false
   @observable petIsEdit = false
@@ -31,8 +32,8 @@ class PetIdStore {
 
   @action
   setPetIsEdit() {
-    const userConnected = JSON.parse(this.setLocalStorage.getUser())
-    if (userConnected.email === this.userEmail) {
+    const userConnected = this.setLocalStorage.getUser()
+    if (userConnected.email === this.pet.user.email) {
       this.petIsEdit = true
     }
   }
@@ -48,16 +49,7 @@ class PetIdStore {
           this.isLoading = false
         }, 2000)
         this.pet = response
-        this.categorie = this.pet.categorie
-        this.name = this.pet.name
-        this.userEmail = this.pet.user.email
-        this.userName = this.pet.user.name
-        this.gender = this.pet.gender
-        this.activity = this.pet.activity
-        this.age = this.pet.age
-        this.phone = this.pet.user.phone
         this.images = this.pet.image
-        this.mapPosition = this.pet.mapPosition
         this.setPetIsEdit()
       })
     } catch (e) {

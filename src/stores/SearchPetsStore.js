@@ -9,9 +9,10 @@ class SearchPetsStore {
 
   @observable age = ''
   @observable city = ''
-  @observable pets = false
+  @observable pets = []
   @observable gender = ''
   @observable filters = []
+  @observable petsAdopted = []
   @observable country = ''
   @observable category = ''
   @observable activity = ''
@@ -196,6 +197,44 @@ class SearchPetsStore {
         this.pets = response
         this.setLoadingFalse()
         this.isFilter = true
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async getPetForUser(userId) {
+    this.setLoadingTrue()
+
+    try {
+      const response = await this.petsService.loadPetsForUser(userId)
+
+      runInAction(() => {
+        this.pets = response
+        this.setLoadingFalse()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async getPetAdopted(userId) {
+    this.setLoadingTrue()
+
+    try {
+      const response = await this.petsService.loadPetsAdopted(userId)
+
+      runInAction(() => {
+        this.petsAdopted = response
+        this.setLoadingFalse()
       })
     } catch (e) {
       runInAction(() => {

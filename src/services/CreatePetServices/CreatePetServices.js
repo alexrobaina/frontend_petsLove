@@ -1,6 +1,9 @@
+import axios from 'axios'
+import { SERVER } from '../config'
+
 class CreatePetServices {
   addPet = data => {
-    console.log(data)
+    return axios.post(`${SERVER}/api/pet/add`, data).then(response => response.data)
   }
 }
 

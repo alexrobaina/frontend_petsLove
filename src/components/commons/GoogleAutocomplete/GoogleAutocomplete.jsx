@@ -5,8 +5,8 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import styles from './googleAutocomplete.scss'
 
 const GoogleAutocomplete = ({
+  handleChangeTextAddress,
   handleChangeAddress,
-  handleChangeLocation,
   placeholder,
   value,
   isEdit,
@@ -21,10 +21,12 @@ const GoogleAutocomplete = ({
 
   // eslint-disable-next-line no-shadow
   const handleSelect = useCallback(address => {
-    handleChangeAddress(address)
+    if (handleChangeTextAddress) {
+      handleChangeTextAddress(address)
+    }
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => handleChangeLocation(latLng))
+      .then(latLng => handleChangeAddress(latLng))
       .catch(error => console.error('Error', error))
   }, [])
 
@@ -82,7 +84,8 @@ const GoogleAutocomplete = ({
 }
 
 GoogleAutocomplete.propTypes = {
-  handleChangeLocation: PropTypes.func.isRequired,
+  handleChangeAddress: PropTypes.func,
+  handleChangeTextAddress: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.string,
   label: PropTypes.string,
@@ -90,6 +93,8 @@ GoogleAutocomplete.propTypes = {
 }
 
 GoogleAutocomplete.defaultProps = {
+  handleChangeAddress: null,
+  handleChangeTextAddress: null,
   placeholder: '',
   label: '',
   value: '',

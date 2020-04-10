@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import c from 'classnames'
 import { observer } from 'mobx-react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import styles from './googleMapsLocation.scss'
 
 const GoogleMapsLocation = observer(
-  ({ google, location, phone, userName, email, title, showAddress }) => {
+  ({ google, location, phone, userName, email, title, showAddress, isProfilePet }) => {
     const [activeMarker, setActiveMarker] = useState({})
     const [showingInfoWindow, setShowingInfoWindow] = useState(false)
 
     const onMarkerClick = (map, marker) => {
       setActiveMarker(marker)
-      setShowingInfoWindow(true)
+      setShowingInfoWindow(!showingInfoWindow)
     }
-    console.log(location)
     return (
-      <div className={styles.containerMap}>
+      <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
         <Map
           google={google}
           zoom={15}
@@ -41,6 +41,7 @@ const GoogleMapsLocation = observer(
 GoogleMapsLocation.propTypes = {
   location: PropTypes.string.isRequired,
   showAddress: PropTypes.bool,
+  isProfilePet: PropTypes.bool,
   phone: PropTypes.string,
   title: PropTypes.string,
   email: PropTypes.string,
@@ -51,6 +52,7 @@ GoogleMapsLocation.defaultProps = {
   email: 'Not have email',
   title: '',
   showAddress: false,
+  isProfilePet: false,
 }
 
 export default GoogleApiWrapper({

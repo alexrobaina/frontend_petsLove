@@ -11,9 +11,9 @@ import ErrorMessage from 'components/commons/ErrorMessage'
 import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
+  const { t } = useTranslation('profilePets')
   const petIdStore = useLocalStore(() => new PetIdStore())
   const { id } = useParams()
-  const { t } = useTranslation()
 
   useEffect(() => {
     petIdStore.getPetId(id)
@@ -24,13 +24,14 @@ const ProfilePets = () => {
       <LayoutContainer>
         <LayoutProfilePets
           name={petIdStore.pet.name}
+          pet={petIdStore.pet}
+          images={petIdStore.images}
           petIsEdit={petIdStore.petIsEdit}
-          petIdStore={petIdStore}
         />
         {petIdStore.images !== [] ? (
           <GaleryImages isLoading={petIdStore.isLoading} arrayImages={petIdStore.images} />
         ) : (
-          <ErrorMessage text={t('profilePets.notImage')} typeMessage="warning" />
+          <ErrorMessage text={t('notImage')} typeMessage="warning" />
         )}
       </LayoutContainer>
       <Footer />

@@ -6,20 +6,20 @@ import Button from '../commons/Button'
 import styles from './formForgotPassword.scss'
 
 const FormForgotPassword = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('forgotPassword')
 
   return (
     <div className={styles.centerForgotPassword}>
-      <div className={styles.title}>{t('forgotPassword.title')}</div>
+      <div className={styles.title}>{t('title')}</div>
       <div className={styles.inputForm}>
-        <Input placeholder={t('forgotPassword.enterYourEmail')} />
+        <Input isEdit canEdit placeholder={t('enterYourEmail')} />
       </div>
       <div className={styles.buttonForgotPassword}>
-        <Button bigButton text={t('forgotPassword.changePassword')} />
+        <Button bigButton text={t('changePassword')} />
       </div>
       <div className={styles.forgotPassword}>
         <Link to="login" className={styles.textSingIn}>
-          {t('forgotPassword.login')}
+          {t('login')}
         </Link>
       </div>
     </div>
