@@ -40,13 +40,7 @@ const FormLogin = () => {
           <div className={styles.errorLogin}>{t('errorLogin')}</div>
         )}
         <div className={styles.inputForm}>
-          <Input
-            canEdit
-            isEdit
-            type="text"
-            handleChange={handleEmail}
-            placeholder={t('email')}
-          />
+          <Input canEdit isEdit type="text" handleChange={handleEmail} placeholder={t('email')} />
         </div>
         <div className={styles.inputForm}>
           <Input

@@ -5,7 +5,6 @@ import { useParams } from 'react-router'
 import PetIdStore from 'stores/PetIdStore'
 import Navbar from 'components/commons/Navbar'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import Footer from 'components/commons/Footer/Footer'
 import GaleryImages from 'components/commons/GaleryImages'
 import ErrorMessage from 'components/commons/ErrorMessage'
 import LayoutProfilePets from 'components/LayoutProfilePets'
@@ -34,7 +33,6 @@ const ProfilePets = () => {
           <ErrorMessage text={t('notImage')} typeMessage="warning" />
         )}
       </LayoutContainer>
-      <Footer />
     </Navbar>
   )
 }

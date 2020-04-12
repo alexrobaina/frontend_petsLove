@@ -13,7 +13,7 @@ import {
   USER_PROFILE,
   USER_TRANSIT,
   PETS_ADOPTER,
-  MY_PETS,
+  MY_PETS, EDIT_PET,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
 import PageNotFound from 'components/commons/PageNotFound'
@@ -23,7 +23,7 @@ import ProfilePets from 'containers/ProfilePets'
 import ProfileUser from 'containers/ProfileUser'
 import TransitUser from 'containers/TransitUser'
 import PetsAdopted from 'containers/PetsAdopted'
-import MyPets from 'containers/MyPets/MyPets'
+import ForAdoption from 'containers/ForAdoption'
 import Dashboard from 'containers/Dashboard'
 import CreatePet from 'containers/CreatePet'
 import Register from 'containers/Register'
@@ -64,6 +64,13 @@ function App() {
             exact
             isLogin={rootStore.authStore.isLogin}
             redirectPath={LOGIN}
+            path={EDIT_PET}
+            component={CreatePet}
+          />
+          <PrivateRoute
+            exact
+            isLogin={rootStore.authStore.isLogin}
+            redirectPath={LOGIN}
             path={USER_PROFILE}
             component={ProfileUser}
           />
@@ -86,7 +93,7 @@ function App() {
             isLogin={rootStore.authStore.isLogin}
             redirectPath={LOGIN}
             path={MY_PETS}
-            component={MyPets}
+            component={ForAdoption}
           />
           <Route component={PageNotFound} />
         </Switch>

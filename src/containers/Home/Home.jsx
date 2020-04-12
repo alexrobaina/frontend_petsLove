@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
@@ -17,6 +17,18 @@ const Home = () => {
   const handleChangeAddress = useCallback(address => {
     setAddress(address)
   }, [])
+
+  const showPosition = position => {
+    console.log(position.coords.latitude)
+    setAddress({ lat: position.coords.latitude, lng: position.coords.longitude })
+  }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition)
+    }
+  }, [])
+
   return (
     <Navbar>
       <LayoutContainer>

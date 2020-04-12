@@ -1,13 +1,16 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
+import { MdUpdate } from 'react-icons/md'
+import { useParams } from 'react-router'
+import { SERVER } from 'services/config'
+import c from 'classnames'
 import Input from 'components/commons/Input'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Title from 'components/commons/Title'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import Textarea from 'components/commons/Textarea'
-import Footer from 'components/commons/Footer/Footer'
 import CreatePetStore from 'stores/CreatePetStore'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import Navbar from 'components/commons/Navbar'
@@ -17,7 +20,9 @@ import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
 const CreatePet = () => {
+  const { id } = useParams()
   const [addressLocation, setAddress] = useState({})
+  const fileUpload = useRef()
   const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
@@ -37,6 +42,10 @@ const CreatePet = () => {
 
     setPreviews(mappedFiles)
   })
+
+  const onClickFileUpload = useCallback(() => {
+    fileUpload.current.click()
+  }, [])
 
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
@@ -92,11 +101,19 @@ const CreatePet = () => {
   }, [])
 
   const handleCancelEdit = useCallback(() => {
-    createPetStore.setIsEdit()
+    createPetStore.setCancelEdit()
+  }, [])
+
+  const handleEdit = useCallback(() => {
+    createPetStore.setEdit()
   }, [])
 
   const handleSave = useCallback(() => {
-    createPetStore.save(authStore.user._id)
+    if (id) {
+      createPetStore.saveEdit(id)
+    } else {
+      createPetStore.save(authStore.user._id)
+    }
   }, [])
 
   useEffect(() => {
@@ -104,6 +121,13 @@ const CreatePet = () => {
     optionsSelectsStore.listActiviy()
     optionsSelectsStore.listAges()
     optionsSelectsStore.listCategories()
+    if (id) {
+      createPetStore.searchPetForId(id)
+      createPetStore.setEdit()
+    }
+    if (id === undefined) {
+      createPetStore.setCancelEdit()
+    }
   }, [])
 
   return (
@@ -116,52 +140,44 @@ const CreatePet = () => {
               previews.map(image => {
                 return <img className={styles.imagePreview} src={image.preview} alt="pets" />
               })}
+            {createPetStore.imagePreview &&
+              createPetStore.imagePreview.map(image => {
+                return <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
+              })}
           </div>
         </div>
         <div className={styles.containerForm}>
-          <div className={styles.colLarge}>
+          <div className={styles.colInputImage}>
             <input
               multiple
-              className={styles.input}
+              ref={fileUpload}
+              className={styles.inputFile}
               onChange={handleChangeImage}
               type="file"
               placeholder={t('placeholderImages')}
             />
+            <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
+              <MdUpdate className={styles.icon} size={15} />
+              <span className={styles.jsFileName}>Choose a file</span>
+            </label>
           </div>
           <div className={styles.col}>
             <Input
-              canEdit
-              isEdit
+              isEdit={createPetStore.isEdit}
               value={createPetStore.name}
+              canEdit
               handleChange={handleChangeName}
               placeholder={t('placeholderName')}
             />
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.category}
               options={optionsSelectsStore.categories}
               handleChange={handleChangeCategory}
               placeholder={t('categoryPets')}
             />
-          </div>
-          <div className={styles.colLarge}>
-            <GoogleAutocomplete
-              isEdit
-              label="Address pet"
-              placeholder="Add address pet"
-              handleChangeTextAddress={handleChangeTextAddress}
-              handleChangeAddress={handleChangeAddress}
-            />
-            {addressLocation.lat && (
-              <div className={styles.containerMap}>
-                <GoogleMapsLocation
-                  showAddress
-                  location={addressLocation}
-                  title={t('messageMap')}
-                />
-              </div>
-            )}
           </div>
           <div className={styles.colContainerCheckbox}>
             <div className={styles.colCheckbox}>
@@ -203,9 +219,29 @@ const CreatePet = () => {
               />
             </div>
           </div>
+          <div className={styles.colMap}>
+            <GoogleAutocomplete
+              isEdit={createPetStore.isEdit}
+              label="Address pet"
+              placeholder="Add address pet"
+              value={createPetStore.textAddress}
+              handleChangeTextAddress={handleChangeTextAddress}
+              handleChangeAddress={handleChangeAddress}
+            />
+            {addressLocation.lat && (
+              <div className={styles.containerMap}>
+                <GoogleMapsLocation
+                  addressValue={createPetStore.address}
+                  showAddress
+                  location={addressLocation}
+                  title={t('messageMap')}
+                />
+              </div>
+            )}
+          </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit
+              isEdit={createPetStore.isEdit}
               value={createPetStore.gender}
               options={optionsSelectsStore.gender}
               handleChange={handleChangeGender}
@@ -214,7 +250,7 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit
+              isEdit={createPetStore.isEdit}
               value={createPetStore.age}
               options={optionsSelectsStore.ages}
               handleChange={handleChangeAge}
@@ -223,7 +259,7 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <Textarea
-              isEdit
+              isEdit={createPetStore.isEdit}
               rows={4}
               canEdit
               value={createPetStore.history}
@@ -233,7 +269,7 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <Textarea
-              isEdit
+              isEdit={createPetStore.isEdit}
               rows={4}
               canEdit
               value={createPetStore.requiredToAdoption}
@@ -243,16 +279,20 @@ const CreatePet = () => {
           </div>
           <div className={styles.col}>
             <InputSelect
-              isEdit
+              isEdit={createPetStore.isEdit}
               value={createPetStore.activity}
               options={optionsSelectsStore.activity}
               handleChange={handleChangeActivity}
               placeholder={t('activity')}
             />
           </div>
-          <ButtonsSaveFixed onlySave handleSave={handleSave} handleCancelEdit={handleCancelEdit} />
+          <ButtonsSaveFixed
+            handleEdit={handleEdit}
+            isEdit={createPetStore.isEdit}
+            handleSave={handleSave}
+            handleCancelEdit={handleCancelEdit}
+          />
         </div>
-        <Footer />
       </LayoutContainer>
     </Navbar>
   )

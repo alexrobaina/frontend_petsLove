@@ -7,6 +7,7 @@ import { HOME, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
 import { MdSearch } from 'react-icons/md'
 import UserContext from 'Context/UserContext'
+import Footer from 'components/commons/Footer'
 import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
@@ -93,6 +94,7 @@ const Navbar = ({ children }) => {
         )}
       </div>
       {children}
+      <Footer/>
     </>
   )
 }

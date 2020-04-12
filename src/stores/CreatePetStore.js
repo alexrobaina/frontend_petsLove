@@ -9,6 +9,7 @@ class CreatePetStore {
   @observable image = []
   @observable name = ''
   @observable pet = []
+  @observable imagePreview = []
   @observable address = {}
   @observable category = ''
   @observable textAddress = ''
@@ -46,6 +47,7 @@ class CreatePetStore {
 
     const data = new FormData()
 
+    // eslint-disable-next-line no-unused-vars
     Object.entries(this.image).forEach(([key, value]) => {
       data.append('image', value)
     })
@@ -72,9 +74,75 @@ class CreatePetStore {
   }
 
   @action
+  async saveEdit(id) {
+    const dataPets = {
+      _id: id,
+      name: this.name,
+      category: this.category,
+      textAddress: this.textAddress,
+      urgent: this.urgent,
+      sterilized: this.sterilized,
+      lost: this.lost,
+      gender: this.gender,
+      age: this.age,
+      vaccinated: this.vaccinated,
+      history: this.history,
+      requiredToAdoption: this.requiredToAdoption,
+      activity: this.activity,
+    }
+
+    const data = new FormData()
+
+    // eslint-disable-next-line no-unused-vars
+    Object.entries(this.image).forEach(([key, value]) => {
+      data.append('image', value)
+    })
+
+    Object.entries(dataPets).forEach(([key, value]) => {
+      data.append(key, value)
+    })
+
+    Object.entries(this.address).forEach(([key, value]) => {
+      data.append(key, value)
+    })
+
+    try {
+      const response = await this.createPetServices.editPet(data)
+
+      runInAction(() => {
+        this.pet = response
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async searchPetForId(id) {
+    try {
+      const response = await this.createPetServices.searchPetEdit(id)
+
+      runInAction(() => {
+        this.pet = response
+        this.imagePreview = response.image
+        Object.entries(this.pet).forEach(([key, value]) => {
+          if (key !== 'image') {
+            this[key] = value
+          }
+        })
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
+    }
+  }
+
+  @action
   setImage(value) {
     this.image = value
-    console.log(this.image)
   }
 
   @action
@@ -143,8 +211,13 @@ class CreatePetStore {
   }
 
   @action
-  setIsEdit() {
-    this.isEdit = !this.isEdit
+  setEdit() {
+    this.isEdit = true
+  }
+
+  @action
+  setCancelEdit() {
+    this.isEdit = false
   }
 }
 

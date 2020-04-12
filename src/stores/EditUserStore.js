@@ -73,6 +73,7 @@ class EditUserStore {
 
       runInAction(() => {
         this.user = response
+        console.log(this.user)
         this.setLocalStorage.setUser(response)
       })
     } catch (e) {

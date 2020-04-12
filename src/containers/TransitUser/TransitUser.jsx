@@ -10,7 +10,7 @@ const TransitUser = () => {
   return (
     <Navbar>
       <div className={styles.containerTransit}>
-        <LayoutContainer title={t('title')}></LayoutContainer>
+        <LayoutContainer title={t('title')} />
       </div>
     </Navbar>
   )

@@ -37,7 +37,33 @@
   }
 }
 
+.colMap {
+  width: 100%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+}
+
+.colInputImage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+}
+
 .colLarge {
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 10px;
 
@@ -95,6 +121,60 @@
 
 .containerButton {
   width: 100%;
+}
+
+.inputFile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  + .jsLabelFile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+    cursor: pointer;
+
+    .icon:before {
+      content: '\f093';
+    }
+    &.hasFile {
+      margin-left: 20px;
+      .icon:before {
+        content: '\f00c';
+        color: #5aac7b;
+      }
+    }
+  }
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.btnTertiary {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  padding: 0;
+  line-height: 40px;
+  width: 200px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid $borderPrimary;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    color: lighten(#555, 20%);
+    border: 2px solid $secundary;
+  }
 }
 
 .input {

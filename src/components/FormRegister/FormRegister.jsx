@@ -62,12 +62,7 @@ const FormRegister = ({ registerStore }) => {
               <Input canEdit isEdit handleChange={handleEmail} placeholder={t('email')} />
             </div>
             <div className={styles.inputForm}>
-              <Input
-                canEdit
-                isEdit
-                handleChange={handlePassword}
-                placeholder={t('password')}
-              />
+              <Input canEdit isEdit handleChange={handlePassword} placeholder={t('password')} />
             </div>
             <div className={styles.inputForm}>
               <Input

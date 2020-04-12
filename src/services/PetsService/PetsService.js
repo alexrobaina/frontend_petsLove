@@ -35,6 +35,10 @@ class PetsService {
   loadPetsAdopted = id => {
     return axios.get(`${SERVER}/api/pet/listAdopted/?_id=${id}`).then(response => response.data)
   }
+
+  loadPetForAdoption = id => {
+    return axios.get(`${SERVER}/api/pet/listForAdoption/?_id=${id}`).then(response => response.data)
+  }
 }
 
 export default PetsService

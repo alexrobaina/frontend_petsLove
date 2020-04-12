@@ -1,13 +1,16 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router'
 import { observer } from 'mobx-react'
 import { MdEdit, MdShare } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ petIsEdit }) => {
-  const editPet = useCallback(() => {
-    console.log('listo')
+const ButtonsPet = ({ petIsEdit, pet }) => {
+  const history = useHistory()
+  const editPet = useCallback(id => {
+    history.push(`/`)
+    history.push(`create-pet/${id}`)
   }, [])
 
   return (
@@ -17,7 +20,7 @@ const ButtonsPet = ({ petIsEdit }) => {
       </div>
       {petIsEdit && (
         <div className={styles.btnMargin}>
-          <Button handleClick={editPet} icon={<MdEdit size={20} />} circle />
+          <Button handleClick={() => editPet(pet._id)} icon={<MdEdit size={20} />} circle />
         </div>
       )}
     </div>
@@ -26,6 +29,7 @@ const ButtonsPet = ({ petIsEdit }) => {
 
 ButtonsPet.propTypes = {
   petIsEdit: PropTypes.bool,
+  pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
 
 ButtonsPet.defaultProps = {

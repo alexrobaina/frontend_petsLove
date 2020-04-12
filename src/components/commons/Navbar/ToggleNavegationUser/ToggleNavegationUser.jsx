@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import { MdClose } from 'react-icons/md'
 import c from 'classnames'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import UserContext from 'Context/UserContext'
-import { MdClose } from 'react-icons/md'
 import styles from './toggleNavegationUser.scss'
 
 const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, routesUser }) => {

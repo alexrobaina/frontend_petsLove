@@ -13,6 +13,7 @@ class SearchPetsStore {
   @observable gender = ''
   @observable filters = []
   @observable petsAdopted = []
+  @observable petsForAdoption = []
   @observable country = ''
   @observable category = ''
   @observable activity = ''
@@ -234,6 +235,25 @@ class SearchPetsStore {
 
       runInAction(() => {
         this.petsAdopted = response
+        this.setLoadingFalse()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async getPetsForAdoption(userId) {
+    this.setLoadingTrue()
+
+    try {
+      const response = await this.petsService.loadPetForAdoption(userId)
+
+      runInAction(() => {
+        this.petsForAdoption = response
         this.setLoadingFalse()
       })
     } catch (e) {

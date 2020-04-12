@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Animated } from 'react-animated-css'
 import LazyLoad from 'react-lazyload'
 import { useHistory } from 'react-router'
-import FilterChips from 'components/commons/FilterChips'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import LayoutContainerCard from 'components/commons/LayoutContainerCard'
@@ -33,6 +32,7 @@ const ListPets = ({ pets }) => {
                 >
                   <div onClick={() => goToPet(pet._id)}>
                     <CardPets
+                      isAdopted={pet.adopted}
                       onClick={() => goToPet(pet._id)}
                       image={pet.image[0]}
                       namePet={pet.name}

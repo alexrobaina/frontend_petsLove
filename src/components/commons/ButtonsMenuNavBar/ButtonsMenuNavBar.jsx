@@ -30,7 +30,7 @@ const routesUserProtectionist = [
   },
   {
     icon: <FaClipboardList size={25} />,
-    text: 'myPets',
+    text: 'forAdoption',
     link: '/my-pets',
   },
 ]

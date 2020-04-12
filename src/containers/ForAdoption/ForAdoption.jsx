@@ -5,21 +5,21 @@ import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
 import Navbar from 'components/commons/Navbar/Navbar'
-// import styles from './myPets.scss'
+// import styles from './forAdoption.scss'
 
-const MyPets = () => {
-  const { t } = useTranslation('myPets')
+const ForAdoption = () => {
+  const { t } = useTranslation('forAdoption')
   const rootStore = useContext(UserContext)
   const { searchPetsStore, authStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetForUser(authStore.user._id)
+    searchPetsStore.getPetsForAdoption(authStore.user._id)
   }, [])
 
   return (
     <Navbar>
       <LayoutContainer title={t('title')}>
-        <ListPets pets={searchPetsStore.pets} />
+        <ListPets pets={searchPetsStore.petsForAdoption} />
       </LayoutContainer>
     </Navbar>
   )
@@ -27,4 +27,4 @@ const MyPets = () => {
 
 // MyPets.propTypes = {}
 
-export default observer(MyPets)
+export default observer(ForAdoption)
