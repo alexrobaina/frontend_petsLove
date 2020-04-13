@@ -28,23 +28,11 @@ class InitialLogo extends React.Component {
         duration: 1500,
       })
     })
-    anime({
-      targets: '.catAnimation',
-      translateX: -1500,
-      autoplay: true,
-      duration: 2000,
-      easing: 'easeInOutSine',
-    })
     setTimeout(() => {
       this.setState({
         displayNone: true,
       })
-    }, 3500)
-
-    anime({
-      targets: '.catAnimation',
-      translateX: 50,
-    })
+    }, 2000)
   }
 
   render() {
@@ -52,7 +40,6 @@ class InitialLogo extends React.Component {
 
     return (
       <div className={c(displayNone ? styles.displayNone : '')}>
-        <div className={c(styles.cat, 'catAnimation')} />
         <div className={c(styles.container, 'animationLogo')}>
           <div className={styles.firstPat1}>
             <div className={styles.pat7}>

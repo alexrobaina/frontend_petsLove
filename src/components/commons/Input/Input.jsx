@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './input.scss'
+import ViewValue from '../ViewValue'
 
 const Input = ({
   isEdit,
@@ -33,14 +34,7 @@ const Input = ({
           {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
         </>
       ) : (
-        <>
-          <label className={styles.label}>{placeholder}</label>
-          {value ? (
-            <div className={styles.value}>{value}</div>
-          ) : (
-            <div className={styles.value}>-</div>
-          )}
-        </>
+        <ViewValue placeholder={placeholder} value={value} />
       )}
     </>
   )

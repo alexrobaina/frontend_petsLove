@@ -1,0 +1,30 @@
+@import 'styles/variable';
+
+.containerButton {
+  cursor: pointer;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.back {
+  display: flex;
+  color: $title;
+  transition: 3ms;
+  font-size: 15px;
+
+  &:hover {
+    color: $borderPrimary;
+  }
+}
+
+.text {
+  margin-top: 2px;
+  margin-left: 5px;
+  color: $title;
+  transition: 3ms;
+
+  &:hover {
+    color: $borderPrimary;
+  }
+}

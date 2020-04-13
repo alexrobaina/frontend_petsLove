@@ -35,8 +35,8 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isErro
 }
 
 Textarea.propTypes = {
-  cols: PropTypes.string,
-  rows: PropTypes.string,
+  cols: PropTypes.number,
+  rows: PropTypes.number,
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string,
@@ -45,8 +45,8 @@ Textarea.propTypes = {
 }
 
 Textarea.defaultProps = {
-  cols: '4',
-  rows: '4',
+  cols: 4,
+  rows: 4,
   value: '',
   isError: false,
   isEdit: false,

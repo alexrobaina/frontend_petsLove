@@ -5,8 +5,9 @@ import { SERVER } from 'services/config'
 import LayoutCards from 'components/commons/LayoutCards'
 import noImage from './noImage.svg'
 import styles from './cardPets.scss'
+import Chips from '../Chips'
 
-const CardPets = ({ history, image, namePet }) => {
+const CardPets = ({ history, image, namePet, isAdopted }) => {
   const utils = new Utils()
 
   return (
@@ -18,6 +19,7 @@ const CardPets = ({ history, image, namePet }) => {
             src={image ? `${SERVER}/${image}` : noImage}
             alt="photos-pets"
           />
+          {isAdopted && <Chips text="Adopted" isAdopted={isAdopted} />}
           <div className={styles.title}>{namePet}</div>
           <div className={styles.textHistory}>
             {history ? utils.shortenText(history, 110) : 'They did not add history'}
@@ -29,9 +31,14 @@ const CardPets = ({ history, image, namePet }) => {
 }
 
 CardPets.propTypes = {
+  isAdopted: PropTypes.bool,
   history: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   namePet: PropTypes.string.isRequired,
+}
+
+CardPets.defaultProps = {
+  isAdopted: false,
 }
 
 export default CardPets

@@ -7,7 +7,7 @@ import ButtonIcon from 'components/commons/ButtonIcon'
 import { MdClose } from 'react-icons/md'
 import styles from './toggleFilter.scss'
 
-const ToggleFilter = ({ handleToggle, toggle, optionsSelectsStore, searchPetsStore }) => {
+const ToggleFilter = ({ handleToggle, toggle }) => {
   const { t } = useTranslation()
 
   return (
@@ -17,11 +17,7 @@ const ToggleFilter = ({ handleToggle, toggle, optionsSelectsStore, searchPetsSto
         <div>{t('navbar.moreFilters')}</div>
       </div>
       <div className={styles.containerSelects}>
-        <FilterNavbar
-          handleToggle={handleToggle}
-          optionsSelectsStore={optionsSelectsStore}
-          searchPetsStore={searchPetsStore}
-        />
+        <FilterNavbar handleToggle={handleToggle} />
       </div>
     </div>
   )
@@ -30,8 +26,6 @@ const ToggleFilter = ({ handleToggle, toggle, optionsSelectsStore, searchPetsSto
 ToggleFilter.propTypes = {
   handleToggle: PropTypes.func.isRequired,
   toggle: PropTypes.bool.isRequired,
-  optionsSelectsStore: PropTypes.node.isRequired,
-  searchPetsStore: PropTypes.node.isRequired,
 }
 
 export default ToggleFilter

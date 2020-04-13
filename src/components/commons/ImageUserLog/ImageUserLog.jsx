@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import { SERVER } from 'services/config'
 import UserContext from 'Context/UserContext'
+import noImage from './noimg.png'
 import styles from './imageUserLog.scss'
 
 const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile }) => {
@@ -14,7 +15,7 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile }) => {
       {isUserLogin && (
         <img
           className={c(isProfile ? styles.imageProfile : styles.userImage)}
-          src={`${SERVER}/${authStore.user.image}`}
+          src={authStore.user.image ? `${SERVER}/${authStore.user.image}` : noImage}
           alt="user"
         />
       )}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import PropTypes from 'prop-types'
@@ -6,36 +7,34 @@ import Title from 'components/commons/Title'
 import ButtonsPet from 'containers/ProfilePets/ButtonsPet'
 import ImageProfilePet from 'components/ImageProfilePet'
 import InformationPet from 'components/InformationPet'
-import GoogleMap from 'components/commons/GoogleMapsLocation'
+import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
-const LayoutProfilePets = ({ petIdStore, petIsEdit, name }) => {
-  const { t } = useTranslation()
+const LayoutProfilePets = ({ name, petIsEdit, images, pet }) => {
+  const { t } = useTranslation('profilePets')
   return (
     <>
       <div className={styles.name}>
-        <Title title={t('profilePets.title', { name })} />
-        <ButtonsPet petIdStore={petIdStore} petIsEdit={petIsEdit} />
+        <Title title={t('title', { name })} />
+        <ButtonsPet pet={pet} petIsEdit={petIsEdit} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
-        <ImageProfilePet petIdStore={petIdStore} />
-        <GoogleMap
-          userName={petIdStore.userName}
-          phone={petIdStore.phone}
-          email={petIdStore.userEmail}
+        <ImageProfilePet images={images} />
+        <GoogleMapsLocation
+          isProfilePet
+          userName={pet.userName}
+          phone={pet.phone}
+          email={pet.userEmail}
           location={{
-            lat: -34.603722,
-            lng: -58.381592,
+            lat: pet.lat,
+            lng: pet.lng,
           }}
         />
-        <InformationPet petIdStore={petIdStore} />
+        <InformationPet pet={pet} />
         <div>
-          <TextCard title={t('profilePets.history')} text={petIdStore.pet.history} />
-          <TextCard
-            title={t('profilePets.requiredToAdoption')}
-            text={petIdStore.pet.requiredToAdoption}
-          />
+          <TextCard title={t('history')} text={pet.history} />
+          <TextCard title={t('requiredToAdoption')} text={pet.requiredToAdoption} />
         </div>
       </div>
     </>
@@ -43,7 +42,8 @@ const LayoutProfilePets = ({ petIdStore, petIsEdit, name }) => {
 }
 
 LayoutProfilePets.propTypes = {
-  petIdStore: PropTypes.node.isRequired,
+  images: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
   name: PropTypes.string.isRequired,
   petIsEdit: PropTypes.bool,
 }
@@ -52,4 +52,4 @@ LayoutProfilePets.defaultProps = {
   petIsEdit: false,
 }
 
-export default LayoutProfilePets
+export default observer(LayoutProfilePets)

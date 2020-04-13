@@ -12,7 +12,7 @@ import Loading from 'components/commons/Loading/Loading'
 import styles from './formRegister.scss'
 
 const FormRegister = ({ registerStore }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('formRegister')
   const history = useHistory()
 
   const handleTypeRol = useCallback(selectedValue => {
@@ -50,48 +50,43 @@ const FormRegister = ({ registerStore }) => {
   return (
     <div className={styles.register}>
       <div className={styles.centerRegister}>
-        <div className={styles.title}>{t('register.singIn')}</div>
+        <div className={styles.title}>{t('singIn')}</div>
         {registerStore.isloading ? (
           <Loading small />
         ) : (
           <>
             <div className={styles.inputForm}>
-              <Input canEdit isEdit handleChange={handleName} placeholder={t('register.name')} />
+              <Input canEdit isEdit handleChange={handleName} placeholder={t('name')} />
             </div>
             <div className={styles.inputForm}>
-              <Input canEdit isEdit handleChange={handleEmail} placeholder={t('register.email')} />
+              <Input canEdit isEdit handleChange={handleEmail} placeholder={t('email')} />
             </div>
             <div className={styles.inputForm}>
-              <Input
-                canEdit
-                isEdit
-                handleChange={handlePassword}
-                placeholder={t('register.password')}
-              />
+              <Input canEdit isEdit handleChange={handlePassword} placeholder={t('password')} />
             </div>
             <div className={styles.inputForm}>
               <Input
                 canEdit
                 isEdit
                 handleChange={handleConfirmPassword}
-                placeholder={t('register.confirmPassword')}
+                placeholder={t('confirmPassword')}
               />
               {registerStore.passwordError && (
-                <div className={styles.errorMessage}>{t('register.errorMessage')}</div>
+                <div className={styles.errorMessage}>{t('errorMessage')}</div>
               )}
               {registerStore.passwordSuccess && (
-                <div className={styles.successMessage}>{t('register.successMessage')}</div>
+                <div className={styles.successMessage}>{t('successMessage')}</div>
               )}
             </div>
             <div className={styles.inputForm}>
               <InputSelect
                 options={registerStore.rols}
                 handleChange={handleTypeRol}
-                placeholder={t('register.typeUser')}
+                placeholder={t('typeUser')}
               />
             </div>
             <div className={styles.buttonRegister}>
-              <Button handleClick={handleCreateUser} bigButton text={t('register.singIn')} />
+              <Button handleClick={handleCreateUser} bigButton text={t('singIn')} />
             </div>
             <div className={styles.buttonSocialRegister}>
               <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
@@ -99,10 +94,10 @@ const FormRegister = ({ registerStore }) => {
             </div>
             <div className={styles.forgotPassword}>
               <Link to="/login" className={styles.textForgot}>
-                {t('register.login')}
+                {t('login')}
               </Link>
             </div>
-            <div className={styles.inputForm}>{t('register.terms')}</div>
+            <div className={styles.inputForm}>{t('terms')}</div>
           </>
         )}
       </div>

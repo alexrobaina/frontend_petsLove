@@ -11,11 +11,11 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
 
-  @include media-breakpoint-down(sm) {
-    display: flex;
-    padding-top: 15px;
-    justify-content: center;
-    flex-direction: column;
+  @include media-breakpoint-down(md) {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
   }
 }
 

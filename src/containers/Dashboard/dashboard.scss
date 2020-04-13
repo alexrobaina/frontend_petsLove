@@ -1,66 +1,12 @@
 @import 'styles/mixings';
 
 .container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.cardContainar {
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: center;
-  padding: 30px;
-  background-color: $ligth;
-  text-align: center;
-  width: 250px;
-  border-radius: 16px;
-  transition: 0.2s;
-  cursor: pointer;
-  box-shadow: 0 7px 15px -2px rgba(0, 0, 0, 0.15);
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
 
-  &:hover {
-    transform: translateY(-0.25em);
-    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 100%;
   }
-
-  &:focus {
-    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
-    transform: translateY(-0.25em);
-    outline: 0;
-  }
-}
-
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-.icon {
-  width: 60px;
-  padding-left: 50px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.containerText {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.title {
-  text-transform: capitalize;
-  color: grey;
-  font-size: 15px;
-  @include site-font(text);
-  letter-spacing: 3px;
-}
-
-.number {
-  margin-top: 20px;
-  font-size: 40px;
-  @include site-font('text', 700)
 }

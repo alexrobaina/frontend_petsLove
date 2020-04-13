@@ -1,0 +1,8 @@
+{
+    "email": "Email",
+    "password": "Contraseña",
+    "login": "Iniciar Sesión",
+    "forgotPassword": "Olvidé la contraseña",
+    "singIn": "Regístrate",
+    "errorLogin": "Algo salio mal, Revise su email o contraseña"
+}

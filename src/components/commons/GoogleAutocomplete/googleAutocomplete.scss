@@ -16,7 +16,7 @@ input:focus {
 }
 
 .input {
-  width: 100%;
+  min-width: 100%;
   border: 1px solid $borderPrimary;
   box-shadow: none;
   padding: 10px 0 10px 0;
@@ -43,9 +43,8 @@ input:focus {
 
 .dropdown {
   margin-top: 15px;
-  //border: 1px solid gray;
   border-radius: 10px;
-  box-shadow: 0 1px 15px 0 rgba(0,0,0,0.13);
+  box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.13);
 }
 
 .text {

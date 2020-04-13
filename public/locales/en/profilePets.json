@@ -1,0 +1,18 @@
+{
+  "sendEmailError": "Sorry. Please try again!.",
+  "titleError": "Error!",
+  "titleSuccess": "Great. :D.",
+  "title": "My name is {{ name }}",
+  "notImage": "This pet has no images",
+  "history": "History",
+  "requiredToAdoption": "Required to Adoption",
+  "age": "Age",
+  "category": "Type of pet",
+  "gender": "Gender",
+  "activity": "Level activity",
+  "lost": "Its lost",
+  "vaccinated": "Vaccinated",
+  "urgent": "Urgent",
+  "sterilized": "Sterilized",
+  "last": "last"
+}

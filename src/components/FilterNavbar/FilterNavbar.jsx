@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
+import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
 import styles from './filterNavbar.scss'
 
-const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) => {
-  const { t } = useTranslation()
+const FilterNavbar = ({ handleToggle }) => {
+  const rootStore = useContext(UserContext)
+  const { searchPetsStore, optionsSelectsStore } = rootStore
+  const { t } = useTranslation('filterNavbar')
 
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
@@ -77,7 +80,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             handleChange={handleSetLocation}
             options={optionsSelectsStore.countries}
-            placeholder={t('filterNavbar.country')}
+            placeholder={t('country')}
           />
         )}
       </div>
@@ -86,7 +89,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             handleChange={handleSetCity}
             options={optionsSelectsStore.cities}
-            placeholder={t('filterNavbar.city')}
+            placeholder={t('city')}
           />
         )}
       </div>
@@ -95,7 +98,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             options={optionsSelectsStore.categories}
             handleChange={handleSetCategorie}
-            placeholder={t('filterNavbar.category')}
+            placeholder={t('category')}
           />
         )}
       </div>
@@ -104,7 +107,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             handleChange={handleSetGender}
             options={optionsSelectsStore.gender}
-            placeholder={t('filterNavbar.gender')}
+            placeholder={t('gender')}
           />
         )}
       </div>
@@ -113,7 +116,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             handleChange={handleSetAge}
             options={optionsSelectsStore.ages}
-            placeholder={t('filterNavbar.age')}
+            placeholder={t('age')}
           />
         )}
       </div>
@@ -122,7 +125,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           <InputSelect
             handleChange={handleSetActivity}
             options={optionsSelectsStore.activity}
-            placeholder={t('filterNavbar.activity')}
+            placeholder={t('activity')}
           />
         )}
       </div>
@@ -131,7 +134,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           isEdit
           value={searchPetsStore.lost}
           handleChange={handleSetLost}
-          text={t('filterNavbar.lost')}
+          text={t('lost')}
         />
       </div>
       <div className={styles.containerCheckbox}>
@@ -139,7 +142,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           isEdit
           value={searchPetsStore.urgent}
           handleChange={handleSetUrgent}
-          text={t('filterNavbar.urgent')}
+          text={t('urgent')}
         />
       </div>
       <div className={styles.containerCheckbox}>
@@ -147,7 +150,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           isEdit
           value={searchPetsStore.dewormed}
           handleChange={handleSetDewormed}
-          text={t('filterNavbar.dewormed')}
+          text={t('dewormed')}
         />
       </div>
       <div className={styles.containerCheckbox}>
@@ -155,7 +158,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           isEdit
           value={searchPetsStore.vaccianated}
           handleChange={handleSetVaccianated}
-          text={t('filterNavbar.vaccianated')}
+          text={t('vaccianated')}
         />
       </div>
       <div className={styles.containerCheckbox}>
@@ -163,7 +166,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           isEdit
           value={searchPetsStore.sterilized}
           handleChange={handleSetSterilized}
-          text={t('filterNavbar.sterilized')}
+          text={t('sterilized')}
         />
       </div>
       <div className={styles.buttonFilter}>
@@ -171,7 +174,7 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
           circle
           handleClick={submitSearch}
           type="button"
-          text={t('filterNavbar.search')}
+          text={t('search')}
           icon={<MdSearch size={20} />}
         />
       </div>
@@ -180,8 +183,6 @@ const FilterNavbar = ({ searchPetsStore, optionsSelectsStore, handleToggle }) =>
 }
 
 FilterNavbar.propTypes = {
-  searchPetsStore: PropTypes.node.isRequired,
-  optionsSelectsStore: PropTypes.node.isRequired,
   handleToggle: PropTypes.func.isRequired,
 }
 

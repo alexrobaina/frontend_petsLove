@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './linkNavbarUser.scss'
 
 const LinkNavbarUser = ({ route, handleMenu }) => {
+  const { t } = useTranslation('navbar')
   const [text, setText] = useState(false)
 
   const handleMouseUp = useCallback(() => {
@@ -24,15 +26,15 @@ const LinkNavbarUser = ({ route, handleMenu }) => {
         type="button"
       >
         <div className={styles.icon}>{route.icon}</div>
-        <div className={c(text ? styles.text : styles.textNone)}>{route.text}</div>
+        <div className={c(text ? styles.text : styles.textNone)}>{t(route.text)}</div>
       </button>
     </div>
   )
 }
 
 LinkNavbarUser.propTypes = {
-  route: PropTypes.oneOfType([PropTypes.array]).isRequired,
-  handleMenu: PropTypes.bool.isRequired,
+  route: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleMenu: PropTypes.func.isRequired,
 }
 
 export default LinkNavbarUser

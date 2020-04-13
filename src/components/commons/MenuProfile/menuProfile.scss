@@ -23,11 +23,10 @@
 }
 
 .buttons {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
   cursor: pointer;
   text-decoration: none;
@@ -37,6 +36,7 @@
   &:hover {
     border-radius: 5px;
     color: $filters;
+    background-color: $colorNavbar;
   }
 
   &:target {

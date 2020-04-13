@@ -24,6 +24,29 @@
   }
 }
 
+.isAdopted {
+  left: 10px;
+  top: 50px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  background-color: red;
+  color: $ligth;
+  padding: 4px 12px 3px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  max-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 .icons {
   margin-top: -4px;
   margin-left: 10px;
