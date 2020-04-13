@@ -98,6 +98,11 @@ class CreatePetStore {
       data.append('image', value)
     })
 
+    // eslint-disable-next-line no-unused-vars
+    Object.entries(this.imagePreview).forEach(([key, value]) => {
+      data.append('imagePreview', value)
+    })
+
     Object.entries(dataPets).forEach(([key, value]) => {
       data.append(key, value)
     })
@@ -111,6 +116,9 @@ class CreatePetStore {
 
       runInAction(() => {
         this.pet = response
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
       })
     } catch (e) {
       runInAction(() => {

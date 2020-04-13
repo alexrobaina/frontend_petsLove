@@ -13,7 +13,8 @@ import {
   USER_PROFILE,
   USER_TRANSIT,
   PETS_ADOPTER,
-  MY_PETS, EDIT_PET,
+  MY_PETS,
+  EDIT_PET,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
 import PageNotFound from 'components/commons/PageNotFound'

@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { MdUpdate } from 'react-icons/md'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { SERVER } from 'services/config'
 import c from 'classnames'
 import Input from 'components/commons/Input'
@@ -20,6 +20,7 @@ import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
 const CreatePet = () => {
+  const history = useHistory()
   const { id } = useParams()
   const [addressLocation, setAddress] = useState({})
   const fileUpload = useRef()
@@ -108,6 +109,10 @@ const CreatePet = () => {
     createPetStore.setEdit()
   }, [])
 
+  const handleBack = useCallback(() => {
+    history.push(`/profile-pets/${id}`)
+  }, [])
+
   const handleSave = useCallback(() => {
     if (id) {
       createPetStore.saveEdit(id)
@@ -123,16 +128,17 @@ const CreatePet = () => {
     optionsSelectsStore.listCategories()
     if (id) {
       createPetStore.searchPetForId(id)
-      createPetStore.setEdit()
-    }
-    if (id === undefined) {
-      createPetStore.setCancelEdit()
     }
   }, [])
 
   return (
     <Navbar>
-      <LayoutContainer title={t('title')}>
+      <LayoutContainer
+        viewButtonBack
+        handleBack={handleBack}
+        title={t('title')}
+        textButton={t('backPets')}
+      >
         <Title subTitle={t('subtitle')} />
         <div className={styles.containerImagePreview}>
           <div className={styles.rowImagePets}>
@@ -147,20 +153,25 @@ const CreatePet = () => {
           </div>
         </div>
         <div className={styles.containerForm}>
-          <div className={styles.colInputImage}>
-            <input
-              multiple
-              ref={fileUpload}
-              className={styles.inputFile}
-              onChange={handleChangeImage}
-              type="file"
-              placeholder={t('placeholderImages')}
-            />
-            <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
-              <MdUpdate className={styles.icon} size={15} />
-              <span className={styles.jsFileName}>Choose a file</span>
-            </label>
-          </div>
+          {createPetStore.isEdit && (
+            <div className={styles.colInputImage}>
+              <input
+                multiple
+                ref={fileUpload}
+                className={styles.inputFile}
+                onChange={handleChangeImage}
+                type="file"
+                placeholder={t('placeholderImages')}
+              />
+              <label
+                onClick={onClickFileUpload}
+                className={c(styles.textInput, styles.btnTertiary)}
+              >
+                <MdUpdate className={styles.icon} size={15} />
+                <span className={styles.jsFileName}>Choose a file</span>
+              </label>
+            </div>
+          )}
           <div className={styles.col}>
             <Input
               isEdit={createPetStore.isEdit}

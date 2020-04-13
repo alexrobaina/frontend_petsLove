@@ -94,7 +94,7 @@ const Navbar = ({ children }) => {
         )}
       </div>
       {children}
-      <Footer/>
+      <Footer />
     </>
   )
 }
