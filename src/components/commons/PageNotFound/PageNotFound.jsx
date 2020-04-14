@@ -1,32 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import LayoutContainer from '../LayoutContainer'
-import Navbar from '../Navbar/Navbar'
+import LayoutContainer from 'components/commons/LayoutContainer'
+import Navbar from 'components/commons/Navbar'
 
-const PageNotFound = ({ image, title, text }) => {
+// a las propiedades no les des vola todavia!! Las agregamos depsues
+const PageNotFound = () => {
   return (
-    <>
-      <Navbar />
-      <LayoutContainer>
-        notfound
-        {image}
-        {title}
-        {text}
-      </LayoutContainer>
-    </>
+    <Navbar>
+      <LayoutContainer>{/*Aqui va el codigo que tienes que desarrollar*/}</LayoutContainer>
+    </Navbar>
   )
-}
-
-PageNotFound.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  text: PropTypes.string,
-}
-
-PageNotFound.defaultProps = {
-  image: '',
-  title: '',
-  text: '',
 }
 
 export default PageNotFound
