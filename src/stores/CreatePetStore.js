@@ -158,6 +158,7 @@ class CreatePetStore {
 
   @action
   deleteImageArray(image) {
+    this.imagePreview.filter(image)
     console.log(image)
   }
 
