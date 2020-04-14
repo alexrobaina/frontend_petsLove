@@ -5,7 +5,6 @@ import ViewValue from '../ViewValue'
 
 const Input = ({
   isEdit,
-  canEdit,
   value,
   required,
   handleChange,
@@ -17,7 +16,7 @@ const Input = ({
 }) => {
   return (
     <>
-      {isEdit && canEdit ? (
+      {isEdit ? (
         <>
           <input
             multiple={multiple}
@@ -48,13 +47,11 @@ Input.propTypes = {
   isError: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
   isEdit: PropTypes.bool,
-  canEdit: PropTypes.bool,
   value: PropTypes.string,
 }
 
 Input.defaultProps = {
   isEdit: false,
-  canEdit: false,
   value: '',
   type: 'text',
   isError: false,

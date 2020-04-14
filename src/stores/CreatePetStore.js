@@ -65,6 +65,9 @@ class CreatePetStore {
 
       runInAction(() => {
         this.pet = response
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
       })
     } catch (e) {
       runInAction(() => {
@@ -151,6 +154,11 @@ class CreatePetStore {
   @action
   setImage(value) {
     this.image = value
+  }
+
+  @action
+  deleteImageArray(image) {
+    console.log(image)
   }
 
   @action

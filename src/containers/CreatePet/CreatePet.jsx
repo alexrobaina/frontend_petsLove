@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
-import { MdUpdate } from 'react-icons/md'
+import { MdCancel, MdUpdate } from 'react-icons/md'
 import { useHistory, useParams } from 'react-router'
 import { SERVER } from 'services/config'
 import c from 'classnames'
@@ -13,6 +13,7 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import Textarea from 'components/commons/Textarea'
 import CreatePetStore from 'stores/CreatePetStore'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
+import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import Navbar from 'components/commons/Navbar'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
@@ -23,6 +24,7 @@ const CreatePet = () => {
   const history = useHistory()
   const { id } = useParams()
   const [addressLocation, setAddress] = useState({})
+  const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
   const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
@@ -113,6 +115,10 @@ const CreatePet = () => {
     history.push(`/profile-pets/${id}`)
   }, [])
 
+  const deleteImage = useCallback(image => {
+    createPetStore.deleteImageArray(image)
+  }, [])
+
   const handleSave = useCallback(() => {
     if (id) {
       createPetStore.saveEdit(id)
@@ -128,29 +134,49 @@ const CreatePet = () => {
     optionsSelectsStore.listCategories()
     if (id) {
       createPetStore.searchPetForId(id)
+      createPetStore.setCancelEdit()
+    } else {
+      createPetStore.setEdit()
+      setOnlySave(true)
     }
   }, [])
-
+  console.log(createPetStore.isEdit)
   return (
     <Navbar>
       <LayoutContainer
-        viewButtonBack
+        viewButtonBack={createPetStore.isEdit}
         handleBack={handleBack}
         title={t('title')}
         textButton={t('backPets')}
       >
         <Title subTitle={t('subtitle')} />
         <div className={styles.containerImagePreview}>
-          <div className={styles.rowImagePets}>
-            {previews &&
-              previews.map(image => {
-                return <img className={styles.imagePreview} src={image.preview} alt="pets" />
-              })}
-            {createPetStore.imagePreview &&
-              createPetStore.imagePreview.map(image => {
-                return <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
-              })}
-          </div>
+          {previews &&
+            previews.map(image => {
+              return (
+                <div onClick={() => deleteImage(image)} className={styles.containerImage}>
+                  <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
+                  <div className={styles.middle}>
+                    <div className={styles.containerIcon}>
+                      <MdCancel className={styles.iconImage} size={20} />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          {createPetStore.imagePreview &&
+            createPetStore.imagePreview.map(image => {
+              return (
+                <div className={styles.containerImage}>
+                  <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
+                  <div className={styles.middle}>
+                    <div onClick={() => deleteImage(image)} className={styles.containerIcon}>
+                      <MdCancel className={styles.iconImage} size={20} />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
         </div>
         <div className={styles.containerForm}>
           {createPetStore.isEdit && (
@@ -176,7 +202,6 @@ const CreatePet = () => {
             <Input
               isEdit={createPetStore.isEdit}
               value={createPetStore.name}
-              canEdit
               handleChange={handleChangeName}
               placeholder={t('placeholderName')}
             />
@@ -194,7 +219,6 @@ const CreatePet = () => {
             <div className={styles.colCheckbox}>
               <InputCheckbox
                 isEdit
-                canEdit
                 handleChange={handleChangeUrgent}
                 value={createPetStore.urgent}
                 text={t('urgent')}
@@ -204,7 +228,6 @@ const CreatePet = () => {
               <InputCheckbox
                 handleChange={handleChangeLost}
                 isEdit
-                canEdit
                 value={createPetStore.lost}
                 text={t('lost')}
               />
@@ -214,7 +237,6 @@ const CreatePet = () => {
             <div className={styles.colCheckbox}>
               <InputCheckbox
                 isEdit
-                canEdit
                 handleChange={handleChangeSterilized}
                 value={createPetStore.sterilized}
                 text={t('sterilized')}
@@ -223,7 +245,6 @@ const CreatePet = () => {
             <div className={styles.colCheckbox}>
               <InputCheckbox
                 isEdit
-                canEdit
                 handleChange={handleChangeVaccinated}
                 value={createPetStore.vaccinated}
                 text={t('vaccinated')}
@@ -272,7 +293,6 @@ const CreatePet = () => {
             <Textarea
               isEdit={createPetStore.isEdit}
               rows={4}
-              canEdit
               value={createPetStore.history}
               handleChange={handleChangeHistory}
               placeholder={t('history')}
@@ -282,7 +302,6 @@ const CreatePet = () => {
             <Textarea
               isEdit={createPetStore.isEdit}
               rows={4}
-              canEdit
               value={createPetStore.requiredToAdoption}
               handleChange={handleChangeRequired}
               placeholder={t('RequiredToAdoption')}
@@ -297,12 +316,15 @@ const CreatePet = () => {
               placeholder={t('activity')}
             />
           </div>
-          <ButtonsSaveFixed
-            handleEdit={handleEdit}
-            isEdit={createPetStore.isEdit}
-            handleSave={handleSave}
-            handleCancelEdit={handleCancelEdit}
-          />
+          {onlySave && <ButtonsSaveFixed handleSave={handleSave} />}
+          {!onlySave && (
+            <ButtonsEditFixed
+              isEdit={createPetStore.isEdit}
+              handleEdit={handleEdit}
+              handleSave={handleSave}
+              handleCancelEdit={handleCancelEdit}
+            />
+          )}
         </div>
       </LayoutContainer>
     </Navbar>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { GoogleApiWrapper } from 'google-maps-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import styles from './googleAutocomplete.scss'
+import ViewValue from '../ViewValue'
 
 const GoogleAutocomplete = ({
   handleChangeTextAddress,
@@ -10,7 +11,6 @@ const GoogleAutocomplete = ({
   placeholder,
   value,
   isEdit,
-  label,
 }) => {
   const [address, setAddress] = useState('')
 
@@ -36,14 +36,7 @@ const GoogleAutocomplete = ({
         return (
           <div>
             {isEdit === false ? (
-              <>
-                <label className={styles.label}>{label}</label>
-                {value ? (
-                  <div className={styles.value}>{value}</div>
-                ) : (
-                  <div className={styles.value}>-</div>
-                )}
-              </>
+              <ViewValue placeholder={placeholder} value={value} />
             ) : (
               <input
                 className={styles.input}

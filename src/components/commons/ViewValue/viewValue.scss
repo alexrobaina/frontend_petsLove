@@ -1,4 +1,4 @@
-@import 'styles/mixings';
+@import 'styles/variable';
 
 .value {
   text-transform: capitalize;
@@ -10,6 +10,6 @@
 }
 
 .label {
-  color: $title;
+  color: $secundaryTitle;
   transition: 3ms;
 }

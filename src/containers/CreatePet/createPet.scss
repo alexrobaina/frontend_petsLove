@@ -14,19 +14,66 @@
 .containerImagePreview {
   margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.rowImagePets {
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: $colorLight;
+  cursor: pointer;
+  border-radius: 15px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.containerIcon {
+  width: 150px;
+  height: 150px;
+}
+
+.iconImage {
+  transition: .5s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color: $ligth;
+}
+
+.containerImage {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .imagePreview {
+  cursor: pointer;
   padding: 10px;
   width: 150px;
   height: 150px;
   animation-name: fadeIn;
   object-fit: cover;
   animation-duration: 500ms;
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 15px;
+
+  &:hover {
+    opacity: 0.3;
+  }
 }
 
 @keyframes fadeIn {
