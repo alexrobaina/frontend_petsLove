@@ -10,6 +10,7 @@ class CreatePetStore {
   @observable name = ''
   @observable pet = []
   @observable imagePreview = []
+  @observable newPreviewsImage = []
   @observable address = {}
   @observable category = ''
   @observable textAddress = ''
@@ -158,8 +159,21 @@ class CreatePetStore {
 
   @action
   deleteImageArray(image) {
-    this.imagePreview.filter(image)
-    console.log(image)
+    this.imagePreview = this.imagePreview.filter(preview => {
+      return preview !== image
+    })
+  }
+
+  @action
+  deleteNewPreviewsImage(image) {
+    this.image = this.newPreviewsImage.filter(preview => {
+      return preview.preview !== image
+    })
+  }
+
+  @action
+  setNewsPreviewsImage(image) {
+    this.newPreviewsImage = image
   }
 
   @action

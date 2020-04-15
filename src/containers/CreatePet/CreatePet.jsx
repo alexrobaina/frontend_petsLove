@@ -31,8 +31,6 @@ const CreatePet = () => {
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
 
-  const [previews, setPreviews] = useState([])
-
   const handleChangeImage = useCallback(e => {
     createPetStore.setImage(e.target.files)
 
@@ -43,7 +41,7 @@ const CreatePet = () => {
       preview: URL.createObjectURL(file),
     }))
 
-    setPreviews(mappedFiles)
+    createPetStore.setNewsPreviewsImage(mappedFiles)
   })
 
   const onClickFileUpload = useCallback(() => {
@@ -119,6 +117,10 @@ const CreatePet = () => {
     createPetStore.deleteImageArray(image)
   }, [])
 
+  const deleteImageNewPreviews = useCallback(image => {
+    createPetStore.deleteNewPreviewsImage(image)
+  }, [])
+
   const handleSave = useCallback(() => {
     if (id) {
       createPetStore.saveEdit(id)
@@ -140,7 +142,7 @@ const CreatePet = () => {
       setOnlySave(true)
     }
   }, [])
-  console.log(createPetStore.isEdit)
+
   return (
     <Navbar>
       <LayoutContainer
@@ -151,13 +153,16 @@ const CreatePet = () => {
       >
         <Title subTitle={t('subtitle')} />
         <div className={styles.containerImagePreview}>
-          {previews &&
-            previews.map(image => {
+          {createPetStore.newPreviewsImage &&
+            createPetStore.newPreviewsImage.map(image => {
               return (
-                <div onClick={() => deleteImage(image)} className={styles.containerImage}>
-                  <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
+                <div className={styles.containerImage}>
+                  <img className={styles.imagePreview} src={image.preview} alt="pets" />
                   <div className={styles.middle}>
-                    <div className={styles.containerIcon}>
+                    <div
+                      onClick={() => deleteImageNewPreviews(image.preview)}
+                      className={styles.containerIcon}
+                    >
                       <MdCancel className={styles.iconImage} size={20} />
                     </div>
                   </div>
@@ -198,6 +203,23 @@ const CreatePet = () => {
               </label>
             </div>
           )}
+          <div className={styles.colContainerCheckbox}>
+            <InputCheckbox
+              isEdit
+              handleChange={handleChangeUrgent}
+              value={createPetStore.urgent}
+              text={t('Fué adoptada?')}
+            />
+          </div>
+          <div className={styles.col}>
+            <InputSelect
+              isEdit={createPetStore.isEdit}
+              value={createPetStore.category}
+              options={optionsSelectsStore.categories}
+              handleChange={handleChangeName}
+              placeholder={t('Si fué adoptada, asignale el usuario')}
+            />
+          </div>
           <div className={styles.col}>
             <Input
               isEdit={createPetStore.isEdit}

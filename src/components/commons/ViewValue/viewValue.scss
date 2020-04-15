@@ -7,9 +7,11 @@
   padding-bottom: 2px;
   border-bottom: 1px solid $borderPrimary;
   transition: 3ms;
+  text-align: left !important;
 }
 
 .label {
+  text-align: right !important;
   color: $secundaryTitle;
   transition: 3ms;
 }

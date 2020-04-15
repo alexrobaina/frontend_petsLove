@@ -144,18 +144,17 @@
 }
 
 .col {
-  width: 45%;
+  width: 45.3%;
   padding: 10px;
 
   @include media-breakpoint-down(sm) {
-    text-align: center;
     padding: 20px;
     width: 100%;
   }
 }
 
 .colContainerCheckbox {
-  width: 45%;
+  width: 47%;
 
   @include media-breakpoint-down(sm) {
     text-align: center;
