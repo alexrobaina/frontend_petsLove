@@ -94,7 +94,7 @@ class CreatePetStore {
       requiredToAdoption: this.requiredToAdoption,
       activity: this.activity,
     }
-
+    console.log(dataPets)
     const data = new FormData()
 
     // eslint-disable-next-line no-unused-vars
