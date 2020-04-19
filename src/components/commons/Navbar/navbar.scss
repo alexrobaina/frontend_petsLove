@@ -64,8 +64,14 @@
 .containerFilter {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
   margin-left: 4px;
+}
+
+.logo {
+  font-size: 15px;
+  color: $title;
+  font-weight: 600;
 }
 
 .animationOpacity {

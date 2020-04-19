@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isError }) => {
@@ -15,19 +16,7 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isErro
           onChange={handleChange}
         />
       ) : (
-        <>
-          {value ? (
-            <>
-              <label className={styles.label}>{placeholder}</label>
-              <div className={styles.value}>{value}</div>
-            </>
-          ) : (
-            <>
-              <label className={styles.label}>{placeholder}</label>
-              <div className={styles.value}>-</div>
-            </>
-          )}
-        </>
+        <ViewValue placeholder={placeholder} value={value} />
       )}
       {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
     </>

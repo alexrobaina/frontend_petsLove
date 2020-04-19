@@ -10,6 +10,7 @@ import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
 import InputSelect from 'components/commons/InputSelect'
 import Loading from 'components/commons/Loading/Loading'
 import styles from './formRegister.scss'
+import ErrorMessage from '../commons/ErrorMessage'
 
 const FormRegister = ({ registerStore }) => {
   const { t } = useTranslation('formRegister')
@@ -40,8 +41,6 @@ const FormRegister = ({ registerStore }) => {
   })
 
   useEffect(() => {
-    registerStore.getRols()
-
     if (registerStore.isRegister) {
       history.push(`/login`)
     }
@@ -51,6 +50,9 @@ const FormRegister = ({ registerStore }) => {
     <div className={styles.register}>
       <div className={styles.centerRegister}>
         <div className={styles.title}>{t('singIn')}</div>
+        {registerStore.isError && (
+          <ErrorMessage text="Todos los campos son requeridos" typeMessage="error" />
+        )}
         {registerStore.isloading ? (
           <Loading small />
         ) : (
@@ -59,15 +61,31 @@ const FormRegister = ({ registerStore }) => {
               <Input canEdit isEdit handleChange={handleName} placeholder={t('name')} />
             </div>
             <div className={styles.inputForm}>
-              <Input canEdit isEdit handleChange={handleEmail} placeholder={t('email')} />
+              <Input
+                type="email"
+                canEdit
+                isEdit
+                handleChange={handleEmail}
+                placeholder={t('email')}
+              />
             </div>
+            {registerStore.emailValidate && (
+              <div className={styles.errorMessage}>{t('errorMessage')}</div>
+            )}
             <div className={styles.inputForm}>
-              <Input canEdit isEdit handleChange={handlePassword} placeholder={t('password')} />
+              <Input
+                canEdit
+                isEdit
+                type="password"
+                handleChange={handlePassword}
+                placeholder={t('password')}
+              />
             </div>
             <div className={styles.inputForm}>
               <Input
                 canEdit
                 isEdit
+                type="password"
                 handleChange={handleConfirmPassword}
                 placeholder={t('confirmPassword')}
               />
@@ -80,7 +98,11 @@ const FormRegister = ({ registerStore }) => {
             </div>
             <div className={styles.inputForm}>
               <InputSelect
-                options={registerStore.rols}
+                options={[
+                  { value: 'protectionist', label: t('protectionist') },
+                  { value: 'adopter', label: t('adopter') },
+                  { value: 'transitUser', label: t('transitUser') },
+                ]}
                 handleChange={handleTypeRol}
                 placeholder={t('typeUser')}
               />

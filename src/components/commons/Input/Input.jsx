@@ -5,7 +5,6 @@ import ViewValue from '../ViewValue'
 
 const Input = ({
   isEdit,
-  canEdit,
   value,
   required,
   handleChange,
@@ -14,10 +13,11 @@ const Input = ({
   isError,
   isErrorEmail,
   multiple,
+  disabled,
 }) => {
   return (
     <>
-      {isEdit && canEdit ? (
+      {isEdit ? (
         <>
           <input
             multiple={multiple}
@@ -27,6 +27,7 @@ const Input = ({
             placeholder={placeholder}
             onChange={handleChange}
             defaultValue={value}
+            disabled={disabled}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>
@@ -48,13 +49,11 @@ Input.propTypes = {
   isError: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
   isEdit: PropTypes.bool,
-  canEdit: PropTypes.bool,
   value: PropTypes.string,
 }
 
 Input.defaultProps = {
   isEdit: false,
-  canEdit: false,
   value: '',
   type: 'text',
   isError: false,

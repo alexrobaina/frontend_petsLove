@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
+import { MdPets } from 'react-icons/md'
 import { HOME, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
-import { MdSearch } from 'react-icons/md'
 import UserContext from 'Context/UserContext'
 import Footer from 'components/commons/Footer'
 import ButtonLink from 'components/commons/ButtonLink'
@@ -56,7 +56,8 @@ const Navbar = ({ children }) => {
       <div className={styles.containerNavbar}>
         <div className={styles.containerFilter}>
           {/* this is button that open filters */}
-          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
+          <ButtonIcon onclick={goToSeach} icon={<MdPets size={25} />} />
+          <div className={styles.logo}>Pets love</div>
         </div>
         {rootStore.authStore.isLogin ? (
           <>

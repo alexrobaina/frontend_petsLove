@@ -10,7 +10,7 @@ const ButtonsPet = ({ petIsEdit, pet }) => {
   const history = useHistory()
   const editPet = useCallback(id => {
     history.push(`/`)
-    history.push(`create-pet/${id}`)
+    history.push(`edit-pet/${id}`)
   }, [])
 
   return (

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
-import Navbar from 'components/commons/Navbar/Navbar'
 // import styles from './forAdoption.scss'
 
 const ForAdoption = () => {
@@ -17,11 +16,9 @@ const ForAdoption = () => {
   }, [])
 
   return (
-    <Navbar>
-      <LayoutContainer title={t('title')}>
-        <ListPets pets={searchPetsStore.petsForAdoption} />
-      </LayoutContainer>
-    </Navbar>
+    <LayoutContainer title={t('title')}>
+      <ListPets pets={searchPetsStore.petsForAdoption} />
+    </LayoutContainer>
   )
 }
 

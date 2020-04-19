@@ -1,11 +1,15 @@
-@import 'styles/variable.scss';
+@import 'styles/mixings';
 
 .container {
-  padding: 20px;
+  padding: 20px 8px 18px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include media-breakpoint-only(xs) {
+    padding: 18px 16px 18px 21px;
+  }
 }
 
 .containerSwitch {
