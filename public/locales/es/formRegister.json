@@ -12,5 +12,9 @@
   "provider": "Soy proveedor",
   "errorMessage": "El password es diferente",
   "successMessage": "Genial! Podés continuar",
-  "terms": "Registrarse significa que ha leído y acepta los Términos de servicio y nuestra Política de privacidad."
+  "terms": "Registrarse significa que ha leído y acepta los Términos de servicio y nuestra Política de privacidad.",
+  "protectionist": "Soy proteccionista",
+  "adopter": "Quiero adoptar",
+  "transitUser": "Hago transito de mascotas",
+  "errorMessageInputs": "Todos los campos son requeridos"
 }

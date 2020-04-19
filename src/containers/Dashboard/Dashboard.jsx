@@ -1,47 +1,26 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import UserContext from 'Context/UserContext'
-import { observer, useLocalStore } from 'mobx-react'
-import { useTranslation } from 'react-i18next'
-import LayoutContainer from 'components/commons/LayoutContainer'
-import DashboardCard from 'components/commons/DashboardCard'
-import SearchPetsStore from 'stores/SearchPetsStore'
-import Navbar from 'components/commons/Navbar'
-import ListPets from 'components/ListPets'
-import icon from './businessman.svg'
-import styles from './dashboard.scss'
+import { observer } from 'mobx-react'
+import ProtectionistUser from './ProtectionistUser'
+import AdopterUser from './AdopterUser'
+import TransitUser from './TransitUser'
 
+// eslint-disable-next-line consistent-return
 const Dashboard = () => {
-  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
-  const { t } = useTranslation('dashboard')
+  if (authStore.user.rol === 'protectionist') {
+    return <ProtectionistUser />
+  }
 
-  useEffect(() => {
-    searchPetsStore.getPetForUser(authStore.user._id)
-    searchPetsStore.getPetAdopted(authStore.user._id)
-  }, [])
+  if (authStore.user.rol === 'adopter') {
+    return <AdopterUser />
+  }
 
-  console.log(searchPetsStore.pets)
-  return (
-    <Navbar>
-      <LayoutContainer>
-        <div className={styles.container}>
-          <DashboardCard
-            icon={icon}
-            numberCard={searchPetsStore.petsAdopted.length}
-            titleCard={t('petsAdopted')}
-          />
-          <DashboardCard
-            icon={icon}
-            numberCard={searchPetsStore.pets.length}
-            titleCard={t('petsForAdoption')}
-          />
-        </div>
-        <ListPets pets={searchPetsStore.pets} />
-      </LayoutContainer>
-    </Navbar>
-  )
+  if (authStore.user.rol === 'transitUser') {
+    return <TransitUser />
+  }
 }
 
 export default observer(Dashboard)

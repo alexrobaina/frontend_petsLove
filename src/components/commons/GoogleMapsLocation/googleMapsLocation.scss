@@ -1,3 +1,5 @@
+@import 'styles/variable';
+
 .containerMap {
   position: relative;
   width: 100%;
@@ -12,4 +14,10 @@
 
 .map {
   position: absolute;
+}
+
+.userLocation {
+  font-size: 15px;
+  padding: 20px;
+  color: $title;
 }

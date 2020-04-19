@@ -10,14 +10,17 @@ class CreatePetStore {
   @observable name = ''
   @observable pet = []
   @observable imagePreview = []
+  @observable imagesNews = []
   @observable newPreviewsImage = []
   @observable address = {}
+  @observable idPet = ''
   @observable category = ''
   @observable textAddress = ''
   @observable urgent = false
   @observable sterilized = false
   @observable lost = false
   @observable vaccinated = false
+  @observable adopted = false
   @observable gender = ''
   @observable age = ''
   @observable activity = ''
@@ -27,9 +30,11 @@ class CreatePetStore {
   @observable isError = false
   @observable isEdit = false
   @observable canEdit = false
+  @observable requestSuccess = false
 
   @action
   async save(userId) {
+    this.requestSuccess = false
     const dataPets = {
       user: userId,
       name: this.name,
@@ -39,6 +44,7 @@ class CreatePetStore {
       sterilized: this.sterilized,
       lost: this.lost,
       gender: this.gender,
+      adopted: this.adopted,
       age: this.age,
       vaccinated: this.vaccinated,
       history: this.history,
@@ -66,9 +72,9 @@ class CreatePetStore {
 
       runInAction(() => {
         this.pet = response
-        setTimeout(() => {
-          window.location.reload()
-        }, 500)
+
+        this.idPet = this.pet._id
+        this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
@@ -79,6 +85,8 @@ class CreatePetStore {
 
   @action
   async saveEdit(id) {
+    this.requestSuccess = false
+
     const dataPets = {
       _id: id,
       name: this.name,
@@ -87,6 +95,7 @@ class CreatePetStore {
       urgent: this.urgent,
       sterilized: this.sterilized,
       lost: this.lost,
+      adopted: this.adopted,
       gender: this.gender,
       age: this.age,
       vaccinated: this.vaccinated,
@@ -94,7 +103,7 @@ class CreatePetStore {
       requiredToAdoption: this.requiredToAdoption,
       activity: this.activity,
     }
-    console.log(dataPets)
+
     const data = new FormData()
 
     // eslint-disable-next-line no-unused-vars
@@ -120,9 +129,9 @@ class CreatePetStore {
 
       runInAction(() => {
         this.pet = response
-        setTimeout(() => {
-          window.location.reload()
-        }, 500)
+        this.idPet = this.pet._id
+
+        this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
@@ -139,6 +148,7 @@ class CreatePetStore {
       runInAction(() => {
         this.pet = response
         this.imagePreview = response.image
+
         Object.entries(this.pet).forEach(([key, value]) => {
           if (key !== 'image') {
             this[key] = value
@@ -165,15 +175,13 @@ class CreatePetStore {
   }
 
   @action
-  deleteNewPreviewsImage(image) {
-    this.image = this.newPreviewsImage.filter(preview => {
-      return preview.preview !== image
-    })
+  setNewsPreviewsImage(image) {
+    this.newPreviewsImage = image
   }
 
   @action
-  setNewsPreviewsImage(image) {
-    this.newPreviewsImage = image
+  setArrayNewImageForDelete(image) {
+    this.imagesNews = image
   }
 
   @action
@@ -199,6 +207,11 @@ class CreatePetStore {
   @action
   setUrgent() {
     this.urgent = !this.urgent
+  }
+
+  @action
+  setAdopted() {
+    this.adopted = !this.adopted
   }
 
   @action

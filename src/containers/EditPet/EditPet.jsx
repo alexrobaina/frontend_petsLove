@@ -17,15 +17,15 @@ import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
-import styles from './createPet.scss'
+import styles from './editPet.scss'
 
-const CreatePet = () => {
+const EditPet = () => {
   const history = useHistory()
   const { id } = useParams()
   const [addressLocation, setAddress] = useState({})
   const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
-  const { t } = useTranslation(['createPet'])
+  const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
@@ -38,7 +38,6 @@ const CreatePet = () => {
     const mappedFiles = fileList.map(file => ({
       ...file,
       preview: URL.createObjectURL(file),
-      imageName: file,
     }))
 
     createPetStore.setNewsPreviewsImage(mappedFiles)
@@ -121,6 +120,10 @@ const CreatePet = () => {
     createPetStore.deleteImageArray(image)
   }, [])
 
+  const deleteImageNewPreviews = useCallback(image => {
+    createPetStore.deleteNewPreviewsImage(image)
+  }, [])
+
   const handleSave = useCallback(() => {
     if (id) {
       createPetStore.saveEdit(id)
@@ -150,7 +153,12 @@ const CreatePet = () => {
   }, [createPetStore.requestSuccess])
 
   return (
-    <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>
+    <LayoutContainer
+      viewButtonBack
+      handleBack={handleBack}
+      title={t('edit')}
+      textButton={t('backPets')}
+    >
       <Title subTitle={t('subtitle')} />
       <div className={styles.containerImagePreview}>
         {createPetStore.newPreviewsImage &&
@@ -158,9 +166,18 @@ const CreatePet = () => {
             return (
               <div className={styles.containerImage}>
                 <img className={styles.imagePreview} src={image.preview} alt="pets" />
+                <div className={styles.middle}>
+                  <div
+                    onClick={() => deleteImageNewPreviews(image.preview)}
+                    className={styles.containerIcon}
+                  >
+                    <MdCancel className={styles.iconImage} size={20} />
+                  </div>
+                </div>
               </div>
             )
           })}
+
         {createPetStore.imagePreview &&
           createPetStore.imagePreview.map(image => {
             return (
@@ -204,11 +221,7 @@ const CreatePet = () => {
           <InputSelect
             isEdit={createPetStore.isEdit}
             value={createPetStore.category}
-            options={[
-              { value: '', label: t('allCategories') },
-              { value: 'dog', label: t('dogs') },
-              { value: 'cat', label: t('cats') },
-            ]}
+            options={optionsSelectsStore.categories}
             handleChange={handleChangeName}
             placeholder={t('assignUser')}
           />
@@ -225,10 +238,7 @@ const CreatePet = () => {
           <InputSelect
             isEdit={createPetStore.isEdit}
             value={createPetStore.category}
-            options={[
-              { value: 'dog', label: t('dogs') },
-              { value: 'cat', label: t('cats') },
-            ]}
+            options={optionsSelectsStore.categories}
             handleChange={handleChangeCategory}
             placeholder={t('categoryPets')}
           />
@@ -272,8 +282,8 @@ const CreatePet = () => {
         <div className={styles.colMap}>
           <GoogleAutocomplete
             isEdit={createPetStore.isEdit}
-            label={t('addressPet')}
-            placeholder={t('addAddress')}
+            label="Address pet"
+            placeholder="Add address pet"
             value={createPetStore.textAddress}
             handleChangeTextAddress={handleChangeTextAddress}
             handleChangeAddress={handleChangeAddress}
@@ -293,10 +303,7 @@ const CreatePet = () => {
           <InputSelect
             isEdit={createPetStore.isEdit}
             value={createPetStore.gender}
-            options={[
-              { value: 'female', label: t('female') },
-              { value: 'male', label: t('male') },
-            ]}
+            options={optionsSelectsStore.gender}
             handleChange={handleChangeGender}
             placeholder={t('gender')}
           />
@@ -305,32 +312,7 @@ const CreatePet = () => {
           <InputSelect
             isEdit={createPetStore.isEdit}
             value={createPetStore.age}
-            options={[
-              { value: '1month', label: t('1month') },
-              { value: '2month', label: t('2month') },
-              { value: '3month', label: t('3month') },
-              { value: '4month', label: t('4month') },
-              { value: '5month', label: t('5month') },
-              { value: '6month', label: t('6month') },
-              { value: '7month', label: t('7month') },
-              { value: '8month', label: t('8month') },
-              { value: '9month', label: t('9month') },
-              { value: '10month', label: t('10month') },
-              { value: '11month', label: t('11month') },
-              { value: '12month', label: t('12month') },
-              { value: '1year', label: t('1year') },
-              { value: '2year', label: t('2year') },
-              { value: '3year', label: t('3year') },
-              { value: '4year', label: t('4year') },
-              { value: '5year', label: t('5year') },
-              { value: '6year', label: t('6year') },
-              { value: '7year', label: t('7year') },
-              { value: '8year', label: t('8year') },
-              { value: '9year', label: t('9year') },
-              { value: '10year', label: t('10year') },
-              { value: '11year', label: t('11year') },
-              { value: '12year', label: t('12year') },
-            ]}
+            options={optionsSelectsStore.ages}
             handleChange={handleChangeAge}
             placeholder={t('age')}
           />
@@ -357,11 +339,7 @@ const CreatePet = () => {
           <InputSelect
             isEdit={createPetStore.isEdit}
             value={createPetStore.activity}
-            options={[
-              { value: 'quiet', label: t('quiet') },
-              { value: 'energetic', label: t('energetic') },
-              { value: 'superEnergetic', label: t('superEnergetic') },
-            ]}
+            options={optionsSelectsStore.activity}
             handleChange={handleChangeActivity}
             placeholder={t('activity')}
           />
@@ -380,4 +358,4 @@ const CreatePet = () => {
   )
 }
 
-export default observer(CreatePet)
+export default observer(EditPet)

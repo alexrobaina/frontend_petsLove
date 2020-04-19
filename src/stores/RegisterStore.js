@@ -21,24 +21,6 @@ class RegisterStore {
   @observable isRegister = false
 
   @action
-  async getRols() {
-    this.isLoading = true
-    try {
-      const response = await this.registerService.getUserRol()
-
-      runInAction(() => {
-        this.isLoading = false
-        this.rols = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   async createUser() {
     this.isLoading = true
 
@@ -78,7 +60,8 @@ class RegisterStore {
   @action
   setPassword(value) {
     this.password = value
-    if (value === this.confirmPassword) {
+    console.log(this.password)
+    if (this.password === this.confirmPassword) {
       this.passwordSuccess = true
       this.passwordError = false
     } else {
@@ -90,7 +73,8 @@ class RegisterStore {
   @action
   setConfirmPassword(value) {
     this.confirmPassword = value
-    if (value === this.password) {
+    console.log(this.confirmPassword)
+    if (this.confirmPassword === this.password) {
       this.passwordSuccess = true
       this.passwordError = false
     } else {
@@ -101,12 +85,27 @@ class RegisterStore {
 
   @action
   setEmail(value) {
-    this.email = value
+    // eslint-disable-next-line no-useless-escape
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (re.test(String(value).toLowerCase())) {
+      this.email = value.toLowerCase()
+      console.log(this.email)
+    }
   }
 
   @action
   setName(value) {
     this.name = value
+  }
+
+  @action
+  setErrorPassword() {
+    this.passwordError = true
+  }
+
+  @action
+  cancelErrorPassword() {
+    this.passwordError = false
   }
 }
 

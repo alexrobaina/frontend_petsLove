@@ -13,6 +13,7 @@ const Input = ({
   isError,
   isErrorEmail,
   multiple,
+  disabled,
 }) => {
   return (
     <>
@@ -26,6 +27,7 @@ const Input = ({
             placeholder={placeholder}
             onChange={handleChange}
             defaultValue={value}
+            disabled={disabled}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>

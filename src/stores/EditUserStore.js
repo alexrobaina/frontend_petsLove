@@ -18,10 +18,12 @@ class EditUserStore {
   @observable requirementsToAdopt = ''
   @observable image = null
   @observable canTransit = false
-  @observable address = []
+  @observable address = {}
   @observable textAddress = ''
   @observable nickname = ''
+  @observable nameRol = ''
   @observable isEdit = false
+  @observable isUserTransit = false
   @observable canEdit = false
   @observable isLoading = false
   @observable isError = false
@@ -29,14 +31,17 @@ class EditUserStore {
   @action
   async saveUser() {
     const data = new FormData()
-    console.log(this.image)
+
     if (this.image) {
       data.append('image', this.image)
-    }
-    if (this.user.image) {
+    } else {
       data.append('image', this.user.image)
     }
 
+    if (this.address.lat) {
+      data.append('lat', this.address.lat)
+      data.append('lng', this.address.lng)
+    }
     data.append('_id', this.user._id)
     data.append('name', this.user.name)
     data.append('rol', this.user.rol)
@@ -45,7 +50,6 @@ class EditUserStore {
     data.append('aboutUs', this.aboutUs)
     data.append('requirementsToAdopt', this.requirementsToAdopt)
     data.append('canTransit', this.canTransit)
-    data.append('address', this.address)
     data.append('textAddress', this.textAddress)
     data.append('nickname', this.nickname)
 
@@ -73,8 +77,10 @@ class EditUserStore {
 
       runInAction(() => {
         this.user = response
-        console.log(this.user)
         this.setLocalStorage.setUser(response)
+        this.rol = response.rol
+        this.canTransit = response.canTransit
+        this.formatNameRole()
       })
     } catch (e) {
       runInAction(() => {
@@ -96,6 +102,19 @@ class EditUserStore {
   @action
   setRol(value) {
     this.rol = value
+  }
+
+  @action
+  formatNameRole() {
+    if (this.rol === 'transitUser') {
+      this.nameRol = 'Transit pets.'
+    }
+    if (this.rol === 'protectionist') {
+      this.nameRol = 'You are protectionist of pets.'
+    }
+    if (this.rol === 'adopter') {
+      this.nameRol = 'You want adopt.'
+    }
   }
 
   @action
@@ -130,6 +149,7 @@ class EditUserStore {
 
   @action
   setAddress(value) {
+    console.log(value)
     this.address = value
   }
 

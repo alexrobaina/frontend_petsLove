@@ -1,53 +1,86 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import c from 'classnames'
+import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
+import c from 'classnames'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import CardGoogle from 'components/commons/CardGoogle'
 import styles from './googleMapsLocation.scss'
 
-const GoogleMapsLocation = observer(
-  ({ google, location, phone, userName, email, title, showAddress, isProfilePet }) => {
-    const [activeMarker, setActiveMarker] = useState({})
-    const [showingInfoWindow, setShowingInfoWindow] = useState(false)
+const GoogleMapsLocation = observer(({ google, location, isProfilePet, users }) => {
+  const { t } = useTranslation('googleMapCard')
+  const [activeMarker, setActiveMarker] = useState({})
+  const [activeMarkerUser, setActiveMarkerUser] = useState({})
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false)
+  const [showingInfoWindowUser, setShowingInfoWindowUser] = useState(false)
 
-    const onMarkerClick = (map, marker) => {
-      setActiveMarker(marker)
-      setShowingInfoWindow(!showingInfoWindow)
-    }
-    return (
-      <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
-        <Map
-          google={google}
-          zoom={15}
-          initialCenter={location}
-          className={styles.map}
-          center={location}
-        >
-          <Marker onClick={onMarkerClick} position={location} />
-          <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
-            <div>
-              {title && <div>{title}</div>}
-              {!showAddress && <h6>{userName}</h6>}
-              {!showAddress && <div>{email}</div>}
-              {!showAddress && <div>{phone}</div>}
-            </div>
-          </InfoWindow>
-        </Map>
-      </div>
-    )
+  const onMarkerClick = (map, marker) => {
+    setActiveMarker(marker)
+    setShowingInfoWindow(!showingInfoWindow)
   }
-)
+
+  const onMarkerUserClick = (map, marker) => {
+    setActiveMarkerUser(marker)
+    setShowingInfoWindowUser(!showingInfoWindowUser)
+  }
+
+  return (
+    <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
+      <Map
+        google={google}
+        zoom={15}
+        initialCenter={location}
+        className={styles.map}
+        center={location}
+      >
+        <Marker onClick={onMarkerUserClick} position={location} />
+        {users &&
+          users.map(user => {
+            return (
+              <Marker
+                key={user._id}
+                onClick={onMarkerClick}
+                position={{ lat: user.lat, lng: user.lng }}
+                name={user.name}
+                email={user.email}
+                image={user.image}
+                id={user._id}
+              />
+            )
+          })}
+        <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+          <CardGoogle
+            textButton={t('textButton')}
+            image={activeMarker.image}
+            name={activeMarker.name}
+            email={activeMarker.email}
+            id={activeMarker.id}
+          />
+        </InfoWindow>
+        <InfoWindow marker={activeMarkerUser} visible={showingInfoWindowUser}>
+          <div className={styles.userLocation}>This is your location</div>
+        </InfoWindow>
+      </Map>
+    </div>
+  )
+})
 
 GoogleMapsLocation.propTypes = {
   location: PropTypes.string.isRequired,
+  arrayLocation: PropTypes.arrayOf([PropTypes.array]),
+  users: PropTypes.arrayOf([PropTypes.array]),
   showAddress: PropTypes.bool,
   isProfilePet: PropTypes.bool,
+  card: PropTypes.node,
   phone: PropTypes.string,
   title: PropTypes.string,
   email: PropTypes.string,
 }
 
 GoogleMapsLocation.defaultProps = {
+  arrayLocation: [],
+  users: null,
+  card: null,
   phone: 'No have phone',
   email: 'Not have email',
   title: '',
