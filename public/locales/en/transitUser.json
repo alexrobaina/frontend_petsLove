@@ -1,3 +1,8 @@
 {
-  "title": "Volunteers Transit"
+  "title": "Volunteers Transit {{ name }}",
+  "aboutUs": "About Us",
+  "rol": "Make transit pets",
+  "requirementsToAdoption": "Requirements for adoption",
+  "messageCardDashboard": "Thanks for love the pets",
+  "last": "last"
 }

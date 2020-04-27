@@ -10,33 +10,37 @@ import {
   REGISTER,
   CREATE_PET,
   PROFILE_PET,
-  USER_PROFILE,
+  EDIT_USER,
   SEARCH_VOLANTEERS,
   PETS_ADOPTER,
   MY_PETS,
   EDIT_PET,
+  PROFILE_USER,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
 import PageNotFound from 'components/commons/PageNotFound'
 import UserContext from 'Context/UserContext'
 import ForgotPassword from 'containers/ForgotPassword'
 import ProfilePets from 'containers/ProfilePets'
-import ProfileUser from 'containers/ProfileUser'
 import SearchVolunteers from 'containers/SearchVolunteers'
 import PetsAdopted from 'containers/PetsAdopted'
 import ForAdoption from 'containers/ForAdoption'
 import Dashboard from 'containers/Dashboard'
+import EditUser from 'containers/EditUser/EditUser'
 import CreatePet from 'containers/CreatePet'
 import Register from 'containers/Register'
 import Login from 'containers/Login'
 import Home from 'containers/Home'
+import ProfileUser from 'containers/ProfileUser'
 import EditPet from 'containers/EditPet'
 import Navbar from './components/commons/Navbar'
+import axiosInterceptors from './utils/axiosInterceptors'
 import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
 
 const rootStore = new RootStore()
+axiosInterceptors(rootStore)
 
 function App() {
   return (
@@ -75,7 +79,14 @@ function App() {
               exact
               isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path={USER_PROFILE}
+              path={EDIT_USER}
+              component={EditUser}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={PROFILE_USER}
               component={ProfileUser}
             />
             <PrivateRoute

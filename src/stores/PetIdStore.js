@@ -11,12 +11,14 @@ class PetIdStore {
   @observable id = ''
   @observable pet = []
   @observable name = []
+  @observable protectionist = []
   @observable images = []
   @observable gender = ''
   @observable age = ''
   @observable phone = ''
   @observable categorie = ''
   @observable activity = ''
+  @observable idUser = ''
   @observable lat = null
   @observable lng = null
   @observable userName = ''
@@ -33,7 +35,7 @@ class PetIdStore {
   @action
   setPetIsEdit() {
     const userConnected = this.setLocalStorage.getUser()
-    if (userConnected.email === this.pet.user.email) {
+    if (userConnected._id === this.pet.user._id || userConnected._id === this.pet.userAdopt._id) {
       this.petIsEdit = true
     }
   }
@@ -49,6 +51,8 @@ class PetIdStore {
           this.isLoading = false
         }, 2000)
         this.pet = response
+        this.userName = this.pet.user.name
+        this.idUser = this.pet.user._id
         this.images = this.pet.image
         this.setPetIsEdit()
       })

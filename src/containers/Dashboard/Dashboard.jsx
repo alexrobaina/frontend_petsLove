@@ -5,7 +5,6 @@ import ProtectionistUser from './ProtectionistUser'
 import AdopterUser from './AdopterUser'
 import TransitUser from './TransitUser'
 
-// eslint-disable-next-line consistent-return
 const Dashboard = () => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -18,9 +17,7 @@ const Dashboard = () => {
     return <AdopterUser />
   }
 
-  if (authStore.user.rol === 'transitUser') {
-    return <TransitUser />
-  }
+  return <TransitUser />
 }
 
 export default observer(Dashboard)

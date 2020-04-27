@@ -14,6 +14,9 @@ class CreatePetStore {
   @observable newPreviewsImage = []
   @observable address = {}
   @observable idPet = ''
+  @observable userAdopter = ''
+  @observable emailUserAdopt = ''
+  @observable transitUser = ''
   @observable category = ''
   @observable textAddress = ''
   @observable urgent = false
@@ -104,6 +107,13 @@ class CreatePetStore {
       activity: this.activity,
     }
 
+    if (this.userAdopter) {
+      dataPets.userAdopt = this.userAdopter
+    }
+    if (this.transitUser) {
+      dataPets.userTransit = this.transitUser
+    }
+
     const data = new FormData()
 
     // eslint-disable-next-line no-unused-vars
@@ -149,6 +159,9 @@ class CreatePetStore {
         this.pet = response
         this.imagePreview = response.image
 
+        if (response.userAdopt) {
+          this.emailUserAdopt = response.userAdopt.email
+        }
         Object.entries(this.pet).forEach(([key, value]) => {
           if (key !== 'image') {
             this[key] = value
@@ -192,6 +205,16 @@ class CreatePetStore {
   @action
   setCategory(value) {
     this.category = value.value
+  }
+
+  @action
+  setUserAdopter(value) {
+    this.userAdopter = value.value
+  }
+
+  @action
+  setTransitUser(value) {
+    this.transitUser = value.value
   }
 
   @action

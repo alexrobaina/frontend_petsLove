@@ -14,6 +14,8 @@ class SearchPetsStore {
   @observable filters = []
   @observable petsAdopted = []
   @observable petsForAdoption = []
+  @observable petsUserTransit = []
+  @observable petsUserAdopt = []
   @observable country = ''
   @observable category = ''
   @observable activity = ''
@@ -212,10 +214,10 @@ class SearchPetsStore {
     this.setLoadingTrue()
 
     try {
-      const response = await this.petsService.loadPetsForUser(userId)
+      const response = await this.petsService.loadPetsUserAdopt(userId)
 
       runInAction(() => {
-        this.pets = response
+        this.petsUserAdopt = response
         this.setLoadingFalse()
       })
     } catch (e) {
@@ -254,6 +256,44 @@ class SearchPetsStore {
 
       runInAction(() => {
         this.petsForAdoption = response
+        this.setLoadingFalse()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async getPetsUserAdopt(userId) {
+    this.setLoadingTrue()
+
+    try {
+      const response = await this.petsService.loadPetsUserAdopt(userId)
+
+      runInAction(() => {
+        this.petsUserAdopt = response
+        this.setLoadingFalse()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async getPetsUserTransit(userId) {
+    this.setLoadingTrue()
+
+    try {
+      const response = await this.petsService.loadPetsUserTransit(userId)
+
+      runInAction(() => {
+        this.petsUserTransit = response
         this.setLoadingFalse()
       })
     } catch (e) {

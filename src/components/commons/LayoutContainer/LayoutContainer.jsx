@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Animated } from 'react-animated-css'
-import styles from './layoutContainer.scss'
 import ButtonBack from '../ButtonBack'
+import styles from './layoutContainer.scss'
 
-const LayoutContainer = ({ title, children, handleBack, viewButtonBack, textButton }) => {
+const LayoutContainer = ({ title, rolText, children, handleBack, viewButtonBack, textButton }) => {
   return (
     <Animated
       animationIn="fadeIn"
@@ -15,6 +15,7 @@ const LayoutContainer = ({ title, children, handleBack, viewButtonBack, textButt
       <div className={styles.containerLayout}>
         {viewButtonBack && <ButtonBack text={textButton} handleClick={handleBack} />}
         <div className={styles.title}>{title}</div>
+        <div className={styles.rolText}>{rolText}</div>
         {children}
       </div>
     </Animated>

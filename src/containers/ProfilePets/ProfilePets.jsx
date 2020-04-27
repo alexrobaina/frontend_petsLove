@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useLocalStore, observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
@@ -9,8 +10,8 @@ import ErrorMessage from 'components/commons/ErrorMessage'
 import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
-  const { t } = useTranslation('profilePets')
   const petIdStore = useLocalStore(() => new PetIdStore())
+  const { t } = useTranslation('profilePets')
   const { id } = useParams()
 
   useEffect(() => {
@@ -19,9 +20,13 @@ const ProfilePets = () => {
 
   return (
     <LayoutContainer>
+      <Link to={`/profile-user/${petIdStore.idUser}`}>
+        Contact protectionist: {petIdStore.userName}
+      </Link>
       <LayoutProfilePets
         name={petIdStore.pet.name}
         pet={petIdStore.pet}
+        userAdopt={petIdStore.pet.userAdopt}
         images={petIdStore.images}
         petIsEdit={petIdStore.petIsEdit}
       />

@@ -17,6 +17,7 @@ import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
+import SearchUsersStore from 'stores/SearchUsersStore'
 import styles from './editPet.scss'
 
 const EditPet = () => {
@@ -29,6 +30,7 @@ const EditPet = () => {
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
+  const searchUsersStore = useLocalStore(() => new SearchUsersStore())
 
   const handleChangeImage = useCallback(e => {
     createPetStore.setImage(e.target.files)
@@ -53,6 +55,14 @@ const EditPet = () => {
 
   const handleChangeCategory = useCallback(selectedValue => {
     createPetStore.setCategory(selectedValue)
+  }, [])
+
+  const handleUserAdopter = useCallback(selectedValue => {
+    createPetStore.setUserAdopter(selectedValue)
+  }, [])
+
+  const handleTransitUser = useCallback(selectedValue => {
+    createPetStore.setTransitUser(selectedValue)
   }, [])
 
   const handleChangeAddress = useCallback(address => {
@@ -137,6 +147,8 @@ const EditPet = () => {
     optionsSelectsStore.listActiviy()
     optionsSelectsStore.listAges()
     optionsSelectsStore.listCategories()
+    searchUsersStore.searchUser('adopter')
+    searchUsersStore.searchUserTransit('transitUser')
 
     if (id) {
       createPetStore.searchPetForId(id)
@@ -151,7 +163,7 @@ const EditPet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
-
+  console.log(createPetStore.pet)
   return (
     <LayoutContainer
       viewButtonBack
@@ -209,23 +221,38 @@ const EditPet = () => {
             </label>
           </div>
         )}
-        <div className={styles.colContainerCheckbox}>
-          <InputCheckbox
-            isEdit
-            handleChange={handleChangeAdopted}
-            value={createPetStore.adopted}
-            text={t('adoptedPet')}
-          />
-        </div>
-        <div className={styles.col}>
-          <InputSelect
-            isEdit={createPetStore.isEdit}
-            value={createPetStore.category}
-            options={optionsSelectsStore.categories}
-            handleChange={handleChangeName}
-            placeholder={t('assignUser')}
-          />
-        </div>
+        {authStore.user.rol !== 'adopter' && (
+          <>
+            <div className={styles.colContainerCheckbox}>
+              <InputCheckbox
+                isEdit
+                value={createPetStore.adopted}
+                handleChange={handleChangeAdopted}
+                text={t('adoptedPet')}
+              />
+            </div>
+            <div className={styles.col}>
+              <InputSelect
+                isEdit={createPetStore.isEdit}
+                options={searchUsersStore.arrayUsersTransit}
+                handleChange={handleUserAdopter}
+                placeholder={t('assignUser')}
+              />
+            </div>
+          </>
+        )}
+        {authStore.user.rol !== 'adopter' && authStore.user.rol !== 'transitUser' && (
+          <>
+            <div className={styles.col}>
+              <InputSelect
+                isEdit={createPetStore.isEdit}
+                options={searchUsersStore.arrayUsersTransit}
+                handleChange={handleTransitUser}
+                placeholder={t('assignUserTransit')}
+              />
+            </div>
+          </>
+        )}
         <div className={styles.col}>
           <Input
             isEdit={createPetStore.isEdit}

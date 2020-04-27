@@ -15,6 +15,8 @@ class EditUserStore {
   @observable rol = ''
   @observable email = ''
   @observable aboutUs = ''
+  @observable password = ''
+  @observable confirmPassword = ''
   @observable requirementsToAdopt = ''
   @observable image = null
   @observable canTransit = false
@@ -27,6 +29,8 @@ class EditUserStore {
   @observable canEdit = false
   @observable isLoading = false
   @observable isError = false
+  @observable passwordSuccess = false
+  @observable passwordError = false
 
   @action
   async saveUser() {
@@ -36,6 +40,10 @@ class EditUserStore {
       data.append('image', this.image)
     } else {
       data.append('image', this.user.image)
+    }
+
+    if (this.passwordSuccess) {
+      data.append('password', this.password)
     }
 
     if (this.address.lat) {
@@ -118,6 +126,30 @@ class EditUserStore {
   }
 
   @action
+  setPassword(value) {
+    this.password = value
+    if (this.password === this.confirmPassword) {
+      this.passwordSuccess = true
+      this.passwordError = false
+    } else {
+      this.passwordSuccess = false
+      this.passwordError = true
+    }
+  }
+
+  @action
+  setConfirmPassword(value) {
+    this.confirmPassword = value
+    if (this.confirmPassword === this.password) {
+      this.passwordSuccess = true
+      this.passwordError = false
+    } else {
+      this.passwordSuccess = false
+      this.passwordError = true
+    }
+  }
+
+  @action
   setPhone(value) {
     this.phone = value
   }
@@ -149,7 +181,6 @@ class EditUserStore {
 
   @action
   setAddress(value) {
-    console.log(value)
     this.address = value
   }
 

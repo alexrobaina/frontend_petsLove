@@ -24,7 +24,7 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
 
   const goToProfile = useCallback(() => {
     history.push(`/`)
-    history.push(`profile/${authStore.user._id}`)
+    history.push(`edit-user/${authStore.user._id}`)
   }, [])
 
   return (

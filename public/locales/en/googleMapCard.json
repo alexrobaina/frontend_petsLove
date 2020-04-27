@@ -1,3 +1,5 @@
 {
-  "textButton": "View Profile"
+  "textButton": "View Profile",
+  "locationPet": "I am here",
+  "locationUser": "This is your location"
 }

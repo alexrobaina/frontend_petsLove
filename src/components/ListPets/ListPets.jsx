@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Animated } from 'react-animated-css'
 import LazyLoad from 'react-lazyload'
 import { useHistory } from 'react-router'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
-import LayoutContainerCard from 'components/commons/LayoutContainerCard'
+import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import styles from './listPets.scss'
 
-const ListPets = ({ pets }) => {
+const ListPets = ({ pets, isUserAdopt }) => {
   const history = useHistory()
   const goToPet = useCallback(id => {
     history.push(`/`)
@@ -18,40 +17,38 @@ const ListPets = ({ pets }) => {
   }, [])
 
   return (
-    <LayoutContainerCard>
+    <LayoutTrantitions>
       {pets.length > 0 && (
         <div className={styles.container}>
           {pets.map(pet => {
             return (
               <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
-                <Animated
-                  animationIn="bounceInUp"
-                  animationOut="fadeInUp"
-                  isVisible="true"
-                  animationInDuration={2000}
-                >
-                  <div onClick={() => goToPet(pet._id)}>
-                    <CardPets
-                      isAdopted={pet.adopted}
-                      onClick={() => goToPet(pet._id)}
-                      image={pet.image[0]}
-                      namePet={pet.name}
-                      history={pet.history}
-                    />
-                  </div>
-                </Animated>
+                <div onClick={() => goToPet(pet._id)}>
+                  <CardPets
+                    isAdopted={!isUserAdopt && pet.adopted}
+                    onClick={() => goToPet(pet._id)}
+                    image={pet.image[0]}
+                    namePet={pet.name}
+                    history={pet.history}
+                  />
+                </div>
               </LazyLoad>
             )
           })}
         </div>
       )}
-    </LayoutContainerCard>
+    </LayoutTrantitions>
   )
 }
 
 TextCardInformation.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isUserAdopt: PropTypes.bool,
   isError: PropTypes.bool.isRequired,
+}
+
+TextCardInformation.defaultProps = {
+  isUserAdopt: false,
 }
 
 export default ListPets

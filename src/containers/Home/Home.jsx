@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { observer } from 'mobx-react'
+import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
+import ProtectionistStore from 'stores/ProtectionistStore'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAutocomplete'
-import styles from '../ProfileUser/profileUser.scss'
+import styles from './home.scss'
 
 const Home = () => {
   const { t } = useTranslation('home')
   const [address, setAddress] = useState({})
+  const protectionistStore = useLocalStore(() => new ProtectionistStore())
 
   // eslint-disable-next-line no-shadow
   const handleChangeAddress = useCallback(address => {
@@ -18,7 +20,6 @@ const Home = () => {
   }, [])
 
   const showPosition = position => {
-    console.log(position.coords.latitude)
     setAddress({ lat: position.coords.latitude, lng: position.coords.longitude })
   }
 
@@ -26,6 +27,8 @@ const Home = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
     }
+
+    protectionistStore.searchProtectionists()
   }, [])
 
   return (
@@ -35,13 +38,17 @@ const Home = () => {
         <GoogleAutocomplete
           isEdit
           label={t('labelGoogle')}
-          placeholder="Search your address..."
+          placeholder={t('placeholderGoogle')}
           handleChangeAddress={handleChangeAddress}
         />
         {address.lat && (
           <div className={styles.containerMap}>
             <LayoutTrantitions>
-              <GoogleMapsLocation location={address} />
+              <GoogleMapsLocation
+                location={address}
+                users={protectionistStore.protectionists}
+                arrayLocation={protectionistStore.arrayLocationProtectionists}
+              />
             </LayoutTrantitions>
           </div>
         )}

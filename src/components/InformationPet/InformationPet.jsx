@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender } from 'react-icons/fa'
+import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'react-icons/fa'
 import { GiJumpingDog, GiLoveInjection } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import { MdPets } from 'react-icons/md'
@@ -11,11 +11,19 @@ import styles from './informationPet.scss'
 
 const InformationPet = ({ pet }) => {
   const { t } = useTranslation('profilePets')
+
   return (
     <LayoutCards>
       <div className={styles.info}>
-        <TextCardInformation icon={<FaBirthdayCake size={25} />} text={t('age')} value={pet.age} />
-        <TextCardInformation icon={<FaCat size={25} />} text={t('category')} value={pet.category} />
+        {pet.userAdopt && (
+          <TextCardInformation
+            icon={<FaUser size={20} />}
+            text={t('User Adopt')}
+            value={pet.userAdopt.name}
+          />
+        )}
+        <TextCardInformation icon={<FaBirthdayCake size={20} />} text={t('age')} value={pet.age} />
+        <TextCardInformation icon={<FaCat size={20} />} text={t('category')} value={pet.category} />
         <TextCardInformation
           icon={<FaTransgender size={25} />}
           text={t('gender')}

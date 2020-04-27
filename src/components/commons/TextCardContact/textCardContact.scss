@@ -1,0 +1,25 @@
+@import 'styles/mixings';
+
+.contactInformation {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 20px 20px 20px 20px;
+}
+
+.title {
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  @include site-font('text', 600);
+  color: $filters;
+}
+
+.info {
+  letter-spacing: 1px;
+  line-height: 22px;
+  margin-top: 20px;
+  font-size: 14px;
+  @include site-font('text', 400);
+  color: $filters;
+}

@@ -10,5 +10,10 @@
   "addressSearch": "Search your Address",
   "infoNickname": "The nickname is used to create your own profile address",
   "availableTransit": "Are you available to transit a pet?",
+  "titleChangePassword": "Change Password",
+  "password": "Password",
+  "repeatPassword": "Repeat Password",
+  "errorMessage": "The password is different",
+  "successMessage": "Great! You can continue",
   "last": "last"
 }
