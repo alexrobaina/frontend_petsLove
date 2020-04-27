@@ -1,24 +1,32 @@
-import React, { useContext, useEffect } from 'react'
-// import PropTypes from 'prop-types'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
-import ListPets from 'components/ListPets'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import DashboardCard from 'components/commons/DashboardCard'
+import PetsAdopted from 'containers/PetsAdopted'
+import ForAdoption from 'containers/ForAdoption'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import icon from '../businessman.svg'
 import styles from '../dashboard.scss'
 
 const ProtectionistUser = () => {
+  const [swith, setSwith] = useState(false)
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
-
   const { t } = useTranslation('dashboard')
 
+  const handlePetsForAdoption = useCallback(() => {
+    setSwith(false)
+  }, [])
+
+  const handlePetsAdopted = useCallback(() => {
+    setSwith(true)
+  }, [])
+
   useEffect(() => {
-    searchPetsStore.getPetForUser(authStore.user._id)
+    searchPetsStore.getPetsForAdoption(authStore.user._id)
     searchPetsStore.getPetAdopted(authStore.user._id)
   }, [])
 
@@ -26,21 +34,22 @@ const ProtectionistUser = () => {
     <LayoutContainer>
       <div className={styles.container}>
         <DashboardCard
+          handleClick={handlePetsForAdoption}
+          icon={icon}
+          numberCard={searchPetsStore.petsForAdoption.length}
+          titleCard={t('petsForAdoption')}
+        />
+        <DashboardCard
+          handleClick={handlePetsAdopted}
           icon={icon}
           numberCard={searchPetsStore.petsAdopted.length}
           titleCard={t('petsAdopted')}
         />
-        <DashboardCard
-          icon={icon}
-          numberCard={searchPetsStore.pets.length}
-          titleCard={t('petsForAdoption')}
-        />
       </div>
-      <ListPets pets={searchPetsStore.pets} />
+      {swith && <PetsAdopted id={authStore.user._id} />}
+      {!swith && <ForAdoption id={authStore.user._id} />}
     </LayoutContainer>
   )
 }
-
-// ProtectionistUser.propTypes = {}
 
 export default observer(ProtectionistUser)

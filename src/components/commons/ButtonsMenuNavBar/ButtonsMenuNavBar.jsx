@@ -35,35 +35,25 @@ const routesUserAdopter = [
   {
     icon: <MdSearch size={25} />,
     text: 'Search protectionist',
-    link: '/dashboard',
+    link: '/',
   },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
     link: '/dashboard',
-  },
-  {
-    icon: <FaUser size={25} />,
-    text: 'My profile',
-    link: '/profile',
   },
 ]
 
 const routesUserTransitUser = [
   {
-    icon: <MdSearch size={25} />,
-    text: 'Search protectionist',
-    link: '/dashboard',
-  },
-  {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
     link: '/dashboard',
   },
   {
-    icon: <FaUser size={25} />,
-    text: 'My profile',
-    link: '/profile',
+    icon: <MdSearch size={25} />,
+    text: 'Search protectionist',
+    link: '/',
   },
 ]
 
@@ -103,9 +93,22 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
       />
+      <div className={styles.containerLinks}>
+        <LinkNavbarUser
+          text="My profile"
+          link={`/profile-user/${authStore.user._id}`}
+          icon={<FaUser size={22} />}
+          handleMenu={handleMenu}
+        />
+      </div>
       {menuUser.map(route => (
         <div key={route.link} className={styles.containerLinks}>
-          <LinkNavbarUser route={route} handleMenu={handleMenu} />
+          <LinkNavbarUser
+            link={route.link}
+            text={route.text}
+            icon={route.icon}
+            handleMenu={handleMenu}
+          />
         </div>
       ))}
     </>

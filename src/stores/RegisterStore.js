@@ -60,7 +60,6 @@ class RegisterStore {
   @action
   setPassword(value) {
     this.password = value
-    console.log(this.password)
     if (this.password === this.confirmPassword) {
       this.passwordSuccess = true
       this.passwordError = false
@@ -73,7 +72,6 @@ class RegisterStore {
   @action
   setConfirmPassword(value) {
     this.confirmPassword = value
-    console.log(this.confirmPassword)
     if (this.confirmPassword === this.password) {
       this.passwordSuccess = true
       this.passwordError = false

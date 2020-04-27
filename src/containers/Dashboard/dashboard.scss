@@ -3,7 +3,7 @@
 .container {
   display: grid;
   justify-content: center;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   grid-gap: 10px;
 
   @include media-breakpoint-down(sm) {

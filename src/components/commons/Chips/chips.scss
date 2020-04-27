@@ -25,9 +25,9 @@
 }
 
 .isAdopted {
-  left: 10px;
-  top: 50px;
   position: absolute;
+  left: 10px;
+  top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,12 +35,12 @@
   text-transform: uppercase;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 300;
-  letter-spacing: 1.5px;
-  background-color: red;
+  letter-spacing: 2px;
+  background-color: rgba(255, 0, 0, 0.71);
   color: $ligth;
-  padding: 4px 12px 3px 15px;
+  padding: 0 12px 0 15px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 10px;
   max-width: 100px;
   text-align: center;
   cursor: pointer;

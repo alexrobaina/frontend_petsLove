@@ -1,3 +1,8 @@
 {
-  "title": "Voluntarios de transito"
+  "title": "Voluntario de transito {{ name }}",
+  "aboutUs": "Sobre nosotros",
+  "rol": "Transito de mascotas",
+  "requirementsToAdoption": "Requisitos para adoptar",
+  "messageCardDashboard": "Gracias por amar a las mascotas",
+  "last": "last"
 }

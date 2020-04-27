@@ -11,7 +11,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
-const LayoutProfilePets = ({ name, petIsEdit, images, pet }) => {
+const LayoutProfilePets = ({ name, petIsEdit, images, pet, userAdopt }) => {
   const { t } = useTranslation('profilePets')
   return (
     <>
@@ -22,6 +22,7 @@ const LayoutProfilePets = ({ name, petIsEdit, images, pet }) => {
       <div className={c(styles.containerCard, styles.layourCard)}>
         <ImageProfilePet images={images} />
         <GoogleMapsLocation
+          petLocation={pet.textAddress}
           isProfilePet
           userName={pet.userName}
           phone={pet.phone}
@@ -31,10 +32,12 @@ const LayoutProfilePets = ({ name, petIsEdit, images, pet }) => {
             lng: pet.lng,
           }}
         />
-        <InformationPet pet={pet} />
+        <InformationPet userAdopt={userAdopt} pet={pet} />
         <div>
           <TextCard title={t('history')} text={pet.history} />
-          <TextCard title={t('requiredToAdoption')} text={pet.requiredToAdoption} />
+          {!pet.adopted && (
+            <TextCard title={t('requiredToAdoption')} text={pet.requiredToAdoption} />
+          )}
         </div>
       </div>
     </>

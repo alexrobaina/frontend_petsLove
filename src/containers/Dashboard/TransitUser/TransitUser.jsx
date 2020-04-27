@@ -1,19 +1,31 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, { useContext, useEffect } from 'react'
 import DashboardCard from 'components/commons/DashboardCard'
-// import ListPets from 'components/ListPets'
+import { useTranslation } from 'react-i18next'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import icon from '../businessman.svg'
+import UserContext from 'Context/UserContext'
+import { useLocalStore } from 'mobx-react'
+import PetsUserTransit from 'containers/PetsUserTransit'
+import SearchPetsStore from 'stores/SearchPetsStore'
+import cat from '../AdopterUser/animal.svg'
+import dog from '../AdopterUser/dog-tags-military.svg'
 import styles from '../dashboard.scss'
 
 const TransitUser = () => {
+  const { t } = useTranslation('transitUset')
+  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
+
+  useEffect(() => {
+    searchPetsStore.getPetsUserTransit(authStore.user._id)
+  }, [])
+
   return (
     <LayoutContainer>
       <div className={styles.container}>
-        <DashboardCard icon={icon} titleCard="transit" />
-        <DashboardCard icon={icon} titleCard="transit" />
+        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('messageCardDashboard')} />
       </div>
-      {/* <ListPets pets={searchPetsStore.pets} /> */}
+      <PetsUserTransit id={authStore.user._id} />
     </LayoutContainer>
   )
 }

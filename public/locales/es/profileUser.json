@@ -10,5 +10,10 @@
   "addressSearch": "Agrega tu ubicación",
   "infoNickname": "El nickname sirve para crear tu propia dirección de perfil",
   "availableTransit": "¿Estas disponible para hacer transito?",
+  "errorMessage": "El password es diferente",
+  "successMessage": "Genial! Podés continuar",
+  "titleChangePassword": "Cambiar Contraseña",
+  "password": "Contraseña",
+  "repeatPassword": "Repetir password",
   "last": "last"
 }
