@@ -1,0 +1,17 @@
+@import "styles/mixings";
+
+.pageNotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imagePNF {
+    align-items: center;
+    width: 40rem;
+}
+.textPNF {
+    color: rgb(18, 46, 107);
+ //   font-family: $BowlbyOneSC;
+    @include site-font(logo, 600)    
+
+}
