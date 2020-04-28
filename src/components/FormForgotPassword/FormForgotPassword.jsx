@@ -1,21 +1,42 @@
-import React from 'react'
+import { observer, useLocalStore } from 'mobx-react'
+import React, { useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
-import Input from '../commons/Input'
-import Button from '../commons/Button'
+import Input from 'components/commons/Input'
+import Button from 'components/commons/Button'
 import styles from './formForgotPassword.scss'
 
 const FormForgotPassword = () => {
+  const forgotPasswordStore = useLocalStore(() => new ForgotPasswordStore())
+
   const { t } = useTranslation('forgotPassword')
+
+  const handleChangeEmail = useCallback(e => {
+    forgotPasswordStore.setEmail(e.target.value)
+  })
+
+  const sendEmail = useCallback(() => {
+    forgotPasswordStore.forgotPassword()
+  })
 
   return (
     <div className={styles.centerForgotPassword}>
       <div className={styles.title}>{t('title')}</div>
       <div className={styles.inputForm}>
-        <Input isEdit canEdit placeholder={t('enterYourEmail')} />
+        {forgotPasswordStore.isError && (
+          <div className={styles.error}>No tiene formato de email</div>
+        )}
+        <Input
+          type="email"
+          handleChange={handleChangeEmail}
+          isEdit
+          canEdit
+          placeholder={t('enterYourEmail')}
+        />
       </div>
       <div className={styles.buttonForgotPassword}>
-        <Button bigButton text={t('changePassword')} />
+        <Button handleClick={sendEmail} bigButton text={t('changePassword')} />
       </div>
       <div className={styles.forgotPassword}>
         <Link to="login" className={styles.textSingIn}>
@@ -26,4 +47,4 @@ const FormForgotPassword = () => {
   )
 }
 
-export default FormForgotPassword
+export default observer(FormForgotPassword)

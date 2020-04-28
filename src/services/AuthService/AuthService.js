@@ -13,6 +13,12 @@ class AuthService {
   getUserId = id => {
     return axios.get(`${SERVER}/api/user/query/?_id=${id}`).then(response => response.data)
   }
+
+  sendForgotPassword = (email, server, token) => {
+    return axios
+      .post(`${SERVER}/api/sendEmail/send`, { email, server, token })
+      .then(response => response.data)
+  }
 }
 
 export default AuthService

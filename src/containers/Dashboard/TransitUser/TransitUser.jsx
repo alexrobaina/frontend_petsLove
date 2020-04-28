@@ -8,7 +8,7 @@ import PetsUserTransit from 'containers/PetsUserTransit'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import cat from '../AdopterUser/animal.svg'
 import dog from '../AdopterUser/dog-tags-military.svg'
-import styles from '../dashboard.scss'
+import styles from './transitUser.scss'
 
 const TransitUser = () => {
   const { t } = useTranslation('transitUset')

@@ -1,10 +1,10 @@
-@import 'styles/mixings.scss';
+@import 'styles/mixings';
 
-.containerLogin {
-  overflow-y: hidden;
+.container {
   display: grid;
+  justify-content: center;
   grid-template-columns: 50% 50%;
-  height: auto;
+  grid-gap: 10px;
 
   @include media-breakpoint-down(sm) {
     grid-template-columns: 100%;

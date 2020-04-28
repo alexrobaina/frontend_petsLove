@@ -6,6 +6,10 @@ class SetLocalStorage {
   getUser = () => {
     return JSON.parse(localStorage.getItem('user'))
   }
+
+  getToken = () => {
+    return localStorage.getItem('token')
+  }
 }
 
 export default SetLocalStorage

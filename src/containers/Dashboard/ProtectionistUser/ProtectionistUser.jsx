@@ -8,7 +8,7 @@ import PetsAdopted from 'containers/PetsAdopted'
 import ForAdoption from 'containers/ForAdoption'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import icon from '../businessman.svg'
-import styles from '../dashboard.scss'
+import styles from './protectionistUser.scss'
 
 const ProtectionistUser = () => {
   const [swith, setSwith] = useState(false)
