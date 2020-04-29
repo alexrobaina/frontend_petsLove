@@ -1,32 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import LayoutContainer from '../LayoutContainer'
-import Navbar from '../Navbar/Navbar'
+import LayoutContainer from 'components/commons/LayoutContainer'
+import imagePNF from './ImagePNF.png'
+import styles from './pageNotFound.scss'
 
-const PageNotFound = ({ image, title, text }) => {
+const PageNotFound = () => {
   return (
-    <>
-      <Navbar />
-      <LayoutContainer>
-        notfound
-        {image}
-        {title}
-        {text}
-      </LayoutContainer>
-    </>
+    <LayoutContainer>
+      <div className={styles.pageNotFound}>
+        <img className={styles.imagePNF} src={imagePNF} alt="Not Found" />
+        <h2 className={styles.textPNF}>Page Not Found</h2>
+      </div>
+    </LayoutContainer>
   )
-}
-
-PageNotFound.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  text: PropTypes.string,
-}
-
-PageNotFound.defaultProps = {
-  image: '',
-  title: '',
-  text: '',
 }
 
 export default PageNotFound

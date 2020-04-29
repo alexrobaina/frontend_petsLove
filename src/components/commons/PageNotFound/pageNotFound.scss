@@ -1,0 +1,26 @@
+@import 'styles/mixings';
+
+.pageNotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagePNF {
+  align-items: center;
+  width: 550px;
+
+  @include media-breakpoint-only(xs) {
+    width: 310px;
+  }
+}
+
+.textPNF {
+  font-size: 50px;
+  color: rgb(18, 46, 107);
+  @include site-font(logo, 600);
+
+  @include media-breakpoint-only(xs) {
+    font-size: 30px;
+  }
+}
