@@ -1,15 +1,21 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
+import LayoutCards from 'components/commons/LayoutCards'
 import styles from './textCardContact.scss'
-import LayoutCards from '../LayoutCards'
 
 const TextCardContact = ({ phone, email, title }) => {
+  const { t } = useTranslation('common')
   return (
     <LayoutCards>
       <div className={styles.contactInformation}>
         <div className={styles.title}>{title}</div>
-        <div className={styles.info}>Phone: {phone}</div>
-        <div className={styles.info}>Email: {email}</div>
+        <div className={styles.info}>
+          {t('phone')}: {phone}
+        </div>
+        <div className={styles.info}>
+          {t('email')}: {email}
+        </div>
       </div>
     </LayoutCards>
   )

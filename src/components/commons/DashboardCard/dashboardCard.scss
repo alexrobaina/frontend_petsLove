@@ -37,6 +37,13 @@
   padding-right: 50px;
   padding-top: 30px;
   padding-bottom: 30px;
+
+  @include media-breakpoint-only(xs) {
+    padding-left: 23px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .containerText {
@@ -51,10 +58,18 @@
   font-size: 15px;
   @include site-font(text);
   letter-spacing: 3px;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 12px;
+  }
 }
 
 .number {
   margin-top: 20px;
   font-size: 40px;
   @include site-font('text', 700);
+
+  @include media-breakpoint-only(xs) {
+    font-size: 20spx;
+  }
 }

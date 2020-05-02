@@ -15,10 +15,14 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import Textarea from 'components/commons/Textarea'
 import Title from 'components/commons/Title'
+import useMediaQuery from 'utils/Hooks'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import styles from './editUser.scss'
+import PhoneInput from 'react-phone-input-2'
+import ViewValue from '../../components/commons/ViewValue'
 
 const EditUser = () => {
+  const isWithBase = useMediaQuery('(max-width: 500px)')
   const { id } = useParams()
   const { t } = useTranslation('profileUser')
   const fileUpload = useRef()
@@ -44,8 +48,8 @@ const EditUser = () => {
     editUserStore.setAddress(address)
   }, [])
 
-  const handleChangePhone = useCallback(e => {
-    editUserStore.setPhone(e.target.value)
+  const handleChangePhone = useCallback(phone => {
+    editUserStore.setPhone(phone)
   }, [])
 
   const handleChangeNickname = useCallback(e => {
@@ -142,13 +146,16 @@ const EditUser = () => {
           />
         </div>
         <div className={styles.colInput}>
-          <Input
-            handleChange={handleChangePhone}
-            isEdit={editUserStore.isEdit}
-            canEdit
-            value={editUserStore.user.phone}
-            placeholder={t('phone')}
-          />
+          {editUserStore.isEdit ? (
+            <PhoneInput
+              value={editUserStore.user.phone ? editUserStore.user.phone : ''}
+              inputStyle={{ width: '100%', height: '40px' }}
+              country={'ar'}
+              onChange={phone => handleChangePhone(phone)}
+            />
+          ) : (
+            <ViewValue placeholder={'Phone'} value={editUserStore.user.phone} />
+          )}
         </div>
         <div className={styles.colInput}>
           <div className={styles.messageInformation}>{t('infoNickname')}</div>

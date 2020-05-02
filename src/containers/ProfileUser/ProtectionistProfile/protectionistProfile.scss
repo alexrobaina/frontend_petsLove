@@ -1,5 +1,11 @@
 @import 'styles/mixings';
 
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .userImage {
   width: 100%;
   object-fit: cover;
@@ -25,9 +31,12 @@
 }
 
 .containerPets {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
+
+  @include media-breakpoint-only(xs) {
+    flex-direction: column;
+  }
 }
 
 .buttonsSwich {

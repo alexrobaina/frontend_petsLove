@@ -57,10 +57,10 @@ const FormLogin = () => {
           <div className={styles.buttonLogin}>
             <Button handleClick={login} bigButton text={t('login')} />
           </div>
-          <div className={styles.buttonSocialLogin}>
-            <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
-            <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
-          </div>
+          {/* <div className={styles.buttonSocialLogin}> */}
+          {/*  <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" /> */}
+          {/*  <ButtonLoginSocialMedia textButton="Google" socialButton="google" /> */}
+          {/* </div> */}
           <div className={styles.forgotPassword}>
             <Link to="forgot-password" className={styles.textForgot}>
               {t('forgotPassword')}

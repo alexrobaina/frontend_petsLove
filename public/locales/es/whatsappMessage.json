@@ -1,3 +1,6 @@
 {
-  "iWantAdopte": "Hola, me podría dar más información para adoptar? {{ name }}"
+  "iWantAdopte": "Hola, estoy interesado en adoptar una mascota del refugio. ¿Me envias información?",
+  "contactProtectionist": "Contacta al proteccionista",
+  "contactAction": "Contacta al proteccionista",
+  "notPhone": "No agregó su teléfono"
 }

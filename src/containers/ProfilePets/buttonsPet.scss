@@ -1,7 +1,8 @@
-@import "styles/variable";
+@import 'styles/variable';
 
 .containerButtons {
   display: flex;
+  align-items: center;
   flex-direction: row;
 }
 

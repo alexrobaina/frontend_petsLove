@@ -7,7 +7,8 @@ import DashboardCard from 'components/commons/DashboardCard'
 import PetsAdopted from 'containers/PetsAdopted'
 import ForAdoption from 'containers/ForAdoption'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import icon from '../businessman.svg'
+import dog from '../pet.svg'
+import cat from '../cat.svg'
 import styles from './protectionistUser.scss'
 
 const ProtectionistUser = () => {
@@ -35,13 +36,13 @@ const ProtectionistUser = () => {
       <div className={styles.container}>
         <DashboardCard
           handleClick={handlePetsForAdoption}
-          icon={icon}
+          icon={dog}
           numberCard={searchPetsStore.petsForAdoption.length}
           titleCard={t('petsForAdoption')}
         />
         <DashboardCard
           handleClick={handlePetsAdopted}
-          icon={icon}
+          icon={cat}
           numberCard={searchPetsStore.petsAdopted.length}
           titleCard={t('petsAdopted')}
         />
