@@ -1,44 +1,61 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
+import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
-import UserContext from 'Context/UserContext'
+import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
-import { observer } from 'mobx-react'
 import { FaWhatsapp } from 'react-icons/fa'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
 import Button from 'components/commons/Button'
+import Modal from 'components/commons/Modal/Modal'
 import styles from './buttonsPet.scss'
-import Modal from '../../components/commons/Modal/Modal'
+import ContactPhone from '../../components/commons/ContactPhone'
 
-const ButtonsPet = ({ petIsEdit, pet }) => {
-  const rootStore = useContext(UserContext)
-  const { authStore } = rootStore
+const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
+  const [openModal, setOpenModal] = useState(false)
+  const isWithBase = useMediaQuery('(max-width: 500px)')
   const { t } = useTranslation('whatsappMessage')
   const history = useHistory()
+
   const editPet = useCallback(id => {
     history.push(`/`)
     history.push(`edit-pet/${id}`)
   }, [])
-  const { name } = pet
+
+  const handleSendMessage = useCallback(number => {
+    if (number) {
+      window.open(
+        `https://api.whatsapp.com/send?phone=${number}&text=%20${t('iWantAdopte', '_blank')}`
+      )
+    }
+    setOpenModal()
+  }, [])
+
+  const handleToggle = () => {
+    if (openModal === false) {
+      setOpenModal(true)
+    } else {
+      setOpenModal(false)
+    }
+  }
 
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
-        <Modal text={'Please write you phone'} title={'Whatsapp message'} notIcon>
-          <div className={styles.inputPhone}>
-            {/*<InputPhone   */}
-          </div>
-        </Modal>
-        <a
-          className={styles.buttonLink}
-          target="_blank"
-          href={`https://api.whatsapp.com/send?phone=${authStore.user.phone}&text=%20${t(
-            'iWantAdopte',
-            name
-          )}`}
+        <Modal
+          openModal={openModal}
+          handleToggle={handleToggle}
+          handleSendMessage={() => handleSendMessage(phone)}
+          title={t('contactAction')}
+          notIcon
         >
+          <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />
+        </Modal>
+        <div onClick={handleToggle} className={styles.buttonLink}>
           <FaWhatsapp size={25} />
-        </a>
+        </div>
       </div>
       {petIsEdit && (
         <div className={styles.btnMargin}>

@@ -1,27 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { Animated } from 'react-animated-css'
-import { MdClose, MdSave } from 'react-icons/md'
+import { MdSave } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import ErrorIcon from 'components/commons/ErrorIcon'
 import SuccessIcon from 'components/commons/SuccessIcon'
 import styles from './modal.scss'
 
-const Modal = ({ title, text, error, isIcon, children }) => {
-  const [toggle, setToggle] = useState(true)
-
-  const handleToggle = () => {
-    if (toggle === false) {
-      setToggle(true)
-    } else {
-      setToggle(false)
-    }
-  }
-
+const Modal = ({
+  openModal,
+  title,
+  text,
+  error,
+  isIcon,
+  children,
+  handleSendMessage,
+  handleToggle,
+}) => {
   return (
     <>
-      <div className={c(styles.modalCard, toggle && styles.openModal)}>
+      <div className={c(styles.modalCard, openModal && styles.openModal)}>
         <Animated
           animationIn="bounceInDown"
           animationOut="fadeInUp"
@@ -35,14 +34,13 @@ const Modal = ({ title, text, error, isIcon, children }) => {
           </div>
           {children}
           <div className={styles.containerButtonModals}>
-            <Button icon={<MdSave size={25} />} text="Save" handleClick={handleToggle} />
-            <Button icon={<MdClose size={25} />} text="Close" handleClick={handleToggle} />
+            <Button icon={<MdSave size={25} />} text="Ok" handleClick={handleSendMessage} />
           </div>
         </Animated>
       </div>
       <div
         onClick={handleToggle}
-        className={c(toggle === true ? styles.shadow : styles.displayNone)}
+        className={c(openModal === true ? styles.shadow : styles.displayNone)}
       />
     </>
   )

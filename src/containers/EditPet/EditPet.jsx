@@ -270,6 +270,15 @@ const EditPet = () => {
             placeholder={t('categoryPets')}
           />
         </div>
+        <div className={styles.col}>
+          <InputSelect
+            isEdit={createPetStore.isEdit}
+            value={createPetStore.gender}
+            options={optionsSelectsStore.gender}
+            handleChange={handleChangeGender}
+            placeholder={t('gender')}
+          />
+        </div>
         <div className={styles.colContainerCheckbox}>
           <div className={styles.colCheckbox}>
             <InputCheckbox
@@ -306,35 +315,6 @@ const EditPet = () => {
             />
           </div>
         </div>
-        <div className={styles.colMap}>
-          <GoogleAutocomplete
-            isEdit={createPetStore.isEdit}
-            label="Address pet"
-            placeholder="Add address pet"
-            value={createPetStore.textAddress}
-            handleChangeTextAddress={handleChangeTextAddress}
-            handleChangeAddress={handleChangeAddress}
-          />
-          {addressLocation.lat && (
-            <div className={styles.containerMap}>
-              <GoogleMapsLocation
-                addressValue={createPetStore.address}
-                showAddress
-                location={addressLocation}
-                title={t('messageMap')}
-              />
-            </div>
-          )}
-        </div>
-        <div className={styles.col}>
-          <InputSelect
-            isEdit={createPetStore.isEdit}
-            value={createPetStore.gender}
-            options={optionsSelectsStore.gender}
-            handleChange={handleChangeGender}
-            placeholder={t('gender')}
-          />
-        </div>
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
@@ -370,6 +350,26 @@ const EditPet = () => {
             handleChange={handleChangeActivity}
             placeholder={t('activity')}
           />
+        </div>
+        <div className={styles.colMap}>
+          <GoogleAutocomplete
+            isEdit={createPetStore.isEdit}
+            label="Address pet"
+            placeholder="Add address pet"
+            value={createPetStore.textAddress}
+            handleChangeTextAddress={handleChangeTextAddress}
+            handleChangeAddress={handleChangeAddress}
+          />
+          {addressLocation.lat && (
+            <div className={styles.containerMap}>
+              <GoogleMapsLocation
+                addressValue={createPetStore.address}
+                showAddress
+                location={addressLocation}
+                title={t('messageMap')}
+              />
+            </div>
+          )}
         </div>
         {onlySave && <ButtonsSaveFixed handleSave={handleSave} />}
         {!onlySave && (

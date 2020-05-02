@@ -16,6 +16,7 @@ class PetIdStore {
   @observable gender = ''
   @observable age = ''
   @observable phone = ''
+  @observable email = ''
   @observable categorie = ''
   @observable activity = ''
   @observable idUser = ''
@@ -52,6 +53,8 @@ class PetIdStore {
         }, 2000)
         this.pet = response
         this.userName = this.pet.user.name
+        this.email = this.pet.user.email
+        this.phone = this.pet.user.phone
         this.idUser = this.pet.user._id
         this.images = this.pet.image
         this.setPetIsEdit()

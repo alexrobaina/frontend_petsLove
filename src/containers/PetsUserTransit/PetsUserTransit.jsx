@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
+import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import Title from 'components/commons/Title'
-import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
+import { useTranslation } from 'react-i18next'
 
 const PetsUserTransit = id => {
+  const { t } = useTranslation('transitUser')
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
@@ -14,9 +16,9 @@ const PetsUserTransit = id => {
   }, [])
   return (
     <>
-      <LayoutContainer>
-        <Title title="My history pets" />
-      </LayoutContainer>
+      <LayoutContainerCardsPets>
+        <Title title={t('historyPets')} />
+      </LayoutContainerCardsPets>
       <ListPets pets={searchPetsStore.petsUserTransit} />
     </>
   )

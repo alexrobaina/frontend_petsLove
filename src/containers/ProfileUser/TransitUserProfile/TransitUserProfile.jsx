@@ -9,13 +9,19 @@ import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import noImage from '../noImage.svg'
 import styles from './transitUserProfile.scss'
+import ButtonsPet from '../../ProfilePets/ButtonsPet'
+import Title from '../../../components/commons/Title'
 
 const TransitUserProfile = ({ user }) => {
   const { t } = useTranslation('transitUser')
   const { name, image, lat, lng, phone, email, _id } = user
 
   return (
-    <LayoutContainer rolText={t('rol')} title={t('title', { name })}>
+    <LayoutContainer>
+      <div className={styles.containerTitle}>
+        <Title rolText={t('rol')} title={t('title', { name })} />
+        <ButtonsPet email={email} phone={phone} />
+      </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           className={styles.userImage}

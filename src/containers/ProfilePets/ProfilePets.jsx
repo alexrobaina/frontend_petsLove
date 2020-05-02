@@ -11,6 +11,7 @@ import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
   const petIdStore = useLocalStore(() => new PetIdStore())
+  const { phone, email } = petIdStore
   const { t } = useTranslation('profilePets')
   const { id } = useParams()
 
@@ -24,6 +25,8 @@ const ProfilePets = () => {
         Contact protectionist: {petIdStore.userName}
       </Link>
       <LayoutProfilePets
+        email={email}
+        phone={phone}
         name={petIdStore.pet.name}
         pet={petIdStore.pet}
         userAdopt={petIdStore.pet.userAdopt}

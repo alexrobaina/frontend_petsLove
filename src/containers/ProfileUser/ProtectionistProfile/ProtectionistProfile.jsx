@@ -10,9 +10,11 @@ import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
 import ForAdoption from 'containers/ForAdoption'
 import PetsAdopted from 'containers/PetsAdopted'
+import TextCardContact from 'components/commons/TextCardContact'
+import Title from 'components/commons/Title'
+import ButtonsPet from '../../ProfilePets/ButtonsPet'
 import noImage from '../noImage.svg'
 import styles from './protectionistProfile.scss'
-import TextCardContact from '../../../components/commons/TextCardContact'
 
 const ProtectionistProfile = ({ user }) => {
   const [swith, setSwith] = useState(false)
@@ -28,7 +30,11 @@ const ProtectionistProfile = ({ user }) => {
   })
 
   return (
-    <LayoutContainer rolText={t('rol')} title={t('title', { name })}>
+    <LayoutContainer>
+      <div className={styles.containerTitle}>
+        <Title rolText={t('rol')} title={t('title', { name })} />
+        <ButtonsPet email={email} phone={phone} />
+      </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           className={styles.userImage}

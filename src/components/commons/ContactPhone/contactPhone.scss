@@ -1,0 +1,30 @@
+@import 'styles/variable';
+
+.containerInput {
+  display: flex;
+  justify-content: center;
+}
+
+.inputPhone {
+  margin-top: 30px;
+}
+
+.input {
+  width: 200px !important;
+}
+
+.containerEmail {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.messageNotEmail {
+  color: $title;
+  margin-bottom: 10px;
+}
+
+.email {
+  color: $title;
+}
