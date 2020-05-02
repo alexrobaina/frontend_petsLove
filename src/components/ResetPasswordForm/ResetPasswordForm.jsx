@@ -1,6 +1,6 @@
 import { observer, useLocalStore } from 'mobx-react'
 import React, { useCallback, useContext } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
 import Input from 'components/commons/Input'
@@ -13,7 +13,7 @@ const ResetPasswordForm = () => {
   const history = useHistory()
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
-  const { token, _id } = useParams()
+  const { token } = useParams()
 
   const { t } = useTranslation('forgotPassword')
 

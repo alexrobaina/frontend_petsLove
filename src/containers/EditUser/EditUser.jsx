@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
+import PhoneInput from 'react-phone-input-2'
 import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
 import { observer, useLocalStore } from 'mobx-react'
@@ -15,14 +16,11 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import Textarea from 'components/commons/Textarea'
 import Title from 'components/commons/Title'
-import useMediaQuery from 'utils/Hooks'
 import InputCheckbox from 'components/commons/InputCheckbox'
+import ViewValue from 'components/commons/ViewValue'
 import styles from './editUser.scss'
-import PhoneInput from 'react-phone-input-2'
-import ViewValue from '../../components/commons/ViewValue'
 
 const EditUser = () => {
-  const isWithBase = useMediaQuery('(max-width: 500px)')
   const { id } = useParams()
   const { t } = useTranslation('profileUser')
   const fileUpload = useRef()
@@ -150,11 +148,11 @@ const EditUser = () => {
             <PhoneInput
               value={editUserStore.user.phone ? editUserStore.user.phone : ''}
               inputStyle={{ width: '100%', height: '40px' }}
-              country={'ar'}
+              country="ar"
               onChange={phone => handleChangePhone(phone)}
             />
           ) : (
-            <ViewValue placeholder={'Phone'} value={editUserStore.user.phone} />
+            <ViewValue placeholder={t('phone')} value={editUserStore.user.phone} />
           )}
         </div>
         <div className={styles.colInput}>

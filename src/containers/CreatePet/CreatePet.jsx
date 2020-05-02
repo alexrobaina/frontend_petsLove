@@ -25,7 +25,7 @@ const CreatePet = () => {
   const [addressLocation, setAddress] = useState({})
   const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
-  const { t } = useTranslation(['createPet'])
+  const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
@@ -71,10 +71,6 @@ const CreatePet = () => {
 
   const handleChangeLost = useCallback(() => {
     createPetStore.setLost()
-  }, [])
-
-  const handleChangeAdopted = useCallback(() => {
-    createPetStore.setAdopted()
   }, [])
 
   const handleChangeSterilized = useCallback(() => {

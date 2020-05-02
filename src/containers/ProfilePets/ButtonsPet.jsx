@@ -1,17 +1,16 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import Modal from 'components/commons/Modal/Modal'
+import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
-import ContactPhone from '../../components/commons/ContactPhone'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
   const [openModal, setOpenModal] = useState(false)
