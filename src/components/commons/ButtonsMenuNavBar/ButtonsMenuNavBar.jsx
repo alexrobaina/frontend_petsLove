@@ -10,6 +10,12 @@ import UserContext from '../../../Context/UserContext'
 
 const routesUserProtectionist = [
   {
+    icon: <FaUser size={22} />,
+    text: 'My profile',
+    link: '/profile-user',
+    haveId: true,
+  },
+  {
     icon: <MdDashboard size={25} />,
     text: 'Dashboard',
     link: '/dashboard',
@@ -33,6 +39,12 @@ const routesUserProtectionist = [
 
 const routesUserAdopter = [
   {
+    icon: <FaUser size={22} />,
+    text: 'My profile',
+    link: '/profile-user',
+    haveId: true,
+  },
+  {
     icon: <MdSearch size={25} />,
     text: 'Search protectionist',
     link: '/',
@@ -45,6 +57,12 @@ const routesUserAdopter = [
 ]
 
 const routesUserTransitUser = [
+  {
+    icon: <FaUser size={22} />,
+    text: 'My profile',
+    link: '/profile-user',
+    haveId: true,
+  },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
@@ -93,17 +111,11 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
       />
-      <div className={styles.containerLinks}>
-        <LinkNavbarUser
-          text="My profile"
-          link={`/profile-user/${authStore.user._id}`}
-          icon={<FaUser size={22} />}
-          handleMenu={handleMenu}
-        />
-      </div>
       {menuUser.map(route => (
         <div key={route.link} className={styles.containerLinks}>
           <LinkNavbarUser
+            haveId={route.haveId}
+            id={authStore.user._id}
             link={route.link}
             text={route.text}
             icon={route.icon}

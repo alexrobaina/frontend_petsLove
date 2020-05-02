@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
 import Title from 'components/commons/Title'
-import LayoutContainer from 'components/commons/LayoutContainer'
+import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 
 const PetsAdopted = id => {
@@ -14,9 +14,9 @@ const PetsAdopted = id => {
   }, [])
   return (
     <>
-      <LayoutContainer>
+      <LayoutContainerCardsPets>
         <Title title="Adopted" />
-      </LayoutContainer>
+      </LayoutContainerCardsPets>
       <ListPets pets={searchPetsStore.petsAdopted} />
     </>
   )

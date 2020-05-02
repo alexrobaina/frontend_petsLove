@@ -1,25 +1,34 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
 import c from 'classnames'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import UserContext from 'Context/UserContext'
+import ImageUserLog from '../../ImageUserLog'
 import styles from './toggleNavegationUser.scss'
 
 const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, routesUser }) => {
   const rootStore = useContext(UserContext)
+  const { email, _id } = rootStore.authStore.user
 
   return (
     <div className={c(toggleViewMenuUser ? styles.open : styles.showMenu)}>
       <ButtonIcon onclick={handleToggleViewMenuUser} icon={<MdClose size={25} />} />
       <div className={styles.titleNavbar}>
-        <div>{rootStore.authStore.user.name}</div>
+        <ImageUserLog isUserLogin />
+        <div className={styles.name}>{email}</div>
       </div>
       {routesUser.map(route => (
-        <div key={route.text} className={styles.containerLinks}>
+        <Link
+          to={route.haveId ? `${route.link}/${_id}` : route.link}
+          key={route.text}
+          onClick={handleToggleViewMenuUser}
+          className={styles.containerLinks}
+        >
           <div className={styles.icon}>{route.icon}</div>
           <div className={styles.text}>{route.text}</div>
-        </div>
+        </Link>
       ))}
     </div>
   )

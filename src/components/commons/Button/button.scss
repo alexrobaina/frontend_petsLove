@@ -5,6 +5,10 @@ button:focus {
   outline: none;
 }
 
+.containerButton {
+  padding: 10px;
+}
+
 .primary {
   color: $ligth;
   display: flex;

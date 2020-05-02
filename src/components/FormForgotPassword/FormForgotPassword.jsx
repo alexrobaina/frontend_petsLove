@@ -24,15 +24,13 @@ const FormForgotPassword = () => {
     <div className={styles.centerForgotPassword}>
       <div className={styles.title}>{t('title')}</div>
       <div className={styles.inputForm}>
-        {forgotPasswordStore.isError && (
-          <div className={styles.error}>No tiene formato de email</div>
-        )}
+        {forgotPasswordStore.isError && <div className={styles.error}>{t('emailError')}</div>}
         <Input
           type="email"
           handleChange={handleChangeEmail}
           isEdit
           canEdit
-          placeholder={t('enterYourEmail')}
+          placeholder={t('emailPlaceHolder')}
         />
       </div>
       <div className={styles.buttonForgotPassword}>

@@ -13,6 +13,10 @@
 .icon {
   margin-left: 30px;
   color: $title;
+
+  @include media-breakpoint-only(xs) {
+    margin-left: 10px;
+  }
 }
 
 .title {
@@ -21,6 +25,10 @@
   @include site-font('text', 600);
   color: $filters;
   margin-left: 15px;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 11px;
+  }
 }
 
 .infoTitle {
@@ -31,6 +39,11 @@
   color: $filters;
 
   @include site-font('text', 400);
+  @include media-breakpoint-only(xs) {
+    font-size: 11px;
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
 
 .containerData {
@@ -41,5 +54,10 @@
   &:hover {
     border-radius: 5px;
     background-color: $colorLight;
+  }
+
+  @include media-breakpoint-only(xs) {
+    font-size: 11px;
+    padding: 14px 0 15px 0;
   }
 }

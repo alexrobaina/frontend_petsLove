@@ -58,19 +58,14 @@ const GoogleMapsLocation = observer(
               id={activeMarker.id}
             />
           </InfoWindow>
-          {isLocationPet && (
-            <InfoWindow marker={activeMarkerUser} visible={showingInfoWindowUser}>
-              <div className={styles.userLocation}>Mi ubicación</div>
-            </InfoWindow>
-          )}
           {!isLocationPet && (
             <InfoWindow marker={activeMarkerUser} visible={showingInfoWindowUser}>
-              <div className={styles.userLocation}>{petLocation}</div>
+              <div className={styles.userLocation}>{t('myLocation')}</div>
             </InfoWindow>
           )}
           {isLocationPet && (
             <InfoWindow marker={activeMarkerUser} visible={showingInfoWindowUser}>
-              <div className={styles.userLocation}>{t('locationUser')}</div>
+              <div className={styles.userLocation}>{petLocation}</div>
             </InfoWindow>
           )}
         </Map>

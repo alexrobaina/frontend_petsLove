@@ -1,22 +1,28 @@
-$primary: #8E99F3;
-$secundary: #5E92F3;
-$filters: #5C6BC0;
 $backgroundApp: rgba(255, 255, 255, 0.98);
 
-$title: #001B61;
-$secundaryTitle: #929BE6;
+$primary: #8e99f3;
+$borderPrimary: #ffd95a;
+$cardPrimary: rgba(255, 255, 249, 0.89);
 
-$borderPrimary: #FFD95A;
+$secundaryTitle: #929be6;
+$secundary: #5e92f3;
 
+$title: #001b61;
+$filters: #5c6bc0;
+
+$whatsaap: #00bfa5;
+
+// Generals - Globals??
 $ligth: rgb(255, 255, 255);
+$colorLight: rgba(146, 154, 230, 0.3);
 
-$colorLight: rgba(146, 154, 230, 0.30);
+// Navbar
+$colorNavbar: #f6f5ff;
+
+// Message errors and success
 $error: #f44336;
+$success: forestgreen;
+
 //Fonts
 $NotoSansHk: 'Noto Sans HK', sans-serif;
 $BowlbyOneSC: 'Bowlby One SC', cursive;
-
-// Navbar
-$colorNavbar: #F6F5FF;
-
-$cardPrimary: rgba(255, 255, 249, 0.89);

@@ -192,27 +192,6 @@ const CreatePet = () => {
             </label>
           </div>
         )}
-        <div className={styles.colContainerCheckbox}>
-          <InputCheckbox
-            isEdit
-            handleChange={handleChangeAdopted}
-            value={createPetStore.adopted}
-            text={t('adoptedPet')}
-          />
-        </div>
-        <div className={styles.col}>
-          <InputSelect
-            isEdit={createPetStore.isEdit}
-            value={createPetStore.category}
-            options={[
-              { value: '', label: t('allCategories') },
-              { value: 'dog', label: t('dogs') },
-              { value: 'cat', label: t('cats') },
-            ]}
-            handleChange={handleChangeName}
-            placeholder={t('assignUser')}
-          />
-        </div>
         <div className={styles.col}>
           <Input
             isEdit={createPetStore.isEdit}

@@ -27,12 +27,20 @@
 }
 
 .titleNavbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  animation: fadeIn 3s;
+}
+
+.name {
+  padding-left: 20px;
   color: $title;
-  font-size: 14px;
+  font-size: 10px;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
-  padding: 30px;
-  animation: fadeIn 3s;
 }
 
 .containerLinks {

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import UserContext from 'Context/UserContext'
+import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
-import LayoutContainer from '../../components/commons/LayoutContainer'
 
 const ForAdoption = ({ id }) => {
   const rootStore = useContext(UserContext)
@@ -15,9 +15,9 @@ const ForAdoption = ({ id }) => {
 
   return (
     <>
-      <LayoutContainer>
+      <LayoutContainerCardsPets>
         <Title title="Need Home" />
-      </LayoutContainer>
+      </LayoutContainerCardsPets>
       <ListPets pets={searchPetsStore.petsForAdoption} />
     </>
   )

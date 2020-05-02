@@ -19,6 +19,17 @@ class AuthService {
       .post(`${SERVER}/api/sendEmail/send`, { email, server, token })
       .then(response => response.data)
   }
+
+  resetPassword = (data, token) => {
+    const axiosConfig = {
+      headers: {
+        token,
+      },
+    }
+    return axios
+      .post(`${SERVER}/api/user/resetPassword`, data, axiosConfig)
+      .then(response => response.data)
+  }
 }
 
 export default AuthService

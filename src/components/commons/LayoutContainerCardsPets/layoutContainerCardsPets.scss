@@ -1,12 +1,12 @@
 @import 'styles/mixings.scss';
 
 .containerLayout {
-  padding-top: 100px;
+  padding-top: 10px;
 
   @include media-breakpoint-only(xs) {
-    margin-top: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @include media-breakpoint-only(sm) {

@@ -8,6 +8,7 @@ import Button from 'components/commons/Button'
 import UserContext from 'Context/UserContext'
 import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
 import styles from './formLogin.scss'
+import Loading from '../commons/Loading/Loading'
 
 const FormLogin = () => {
   const rootStore = useContext(UserContext)
@@ -34,33 +35,42 @@ const FormLogin = () => {
 
   return (
     <div className={styles.login}>
-      <div className={styles.centerLogin}>
-        <div className={styles.title}>{t('login')}</div>
-        {rootStore.authStore.isErrorLogin && (
-          <div className={styles.errorLogin}>{t('errorLogin')}</div>
-        )}
-        <div className={styles.inputForm}>
-          <Input isEdit type="text" handleChange={handleEmail} placeholder={t('email')} />
+      {rootStore.authStore.isLoading ? (
+        <Loading small />
+      ) : (
+        <div className={styles.centerLogin}>
+          <div className={styles.title}>{t('login')}</div>
+          {rootStore.authStore.isErrorLogin && (
+            <div className={styles.errorLogin}>{t('errorLogin')}</div>
+          )}
+          <div className={styles.inputForm}>
+            <Input isEdit type="text" handleChange={handleEmail} placeholder={t('email')} />
+          </div>
+          <div className={styles.inputForm}>
+            <Input
+              isEdit
+              type="password"
+              handleChange={handlePassword}
+              placeholder={t('password')}
+            />
+          </div>
+          <div className={styles.buttonLogin}>
+            <Button handleClick={login} bigButton text={t('login')} />
+          </div>
+          <div className={styles.buttonSocialLogin}>
+            <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
+            <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
+          </div>
+          <div className={styles.forgotPassword}>
+            <Link to="forgot-password" className={styles.textForgot}>
+              {t('forgotPassword')}
+            </Link>
+            <Link to="register" className={styles.textSingIn}>
+              {t('singIn')}
+            </Link>
+          </div>
         </div>
-        <div className={styles.inputForm}>
-          <Input isEdit type="password" handleChange={handlePassword} placeholder={t('password')} />
-        </div>
-        <div className={styles.buttonLogin}>
-          <Button handleClick={login} bigButton text={t('login')} />
-        </div>
-        <div className={styles.buttonSocialLogin}>
-          <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" />
-          <ButtonLoginSocialMedia textButton="Google" socialButton="google" />
-        </div>
-        <div className={styles.forgotPassword}>
-          <Link to="forgot-password" className={styles.textForgot}>
-            {t('forgotPassword')}
-          </Link>
-          <Link to="register" className={styles.textSingIn}>
-            {t('singIn')}
-          </Link>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

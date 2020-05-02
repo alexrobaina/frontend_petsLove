@@ -12,6 +12,7 @@ class EditUserStore {
   @observable user = []
   @observable id = ''
   @observable name = ''
+  @observable phone = ''
   @observable rol = ''
   @observable email = ''
   @observable aboutUs = ''

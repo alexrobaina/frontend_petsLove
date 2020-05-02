@@ -2,7 +2,7 @@
 
 .imageInformationRegister {
   height: 100vh;
-  object-fit: cover;
+  object-fit: scale-down;
 
   @include media-breakpoint-down(sm) {
     display: none;

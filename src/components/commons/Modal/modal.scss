@@ -43,7 +43,7 @@
   font-size: 20px;
   margin-top: 20px;
   padding: 20px;
-  color: #001B61;
+  color: #001b61;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
 }
@@ -58,11 +58,11 @@
   padding-left: 20px;
   padding-right: 20px;
   margin-top: 20px;
-  font-family: "Noto Sans HK", sans-serif;
+  font-family: 'Noto Sans HK', sans-serif;
   font-weight: 400;
-  color: #5C6BC0;
+  color: #5c6bc0;
 
-  @include site-font('text', 400)
+  @include site-font('text', 400);
 }
 
 .displayNone {
@@ -87,12 +87,9 @@
 
 .containerButtonModals {
   display: flex;
-  text-align: center;
   justify-content: center;
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
+  justify-content: center;
+  padding: 30px 20px 10px 20px;
   margin-top: 10px;
 }
 

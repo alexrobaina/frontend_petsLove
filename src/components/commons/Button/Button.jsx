@@ -6,19 +6,23 @@ import styles from './button.scss'
 const Button = ({ handleClick, text, circle, bigButton, icon }) => {
   if (circle) {
     return (
-      <button className={styles.btnCircle} type="button" onClick={handleClick}>
-        {icon}
-      </button>
+      <div className={styles.containerButton}>
+        <button className={styles.btnCircle} type="button" onClick={handleClick}>
+          {icon}
+        </button>
+      </div>
     )
   }
   return (
-    <button
-      className={c(styles.primary, bigButton && styles.bigButton)}
-      type="button"
-      onClick={handleClick}
-    >
-      {text}
-    </button>
+    <div className={styles.containerButton}>
+      <button
+        className={c(styles.primary, bigButton && styles.bigButton)}
+        type="button"
+        onClick={handleClick}
+      >
+        {text}
+      </button>
+    </div>
   )
 }
 

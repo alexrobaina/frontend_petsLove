@@ -43,8 +43,13 @@ const Navbar = ({ children }) => {
     }
   }, [viewMenuProfile])
 
-  const handleMenu = useCallback(link => {
-    history.push(link)
+  const handleMenu = useCallback((link, id, haveId) => {
+    console.log(id)
+    if (haveId) {
+      history.push(`${link}/${id}`)
+    } else {
+      history.push(link)
+    }
   }, [])
 
   const goToSeach = useCallback(() => {

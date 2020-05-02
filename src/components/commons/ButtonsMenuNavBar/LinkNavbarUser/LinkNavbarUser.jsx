@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './linkNavbarUser.scss'
 
-const LinkNavbarUser = ({ link, handleMenu, icon, text }) => {
+const LinkNavbarUser = ({ link, handleMenu, icon, text, id, haveId }) => {
   const { t } = useTranslation('navbar')
   const [textView, setTextView] = useState(false)
 
@@ -19,7 +19,7 @@ const LinkNavbarUser = ({ link, handleMenu, icon, text }) => {
   return (
     <div className={styles.containerMenuLink}>
       <button
-        onClick={() => handleMenu(link)}
+        onClick={() => handleMenu(link, id, haveId)}
         onMouseOver={handleMouseUp}
         onMouseOut={handleMouseOut}
         className={styles.btnCircle}
@@ -35,6 +35,7 @@ const LinkNavbarUser = ({ link, handleMenu, icon, text }) => {
 LinkNavbarUser.propTypes = {
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   handleMenu: PropTypes.func.isRequired,
 }

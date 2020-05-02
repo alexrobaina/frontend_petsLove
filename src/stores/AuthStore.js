@@ -12,6 +12,7 @@ class AuthStore {
   @observable token = ''
   @observable tokenLocalStorage = ''
   @observable email = ''
+  @observable phone = ''
   @observable password = ''
   @observable user = []
   @observable isLogin = false
