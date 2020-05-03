@@ -3,6 +3,10 @@
   "description": "Application for adoption pets",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "13.7.0",
+    "yarn": "1.22.0"
+  },
   "dependencies": {
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
