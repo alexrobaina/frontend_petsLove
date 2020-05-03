@@ -45,9 +45,10 @@ const rootStore = new RootStore()
 axiosInterceptors(rootStore)
 
 function App() {
+  const basename = process.env.NODE_ENV === 'production' ? '/my-react-app' : '/'
   return (
     <UserContext.Provider value={rootStore}>
-      <Router history={historyBrowser}>
+      <Router basename={basename} history={historyBrowser}>
         <Navbar>
           <ScrollMemory />
           <Switch>

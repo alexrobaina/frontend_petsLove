@@ -6,13 +6,13 @@ import Title from 'components/commons/Title'
 import ListPets from 'components/ListPets'
 import { useTranslation } from 'react-i18next'
 
-const PetsUserTransit = id => {
+const PetsUserTransit = ({ id }) => {
   const { t } = useTranslation('transitUser')
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetsUserTransit(id.id)
+    searchPetsStore.getPetsUserTransit(id)
   }, [])
   return (
     <>

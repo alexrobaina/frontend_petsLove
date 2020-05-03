@@ -5,12 +5,12 @@ import Title from 'components/commons/Title'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 
-const PetsAdopted = id => {
+const PetsAdopted = ({ id }) => {
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetAdopted(id.id)
+    searchPetsStore.getPetAdopted(id)
   }, [])
   return (
     <>
