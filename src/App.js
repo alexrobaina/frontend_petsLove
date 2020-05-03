@@ -45,7 +45,7 @@ const rootStore = new RootStore()
 axiosInterceptors(rootStore)
 
 function App() {
-  const basename = process.env.NODE_ENV === 'production' ? '/my-react-app' : '/'
+  const basename = process.env.NODE_ENV === 'production' ? '/' : '/'
   return (
     <UserContext.Provider value={rootStore}>
       <Router basename={basename} history={historyBrowser}>
@@ -58,6 +58,7 @@ function App() {
             <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
             <Route exact path={HOME} component={Home} />
             <Route exact path={PROFILE_PET} component={ProfilePets} />
+            <Route exact path={PROFILE_USER} component={ProfileUser} />
             <PrivateRoute
               exact
               isLogin={rootStore.authStore.isLogin}
@@ -85,13 +86,6 @@ function App() {
               redirectPath={LOGIN}
               path={EDIT_USER}
               component={EditUser}
-            />
-            <PrivateRoute
-              exact
-              isLogin={rootStore.authStore.isLogin}
-              redirectPath={LOGIN}
-              path={PROFILE_USER}
-              component={ProfileUser}
             />
             <PrivateRoute
               exact
