@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
 import { SERVER } from 'services/config'
@@ -8,15 +8,21 @@ import styles from './cardPets.scss'
 import Chips from '../Chips'
 
 const CardPets = ({ history, image, namePet, isAdopted }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
   const utils = new Utils()
+
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
 
   return (
     <div className={styles.rowCard}>
       <LayoutCards isButton>
         <div className={styles.containerCard}>
           <img
+            onError={onError}
             className={styles.imgCard}
-            src={image ? `${SERVER}/${image}` : noImage}
+            src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
             alt="photos-pets"
           />
           {isAdopted && <Chips text="Adopted" isAdopted={isAdopted} />}

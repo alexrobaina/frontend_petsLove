@@ -102,6 +102,7 @@ const FormRegister = ({ registerStore }) => {
                   { value: 'protectionist', label: t('protectionist') },
                   { value: 'adopter', label: t('adopter') },
                   { value: 'transitUser', label: t('transitUser') },
+                  { value: 'goosip', label: t('gossip') },
                 ]}
                 handleChange={handleTypeRol}
                 placeholder={t('typeUser')}

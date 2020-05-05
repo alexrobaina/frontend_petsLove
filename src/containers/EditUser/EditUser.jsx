@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import PhoneInput from 'react-phone-input-2'
@@ -193,7 +193,7 @@ const EditUser = () => {
             isEdit={editUserStore.isEdit}
             canEdit
             value={editUserStore.user.requirementsToAdopt}
-            placeholder={t('RequirimentsToAdopt')}
+            placeholder={t('RequirementsToAdopt')}
           />
         </div>
         <div className={styles.colbig}>

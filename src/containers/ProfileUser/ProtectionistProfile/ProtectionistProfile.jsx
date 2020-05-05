@@ -17,6 +17,7 @@ import noImage from '../noImage.svg'
 import styles from './protectionistProfile.scss'
 
 const ProtectionistProfile = ({ user }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
   const [swith, setSwith] = useState(false)
   const { t } = useTranslation('protectionistUsers')
   const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
@@ -29,6 +30,11 @@ const ProtectionistProfile = ({ user }) => {
     setSwith(false)
   })
 
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
+  console.log(isImageNotFound)
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
@@ -37,8 +43,9 @@ const ProtectionistProfile = ({ user }) => {
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
+          onError={onError}
           className={styles.userImage}
-          src={image ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation

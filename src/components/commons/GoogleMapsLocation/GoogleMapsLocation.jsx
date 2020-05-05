@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
@@ -9,11 +10,17 @@ import styles from './googleMapsLocation.scss'
 
 const GoogleMapsLocation = observer(
   ({ google, location, isProfilePet, users, isLocationPet, petLocation }) => {
+    const [isImageNotFound, setIsImageNotFound] = useState(true)
     const { t } = useTranslation('googleMapCard')
     const [activeMarker, setActiveMarker] = useState({})
     const [activeMarkerUser, setActiveMarkerUser] = useState({})
     const [showingInfoWindow, setShowingInfoWindow] = useState(false)
     const [showingInfoWindowUser, setShowingInfoWindowUser] = useState(false)
+    const history = useHistory()
+
+    const goToProfile = useCallback(id => {
+      history.push(`/profile-user/${id}`)
+    }, [])
 
     const onMarkerClick = (map, marker) => {
       setActiveMarker(marker)
@@ -24,6 +31,10 @@ const GoogleMapsLocation = observer(
       setActiveMarkerUser(marker)
       setShowingInfoWindowUser(!showingInfoWindowUser)
     }
+
+    const onError = useCallback(() => {
+      setIsImageNotFound(false)
+    }, [])
 
     return (
       <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
@@ -39,6 +50,8 @@ const GoogleMapsLocation = observer(
             users.map(user => {
               return (
                 <Marker
+                  isImageNotFound={isImageNotFound}
+                  onError={onError}
                   key={user._id}
                   onClick={onMarkerClick}
                   position={{ lat: user.lat, lng: user.lng }}
@@ -51,6 +64,8 @@ const GoogleMapsLocation = observer(
             })}
           <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
             <CardGoogle
+              onError={activeMarker.onError}
+              isImageNotFound={activeMarker.isImageNotFound}
               textButton={t('textButton')}
               image={activeMarker.image}
               name={activeMarker.name}
