@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import PhoneInput from 'react-phone-input-2'
 import styles from './contactPhone.scss'
 
-const ContactPhone = ({ phone, isWithBase, email }) => {
+const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
   const { t } = useTranslation('whatsaapMessage')
 
   return (
@@ -15,7 +15,7 @@ const ContactPhone = ({ phone, isWithBase, email }) => {
             value={phone}
             inputStyle={isWithBase ? { width: '260px' } : { width: '100% !important' }}
             country="ar"
-            disabled
+            disabled={disabled}
           />
         ) : (
           <div className={styles.containerEmail}>
@@ -31,7 +31,12 @@ const ContactPhone = ({ phone, isWithBase, email }) => {
 ContactPhone.propTypes = {
   phone: PropTypes.string.isRequired,
   isWithBase: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   email: PropTypes.string.isRequired,
+}
+
+ContactPhone.defaultProps = {
+  disabled: false,
 }
 
 export default ContactPhone

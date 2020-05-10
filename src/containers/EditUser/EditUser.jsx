@@ -50,8 +50,8 @@ const EditUser = () => {
     editUserStore.setPhone(phone)
   }, [])
 
-  const handleChangeNickname = useCallback(e => {
-    editUserStore.setNickname(e.target.value)
+  const handleChangeUsername = useCallback(e => {
+    editUserStore.setUsername(e.target.value)
   }, [])
 
   const handleChangeTransit = useCallback(() => {
@@ -158,11 +158,11 @@ const EditUser = () => {
         <div className={styles.colInput}>
           <div className={styles.messageInformation}>{t('infoNickname')}</div>
           <Input
-            handleChange={handleChangeNickname}
+            handleChange={handleChangeUsername}
             isEdit={editUserStore.isEdit}
             canEdit
-            value={editUserStore.user.nickname}
-            placeholder={t('nickname')}
+            value={editUserStore.user.username}
+            placeholder={t('username')}
           />
         </div>
         <div className={styles.colCheckBox}>

@@ -10,6 +10,7 @@ const GoogleAutocomplete = ({
   handleChangeAddress,
   placeholder,
   value,
+  name,
   isEdit,
 }) => {
   const [address, setAddress] = useState('')
@@ -39,6 +40,7 @@ const GoogleAutocomplete = ({
               <ViewValue placeholder={placeholder} value={value} />
             ) : (
               <input
+                name={name}
                 className={styles.input}
                 {...getInputProps({
                   placeholder,

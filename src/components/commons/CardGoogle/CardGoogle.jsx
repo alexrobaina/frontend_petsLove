@@ -1,20 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { SERVER } from 'services/config'
+import { SERVER, HOST } from 'services/config'
 import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
 
-const CardGoogle = ({
-  image,
-  name,
-  email,
-  textButton,
-  id,
-  goToProfile,
-  onError,
-  isImageNotFound,
-}) => {
+const CardGoogle = ({ image, name, email, textButton, id, onError, isImageNotFound }) => {
   return (
     <div className={styles.container}>
       <div className={styles.containerImage}>
@@ -29,12 +20,9 @@ const CardGoogle = ({
         <div className={styles.title}>{name}</div>
         <div className={styles.text}>{email}</div>
         <div className={styles.button}>
-          <div onClick={() => goToProfile(id)} className={styles.buttonLink}>
+          <a className={styles.buttonLink} href={`${HOST}/profile-user/${id}`}>
             {textButton}
-          </div>
-          {/*<a className={styles.buttonLink} href={`${HOST}/profile-user/${id}`}>*/}
-          {/*  {textButton}*/}
-          {/*</a>*/}
+          </a>
         </div>
       </div>
     </div>

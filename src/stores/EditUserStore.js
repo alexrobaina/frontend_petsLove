@@ -23,7 +23,7 @@ class EditUserStore {
   @observable canTransit = false
   @observable address = {}
   @observable textAddress = ''
-  @observable nickname = ''
+  @observable username = ''
   @observable nameRol = ''
   @observable isEdit = false
   @observable isUserTransit = false
@@ -60,7 +60,7 @@ class EditUserStore {
     data.append('requirementsToAdopt', this.requirementsToAdopt)
     data.append('canTransit', this.canTransit)
     data.append('textAddress', this.textAddress)
-    data.append('nickname', this.nickname)
+    data.append('username', this.username)
 
     try {
       const response = await this.editUserServices.save(data)
@@ -195,8 +195,8 @@ class EditUserStore {
   }
 
   @action
-  setNickname(value) {
-    this.nickname = value
+  setUsername(value) {
+    this.username = value
   }
 }
 

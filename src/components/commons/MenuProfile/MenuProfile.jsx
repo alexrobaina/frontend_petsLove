@@ -10,10 +10,10 @@ import { IoMdLogOut } from 'react-icons/io'
 import styles from './menuProfile.scss'
 
 const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
+  const { t } = useTranslation('navbar')
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const history = useHistory()
-  const { t } = useTranslation('navbar')
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('user')
@@ -34,7 +34,7 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
     >
       <div className={styles.contentButtos}>
         <div onClick={goToProfile} className={styles.buttons}>
-          <FaUser size={15} /> {t('profile')}
+          <FaUser size={15} /> {t('editProfile')}
         </div>
         <div onClick={handleLogout} className={styles.buttons}>
           <IoMdLogOut size={15} /> {t('logout')}

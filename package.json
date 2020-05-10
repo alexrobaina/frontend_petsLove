@@ -16,6 +16,7 @@
   "dependencies": {
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@material-ui/core": "^4.9.13",
     "@svgr/webpack": "5.4.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.4",
@@ -50,6 +51,7 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "esri-leaflet-geocoder": "^2.3.2",
     "file-loader": "6.0.0",
+    "formik": "^2.1.4",
     "fs-extra": "^9.0.0",
     "google-maps-react": "^2.0.2",
     "history": "^4.10.1",
@@ -118,7 +120,8 @@
     "webpack": "4.43.0",
     "webpack-dev-server": "3.10.3",
     "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "5.1.3"
+    "workbox-webpack-plugin": "5.1.3",
+    "yup": "^0.28.5"
   },
   "scripts": {
     "start": "node scripts/start.js",

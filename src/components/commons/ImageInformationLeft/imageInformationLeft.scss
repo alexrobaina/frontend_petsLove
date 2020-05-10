@@ -1,8 +1,9 @@
 @import 'styles/mixings';
 
 .imageInformationRegister {
+  text-align: center;
   height: 100vh;
-  object-fit: scale-down;
+  object-fit: cover;
 
   @include media-breakpoint-down(sm) {
     display: none;

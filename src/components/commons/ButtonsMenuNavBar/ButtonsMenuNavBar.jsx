@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdDashboard, MdMenu, MdCreate, MdSearch } from 'react-icons/md'
-import { FaHandHoldingHeart, FaUser } from 'react-icons/fa'
+import { MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
+import UserContext from 'Context/UserContext'
+import { FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
 import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
 import styles from './buttonsMenuNavBar.scss'
-import UserContext from '../../../Context/UserContext'
 
 const routesUserProtectionist = [
   {
@@ -21,16 +21,6 @@ const routesUserProtectionist = [
     link: '/dashboard',
   },
   {
-    icon: <MdSearch size={25} />,
-    text: 'Search Pets',
-    link: '/',
-  },
-  {
-    icon: <FaHandHoldingHeart size={25} />,
-    text: 'Search volanteers',
-    link: '/search-volanteers',
-  },
-  {
     icon: <MdCreate size={25} />,
     text: 'createPet',
     link: '/create-pet',
@@ -43,11 +33,6 @@ const routesUserAdopter = [
     text: 'My profile',
     link: '/profile-user',
     haveId: true,
-  },
-  {
-    icon: <MdSearch size={25} />,
-    text: 'Search protectionist',
-    link: '/',
   },
   {
     icon: <MdDashboard size={25} />,
@@ -67,11 +52,6 @@ const routesUserTransitUser = [
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
     link: '/dashboard',
-  },
-  {
-    icon: <MdSearch size={25} />,
-    text: 'Search protectionist',
-    link: '/',
   },
 ]
 

@@ -1,108 +1,91 @@
 import { observable, action, runInAction } from 'mobx'
 import RegisterService from 'services/RegisterService'
+import RegisterUser from 'models/RegisterUser'
 
 class RegisterStore {
-  constructor() {
-    this.registerService = new RegisterService()
-  }
-
-  @observable rol = ''
   @observable password = ''
   @observable confirmPassword = ''
-  @observable email = ''
-  @observable name = ''
-  @observable rols = []
+  // @observable rols = []
   @observable token = []
-  @observable user = []
+  // @observable user = []
   @observable isLoading = false
   @observable isError = false
+  @observable isErrorRequest = ''
+  @observable emailError = false
   @observable passwordSuccess = false
-  @observable passwordError = false
   @observable isRegister = false
+  @observable passwordError = true
+
+  constructor() {
+    this.registerService = new RegisterService()
+    this.registerUser = new RegisterUser()
+
+    this.init()
+  }
+
+  init() {
+    this.registerUser.terms = true
+  }
 
   @action
   async createUser() {
+    this.validate()
     this.isLoading = true
 
-    const data = {
-      name: this.name,
-      password: this.password,
-      email: this.email,
-      rol: this.rol.value,
-      terms: true,
-    }
-
     try {
-      const response = await this.registerService.register(data)
+      await this.registerService.register(this.registerUser.getJson())
 
       runInAction(() => {
-        setTimeout(() => {
-          this.isLoading = false
-        }, 2000)
-        this.user = response
+        this.isLoading = false
         this.isRegister = true
       })
     } catch (e) {
       runInAction(() => {
-        this.isRegister = false
         this.isLoading = false
-        this.isError = true
+        this.isErrorRequest = true
         console.log(e)
       })
     }
   }
 
   @action
+  setForm(valuesForm) {
+    Object.entries(valuesForm).forEach(([key, value]) => {
+      if (key !== 'passwordConfirm') {
+        this.registerUser[key] = value
+      }
+    })
+    this.createUser()
+  }
+
+  @action
   setUserRol(value) {
-    this.rol = value
+    this.registerUser.rol = value.value
   }
 
   @action
-  setPassword(value) {
-    this.password = value
-    if (this.password === this.confirmPassword) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+  setTextAddress(value) {
+    this.registerUser.textAddress = value
   }
 
   @action
-  setConfirmPassword(value) {
-    this.confirmPassword = value
-    if (this.confirmPassword === this.password) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+  setAddress(value) {
+    this.registerUser.lat = value.lat
+    this.registerUser.lng = value.lng
   }
 
   @action
-  setEmail(value) {
-    // eslint-disable-next-line no-useless-escape
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (re.test(String(value).toLowerCase())) {
-      this.email = value.toLowerCase()
-    }
+  setPhone(value) {
+    this.registerUser.phone = value
   }
 
   @action
-  setName(value) {
-    this.name = value
-  }
-
-  @action
-  setErrorPassword() {
-    this.passwordError = true
-  }
-
-  @action
-  cancelErrorPassword() {
-    this.passwordError = false
+  validate() {
+    Object.values(this.registerUser).forEach(value => {
+      if (value === undefined) {
+        this.isError = true
+      }
+    })
   }
 }
 
