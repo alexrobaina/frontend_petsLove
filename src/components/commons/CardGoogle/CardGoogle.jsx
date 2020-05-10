@@ -5,14 +5,20 @@ import { SERVER, HOST } from 'services/config'
 import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
 
-const CardGoogle = ({ image, name, email, textButton, id, onError, isImageNotFound }) => {
+const CardGoogle = ({ image, name, email, textButton, id }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
+
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.containerImage}>
         <img
           onError={onError}
           className={styles.imageCard}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+          src={image > 0 && isImageNotFound ? `${SERVER}/${image}` : noImage}
           alt="photos-user"
         />
       </div>
