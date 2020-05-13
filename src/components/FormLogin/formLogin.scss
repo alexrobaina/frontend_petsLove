@@ -4,18 +4,12 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-right: 100px;
-  padding-left: 100px;
+  padding-right: 150px;
+  padding-left: 150px;
 
   @include media-breakpoint-down(sm) {
     padding-right: 50px;
     padding-left: 50px;
-  }
-}
-
-.centerLogin {
-  @include media-breakpoint-down(sm) {
-    margin-top: 30%;
   }
 }
 
@@ -26,6 +20,7 @@
   font-weight: 700;
   text-align: center;
   padding-bottom: 30px;
+  padding-top: 20px;
 
   @include media-breakpoint-only(xs) {
     font-size: 22px;

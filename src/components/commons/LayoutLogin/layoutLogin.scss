@@ -1,0 +1,65 @@
+@import 'styles/mixings.scss';
+
+.containerLayout {
+  padding-top: 100px;
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include media-breakpoint-only(sm) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include media-breakpoint-between(sm, xs) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include media-breakpoint-only(md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include media-breakpoint-between(md, xl) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include media-breakpoint-only(xxl) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.title {
+  color: $title;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 22px;
+  }
+}
+
+.subTitle {
+  color: $colorLight;
+  font-size: 32px;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 700;
+  margin-top: 0;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 22px;
+  }
+}
+
+.rolText {
+  margin-top: 15px;
+  color: $primary;
+}
+

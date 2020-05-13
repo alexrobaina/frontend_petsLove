@@ -4,10 +4,11 @@
   position: absolute;
   background-color: $ligth;
   z-index: 1500 !important;
-  min-width: 110px;
+  min-width: 130px;
   border-radius: 5px;
   box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.18);
   transition: 200ms ease;
+  right: 20px;
   top: 70px;
 }
 

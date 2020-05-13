@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
-import { MdPets } from 'react-icons/md'
+import { MdSearch } from 'react-icons/md'
 import { HOME, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
 import UserContext from 'Context/UserContext'
@@ -44,7 +44,6 @@ const Navbar = ({ children }) => {
   }, [viewMenuProfile])
 
   const handleMenu = useCallback((link, id, haveId) => {
-    console.log(id)
     if (haveId) {
       history.push(`${link}/${id}`)
     } else {
@@ -61,7 +60,7 @@ const Navbar = ({ children }) => {
       <div className={styles.containerNavbar}>
         <div className={styles.containerFilter}>
           {/* this is button that open filters */}
-          <ButtonIcon onclick={goToSeach} icon={<MdPets size={25} />} />
+          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
           <div className={styles.logo}>Pets love</div>
         </div>
         {rootStore.authStore.isLogin ? (
@@ -94,7 +93,7 @@ const Navbar = ({ children }) => {
           // if user is logout view buttons Login and Sing In
           <div className={styles.containerButtonslog}>
             <ButtonLink onclick={goToLogin} text={t('login')} />
-            <ButtonLink onclick={goToRegister} text={t('singIn')} />
+            <ButtonLink onclick={goToRegister} text={t('signIn')} />
             <ChangeLanguage />
           </div>
         )}

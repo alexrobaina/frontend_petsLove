@@ -1,5 +1,9 @@
-@import 'styles/variable.scss';
-@import 'styles/mixings.scss';
+@import 'styles/variable';
+@import 'styles/mixings';
+
+.containerInput {
+  position: relative;
+}
 
 input:focus {
   outline: none;
@@ -59,4 +63,12 @@ input[type='number'] {
   margin-top: 5px;
   font-size: 10px;
   color: red;
+}
+
+.viewPassword {
+  color: grey;
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  cursor: pointer;
 }
