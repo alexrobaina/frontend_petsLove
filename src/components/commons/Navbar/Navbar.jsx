@@ -44,7 +44,6 @@ const Navbar = ({ children }) => {
   }, [viewMenuProfile])
 
   const handleMenu = useCallback((link, id, haveId) => {
-    console.log(id)
     if (haveId) {
       history.push(`${link}/${id}`)
     } else {
