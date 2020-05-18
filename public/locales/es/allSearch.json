@@ -1,0 +1,13 @@
+{
+  "transitSearch": {
+    "title": "Buscar voluntarios / Transito",
+    "labelGooglee": "Your Address",
+    "placeholderGoogle": "Encuentra voluntarios más cercano"
+  },
+  "protectionistSearch": {
+    "title": "Busca el refugio más cerca",
+    "subTitle": "Por favor adopta no compres mascotas",
+    "labelGooglee": "Your Address",
+    "placeholderGoogle": "Busca refugios"
+  }
+}

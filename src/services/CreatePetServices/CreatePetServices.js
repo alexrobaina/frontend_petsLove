@@ -10,8 +10,10 @@ class CreatePetServices {
     return axios.put(`${SERVER}/api/pet/update`, data).then(response => response.data)
   }
 
-  searchPetEdit = id => {
-    return axios.get(`${SERVER}/api/pet/query/?_id=${id}`).then(response => response.data)
+  searchPet = id => {
+    return axios
+      .get(`${SERVER}/api/pet/query/?_id=${id}`)
+      .then(response => response.data)
   }
 }
 

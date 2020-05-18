@@ -1,34 +1,27 @@
 import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
+import Pet from 'models/Pet'
+
+// const REQUIRED = 'This input is required'
+const REQUIRED = 'required'
 
 class CreatePetStore {
   constructor() {
     this.createPetServices = new CreatePetServices()
+    this.pet = new Pet()
   }
 
   @observable image = []
-  @observable name = ''
   @observable pet = []
   @observable imagePreview = []
   @observable imagesNews = []
   @observable newPreviewsImage = []
   @observable address = {}
-  @observable idPet = ''
-  @observable userAdopter = ''
-  @observable emailUserAdopt = ''
-  @observable transitUser = ''
-  @observable category = ''
-  @observable textAddress = ''
   @observable urgent = false
   @observable sterilized = false
   @observable lost = false
   @observable vaccinated = false
   @observable adopted = false
-  @observable gender = ''
-  @observable age = ''
-  @observable activity = ''
-  @observable history = ''
-  @observable requiredToAdoption = ''
   @observable isLoading = false
   @observable isError = false
   @observable isEdit = false
@@ -37,101 +30,77 @@ class CreatePetStore {
 
   @action
   async save(userId) {
-    this.requestSuccess = false
-    const dataPets = {
-      user: userId,
-      name: this.name,
-      category: this.category,
-      textAddress: this.textAddress,
-      urgent: this.urgent,
-      sterilized: this.sterilized,
-      lost: this.lost,
-      gender: this.gender,
-      adopted: this.adopted,
-      age: this.age,
-      vaccinated: this.vaccinated,
-      history: this.history,
-      requiredToAdoption: this.requiredToAdoption,
-      activity: this.activity,
-    }
+    if (this.validationForm()) {
+      const data = new FormData()
+      this.requestSuccess = false
+      this.pet.user.setValue(userId)
 
-    const data = new FormData()
-
-    // eslint-disable-next-line no-unused-vars
-    Object.entries(this.image).forEach(([key, value]) => {
-      data.append('image', value)
-    })
-
-    Object.entries(dataPets).forEach(([key, value]) => {
-      data.append(key, value)
-    })
-
-    Object.entries(this.address).forEach(([key, value]) => {
-      data.append(key, value)
-    })
-
-    try {
-      const response = await this.createPetServices.addPet(data)
-
-      runInAction(() => {
-        this.pet = response
-
-        this.idPet = this.pet._id
-        this.requestSuccess = true
+      Object.entries(this.pet.getJson()).forEach(([key, value]) => {
+        if (key !== 'userAdopt' && key !== 'userTransit' && key !== 'image' && key !== '_id') {
+          data.append(key, value)
+        }
       })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
+
+      if (this.pet.image.value.length > 0) {
+        Object.values(this.pet.image.value).forEach(value => {
+          data.append('image', value)
+        })
+      }
+
+      try {
+        const response = await this.createPetServices.addPet(data)
+
+        runInAction(() => {
+          this.pet = response
+
+          this.idPet = this.pet._id
+          this.requestSuccess = true
+        })
+      } catch (e) {
+        runInAction(() => {
+          console.log(e)
+        })
+      }
     }
   }
 
   @action
-  async saveEdit(id) {
+  async saveEdit() {
     this.requestSuccess = false
-
-    const dataPets = {
-      _id: id,
-      name: this.name,
-      category: this.category,
-      textAddress: this.textAddress,
-      urgent: this.urgent,
-      sterilized: this.sterilized,
-      lost: this.lost,
-      adopted: this.adopted,
-      gender: this.gender,
-      age: this.age,
-      vaccinated: this.vaccinated,
-      history: this.history,
-      requiredToAdoption: this.requiredToAdoption,
-      activity: this.activity,
-    }
-
-    if (this.userAdopter) {
-      dataPets.userAdopt = this.userAdopter
-    }
-    if (this.transitUser) {
-      dataPets.userTransit = this.transitUser
-    }
-
     const data = new FormData()
 
-    // eslint-disable-next-line no-unused-vars
-    Object.entries(this.image).forEach(([key, value]) => {
-      data.append('image', value)
-    })
+    if (this.pet.userAdopter) {
+      date.userAdopt = this.pet.userAdopter.value
+    }
 
-    // eslint-disable-next-line no-unused-vars
-    Object.entries(this.imagePreview).forEach(([key, value]) => {
+    if (this.pet.transitUser) {
+      data.userTransit = this.pet.transitUser.value
+    }
+
+    if (this.pet.image.value.length > 0) {
+      Object.values(this.pet.image.value).forEach(value => {
+        data.append('image', value)
+      })
+    }
+
+    Object.values(this.imagePreview).forEach(value => {
       data.append('imagePreview', value)
     })
 
-    Object.entries(dataPets).forEach(([key, value]) => {
-      data.append(key, value)
-    })
-
-    Object.entries(this.address).forEach(([key, value]) => {
-      data.append(key, value)
+    Object.entries(this.pet.getJson()).forEach(([key, value]) => {
+      if (key !== 'userAdopt' && key !== 'userTransit' && key !== 'image') {
+        data.append(key, value)
+      }
+      if (key === 'userAdopt') {
+        if (value !== '') {
+          data.append(key, value)
+        }
+      }
+      if (key === 'userTransit') {
+        if (value !== '') {
+          data.append(key, value)
+        }
+      }
     })
 
     try {
@@ -153,20 +122,15 @@ class CreatePetStore {
   @action
   async searchPetForId(id) {
     try {
-      const response = await this.createPetServices.searchPetEdit(id)
+      const response = await this.createPetServices.searchPet(id)
 
       runInAction(() => {
-        this.pet = response
-        this.imagePreview = response.image
+        this.pet.fillJson(response)
+        this.imagePreview = this.pet.image.value
 
-        if (response.userAdopt) {
-          this.emailUserAdopt = response.userAdopt.email
+        if (this.pet.userAdopt.value) {
+          this.emailUserAdopt = this.pet.userAdopt.value
         }
-        Object.entries(this.pet).forEach(([key, value]) => {
-          if (key !== 'image') {
-            this[key] = value
-          }
-        })
       })
     } catch (e) {
       runInAction(() => {
@@ -177,13 +141,17 @@ class CreatePetStore {
 
   @action
   setImage(value) {
-    this.image = value
+    this.pet.image.setValue(value)
   }
 
+  // this function is only for set image previews
   @action
   deleteImageArray(image) {
     this.imagePreview = this.imagePreview.filter(preview => {
       return preview !== image
+    })
+    this.imagePreview.forEach(preview => {
+      this.pet.image.setValue(preview !== image)
     })
   }
 
@@ -199,82 +167,82 @@ class CreatePetStore {
 
   @action
   setName(value) {
-    this.name = value
+    this.pet.name.setValue(value)
   }
 
   @action
   setCategory(value) {
-    this.category = value.value
+    this.pet.category.setValue(value.value)
   }
 
   @action
   setUserAdopter(value) {
-    this.userAdopter = value.value
+    this.pet.userAdopt.setValue(value.value)
   }
 
   @action
   setTransitUser(value) {
-    this.transitUser = value.value
+    this.pet.userTransit.setValue(value.value)
   }
 
   @action
   setAddress(value) {
-    this.address = value
+    this.pet.setAddress(value)
   }
 
   @action
   setTextAddress(value) {
-    this.textAddress = value
+    this.pet.textAddress.setValue(value)
   }
 
   @action
   setUrgent() {
-    this.urgent = !this.urgent
+    this.pet.urgent = !this.pet.urgent
   }
 
   @action
   setAdopted() {
-    this.adopted = !this.adopted
+    this.pet.adopted = !this.pet.adopted
   }
 
   @action
   setLost() {
-    this.lost = !this.lost
+    this.pet.lost = !this.pet.lost
   }
 
   @action
   setSterilized() {
-    this.sterilized = !this.sterilized
+    this.pet.sterilized = !this.pet.sterilized
   }
 
   @action
   setVaccinated() {
-    this.vaccinated = !this.vaccinated
+    this.pet.vaccinated = !this.pet.vaccinated
   }
 
   @action
   setGender(value) {
-    this.gender = value.value
+    this.pet.gender.setValue(value.value)
   }
 
   @action
   setAge(value) {
-    this.age = value.value
+    this.pet.age.setValue(value.value)
   }
 
   @action
   setHistory(value) {
-    this.history = value
+    this.pet.history.setValue(value)
   }
 
   @action
   setRequiredToAdoption(value) {
-    this.requiredToAdoption = value
+    this.pet.requiredToAdoption.setValue(value)
   }
 
   @action
   setActivity(value) {
-    this.activity = value.value
+    this.pet.activity.setValue(value.value)
   }
 
   @action
@@ -285,6 +253,72 @@ class CreatePetStore {
   @action
   setCancelEdit() {
     this.isEdit = false
+  }
+
+  @action
+  validationForm() {
+    let isValidForm = true
+    this.clearError()
+
+    const { name, category, gender, history, requiredToAdoption, activity, textAddress } = this.pet
+
+    if (!name.value) {
+      name.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!category.value) {
+      category.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!gender.value) {
+      gender.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!activity.value) {
+      activity.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!requiredToAdoption.value) {
+      requiredToAdoption.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!history.value) {
+      history.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!textAddress.value) {
+      textAddress.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    return isValidForm
+  }
+
+  @action
+  clearError() {
+    const { name, category, gender, history, requiredToAdoption, activity, textAddress } = this.pet
+
+    name.clearError()
+    category.clearError()
+    gender.clearError()
+    history.clearError()
+    requiredToAdoption.clearError()
+    activity.clearError()
+    requiredToAdoption.clearError()
+    textAddress.clearError()
   }
 }
 

@@ -1,0 +1,13 @@
+{
+  "transitSearch": {
+    "title": "Search volunteers",
+    "labelGooglee": "Your Address",
+    "placeholderGoogle": "Find volunteers near you"
+  },
+  "protectionistSearch": {
+    "title": "Find the nearest refuge",
+    "subTitle": "Please, do not buy a breed pet, adopt a homeless one",
+    "labelGooglee": "Your Address",
+    "placeholderGoogle": "Find shelters"
+  }
+}

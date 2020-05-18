@@ -35,6 +35,10 @@ input:focus {
   }
 }
 
+.isError {
+  border: 1px solid $error;
+}
+
 input[type='text'] {
   padding-left: 10px;
   font-size: 14px;
@@ -60,6 +64,7 @@ input[type='number'] {
 }
 
 .errorMessage {
+  margin-left: 5px;
   margin-top: 5px;
   font-size: 10px;
   color: red;

@@ -1,19 +1,26 @@
 {
-  "title": "perfil",
-  "name": "Nombre",
-  "email": "Email",
-  "userRol": "Tu Rol",
-  "phone": "Teléfono",
-  "nickname": "Nickname",
-  "aboutUs": "Sobre usted",
-  "RequirementsToAdopt": "Requisitos para adoptar",
-  "addressSearch": "Agrega tu ubicación",
-  "infoNickname": "El nickname sirve para crear tu propia dirección de perfil",
-  "availableTransit": "¿Estas disponible para hacer transito?",
-  "errorMessage": "El password es diferente",
-  "successMessage": "Genial! Podés continuar",
-  "titleChangePassword": "Cambiar Contraseña",
-  "password": "Contraseña",
-  "repeatPassword": "Repetir password",
-  "last": "last"
+  "common": {
+    "titleNameUser": "Profile of {{ name }}",
+    "contact": "Contacto",
+    "aboutUs": "Sobre nosotros",
+    "phone": "Teléfono",
+    "name": "Name",
+    "email": "Correo",
+    "userName": "Nombre de usuario"
+  },
+  "adopterUser": {
+    "role": "Adopto mascotas",
+    "name": "Name"
+  },
+  "protectionistUser": {
+    "role": "Refugio de mascocas",
+    "messageWhatsapp": "Hola, me gustaría adoptar unas mascota. Puedo ir al refugio?",
+    "requirementsToAdopt": "Requisitos para adoptar",
+    "needHome": "Necesita hogar",
+    "adopted": "Adoptados"
+  },
+  "transitUser": {
+    "role": "Transito de mascotas",
+    "messageWhatsapp": "Hola, te contactamos para saber si estas disponible para trancito de una mascota."
+  }
 }

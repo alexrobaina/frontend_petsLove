@@ -119,7 +119,7 @@ const CreatePet = () => {
 
   const handleSave = useCallback(() => {
     if (id) {
-      createPetStore.saveEdit(id)
+      createPetStore.saveEdit()
     } else {
       createPetStore.save(authStore.user._id)
     }
@@ -184,12 +184,13 @@ const CreatePet = () => {
             />
             <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
               <MdUpdate className={styles.icon} size={15} />
-              <span className={styles.jsFileName}>Choose a file</span>
+              <span className={styles.jsFileName}>{t('addFile')}</span>
             </label>
           </div>
         )}
         <div className={styles.col}>
           <Input
+            inputStore={createPetStore.pet.name}
             isEdit={createPetStore.isEdit}
             value={createPetStore.name}
             handleChange={handleChangeName}
@@ -198,6 +199,7 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <InputSelect
+            inputStore={createPetStore.pet.category}
             isEdit={createPetStore.isEdit}
             value={createPetStore.category}
             options={[
@@ -246,9 +248,10 @@ const CreatePet = () => {
         </div>
         <div className={styles.colMap}>
           <GoogleAutocomplete
+            inputStore={createPetStore.pet.textAddress}
             isEdit={createPetStore.isEdit}
-            label={t('addressPet')}
-            placeholder={t('addAddress')}
+            label={t('addAddressPet')}
+            placeholder={t('addAddressPet')}
             value={createPetStore.textAddress}
             handleChangeTextAddress={handleChangeTextAddress}
             handleChangeAddress={handleChangeAddress}
@@ -266,8 +269,9 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <InputSelect
+            inputStore={createPetStore.pet.gender}
             isEdit={createPetStore.isEdit}
-            value={createPetStore.gender}
+            value={createPetStore.pet.gender.value}
             options={[
               { value: 'female', label: t('female') },
               { value: 'male', label: t('male') },
@@ -312,6 +316,7 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <Textarea
+            inputStore={createPetStore.pet.history}
             isEdit={createPetStore.isEdit}
             rows={4}
             value={createPetStore.history}
@@ -321,15 +326,17 @@ const CreatePet = () => {
         </div>
         <div className={styles.col}>
           <Textarea
-            isEdit={createPetStore.isEdit}
             rows={4}
-            value={createPetStore.requiredToAdoption}
+            inputStore={createPetStore.pet.requiredToAdoption}
+            isEdit={createPetStore.isEdit}
             handleChange={handleChangeRequired}
             placeholder={t('RequiredToAdoption')}
+            value={createPetStore.requiredToAdoption}
           />
         </div>
         <div className={styles.col}>
           <InputSelect
+            inputStore={createPetStore.pet.activity}
             isEdit={createPetStore.isEdit}
             value={createPetStore.activity}
             options={[

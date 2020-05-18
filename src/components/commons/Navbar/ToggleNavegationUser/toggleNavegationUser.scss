@@ -43,6 +43,11 @@
   font-weight: 700;
 }
 
+.line {
+  width: 100%;
+  border-top: 1px solid $colorNavbar;
+}
+
 .containerLinks {
   display: flex;
   justify-content: flex-start;

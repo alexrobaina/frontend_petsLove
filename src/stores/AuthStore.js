@@ -4,25 +4,30 @@ import AuthService from 'services/AuthService'
 
 class AuthStore {
   constructor() {
+    this.init()
+  }
+
+  init() {
     this.authService = new AuthService()
     this.validateToken()
     this.getUser()
   }
 
+  @observable user = []
   @observable token = ''
-  @observable tokenLocalStorage = ''
   @observable email = ''
   @observable phone = ''
   @observable password = ''
-  @observable user = []
   @observable isLogin = false
+  @observable isLoading = false
   @observable isErrorLogin = false
+  @observable tokenLocalStorage = ''
 
   @action
   async loginUser() {
-    this.isErrorLogin = false
-    this.isLoading = true
     this.isLogin = false
+    this.isLoading = true
+    this.isErrorLogin = false
 
     const data = {
       email: this.email,
@@ -33,13 +38,16 @@ class AuthStore {
       const response = await this.authService.login(data)
 
       runInAction(() => {
-        this.user = response.user
-        this.token = response.tokenReturn
-        this.setToken(this.token)
-        this.setUser(this.user)
+        console.log(response)
         this.isLogin = true
-        this.isLoading = false
+        this.setUser(response.user)
+        this.setToken(response.tokenReturn)
+        this.user = response.user
         this.isErrorLogin = false
+        this.token = response.tokenReturn
+        setTimeout(() => {
+          this.isLoading = false
+        }, 1000)
       })
     } catch (e) {
       runInAction(() => {
@@ -77,11 +85,11 @@ class AuthStore {
     }
   }
 
-  setToken = () => {
-    localStorage.setItem('token', this.token)
+  setToken = (token) => {
+    localStorage.setItem('token', token)
   }
 
-  setUser = user => {
+  setUser = (user) => {
     localStorage.setItem('user', JSON.stringify(user))
   }
 

@@ -1,4 +1,15 @@
 {
-  "petsAdopted": "Pets Adopted",
-  "petsForAdoption": "Pets For Adoption"
+  "adopterUser": {
+    "rol": "I'm Adopter",
+    "historyPets": "All pets"
+  },
+  "protectionistUser": {
+    "petsAdopt": "Pets to adopt",
+    "petsAdopted": "Pets adopted",
+    "adopted": "Adopted",
+    "needHome": "Need a home"
+  },
+  "transitUser": {
+    "myPets": "My pets"
+  }
 }

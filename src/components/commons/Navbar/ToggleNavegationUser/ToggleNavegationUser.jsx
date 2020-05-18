@@ -19,7 +19,8 @@ const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, ro
         <ImageUserLog isUserLogin />
         <div className={styles.name}>{email}</div>
       </div>
-      {routesUser.map(route => (
+      <div className={styles.line} />
+      {routesUser.map((route) => (
         <Link
           to={route.haveId ? `${route.link}/${_id}` : route.link}
           key={route.text}

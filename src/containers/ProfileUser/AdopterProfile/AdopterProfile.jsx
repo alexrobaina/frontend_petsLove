@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
@@ -15,21 +15,27 @@ import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
 
 const AdopterProfile = ({ user }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
-  const { t } = useTranslation('viewUsers')
+  const { t } = useTranslation('profileUser')
   const param = useParams()
   const { name, image, lat, lng, aboutUs } = user
 
   useEffect(() => {
     searchPetsStore.getPetForUser(param.id)
   }, [])
-  console.log(user)
+
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
   return (
-    <LayoutContainer rolText={t('rol')} title={t('title', { name })}>
+    <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
+          onError={onError}
           className={styles.userImage}
-          src={image ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation
@@ -40,7 +46,7 @@ const AdopterProfile = ({ user }) => {
           }}
         />
       </div>
-      {aboutUs && <TextCard title={t('contact')} text={aboutUs} />}
+      {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs} />}
       {searchPetsStore.petsUserAdopt && (
         <>
           {' '}

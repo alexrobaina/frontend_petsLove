@@ -12,6 +12,7 @@ import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
 import ButtonIcon from 'components/commons/ButtonIcon'
+import Loading from '../Loading/Loading'
 import ToggleMenuUser from './ToggleMenuUser/ToggleMenuUser'
 import styles from './navbar.scss'
 
@@ -58,8 +59,8 @@ const Navbar = ({ children }) => {
   return (
     <>
       <div className={styles.containerNavbar}>
-        <div className={styles.containerFilter}>
-          {/* this is button that open filters */}
+        <div className={styles.buttonSearch}>
+          {/* This is button its for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
           <div className={styles.logo}>Pets love</div>
         </div>
@@ -77,11 +78,15 @@ const Navbar = ({ children }) => {
                 <ChangeLanguage />
               </div>
               <div className={styles.contectImageUser}>
-                <MenuProfile
-                  userId={authStore.user._id}
-                  handleToggleMenu={handleToggleMenu}
-                  viewMenuProfile={viewMenuProfile}
-                />
+                {authStore.isLoading ? (
+                  <Loading loadingRing />
+                ) : (
+                  <MenuProfile
+                    userId={authStore.user._id}
+                    handleToggleMenu={handleToggleMenu}
+                    viewMenuProfile={viewMenuProfile}
+                  />
+                )}
                 <ImageUserLog
                   handleToggleMenu={handleToggleMenu}
                   isUserLogin={rootStore.authStore.isLogin}

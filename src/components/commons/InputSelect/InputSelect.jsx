@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import Select from 'react-select'
-import styles from './inputSelect.scss'
+import InputStore from 'stores/InputStore'
 import ViewValue from '../ViewValue'
+import styles from './inputSelect.scss'
+import { useTranslation } from 'react-i18next'
 
 const InputSelect = ({
+  inputStore,
   options,
   placeholder,
   isLoading,
@@ -19,6 +22,7 @@ const InputSelect = ({
   name,
 }) => {
   const handleChangeValidate = value => {
+    const { t } = useTranslation('errorInputs')
     handleChange('rol', value.value)
   }
 
@@ -37,7 +41,7 @@ const InputSelect = ({
             title={title}
             onBlur={needValidate ? handleBlur : null}
             onChange={needValidate ? handleChangeValidate : handleChange}
-            className={styles.selectStyle}
+            // className={styles.selectStyles}
             isLoading={isLoading}
             placeholder={placeholder}
             options={options}
@@ -48,12 +52,13 @@ const InputSelect = ({
               colors: {
                 ...theme.colors,
                 neutral30: '#8E99F3',
-                neutral20: '#FFD95A',
+                neutral20: inputStore && inputStore.error ? '#f44336' : '#FFD95A',
                 primary50: '#8E99F3',
                 primary: '#FFD95A',
               },
             })}
           />
+          {inputStore && <div className={styles.errorMessage}>{inputStore.errorMessage}</div>}
         </>
       )}
     </>
@@ -67,12 +72,14 @@ InputSelect.propTypes = {
   value: PropTypes.string,
   isLoading: PropTypes.bool,
   isMulti: PropTypes.bool,
+  inputStore: PropTypes.instanceOf(InputStore),
 }
 
 InputSelect.defaultProps = {
   value: '',
   isLoading: false,
   isMulti: false,
+  inputStore: null,
 }
 
 export default observer(InputSelect)

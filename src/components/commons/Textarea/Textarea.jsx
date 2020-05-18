@@ -1,14 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import c from 'classnames'
+import { observer } from 'mobx-react'
+import InputStore from 'stores/InputStore'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
 
-const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isError }) => {
+const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore }) => {
+  console.log(inputStore.error)
   return (
     <>
       {isEdit ? (
         <textarea
-          className={styles.textarea}
+          className={c(styles.textarea, inputStore.error && styles.isError)}
           rows={rows}
           cols={cols}
           defaultValue={value}
@@ -18,7 +22,7 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, isErro
       ) : (
         <ViewValue placeholder={placeholder} value={value} />
       )}
-      {isError && <div className={styles.errorMessage}>Is required, please complete</div>}
+      {inputStore && <div className={styles.errorMessage}>{inputStore.errorMessage}</div>}
     </>
   )
 }
@@ -31,14 +35,15 @@ Textarea.propTypes = {
   value: PropTypes.string,
   isError: PropTypes.bool,
   isEdit: PropTypes.bool,
+  inputStore: PropTypes.instanceOf(InputStore),
 }
 
 Textarea.defaultProps = {
   cols: 4,
   rows: 4,
   value: '',
-  isError: false,
+  inputStore: null,
   isEdit: false,
 }
 
-export default Textarea
+export default observer(Textarea)

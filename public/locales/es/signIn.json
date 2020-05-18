@@ -1,0 +1,38 @@
+{
+  "register": {
+    "signUp": "Registrate",
+    "name": "Nombre",
+    "email": "Correo",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "goToLogin": "Ir al login",
+    "required": "Requerido",
+    "messageRequired": "This input is required",
+    "shortPasswordMessage": "El password es demasiado corto - debería tener 8 caracteres minimo",
+    "passwordNumberMessage": "La contraseña tiene que tener numeros",
+    "passwordUpparcaseMessage": "La contraseña tiene que tener mayúsculas",
+    "passwordLowercaseMessage": "La contraseña tiene que tener minusculas",
+    "passwordMatch": "La contraseñá tienen que ser iguales",
+    "rolRequired": "Rol es required!",
+    "usernameRequired": "Nombre de usuario es requerido",
+    "phoneRequired": "El teléfono es requerido",
+    "textTerms": "Registrarse significa que ha leído y acepta los Términos de servicio y nuestra Política de privacidad.",
+    "typeUserAdopter": "Adoptar una mascota",
+    "typeUserProtectionist": "Ofrecer mascotas en adopción",
+    "typeUserTransit": "Hago transito de mascocas",
+    "selectTypeUser": "¿Que quieres hacer?",
+    "readTerm": "Leer terminos",
+    "titleConfirmPassword": "Por favor confirme su contraseña",
+    "titleUsername": "Crea tu dirección: pets-love.app/tu-nombre-de-usuario"
+  },
+  "login": {
+    "signUp": "Registrate",
+    "name": "Nombre",
+    "login": "Iniciar sesión",
+    "email": "Correo",
+    "password": "Contraseña",
+    "forgotPassword": "Olvidé mi contraseá",
+    "errorLogin": "Verifica tu contraseña o correo, Algo anda mal."
+  }
+}

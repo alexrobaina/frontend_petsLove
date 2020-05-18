@@ -6,6 +6,7 @@ import AdopterUser from './AdopterUser'
 import TransitUser from './TransitUser'
 
 const Dashboard = () => {
+  
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 

@@ -1,0 +1,37 @@
+{
+  "register": {
+    "signUp": "SignUp",
+    "name": "Name",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "goToLogin": "Got to login",
+    "required": "Required",
+    "messageRequired": "Required",
+    "shortPasswordMessage": "Password is too short - should be 8 caracters minimum",
+    "passwordNumberMessage": "Password must contain a number",
+    "passwordUpparcaseMessage": "Password must contain a uppercase",
+    "passwordLowercaseMessage": "Password must contain a lowercase",
+    "passwordMatch": "Passwords must match",
+    "rolRequired": "Role is required!",
+    "usernameRequired": "Username is required",
+    "phoneRequired": "Phone is required",
+    "textTerms": "Signing up means that you have read and accept the Terms of Service and our Privacy Policy.",
+    "typeUserAdopter": "Adopt a pet",
+    "typeUserProtectionist": "Offer pets for adoption",
+    "typeUserTransit": "I do transit of pets",
+    "selectTypeUser": "You want to do?",
+    "readTerm": "Read terms",
+    "titleConfirmPassword": "Please confirm the password",
+    "titleUsername": "Create your url: pets-love.app/your-username"
+  },
+  "login": {
+    "signUp": "SignUp",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password",
+    "errorLogin": "Verify your password or email, Something's wrong."
+  }
+}

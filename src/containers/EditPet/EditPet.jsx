@@ -163,7 +163,7 @@ const EditPet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
-  console.log(createPetStore.pet)
+
   return (
     <LayoutContainer
       viewButtonBack
@@ -226,7 +226,7 @@ const EditPet = () => {
             <div className={styles.colContainerCheckbox}>
               <InputCheckbox
                 isEdit
-                value={createPetStore.adopted}
+                value={createPetStore.pet.adopted}
                 handleChange={handleChangeAdopted}
                 text={t('adoptedPet')}
               />
@@ -256,7 +256,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <Input
             isEdit={createPetStore.isEdit}
-            value={createPetStore.name}
+            value={createPetStore.pet.name.value}
             handleChange={handleChangeName}
             placeholder={t('placeholderName')}
           />
@@ -264,7 +264,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.category}
+            value={createPetStore.pet.category.value}
             options={optionsSelectsStore.categories}
             handleChange={handleChangeCategory}
             placeholder={t('categoryPets')}
@@ -273,7 +273,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.gender}
+            value={createPetStore.pet.gender.value}
             options={optionsSelectsStore.gender}
             handleChange={handleChangeGender}
             placeholder={t('gender')}
@@ -284,7 +284,7 @@ const EditPet = () => {
             <InputCheckbox
               isEdit
               handleChange={handleChangeUrgent}
-              value={createPetStore.urgent}
+              value={createPetStore.pet.urgent}
               text={t('urgent')}
             />
           </div>
@@ -292,7 +292,7 @@ const EditPet = () => {
             <InputCheckbox
               handleChange={handleChangeLost}
               isEdit
-              value={createPetStore.lost}
+              value={createPetStore.pet.lost}
               text={t('lost')}
             />
           </div>
@@ -302,7 +302,7 @@ const EditPet = () => {
             <InputCheckbox
               isEdit
               handleChange={handleChangeSterilized}
-              value={createPetStore.sterilized}
+              value={createPetStore.pet.sterilized}
               text={t('sterilized')}
             />
           </div>
@@ -310,7 +310,7 @@ const EditPet = () => {
             <InputCheckbox
               isEdit
               handleChange={handleChangeVaccinated}
-              value={createPetStore.vaccinated}
+              value={createPetStore.pet.vaccinated}
               text={t('vaccinated')}
             />
           </div>
@@ -318,7 +318,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.age}
+            value={createPetStore.pet.age.value}
             options={optionsSelectsStore.ages}
             handleChange={handleChangeAge}
             placeholder={t('age')}
@@ -328,7 +328,7 @@ const EditPet = () => {
           <Textarea
             isEdit={createPetStore.isEdit}
             rows={4}
-            value={createPetStore.history}
+            value={createPetStore.pet.history.value}
             handleChange={handleChangeHistory}
             placeholder={t('history')}
           />
@@ -337,7 +337,7 @@ const EditPet = () => {
           <Textarea
             isEdit={createPetStore.isEdit}
             rows={4}
-            value={createPetStore.requiredToAdoption}
+            value={createPetStore.pet.requiredToAdoption.value}
             handleChange={handleChangeRequired}
             placeholder={t('RequiredToAdoption')}
           />
@@ -345,7 +345,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.activity}
+            value={createPetStore.pet.activity.value}
             options={optionsSelectsStore.activity}
             handleChange={handleChangeActivity}
             placeholder={t('activity')}
@@ -356,7 +356,7 @@ const EditPet = () => {
             isEdit={createPetStore.isEdit}
             label="Address pet"
             placeholder="Add address pet"
-            value={createPetStore.textAddress}
+            value={createPetStore.pet.textAddress.value}
             handleChangeTextAddress={handleChangeTextAddress}
             handleChangeAddress={handleChangeAddress}
           />

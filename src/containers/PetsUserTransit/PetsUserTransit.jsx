@@ -7,7 +7,7 @@ import ListPets from 'components/ListPets'
 import { useTranslation } from 'react-i18next'
 
 const PetsUserTransit = ({ id }) => {
-  const { t } = useTranslation('transitUser')
+  const { t } = useTranslation('dashboard')
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
@@ -17,7 +17,7 @@ const PetsUserTransit = ({ id }) => {
   return (
     <>
       <LayoutContainerCardsPets>
-        <Title title={t('historyPets')} />
+        <Title title={t('transitUser.myPets')} />
       </LayoutContainerCardsPets>
       <ListPets pets={searchPetsStore.petsUserTransit} />
     </>

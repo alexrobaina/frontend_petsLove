@@ -96,7 +96,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
       />
-      {menuUser.map(route => (
+      {menuUser.map(route =>
         <div key={route.link} className={styles.containerLinks}>
           <LinkNavbarUser
             haveId={route.haveId}
@@ -106,8 +106,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
             icon={route.icon}
             handleMenu={handleMenu}
           />
-        </div>
-      ))}
+        </div>)}
     </>
   )
 }

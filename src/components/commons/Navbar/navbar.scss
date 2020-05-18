@@ -61,7 +61,7 @@
   }
 }
 
-.containerFilter {
+.buttonSearch {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,9 +72,12 @@
   font-size: 15px;
   color: $title;
   font-weight: 600;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 10px;
+  }
 }
 
 .animationOpacity {
   opacity: 0;
 }
-
