@@ -10,6 +10,7 @@
     "needHome": "Necesitan hogar"
   },
   "transitUser": {
-    "myPets": "Mis Máscotas"
+    "titleCard": "Necesitan hogar",
+    "titlepetsList": "Historial de mascotas cuidadas"
   }
 }

@@ -7,22 +7,23 @@ import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
 import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
 import styles from './buttonsMenuNavBar.scss'
+import { useTranslation } from 'react-i18next'
 
 const routesUserProtectionist = [
   {
     icon: <FaUser size={22} />,
-    text: 'My profile',
+    text: 'myProfile',
     link: '/profile-user',
     haveId: true,
   },
   {
     icon: <MdDashboard size={25} />,
-    text: 'Dashboard',
+    text: 'dashboard',
     link: '/dashboard',
   },
   {
     icon: <FaHandHoldingHeart size={25} />,
-    text: 'Search volanteers',
+    text: 'searchVolanteers',
     link: '/search-volanteers',
   },
   {
@@ -35,7 +36,7 @@ const routesUserProtectionist = [
 const routesUserAdopter = [
   {
     icon: <FaUser size={22} />,
-    text: 'My profile',
+    text: 'myProfile',
     link: '/profile-user',
     haveId: true,
   },
@@ -49,7 +50,7 @@ const routesUserAdopter = [
 const routesUserTransitUser = [
   {
     icon: <FaUser size={22} />,
-    text: 'My profile',
+    text: 'myProfile',
     link: '/profile-user',
     haveId: true,
   },
@@ -61,6 +62,7 @@ const routesUserTransitUser = [
 ]
 
 const ButtonsMenuNavBar = ({ handleMenu }) => {
+  const { t } = useTranslation('navbar')
   const [toggleViewMenuUser, setHandleToggleViewMenuUser] = useState(false)
   const [menuUser, setMenuUser] = useState([])
   const rootStore = useContext(UserContext)
@@ -96,17 +98,18 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
       />
-      {menuUser.map(route =>
+      {menuUser.map(route => (
         <div key={route.link} className={styles.containerLinks}>
           <LinkNavbarUser
             haveId={route.haveId}
             id={authStore.user._id}
             link={route.link}
-            text={route.text}
+            text={t(`${route.text}`)}
             icon={route.icon}
             handleMenu={handleMenu}
           />
-        </div>)}
+        </div>
+      ))}
     </>
   )
 }

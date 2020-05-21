@@ -15,7 +15,7 @@ const ResetPasswordForm = () => {
   const { authStore } = rootStore
   const { token } = useParams()
 
-  const { t } = useTranslation('forgotPassword')
+  const { t } = useTranslation('resetPassword')
 
   const goToLogin = useCallback(() => {
     history.push('/')
@@ -64,7 +64,7 @@ const ResetPasswordForm = () => {
         </div>
       </div>
       <div className={styles.buttonForgotPassword}>
-        <Button handleClick={SubmitResetPassword} bigButton text={t('reset')} />
+        <Button handleClick={SubmitResetPassword} bigButton text={t('change')} />
       </div>
       <div className={styles.forgotPassword}>
         <div onClick={goToLogin} className={styles.textSingIn}>

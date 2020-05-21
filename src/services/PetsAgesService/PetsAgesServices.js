@@ -1,35 +1,32 @@
-import i18next from 'i18next'
-
 class PetsAgesServices {
   getAge = () => {
-    const age = [
-      { value: '', label: i18next.t('selectAge.allAges') },
-      { value: '1month', label: i18next.t('selectAge.1month') },
-      { value: '2month', label: i18next.t('selectAge.2month') },
-      { value: '3month', label: i18next.t('selectAge.3month') },
-      { value: '4month', label: i18next.t('selectAge.4month') },
-      { value: '5month', label: i18next.t('selectAge.5month') },
-      { value: '6month', label: i18next.t('selectAge.6month') },
-      { value: '7month', label: i18next.t('selectAge.7month') },
-      { value: '8month', label: i18next.t('selectAge.8month') },
-      { value: '9month', label: i18next.t('selectAge.9month') },
-      { value: '10month', label: i18next.t('selectAge.10month') },
-      { value: '11month', label: i18next.t('selectAge.11month') },
-      { value: '12month', label: i18next.t('selectAge.12month') },
-      { value: '1year', label: i18next.t('selectAge.1year') },
-      { value: '2year', label: i18next.t('selectAge.2year') },
-      { value: '3year', label: i18next.t('selectAge.3year') },
-      { value: '4year', label: i18next.t('selectAge.4year') },
-      { value: '5year', label: i18next.t('selectAge.5year') },
-      { value: '6year', label: i18next.t('selectAge.6year') },
-      { value: '7year', label: i18next.t('selectAge.7year') },
-      { value: '8year', label: i18next.t('selectAge.8year') },
-      { value: '9year', label: i18next.t('selectAge.9year') },
-      { value: '10year', label: i18next.t('selectAge.10year') },
-      { value: '11year', label: i18next.t('selectAge.11year') },
-      { value: '12year', label: i18next.t('selectAge.12year') },
+    const ageOptions = [
+      { value: '1month', label: '1month' },
+      { value: '2month', label: '2month' },
+      { value: '3month', label: '3month' },
+      { value: '4month', label: '4month' },
+      { value: '5month', label: '5month' },
+      { value: '6month', label: '6month' },
+      { value: '7month', label: '7month' },
+      { value: '8month', label: '8month' },
+      { value: '9month', label: '9month' },
+      { value: '10month', label: '10month' },
+      { value: '11month', label: '11month' },
+      { value: '12month', label: '12month' },
+      { value: '1year', label: '1year' },
+      { value: '2year', label: '2year' },
+      { value: '3year', label: '3year' },
+      { value: '4year', label: '4year' },
+      { value: '5year', label: '5year' },
+      { value: '6year', label: '6year' },
+      { value: '7year', label: '7year' },
+      { value: '8year', label: '8year' },
+      { value: '9year', label: '9year' },
+      { value: '10year', label: '10year' },
+      { value: '11year', label: '11year' },
+      { value: '12year', label: '12year' },
     ]
-    return age
+    return ageOptions
   }
 }
 

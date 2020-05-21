@@ -10,6 +10,7 @@
     "needHome": "Need a home"
   },
   "transitUser": {
-    "myPets": "My pets"
+    "titleCard": "Need home",
+    "titlepetsList": "History of pets care"
   }
 }

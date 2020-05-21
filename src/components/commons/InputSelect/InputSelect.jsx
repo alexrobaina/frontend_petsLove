@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import Select from 'react-select'
 import InputStore from 'stores/InputStore'
 import ViewValue from '../ViewValue'
 import styles from './inputSelect.scss'
-import { useTranslation } from 'react-i18next'
 
 const InputSelect = ({
   inputStore,
@@ -41,7 +41,6 @@ const InputSelect = ({
             title={title}
             onBlur={needValidate ? handleBlur : null}
             onChange={needValidate ? handleChangeValidate : handleChange}
-            // className={styles.selectStyles}
             isLoading={isLoading}
             placeholder={placeholder}
             options={options}

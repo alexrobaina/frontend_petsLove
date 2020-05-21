@@ -17,6 +17,7 @@ class CreatePetStore {
   @observable imagesNews = []
   @observable newPreviewsImage = []
   @observable address = {}
+  @observable location = {}
   @observable urgent = false
   @observable sterilized = false
   @observable lost = false
@@ -187,6 +188,7 @@ class CreatePetStore {
 
   @action
   setAddress(value) {
+    this.location = value
     this.pet.setAddress(value)
   }
 

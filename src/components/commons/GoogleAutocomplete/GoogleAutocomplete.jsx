@@ -94,23 +94,23 @@ const GoogleAutocomplete = observer(
 )
 
 GoogleAutocomplete.propTypes = {
-  handleChangeAddress: PropTypes.func,
-  handleChangeTextAddress: PropTypes.func,
-  placeholder: PropTypes.string,
+  isEdit: PropTypes.bool,
   value: PropTypes.string,
   label: PropTypes.string,
-  isEdit: PropTypes.bool,
+  placeholder: PropTypes.string,
+  handleChangeAddress: PropTypes.func,
+  handleChangeTextAddress: PropTypes.func,
   inputStore: PropTypes.instanceOf(InputStore),
 }
 
 GoogleAutocomplete.defaultProps = {
-  handleChangeAddress: null,
-  handleChangeTextAddress: null,
-  placeholder: '',
-  inputStore: null,
   label: '',
   value: '',
   isEdit: false,
+  placeholder: '',
+  inputStore: false,
+  handleChangeAddress: null,
+  handleChangeTextAddress: null,
 }
 
 export default GoogleApiWrapper({

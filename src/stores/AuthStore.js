@@ -1,6 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import decode from 'jwt-decode'
 import AuthService from 'services/AuthService'
+import InputStore from './InputStore'
 
 class AuthStore {
   constructor() {
@@ -15,9 +16,9 @@ class AuthStore {
 
   @observable user = []
   @observable token = ''
-  @observable email = ''
-  @observable phone = ''
-  @observable password = ''
+  @observable email = new InputStore()
+  @observable phone = new InputStore()
+  @observable password = new InputStore()
   @observable isLogin = false
   @observable isLoading = false
   @observable isErrorLogin = false
@@ -30,15 +31,14 @@ class AuthStore {
     this.isErrorLogin = false
 
     const data = {
-      email: this.email,
-      password: this.password,
+      email: this.email.value,
+      password: this.password.value,
     }
 
     try {
       const response = await this.authService.login(data)
 
       runInAction(() => {
-        console.log(response)
         this.isLogin = true
         this.setUser(response.user)
         this.setToken(response.tokenReturn)
@@ -85,17 +85,17 @@ class AuthStore {
     }
   }
 
-  setToken = (token) => {
+  setToken = token => {
     localStorage.setItem('token', token)
   }
 
-  setUser = (user) => {
+  setUser = user => {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
   @action
   setEmail(value) {
-    this.email = value
+    this.email.setValue(value)
   }
 
   @action
@@ -111,7 +111,7 @@ class AuthStore {
 
   @action
   setPassword(value) {
-    this.password = value
+    this.password.setValue(value)
   }
 
   logout = () => {

@@ -10,7 +10,7 @@ import LayoutContainer from 'components/commons/LayoutContainer'
 import Input from 'components/commons/Input'
 import Footer from 'components/commons/Footer/Footer'
 import ImageUserLog from 'components/commons/ImageUserLog'
-import EditUserStore from 'stores/EditUserStore'
+import UserStore from 'stores/userStore'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAutocomplete'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
@@ -22,9 +22,9 @@ import styles from './editUser.scss'
 
 const EditUser = () => {
   const { id } = useParams()
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation('editUser')
   const fileUpload = useRef()
-  const editUserStore = useLocalStore(() => new EditUserStore())
+  const userStore = useLocalStore(() => new UserStore())
 
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -34,60 +34,60 @@ const EditUser = () => {
   }, [])
 
   const handleChangeImage = useCallback(e => {
-    editUserStore.setImage(e.target.files[0])
+    userStore.setImage(e.target.files[0])
   })
 
   const handleChangeTextAddress = useCallback(location => {
-    editUserStore.setTextAddress(location)
+    userStore.setTextAddress(location)
   }, [])
 
   const handleChangeAddress = useCallback(address => {
     console.log(address)
-    editUserStore.setAddress(address)
+    userStore.setAddress(address)
   }, [])
 
   const handleChangePhone = useCallback(phone => {
-    editUserStore.setPhone(phone)
+    userStore.setPhone(phone)
   }, [])
 
   const handleChangeUsername = useCallback(e => {
-    editUserStore.setUsername(e.target.value)
+    userStore.setUsername(e.target.value)
   }, [])
 
   const handleChangeTransit = useCallback(() => {
-    editUserStore.setCanTransit()
+    userStore.setCanTransit()
   }, [])
 
   const handleChangeAboutUs = useCallback(e => {
-    editUserStore.setAboutUs(e.target.value)
+    userStore.setAboutUs(e.target.value)
   }, [])
 
   const handleChangeRequirementsToAdopt = useCallback(e => {
-    editUserStore.setRequirementsToAdopt(e.target.value)
+    userStore.setRequirementsToAdopt(e.target.value)
   }, [])
 
   const handleChangePassword = useCallback(e => {
-    editUserStore.setPassword(e.target.value)
+    userStore.setPassword(e.target.value)
   }, [])
 
   const handleChangeRepeatPassword = useCallback(e => {
-    editUserStore.setConfirmPassword(e.target.value)
+    userStore.setConfirmPassword(e.target.value)
   }, [])
 
   const handleCancelEdit = useCallback(() => {
-    editUserStore.cancelEdit()
+    userStore.cancelEdit()
   }, [])
 
   const handleEdit = useCallback(() => {
-    editUserStore.setIsEdit()
+    userStore.setIsEdit()
   }, [])
 
   const handleSave = useCallback(() => {
-    editUserStore.saveUser(authStore.user._id)
+    userStore.saveUser(authStore.user._id)
   }, [])
 
   useEffect(() => {
-    editUserStore.loadUser(id)
+    userStore.loadUser(id)
   }, [])
 
   return (
@@ -95,20 +95,20 @@ const EditUser = () => {
       <div className={styles.containerImage}>
         <div className={styles.col}>
           <ImageUserLog
-            imgUser={editUserStore.user.image}
-            isUserLogin={rootStore.authStore.isLogin}
             size={50}
             isProfile
+            imgUser={userStore.user.image}
+            isUserLogin={rootStore.authStore.isLogin}
           />
         </div>
-        {editUserStore.isEdit && (
+        {userStore.isEdit && (
           <div className={c(styles.col, styles.buttonFile)}>
             <input
-              onChange={handleChangeImage}
               ref={fileUpload}
+              id="file"
               type="file"
               name="file"
-              id="file"
+              onChange={handleChangeImage}
               className={styles.inputFile}
             />
             <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
@@ -121,96 +121,104 @@ const EditUser = () => {
       <div className={styles.containerForm}>
         <div className={styles.colInput}>
           <Input
-            isEdit={editUserStore.isEdit}
-            value={editUserStore.user.name}
+            disabled
             placeholder={t('name')}
+            isEdit={userStore.isEdit}
+            inputStore={userStore.user.name}
+            value={userStore.user.name.value}
           />
         </div>
         <div className={styles.colInput}>
           <Input
             disabled
-            isEdit={editUserStore.isEdit}
-            value={editUserStore.user.email}
             placeholder={t('email')}
+            isEdit={userStore.isEdit}
+            inputStore={userStore.user.email}
+            value={userStore.user.email.value}
           />
         </div>
         <div className={styles.colInput}>
           <Input
-            disabled
-            isEdit={editUserStore.isEdit}
             canEdit
-            value={editUserStore.nameRol}
+            disabled
+            isEdit={userStore.isEdit}
             placeholder={t('userRol')}
+            value={userStore.user.setRole()}
+            inputStore={userStore.user.rol}
           />
         </div>
         <div className={styles.colInput}>
-          {editUserStore.isEdit ? (
+          {userStore.isEdit ? (
             <PhoneInput
-              value={editUserStore.user.phone ? editUserStore.user.phone : ''}
-              inputStyle={{ width: '100%', height: '40px' }}
               country="ar"
               onChange={phone => handleChangePhone(phone)}
+              inputStyle={{ width: '100%', height: '40px' }}
+              value={userStore.user.phone.value ? userStore.user.phone.value : ''}
             />
           ) : (
-            <ViewValue placeholder={t('phone')} value={editUserStore.user.phone} />
+            <ViewValue placeholder={t('phone')} value={userStore.user.phone.value} />
           )}
         </div>
         <div className={styles.colInput}>
-          <div className={styles.messageInformation}>{t('infoNickname')}</div>
           <Input
-            handleChange={handleChangeUsername}
-            isEdit={editUserStore.isEdit}
             canEdit
-            value={editUserStore.user.username}
+            isEdit={userStore.isEdit}
             placeholder={t('username')}
+            handleChange={handleChangeUsername}
+            inputStore={userStore.user.username}
+            value={userStore.user.username.value}
           />
+          <div className={styles.messageInformation}>{t('helpUserName')}</div>
         </div>
         <div className={styles.colCheckBox}>
-          {editUserStore.rol === 'transitUser' && (
+          {userStore.rol === 'transitUser' && (
             <InputCheckbox
-              handleChange={handleChangeTransit}
-              text={t('availableTransit')}
-              isEdit={editUserStore.isEdit}
               canEdit
-              value={editUserStore.canTransit}
+              isEdit={userStore.isEdit}
+              text={t('availableTransit')}
+              value={userStore.user.canTransit}
+              handleChange={handleChangeTransit}
             />
           )}
         </div>
         <div className={styles.colbig}>
           <Textarea
-            handleChange={handleChangeAboutUs}
-            rows={4}
-            isEdit={editUserStore.isEdit}
             canEdit
-            value={editUserStore.user.aboutUs}
+            rows={4}
+            isEdit={userStore.isEdit}
             placeholder={t('aboutUs')}
+            handleChange={handleChangeAboutUs}
+            inputStore={userStore.user.username}
+            value={userStore.user.aboutUs.value}
           />
         </div>
         <div className={styles.colbig}>
           <Textarea
-            handleChange={handleChangeRequirementsToAdopt}
-            rows={4}
-            isEdit={editUserStore.isEdit}
             canEdit
-            value={editUserStore.user.requirementsToAdopt}
-            placeholder={t('RequirementsToAdopt')}
+            rows={4}
+            isEdit={userStore.isEdit}
+            placeholder={t('requirementsToAdopt')}
+            handleChange={handleChangeRequirementsToAdopt}
+            inputStore={userStore.user.requirementsToAdopt}
+            value={userStore.user.requirementsToAdopt.value}
           />
         </div>
         <div className={styles.colbig}>
           <GoogleAutocomplete
-            handleChangeTextAddress={handleChangeTextAddress}
+            isEdit={userStore.isEdit}
+            label={t('address')}
+            placeholder={t('address')}
+            inputStore={userStore.user.textAddress}
+            value={userStore.user.textAddress.value}
             handleChangeAddress={handleChangeAddress}
-            isEdit={editUserStore.isEdit}
-            value={editUserStore.user.textAddress}
-            label={t('addressSearch')}
-            placeholder={t('addressSearch')}
+            handleChangeTextAddress={handleChangeTextAddress}
           />
-          {editUserStore.address.lat && (
+          {userStore.address.lat && (
             <div className={styles.containerMap}>
               <GoogleMapsLocation
                 showAddress
-                location={editUserStore.address}
-                title={t('createPet.messageMap')}
+                location={userStore.user.address}
+                title={t('messageMap')}
               />
             </div>
           )}
@@ -220,33 +228,35 @@ const EditUser = () => {
         </div>
         <div className={styles.colInput}>
           <Input
-            handleChange={handleChangePassword}
-            isEdit={editUserStore.isEdit}
             canEdit
             type="password"
+            isEdit={userStore.isEdit}
             placeholder={t('password')}
+            handleChange={handleChangePassword}
+            inputStore={userStore.user.password}
           />
-          {editUserStore.passwordError && (
-            <div className={styles.errorMessage}>{t('errorMessage')}</div>
+          {userStore.passwordError && (
+            <div className={styles.errorMessage}>{t('errorPassword')}</div>
           )}
-          {editUserStore.passwordSuccess && (
-            <div className={styles.successMessage}>{t('successMessage')}</div>
+          {userStore.passwordSuccess && (
+            <div className={styles.successMessage}>{t('successPassword')}</div>
           )}
         </div>
         <div className={styles.colInput}>
           <Input
-            handleChange={handleChangeRepeatPassword}
-            isEdit={editUserStore.isEdit}
             canEdit
             type="password"
+            isEdit={userStore.isEdit}
             placeholder={t('repeatPassword')}
+            inputStore={userStore.confirmPassword}
+            handleChange={handleChangeRepeatPassword}
           />
         </div>
       </div>
       <ButtonsEditFixed
-        isEdit={editUserStore.isEdit}
         handleEdit={handleEdit}
         handleSave={handleSave}
+        isEdit={userStore.isEdit}
         handleCancelEdit={handleCancelEdit}
       />
       <Footer />

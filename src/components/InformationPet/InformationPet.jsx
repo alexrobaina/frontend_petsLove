@@ -22,17 +22,25 @@ const InformationPet = ({ pet }) => {
             value={pet.userAdopt.name}
           />
         )}
-        <TextCardInformation icon={<FaBirthdayCake size={20} />} text={t('age')} value={pet.age} />
-        <TextCardInformation icon={<FaCat size={20} />} text={t('category')} value={pet.category} />
+        <TextCardInformation
+          icon={<FaBirthdayCake size={20} />}
+          text={t('age')}
+          value={t(`${pet.age}`)}
+        />
+        <TextCardInformation
+          icon={<FaCat size={20} />}
+          text={t('category')}
+          value={t(`${pet.category}`)}
+        />
         <TextCardInformation
           icon={<FaTransgender size={25} />}
           text={t('gender')}
-          value={pet.gender}
+          value={t(`${pet.gender}`)}
         />
         <TextCardInformation
           icon={<GiJumpingDog size={25} />}
           text={t('activity')}
-          value={pet.activity}
+          value={t(`${pet.activity}`)}
         />
         <TextCardInformation
           icon={<FaStreetView size={25} />}

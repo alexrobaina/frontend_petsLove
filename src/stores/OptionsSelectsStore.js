@@ -77,6 +77,7 @@ class OptionsSelectsStore {
 
       runInAction(() => {
         this.gender = response
+        console.log(this.gender)
       })
     } catch (e) {
       runInAction(() => {

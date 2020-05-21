@@ -67,6 +67,11 @@ button:focus {
   cursor: pointer;
   transition: 0.3s;
 
+  .transparent & {
+    color: $title;
+    background-color: rgba(29, 183, 255, 0) !important;
+  }
+
   &:hover {
     background-color: $secundary;
     transform: translateY(-0.25em);

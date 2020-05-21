@@ -22,7 +22,7 @@ const ProfilePets = () => {
   return (
     <LayoutContainer>
       <Link to={`/profile-user/${petIdStore.idUser}`}>
-        Contact protectionist: {petIdStore.userName}
+        {t('linkBack')}
       </Link>
       <LayoutProfilePets
         email={email}

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
+import Loading from '../../components/commons/Loading'
 
 const ForAdoption = ({ id }) => {
   const { t } = useTranslation('dashboard')
@@ -20,7 +21,11 @@ const ForAdoption = ({ id }) => {
       <LayoutContainerCardsPets>
         <Title title={t('protectionistUser.needHome')} />
       </LayoutContainerCardsPets>
-      <ListPets pets={searchPetsStore.petsForAdoption} />
+      {searchPetsStore.isLoading ? (
+        <Loading loadingRing />
+      ) : (
+        <ListPets pets={searchPetsStore.petsForAdoption} />
+      )}
     </>
   )
 }

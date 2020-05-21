@@ -65,6 +65,14 @@ class Pet {
     }
   }
 
+  getAddress() {
+    const addressObject = {
+      lat: this.pet.lat,
+      lng: this.pet.lng,
+    }
+    return addressObject
+  }
+
   getJson() {
     return {
       _id: this._id,

@@ -17,7 +17,7 @@ const PetsUserTransit = ({ id }) => {
   return (
     <>
       <LayoutContainerCardsPets>
-        <Title title={t('transitUser.myPets')} />
+        <Title title={t('transitUser.titlepetsList')} />
       </LayoutContainerCardsPets>
       <ListPets pets={searchPetsStore.petsUserTransit} />
     </>

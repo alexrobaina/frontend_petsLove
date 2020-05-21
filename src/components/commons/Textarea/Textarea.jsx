@@ -7,7 +7,6 @@ import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore }) => {
-  console.log(inputStore.error)
   return (
     <>
       {isEdit ? (
@@ -42,7 +41,7 @@ Textarea.defaultProps = {
   cols: 4,
   rows: 4,
   value: '',
-  inputStore: null,
+  inputStore: false,
   isEdit: false,
 }
 

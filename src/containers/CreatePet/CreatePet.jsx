@@ -48,6 +48,10 @@ const CreatePet = () => {
     fileUpload.current.click()
   }, [])
 
+  const handleSetAddress = useCallback((address) => {
+    createPetStore.setAddress()
+  }, [])
+
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
   }, [])
@@ -144,7 +148,7 @@ const CreatePet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
-
+  console.log(createPetStore.pet.lat)
   return (
     <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>
       <Title subTitle={t('subtitle')} />
@@ -176,55 +180,55 @@ const CreatePet = () => {
           <div className={styles.colInputImage}>
             <input
               multiple
+              type="file"
               ref={fileUpload}
               className={styles.inputFile}
               onChange={handleChangeImage}
-              type="file"
               placeholder={t('placeholderImages')}
             />
             <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
               <MdUpdate className={styles.icon} size={15} />
-              <span className={styles.jsFileName}>{t('addFile')}</span>
+              <span>{t('addFile')}</span>
             </label>
           </div>
         )}
         <div className={styles.col}>
           <Input
-            inputStore={createPetStore.pet.name}
-            isEdit={createPetStore.isEdit}
             value={createPetStore.name}
+            isEdit={createPetStore.isEdit}
             handleChange={handleChangeName}
             placeholder={t('placeholderName')}
+            inputStore={createPetStore.pet.name}
           />
         </div>
         <div className={styles.col}>
           <InputSelect
-            inputStore={createPetStore.pet.category}
             isEdit={createPetStore.isEdit}
+            placeholder={t('categoryPets')}
             value={createPetStore.category}
+            handleChange={handleChangeCategory}
+            inputStore={createPetStore.pet.category}
             options={[
               { value: 'dog', label: t('dogs') },
               { value: 'cat', label: t('cats') },
             ]}
-            handleChange={handleChangeCategory}
-            placeholder={t('categoryPets')}
           />
         </div>
         <div className={styles.colContainerCheckbox}>
           <div className={styles.colCheckbox}>
             <InputCheckbox
               isEdit
-              handleChange={handleChangeUrgent}
-              value={createPetStore.urgent}
               text={t('urgent')}
+              value={createPetStore.urgent}
+              handleChange={handleChangeUrgent}
             />
           </div>
           <div className={styles.colCheckbox}>
             <InputCheckbox
-              handleChange={handleChangeLost}
               isEdit
-              value={createPetStore.lost}
               text={t('lost')}
+              value={createPetStore.lost}
+              handleChange={handleChangeLost}
             />
           </div>
         </div>
@@ -232,128 +236,106 @@ const CreatePet = () => {
           <div className={styles.colCheckbox}>
             <InputCheckbox
               isEdit
-              handleChange={handleChangeSterilized}
-              value={createPetStore.sterilized}
               text={t('sterilized')}
+              value={createPetStore.sterilized}
+              handleChange={handleChangeSterilized}
             />
           </div>
           <div className={styles.colCheckbox}>
             <InputCheckbox
               isEdit
-              handleChange={handleChangeVaccinated}
-              value={createPetStore.vaccinated}
               text={t('vaccinated')}
+              value={createPetStore.vaccinated}
+              handleChange={handleChangeVaccinated}
             />
           </div>
         </div>
         <div className={styles.colMap}>
           <GoogleAutocomplete
-            inputStore={createPetStore.pet.textAddress}
-            isEdit={createPetStore.isEdit}
             label={t('addAddressPet')}
+            isEdit={createPetStore.isEdit}
             placeholder={t('addAddressPet')}
-            value={createPetStore.textAddress}
-            handleChangeTextAddress={handleChangeTextAddress}
+            value={createPetStore.pet.textAddress.value}
             handleChangeAddress={handleChangeAddress}
+            inputStore={createPetStore.pet.textAddress}
+            handleChangeTextAddress={handleChangeTextAddress}
           />
-          {addressLocation.lat && (
-            <div className={styles.containerMap}>
-              <GoogleMapsLocation
-                addressValue={createPetStore.address}
-                showAddress
-                location={addressLocation}
-                title={t('messageMap')}
-              />
-            </div>
-          )}
         </div>
         <div className={styles.col}>
           <InputSelect
-            inputStore={createPetStore.pet.gender}
+            placeholder={t('gender')}
             isEdit={createPetStore.isEdit}
+            handleChange={handleChangeGender}
             value={createPetStore.pet.gender.value}
+            inputStore={createPetStore.pet.gender}
             options={[
               { value: 'female', label: t('female') },
               { value: 'male', label: t('male') },
             ]}
-            handleChange={handleChangeGender}
-            placeholder={t('gender')}
           />
         </div>
         <div className={styles.col}>
           <InputSelect
-            isEdit={createPetStore.isEdit}
-            value={createPetStore.age}
-            options={[
-              { value: '1month', label: t('1month') },
-              { value: '2month', label: t('2month') },
-              { value: '3month', label: t('3month') },
-              { value: '4month', label: t('4month') },
-              { value: '5month', label: t('5month') },
-              { value: '6month', label: t('6month') },
-              { value: '7month', label: t('7month') },
-              { value: '8month', label: t('8month') },
-              { value: '9month', label: t('9month') },
-              { value: '10month', label: t('10month') },
-              { value: '11month', label: t('11month') },
-              { value: '12month', label: t('12month') },
-              { value: '1year', label: t('1year') },
-              { value: '2year', label: t('2year') },
-              { value: '3year', label: t('3year') },
-              { value: '4year', label: t('4year') },
-              { value: '5year', label: t('5year') },
-              { value: '6year', label: t('6year') },
-              { value: '7year', label: t('7year') },
-              { value: '8year', label: t('8year') },
-              { value: '9year', label: t('9year') },
-              { value: '10year', label: t('10year') },
-              { value: '11year', label: t('11year') },
-              { value: '12year', label: t('12year') },
-            ]}
-            handleChange={handleChangeAge}
             placeholder={t('age')}
+            value={createPetStore.age}
+            handleChange={handleChangeAge}
+            isEdit={createPetStore.isEdit}
+            options={optionsSelectsStore.ages}
           />
         </div>
         <div className={styles.col}>
           <Textarea
-            inputStore={createPetStore.pet.history}
-            isEdit={createPetStore.isEdit}
             rows={4}
+            placeholder={t('history')}
+            isEdit={createPetStore.isEdit}
             value={createPetStore.history}
             handleChange={handleChangeHistory}
-            placeholder={t('history')}
+            inputStore={createPetStore.pet.history}
           />
         </div>
         <div className={styles.col}>
           <Textarea
             rows={4}
-            inputStore={createPetStore.pet.requiredToAdoption}
             isEdit={createPetStore.isEdit}
             handleChange={handleChangeRequired}
             placeholder={t('RequiredToAdoption')}
             value={createPetStore.requiredToAdoption}
+            inputStore={createPetStore.pet.requiredToAdoption}
           />
         </div>
         <div className={styles.col}>
           <InputSelect
-            inputStore={createPetStore.pet.activity}
+            placeholder={t('activity')}
             isEdit={createPetStore.isEdit}
-            value={createPetStore.activity}
+            value={createPetStore.pet.activity.value}
+            handleChange={handleChangeActivity}
+            inputStore={createPetStore.pet.activity}
             options={[
               { value: 'quiet', label: t('quiet') },
               { value: 'energetic', label: t('energetic') },
               { value: 'superEnergetic', label: t('superEnergetic') },
             ]}
-            handleChange={handleChangeActivity}
-            placeholder={t('activity')}
           />
+        </div>
+        <div className={styles.colMap}>
+          <div className={styles.containerMap}>
+            <GoogleMapsLocation
+              showAddress
+              title={t('messageMap')}
+              location={createPetStore.location}
+              addressValue={{
+                lat: createPetStore.pet.lat.value,
+                lng: createPetStore.pet.lng.value,
+              }}
+            />
+          </div>
         </div>
         {onlySave && <ButtonsSaveFixed handleSave={handleSave} />}
         {!onlySave && (
           <ButtonsEditFixed
-            isEdit={createPetStore.isEdit}
             handleEdit={handleEdit}
             handleSave={handleSave}
+            isEdit={createPetStore.isEdit}
             handleCancelEdit={handleCancelEdit}
           />
         )}

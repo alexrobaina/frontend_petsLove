@@ -1,5 +1,20 @@
 @import 'styles/mixings';
 
+.containerLanguage {
+  position: relative;
+}
+
+.buttonMenu {
+  color: $title;
+  margin-top: 28px;
+  cursor: pointer;
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 2px;
+    margin-left: 10px;
+  }
+}
+
 .containerMenu {
   position: absolute;
   background-color: $ligth;
@@ -8,8 +23,14 @@
   border-radius: 5px;
   box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.18);
   transition: 200ms ease;
-  right: 20px;
   top: 70px;
+  right: -5px;
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 2px;
+    top: 42px;
+    margin-left: 8px;
+  }
 }
 
 .viewMenu {
@@ -27,7 +48,7 @@
   padding: 10px 20px 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   cursor: pointer;
   text-decoration: none;
@@ -44,4 +65,12 @@
     background-color: $colorNavbar;
     color: red;
   }
+}
+
+.text {
+  font-size: 12px;
+}
+
+.buttonToggle {
+  color: $title;
 }

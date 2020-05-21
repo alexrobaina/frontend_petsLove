@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
@@ -40,17 +40,17 @@ const Input = ({
       {isEdit ? (
         <div className={styles.containerInput}>
           <input
+            name={name}
             title={title}
             onBlur={onBlur}
-            name={name}
             multiple={multiple}
             required={required}
-            className={c(styles.input, inputStore.error && styles.isError)}
-            type={type === 'password' ? viewPassword : type}
-            placeholder={placeholder}
-            onChange={handleChange}
-            defaultValue={value}
             disabled={disabled}
+            defaultValue={value}
+            onChange={handleChange}
+            placeholder={placeholder}
+            type={type === 'password' ? viewPassword : type}
+            className={c(styles.input, inputStore.error && styles.isError)}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>
@@ -90,7 +90,7 @@ Input.defaultProps = {
   multiple: false,
   isErrorEmail: false,
   onBlur: null,
-  inputStore: null,
+  inputStore: false,
 }
 
 export default observer(Input)

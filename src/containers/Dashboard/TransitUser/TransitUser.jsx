@@ -23,7 +23,7 @@ const TransitUser = () => {
   return (
     <LayoutContainer>
       <div className={styles.container}>
-        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('transitUser.myPets')} />
+        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('transitUser.titleCard')} />
       </div>
       <PetsUserTransit id={authStore.user._id} />
     </LayoutContainer>

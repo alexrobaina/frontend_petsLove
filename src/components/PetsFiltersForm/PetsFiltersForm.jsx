@@ -7,12 +7,12 @@ import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
-import styles from './filterNavbar.scss'
+import styles from './petsFiltersForm.scss'
 
-const FilterNavbar = ({ handleToggle }) => {
+const PetsFiltersForm = ({ handleToggle }) => {
   const rootStore = useContext(UserContext)
   const { searchPetsStore, optionsSelectsStore } = rootStore
-  const { t } = useTranslation('filterNavbar')
+  const { t } = useTranslation('petsFilterForm')
 
   const handleSetLocation = useCallback(selectedValue => {
     optionsSelectsStore.setCountry(selectedValue)
@@ -182,8 +182,8 @@ const FilterNavbar = ({ handleToggle }) => {
   )
 }
 
-FilterNavbar.propTypes = {
+PetsFiltersForm.propTypes = {
   handleToggle: PropTypes.func.isRequired,
 }
 
-export default observer(FilterNavbar)
+export default observer(PetsFiltersForm)
