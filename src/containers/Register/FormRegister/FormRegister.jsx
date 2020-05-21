@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { Formik } from 'formik'
@@ -10,40 +10,38 @@ import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
 import InputSelect from 'components/commons/InputSelect'
 import Loading from 'components/commons/Loading/Loading'
-import ErrorMessage from 'components/commons/ErrorMessage'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
-import styles from './formRegisterStepOne.scss'
+import styles from './formRegister.scss'
 
-const FormRegisterStepOne = ({ registerStore }) => {
+const FormRegister = ({ registerStore }) => {
   const history = useHistory()
-  const { t } = useTranslation('formRegister')
+  const { t } = useTranslation('signIn')
 
   const validationSchema = yup.object({
-    name: yup
-      .string()
-      .required('Required')
-      .max(10),
+    name: yup.string().required(t('register.required')),
     email: yup
       .string()
       .email()
-      .required('Required'),
+      .required(t('register.required')),
     password: yup
       .string()
-      .required('Required')
-      .min(8, 'Password is too short - should be 8 caracters minimum')
-      .matches(/(?=.*[0-9])/, 'Password must contain a number')
-      .matches(/(?=.*[A-Z])/, 'Password must contain a uppercase')
-      .matches(/(?=.*[a-a])/, 'Password must contain a lowecase'),
-    passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+      .required(t('register.required'))
+      .min(8, t('register.shortPasswordMessage'))
+      .matches(/(?=.*[0-9])/, t('register.passwordNumber'))
+      .matches(/(?=.*[A-Z])/, t('register.passwordUpparcaseMessage'))
+      .matches(/(?=.*[a-a])/, t('register.passwordLowercaseMessage')),
+    passwordConfirm: yup
+      .string()
+      .oneOf([yup.ref(t('register.password')), null], t('register.passwordMatch')),
     rol: yup
       .string()
       .ensure()
-      .required('Role is required!'),
-    username: yup.string().required('Username is required!'),
-    phone: yup.number().required('Phone is required!'),
+      .required(t('register.roleRequired!')),
+    username: yup.string().required(t('register.usernameRequired')),
+    phone: yup.number().required(t('register.phoneRequired')),
   })
 
   useEffect(() => {
@@ -59,10 +57,7 @@ const FormRegisterStepOne = ({ registerStore }) => {
         <ImageInformationLeft image={fidelImage} />
         <div className={styles.register}>
           <LayoutLogin>
-            <div className={styles.title}>{t('signIn')}</div>
-            {registerStore.isError && (
-              <ErrorMessage text="Todos los campos son requeridos" typeMessage="error" />
-            )}
+            <div className={styles.title}>{t('register.signUp')}</div>
             {registerStore.isloading ? (
               <Loading small />
             ) : (
@@ -99,7 +94,7 @@ const FormRegisterStepOne = ({ registerStore }) => {
                     <div className={styles.inputForm}>
                       <Input
                         name="name"
-                        placeholder={t('name')}
+                        placeholder={t('register.name')}
                         handleChange={handleChange}
                         value={values.name}
                         onBlur={handleBlur}
@@ -113,7 +108,7 @@ const FormRegisterStepOne = ({ registerStore }) => {
                     <div className={styles.inputForm}>
                       <Input
                         name="email"
-                        placeholder={t('email')}
+                        placeholder={t('register.email')}
                         handleChange={handleChange}
                         value={values.email}
                         onBlur={handleBlur}
@@ -126,11 +121,12 @@ const FormRegisterStepOne = ({ registerStore }) => {
                     </div>
                     <div className={styles.inputForm}>
                       <Input
+                        title={t('titleUsername')}
                         name="username"
                         value={values.username}
                         handleChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder={t('User name')}
+                        placeholder={t('register.username')}
                         type="text"
                         canEdit
                         isEdit
@@ -143,7 +139,7 @@ const FormRegisterStepOne = ({ registerStore }) => {
                       <Input
                         name="password"
                         type="password"
-                        placeholder={t('password')}
+                        placeholder={t('register.password')}
                         handleChange={handleChange}
                         value={values.password}
                         onBlur={handleBlur}
@@ -156,10 +152,10 @@ const FormRegisterStepOne = ({ registerStore }) => {
                     </div>
                     <div className={styles.inputForm}>
                       <Input
-                        title="Please confirm the password"
+                        title={t('register.titleConfirmPassword')}
                         name="passwordConfirm"
                         type="password"
-                        placeholder={t('confirmPassword')}
+                        placeholder={t('register.confirmPassword')}
                         handleChange={handleChange}
                         value={registerStore.confirmPassword}
                         canEdit
@@ -173,16 +169,16 @@ const FormRegisterStepOne = ({ registerStore }) => {
                       <InputSelect
                         needValidate
                         name="rol"
-                        title="Te gustaría adoptar o quieres ofrecer una mascota en adopción"
                         options={[
-                          { value: 'adopter', label: t('adopter') },
-                          { value: 'protectionist', label: t('protectionist') },
+                          { value: 'adopter', label: t('register.typeUserAdopter') },
+                          { value: 'protectionist', label: t('register.typeUserProtectionist') },
+                          { value: 'transitUser', label: t('register.typeUserTransit') },
                         ]}
                         value={values.rol}
                         onBlur={setFieldTouched}
                         error={errors.rol}
                         handleChange={setFieldValue}
-                        placeholder={t('typeUser')}
+                        placeholder={t('register.selectTypeUser')}
                         isEdit
                       />
                       {errors.rol && touched.rol ? (
@@ -207,7 +203,7 @@ const FormRegisterStepOne = ({ registerStore }) => {
                         type="submit"
                         handleClick={handleSubmit}
                         bigButton
-                        text={t('register')}
+                        text={t('register.signUp')}
                       />
                     </div>
                     {/* <div className={styles.buttonSocialRegister}> */}
@@ -216,12 +212,12 @@ const FormRegisterStepOne = ({ registerStore }) => {
                     {/* </div> */}
                     <div className={styles.forgotPassword}>
                       <Link to="/login" className={styles.textForgot}>
-                        {t('Go To Login')}
+                        {t('register.goToLogin')}
                       </Link>
                     </div>
-                    <div className={styles.inputForm}>{t('terms')}</div>
+                    <div className={styles.inputForm}>{t('register.textTerms')}</div>
                     <Link to="/login" className={styles.textForgot}>
-                      {t('Read terms')}
+                      {t('register.readTerm')}
                     </Link>
                   </form>
                 )}
@@ -234,8 +230,8 @@ const FormRegisterStepOne = ({ registerStore }) => {
   )
 }
 
-FormRegisterStepOne.propTypes = {
+FormRegister.propTypes = {
   registerStore: PropTypes.node.isRequired,
 }
 
-export default observer(FormRegisterStepOne)
+export default observer(FormRegister)

@@ -1,4 +1,16 @@
 {
-  "petsAdopted": "Mascotas adoptadas",
-  "petsForAdoption": "Mascotas en adopción"
+  "adopterUser": {
+    "rol": "Yo adopto",
+    "historyPets": "Todas las mascotas"
+  },
+  "protectionistUser": {
+    "petsAdopt": "Mascotas en adopción",
+    "petsAdopted": "Mascotas adoptadas",
+    "adopted": "Adoptadas",
+    "needHome": "Necesitan hogar"
+  },
+  "transitUser": {
+    "titleCard": "Necesitan hogar",
+    "titlepetsList": "Historial de mascotas cuidadas"
+  }
 }

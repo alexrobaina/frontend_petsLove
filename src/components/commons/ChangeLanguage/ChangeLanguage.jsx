@@ -1,45 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import ButtonLink from 'components/commons/ButtonLink'
+import c from 'classnames'
+import styles from '../MenuProfile/menuProfile.scss'
+import { FaLanguage, FaUser } from 'react-icons/fa'
+import { IoMdLogOut } from 'react-icons/io'
+import Button from '../Button'
+import { MdLanguage } from 'react-icons/md'
 
 const ChangeLanguage = () => {
-  const [language, setLenguage] = useState('')
+  const [toggleMenu, setToggleMenu] = useState(true)
   const { i18n } = useTranslation()
-  // I think this code is very terrible, if someone have good idea please refactor
-  const translate = () => {
-    if (language === 'English') {
-      setLenguage('Español')
-      i18n.changeLanguage('en')
-      localStorage.setItem('languageUser', 'en')
-    }
-    if (language === 'Español') {
-      setLenguage('English')
-      i18n.changeLanguage('es')
-      localStorage.setItem('languageUser', 'es')
-    }
-  }
 
-  useEffect(() => {
-    const { languages } = navigator
-    const languageUser = localStorage.getItem('languageUser')
-
-    if (languageUser === 'en') {
-      setLenguage('Español')
-      i18n.changeLanguage('en')
-    } else if (languages[1] === 'en' || languages[0] === 'en-US') {
-      setLenguage('Español')
-      i18n.changeLanguage('en')
-    }
-
-    if (languageUser === 'es') {
-      setLenguage('English')
-      i18n.changeLanguage('es')
-    } else if (languages[1] === 'es' || languages[0] === 'es-ES' || languageUser === 'es') {
-      setLenguage('English')
-    }
+  const handleSpanish = useCallback(() => {
+    i18n.changeLanguage('es')
+    setToggleMenu(true)
   }, [])
 
-  return <ButtonLink onclick={translate} text={language} />
+  const handleEnglish = useCallback(() => {
+    i18n.changeLanguage('en')
+    setToggleMenu(true)
+  }, [])
+
+  return (
+    <>
+      <div onClick={() => setToggleMenu(!toggleMenu)} className={styles.buttonMenu}>
+        <MdLanguage size={24} />
+      </div>
+      <div className={styles.containerLanguage}>
+        <div className={c(styles.containerMenu, toggleMenu && styles.viewMenu)}>
+          <div className={styles.contentButtos}>
+            <div onClick={handleEnglish} className={styles.buttons}>
+              <div className={styles.text}>English</div>
+            </div>
+            <div onClick={handleSpanish} className={styles.buttons}>
+              <div className={styles.text}>Spanish</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default ChangeLanguage

@@ -1,4 +1,4 @@
-@import 'styles/variable.scss';
+@import 'styles/variable';
 
 .value {
   color: $title;
@@ -57,4 +57,15 @@ input[type='text'] {
   padding-left: 10px;
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
+}
+
+.errorMessage {
+  margin-top: -10px;
+  margin-left: 5px;
+  font-size: 10px;
+  color: $error;
+}
+
+.isError {
+  border: 1px solid $error;
 }

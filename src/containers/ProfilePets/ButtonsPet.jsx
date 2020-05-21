@@ -14,16 +14,16 @@ import styles from './buttonsPet.scss'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
   const [openModal, setOpenModal] = useState(false)
+  const { t } = useTranslation('profileUser')
   const isWithBase = useMediaQuery('(max-width: 500px)')
-  const { t } = useTranslation('whatsappMessage')
   const history = useHistory()
 
-  const editPet = useCallback(id => {
+  const editPet = useCallback((id) => {
     history.push(`/`)
     history.push(`edit-pet/${id}`)
   }, [])
 
-  const handleSendMessage = useCallback(number => {
+  const handleSendMessage = useCallback((number) => {
     if (number) {
       window.open(
         `https://api.whatsapp.com/send?phone=${number}&text=%20${t('iWantAdopte', '_blank')}`
@@ -47,7 +47,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
           openModal={openModal}
           handleToggle={handleToggle}
           handleSendMessage={() => handleSendMessage(phone)}
-          title={t('contactAction')}
+          title={t('protectionistUser.contact')}
           notIcon
         >
           <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />

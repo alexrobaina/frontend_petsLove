@@ -5,16 +5,16 @@ import LayoutCards from 'components/commons/LayoutCards'
 import styles from './textCardContact.scss'
 
 const TextCardContact = ({ phone, email, title }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('profileUser')
   return (
     <LayoutCards>
       <div className={styles.contactInformation}>
         <div className={styles.title}>{title}</div>
         <div className={styles.info}>
-          {t('phone')}: {phone}
+          {t('common.phone')}: {phone}
         </div>
         <div className={styles.info}>
-          {t('email')}: {email}
+          {t('common.email')}: {email}
         </div>
       </div>
     </LayoutCards>

@@ -19,7 +19,7 @@ import styles from './protectionistProfile.scss'
 const ProtectionistProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const [swith, setSwith] = useState(false)
-  const { t } = useTranslation('protectionistUsers')
+  const { t } = useTranslation('profileUser')
   const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
 
   const handleAdopted = useCallback(() => {
@@ -34,11 +34,10 @@ const ProtectionistProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  console.log(isImageNotFound)
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('rol')} title={t('title', { name })} />
+        <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonsPet email={email} phone={phone} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
@@ -55,15 +54,15 @@ const ProtectionistProfile = ({ user }) => {
             lng,
           }}
         />
-        <TextCardContact title={t('contact')} phone={phone} email={email} />
-        <TextCard title={t('requirementsToAdoption')} text={requirementsToAdopt} />
+        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+        <TextCard title={t('protectionistUser.requirementsToAdopt')} text={requirementsToAdopt} />
       </div>
       <div className={styles.containerPets}>
         <div className={styles.buttonsSwich}>
-          <Button handleClick={handleForAdoption} text="Need home" />
+          <Button handleClick={handleForAdoption} text={t('protectionistUser.needHome')} />
         </div>
         <div className={styles.buttonsSwich}>
-          <Button handleClick={handleAdopted} text="Adopted" />
+          <Button handleClick={handleAdopted} text={t('protectionistUser.adopted')} />
         </div>
       </div>
       <div>

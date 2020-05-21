@@ -34,10 +34,12 @@ const MenuProfile = ({ handleToggleMenu, viewMenuProfile }) => {
     >
       <div className={styles.contentButtos}>
         <div onClick={goToProfile} className={styles.buttons}>
-          <FaUser size={15} /> {t('editProfile')}
+          <div className={styles.text}>{t('editProfile')}</div>
+          <FaUser size={15} />
         </div>
         <div onClick={handleLogout} className={styles.buttons}>
-          <IoMdLogOut size={15} /> {t('logout')}
+          <div className={styles.text}>{t('logout')}</div>
+          <IoMdLogOut size={15} />
         </div>
       </div>
     </div>

@@ -1,16 +1,18 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import c from 'classnames'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import Loading from 'components/commons/Loading'
 import CardGoogle from 'components/commons/CardGoogle'
 import styles from './googleMapsLocation.scss'
 
 const GoogleMapsLocation = observer(
   ({ google, location, isProfilePet, users, isLocationPet, petLocation }) => {
     const [isImageNotFound, setIsImageNotFound] = useState(true)
+    const [isLoading, setLoading] = useState(true)
     const { t } = useTranslation('googleMapCard')
     const [activeMarker, setActiveMarker] = useState({})
     const [activeMarkerUser, setActiveMarkerUser] = useState({})
@@ -35,6 +37,16 @@ const GoogleMapsLocation = observer(
     const onError = useCallback(() => {
       setIsImageNotFound(false)
     }, [])
+
+    useEffect(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+    }, [])
+
+    if (isLoading) {
+      return <Loading loadingRing />
+    }
 
     return (
       <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
@@ -114,6 +126,6 @@ GoogleMapsLocation.defaultProps = {
   isProfilePet: false,
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCG4to6zaiKQpUhXTPRnYWXcoJ8RxU5nps',
-})(GoogleMapsLocation)
+export default GoogleApiWrapper(() => ({
+  apiKey: process.env.REACT_APP_BASE_KEY_GOOGLE_MAP,
+}))(GoogleMapsLocation)

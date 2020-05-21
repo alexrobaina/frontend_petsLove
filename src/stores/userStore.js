@@ -1,30 +1,25 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
 import SetLocalStorage from '../utils/setLocalStorage'
+import User from '../models/User'
+import InputStore from './InputStore'
 
-class EditUserStore {
+const USER_TRANSIT = 'Transit pets.'
+const USER_PROTECTIONIST = 'You are protectionist of pets.'
+const USER_ADOPTER = 'You want adopt.'
+
+class UserStore {
   constructor() {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
+    this.user = new User()
   }
 
   @observable localStorageUser = []
-  @observable user = []
-  @observable id = ''
-  @observable name = ''
-  @observable phone = ''
-  @observable rol = ''
-  @observable email = ''
-  @observable aboutUs = ''
   @observable password = ''
-  @observable confirmPassword = ''
-  @observable requirementsToAdopt = ''
-  @observable image = null
-  @observable canTransit = false
   @observable address = {}
   @observable textAddress = ''
-  @observable username = ''
-  @observable nameRol = ''
+  @observable confirmPassword = new InputStore()
   @observable isEdit = false
   @observable isUserTransit = false
   @observable canEdit = false
@@ -37,30 +32,9 @@ class EditUserStore {
   async saveUser() {
     const data = new FormData()
 
-    if (this.image) {
-      data.append('image', this.image)
-    } else {
-      data.append('image', this.user.image)
-    }
-
-    if (this.passwordSuccess) {
-      data.append('password', this.password)
-    }
-
-    if (this.address.lat) {
-      data.append('lat', this.address.lat)
-      data.append('lng', this.address.lng)
-    }
-    data.append('_id', this.user._id)
-    data.append('name', this.user.name)
-    data.append('rol', this.user.rol)
-    data.append('email', this.user.email)
-    data.append('phone', this.phone)
-    data.append('aboutUs', this.aboutUs)
-    data.append('requirementsToAdopt', this.requirementsToAdopt)
-    data.append('canTransit', this.canTransit)
-    data.append('textAddress', this.textAddress)
-    data.append('username', this.username)
+    Object.entries(this.user.getJson()).forEach(([key, value]) => {
+      data.append(key, value)
+    })
 
     try {
       const response = await this.editUserServices.save(data)
@@ -70,7 +44,7 @@ class EditUserStore {
         this.loadUser(this.user._id)
         setTimeout(() => {
           window.location.reload()
-        }, 500)
+        }, 300)
       })
     } catch (e) {
       runInAction(() => {
@@ -85,10 +59,8 @@ class EditUserStore {
       const response = await this.editUserServices.getUser(id)
 
       runInAction(() => {
-        this.user = response
+        this.user.fillJson(response)
         this.setLocalStorage.setUser(response)
-        this.rol = response.rol
-        this.canTransit = response.canTransit
         this.formatNameRole()
       })
     } catch (e) {
@@ -110,26 +82,26 @@ class EditUserStore {
 
   @action
   setRol(value) {
-    this.rol = value
+    this.user.rol.setValue(value)
   }
 
   @action
   formatNameRole() {
-    if (this.rol === 'transitUser') {
-      this.nameRol = 'Transit pets.'
+    if (this.user.rol.value === 'transitUser') {
+      this.nameRol = USER_TRANSIT
     }
-    if (this.rol === 'protectionist') {
-      this.nameRol = 'You are protectionist of pets.'
+    if (this.user.rol.value === 'protectionist') {
+      this.nameRol = USER_PROTECTIONIST
     }
-    if (this.rol === 'adopter') {
-      this.nameRol = 'You want adopt.'
+    if (this.user.rol.value === 'adopter') {
+      this.nameRol = USER_ADOPTER
     }
   }
 
   @action
   setPassword(value) {
-    this.password = value
-    if (this.password === this.confirmPassword) {
+    this.user.password.setValue(value)
+    if (this.user.password.value === this.confirmPassword.value) {
       this.passwordSuccess = true
       this.passwordError = false
     } else {
@@ -140,8 +112,8 @@ class EditUserStore {
 
   @action
   setConfirmPassword(value) {
-    this.confirmPassword = value
-    if (this.confirmPassword === this.password) {
+    this.confirmPassword.setValue(value)
+    if (this.confirmPassword.value === this.user.password.value) {
       this.passwordSuccess = true
       this.passwordError = false
     } else {
@@ -152,7 +124,7 @@ class EditUserStore {
 
   @action
   setPhone(value) {
-    this.phone = value
+    this.user.phone.setValue(value)
   }
 
   @action
@@ -160,44 +132,44 @@ class EditUserStore {
     // eslint-disable-next-line no-useless-escape
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (re.test(String(value).toLowerCase())) {
-      this.email = value.toLowerCase()
+      this.user.email.setValue(value.toLowerCase())
     }
   }
 
   @action
   setAboutUs(value) {
-    this.aboutUs = value
+    this.user.aboutUs.setValue(value)
   }
 
   @action
   setRequirementsToAdopt(value) {
-    this.requirementsToAdopt = value
+    this.user.requirementsToAdopt.setValue(value)
   }
 
   @action
   setImage(value) {
-    this.image = value
+    this.user.image.setValue(value)
   }
 
   @action
   setCanTransit() {
-    this.canTransit = !this.canTransit
+    this.user.canTransit = !this.user.canTransit
   }
 
   @action
   setAddress(value) {
-    this.address = value
+    this.user.setAddress(value)
   }
 
   @action
   setTextAddress(value) {
-    this.textAddress = value
+    this.user.textAddress.setValue(value)
   }
 
   @action
   setUsername(value) {
-    this.username = value
+    this.user.username.setValue(value)
   }
 }
 
-export default EditUserStore
+export default UserStore

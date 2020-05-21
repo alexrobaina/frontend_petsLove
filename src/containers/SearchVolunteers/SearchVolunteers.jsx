@@ -10,16 +10,16 @@ import Title from 'components/commons/Title'
 import styles from './searchVolunteers.scss'
 
 const SearchVolunteers = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('allSearch')
   const [address, setAddress] = useState({})
   const volunteersStore = useLocalStore(() => new VolunteersStore())
 
   // eslint-disable-next-line no-shadow
-  const handleChangeAddress = useCallback(address => {
+  const handleChangeAddress = useCallback((address) => {
     setAddress(address)
   }, [])
 
-  const showPosition = position => {
+  const showPosition = (position) => {
     setAddress({ lat: position.coords.latitude, lng: position.coords.longitude })
   }
 
@@ -33,13 +33,12 @@ const SearchVolunteers = () => {
 
   return (
     <div className={styles.containerTransit}>
-      <LayoutContainer title="Search volunteers">
-        <Title subTitle={t('People help pets need trantist')} />
+      <LayoutContainer title={t('transitSearch.title')}>
         <div className={styles.colbig}>
           <GoogleAutocomplete
             isEdit
-            label={t('labelGoogle')}
-            placeholder="Search your address..."
+            label={t('transitSearch.labelGoogle')}
+            placeholder={t('transitSearch.placeholderGoogle')}
             handleChangeAddress={handleChangeAddress}
           />
           {address.lat && (

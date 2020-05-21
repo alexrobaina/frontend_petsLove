@@ -11,7 +11,7 @@ import dog from '../AdopterUser/dog-tags-military.svg'
 import styles from './transitUser.scss'
 
 const TransitUser = () => {
-  const { t } = useTranslation('transitUset')
+  const { t } = useTranslation('dashboard')
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -23,7 +23,7 @@ const TransitUser = () => {
   return (
     <LayoutContainer>
       <div className={styles.container}>
-        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('messageCardDashboard')} />
+        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('transitUser.titleCard')} />
       </div>
       <PetsUserTransit id={authStore.user._id} />
     </LayoutContainer>

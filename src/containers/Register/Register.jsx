@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import RegisterStore from 'stores/RegisterStore'
-import FormRegisterStepOne from './FormRegisterStepOne'
+import FormRegister from './FormRegister'
 
 const Register = () => {
   const registerStore = useLocalStore(() => new RegisterStore())
@@ -10,7 +10,7 @@ const Register = () => {
     registerStore.createUser()
   }, [])
 
-  return <FormRegisterStepOne handleCreateUser={handleCreateUser} registerStore={registerStore} />
+  return <FormRegister handleCreateUser={handleCreateUser} registerStore={registerStore} />
 }
 
 export default observer(Register)

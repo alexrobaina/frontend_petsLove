@@ -8,9 +8,9 @@ import TextCardContact from 'components/commons/TextCardContact'
 import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import noImage from '../noImage.svg'
+import Title from 'components/commons/Title'
 import styles from './transitUserProfile.scss'
 import ButtonsPet from '../../ProfilePets/ButtonsPet'
-import Title from '../../../components/commons/Title'
 
 const TransitUserProfile = ({ user }) => {
   const { t } = useTranslation('transitUser')

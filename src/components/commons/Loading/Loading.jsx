@@ -1,10 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { Animated } from 'react-animated-css'
 import c from 'classnames'
 import styles from './loading.scss'
 
-const Loading = ({ small }) => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '50px',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}))
+
+const Loading = ({ small, loadingRing }) => {
+  const classes = useStyles()
+
   return (
     <Animated
       animationIn="fadeIn"
@@ -12,9 +27,15 @@ const Loading = ({ small }) => {
       animationInDelay={1000}
       animationInDuration={500}
     >
-      <div className={c(styles.heart, small && styles.small)}>
-        <div />
-      </div>
+      {loadingRing ? (
+        <div className={classes.root}>
+          <CircularProgress color="secondary" />
+        </div>
+      ) : (
+        <div className={c(styles.heart, small && styles.small)}>
+          <div />
+        </div>
+      )}
     </Animated>
   )
 }

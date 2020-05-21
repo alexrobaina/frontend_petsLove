@@ -8,11 +8,11 @@ import Button from 'components/commons/Button'
 import UserContext from 'Context/UserContext'
 // import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
 import styles from './formLogin.scss'
-import Loading from '../commons/Loading/Loading'
+import Loading from 'components/commons/Loading/Loading'
 
 const FormLogin = () => {
   const rootStore = useContext(UserContext)
-  const { t } = useTranslation('formLogin')
+  const { t } = useTranslation('signIn')
   const history = useHistory()
 
   const handleEmail = useCallback(e => {
@@ -33,29 +33,36 @@ const FormLogin = () => {
     }
   }, [rootStore.authStore.isLogin])
 
+  const { isLoading, isErrorLogin, email, password } = rootStore.authStore
+
   return (
     <div className={styles.login}>
-      {rootStore.authStore.isLoading ? (
-        <Loading small />
+      {isLoading ? (
+        <Loading loadingRing />
       ) : (
         <div className={styles.centerLogin}>
-          <div className={styles.title}>{t('login')}</div>
-          {rootStore.authStore.isErrorLogin && (
-            <div className={styles.errorLogin}>{t('errorLogin')}</div>
-          )}
+          <div className={styles.title}>{t('login.login')}</div>
+          {isErrorLogin && <div className={styles.errorLogin}>{t('login.errorLogin')}</div>}
           <div className={styles.inputForm}>
-            <Input isEdit type="text" handleChange={handleEmail} placeholder={t('email')} />
+            <Input
+              isEdit
+              type="text"
+              value={email.value}
+              handleChange={handleEmail}
+              placeholder={t('login.email')}
+            />
           </div>
           <div className={styles.inputForm}>
             <Input
               isEdit
               type="password"
+              value={password.value}
               handleChange={handlePassword}
-              placeholder={t('password')}
+              placeholder={t('login.password')}
             />
           </div>
           <div className={styles.buttonLogin}>
-            <Button handleClick={login} bigButton text={t('login')} />
+            <Button handleClick={login} bigButton text={t('login.login')} />
           </div>
           {/* <div className={styles.buttonSocialLogin}> */}
           {/*  <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" /> */}
@@ -63,10 +70,10 @@ const FormLogin = () => {
           {/* </div> */}
           <div className={styles.forgotPassword}>
             <Link to="forgot-password" className={styles.textForgot}>
-              {t('forgotPassword')}
+              {t('login.forgotPassword')}
             </Link>
             <Link to="register" className={styles.textSingIn}>
-              {t('singIn')}
+              {t('login.signUp')}
             </Link>
           </div>
         </div>

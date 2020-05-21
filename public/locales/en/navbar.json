@@ -1,9 +1,11 @@
 {
   "login": "Login",
   "singIn": "Sing In",
+  "editProfile": "Edit profile",
   "logout": "Logout",
   "profile": "Profile",
   "dashboard": "Dashboard",
+  "myProfile": "My profile",
   "transitUser": "Volanteers",
   "createPet": "Create Pet",
   "petsAdopted": "Adopted",

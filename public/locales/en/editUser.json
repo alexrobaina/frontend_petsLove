@@ -1,0 +1,17 @@
+{
+  "title": "My profile",
+  "name": "Name",
+  "email": "Email",
+  "userRol": "User role",
+  "phone": "Phone",
+  "username": "Username",
+  "aboutUs": "About us",
+  "helpUserName": "Important for you profile. Example: pets-love.app/username",
+  "requirementsToAdopt": "Requirements To Adopt",
+  "address": "Your location",
+  "titleChangePassword": "Change password",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+  "successPassword": "Good! Password its match",
+  "errorPassword": "The password not match"
+}

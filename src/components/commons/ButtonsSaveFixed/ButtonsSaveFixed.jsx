@@ -6,7 +6,7 @@ import Button from 'components/commons/Button'
 import styles from './buttonsSaveFixed.scss'
 
 const ButtonsSaveFixed = ({ handleSave }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('buttons')
   return (
     <div className={styles.buttonsContainer}>
       <div className={styles.button}>

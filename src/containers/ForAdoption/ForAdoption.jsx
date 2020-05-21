@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import UserContext from 'Context/UserContext'
+import { useTranslation } from 'react-i18next'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
+import Loading from '../../components/commons/Loading'
 
 const ForAdoption = ({ id }) => {
+  const { t } = useTranslation('dashboard')
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
@@ -16,9 +19,13 @@ const ForAdoption = ({ id }) => {
   return (
     <>
       <LayoutContainerCardsPets>
-        <Title title="Need Home" />
+        <Title title={t('protectionistUser.needHome')} />
       </LayoutContainerCardsPets>
-      <ListPets pets={searchPetsStore.petsForAdoption} />
+      {searchPetsStore.isLoading ? (
+        <Loading loadingRing />
+      ) : (
+        <ListPets pets={searchPetsStore.petsForAdoption} />
+      )}
     </>
   )
 }

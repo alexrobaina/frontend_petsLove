@@ -8,8 +8,10 @@ import UserContext from 'Context/UserContext'
 import cat from './animal.svg'
 import dog from './dog-tags-military.svg'
 import styles from './adopterUser.scss'
+import { useTranslation } from 'react-i18next'
 
 const AdopterUser = () => {
+  const { t } = useTranslation('dashboard')
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -21,7 +23,7 @@ const AdopterUser = () => {
   return (
     <LayoutContainer>
       <div className={styles.container}>
-        <DashboardCard icon={cat} iconTwo={dog} titleCard="Love yours pets" />
+        <DashboardCard icon={cat} iconTwo={dog} titleCard={t('adopterUser.rol')} />
       </div>
       <ListPets isUserAdopt pets={searchPetsStore.petsUserAdopt} />
     </LayoutContainer>
