@@ -12,23 +12,13 @@ const InputSelect = ({
   options,
   placeholder,
   isLoading,
-  needValidate,
   handleChange,
   value,
-  onBlur,
   isEdit,
   isMulti,
   title,
   name,
 }) => {
-  const handleChangeValidate = value => {
-    const { t } = useTranslation('errorInputs')
-    handleChange('rol', value.value)
-  }
-
-  const handleBlur = () => {
-    onBlur('rol', true)
-  }
 
   return (
     <>
@@ -39,8 +29,7 @@ const InputSelect = ({
           <Select
             name={name}
             title={title}
-            onBlur={needValidate ? handleBlur : null}
-            onChange={needValidate ? handleChangeValidate : handleChange}
+            onChange={handleChange}
             isLoading={isLoading}
             placeholder={placeholder}
             options={options}

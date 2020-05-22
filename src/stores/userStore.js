@@ -15,18 +15,18 @@ class UserStore {
     this.user = new User()
   }
 
-  @observable localStorageUser = []
-  @observable password = ''
   @observable address = {}
-  @observable textAddress = ''
-  @observable confirmPassword = new InputStore()
+  @observable password = ''
   @observable isEdit = false
-  @observable isUserTransit = false
   @observable canEdit = false
-  @observable isLoading = false
   @observable isError = false
-  @observable passwordSuccess = false
+  @observable textAddress = ''
+  @observable isLoading = false
   @observable passwordError = false
+  @observable isUserTransit = false
+  @observable localStorageUser = []
+  @observable passwordSuccess = false
+  @observable confirmPassword = new InputStore()
 
   @action
   async saveUser() {
@@ -59,9 +59,9 @@ class UserStore {
       const response = await this.editUserServices.getUser(id)
 
       runInAction(() => {
+        this.formatNameRole()
         this.user.fillJson(response)
         this.setLocalStorage.setUser(response)
-        this.formatNameRole()
       })
     } catch (e) {
       runInAction(() => {

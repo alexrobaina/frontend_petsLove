@@ -127,5 +127,5 @@ GoogleMapsLocation.defaultProps = {
 }
 
 export default GoogleApiWrapper(() => ({
-  apiKey: process.env.REACT_APP_BASE_KEY_GOOGLE_MAP,
+  apiKey: process.env.REACT_APP_KEY_GOOGLE_MAP,
 }))(GoogleMapsLocation)

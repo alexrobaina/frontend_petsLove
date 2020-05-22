@@ -1,20 +1,21 @@
 import { observable, action, runInAction } from 'mobx'
 import RegisterService from 'services/RegisterService'
 import RegisterUser from 'models/RegisterUser'
+import InputStore from './InputStore'
+
+const REQUIRED = 'This input is required'
+const EMAIL_ERROR = 'The email is incorrect'
+const VALIDATION_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 class RegisterStore {
-  @observable password = ''
-  @observable confirmPassword = ''
-  // @observable rols = []
   @observable token = []
-  // @observable user = []
-  @observable isLoading = false
   @observable isError = false
-  @observable isErrorRequest = ''
-  @observable emailError = false
-  @observable passwordSuccess = false
+  @observable isLoading = false
   @observable isRegister = false
-  @observable passwordError = true
+  @observable isErrorRequest = ''
+  @observable confirmPassword = new InputStore()
+  @observable passwordError = false
+  @observable passwordSuccess = false
 
   constructor() {
     this.registerService = new RegisterService()
@@ -29,63 +30,150 @@ class RegisterStore {
 
   @action
   async createUser() {
-    this.validate()
-    this.isLoading = true
+    console.log(this.registerUser.getJson())
+    if (this.validate()) {
+      this.isLoading = true
 
-    try {
-      await this.registerService.register(this.registerUser.getJson())
+      try {
+        await this.registerService.register(this.registerUser.getJson())
 
-      runInAction(() => {
-        this.isLoading = false
-        this.isRegister = true
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isErrorRequest = true
-        console.log(e)
-      })
+        runInAction(() => {
+          this.isLoading = false
+          this.isRegister = true
+        })
+      } catch (e) {
+        runInAction(() => {
+          this.isLoading = false
+          this.isErrorRequest = true
+          console.log(e)
+        })
+      }
     }
   }
 
   @action
-  setForm(valuesForm) {
-    Object.entries(valuesForm).forEach(([key, value]) => {
-      if (key !== 'passwordConfirm') {
-        this.registerUser[key] = value
-      }
-    })
-    this.createUser()
+  setName(value) {
+    this.registerUser.name.setValue(value)
   }
 
   @action
-  setUserRol(value) {
-    this.registerUser.rol = value.value
+  setUsername(value) {
+    this.registerUser.username.setValue(value)
   }
 
   @action
-  setTextAddress(value) {
-    this.registerUser.textAddress = value
+  setEmail(value) {
+    this.registerUser.email.setValue(value)
   }
 
   @action
-  setAddress(value) {
-    this.registerUser.lat = value.lat
-    this.registerUser.lng = value.lng
+  setRole(value) {
+    this.registerUser.rol.setValue(value)
+  }
+
+  @action
+  setPassword(value) {
+    this.registerUser.password.setValue(value)
   }
 
   @action
   setPhone(value) {
-    this.registerUser.phone = value
+    this.registerUser.phone.setValue(value)
+  }
+
+  @action
+  setPassword(value) {
+    this.registerUser.password.setValue(value)
+    if (this.registerUser.password.value === this.confirmPassword.value) {
+      this.passwordSuccess = true
+      this.passwordError = false
+    } else {
+      this.passwordSuccess = false
+      this.passwordError = true
+    }
+  }
+
+  @action
+  setConfirmPassword(value) {
+    this.confirmPassword.setValue(value)
+    if (this.confirmPassword.value === this.registerUser.password.value) {
+      this.passwordSuccess = true
+      this.passwordError = false
+    } else {
+      this.passwordSuccess = false
+      this.passwordError = true
+    }
   }
 
   @action
   validate() {
-    Object.values(this.registerUser).forEach(value => {
-      if (value === undefined) {
-        this.isError = true
-      }
-    })
+    let isValidForm = true
+    this.clearError()
+
+    const { name, email, password, rol, phone, username } = this.registerUser
+
+    if (!name.value) {
+      name.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!password.value) {
+      password.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!phone.value) {
+      phone.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!rol.value) {
+      rol.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!username.value) {
+      username.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!this.confirmPassword.value) {
+      this.confirmPassword.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    // eslint-disable-next-line no-useless-escape
+    if (!email.value) {
+      email.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!VALIDATION_EMAIL.test(email.value)) {
+      email.setError(true, EMAIL_ERROR)
+
+      isValidForm = false
+    }
+
+    return isValidForm
+  }
+
+  @action
+  clearError() {
+    const { name, email, password, rol, phone, username } = this.registerUser
+
+    name.clearError()
+    email.clearError()
+    password.clearError()
+    rol.clearError()
+    phone.clearError()
+    username.clearError()
   }
 }
 

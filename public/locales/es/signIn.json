@@ -23,6 +23,8 @@
     "typeUserTransit": "Hago transito de mascocas",
     "selectTypeUser": "¿Que quieres hacer?",
     "readTerm": "Leer terminos",
+    "errorMessage": "El password es diferente",
+    "successMessage": "Genial! Podés continuar",
     "titleConfirmPassword": "Por favor confirme su contraseña",
     "titleUsername": "Crea tu dirección: pets-love.app/tu-nombre-de-usuario"
   },

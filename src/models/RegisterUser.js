@@ -1,45 +1,28 @@
-import { action } from 'mobx'
+import { observable } from 'mobx'
+import InputStore from 'stores/InputStore'
 
 class RegisterUser {
-  constructor(name, email, password, rol, username, phone, terms) {
-    this.name = name
-    this.email = email
-    this.password = password
-    this.rol = rol
-    this.username = username
-    this.phone = phone
-    this.terms = terms
+  @observable terms = true
+
+  constructor() {
+    this.name = new InputStore()
+    this.email = new InputStore()
+    this.password = new InputStore()
+    this.rol = new InputStore()
+    this.username = new InputStore()
+    this.phone = new InputStore()
   }
 
   getJson() {
     return {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-      rol: this.rol,
-      username: this.username,
-      phone: this.phone,
+      name: this.name.value,
+      email: this.email.value,
+      password: this.password.value,
+      rol: this.rol.value,
+      username: this.username.value,
+      phone: this.phone.value,
       terms: this.terms,
     }
-  }
-
-  static fromJson(json) {
-    const registerUser = new RegisterUser()
-
-    registerUser.fillFromJson(json)
-
-    return registerUser
-  }
-
-  @action
-  fillFromJson({ name, email, password, rol, username, phone, terms }) {
-    this.name = name
-    this.email = email
-    this.password = password
-    this.rol = rol
-    this.username = username
-    this.phone = phone
-    this.terms = terms
   }
 }
 

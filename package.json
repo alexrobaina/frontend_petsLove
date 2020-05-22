@@ -37,6 +37,7 @@
     "classnames": "^2.2.6",
     "css-loader": "^3.4.2",
     "dotenv-expand": "5.1.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.11.0",
@@ -123,10 +124,9 @@
     "yup": "^0.28.5"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "build-project": "node build-project.js",
-    "test": "node scripts/test.js"
+    "start": "env-cmd .env.development node scripts/start.js",
+    "build": "env-cmd .env.production node scripts/build.js",
+    "test": "env-cmd .env.development node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"

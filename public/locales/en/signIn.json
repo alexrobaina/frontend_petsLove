@@ -23,6 +23,8 @@
     "typeUserTransit": "I do transit of pets",
     "selectTypeUser": "You want to do?",
     "readTerm": "Read terms",
+    "errorMessage": "The password is different",
+    "successMessage": "Great! You can continue",
     "titleConfirmPassword": "Please confirm the password",
     "titleUsername": "Create your url: pets-love.app/your-username"
   },
