@@ -124,9 +124,9 @@
     "yup": "^0.28.5"
   },
   "scripts": {
-    "start": "env-cmd .env.development node scripts/start.js",
-    "build": "env-cmd .env.production node scripts/build.js",
-    "test": "env-cmd .env.development node scripts/test.js"
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
