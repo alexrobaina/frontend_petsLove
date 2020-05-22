@@ -23,6 +23,7 @@ import PageNotFound from 'components/commons/PageNotFound'
 import UserContext from 'Context/UserContext'
 import ForgotPassword from 'containers/ForgotPassword'
 import ProfilePets from 'containers/ProfilePets'
+import dotenv from 'dotenv'
 import SearchVolunteers from 'containers/SearchVolunteers'
 import PetsAdopted from 'containers/PetsAdopted'
 import ForAdoption from 'containers/ForAdoption'
@@ -41,6 +42,7 @@ import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
 
+dotenv.config()
 const rootStore = new RootStore()
 axiosInterceptors(rootStore)
 

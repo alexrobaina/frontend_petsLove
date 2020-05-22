@@ -42,7 +42,6 @@ const EditUser = () => {
   }, [])
 
   const handleChangeAddress = useCallback(address => {
-    console.log(address)
     userStore.setAddress(address)
   }, [])
 
@@ -213,15 +212,16 @@ const EditUser = () => {
             handleChangeAddress={handleChangeAddress}
             handleChangeTextAddress={handleChangeTextAddress}
           />
-          {userStore.address.lat && (
-            <div className={styles.containerMap}>
-              <GoogleMapsLocation
-                showAddress
-                location={userStore.user.address}
-                title={t('messageMap')}
-              />
-            </div>
-          )}
+          <div className={styles.colbig}>
+            <GoogleMapsLocation
+              showAddress
+              title={t('messageMap')}
+              location={{
+                lat: userStore.user.lat.value,
+                lng: userStore.user.lng.value,
+              }}
+            />
+          </div>
         </div>
         <div className={styles.colbig}>
           <Title title={t('titleChangePassword')} />

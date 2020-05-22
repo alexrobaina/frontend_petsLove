@@ -16,6 +16,7 @@ class UserStore {
   }
 
   @observable address = {}
+  @observable location = {}
   @observable password = ''
   @observable isEdit = false
   @observable canEdit = false
@@ -32,7 +33,7 @@ class UserStore {
   async saveUser() {
     const data = new FormData()
 
-    Object.entries(this.user.getJson()).forEach(([key, value]) => {
+    Object.entries(this.user.getJson(this.user)).forEach(([key, value]) => {
       data.append(key, value)
     })
 
@@ -158,6 +159,7 @@ class UserStore {
 
   @action
   setAddress(value) {
+    this.location = value
     this.user.setAddress(value)
   }
 

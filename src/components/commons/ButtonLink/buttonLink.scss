@@ -2,10 +2,11 @@
 
 .textLink {
   cursor: pointer;
-  padding: 30px;
+  padding: 24px;
   @include site-font('text', 500);
   font-size: 12px;
   letter-spacing: 1px;
+  text-align: center;
 
   &:hover {
     transition: 3ms;

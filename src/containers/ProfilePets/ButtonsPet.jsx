@@ -14,7 +14,7 @@ import styles from './buttonsPet.scss'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
   const [openModal, setOpenModal] = useState(false)
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation('whatsappMessage')
   const isWithBase = useMediaQuery('(max-width: 500px)')
   const history = useHistory()
 
@@ -47,7 +47,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
           openModal={openModal}
           handleToggle={handleToggle}
           handleSendMessage={() => handleSendMessage(phone)}
-          title={t('protectionistUser.contact')}
+          title={t('contact')}
           notIcon
         >
           <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />

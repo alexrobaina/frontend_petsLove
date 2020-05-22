@@ -4,7 +4,14 @@ import { Animated } from 'react-animated-css'
 import ButtonBack from '../ButtonBack'
 import styles from './layoutContainer.scss'
 
-const LayoutContainer = ({ title, rolText, children, handleBack, viewButtonBack, textButton }) => {
+const LayoutContainer = ({
+  title,
+  information,
+  children,
+  handleBack,
+  viewButtonBack,
+  textButton,
+}) => {
   return (
     <Animated
       animationIn="fadeIn"
@@ -15,7 +22,7 @@ const LayoutContainer = ({ title, rolText, children, handleBack, viewButtonBack,
       <div className={styles.containerLayout}>
         {viewButtonBack && <ButtonBack text={textButton} handleClick={handleBack} />}
         <div className={styles.title}>{title}</div>
-        <div className={styles.rolText}>{rolText}</div>
+        <div className={styles.information}>{information}</div>
         {children}
       </div>
     </Animated>
@@ -26,6 +33,7 @@ LayoutContainer.propTypes = {
   children: PropTypes.node.isRequired,
   handleBack: PropTypes.func,
   title: PropTypes.string,
+  subtitle: PropTypes.string,
   textButton: PropTypes.string,
   viewButtonBack: PropTypes.bool,
 }
@@ -33,6 +41,7 @@ LayoutContainer.propTypes = {
 LayoutContainer.defaultProps = {
   textButton: '',
   title: '',
+  information: '',
   handleBack: null,
   viewButtonBack: false,
 }

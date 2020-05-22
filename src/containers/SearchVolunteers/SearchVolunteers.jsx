@@ -6,7 +6,6 @@ import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAuto
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import VolunteersStore from 'stores/VolunteersStore'
-import Title from 'components/commons/Title'
 import styles from './searchVolunteers.scss'
 
 const SearchVolunteers = () => {
@@ -14,7 +13,6 @@ const SearchVolunteers = () => {
   const [address, setAddress] = useState({})
   const volunteersStore = useLocalStore(() => new VolunteersStore())
 
-  // eslint-disable-next-line no-shadow
   const handleChangeAddress = useCallback((address) => {
     setAddress(address)
   }, [])
@@ -33,7 +31,7 @@ const SearchVolunteers = () => {
 
   return (
     <div className={styles.containerTransit}>
-      <LayoutContainer title={t('transitSearch.title')}>
+      <LayoutContainer title={t('transitSearch.title')} information={'find people who take care of pets especially'}>
         <div className={styles.colbig}>
           <GoogleAutocomplete
             isEdit

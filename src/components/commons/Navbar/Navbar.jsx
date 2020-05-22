@@ -74,10 +74,14 @@ const Navbar = ({ children }) => {
             />
             {/* This container id Image user login and change language */}
             <div className={styles.containerProfile}>
-              <div>
+              <div className={styles.containerLanguage}>
                 <ChangeLanguage />
               </div>
               <div className={styles.contectImageUser}>
+                <ImageUserLog
+                  handleToggleMenu={handleToggleMenu}
+                  isUserLogin={rootStore.authStore.isLogin}
+                />
                 {authStore.isLoading ? (
                   <Loading loadingRing />
                 ) : (
@@ -87,10 +91,6 @@ const Navbar = ({ children }) => {
                     viewMenuProfile={viewMenuProfile}
                   />
                 )}
-                <ImageUserLog
-                  handleToggleMenu={handleToggleMenu}
-                  isUserLogin={rootStore.authStore.isLogin}
-                />
               </div>
             </div>
           </>
@@ -99,7 +99,9 @@ const Navbar = ({ children }) => {
           <div className={styles.containerButtonslog}>
             <ButtonLink onclick={goToLogin} text={t('login')} />
             <ButtonLink onclick={goToRegister} text={t('singIn')} />
-            <ChangeLanguage />
+            <div className={styles.containerLanguage}>
+              <ChangeLanguage />
+            </div>
           </div>
         )}
       </div>

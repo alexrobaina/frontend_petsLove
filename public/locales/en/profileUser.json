@@ -11,7 +11,8 @@
   },
   "adopterUser": {
     "role": "Adopter Pets",
-    "name": "Name"
+    "name": "Name",
+    "iWantAdopte": ""
   },
   "protectionistUser": {
     "role": "Shelter pets",

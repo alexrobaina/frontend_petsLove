@@ -20,8 +20,8 @@ button:focus {
   font-weight: 700;
   letter-spacing: 3px;
   height: 45px;
-  text-transform: capitalize;
   width: 45px;
+  text-transform: capitalize;
   cursor: pointer;
   transition: 0.3s;
   font-size: 10px;
@@ -49,12 +49,16 @@ button:focus {
 }
 
 .text {
+  white-space: nowrap;
+  padding-right: 30px;
   text-transform: uppercase;
-  width: 150px;
   letter-spacing: 1.5px;
+  text-align: center;
   color: black;
+  margin-left: 20px;
   @include site-font('text', 600);
   font-size: 12px;
+  width: 100%;
   transition: 0.3s;
   pointer-events: none;
   animation: fadeIn 1s;
