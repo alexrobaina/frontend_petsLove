@@ -20,7 +20,9 @@
     "adopted": "Adoptados"
   },
   "transitUser": {
+    "messageWhatsapp": "Hola! Te contacto porque necesitamos un voluntario para hacer transito de una mascota ",
     "role": "Transito de mascotas",
-    "messageWhatsapp": "Hola, te contactamos para saber si estas disponible para trancito de una mascota."
+    "messageWhatsapp": "Hola, te contactamos para saber si estas disponible para trancito de una mascota.",
+    "information": "Encuentra personas que hacen transito de mascotas."
   }
 }

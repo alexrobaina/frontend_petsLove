@@ -5,6 +5,7 @@ import c from 'classnames'
 import { SERVER } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
+import DocumentMeta from 'react-document-meta'
 import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
@@ -33,50 +34,69 @@ const ProtectionistProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
+  console.log(user)
+  const url = 'https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068'
+  const meta = {
+    title: 'Name pets',
+    description: 'This pets search home',
+    property: 'og:image',
+    content: `https://localhost:3001/${image}`,
+    meta: {
+      charset: 'utf-8',
+      name: {
+        keywords: 'react,meta,document,html,tags',
+      },
+    },
+  }
 
   return (
-    <LayoutContainer>
-      <div className={styles.containerTitle}>
-        <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
-        <ButtonsPet email={email} phone={phone} />
-      </div>
-      <div className={c(styles.containerCard, styles.layourCard)}>
-        <img
-          onError={onError}
-          className={styles.userImage}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
-          alt="photos-users"
-        />
-        <GoogleMapsLocation
-          isProfilePet
-          location={{
-            lat,
-            lng,
-          }}
-        />
-        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
-        <TextCard title={t('protectionistUser.requirementsToAdopt')} text={requirementsToAdopt} />
-      </div>
-      <div className={styles.containerPets}>
-        <div className={styles.buttonsSwich}>
-          <Button handleClick={handleForAdoption} text={t('protectionistUser.needHome')} />
+    <DocumentMeta {...meta}>
+      <LayoutContainer>
+        <div className={styles.containerTitle}>
+          <Title
+            rolText={t('protectionistUser.role')}
+            title={t('common.titleNameUser', { name })}
+          />
+          <ButtonsPet email={email} phone={phone} imageUser={image} />
         </div>
-        <div className={styles.buttonsSwich}>
-          <Button handleClick={handleAdopted} text={t('protectionistUser.adopted')} />
+        <div className={c(styles.containerCard, styles.layourCard)}>
+          <img
+            onError={onError}
+            className={styles.userImage}
+            src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+            alt="photos-users"
+          />
+          <GoogleMapsLocation
+            isProfilePet
+            location={{
+              lat,
+              lng,
+            }}
+          />
+          <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+          <TextCard title={t('protectionistUser.requirementsToAdopt')} text={requirementsToAdopt} />
         </div>
-      </div>
-      <div>
-        {swith ? (
-          <>
-            <PetsAdopted id={_id} />
-          </>
-        ) : (
-          <>
-            <ForAdoption id={_id} />
-          </>
-        )}
-      </div>
-    </LayoutContainer>
+        <div className={styles.containerPets}>
+          <div className={styles.buttonsSwich}>
+            <Button handleClick={handleForAdoption} text={t('protectionistUser.needHome')} />
+          </div>
+          <div className={styles.buttonsSwich}>
+            <Button handleClick={handleAdopted} text={t('protectionistUser.adopted')} />
+          </div>
+        </div>
+        <div>
+          {swith ? (
+            <>
+              <PetsAdopted id={_id} />
+            </>
+          ) : (
+            <>
+              <ForAdoption id={_id} />
+            </>
+          )}
+        </div>
+      </LayoutContainer>
+    </DocumentMeta>
   )
 }
 

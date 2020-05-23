@@ -13,11 +13,11 @@ const SearchVolunteers = () => {
   const [address, setAddress] = useState({})
   const volunteersStore = useLocalStore(() => new VolunteersStore())
 
-  const handleChangeAddress = useCallback((address) => {
+  const handleChangeAddress = useCallback(address => {
     setAddress(address)
   }, [])
 
-  const showPosition = (position) => {
+  const showPosition = position => {
     setAddress({ lat: position.coords.latitude, lng: position.coords.longitude })
   }
 
@@ -31,7 +31,10 @@ const SearchVolunteers = () => {
 
   return (
     <div className={styles.containerTransit}>
-      <LayoutContainer title={t('transitSearch.title')} information={'find people who take care of pets especially'}>
+      <LayoutContainer
+        title={t('transitSearch.title')}
+        information={t(('transitSearch.information'))}
+      >
         <div className={styles.colbig}>
           <GoogleAutocomplete
             isEdit

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocalStore, observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
@@ -21,9 +21,7 @@ const ProfilePets = () => {
 
   return (
     <LayoutContainer>
-      <Link to={`/profile-user/${petIdStore.idUser}`}>
-        {t('linkBack')}
-      </Link>
+      <Link to={`/profile-user/${petIdStore.idUser}`}>{t('linkBack')}</Link>
       <LayoutProfilePets
         email={email}
         phone={phone}

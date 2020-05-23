@@ -2,8 +2,10 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
+import { Facebook, Twitter } from 'react-sharingbuttons'
+import 'react-sharingbuttons/dist/main.css'
 import useMediaQuery from 'utils/Hooks'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
@@ -12,22 +14,21 @@ import Modal from 'components/commons/Modal/Modal'
 import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
+const ButtonsPet = ({ petIsEdit, pet, phone, email, url }) => {
+  const params = useParams()
   const [openModal, setOpenModal] = useState(false)
-  const { t } = useTranslation('whatsappMessage')
   const isWithBase = useMediaQuery('(max-width: 500px)')
+  const { t } = useTranslation('whatsappMessage')
   const history = useHistory()
 
-  const editPet = useCallback((id) => {
+  const editPet = useCallback(id => {
     history.push(`/`)
     history.push(`edit-pet/${id}`)
   }, [])
 
-  const handleSendMessage = useCallback((number) => {
+  const handleSendMessage = useCallback(number => {
     if (number) {
-      window.open(
-        `https://api.whatsapp.com/send?phone=${number}&text=%20${t('iWantAdopte', '_blank')}`
-      )
+      window.open(`https://api.whatsapp.com/send?phone=${number}')}`)
     }
     setOpenModal()
   }, [])
@@ -39,17 +40,21 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
       setOpenModal(false)
     }
   }
-
+  
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
+        <Facebook url={'https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068'} />
+      </div>
+      <div className={styles.btnMargin}>
         <Modal
+          notIcon
+          title={t('contact')}
           openModal={openModal}
           handleToggle={handleToggle}
           handleSendMessage={() => handleSendMessage(phone)}
-          title={t('contact')}
-          notIcon
         >
+          <div className={styles.textInformation}>{t('descriptionModal')}</div>
           <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />
         </Modal>
         <div onClick={handleToggle} className={styles.buttonLink}>
@@ -66,11 +71,17 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email }) => {
 }
 
 ButtonsPet.propTypes = {
+  phone: PropTypes.string,
+  email: PropTypes.string,
+  url: PropTypes.string,
   petIsEdit: PropTypes.bool,
   pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
 
 ButtonsPet.defaultProps = {
+  email: '',
+  phone: '',
+  url: '',
   petIsEdit: false,
 }
 

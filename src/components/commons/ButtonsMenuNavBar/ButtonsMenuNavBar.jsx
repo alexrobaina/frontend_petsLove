@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
+import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
 import { FaHandHoldingHeart, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
 import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
 import styles from './buttonsMenuNavBar.scss'
-import { useTranslation } from 'react-i18next'
 
 const routesUserProtectionist = [
   {

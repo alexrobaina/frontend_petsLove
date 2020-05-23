@@ -1,6 +1,6 @@
 {
   "common": {
-    "titleNameUser": "Perfil de {{ name }}",
+    "titleNameUser": "Profile of {{ name }}",
     "contact": "Contact",
     "aboutUs": "About Us",
     "phone": "Phone",
@@ -11,8 +11,7 @@
   },
   "adopterUser": {
     "role": "Adopter Pets",
-    "name": "Name",
-    "iWantAdopte": ""
+    "name": "Name"
   },
   "protectionistUser": {
     "role": "Shelter pets",
@@ -22,7 +21,9 @@
     "adopted": "Adopted"
   },
   "transitUser": {
+    "titleNameUser": "Profile of {{ name }}",
+    "messageWhatsapp": "Hello! I contact you because we need a volunteer to transit a pet",
     "role": "Transit Pets",
-    "messageWhatsapp": "Hi! We have contacted you to know if you´re available for transit."
+    "information": "Find people who take care in transit of pets "
   }
 }

@@ -18,7 +18,7 @@ const LayoutProfilePets = ({ name, petIsEdit, images, pet, userAdopt, phone, ema
     <>
       <div className={styles.name}>
         <Title title={t('title', { name })} />
-        <ButtonsPet email={email} phone={phone} pet={pet} petIsEdit={petIsEdit} />
+        <ButtonsPet email={email} phone={phone} pet={pet} isEdit={petIsEdit} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <ImageProfilePet images={images} />

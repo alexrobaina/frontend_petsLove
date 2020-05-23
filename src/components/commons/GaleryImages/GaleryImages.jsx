@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MdPets } from 'react-icons/md'
 import { SERVER } from 'services/config'
+import Loading from 'components/commons/Loading'
 import noImage from './noImage.svg'
 import styles from './galeryImages.scss'
-import Loading from '../Loading/Loading'
 
 const GaleryImages = ({ arrayImages, isLoading }) => {
   return (
