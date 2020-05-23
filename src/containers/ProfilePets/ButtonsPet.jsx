@@ -14,8 +14,7 @@ import Modal from 'components/commons/Modal/Modal'
 import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ petIsEdit, pet, phone, email, url }) => {
-  const params = useParams()
+const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
   const [openModal, setOpenModal] = useState(false)
   const isWithBase = useMediaQuery('(max-width: 500px)')
   const { t } = useTranslation('whatsappMessage')
@@ -40,11 +39,14 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, url }) => {
       setOpenModal(false)
     }
   }
-  
+
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
-        <Facebook url={'https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068'} />
+        <Facebook
+          // url={`https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068?imageurl=https://petslovefontend.herokuapp.com/${image}`}
+          url={`https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068?imageurl=https://petslovefontend.herokuapp.com/${image}`}
+        />
       </div>
       <div className={styles.btnMargin}>
         <Modal
