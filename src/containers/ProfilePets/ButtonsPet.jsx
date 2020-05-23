@@ -2,10 +2,11 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
+import { HOST } from 'services/config'
 import { Facebook, Twitter } from 'react-sharingbuttons'
 import 'react-sharingbuttons/dist/main.css'
 import useMediaQuery from 'utils/Hooks'
-import { useHistory, useParams } from 'react-router'
+import { useHistory } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
@@ -39,14 +40,11 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       setOpenModal(false)
     }
   }
-
+  
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
-        <Facebook
-          // url={`https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068?imageurl=https://petslovefontend.herokuapp.com/${image}`}
-          url={`https://petslovefontend.herokuapp.com/profile-user/5ebf30de8f29890017f9a068?imageurl=https://petslovefontend.herokuapp.com/${image}`}
-        />
+        <Facebook url={window.location.href} />
       </div>
       <div className={styles.btnMargin}>
         <Modal
