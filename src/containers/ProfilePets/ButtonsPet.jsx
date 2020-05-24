@@ -2,20 +2,18 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
-import { InlineShareButtons } from 'sharethis-reactjs'
-import { FacebookShareButton, FacebookIcon, TwitterShareButton } from 'react-share'
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
 import { Helmet } from 'react-helmet'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
+import { SERVER } from 'services/config'
 import Button from 'components/commons/Button'
 import Modal from 'components/commons/Modal/Modal'
 import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
-import { HOST, SERVER } from '../../services/config'
-import LayoutContainer from '../../components/commons/LayoutContainer'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -30,7 +28,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
 
   const handleSendMessage = useCallback(number => {
     if (number) {
-      window.open(`https://api.whatsapp.com/send?phone=${number}')}`)
+      window.open(`https://api.whatsapp.com/send?phone=${number}`)
     }
     setOpenModal()
   }, [])
@@ -43,48 +41,21 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
     }
   }
 
-  const SHARE_TEXT = 'More info!'
-  console.log(`${HOST}/${image}`)
-
   return (
     <div className={styles.containerButtons}>
       <Helmet>
+        <meta charSet="utf-8" />
         <title>Profile pets</title>
-        <meta name="og:title" content={'Profile pets'} />
-        <meta name="description" content="Adoption pets" />
-        <meta property="og:description" content="Adoption pets" />
-        <meta
-          property="og:image"
-          content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"
-        />
-        <meta property="og:image:width" content="384" />
-        <meta property="og:image:height" content="480" />
-        <meta property="og:title" content="pets" />
         <meta property="og:image" content={`${SERVER}/${image}`} />
-        <meta name="og:url" content={`${HOST}/profile-user/5eca91faafbde200178b9cd7`} />
-  
-        
-        {/* OpenGraph tags */}
-        <meta name="og:image" content={image} />
-        <meta name="og:type" content="website" />
-        <meta name="fb:app_id" content={'2770920233035652'} />
-        
-        
-        
+        <meta property="og:image:secure_url" content={`${SERVER}/${image}`} />
       </Helmet>
       <div className={styles.btnMargin}>
-        <FacebookShareButton
-          hashtag
-          // quote={`${HOST}/profile-user/5eca91faafbde200178b9cd7`}
-          imageUrl={`${SERVER}/${image}`}
-          url={`${HOST}/profile-user/5eca91faafbde200178b9cd7`}
-        >
-          <FacebookIcon size={25} />
+        <FacebookShareButton url={window.location.href}>
+          <FacebookIcon className={styles.butonsShare} size={40} />
         </FacebookShareButton>
+        <TwitterShareButton url={window.location.href}>
+          <TwitterIcon className={styles.butonsShare} size={40} />
+        </TwitterShareButton>
       </div>
       <div className={styles.btnMargin}>
         <Modal
@@ -103,7 +74,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       </div>
       {petIsEdit && (
         <div className={styles.btnMargin}>
-          <Button handleClick={() => editPet(pet._id)} icon={<MdEdit size={20} />} circle />
+          <Button type="button" handleClick={() => editPet(pet._id)} icon={<MdEdit size={20} />} circle />
         </div>
       )}
     </div>
@@ -113,7 +84,6 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
 ButtonsPet.propTypes = {
   phone: PropTypes.string,
   email: PropTypes.string,
-  url: PropTypes.string,
   petIsEdit: PropTypes.bool,
   pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
@@ -121,7 +91,6 @@ ButtonsPet.propTypes = {
 ButtonsPet.defaultProps = {
   email: '',
   phone: '',
-  url: '',
   petIsEdit: false,
 }
 

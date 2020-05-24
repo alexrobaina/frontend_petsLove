@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
@@ -18,11 +17,6 @@ const GoogleMapsLocation = observer(
     const [activeMarkerUser, setActiveMarkerUser] = useState({})
     const [showingInfoWindow, setShowingInfoWindow] = useState(false)
     const [showingInfoWindowUser, setShowingInfoWindowUser] = useState(false)
-    const history = useHistory()
-
-    const goToProfile = useCallback(id => {
-      history.push(`/profile-user/${id}`)
-    }, [])
 
     const onMarkerClick = (map, marker) => {
       setActiveMarker(marker)

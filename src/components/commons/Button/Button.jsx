@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './button.scss'
 
-const Button = ({ handleClick, text, circle, bigButton, icon, disable, type, isTransparent }) => {
+const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTransparent }) => {
   if (circle) {
     return (
       <div className={c(styles.containerButton, isTransparent && styles.transparent)}>
@@ -18,7 +18,7 @@ const Button = ({ handleClick, text, circle, bigButton, icon, disable, type, isT
       <button
         disabled={disable}
         className={c(styles.primary, bigButton && styles.bigButton)}
-        type={type}
+        type="button"
         onClick={handleClick}
       >
         {text}
@@ -30,7 +30,6 @@ const Button = ({ handleClick, text, circle, bigButton, icon, disable, type, isT
 Button.propTypes = {
   handleClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  type: PropTypes.string,
   circle: PropTypes.bool,
   bigButton: PropTypes.bool,
   isTransparent: PropTypes.bool,
@@ -43,7 +42,6 @@ Button.defaultProps = {
   circle: false,
   isTransparent: false,
   bigButton: false,
-  type: 'button',
   disable: false,
 }
 

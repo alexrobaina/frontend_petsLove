@@ -33,7 +33,7 @@ LayoutContainer.propTypes = {
   children: PropTypes.node.isRequired,
   handleBack: PropTypes.func,
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  information: PropTypes.string,
   textButton: PropTypes.string,
   viewButtonBack: PropTypes.bool,
 }

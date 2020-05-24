@@ -32,7 +32,6 @@ Textarea.propTypes = {
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string,
-  isError: PropTypes.bool,
   isEdit: PropTypes.bool,
   inputStore: PropTypes.instanceOf(InputStore),
 }

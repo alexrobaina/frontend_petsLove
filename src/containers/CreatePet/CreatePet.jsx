@@ -22,7 +22,6 @@ import styles from './createPet.scss'
 const CreatePet = () => {
   const history = useHistory()
   const { id } = useParams()
-  const [addressLocation, setAddress] = useState({})
   const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
   const { t } = useTranslation('createPet')
@@ -48,10 +47,6 @@ const CreatePet = () => {
     fileUpload.current.click()
   }, [])
 
-  const handleSetAddress = useCallback((address) => {
-    createPetStore.setAddress()
-  }, [])
-
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
   }, [])
@@ -61,7 +56,6 @@ const CreatePet = () => {
   }, [])
 
   const handleChangeAddress = useCallback(address => {
-    setAddress(address)
     createPetStore.setAddress(address)
   }, [])
 
