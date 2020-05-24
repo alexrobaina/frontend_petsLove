@@ -30,7 +30,6 @@ class RegisterStore {
 
   @action
   async createUser() {
-    console.log(this.registerUser.getJson())
     if (this.validate()) {
       this.isLoading = true
 

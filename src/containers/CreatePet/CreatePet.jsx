@@ -142,7 +142,7 @@ const CreatePet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
-  console.log(createPetStore.pet.lat)
+
   return (
     <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>
       <Title subTitle={t('subtitle')} />
