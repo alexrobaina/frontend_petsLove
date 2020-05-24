@@ -110,6 +110,7 @@
     "react-router-scroll-memory": "^2.0.5",
     "react-scripts": "^3.4.1",
     "react-select": "^3.0.8",
+    "react-share": "^4.1.0",
     "react-sharingbuttons": "^1.0.0",
     "resolve": "1.17.0",
     "resolve-url-loader": "3.1.1",

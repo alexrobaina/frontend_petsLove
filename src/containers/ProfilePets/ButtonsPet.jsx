@@ -2,11 +2,11 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
-import { HOST, SERVER } from 'services/config'
-import { Facebook, Twitter, Pinterest } from 'react-sharingbuttons'
-import 'react-sharingbuttons/dist/main.css'
+import { InlineShareButtons } from 'sharethis-reactjs'
+import { FacebookShareButton, FacebookIcon, TwitterShareButton } from 'react-share'
 import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
+import { Helmet } from 'react-helmet'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
@@ -14,6 +14,8 @@ import Button from 'components/commons/Button'
 import Modal from 'components/commons/Modal/Modal'
 import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
+import { HOST, SERVER } from '../../services/config'
+import LayoutContainer from '../../components/commons/LayoutContainer'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -43,16 +45,30 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
 
   const SHARE_TEXT = 'More info!'
   console.log(`${HOST}/${image}`)
-  
+
   return (
     <div className={styles.containerButtons}>
-      <div className={styles.btnMargin}>
-        <Facebook url={window.location.href} />
-        <Twitter
-          url={window.location.href}
-          // shareText={SHARE_TEXT}
+      <Helmet>
+        <title>Profile pets</title>
+        <meta property="og:description" content="Adoption pets" />
+        <meta
+          property="og:image"
+          content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"
         />
-        <Pinterest url={window.location.href} mediaSrc={`${SERVER}/${image}`} />
+        <meta property="og:image:width" content="384" />
+        <meta property="og:image:height" content="480" />
+        <meta property="og:title" content="pets" />
+        <meta property="og:image" content={`${SERVER}/${image}`} />
+      </Helmet>
+      <div className={styles.btnMargin}>
+        <FacebookShareButton
+          hashtag
+          quote={'asdas'}
+          url={`${HOST}/profile-user/5eca91faafbde200178b9cd7`}
+          image={`https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg`}
+        >
+          <FacebookIcon size={25} />
+        </FacebookShareButton>
       </div>
       <div className={styles.btnMargin}>
         <Modal

@@ -37,14 +37,18 @@ const ProtectionistProfile = ({ user }) => {
 
   return (
     <LayoutContainer>
-      <MetaTags>
-        <title>Profile pets</title>
-        <meta name="description" content="Some description." />
-        <meta property="og:title" content="Pets love" />
-        <meta property="og:image:width" content="300" />
-        <meta property="og:image:height" content="300" />
-        <meta property="og:image" content={`${SERVER}/${image}`} />
-      </MetaTags>
+      {/*<MetaTags>*/}
+      {/*  <title>Profile pets</title>*/}
+      {/*  <meta name="description" content="Some description." />*/}
+      {/*  <meta property="og:title" content="Pets loveasdasd" />*/}
+      {/*  <meta property="og:image:width" content="300" />*/}
+      {/*  <meta property="og:image:height" content="300" />*/}
+      {/*  <meta*/}
+      {/*    property="og:image"*/}
+      {/*    content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"*/}
+      {/*  />*/}
+      {/*  /!*<meta property="og:image" content={`${SERVER}/${image}`} />*!/*/}
+      {/*</MetaTags>*/}
       <div className={styles.containerTitle}>
         <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonsPet email={email} phone={phone} image={image} />
