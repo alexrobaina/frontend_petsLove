@@ -50,22 +50,38 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
     <div className={styles.containerButtons}>
       <Helmet>
         <title>Profile pets</title>
+        <meta name="og:title" content={'Profile pets'} />
+        <meta name="description" content="Adoption pets" />
         <meta property="og:description" content="Adoption pets" />
         <meta
           property="og:image"
+          content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"
+        />
+        <meta
+          property="og:image:secure_url"
           content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"
         />
         <meta property="og:image:width" content="384" />
         <meta property="og:image:height" content="480" />
         <meta property="og:title" content="pets" />
         <meta property="og:image" content={`${SERVER}/${image}`} />
+        <meta name="og:url" content={`${HOST}/profile-user/5eca91faafbde200178b9cd7`} />
+  
+        
+        {/* OpenGraph tags */}
+        <meta name="og:image" content={image} />
+        <meta name="og:type" content="website" />
+        <meta name="fb:app_id" content={'2770920233035652'} />
+        
+        
+        
       </Helmet>
       <div className={styles.btnMargin}>
         <FacebookShareButton
           hashtag
-          quote={'asdas'}
+          // quote={`${HOST}/profile-user/5eca91faafbde200178b9cd7`}
+          imageUrl={`${SERVER}/${image}`}
           url={`${HOST}/profile-user/5eca91faafbde200178b9cd7`}
-          image={`https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg`}
         >
           <FacebookIcon size={25} />
         </FacebookShareButton>
