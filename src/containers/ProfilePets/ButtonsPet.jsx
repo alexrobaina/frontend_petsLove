@@ -73,7 +73,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
         </div>
       </div>
       {petIsEdit && (
-        <div className={styles.btnMargin}>
+        <div className={styles.editButton}>
           <Button type="button" handleClick={() => editPet(pet._id)} icon={<MdEdit size={20} />} circle />
         </div>
       )}

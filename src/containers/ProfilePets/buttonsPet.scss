@@ -4,15 +4,21 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-right: -10px;
 }
 
 .btnMargin {
   margin-left: 10px;
 }
 
+.editButton {
+  padding-right: 0 !important;
+  margin-left: 0;
+}
+
 .butonsShare {
   margin-left: 10px;
-  border-radius: 100px!important;
+  border-radius: 100px !important;
 }
 
 .textInformation {
