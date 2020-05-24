@@ -1,4 +1,4 @@
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 import InputStore from 'stores/InputStore'
 
 const USER_TRANSIT = 'Transit pets.'
@@ -31,6 +31,7 @@ class User {
     this.lng.setValue(address.lng)
   }
 
+  @action
   setRole() {
     if (this.rol.value === 'transitUser') {
       return USER_TRANSIT
@@ -41,6 +42,7 @@ class User {
     if (this.rol.value === 'adopter') {
       return USER_ADOPTER
     }
+    return false
   }
 
   fillJson(user) {
@@ -61,7 +63,7 @@ class User {
     this.canTransit = user.canTransit
   }
 
-  getJson(user) {
+  static getJson(user) {
     return {
       _id: user._id,
       image: user.image.value,

@@ -1,12 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 import PhoneInput from 'react-phone-input-2'
 import styles from './contactPhone.scss'
 
 const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
-  const { t } = useTranslation('whatsaapMessage')
-
+  const { t } = useTranslation('whatsappMessage')
   return (
     <div className={styles.containerInput}>
       <div className={styles.inputPhone}>

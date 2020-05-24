@@ -10,7 +10,7 @@ import styles from './searchVolunteers.scss'
 
 const SearchVolunteers = () => {
   const { t } = useTranslation('allSearch')
-  const [address, setAddress] = useState({})
+  const [stateAddress, setAddress] = useState({})
   const volunteersStore = useLocalStore(() => new VolunteersStore())
 
   const handleChangeAddress = useCallback(address => {
@@ -33,7 +33,7 @@ const SearchVolunteers = () => {
     <div className={styles.containerTransit}>
       <LayoutContainer
         title={t('transitSearch.title')}
-        information={t(('transitSearch.information'))}
+        information={t('transitSearch.information')}
       >
         <div className={styles.colbig}>
           <GoogleAutocomplete
@@ -42,11 +42,11 @@ const SearchVolunteers = () => {
             placeholder={t('transitSearch.placeholderGoogle')}
             handleChangeAddress={handleChangeAddress}
           />
-          {address.lat && (
+          {stateAddress.lat && (
             <div className={styles.containerMap}>
               <LayoutTrantitions>
                 <GoogleMapsLocation
-                  location={address}
+                  location={stateAddress}
                   users={volunteersStore.volunteers}
                   arrayLocation={volunteersStore.arrayLocationVolunteers}
                 />

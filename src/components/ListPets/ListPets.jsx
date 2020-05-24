@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import LazyLoad from 'react-lazyload'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
-import styles from './listPets.scss'
 import ErrorMessage from '../commons/ErrorMessage'
-import { useTranslation } from 'react-i18next'
+import styles from './listPets.scss'
 
 const ListPets = ({ pets, isUserAdopt }) => {
   const { t } = useTranslation('listPets')
@@ -42,7 +42,7 @@ const ListPets = ({ pets, isUserAdopt }) => {
           })}
         </div>
       ) : (
-        <ErrorMessage text={t('petsNotFound')} typeMessage={'warning'} />
+        <ErrorMessage text={t('petsNotFound')} typeMessage="warning" />
       )}
     </>
   )

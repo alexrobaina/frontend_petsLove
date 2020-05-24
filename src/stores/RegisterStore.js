@@ -5,7 +5,7 @@ import InputStore from './InputStore'
 
 const REQUIRED = 'This input is required'
 const EMAIL_ERROR = 'The email is incorrect'
-const VALIDATION_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const VALIDATION_EMAIL = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 
 class RegisterStore {
   @observable token = []
@@ -30,7 +30,6 @@ class RegisterStore {
 
   @action
   async createUser() {
-    console.log(this.registerUser.getJson())
     if (this.validate()) {
       this.isLoading = true
 
