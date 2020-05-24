@@ -11393,6 +11393,13 @@ react-leaflet@^2.5.0, react-leaflet@^2.6.1:
     hoist-non-react-statics "^3.3.2"
     warning "^4.0.3"
 
+react-meta-tags@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/react-meta-tags/-/react-meta-tags-0.7.4.tgz#c506b453e7f89e006d8053afcf47a1f747240e43"
+  integrity sha512-ZSnZeEx+OVE5x6EK9oX6Qg3yGCCcxbnscQGu6S+ewglIi38KqEspcAgShggFSOZd5+5jgQB91OiRA+GX7zbrOA==
+  dependencies:
+    prop-types "^15.6.0"
+
 react-phone-input-2@^2.13.3:
   version "2.13.3"
   resolved "https://registry.yarnpkg.com/react-phone-input-2/-/react-phone-input-2-2.13.3.tgz#2ea369274094f9c7c1c87eb3b40ab73d35c81c07"
@@ -11520,14 +11527,6 @@ react-select@^3.0.8:
     prop-types "^15.6.0"
     react-input-autosize "^2.2.2"
     react-transition-group "^4.3.0"
-
-react-sharingbuttons@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-sharingbuttons/-/react-sharingbuttons-1.0.0.tgz#7e63564f8b3c7318636ad040dcf2bd2299ebec82"
-  integrity sha512-MRSQhpkHHL5SfOD7InRrG3ieZtYZ4PV2ukHghkEuMGPiIIlmBrb8WM9cRHblbwc24vdH8LHEkUNAqXF/HKG70A==
-  dependencies:
-    prop-types "^15.6.2"
-    style-loader "^0.23.1"
 
 react-side-effect@^2.1.0:
   version "2.1.0"
@@ -12401,6 +12400,11 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+sharethis-reactjs@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/sharethis-reactjs/-/sharethis-reactjs-1.5.0.tgz#9c6a563c9f89e4cc4ea633e993016bab84fe60df"
+  integrity sha512-aYbXxbKQZzf9m8iFtNkHJGrQXy9VX/tbJ2PWOOgMWB0XNZU3vwUfKq/obMg5hFDZ/fa4rAj7G+LxN5zvLufx4w==
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -12981,7 +12985,7 @@ strip-json-comments@^3.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.0.tgz#7638d31422129ecf4457440009fba03f9f9ac180"
   integrity sha512-e6/d0eBu7gHtdCqFt0xJr642LdToM5/cN4Qb9DbHjVx1CP5RyeM+zH7pbecEmDv/lBqb0QH+6Uqq75rxFPkM0w==
 
-style-loader@0.23.1, style-loader@^0.23.1:
+style-loader@0.23.1:
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.23.1.tgz#cb9154606f3e771ab6c4ab637026a1049174d925"
   integrity sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==

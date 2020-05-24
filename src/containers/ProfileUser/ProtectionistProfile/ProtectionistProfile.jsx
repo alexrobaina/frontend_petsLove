@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { Helmet } from 'react-helmet'
+import MetaTags from 'react-meta-tags';
 import { SERVER } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
@@ -37,11 +37,12 @@ const ProtectionistProfile = ({ user }) => {
 
   return (
     <LayoutContainer>
-      {/*<Helmet>*/}
-      {/*  <meta property="og:title" content="San Roque 2014 Pollos" />*/}
-      {/*  <meta property="og:description" content="Programa de fiestas" />*/}
-      {/*  <meta property="og:image" content="https://images.unsplash.com/photo-1588611956953-ca72da6d4ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" />*/}
-      {/*</Helmet>*/}
+      <MetaTags>
+        <title>Profile pets</title>
+        <meta name="description" content="Some description." />
+        <meta property="og:title" content="Pets love" />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" />
+      </MetaTags>
       <div className={styles.containerTitle}>
         <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonsPet email={email} phone={phone} image={image} />

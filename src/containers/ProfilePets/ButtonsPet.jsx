@@ -2,9 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
-import { HOST } from 'services/config'
-import { Facebook, Twitter, Pinterest } from 'react-sharingbuttons'
-import 'react-sharingbuttons/dist/main.css'
+import { InlineShareButtons } from 'sharethis-reactjs'
 import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -14,6 +12,7 @@ import Button from 'components/commons/Button'
 import Modal from 'components/commons/Modal/Modal'
 import ContactPhone from 'components/commons/ContactPhone'
 import styles from './buttonsPet.scss'
+import { HOST } from '../../services/config'
 
 const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
   const [openModal, setOpenModal] = useState(false)
@@ -41,23 +40,41 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
     }
   }
 
-  const facebook = {
-    title: 'React Sharingbuttons',
-    caption: 'Lightweight social sharing buttons for React. No tracking. Just fun.',
-    content: `${HOST}/${image}`
-  }
-
-  const SHARE_TEXT = 'More info!'
-  console.log(`${HOST}/${image}`)
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
-        <Facebook url={window.location.href} />
-        <Twitter
-          url={window.location.href}
-          // shareText={SHARE_TEXT}
+        <InlineShareButtons
+          config={{
+            alignment: 'center', // alignment of buttons (left, center, right)
+            color: 'social', // set the color of buttons (social, white)
+            enabled: true, // show/hide buttons (true, false)
+            font_size: 16, // font size for the buttons
+            labels: 'cta', // button labels (cta, counts, null)
+            language: 'en', // which language to use (see LANGUAGES)
+            networks: [
+              // which networks to include (see SHARING NETWORKS)
+              // 'whatsapp',
+              // 'linkedin',
+              // 'messenger',
+              'facebook',
+              // 'twitter',
+            ],
+            padding: 12, // padding within buttons (INTEGER)
+            radius: 4, // the corner radius on each button (INTEGER)
+            show_total: true,
+            size: 40, // the size of each button (INTEGER)
+
+            // OPTIONAL PARAMETERS
+            url: 'https://petslovefontend.herokuapp.com/profile-user/5e9b2bb674451c8ce836d0a3', // (defaults to current url)
+            // image: `${HOST}/${image}`, // (defaults to og:image or twitter:image)
+            image: `https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80`, // (defaults to og:image or twitter:image)
+            description: 'custom text', // (defaults to og:description or twitter:description)
+            title: 'custom title', // (defaults to og:title or twitter:title)
+            message: 'custom email text', // (only for email sharing)
+            subject: 'custom email subject', // (only for email sharing)
+            username: 'custom twitter handle', // (only for twitter sharing)
+          }}
         />
-        <Pinterest url={window.location.href} mediaSrc={`${HOST}/${image}`} />
       </div>
       <div className={styles.btnMargin}>
         <Modal
