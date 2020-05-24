@@ -13,12 +13,12 @@ import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ name, petIsEdit, images, pet, userAdopt, phone, email }) => {
   const { t } = useTranslation('profilePets')
-
+  console.log(petIsEdit)
   return (
     <>
       <div className={styles.name}>
         <Title title={t('title', { name })} />
-        <ButtonsPet email={email} phone={phone} pet={pet} isEdit={petIsEdit} />
+        <ButtonsPet email={email} phone={phone} pet={pet} petIsEdit={petIsEdit} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <ImageProfilePet images={images} />

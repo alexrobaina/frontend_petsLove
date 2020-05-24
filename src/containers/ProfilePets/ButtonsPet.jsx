@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { HOST } from 'services/config'
-import { Facebook, Twitter } from 'react-sharingbuttons'
+import { Facebook, Twitter, Pinterest } from 'react-sharingbuttons'
 import 'react-sharingbuttons/dist/main.css'
 import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
@@ -40,11 +40,24 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       setOpenModal(false)
     }
   }
-  
+
+  const facebook = {
+    title: 'React Sharingbuttons',
+    caption: 'Lightweight social sharing buttons for React. No tracking. Just fun.',
+    content: `${HOST}/${image}`
+  }
+
+  const SHARE_TEXT = 'More info!'
+  console.log(`${HOST}/${image}`)
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
         <Facebook url={window.location.href} />
+        <Twitter
+          url={window.location.href}
+          // shareText={SHARE_TEXT}
+        />
+        <Pinterest url={window.location.href} mediaSrc={`${HOST}/${image}`} />
       </div>
       <div className={styles.btnMargin}>
         <Modal
