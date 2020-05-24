@@ -39,7 +39,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       setOpenModal(false)
     }
   }
-
+  
   return (
     <div className={styles.containerButtons}>
       <div className={styles.btnMargin}>
@@ -60,7 +60,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
               // 'twitter',
             ],
             padding: 12, // padding within buttons (INTEGER)
-            radius: 4, // the corner radius on each button (INTEGER)
+            radius: 100, // the corner radius on each button (INTEGER)
             show_total: true,
             size: 40, // the size of each button (INTEGER)
 

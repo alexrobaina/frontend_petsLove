@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import MetaTags from 'react-meta-tags';
+import MetaTags from 'react-meta-tags'
 import { SERVER } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
@@ -41,7 +41,9 @@ const ProtectionistProfile = ({ user }) => {
         <title>Profile pets</title>
         <meta name="description" content="Some description." />
         <meta property="og:title" content="Pets love" />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+        <meta property="og:image" content={`${SERVER}/${image}`} />
       </MetaTags>
       <div className={styles.containerTitle}>
         <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
