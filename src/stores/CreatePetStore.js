@@ -71,7 +71,7 @@ class CreatePetStore {
     const data = new FormData()
 
     if (this.pet.userAdopter) {
-      date.userAdopt = this.pet.userAdopter.value
+      data.userAdopt = this.pet.userAdopter.value
     }
 
     if (this.pet.transitUser) {

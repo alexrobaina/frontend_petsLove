@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
 import UserIdStore from 'stores/UserIdStore'
@@ -17,7 +17,11 @@ const ProfileUser = () => {
   const { rol } = userIdStore.user
 
   if (rol === 'protectionist') {
-    return <ProtectionistProfile user={userIdStore.user} />
+    return (
+      <>
+        <ProtectionistProfile user={userIdStore.user} />
+      </>
+    )
   }
 
   if (rol === 'transitUser') {

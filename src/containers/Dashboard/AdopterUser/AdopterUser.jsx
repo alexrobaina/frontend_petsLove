@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import React, { useContext, useEffect } from 'react'
 import DashboardCard from 'components/commons/DashboardCard'
 import { observer, useLocalStore } from 'mobx-react'
@@ -8,7 +9,6 @@ import UserContext from 'Context/UserContext'
 import cat from './animal.svg'
 import dog from './dog-tags-military.svg'
 import styles from './adopterUser.scss'
-import { useTranslation } from 'react-i18next'
 
 const AdopterUser = () => {
   const { t } = useTranslation('dashboard')

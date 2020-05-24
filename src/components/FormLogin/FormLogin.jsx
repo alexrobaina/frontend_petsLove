@@ -7,8 +7,8 @@ import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
 import UserContext from 'Context/UserContext'
 // import ButtonLoginSocialMedia from 'components/commons/ButtonLoginSocialMedia'
-import styles from './formLogin.scss'
 import Loading from 'components/commons/Loading/Loading'
+import styles from './formLogin.scss'
 
 const FormLogin = () => {
   const rootStore = useContext(UserContext)

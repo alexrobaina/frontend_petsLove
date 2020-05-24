@@ -3,5 +3,6 @@
   "contactProtectionist": "Contact to protectionist",
   "contactAction": "Send message for whatsapp",
   "contact": "Contact",
-  "notPhone": "This protectionist have not whatsapp"
+  "notPhone": "This protectionist have not whatsapp",
+  "descriptionModal": "Send him a message on WhatsApp"
 }

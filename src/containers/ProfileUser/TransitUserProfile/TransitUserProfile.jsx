@@ -7,19 +7,19 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
 import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import noImage from '../noImage.svg'
 import Title from 'components/commons/Title'
-import styles from './transitUserProfile.scss'
+import noImage from '../noImage.svg'
 import ButtonsPet from '../../ProfilePets/ButtonsPet'
+import styles from './transitUserProfile.scss'
 
 const TransitUserProfile = ({ user }) => {
-  const { t } = useTranslation('transitUser')
+  const { t } = useTranslation('profileUser')
   const { name, image, lat, lng, phone, email, _id } = user
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('rol')} title={t('title', { name })} />
+        <Title rolText={t('transitUser.role')} title={t('transitUser.titleNameUser', { name })} />
         <ButtonsPet email={email} phone={phone} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
@@ -36,7 +36,7 @@ const TransitUserProfile = ({ user }) => {
           }}
         />
       </div>
-      <TextCardContact title={t('contact')} phone={phone} email={email} />
+      <TextCardContact title={t('common.contact')} phone={phone} email={email} />
       <PetsUserTransit id={_id} />
     </LayoutContainer>
   )

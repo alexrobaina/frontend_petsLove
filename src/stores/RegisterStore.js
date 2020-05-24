@@ -72,11 +72,6 @@ class RegisterStore {
   }
 
   @action
-  setPassword(value) {
-    this.registerUser.password.setValue(value)
-  }
-
-  @action
   setPhone(value) {
     this.registerUser.phone.setValue(value)
   }

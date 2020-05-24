@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
+import MetaTags from 'react-meta-tags'
 import { SERVER } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
@@ -36,9 +37,21 @@ const ProtectionistProfile = ({ user }) => {
 
   return (
     <LayoutContainer>
+      {/*<MetaTags>*/}
+      {/*  <title>Profile pets</title>*/}
+      {/*  <meta name="description" content="Some description." />*/}
+      {/*  <meta property="og:title" content="Pets loveasdasd" />*/}
+      {/*  <meta property="og:image:width" content="300" />*/}
+      {/*  <meta property="og:image:height" content="300" />*/}
+      {/*  <meta*/}
+      {/*    property="og:image"*/}
+      {/*    content="https://petsloveapp.herokuapp.com/_petsLove_ff3c22c2-ccc1-4b5e-868e-8192b7e3650f.jpeg"*/}
+      {/*  />*/}
+      {/*  /!*<meta property="og:image" content={`${SERVER}/${image}`} />*!/*/}
+      {/*</MetaTags>*/}
       <div className={styles.containerTitle}>
         <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
-        <ButtonsPet email={email} phone={phone} />
+        <ButtonsPet email={email} phone={phone} image={image} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import c from 'classnames'
 import InputStore from 'stores/InputStore'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './input.scss'
-import { useTranslation } from 'react-i18next'
 
 const Input = ({
   inputStore,

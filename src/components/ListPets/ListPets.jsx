@@ -6,8 +6,11 @@ import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import styles from './listPets.scss'
+import ErrorMessage from '../commons/ErrorMessage'
+import { useTranslation } from 'react-i18next'
 
 const ListPets = ({ pets, isUserAdopt }) => {
+  const { t } = useTranslation('listPets')
   const history = useHistory()
   const goToPet = useCallback(id => {
     history.push(`/`)
@@ -17,27 +20,31 @@ const ListPets = ({ pets, isUserAdopt }) => {
   }, [])
 
   return (
-    <LayoutTrantitions>
-      {pets.length > 0 && (
+    <>
+      {pets.length > 0 ? (
         <div className={styles.container}>
           {pets.map(pet => {
             return (
-              <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
-                <div onClick={() => goToPet(pet._id)}>
-                  <CardPets
-                    isAdopted={!isUserAdopt && pet.adopted}
-                    onClick={() => goToPet(pet._id)}
-                    image={pet.image[0]}
-                    namePet={pet.name}
-                    history={pet.history}
-                  />
-                </div>
-              </LazyLoad>
+              <LayoutTrantitions>
+                <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
+                  <div onClick={() => goToPet(pet._id)}>
+                    <CardPets
+                      isAdopted={!isUserAdopt && pet.adopted}
+                      onClick={() => goToPet(pet._id)}
+                      image={pet.image[0]}
+                      namePet={pet.name}
+                      history={pet.history}
+                    />
+                  </div>
+                </LazyLoad>
+              </LayoutTrantitions>
             )
           })}
         </div>
+      ) : (
+        <ErrorMessage text={t('petsNotFound')} typeMessage={'warning'} />
       )}
-    </LayoutTrantitions>
+    </>
   )
 }
 
