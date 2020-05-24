@@ -2,7 +2,8 @@
   "transitSearch": {
     "title": "Search volunteers",
     "labelGooglee": "Your Address",
-    "placeholderGoogle": "Find volunteers near you"
+    "placeholderGoogle": "Find volunteers near you",
+    "information": "Volunteers take care of pets temporarily until they find a home"
   },
   "protectionistSearch": {
     "title": "Find the nearest refuge",
