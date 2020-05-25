@@ -23,6 +23,7 @@ class UserStore {
   @observable isError = false
   @observable textAddress = ''
   @observable isLoading = false
+  @observable newPreviewsImage = ''
   @observable passwordError = false
   @observable isUserTransit = false
   @observable localStorageUser = []
@@ -31,21 +32,19 @@ class UserStore {
 
   @action
   async saveUser() {
+    this.isLoading = true
     const data = new FormData()
 
-    Object.entries(this.user.getJson(this.user)).forEach(([key, value]) => {
+    Object.entries(this.user.getJson()).forEach(([key, value]) => {
       data.append(key, value)
     })
 
     try {
-      const response = await this.editUserServices.save(data)
+      await this.editUserServices.save(data)
 
       runInAction(() => {
-        this.user = response
-        this.loadUser(this.user._id)
-        setTimeout(() => {
-          window.location.reload()
-        }, 300)
+        this.isLoading = false
+        window.location.reload()
       })
     } catch (e) {
       runInAction(() => {
@@ -56,6 +55,7 @@ class UserStore {
 
   @action
   async loadUser(id) {
+    this.isLoading = true
     try {
       const response = await this.editUserServices.getUser(id)
 
@@ -63,6 +63,7 @@ class UserStore {
         this.formatNameRole()
         this.user.fillJson(response)
         this.setLocalStorage.setUser(response)
+        this.isLoading = false
       })
     } catch (e) {
       runInAction(() => {
@@ -97,6 +98,11 @@ class UserStore {
     if (this.user.rol.value === 'adopter') {
       this.nameRol = USER_ADOPTER
     }
+  }
+
+  @action
+  setNewsPreviewsImage(image) {
+    this.newPreviewsImage = image
   }
 
   @action

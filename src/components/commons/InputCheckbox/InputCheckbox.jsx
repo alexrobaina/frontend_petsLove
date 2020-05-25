@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Switch from 'react-input-switch'
 import c from 'classnames'
-import Title from 'components/commons/Title'
 import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
@@ -71,14 +70,14 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
   )
 }
 
-Title.propTypes = {
+InputCheckbox.propTypes = {
   text: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   isEdit: PropTypes.bool,
 }
 
-Title.defaultProps = {
+InputCheckbox.defaultProps = {
   text: '',
   value: '',
   isEdit: false,

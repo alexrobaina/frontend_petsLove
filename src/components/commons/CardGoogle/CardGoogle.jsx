@@ -36,11 +36,19 @@ const CardGoogle = ({ image, name, email, textButton, id }) => {
 }
 
 CardGoogle.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  textButton: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  email: PropTypes.string,
+  textButton: PropTypes.string,
+  image: PropTypes.string,
+}
+
+CardGoogle.defaultProps = {
+  image: '',
+  email: '',
+  textButton: '',
+  id: '',
+  name: '',
 }
 
 export default observer(CardGoogle)

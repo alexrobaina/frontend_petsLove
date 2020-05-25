@@ -73,7 +73,7 @@ const Input = ({
 
 Input.propTypes = {
   type: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   onBlur: PropTypes.string,
   multiple: PropTypes.bool,
@@ -84,6 +84,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+  handleChange: null,
   isEdit: false,
   value: '',
   type: 'text',

@@ -19,6 +19,7 @@ import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import SearchUsersStore from 'stores/SearchUsersStore'
 import styles from './editPet.scss'
+import Loading from '../../components/commons/Loading'
 
 const EditPet = () => {
   const history = useHistory()
@@ -164,6 +165,10 @@ const EditPet = () => {
     }
   }, [createPetStore.requestSuccess])
 
+  if (authStore.isLoading) {
+    return <Loading loadingRing />
+  }
+
   return (
     <LayoutContainer
       viewButtonBack
@@ -189,7 +194,6 @@ const EditPet = () => {
               </div>
             )
           })}
-
         {createPetStore.imagePreview &&
           createPetStore.imagePreview.map(image => {
             return (

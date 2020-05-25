@@ -23,6 +23,8 @@ Title.propTypes = {
   rolText: PropTypes.string,
   subTitle: PropTypes.string,
   timeAnimation: PropTypes.number,
+  withMargin: PropTypes.string,
+  mTop: PropTypes.string,
 }
 
 Title.defaultProps = {
@@ -30,6 +32,8 @@ Title.defaultProps = {
   title: 'Pets Love',
   subTitle: '',
   rolText: '',
+  withMargin: '',
+  mTop: '',
 }
 
 export default Title

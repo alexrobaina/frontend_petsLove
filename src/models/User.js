@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx'
+import { observable } from 'mobx'
 import InputStore from 'stores/InputStore'
 
 const USER_TRANSIT = 'Transit pets.'
@@ -31,7 +31,6 @@ class User {
     this.lng.setValue(address.lng)
   }
 
-  @action
   setRole() {
     if (this.rol.value === 'transitUser') {
       return USER_TRANSIT
@@ -42,7 +41,7 @@ class User {
     if (this.rol.value === 'adopter') {
       return USER_ADOPTER
     }
-    return false
+    return ''
   }
 
   fillJson(user) {
@@ -63,24 +62,24 @@ class User {
     this.canTransit = user.canTransit
   }
 
-  static getJson(user) {
+  getJson() {
     return {
-      _id: user._id,
-      image: user.image.value,
-      name: user.name.value,
-      rol: user.rol.value,
-      email: user.email.value,
-      phone: user.phone.value,
-      aboutUs: user.aboutUs.value,
-      lat: user.lat.value,
-      lng: user.lng.value,
-      username: user.username.value,
-      textAddress: user.textAddress.value,
-      password: user.password.value,
-      requirementsToAdopt: user.requirementsToAdopt.value,
-      canTransit: user.canTransit,
-      state: user.state,
-      terms: user.terms,
+      _id: this._id,
+      image: this.image.value,
+      name: this.name.value,
+      rol: this.rol.value,
+      email: this.email.value,
+      phone: this.phone.value,
+      aboutUs: this.aboutUs.value,
+      lat: this.lat.value,
+      lng: this.lng.value,
+      username: this.username.value,
+      textAddress: this.textAddress.value,
+      password: this.password.value,
+      requirementsToAdopt: this.requirementsToAdopt.value,
+      canTransit: this.canTransit,
+      state: this.state,
+      terms: this.terms,
     }
   }
 }

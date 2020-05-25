@@ -15,6 +15,7 @@ import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAuto
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import Textarea from 'components/commons/Textarea'
+import Loading from 'components/commons/Loading'
 import Title from 'components/commons/Title'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import ViewValue from 'components/commons/ViewValue'
@@ -35,6 +36,15 @@ const EditUser = () => {
 
   const handleChangeImage = useCallback(e => {
     userStore.setImage(e.target.files[0])
+
+    const fileList = Array.from(e.target.files)
+
+    const mappedFiles = fileList.map(file => ({
+      ...file,
+      preview: URL.createObjectURL(file),
+    }))
+
+    userStore.setNewsPreviewsImage(mappedFiles)
   })
 
   const handleChangeTextAddress = useCallback(location => {
@@ -89,6 +99,14 @@ const EditUser = () => {
     userStore.loadUser(id)
   }, [])
 
+  if (userStore.isLoading) {
+    return (
+      <div className={styles.containerLoading}>
+        <Loading loadingRing />
+      </div>
+    )
+  }
+
   return (
     <LayoutContainer title="My profile">
       <div className={styles.containerImage}>
@@ -97,6 +115,7 @@ const EditUser = () => {
             size={50}
             isProfile
             imgUser={userStore.user.image}
+            imagePreview={userStore.newPreviewsImage}
             isUserLogin={rootStore.authStore.isLogin}
           />
         </div>

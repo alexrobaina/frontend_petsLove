@@ -28,11 +28,11 @@ class UserIdStore {
       const response = await this.profilesUsersService.getUSerId(id)
 
       runInAction(() => {
+        this.user = response
+        this.images = this.user.image
         setTimeout(() => {
           this.isLoading = false
         }, 2000)
-        this.user = response
-        this.images = this.user.image
       })
     } catch (e) {
       runInAction(() => {
