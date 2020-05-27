@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
