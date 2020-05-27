@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Switch from 'react-input-switch'
 import c from 'classnames'
@@ -73,14 +74,14 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
 InputCheckbox.propTypes = {
   text: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.bool,
   isEdit: PropTypes.bool,
 }
 
 InputCheckbox.defaultProps = {
   text: '',
-  value: '',
+  value: false,
   isEdit: false,
 }
 
-export default InputCheckbox
+export default observer(InputCheckbox)

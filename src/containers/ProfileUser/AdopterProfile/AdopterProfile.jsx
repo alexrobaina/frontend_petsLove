@@ -21,12 +21,12 @@ const AdopterProfile = ({ user }) => {
   const param = useParams()
   const { name, image, lat, lng, aboutUs } = user
 
+  const onError = () => {
+    setIsImageNotFound(false)
+  }
+
   useEffect(() => {
     searchPetsStore.getPetForUser(param.id)
-  }, [])
-
-  const onError = useCallback(() => {
-    setIsImageNotFound(false)
   }, [])
 
   return (
@@ -58,7 +58,7 @@ const AdopterProfile = ({ user }) => {
 }
 
 AdopterProfile.propTypes = {
-  user: PropTypes.arrayOf([PropTypes.array]).isRequired,
+  user: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
 }
 
 export default observer(AdopterProfile)

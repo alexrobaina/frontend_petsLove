@@ -23,14 +23,14 @@ const DashboardCard = ({ icon, iconTwo, titleCard, numberCard, handleClick }) =>
 DashboardCard.propTypes = {
   handleClick: PropTypes.func,
   titleCard: PropTypes.string,
-  numberCard: PropTypes.string,
+  numberCard: PropTypes.number,
   icon: PropTypes.node,
   iconTwo: PropTypes.node,
 }
 
 DashboardCard.defaultProps = {
   handleClick: null,
-  numberCard: '',
+  numberCard: 0,
   titleCard: '',
   icon: null,
   iconTwo: null,

@@ -25,7 +25,7 @@ const PrivateRoute = ({ component: Component, isLogin, redirectPath, ...rest }) 
 
 PrivateRoute.propTypes = {
   redirectPath: PropTypes.string.isRequired,
-  component: PropTypes.func.isRequired,
+  component: PropTypes.elementType.isRequired,
 }
 
 export default observer(PrivateRoute)

@@ -226,7 +226,7 @@ const EditUser = () => {
             isEdit={userStore.isEdit}
             label={t('address')}
             placeholder={t('address')}
-            inputStore={userStore.user.textAddress}
+            inputStoreError={userStore.user.textAddress}
             value={userStore.user.textAddress.value}
             handleChangeAddress={handleChangeAddress}
             handleChangeTextAddress={handleChangeTextAddress}

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAutocomplete'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
+import Loading from 'components/commons/Loading'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import VolunteersStore from 'stores/VolunteersStore'
 import styles from './searchVolunteers.scss'
@@ -11,6 +12,7 @@ import styles from './searchVolunteers.scss'
 const SearchVolunteers = () => {
   const { t } = useTranslation('allSearch')
   const [stateAddress, setAddress] = useState({})
+  const [loading, setSetLoadint] = useState(false)
   const volunteersStore = useLocalStore(() => new VolunteersStore())
 
   const handleChangeAddress = useCallback(address => {
@@ -22,12 +24,22 @@ const SearchVolunteers = () => {
   }
 
   useEffect(() => {
+    setSetLoadint(true)
+
+    setTimeout(() => {
+      setSetLoadint(false)
+    }, 1500)
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
     }
 
     volunteersStore.searchVolunteers()
   }, [])
+
+  if (loading) {
+    return <Loading loadingRing />
+  }
 
   return (
     <div className={styles.containerTransit}>
@@ -48,7 +60,6 @@ const SearchVolunteers = () => {
                 <GoogleMapsLocation
                   location={stateAddress}
                   users={volunteersStore.volunteers}
-                  arrayLocation={volunteersStore.arrayLocationVolunteers}
                 />
               </LayoutTrantitions>
             </div>

@@ -29,7 +29,7 @@ Title.propTypes = {
 
 Title.defaultProps = {
   timeAnimation: 2,
-  title: 'Pets Love',
+  title: '',
   subTitle: '',
   rolText: '',
   withMargin: '',

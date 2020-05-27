@@ -1,12 +1,14 @@
 @import 'styles/mixings';
 
-@import 'styles/mixings';
-
 .buttonMenu {
   color: $title;
   cursor: pointer;
   text-align: center;
   padding: 20px;
+
+  @include media-breakpoint-only(xs) {
+    padding: 5px;
+  }
 }
 
 .containerMenu {

@@ -81,7 +81,7 @@ const ProtectionistProfile = ({ user }) => {
 }
 
 ProtectionistProfile.propTypes = {
-  user: PropTypes.arrayOf([PropTypes.array]).isRequired,
+  user: PropTypes.object,
 }
 
 export default observer(ProtectionistProfile)

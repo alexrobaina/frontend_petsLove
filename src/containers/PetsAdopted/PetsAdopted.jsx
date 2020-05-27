@@ -15,6 +15,7 @@ const PetsAdopted = ({ id }) => {
   useEffect(() => {
     searchPetsStore.getPetAdopted(id)
   }, [])
+  
   return (
     <>
       <LayoutContainerCardsPets>
