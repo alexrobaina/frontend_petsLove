@@ -22,10 +22,10 @@ const Modal = ({
     <>
       <div className={c(styles.modalCard, openModal && styles.openModal)}>
         <Animated
-          animationIn="bounceInDown"
+          isVisible
           animationOut="fadeInUp"
-          isVisible="true"
           animationInDuration={500}
+          animationIn="bounceInDown"
         >
           {isIcon && <>{error ? <ErrorIcon /> : <SuccessIcon />}</>}
           <div className={styles.contentModals}>
@@ -49,12 +49,13 @@ const Modal = ({
 Modal.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   error: PropTypes.bool,
   isIcon: PropTypes.bool,
 }
 
 Modal.defaultProps = {
+  text: '',
   error: false,
   isIcon: false,
   children: null,

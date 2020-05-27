@@ -1,14 +1,17 @@
-@import 'styles/variable';
+@import 'styles/mixings';
 
 .containerButtons {
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin-right: -10px;
 }
 
 .btnMargin {
   margin-left: 10px;
+
+  @include media-breakpoint-only(xs) {
+    margin-left: 2px;
+  }
 }
 
 .editButton {
@@ -18,7 +21,24 @@
 
 .butonsShare {
   margin-left: 10px;
-  border-radius: 100px !important;
+  border-radius: 100px;
+
+  &:hover {
+    background-color: $secundary;
+    transform: translateY(-0.25em);
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus {
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.25em);
+    outline: 0;
+  }
+
+  @include media-breakpoint-only(xs) {
+    margin: 0;
+    margin-left: 2px;
+  }
 }
 
 .textInformation {
@@ -55,4 +75,9 @@
     transform: translateY(-0.25em);
     outline: 0;
   }
+}
+
+.buttonLinkQuery {
+  height: 30px;
+  width: 30px;
 }

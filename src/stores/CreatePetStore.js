@@ -17,7 +17,7 @@ class CreatePetStore {
   @observable imagesNews = []
   @observable newPreviewsImage = []
   @observable address = {}
-  @observable location = {}
+  @observable location = { lat: -34.603722, lng: -58.381592 }
   @observable urgent = false
   @observable sterilized = false
   @observable lost = false

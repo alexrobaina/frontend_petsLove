@@ -12,6 +12,10 @@ class AuthStore {
     this.authService = new AuthService()
     this.validateToken()
     this.getUser()
+
+    if (this.user) {
+      this.loadUser(this.user._id)
+    }
   }
 
   @observable user = []

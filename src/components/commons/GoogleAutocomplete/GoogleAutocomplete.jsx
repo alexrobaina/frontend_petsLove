@@ -1,16 +1,15 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import InputStore from 'stores/InputStore'
 import ViewValue from '../ViewValue'
 import styles from './googleAutocomplete.scss'
 
 const GoogleAutocomplete = observer(
   ({
-    inputStore,
+    inputStoreError,
     handleChangeTextAddress,
     handleChangeAddress,
     placeholder,
@@ -47,7 +46,11 @@ const GoogleAutocomplete = observer(
                 ) : (
                   <input
                     name={name}
-                    className={c(styles.input, inputStore.error && styles.isError)}
+                    value={value}
+                    className={c(
+                      styles.input,
+                      inputStoreError ? inputStoreError.error && styles.isError : ''
+                    )}
                     {...getInputProps({
                       placeholder,
                     })}
@@ -87,7 +90,9 @@ const GoogleAutocomplete = observer(
             )
           }}
         </PlacesAutocomplete>
-        {inputStore && <div className={styles.errorMessage}>{inputStore.errorMessage}</div>}
+        {inputStoreError && (
+          <div className={styles.errorMessage}>{inputStoreError.errorMessage}</div>
+        )}
       </>
     )
   }
@@ -100,7 +105,7 @@ GoogleAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   handleChangeAddress: PropTypes.func,
   handleChangeTextAddress: PropTypes.func,
-  inputStore: PropTypes.instanceOf(InputStore),
+  inputStoreError: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string])),
 }
 
 GoogleAutocomplete.defaultProps = {
@@ -108,7 +113,7 @@ GoogleAutocomplete.defaultProps = {
   value: '',
   isEdit: false,
   placeholder: '',
-  inputStore: false,
+  inputStoreError: null,
   handleChangeAddress: null,
   handleChangeTextAddress: null,
 }

@@ -2,19 +2,20 @@ import React from 'react'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import FormForgotPassword from 'components/FormForgotPassword'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
+import LayoutContainer from 'components/commons/LayoutContainer'
 import catImage from './imageCat.jpg'
 import styles from './forgotPassword.scss'
 
 const ForgotPassword = () => {
   return (
-    <LayoutTrantitions>
-      <div className={styles.containerForgotPassword}>
-        <ImageInformationLeft image={catImage} />
-        <div className={styles.containerForm}>
-          <FormForgotPassword />
+      <LayoutTrantitions>
+        <div className={styles.containerForgotPassword}>
+          <ImageInformationLeft image={catImage} />
+          <div className={styles.containerForm}>
+            <FormForgotPassword />
+          </div>
         </div>
-      </div>
-    </LayoutTrantitions>
+      </LayoutTrantitions>
   )
 }
 

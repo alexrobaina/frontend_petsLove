@@ -213,7 +213,7 @@ const CreatePet = () => {
             <InputCheckbox
               isEdit
               text={t('urgent')}
-              value={createPetStore.urgent}
+              value={createPetStore.pet.urgent}
               handleChange={handleChangeUrgent}
             />
           </div>
@@ -221,7 +221,7 @@ const CreatePet = () => {
             <InputCheckbox
               isEdit
               text={t('lost')}
-              value={createPetStore.lost}
+              value={createPetStore.pet.lost}
               handleChange={handleChangeLost}
             />
           </div>
@@ -231,7 +231,7 @@ const CreatePet = () => {
             <InputCheckbox
               isEdit
               text={t('sterilized')}
-              value={createPetStore.sterilized}
+              value={createPetStore.pet.sterilized}
               handleChange={handleChangeSterilized}
             />
           </div>
@@ -239,7 +239,7 @@ const CreatePet = () => {
             <InputCheckbox
               isEdit
               text={t('vaccinated')}
-              value={createPetStore.vaccinated}
+              value={createPetStore.pet.vaccinated}
               handleChange={handleChangeVaccinated}
             />
           </div>
@@ -251,7 +251,7 @@ const CreatePet = () => {
             placeholder={t('addAddressPet')}
             value={createPetStore.pet.textAddress.value}
             handleChangeAddress={handleChangeAddress}
-            inputStore={createPetStore.pet.textAddress}
+            inputStoreError={createPetStore.pet.textAddress}
             handleChangeTextAddress={handleChangeTextAddress}
           />
         </div>

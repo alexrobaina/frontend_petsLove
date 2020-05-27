@@ -32,18 +32,6 @@ const Navbar = ({ children }) => {
     setViewMenuProfile(!viewMenuProfile)
   })
 
-  useEffect(() => {
-    if (authStore.user) {
-      authStore.loadUser(authStore.user._id)
-    }
-
-    if (!viewMenuProfile) {
-      setTimeout(() => {
-        setViewMenuProfile(true)
-      }, 3500)
-    }
-  }, [viewMenuProfile])
-
   const handleMenu = useCallback((link, id, haveId) => {
     if (haveId) {
       history.push(`${link}/${id}`)

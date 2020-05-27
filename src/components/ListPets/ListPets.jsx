@@ -15,8 +15,7 @@ const ListPets = ({ pets, isUserAdopt }) => {
   const goToPet = useCallback(id => {
     history.push(`/`)
     history.push(`profile-pets/${id}`)
-    // eslint-disable-next-line no-restricted-globals
-    location.reload()
+    window.location.reload()
   }, [])
 
   return (
@@ -25,8 +24,8 @@ const ListPets = ({ pets, isUserAdopt }) => {
         <div className={styles.container}>
           {pets.map(pet => {
             return (
-              <LayoutTrantitions>
-                <LazyLoad kye={pet._id} height={50} offsetVertical={50}>
+              <LayoutTrantitions key={`${pet._id}`}>
+                <LazyLoad height={50} offsetVertical={50}>
                   <div onClick={() => goToPet(pet._id)}>
                     <CardPets
                       isAdopted={!isUserAdopt && pet.adopted}

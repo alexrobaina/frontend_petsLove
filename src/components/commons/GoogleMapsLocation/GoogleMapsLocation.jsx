@@ -96,9 +96,8 @@ const GoogleMapsLocation = observer(
 )
 
 GoogleMapsLocation.propTypes = {
-  location: PropTypes.arrayOf([PropTypes.array]),
-  arrayLocation: PropTypes.arrayOf([PropTypes.array]),
-  users: PropTypes.arrayOf([PropTypes.array]),
+  location: PropTypes.objectOf(PropTypes.number),
+  users: PropTypes.array,
   showAddress: PropTypes.bool,
   isProfilePet: PropTypes.bool,
   card: PropTypes.node,
@@ -110,7 +109,6 @@ GoogleMapsLocation.propTypes = {
 
 GoogleMapsLocation.defaultProps = {
   isLocationPet: false,
-  arrayLocation: [],
   users: null,
   card: null,
   phone: 'No have phone',

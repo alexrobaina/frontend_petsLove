@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '50px',
+    marginTop: '150px',
     '& > * + *': {
       marginLeft: theme.spacing(2),
     },

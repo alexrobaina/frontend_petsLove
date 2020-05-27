@@ -7,6 +7,7 @@ import useMediaQuery from 'utils/Hooks'
 import { useHistory } from 'react-router'
 import { Helmet } from 'react-helmet'
 import { FaWhatsapp } from 'react-icons/fa'
+import c from 'classnames'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
 import { SERVER } from 'services/config'
@@ -18,6 +19,7 @@ import styles from './buttonsPet.scss'
 const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
   const [openModal, setOpenModal] = useState(false)
   const isWithBase = useMediaQuery('(max-width: 500px)')
+  const iconsSocialMedia = useMediaQuery('(max-width: 400px)')
   const { t } = useTranslation('whatsappMessage')
   const history = useHistory()
 
@@ -51,10 +53,10 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       </Helmet>
       <div className={styles.btnMargin}>
         <FacebookShareButton url={window.location.href}>
-          <FacebookIcon className={styles.butonsShare} size={40} />
+          <FacebookIcon className={styles.butonsShare} size={iconsSocialMedia ? 30 : 40} />
         </FacebookShareButton>
         <TwitterShareButton url={window.location.href}>
-          <TwitterIcon className={styles.butonsShare} size={40} />
+          <TwitterIcon className={styles.butonsShare} size={iconsSocialMedia ? 30 : 40} />
         </TwitterShareButton>
       </div>
       <div className={styles.btnMargin}>
@@ -68,13 +70,21 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
           <div className={styles.textInformation}>{t('descriptionModal')}</div>
           <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />
         </Modal>
-        <div onClick={handleToggle} className={styles.buttonLink}>
-          <FaWhatsapp size={25} />
+        <div
+          onClick={handleToggle}
+          className={c(styles.buttonLink, iconsSocialMedia && styles.buttonLinkQuery)}
+        >
+          <FaWhatsapp size={iconsSocialMedia ? 18 : 25} />
         </div>
       </div>
       {petIsEdit && (
         <div className={styles.editButton}>
-          <Button type="button" handleClick={() => editPet(pet._id)} icon={<MdEdit size={20} />} circle />
+          <Button
+            type="button"
+            handleClick={() => editPet(pet._id)}
+            icon={<MdEdit size={20} />}
+            circle
+          />
         </div>
       )}
     </div>
@@ -85,10 +95,11 @@ ButtonsPet.propTypes = {
   phone: PropTypes.string,
   email: PropTypes.string,
   petIsEdit: PropTypes.bool,
-  pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  pet: PropTypes.oneOfType([PropTypes.array]),
 }
 
 ButtonsPet.defaultProps = {
+  pet: null,
   email: '',
   phone: '',
   petIsEdit: false,

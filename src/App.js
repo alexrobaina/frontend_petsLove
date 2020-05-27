@@ -50,8 +50,8 @@ function App() {
   return (
     <UserContext.Provider value={rootStore}>
       <Router history={historyBrowser}>
+        <ScrollMemory />
         <Navbar>
-          <ScrollMemory />
           <Switch>
             <Route exact path={REGISTER} component={Register} />
             <Route exact path={RESET_PASSWORD} component={ResetPassword} />
