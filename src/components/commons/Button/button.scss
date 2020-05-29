@@ -24,8 +24,9 @@ button:focus {
   height: 38px;
   text-transform: capitalize;
   width: 175px;
-  transition: 0.3s;
+  transition: 0.1s;
   cursor: pointer;
+  align-items: center;
 
   &.bigButton {
     width: 100%;
@@ -65,7 +66,8 @@ button:focus {
   text-transform: capitalize;
   width: 40px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.1s;
+  align-items: center;
 
   .transparent & {
     color: $title;

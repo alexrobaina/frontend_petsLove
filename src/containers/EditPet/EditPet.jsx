@@ -22,12 +22,12 @@ import styles from './editPet.scss'
 import Loading from '../../components/commons/Loading'
 
 const EditPet = () => {
+  const { t } = useTranslation('createPet')
   const history = useHistory()
   const { id } = useParams()
   const [addressLocation, setAddress] = useState({})
   const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
-  const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
@@ -185,7 +185,7 @@ const EditPet = () => {
                 <img className={styles.imagePreview} src={image.preview} alt="pets" />
                 <div className={styles.middle}>
                   <div
-                    onClick={() => deleteImageNewPreviews(image.preview)}
+                    onClick={() => deleteImageNewPreviews(image)}
                     className={styles.containerIcon}
                   >
                     <MdCancel className={styles.iconImage} size={20} />
@@ -213,10 +213,10 @@ const EditPet = () => {
           <div className={styles.colInputImage}>
             <input
               multiple
+              type="file"
               ref={fileUpload}
               className={styles.inputFile}
               onChange={handleChangeImage}
-              type="file"
               placeholder={t('placeholderImages')}
             />
             <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
@@ -250,9 +250,9 @@ const EditPet = () => {
             <div className={styles.col}>
               <InputSelect
                 isEdit={createPetStore.isEdit}
-                options={searchUsersStore.arrayUsersTransit}
                 handleChange={handleTransitUser}
                 placeholder={t('assignUserTransit')}
+                options={searchUsersStore.arrayUsersTransit}
               />
             </div>
           </>

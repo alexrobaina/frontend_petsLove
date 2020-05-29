@@ -18,7 +18,6 @@ const InputSelect = ({
   title,
   name,
 }) => {
-
   return (
     <>
       {!isEdit && value ? (

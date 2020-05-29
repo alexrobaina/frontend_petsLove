@@ -3,7 +3,6 @@ import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { MdCancel, MdUpdate } from 'react-icons/md'
 import { useHistory, useParams } from 'react-router'
-import { SERVER } from 'services/config'
 import c from 'classnames'
 import Input from 'components/commons/Input'
 import LayoutContainer from 'components/commons/LayoutContainer'
@@ -112,7 +111,7 @@ const CreatePet = () => {
   }, [])
 
   const deleteImage = useCallback(image => {
-    createPetStore.deleteImageArray(image)
+    createPetStore.deleteNewPreviewsImage(image)
   }, [])
 
   const handleSave = useCallback(() => {
@@ -152,14 +151,6 @@ const CreatePet = () => {
             return (
               <div className={styles.containerImage}>
                 <img className={styles.imagePreview} src={image.preview} alt="pets" />
-              </div>
-            )
-          })}
-        {createPetStore.imagePreview &&
-          createPetStore.imagePreview.map(image => {
-            return (
-              <div className={styles.containerImage}>
-                <img className={styles.imagePreview} src={`${SERVER}/${image}`} alt="pets" />
                 <div className={styles.middle}>
                   <div onClick={() => deleteImage(image)} className={styles.containerIcon}>
                     <MdCancel className={styles.iconImage} size={20} />

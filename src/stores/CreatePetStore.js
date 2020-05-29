@@ -70,14 +70,6 @@ class CreatePetStore {
     this.requestSuccess = false
     const data = new FormData()
 
-    if (this.pet.userAdopter) {
-      data.userAdopt = this.pet.userAdopter.value
-    }
-
-    if (this.pet.transitUser) {
-      data.userTransit = this.pet.transitUser.value
-    }
-
     if (this.pet.image.value.length > 0) {
       Object.values(this.pet.image.value).forEach(value => {
         data.append('image', value)
@@ -93,12 +85,12 @@ class CreatePetStore {
         data.append(key, value)
       }
       if (key === 'userAdopt') {
-        if (value !== '') {
+        if (value !== '' && value !== undefined) {
           data.append(key, value)
         }
       }
       if (key === 'userTransit') {
-        if (value !== '') {
+        if (value !== '' && value !== undefined) {
           data.append(key, value)
         }
       }
@@ -154,6 +146,15 @@ class CreatePetStore {
     this.imagePreview.forEach(preview => {
       this.pet.image.setValue(preview !== image)
     })
+  }
+
+  // this function is only for set image previews
+  @action
+  deleteNewPreviewsImage(image) {
+    let imageTemporal = this.newPreviewsImage.filter(preview => {
+      return preview.preview !== image.preview
+    })
+    this.newPreviewsImage = imageTemporal
   }
 
   @action
