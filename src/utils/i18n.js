@@ -45,6 +45,7 @@ i18n
       escapeValue: false,
     },
     react: {
+      useSuspense: false,
       wait: true,
       bindI18n: 'languageChanged loaded',
     },

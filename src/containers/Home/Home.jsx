@@ -52,6 +52,7 @@ const Home = () => {
             </LayoutTrantitions>
           </div>
         )}
+        
       </div>
     </LayoutContainer>
   )

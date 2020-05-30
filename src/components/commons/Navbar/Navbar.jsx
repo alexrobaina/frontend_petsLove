@@ -44,6 +44,10 @@ const Navbar = ({ children }) => {
     history.push(HOME)
   }, [])
 
+  if (rootStore.authStore.isLoading) {
+    return <Loading loadingRing />
+  }
+
   return (
     <>
       <div className={styles.containerNavbar}>
