@@ -37,7 +37,7 @@ const ProtectionistProfile = ({ user }) => {
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
+        <Title rolText={t('protectionistUser.role')} title={t('protectionistUser.titleNameUser', { name })} />
         <ButtonsPet email={email} phone={phone} image={image} />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>

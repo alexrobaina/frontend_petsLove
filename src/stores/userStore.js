@@ -4,10 +4,14 @@ import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
 import imageCompression from 'browser-image-compression'
+import validationPassword from '../utils/validationPassword'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
 const USER_ADOPTER = 'You want adopt.'
+
+const PASSWORD_MATCH = 'The password need match'
+const REQUERID = 'The password is requerid'
 
 class UserStore {
   constructor() {
@@ -36,27 +40,25 @@ class UserStore {
 
   @action
   async saveUser() {
-    if (this.isResize) {
-      this.isLoading = true
-      const data = new FormData()
+    this.isLoading = true
+    const data = new FormData()
 
-      Object.entries(this.user.getJson()).forEach(([key, value]) => {
-        data.append(key, value)
+    Object.entries(this.user.getJson()).forEach(([key, value]) => {
+      data.append(key, value)
+    })
+
+    try {
+      await this.editUserServices.save(data)
+
+      runInAction(() => {
+        this.isLoading = false
+        window.location.reload()
       })
-
-      try {
-        // await this.editUserServices.save(data)
-
-        runInAction(() => {
-          this.isLoading = false
-          // window.location.reload()
-        })
-      } catch (e) {
-        runInAction(() => {
-          this.isLoading = false
-          console.log(e)
-        })
-      }
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
     }
   }
 
@@ -117,25 +119,38 @@ class UserStore {
   @action
   setPassword(value) {
     this.user.password.setValue(value)
-    if (this.user.password.value === this.confirmPassword.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+    this.validate()
   }
 
   @action
   setConfirmPassword(value) {
     this.confirmPassword.setValue(value)
-    if (this.confirmPassword.value === this.user.password.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
+    this.validate()
+  }
+
+  @action
+  validate() {
+    let isValidate = true
+
+    if (!this.user.password.value) {
+      this.user.password.setError(true, REQUERID)
+      alert(3)
+      isValidate = false
     }
+
+    if (this.confirmPassword.value !== this.user.password.value) {
+      this.confirmPassword.setError(true, PASSWORD_MATCH)
+      alert(2)
+
+      isValidate = false
+    }
+
+    if (validationPassword(this.user.password)) {
+      alert(1)
+      isValidate = false
+    }
+
+    return isValidate
   }
 
   @action
