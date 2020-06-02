@@ -1,9 +1,9 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
+import imageCompression from 'browser-image-compression'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
-import imageCompression from 'browser-image-compression'
 import validationPassword from '../utils/validationPassword'
 
 const USER_TRANSIT = 'Transit pets.'
@@ -134,19 +134,17 @@ class UserStore {
 
     if (!this.user.password.value) {
       this.user.password.setError(true, REQUERID)
-      alert(3)
+
       isValidate = false
     }
 
     if (this.confirmPassword.value !== this.user.password.value) {
       this.confirmPassword.setError(true, PASSWORD_MATCH)
-      alert(2)
 
       isValidate = false
     }
 
     if (validationPassword(this.user.password)) {
-      alert(1)
       isValidate = false
     }
 
