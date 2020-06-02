@@ -32,11 +32,9 @@ const GoogleMapsLocation = observer(
       setIsImageNotFound(false)
     }, [])
 
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 1500)
-    }, [])
+    setTimeout(() => {
+      setLoading(false)
+    }, 1500)
 
     if (isLoading) {
       return <Loading loadingRing />

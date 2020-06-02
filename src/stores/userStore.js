@@ -3,10 +3,15 @@ import EditUserServices from 'services/EditUserServices'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
+import imageCompression from 'browser-image-compression'
+import validationPassword from '../utils/validationPassword'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
 const USER_ADOPTER = 'You want adopt.'
+
+const PASSWORD_MATCH = 'The password need match'
+const REQUERID = 'The password is requerid'
 
 class UserStore {
   constructor() {
@@ -21,12 +26,15 @@ class UserStore {
   @observable isEdit = false
   @observable canEdit = false
   @observable isError = false
+  @observable imageResize = []
   @observable textAddress = ''
+  @observable isResize = false
   @observable isLoading = false
   @observable newPreviewsImage = ''
   @observable passwordError = false
   @observable isUserTransit = false
   @observable localStorageUser = []
+  @observable isLoadingResize = false
   @observable passwordSuccess = false
   @observable confirmPassword = new InputStore()
 
@@ -48,6 +56,7 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isLoading = false
         console.log(e)
       })
     }
@@ -56,6 +65,7 @@ class UserStore {
   @action
   async loadUser(id) {
     this.isLoading = true
+
     try {
       const response = await this.editUserServices.getUser(id)
 
@@ -67,6 +77,7 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isLoading = false
         console.log(e)
       })
     }
@@ -108,25 +119,38 @@ class UserStore {
   @action
   setPassword(value) {
     this.user.password.setValue(value)
-    if (this.user.password.value === this.confirmPassword.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+    this.validate()
   }
 
   @action
   setConfirmPassword(value) {
     this.confirmPassword.setValue(value)
-    if (this.confirmPassword.value === this.user.password.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
+    this.validate()
+  }
+
+  @action
+  validate() {
+    let isValidate = true
+
+    if (!this.user.password.value) {
+      this.user.password.setError(true, REQUERID)
+      alert(3)
+      isValidate = false
     }
+
+    if (this.confirmPassword.value !== this.user.password.value) {
+      this.confirmPassword.setError(true, PASSWORD_MATCH)
+      alert(2)
+
+      isValidate = false
+    }
+
+    if (validationPassword(this.user.password)) {
+      alert(1)
+      isValidate = false
+    }
+
+    return isValidate
   }
 
   @action
@@ -154,11 +178,6 @@ class UserStore {
   }
 
   @action
-  setImage(value) {
-    this.user.image.setValue(value)
-  }
-
-  @action
   setCanTransit() {
     this.user.canTransit = !this.user.canTransit
   }
@@ -178,6 +197,56 @@ class UserStore {
   setUsername(value) {
     this.user.username.setValue(value)
   }
+
+  // ============================================
+  // This functions resize images. Need move to ultils
+  // ============================================
+
+  @action
+  resize() {
+    this.compressImage(this.user.image.value)
+  }
+
+  @action
+  async compressImage(event) {
+    this.isResize = false
+    this.isLoadingResize = true
+    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
+    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 800,
+      useWebWorker: true,
+    }
+    try {
+      const compressedFile = await imageCompression(event, options)
+      this.isLoadingResize = false
+      this.isResize = true
+      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
+      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
+
+      await this.setImageResize(compressedFile) // write your own logic
+    } catch (error) {
+      this.isLoadingResize = false
+      console.log(error)
+    }
+  }
+
+  @action
+  setImageResize(image) {
+    this.imageResize.push(image)
+  }
+
+  @action
+  setImage(value) {
+    this.user.image.setValue(value)
+    this.resize()
+  }
+
+  // ============================================
+  // END resize images.
+  // ============================================
 }
 
 export default UserStore

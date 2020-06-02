@@ -1,6 +1,6 @@
 {
   "title": "Crear una nueva mascota",
-  "subtitle": "Es importante que complete todos los campos",
+  "subtitle": "Completar todos los campos aumenta las probabilidadades de adopción",
   "backPets": "Volver al perfil",
   "placeholderImages": "Agregue imágenes de la mascota",
   "addFile": "Seleccione fotos",
@@ -51,5 +51,6 @@
   "quiet": "Traquilo y quiero",
   "energetic": "Enegético",
   "superEnergetic": "Super Energético",
-  "activity": "Nivel de actividad"
+  "activity": "Nivel de actividad",
+  "last": "last"
 }

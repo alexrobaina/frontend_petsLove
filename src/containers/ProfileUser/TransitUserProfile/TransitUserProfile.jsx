@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
@@ -13,9 +13,15 @@ import ButtonsPet from '../../ProfilePets/ButtonsPet'
 import styles from './transitUserProfile.scss'
 
 const TransitUserProfile = ({ user }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
   const { t } = useTranslation('profileUser')
-  const { name, image, lat, lng, phone, email, _id } = user
 
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+  
+  const { name, image, lat, lng, phone, email, _id } = user
+  
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
@@ -24,8 +30,9 @@ const TransitUserProfile = ({ user }) => {
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
+          onError={onError}
           className={styles.userImage}
-          src={image ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation

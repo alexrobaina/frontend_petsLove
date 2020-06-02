@@ -5,8 +5,6 @@ import PetsService from 'services/PetsService'
 class SearchPetsStore {
   constructor() {
     this.petsService = new PetsService()
-
-    this.getPetForUser()
   }
 
   @observable age = ''

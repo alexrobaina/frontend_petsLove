@@ -15,15 +15,16 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
+import Loading from 'components/commons/Loading'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
 const CreatePet = () => {
+  const { t } = useTranslation('createPet')
   const history = useHistory()
   const { id } = useParams()
   const [onlySave, setOnlySave] = useState(false)
   const fileUpload = useRef()
-  const { t } = useTranslation('createPet')
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
@@ -41,6 +42,33 @@ const CreatePet = () => {
 
     createPetStore.setNewsPreviewsImage(mappedFiles)
   })
+  
+  const ageOptions = [
+    { value: '1month', label: t('1month') },
+    { value: '2month', label: t('2month') },
+    { value: '3month', label: t('3month') },
+    { value: '4month', label: t('4month') },
+    { value: '5month', label: t('5month') },
+    { value: '6month', label: t('6month') },
+    { value: '7month', label: t('7month') },
+    { value: '8month', label: t('8month') },
+    { value: '9month', label: t('9month') },
+    { value: '10month', label: t('10month') },
+    { value: '11month', label: t('11month') },
+    { value: '12month', label: t('12month') },
+    { value: '1year', label: t('1year') },
+    { value: '2year', label: t('2year') },
+    { value: '3year', label: t('3year') },
+    { value: '4year', label: t('4year') },
+    { value: '5year', label: t('5year') },
+    { value: '6year', label: t('6year') },
+    { value: '7year', label: t('7year') },
+    { value: '8year', label: t('8year') },
+    { value: '9year', label: t('9year') },
+    { value: '10year', label: t('10year') },
+    { value: '11year', label: t('11year') },
+    { value: '12year', label: t('12year') },
+  ]
 
   const onClickFileUpload = useCallback(() => {
     fileUpload.current.click()
@@ -141,6 +169,10 @@ const CreatePet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
+
+  if (createPetStore.isLoading) {
+    return <Loading loadingRing />
+  }
 
   return (
     <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>
@@ -265,7 +297,7 @@ const CreatePet = () => {
             value={createPetStore.age}
             handleChange={handleChangeAge}
             isEdit={createPetStore.isEdit}
-            options={optionsSelectsStore.ages}
+            options={ageOptions}
           />
         </div>
         <div className={styles.col}>

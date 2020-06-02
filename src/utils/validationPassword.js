@@ -5,10 +5,9 @@ const validationPassword = password => {
   if (password.value.length >= 8) {
     password.setError(false, '')
     return false
-  } else {
-    password.setError(true, ERROR)
-    return true
   }
+  password.setError(true, ERROR)
+  return true
 }
 
 export default validationPassword

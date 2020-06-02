@@ -9,10 +9,12 @@
     "userName": "Nombre de usuario"
   },
   "adopterUser": {
+    "titleNameUser": "Profile of {{ name }}",
     "role": "Adopto mascotas",
     "name": "Name"
   },
   "protectionistUser": {
+    "titleNameUser": "Perfil de {{ name }}",
     "role": "Refugio de mascocas",
     "messageWhatsapp": "Hola, me gustaría adoptar unas mascota. Puedo ir al refugio?",
     "requirementsToAdopt": "Requisitos para adoptar",
@@ -20,9 +22,9 @@
     "adopted": "Adoptados"
   },
   "transitUser": {
+    "titleNameUser": "Perfil de {{ name }}",
     "messageWhatsapp": "Hola! Te contacto porque necesitamos un voluntario para hacer transito de una mascota ",
     "role": "Transito de mascotas",
-    "messageWhatsapp": "Hola, te contactamos para saber si estas disponible para trancito de una mascota.",
     "information": "Encuentra personas que hacen transito de mascotas."
   }
 }
