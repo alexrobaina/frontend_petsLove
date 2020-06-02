@@ -113,7 +113,6 @@ class ForgotPasswordStore {
       this.password.setError(true, REQUERID)
 
       if (this.confirmPassword.value !== this.password.value) {
-        alert('asdasd')
         this.confirmPassword.setError(true, PASSWORD_MATCH)
 
         isValidate = false

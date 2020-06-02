@@ -15,6 +15,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
+import Loading from 'components/commons/Loading'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
@@ -141,6 +142,10 @@ const CreatePet = () => {
       history.push(`/profile-pets/${createPetStore.idPet}`)
     }
   }, [createPetStore.requestSuccess])
+
+  if (createPetStore.isLoading) {
+    return <Loading loadingRing />
+  }
 
   return (
     <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>

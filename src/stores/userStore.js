@@ -48,6 +48,7 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isLoading = false
         console.log(e)
       })
     }
@@ -56,6 +57,7 @@ class UserStore {
   @action
   async loadUser(id) {
     this.isLoading = true
+
     try {
       const response = await this.editUserServices.getUser(id)
 
@@ -67,6 +69,7 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isLoading = false
         console.log(e)
       })
     }

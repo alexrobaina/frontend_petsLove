@@ -1,13 +1,13 @@
 import { observer, useLocalStore } from 'mobx-react'
-import React, { useCallback, useContext, useEffect } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
 import Input from 'components/commons/Input'
 import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
+import Loading from 'components/commons/Loading'
 import styles from './resetPasswordForm.scss'
-import Loading from '../commons/Loading'
 
 const ResetPasswordForm = () => {
   const forgotPasswordStore = useLocalStore(() => new ForgotPasswordStore())

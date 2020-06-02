@@ -18,8 +18,8 @@ import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import SearchUsersStore from 'stores/SearchUsersStore'
+import Loading from 'components/commons/Loading'
 import styles from './editPet.scss'
-import Loading from '../../components/commons/Loading'
 
 const EditPet = () => {
   const { t } = useTranslation('createPet')
@@ -158,14 +158,15 @@ const EditPet = () => {
       createPetStore.setEdit()
       setOnlySave(true)
     }
+    //
+    // if (createPetStore.requestSuccess) {
+    //   history.push('/')
+    //   history.push(`/profile-pets/${createPetStore.idPet}`)
+    // }
+    // }, [createPetStore.requestSuccess])
+  }, [])
 
-    if (createPetStore.requestSuccess) {
-      history.push('/')
-      history.push(`/profile-pets/${createPetStore.idPet}`)
-    }
-  }, [createPetStore.requestSuccess])
-
-  if (authStore.isLoading) {
+  if (createPetStore.isLoading) {
     return <Loading loadingRing />
   }
 

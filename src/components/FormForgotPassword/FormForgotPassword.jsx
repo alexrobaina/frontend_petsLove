@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
 import Loading from 'components/commons/Loading'
@@ -9,7 +9,6 @@ import Button from 'components/commons/Button'
 import styles from './formForgotPassword.scss'
 
 const FormForgotPassword = () => {
-  const history = useHistory()
   const forgotPasswordStore = useLocalStore(() => new ForgotPasswordStore())
 
   const { t } = useTranslation('forgotPassword')
