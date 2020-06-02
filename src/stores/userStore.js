@@ -3,6 +3,7 @@ import EditUserServices from 'services/EditUserServices'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
+import imageCompression from 'browser-image-compression'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
@@ -21,36 +22,41 @@ class UserStore {
   @observable isEdit = false
   @observable canEdit = false
   @observable isError = false
+  @observable imageResize = []
   @observable textAddress = ''
+  @observable isResize = false
   @observable isLoading = false
   @observable newPreviewsImage = ''
   @observable passwordError = false
   @observable isUserTransit = false
   @observable localStorageUser = []
+  @observable isLoadingResize = false
   @observable passwordSuccess = false
   @observable confirmPassword = new InputStore()
 
   @action
   async saveUser() {
-    this.isLoading = true
-    const data = new FormData()
+    if (this.isResize) {
+      this.isLoading = true
+      const data = new FormData()
 
-    Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      data.append(key, value)
-    })
-
-    try {
-      await this.editUserServices.save(data)
-
-      runInAction(() => {
-        this.isLoading = false
-        window.location.reload()
+      Object.entries(this.user.getJson()).forEach(([key, value]) => {
+        data.append(key, value)
       })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        console.log(e)
-      })
+
+      try {
+        // await this.editUserServices.save(data)
+
+        runInAction(() => {
+          this.isLoading = false
+          // window.location.reload()
+        })
+      } catch (e) {
+        runInAction(() => {
+          this.isLoading = false
+          console.log(e)
+        })
+      }
     }
   }
 
@@ -157,11 +163,6 @@ class UserStore {
   }
 
   @action
-  setImage(value) {
-    this.user.image.setValue(value)
-  }
-
-  @action
   setCanTransit() {
     this.user.canTransit = !this.user.canTransit
   }
@@ -181,6 +182,56 @@ class UserStore {
   setUsername(value) {
     this.user.username.setValue(value)
   }
+
+  // ============================================
+  // This functions resize images. Need move to ultils
+  // ============================================
+
+  @action
+  resize() {
+    this.compressImage(this.user.image.value)
+  }
+
+  @action
+  async compressImage(event) {
+    this.isResize = false
+    this.isLoadingResize = true
+    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
+    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 800,
+      useWebWorker: true,
+    }
+    try {
+      const compressedFile = await imageCompression(event, options)
+      this.isLoadingResize = false
+      this.isResize = true
+      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
+      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
+
+      await this.setImageResize(compressedFile) // write your own logic
+    } catch (error) {
+      this.isLoadingResize = false
+      console.log(error)
+    }
+  }
+
+  @action
+  setImageResize(image) {
+    this.imageResize.push(image)
+  }
+
+  @action
+  setImage(value) {
+    this.user.image.setValue(value)
+    this.resize()
+  }
+
+  // ============================================
+  // END resize images.
+  // ============================================
 }
 
 export default UserStore

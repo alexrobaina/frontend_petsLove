@@ -158,13 +158,11 @@ const EditPet = () => {
       createPetStore.setEdit()
       setOnlySave(true)
     }
-    //
-    // if (createPetStore.requestSuccess) {
-    //   history.push('/')
-    //   history.push(`/profile-pets/${createPetStore.idPet}`)
-    // }
-    // }, [createPetStore.requestSuccess])
-  }, [])
+    if (createPetStore.requestSuccess) {
+      history.push('/')
+      history.push(`/profile-pets/${createPetStore.idPet}`)
+    }
+  }, [createPetStore.requestSuccess])
 
   if (createPetStore.isLoading) {
     return <Loading loadingRing />

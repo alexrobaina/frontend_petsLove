@@ -110,15 +110,19 @@ const EditUser = () => {
   return (
     <LayoutContainer title="My profile">
       <div className={styles.containerImage}>
-        <div className={styles.col}>
-          <ImageUserLog
-            size={50}
-            isProfile
-            imgUser={userStore.user.image}
-            imagePreview={userStore.newPreviewsImage}
-            isUserLogin={rootStore.authStore.isLogin}
-          />
-        </div>
+        {userStore.user.isLoadingResize ? (
+          <Loading loadingRing />
+        ) : (
+          <div className={styles.col}>
+            <ImageUserLog
+              size={50}
+              isProfile
+              imgUser={userStore.user.image}
+              imagePreview={userStore.newPreviewsImage}
+              isUserLogin={rootStore.authStore.isLogin}
+            />
+          </div>
+        )}
         {userStore.isEdit && (
           <div className={c(styles.col, styles.buttonFile)}>
             <input

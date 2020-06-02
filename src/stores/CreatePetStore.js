@@ -146,12 +146,6 @@ class CreatePetStore {
     }
   }
 
-  @action
-  setImage(value) {
-    this.pet.image.setValue(value)
-    this.resize()
-  }
-
   // this function is only for set image previews
   @action
   deleteImageArray(image) {
@@ -326,43 +320,6 @@ class CreatePetStore {
   }
 
   @action
-  resize() {
-    if (this.pet.image.value.length > 0) {
-      Object.values(this.pet.image.value).forEach(image => {
-        this.compressImage(image)
-      })
-    }
-
-    return true
-  }
-
-  @action
-  async compressImage(event) {
-    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
-    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
-
-    const options = {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 800,
-      useWebWorker: true,
-    }
-    try {
-      const compressedFile = await imageCompression(event, options)
-      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
-      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
-
-      await this.setImageResize(compressedFile) // write your own logic
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  @action
-  setImageResize(image) {
-    this.imageResize.push(image)
-  }
-
-  @action
   clearError() {
     const { name, category, gender, history, requiredToAdoption, activity, textAddress } = this.pet
 
@@ -375,6 +332,60 @@ class CreatePetStore {
     requiredToAdoption.clearError()
     textAddress.clearError()
   }
+
+  // ============================================
+  // This functions resize images. Need move to ultils
+  // ============================================
+
+  @action
+  resize() {
+    if (this.pet.image.value.length > 0) {
+      Object.values(this.pet.image.value).forEach(image => {
+        this.compressImage(image)
+      })
+    }
+
+    return true
+  }
+
+  @action
+  async compressImage(event) {
+    this.isLoading = true
+    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
+    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 800,
+      useWebWorker: true,
+    }
+    try {
+      const compressedFile = await imageCompression(event, options)
+      this.isLoading = false
+      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
+      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
+
+      await this.setImageResize(compressedFile) // write your own logic
+    } catch (error) {
+      this.isLoading = false
+      console.log(error)
+    }
+  }
+
+  @action
+  setImageResize(image) {
+    this.imageResize.push(image)
+  }
+
+  @action
+  setImage(value) {
+    this.pet.image.setValue(value)
+    this.resize()
+  }
+
+  // ============================================
+  // END resize images.
+  // ============================================
 }
 
 export default CreatePetStore
