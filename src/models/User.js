@@ -57,7 +57,6 @@ class User {
     this.lng.setValue(user.lng)
     this.textAddress.setValue(user.textAddress)
     this.username.setValue(user.username)
-    this.password.setValue(user.password)
     this.terms = user.terms
     this.canTransit = user.canTransit
   }

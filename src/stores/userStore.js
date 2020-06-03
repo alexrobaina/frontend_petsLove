@@ -44,7 +44,14 @@ class UserStore {
     const data = new FormData()
 
     Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      data.append(key, value)
+      if (key !== 'password') {
+        data.append(key, value)
+      }
+      if (key === 'password') {
+        if (value !== '') {
+          data.append(key, value)
+        }
+      }
     })
 
     try {
