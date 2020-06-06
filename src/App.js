@@ -16,7 +16,7 @@ import {
   MY_PETS,
   EDIT_PET,
   PROFILE_USER,
-  RESET_PASSWORD,
+  RESET_PASSWORD, SEARCH_PROTECTIONIST,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
 import PageNotFound from 'components/commons/PageNotFound'
@@ -41,6 +41,7 @@ import axiosInterceptors from './utils/axiosInterceptors'
 import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
+import SearchProtectionist from './containers/SearchProtectionist/SearchProtectionist'
 
 dotenv.config()
 const rootStore = new RootStore()
@@ -94,6 +95,13 @@ function App() {
               redirectPath={LOGIN}
               path={SEARCH_VOLANTEERS}
               component={SearchVolunteers}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={SEARCH_PROTECTIONIST}
+              component={SearchProtectionist}
             />
             <PrivateRoute
               exact

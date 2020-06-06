@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
-import { FaHandHoldingHeart, FaUser } from 'react-icons/fa'
+import { FaHandHoldingHeart, FaPeopleCarry, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
 import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
@@ -27,6 +27,11 @@ const routesUserProtectionist = [
     link: '/search-volanteers',
   },
   {
+    icon: <FaPeopleCarry size={22} />,
+    text: 'Search Protectionists',
+    link: '/search-protectionist',
+  },
+  {
     icon: <MdCreate size={25} />,
     text: 'createPet',
     link: '/create-pet',
@@ -45,6 +50,11 @@ const routesUserAdopter = [
     text: 'dashboard',
     link: '/dashboard',
   },
+  {
+    icon: <FaPeopleCarry size={22} />,
+    text: 'Search Protectionists',
+    link: '/search-protectionist',
+  },
 ]
 
 const routesUserTransitUser = [
@@ -58,6 +68,11 @@ const routesUserTransitUser = [
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
     link: '/dashboard',
+  },
+  {
+    icon: <FaPeopleCarry size={22} />,
+    text: 'Search Protectionists',
+    link: '/search-protectionist',
   },
 ]
 
