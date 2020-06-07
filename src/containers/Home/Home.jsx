@@ -20,4 +20,5 @@ const Home = () => {
     </LayoutContainer>
   )
 }
+
 export default observer(Home)
