@@ -1,6 +1,11 @@
 {
-  "title": "Buscá un proteccionista y encontrá una mascota",
+  "title": "Buscar mascotas",
   "subTitle": "Por favor no combres mascotas, adopta una sin hogar",
   "labelGooglee": "Tu dirección",
-  "placeholderGoogle": "Busca tu ubicación"
+  "placeholderGoogle": "Busca tu ubicación",
+  "gender": "Genero",
+  "category": "Categoria",
+  "city": "Ciudad",
+  "country": "País",
+  "search": "Buscar"
 }

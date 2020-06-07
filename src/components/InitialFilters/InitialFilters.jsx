@@ -1,17 +1,19 @@
-import React, { useEffect, useCallback } from 'react'
+import PropTypes from 'prop-types'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-import PropTypes from 'prop-types'
-import InputSelect from 'components/commons/InputSelect'
-import Button from 'components/commons/Button'
 import { MdSearch } from 'react-icons/md'
+import SearchPetsStore from 'stores/SearchPetsStore'
+import InputSelect from 'components/commons/InputSelect'
+import ListPets from 'components/ListPets'
+import Button from 'components/commons/Button'
+import Loading from 'components/commons/Loading'
 import styles from './initialFilters.scss'
 
-const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
-  const { t } = useTranslation()
-  const handleChangeCountrie = useCallback(selectedValue => {
-    optionsSelectsStore.setCountry(selectedValue)
-    optionsSelectsStore.setOptionsCities(selectedValue)
+const InitialFilters = ({ searchPetsStore }) => {
+  const { t } = useTranslation('home')
+
+  const handleChangeCountry = useCallback(selectedValue => {
     searchPetsStore.setCountry(selectedValue)
   })
 
@@ -27,50 +29,57 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
     searchPetsStore.setGender(selectedValue)
   })
 
-  useEffect(() => {
-    optionsSelectsStore.listContries()
-    optionsSelectsStore.listGender()
-    optionsSelectsStore.listCategories()
-    optionsSelectsStore.listAges()
-  }, [])
-
   const handleSearch = () => {
     searchPetsStore.searchPets()
   }
+
   return (
     <div>
-      {/* eslint-disable-next-line no-nested-ternary */}
       <div className={styles.container}>
         <div className={styles.selectCountry}>
           <InputSelect
-            placeholder={t('initialFilters.country')}
-            handleChange={handleChangeCountrie}
-            options={optionsSelectsStore.countries}
-            isLoading={optionsSelectsStore.isLoading}
+            isClearable
+            placeholder={t('country')}
+            handleChange={handleChangeCountry}
+            inputStore={searchPetsStore.country}
+            options={[
+              { value: 'argentina', label: 'Argentina' },
+              { value: 'colombia', label: 'Colombia' },
+              { value: 'venezuela', label: 'Venezuela' },
+            ]}
           />
         </div>
         <div className={styles.selectCity}>
           <InputSelect
-            placeholder={t('initialFilters.city')}
-            options={optionsSelectsStore.cities}
+            isClearable
+            placeholder={t('city')}
             handleChange={handleChanceCity}
-            isLoading={optionsSelectsStore.isLoading}
+            inputStore={searchPetsStore.city}
+            options={searchPetsStore.optionsCities}
           />
         </div>
         <div className={styles.selectCategory}>
           <InputSelect
-            placeholder={t('initialFilters.category')}
-            options={optionsSelectsStore.categories}
+            isClearable
+            placeholder={t('category')}
             handleChange={handleChanceCategory}
-            isLoading={optionsSelectsStore.isLoading}
+            inputStore={searchPetsStore.category}
+            options={[
+              { value: 'dog', label: t('dogs') },
+              { value: 'cat', label: t('cats') },
+            ]}
           />
         </div>
         <div className={styles.selectGender}>
           <InputSelect
-            placeholder={t('initialFilters.gender')}
+            isClearable
+            placeholder={t('gender')}
             handleChange={handleChanceGender}
-            options={optionsSelectsStore.gender}
-            isLoading={optionsSelectsStore.isLoading}
+            inputStore={searchPetsStore.gender}
+            options={[
+              { value: 'female', label: t('female') },
+              { value: 'male', label: t('male') },
+            ]}
           />
         </div>
         <div className={styles.btnSearch}>
@@ -79,17 +88,24 @@ const InitialFilters = ({ searchPetsStore, optionsSelectsStore }) => {
             handleClick={handleSearch}
             type="button"
             styleButton="primary"
-            text={t('initialFilters.search')}
+            text={t('search')}
           />
         </div>
+        {searchPetsStore.isLoading ? (
+          <>
+            {'asdasdas'}
+          <Loading loadingRing />
+          </>
+        ) : (
+          <>{searchPetsStore.pets.length > 0 && <ListPets pets={searchPetsStore.pets} />}</>
+        )}
       </div>
     </div>
   )
 }
 
 InitialFilters.Prototypes = {
-  searchPetsStore: PropTypes.object.isRequired,
-  optionsSelectsStore: PropTypes.object.isRequired,
+  searchPetsStore: PropTypes.instanceOf(SearchPetsStore).isRequired,
 }
 
 export default observer(InitialFilters)

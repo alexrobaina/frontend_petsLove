@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
-import { useTranslation } from 'react-i18next'
-import Loading from '../../components/commons/Loading'
+import Loading from 'components/commons/Loading'
 
 const PetsAdopted = ({ id }) => {
   const { t } = useTranslation('dashboard')

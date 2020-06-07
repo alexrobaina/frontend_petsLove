@@ -16,6 +16,7 @@ const InputSelect = ({
   isEdit,
   isMulti,
   title,
+  isClearable,
   name,
 }) => {
   return (
@@ -25,6 +26,7 @@ const InputSelect = ({
       ) : (
         <>
           <Select
+            isClearable={isClearable}
             name={name}
             title={title}
             onChange={handleChange}
@@ -66,6 +68,7 @@ InputSelect.defaultProps = {
   isLoading: false,
   isMulti: false,
   inputStore: null,
+  isClearable: false,
 }
 
 export default observer(InputSelect)
