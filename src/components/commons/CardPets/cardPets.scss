@@ -1,5 +1,9 @@
 @import 'styles/mixings.scss';
 
+.rowCard {
+  padding: 24px;
+}
+
 .containerCard {
   position: relative;
   box-shadow: 0 1px 15px 0 rgba(0,0,0,0.13);

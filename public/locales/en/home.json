@@ -1,6 +1,9 @@
 {
-  "title": "Search a protectionist and find your pet",
+  "title": "Search pets",
   "subTitle": "Please, do not buy a breed pet, adopt a homeless one",
-  "labelGooglee": "Your Address",
-  "placeholderGoogle": "Search your address..."
+  "gender": "Gender",
+  "category": "Category",
+  "city": "City",
+  "country": "Country",
+  "search": "Search"
 }
