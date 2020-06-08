@@ -92,10 +92,7 @@ const InitialFilters = ({ searchPetsStore }) => {
           />
         </div>
         {searchPetsStore.isLoading ? (
-          <>
-            {'asdasdas'}
           <Loading loadingRing />
-          </>
         ) : (
           <>{searchPetsStore.pets.length > 0 && <ListPets pets={searchPetsStore.pets} />}</>
         )}

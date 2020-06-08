@@ -24,8 +24,7 @@ const Loading = ({ small, loadingRing }) => {
     <Animated
       animationIn="fadeIn"
       animationOut="fadeInUp"
-      animationInDelay={1000}
-      animationInDuration={500}
+      animationInDuration={100}
     >
       {loadingRing ? (
         <div className={classes.root}>
