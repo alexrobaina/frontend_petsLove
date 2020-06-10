@@ -7,17 +7,17 @@ import ViewValue from '../ViewValue'
 import styles from './inputSelect.scss'
 
 const InputSelect = ({
-  inputStore,
-  options,
-  placeholder,
-  isLoading,
-  handleChange,
+  name,
+  title,
   value,
   isEdit,
   isMulti,
-  title,
+  options,
+  isLoading,
+  inputStore,
+  placeholder,
   isClearable,
-  name,
+  handleChange,
 }) => {
   return (
     <>
@@ -26,15 +26,15 @@ const InputSelect = ({
       ) : (
         <>
           <Select
-            isClearable={isClearable}
+            isRequired
             name={name}
             title={title}
-            onChange={handleChange}
-            isLoading={isLoading}
-            placeholder={placeholder}
-            options={options}
-            isRequired
             isMulti={isMulti}
+            options={options}
+            isLoading={isLoading}
+            onChange={handleChange}
+            placeholder={placeholder}
+            isClearable={isClearable}
             theme={theme => ({
               ...theme,
               colors: {
@@ -54,20 +54,21 @@ const InputSelect = ({
 }
 
 InputSelect.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  options: PropTypes.oneOfType([PropTypes.array]).isRequired,
-  placeholder: PropTypes.string.isRequired,
   value: PropTypes.string,
-  isLoading: PropTypes.bool,
   isMulti: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isClearable: PropTypes.bool,
+  handleChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
   inputStore: PropTypes.instanceOf(InputStore),
+  options: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
 
 InputSelect.defaultProps = {
   value: '',
-  isLoading: false,
   isMulti: false,
   inputStore: null,
+  isLoading: false,
   isClearable: false,
 }
 

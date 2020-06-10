@@ -1,9 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
-import { MdCancel, MdUpdate } from 'react-icons/md'
 import { useHistory, useParams } from 'react-router'
-import c from 'classnames'
 import Input from 'components/commons/Input'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Title from 'components/commons/Title'
@@ -16,6 +14,7 @@ import ButtonsEditFixed from 'components/commons/ButtonsEditFixed'
 import UserContext from 'Context/UserContext'
 import ButtonsSaveFixed from 'components/commons/ButtonsSaveFixed'
 import Loading from 'components/commons/Loading'
+import InputUploadImage from 'components/commons/InputUploadImage'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
 import styles from './createPet.scss'
 
@@ -24,25 +23,29 @@ const CreatePet = () => {
   const history = useHistory()
   const { id } = useParams()
   const [onlySave, setOnlySave] = useState(false)
-  const fileUpload = useRef()
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
+  // const fileUpload = useRef()
+  //
+  // const handleChangeImage = useCallback(e => {
+  //   createPetStore.setImage(e.target.files)
+  //
+  //   const fileList = Array.from(e.target.files)
+  //
+  //   const mappedFiles = fileList.map(file => ({
+  //     ...file,
+  //     preview: URL.createObjectURL(file),
+  //     imageName: file,
+  //   }))
+  //
+  //   createPetStore.setNewsPreviewsImage(mappedFiles)
+  // })
+  //
+  // const onClickFileUpload = useCallback(() => {
+  //   fileUpload.current.click()
+  // }, [])
 
-  const handleChangeImage = useCallback(e => {
-    createPetStore.setImage(e.target.files)
-
-    const fileList = Array.from(e.target.files)
-
-    const mappedFiles = fileList.map(file => ({
-      ...file,
-      preview: URL.createObjectURL(file),
-      imageName: file,
-    }))
-
-    createPetStore.setNewsPreviewsImage(mappedFiles)
-  })
-  
   const ageOptions = [
     { value: '1month', label: t('1month') },
     { value: '2month', label: t('2month') },
@@ -69,10 +72,6 @@ const CreatePet = () => {
     { value: '11year', label: t('11year') },
     { value: '12year', label: t('12year') },
   ]
-
-  const onClickFileUpload = useCallback(() => {
-    fileUpload.current.click()
-  }, [])
 
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
@@ -151,9 +150,9 @@ const CreatePet = () => {
   }, [])
 
   useEffect(() => {
+    optionsSelectsStore.listAges()
     optionsSelectsStore.listGender()
     optionsSelectsStore.listActiviy()
-    optionsSelectsStore.listAges()
     optionsSelectsStore.listCategories()
 
     if (id) {
@@ -177,38 +176,13 @@ const CreatePet = () => {
   return (
     <LayoutContainer handleBack={handleBack} title={t('title')} textButton={t('backPets')}>
       <Title subTitle={t('subtitle')} />
-      <div className={styles.containerImagePreview}>
-        {createPetStore.newPreviewsImage &&
-          createPetStore.newPreviewsImage.map(image => {
-            return (
-              <div className={styles.containerImage}>
-                <img className={styles.imagePreview} src={image.preview} alt="pets" />
-                <div className={styles.middle}>
-                  <div onClick={() => deleteImage(image)} className={styles.containerIcon}>
-                    <MdCancel className={styles.iconImage} size={20} />
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-      </div>
+      <InputUploadImage
+        deleteImage={deleteImage}
+        isEdit={createPetStore.isEdit}
+        createPetStore={createPetStore}
+        previewImage={createPetStore.newPreviewsImage}
+      />
       <div className={styles.containerForm}>
-        {createPetStore.isEdit && (
-          <div className={styles.colInputImage}>
-            <input
-              multiple
-              type="file"
-              ref={fileUpload}
-              className={styles.inputFile}
-              onChange={handleChangeImage}
-              placeholder={t('placeholderImages')}
-            />
-            <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
-              <MdUpdate className={styles.icon} size={15} />
-              <span>{t('addFile')}</span>
-            </label>
-          </div>
-        )}
         <div className={styles.col}>
           <Input
             value={createPetStore.name}

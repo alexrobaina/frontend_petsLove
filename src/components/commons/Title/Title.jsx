@@ -1,9 +1,7 @@
 import React from 'react'
 import c from 'classnames'
 import PropTypes from 'prop-types'
-import { Animated } from 'react-animated-css'
 import styles from './title.scss'
-import { useTranslation } from 'react-i18next'
 
 const Title = ({ title, subTitle, withMargin, mTop, rolText }) => {
   const marginTop = { marginTop: mTop }
