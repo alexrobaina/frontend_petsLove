@@ -12,6 +12,7 @@ class CreatePetStore {
   }
 
   @observable pet = []
+  @observable vets = []
   @observable image = []
   @observable lost = false
   @observable address = {}
@@ -188,12 +189,12 @@ class CreatePetStore {
 
   @action
   setUserAdopter(value) {
-    this.pet.userAdopt.setValue(value.value)
+    this.pet.userAdopt.setValue(value)
   }
 
   @action
   setTransitUser(value) {
-    this.pet.userTransit.setValue(value.value)
+    this.pet.userTransit.setValue(value)
   }
 
   @action

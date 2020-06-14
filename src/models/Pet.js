@@ -1,32 +1,45 @@
 import { observable } from 'mobx'
 import InputStore from 'stores/InputStore'
+import moment from 'moment';
 
 class Pet {
   @observable state = true
   @observable lost = false
   @observable urgent = false
+  @observable terms = false
+  @observable isCastrated = false
   @observable adopted = false
-  @observable dewormed = false
-  @observable vaccinated = false
-  @observable sterilized = false
+  @observable distemperVaccine = false
+  @observable felineFluVaccine = false
+  @observable felineLeukemiaVaccine = false
+  @observable felineInfectiousPeritonitisVaccine = false
+  @observable rabiesVaccine = false
+  @observable hepatitisVaccine = false
+  @observable leptospirosisVaccine = false
+  @observable parvovirusVaccine = false
+  @observable parainfluenzaVaccine = false
+  @observable bordetellaBronchisepticVaccine = false
 
-  constructor(id) {
+  constructor(id, medicalHistory) {
     this._id = id
+    this.name = new InputStore()
     this.image = new InputStore()
+    this.category = new InputStore()
+    this.gender = new InputStore()
     this.age = new InputStore()
+    this.activityLevel = new InputStore()
     this.lat = new InputStore()
     this.lng = new InputStore()
-    this.name = new InputStore()
-    this.gender = new InputStore()
     this.history = new InputStore()
-    this.category = new InputStore()
-    this.activity = new InputStore()
     this.textAddress = new InputStore()
     this.requiredToAdoption = new InputStore()
-    this.user = new InputStore()
+    this.vet = new InputStore()
+    this.userCreator = new InputStore()
     this.userAdopt = new InputStore()
     this.userTransit = new InputStore()
-
+    this.lastVisitVet = new InputStore()
+    this.userTransit = new InputStore()
+    this.medicalHistory = medicalHistory
     this.image.setValue([])
   }
 
@@ -56,6 +69,7 @@ class Pet {
     this.dewormed = pet.dewormed
     this.vaccinated = pet.vaccinated
     this.sterilized = pet.sterilized
+    this.medicalHistory = pet.medicalHistory
 
     if (pet.userAdopt) {
       this.userAdopt.setValue(pet.userAdopt.value)
@@ -90,6 +104,7 @@ class Pet {
       user: this.user.value,
       userAdopt: this.userAdopt.value,
       userTransit: this.userTransit.value,
+      medicalHistory: this.medicalHistory,
       state: this.state,
       lost: this.lost,
       urgent: this.urgent,

@@ -1,10 +1,8 @@
 @import 'styles/mixings.scss';
 
 .containerLayout {
-  padding-top: 100px;
 
   @include media-breakpoint-only(xs) {
-    margin-top: 14px;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -63,6 +61,3 @@
   color: $primary;
 }
 
-.spaceBotton {
-  height: 200px;
-}

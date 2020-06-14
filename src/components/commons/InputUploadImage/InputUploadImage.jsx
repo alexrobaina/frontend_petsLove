@@ -5,12 +5,12 @@ import { MdCancel, MdUpdate } from 'react-icons/md'
 import c from 'classnames'
 import styles from './inputUploadImage.scss'
 
-const InputUploadImage = ({ isEdit, deleteImage, previewImage, createPetStore }) => {
+const InputUploadImage = ({ isEdit, deleteImage, previewImage, store }) => {
   const { t } = useTranslation('createPet')
   const fileUpload = useRef()
 
   const handleChangeImage = useCallback(e => {
-    createPetStore.setImage(e.target.files)
+    store.setImage(e.target.files)
 
     const fileList = Array.from(e.target.files)
 
@@ -20,7 +20,7 @@ const InputUploadImage = ({ isEdit, deleteImage, previewImage, createPetStore })
       imageName: file,
     }))
 
-    createPetStore.setNewsPreviewsImage(mappedFiles)
+    store.setNewsPreviewsImage(mappedFiles)
   })
 
   const onClickFileUpload = useCallback(() => {

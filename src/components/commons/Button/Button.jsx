@@ -16,10 +16,10 @@ const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTranspa
   return (
     <div className={styles.containerButton}>
       <button
-        disabled={disable}
-        className={c(styles.primary, bigButton && styles.bigButton)}
         type="button"
+        disabled={disable}
         onClick={handleClick}
+        className={c(styles.primary, bigButton && styles.bigButton)}
       >
         {text}
       </button>

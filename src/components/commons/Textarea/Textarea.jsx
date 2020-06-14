@@ -5,10 +5,12 @@ import { observer } from 'mobx-react'
 import InputStore from 'stores/InputStore'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
+import Label from '../Label/Input'
 
-const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore }) => {
+const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
   return (
     <>
+      {label && <Label text={label} />}
       {isEdit ? (
         <textarea
           className={c(styles.textarea, inputStore.error && styles.isError)}
@@ -32,6 +34,7 @@ Textarea.propTypes = {
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string,
+  label: PropTypes.string,
   isEdit: PropTypes.bool,
   inputStore: PropTypes.instanceOf(InputStore),
 }
@@ -39,6 +42,7 @@ Textarea.propTypes = {
 Textarea.defaultProps = {
   cols: 4,
   rows: 4,
+  label: '',
   value: '',
   inputStore: false,
   isEdit: false,

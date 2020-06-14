@@ -20,17 +20,6 @@
   }
 }
 
-.colMap {
-  width: 100%;
-  padding: 10px;
-
-  @include media-breakpoint-down(sm) {
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-  }
-}
-
 .colLarge {
   display: flex;
   justify-content: center;
@@ -84,36 +73,53 @@
   }
 }
 
-.containerMap {
-  margin-bottom: 20px;
-}
-
 .containerButton {
+  position: fixed;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: row;
+  bottom: 20px;
+  left: 0;
   width: 100%;
 }
 
-.input {
+.containerSteps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepInformation {
+  margin: 31px;
+  margin-top: 50px;
+  margin-right: 0;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #fff;
+  background-color: #F6F5FF;
+  z-index: 100;
+  border-radius: 100px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform .3s ease-out;
+}
+
+.stepLine {
+  margin-top: 10px;
+  position: absolute;
+  border: 1px solid #F6F5FF;
   width: 100%;
-  border: 1px solid $borderPrimary;
-  box-shadow: none;
-  padding: 10px 0 10px 0;
-  border-radius: 4px;
-  font-family: 'Noto Sans HK', sans-serif;
-  box-sizing: border-box;
+}
 
-  &:focus {
-    outline: 0;
-    border-radius: 4px;
-    border: 1px solid $secundary;
-  }
-
-  &:hover {
-    border-radius: 4px;
-    border: 1px solid $secundary;
-  }
-
-  &::placeholder {
-    font-size: 14px;
-    font-family: 'Noto Sans HK', sans-serif;
-  }
+.formSelected {
+  background-color: rgba(255, 0, 0, 0.39);
+  width: 50px;
+  height: 50px;
+  transform: scale(1.1);
 }

@@ -5,11 +5,13 @@ import Select from 'react-select'
 import InputStore from 'stores/InputStore'
 import ViewValue from '../ViewValue'
 import styles from './inputSelect.scss'
+import Label from '../Label/Input'
 
 const InputSelect = ({
   name,
   title,
   value,
+  label,
   isEdit,
   isMulti,
   options,
@@ -19,8 +21,17 @@ const InputSelect = ({
   isClearable,
   handleChange,
 }) => {
+  const customStyles = {
+    control: base => ({
+      ...base,
+      height: 41,
+      minHeight: 41,
+    }),
+  }
+
   return (
     <>
+      {label && <Label text={label} />}
       {!isEdit && value ? (
         <ViewValue placeholder={placeholder} value={value} />
       ) : (
@@ -31,10 +42,12 @@ const InputSelect = ({
             title={title}
             isMulti={isMulti}
             options={options}
+            styles={customStyles}
             isLoading={isLoading}
             onChange={handleChange}
             placeholder={placeholder}
             isClearable={isClearable}
+            value={options.filter(option => option.value === value)}
             theme={theme => ({
               ...theme,
               colors: {
@@ -55,6 +68,7 @@ const InputSelect = ({
 
 InputSelect.propTypes = {
   value: PropTypes.string,
+  label: PropTypes.string,
   isMulti: PropTypes.bool,
   isLoading: PropTypes.bool,
   isClearable: PropTypes.bool,
@@ -66,6 +80,7 @@ InputSelect.propTypes = {
 
 InputSelect.defaultProps = {
   value: '',
+  label: '',
   isMulti: false,
   inputStore: null,
   isLoading: false,

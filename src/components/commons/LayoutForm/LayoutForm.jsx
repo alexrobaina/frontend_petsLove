@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Animated } from 'react-animated-css'
-import ButtonBack from '../ButtonBack'
-import styles from './layoutContainer.scss'
+import ButtonBack from 'components/commons/ButtonBack'
+import styles from './layoutForm.scss'
 
-const LayoutContainer = ({
+const LayoutForm = ({
   title,
   information,
   children,
@@ -17,7 +17,7 @@ const LayoutContainer = ({
       animationIn="fadeIn"
       animationOut="fadeInUp"
       animationInDelay={1000}
-      animationInDuration={300}
+      animationInDuration={500}
     >
       <div className={styles.containerLayout}>
         {viewButtonBack && <ButtonBack text={textButton} handleClick={handleBack} />}
@@ -25,13 +25,11 @@ const LayoutContainer = ({
         <div className={styles.information}>{information}</div>
         {children}
       </div>
-      
-      <div className={styles.spaceBotton} />
     </Animated>
   )
 }
 
-LayoutContainer.propTypes = {
+LayoutForm.propTypes = {
   children: PropTypes.node.isRequired,
   handleBack: PropTypes.func,
   title: PropTypes.string,
@@ -40,7 +38,7 @@ LayoutContainer.propTypes = {
   viewButtonBack: PropTypes.bool,
 }
 
-LayoutContainer.defaultProps = {
+LayoutForm.defaultProps = {
   textButton: '',
   title: '',
   information: '',
@@ -48,4 +46,4 @@ LayoutContainer.defaultProps = {
   viewButtonBack: false,
 }
 
-export default LayoutContainer
+export default LayoutForm

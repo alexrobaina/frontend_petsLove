@@ -156,8 +156,8 @@ const FormRegister = ({ registerStore }) => {
                   <PhoneInput
                     name="phone"
                     country="ar"
-                    inputStyle={{ width: '100%' }}
                     onChange={phone => handleChangePhone(phone)}
+                    inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a'  }}
                   />
                 </div>
                 <div className={styles.buttonRegister}>

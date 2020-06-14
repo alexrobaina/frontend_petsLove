@@ -8,7 +8,10 @@
 }
 
 .label {
+  text-align: left;
+  font-size: 12px;
   color: $title;
+  padding-bottom: 5px;
 }
 
 input:focus {

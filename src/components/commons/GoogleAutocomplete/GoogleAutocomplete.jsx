@@ -6,16 +6,18 @@ import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import ViewValue from '../ViewValue'
 import styles from './googleAutocomplete.scss'
+import Label from '../Label/Input'
 
 const GoogleAutocomplete = observer(
   ({
-    inputStoreError,
-    handleChangeTextAddress,
-    handleChangeAddress,
-    placeholder,
-    value,
     name,
+    value,
     isEdit,
+    label,
+    placeholder,
+    inputStoreError,
+    handleChangeAddress,
+    handleChangeTextAddress,
   }) => {
     const [address, setAddress] = useState('')
 
@@ -44,17 +46,20 @@ const GoogleAutocomplete = observer(
                 {isEdit === false ? (
                   <ViewValue placeholder={placeholder} value={value} />
                 ) : (
-                  <input
-                    name={name}
-                    value={value}
-                    className={c(
-                      styles.input,
-                      inputStoreError ? inputStoreError.error && styles.isError : ''
-                    )}
-                    {...getInputProps({
-                      placeholder,
-                    })}
-                  />
+                  <>
+                    {label && <Label text={label} />}
+                    <input
+                      name={name}
+                      value={value}
+                      className={c(
+                        styles.input,
+                        inputStoreError ? inputStoreError.error && styles.isError : ''
+                      )}
+                      {...getInputProps({
+                        placeholder,
+                      })}
+                    />
+                  </>
                 )}
                 <div className={styles.dropdown}>
                   {loading && <div className={styles.text}>Loading...</div>}
