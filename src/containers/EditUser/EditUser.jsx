@@ -112,187 +112,192 @@ const EditUser = () => {
 
   return (
     <LayoutContainer title={t('title')}>
-      <div className={styles.containerImage}>
-        {userStore.user.isLoadingResize ? (
-          <Loading loadingRing />
-        ) : (
-          <div className={styles.col}>
-            <ImageUserLog
-              size={50}
-              isProfile
-              imgUser={userStore.user.image}
-              imagePreview={userStore.newPreviewsImage}
-              isUserLogin={rootStore.authStore.isLogin}
-            />
-          </div>
-        )}
-        {userStore.isEdit && (
-          <div className={c(styles.col, styles.buttonFile)}>
-            <input
-              ref={fileUpload}
-              id="file"
-              type="file"
-              name="file"
-              onChange={handleChangeImage}
-              className={styles.inputFile}
-            />
-            <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
-              <MdUpdate className={styles.icon} size={15} />
-              <span className={styles.jsFileName}>{t('chooseFile')}</span>
-            </label>
-          </div>
-        )}
-      </div>
-      <div className={styles.containerForm}>
-        <div className={styles.colInput}>
-          <Input
-            disabled
-            label={t('name')}
-            placeholder={t('name')}
-            isEdit={userStore.isEdit}
-            inputStore={userStore.user.name}
-            value={userStore.user.name.value}
-          />
-        </div>
-        <div className={styles.colInput}>
-          <Input
-            disabled
-            label={t('email')}
-            placeholder={t('email')}
-            isEdit={userStore.isEdit}
-            inputStore={userStore.user.email}
-            value={userStore.user.email.value}
-          />
-        </div>
-        <div className={styles.colInput}>
-          <Input
-            canEdit
-            disabled
-            label={t('userRol')}
-            isEdit={userStore.isEdit}
-            placeholder={t('userRol')}
-            value={userStore.user.setRole()}
-            inputStore={userStore.user.rol}
-          />
-        </div>
-        <div className={styles.colInput}>
-          {userStore.isEdit ? (
-            <>
-              <Label text={'phone'} />
-              <PhoneInput
-                country="ar"
-                onChange={phone => handleChangePhone(phone)}
-                inputStyle={{ width: '100%', height: '40px' }}
-              />
-            </>
+      <LayoutForm>
+        <div className={styles.containerImage}>
+          {userStore.user.isLoadingResize ? (
+            <Loading loadingRing />
           ) : (
-            <ViewValue placeholder={t('phone')} value={userStore.user.phone.value} />
+            <div className={styles.col}>
+              <ImageUserLog
+                size={50}
+                isProfile
+                imgUser={userStore.user.image}
+                imagePreview={userStore.newPreviewsImage}
+                isUserLogin={rootStore.authStore.isLogin}
+              />
+            </div>
+          )}
+          {userStore.isEdit && (
+            <div className={c(styles.col, styles.buttonFile)}>
+              <input
+                ref={fileUpload}
+                id="file"
+                type="file"
+                name="file"
+                onChange={handleChangeImage}
+                className={styles.inputFile}
+              />
+              <label
+                onClick={onClickFileUpload}
+                className={c(styles.textInput, styles.btnTertiary)}
+              >
+                <MdUpdate className={styles.icon} size={15} />
+                <span className={styles.jsFileName}>{t('chooseFile')}</span>
+              </label>
+            </div>
           )}
         </div>
-        <div className={styles.colInput}>
-          <Input
-            canEdit
-            label={t('username')}
-            isEdit={userStore.isEdit}
-            placeholder={t('username')}
-            handleChange={handleChangeUsername}
-            inputStore={userStore.user.username}
-            value={userStore.user.username.value}
-          />
-          <div className={styles.messageInformation}>{t('helpUserName')}</div>
-        </div>
-        <div className={styles.colCheckBox}>
-          {userStore.rol === 'transitUser' && (
-            <InputCheckbox
-              canEdit
-              isEdit={userStore.isEdit}
-              text={t('availableTransit')}
-              value={userStore.user.canTransit}
-              handleChange={handleChangeTransit}
-            />
-          )}
-        </div>
-        <div className={styles.colbig}>
-          <Textarea
-            canEdit
-            rows={4}
-            isEdit={userStore.isEdit}
-            label={'aboutUs'}
-            placeholder={t('aboutUs')}
-            handleChange={handleChangeAboutUs}
-            inputStore={userStore.user.username}
-            value={userStore.user.aboutUs.value}
-          />
-        </div>
-        <div className={styles.colbig}>
-          <Textarea
-            canEdit
-            rows={4}
-            isEdit={userStore.isEdit}
-            label={'requirementsToAdopt'}
-            placeholder={t('requirementsToAdopt')}
-            handleChange={handleChangeRequirementsToAdopt}
-            inputStore={userStore.user.requirementsToAdopt}
-            value={userStore.user.requirementsToAdopt.value}
-          />
-        </div>
-        <div className={styles.colbig}>
-          <GoogleAutocomplete
-            label={t('address')}
-            isEdit={userStore.isEdit}
-            placeholder={t('address')}
-            inputStoreError={userStore.user.textAddress}
-            value={userStore.user.textAddress.value}
-            handleChangeAddress={handleChangeAddress}
-            handleChangeTextAddress={handleChangeTextAddress}
-          />
+        <div className={styles.containerForm}>
           <div className={styles.colbig}>
-            <GoogleMapsLocation
-              showAddress
-              title={t('messageMap')}
-              location={{
-                lat: userStore.user.lat.value,
-                lng: userStore.user.lng.value,
-              }}
+            <Input
+              disabled
+              label={t('name')}
+              placeholder={t('name')}
+              isEdit={userStore.isEdit}
+              inputStore={userStore.user.name}
+              value={userStore.user.name.value}
+            />
+          </div>
+          <div className={styles.colbig}>
+            <Input
+              disabled
+              label={t('email')}
+              placeholder={t('email')}
+              isEdit={userStore.isEdit}
+              inputStore={userStore.user.email}
+              value={userStore.user.email.value}
+            />
+          </div>
+          <div className={styles.colbig}>
+            <Input
+              canEdit
+              disabled
+              label={t('userRol')}
+              isEdit={userStore.isEdit}
+              placeholder={t('userRol')}
+              value={userStore.user.setRole()}
+              inputStore={userStore.user.rol}
+            />
+          </div>
+          <div className={styles.colbig}>
+            {userStore.isEdit ? (
+              <>
+                <Label text={t('phone')} />
+                <PhoneInput
+                  country="ar"
+                  onChange={phone => handleChangePhone(phone)}
+                  inputStyle={{ width: '100%', height: '40px' }}
+                />
+              </>
+            ) : (
+              <ViewValue placeholder={t('phone')} value={userStore.user.phone.value} />
+            )}
+          </div>
+          <div className={styles.colbig}>
+            <Input
+              canEdit
+              label={t('username')}
+              isEdit={userStore.isEdit}
+              placeholder={t('username')}
+              handleChange={handleChangeUsername}
+              inputStore={userStore.user.username}
+              value={userStore.user.username.value}
+            />
+            <div className={styles.messageInformation}>{t('helpUserName')}</div>
+          </div>
+          <div className={styles.colbig}>
+            {userStore.rol === 'transitUser' && (
+              <InputCheckbox
+                canEdit
+                isEdit={userStore.isEdit}
+                text={t('availableTransit')}
+                value={userStore.user.canTransit}
+                handleChange={handleChangeTransit}
+              />
+            )}
+          </div>
+          <div className={styles.colbig}>
+            <Textarea
+              canEdit
+              rows={4}
+              isEdit={userStore.isEdit}
+              label={t('aboutUs')}
+              placeholder={t('aboutUs')}
+              handleChange={handleChangeAboutUs}
+              inputStore={userStore.user.username}
+              value={userStore.user.aboutUs.value}
+            />
+          </div>
+          <div className={styles.colbig}>
+            <Textarea
+              canEdit
+              rows={4}
+              isEdit={userStore.isEdit}
+              label={t('requirementsToAdopt')}
+              placeholder={t('requirementsToAdopt')}
+              handleChange={handleChangeRequirementsToAdopt}
+              inputStore={userStore.user.requirementsToAdopt}
+              value={userStore.user.requirementsToAdopt.value}
+            />
+          </div>
+          <div className={styles.colbig}>
+            <GoogleAutocomplete
+              label={t('address')}
+              isEdit={userStore.isEdit}
+              placeholder={t('address')}
+              inputStoreError={userStore.user.textAddress}
+              value={userStore.user.textAddress.value}
+              handleChangeAddress={handleChangeAddress}
+              handleChangeTextAddress={handleChangeTextAddress}
+            />
+            <div className={styles.colbig}>
+              <GoogleMapsLocation
+                showAddress
+                title={t('messageMap')}
+                location={{
+                  lat: userStore.user.lat.value,
+                  lng: userStore.user.lng.value,
+                }}
+              />
+            </div>
+          </div>
+          <div className={styles.colbig}>
+            <Title title={t('titleChangePassword')} />
+          </div>
+          <div className={styles.colbig}>
+            <Input
+              canEdit
+              type="password"
+              isEdit={userStore.isEdit}
+              placeholder={t('password')}
+              handleChange={handleChangePassword}
+              inputStore={userStore.user.password}
+            />
+            {userStore.passwordError && (
+              <div className={styles.errorMessage}>{t('errorPassword')}</div>
+            )}
+            {userStore.passwordSuccess && (
+              <div className={styles.successMessage}>{t('successPassword')}</div>
+            )}
+          </div>
+          <div className={styles.colbig}>
+            <Input
+              canEdit
+              type="password"
+              isEdit={userStore.isEdit}
+              placeholder={t('repeatPassword')}
+              inputStore={userStore.confirmPassword}
+              handleChange={handleChangeRepeatPassword}
             />
           </div>
         </div>
-        <div className={styles.colbig}>
-          <Title title={t('titleChangePassword')} />
-        </div>
-        <div className={styles.colInput}>
-          <Input
-            canEdit
-            type="password"
-            isEdit={userStore.isEdit}
-            placeholder={t('password')}
-            handleChange={handleChangePassword}
-            inputStore={userStore.user.password}
-          />
-          {userStore.passwordError && (
-            <div className={styles.errorMessage}>{t('errorPassword')}</div>
-          )}
-          {userStore.passwordSuccess && (
-            <div className={styles.successMessage}>{t('successPassword')}</div>
-          )}
-        </div>
-        <div className={styles.colInput}>
-          <Input
-            canEdit
-            type="password"
-            isEdit={userStore.isEdit}
-            placeholder={t('repeatPassword')}
-            inputStore={userStore.confirmPassword}
-            handleChange={handleChangeRepeatPassword}
-          />
-        </div>
-      </div>
-      <ButtonsEditFixed
-        handleEdit={handleEdit}
-        handleSave={handleSave}
-        isEdit={userStore.isEdit}
-        handleCancelEdit={handleCancelEdit}
-      />
+        <ButtonsEditFixed
+          handleEdit={handleEdit}
+          handleSave={handleSave}
+          isEdit={userStore.isEdit}
+          handleCancelEdit={handleCancelEdit}
+        />
+      </LayoutForm>
       <Footer />
     </LayoutContainer>
   )

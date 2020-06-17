@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -8,7 +8,6 @@ import { GiHealthPotion } from 'react-icons/gi'
 import { MdEditLocation, MdPets } from 'react-icons/md'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import CreatePetStore from 'stores/CreatePetStore'
-import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
 import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
@@ -19,8 +18,6 @@ const CreatePet = () => {
   const { t } = useTranslation('createPet')
   const history = useHistory()
   const [step, setStep] = useState(1)
-  const rootStore = useContext(UserContext)
-  const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
 
   const handleSave = useCallback(() => {
