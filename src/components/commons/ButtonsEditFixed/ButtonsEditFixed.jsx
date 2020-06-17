@@ -17,10 +17,10 @@ const ButtonsEditFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit }) 
       {isEdit && (
         <>
           <div className={styles.button}>
-            <Button handleClick={handleSave} text={t('save')} icon={<MdSave size={20} />} />
+            <Button handleClick={handleCancelEdit} text={t('cancel')} icon={<MdEdit size={20} />} />
           </div>
           <div className={styles.button}>
-            <Button handleClick={handleCancelEdit} text={t('cancel')} icon={<MdEdit size={20} />} />
+            <Button handleClick={handleSave} text={t('save')} icon={<MdSave size={20} />} />
           </div>
         </>
       )}

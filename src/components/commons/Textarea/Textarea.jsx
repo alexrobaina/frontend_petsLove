@@ -10,15 +10,15 @@ import Label from '../Label/Input'
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
   return (
     <>
-      {label && <Label text={label} />}
+      {label && isEdit && <Label text={label} />}
       {isEdit ? (
         <textarea
-          className={c(styles.textarea, inputStore.error && styles.isError)}
           rows={rows}
           cols={cols}
           defaultValue={value}
-          placeholder={placeholder}
           onChange={handleChange}
+          placeholder={placeholder}
+          className={c(styles.textarea, inputStore.error && styles.isError)}
         />
       ) : (
         <ViewValue placeholder={placeholder} value={value} />

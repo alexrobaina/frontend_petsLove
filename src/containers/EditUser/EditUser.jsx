@@ -20,6 +20,9 @@ import Title from 'components/commons/Title'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './editUser.scss'
+import Label from '../../components/commons/Label/Input'
+import InputUploadImage from '../../components/commons/InputUploadImage'
+import LayoutForm from '../../components/commons/LayoutForm'
 
 const EditUser = () => {
   const { id } = useParams()
@@ -108,7 +111,7 @@ const EditUser = () => {
   }
 
   return (
-    <LayoutContainer title="My profile">
+    <LayoutContainer title={t('title')}>
       <div className={styles.containerImage}>
         {userStore.user.isLoadingResize ? (
           <Loading loadingRing />
@@ -135,7 +138,7 @@ const EditUser = () => {
             />
             <label onClick={onClickFileUpload} className={c(styles.textInput, styles.btnTertiary)}>
               <MdUpdate className={styles.icon} size={15} />
-              <span className={styles.jsFileName}>Choose a file</span>
+              <span className={styles.jsFileName}>{t('chooseFile')}</span>
             </label>
           </div>
         )}
@@ -144,6 +147,7 @@ const EditUser = () => {
         <div className={styles.colInput}>
           <Input
             disabled
+            label={t('name')}
             placeholder={t('name')}
             isEdit={userStore.isEdit}
             inputStore={userStore.user.name}
@@ -153,6 +157,7 @@ const EditUser = () => {
         <div className={styles.colInput}>
           <Input
             disabled
+            label={t('email')}
             placeholder={t('email')}
             isEdit={userStore.isEdit}
             inputStore={userStore.user.email}
@@ -163,6 +168,7 @@ const EditUser = () => {
           <Input
             canEdit
             disabled
+            label={t('userRol')}
             isEdit={userStore.isEdit}
             placeholder={t('userRol')}
             value={userStore.user.setRole()}
@@ -171,12 +177,14 @@ const EditUser = () => {
         </div>
         <div className={styles.colInput}>
           {userStore.isEdit ? (
-            <PhoneInput
-              country="ar"
-              onChange={phone => handleChangePhone(phone)}
-              inputStyle={{ width: '100%', height: '40px' }}
-              value={userStore.user.phone.value ? userStore.user.phone.value : ''}
-            />
+            <>
+              <Label text={'phone'} />
+              <PhoneInput
+                country="ar"
+                onChange={phone => handleChangePhone(phone)}
+                inputStyle={{ width: '100%', height: '40px' }}
+              />
+            </>
           ) : (
             <ViewValue placeholder={t('phone')} value={userStore.user.phone.value} />
           )}
@@ -184,6 +192,7 @@ const EditUser = () => {
         <div className={styles.colInput}>
           <Input
             canEdit
+            label={t('username')}
             isEdit={userStore.isEdit}
             placeholder={t('username')}
             handleChange={handleChangeUsername}
@@ -208,6 +217,7 @@ const EditUser = () => {
             canEdit
             rows={4}
             isEdit={userStore.isEdit}
+            label={'aboutUs'}
             placeholder={t('aboutUs')}
             handleChange={handleChangeAboutUs}
             inputStore={userStore.user.username}
@@ -219,6 +229,7 @@ const EditUser = () => {
             canEdit
             rows={4}
             isEdit={userStore.isEdit}
+            label={'requirementsToAdopt'}
             placeholder={t('requirementsToAdopt')}
             handleChange={handleChangeRequirementsToAdopt}
             inputStore={userStore.user.requirementsToAdopt}
@@ -227,8 +238,8 @@ const EditUser = () => {
         </div>
         <div className={styles.colbig}>
           <GoogleAutocomplete
-            isEdit={userStore.isEdit}
             label={t('address')}
+            isEdit={userStore.isEdit}
             placeholder={t('address')}
             inputStoreError={userStore.user.textAddress}
             value={userStore.user.textAddress.value}

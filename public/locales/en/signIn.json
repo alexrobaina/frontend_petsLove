@@ -4,6 +4,8 @@
     "name": "Name",
     "email": "Email",
     "username": "Username",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
     "password": "Password",
     "confirmPassword": "Confirm password",
     "goToLogin": "Got to login",

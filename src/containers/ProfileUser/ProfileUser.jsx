@@ -14,9 +14,9 @@ const ProfileUser = () => {
     userIdStore.getUserId(id)
   }, [])
 
-  const { rol } = userIdStore.user
+  const { role } = userIdStore.user
 
-  if (rol === 'protectionist') {
+  if (role === 'protectionist') {
     return (
       <>
         <ProtectionistProfile user={userIdStore.user} />
@@ -24,7 +24,7 @@ const ProfileUser = () => {
     )
   }
 
-  if (rol === 'transitUser') {
+  if (role === 'transitUser') {
     return <TransitUserProfile user={userIdStore.user} />
   }
 

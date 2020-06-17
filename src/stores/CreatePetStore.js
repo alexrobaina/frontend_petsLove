@@ -1,6 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
 import imageCompression from 'browser-image-compression'
+import FormData from 'form-data'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
@@ -32,112 +33,36 @@ class CreatePetStore {
   @observable location = { lat: -34.603722, lng: -58.381592 }
 
   @action
-  async save(userId) {
-    if (this.validationForm()) {
-      this.isLoading = true
-      const data = new FormData()
-      this.requestSuccess = false
-      this.pet.user.setValue(userId)
-
-      Object.entries(this.pet.getJson()).forEach(([key, value]) => {
-        if (key !== 'userAdopt' && key !== 'userTransit' && key !== 'image' && key !== '_id') {
-          data.append(key, value)
-        }
-      })
-
-      if (this.pet.image.value.length > 0) {
-        Object.values(this.pet.image.value).forEach(value => {
-          data.append('image', value)
-        })
-      }
-
-      try {
-        const response = await this.createPetServices.addPet(data)
-
-        runInAction(() => {
-          this.pet = response
-          this.isLoading = false
-          this.idPet = this.pet._id
-          this.requestSuccess = true
-        })
-      } catch (e) {
-        runInAction(() => {
-          this.isLoading = false
-          console.log(e)
-        })
-      }
-    }
-  }
-
-  @action
-  async saveEdit() {
-    if (this.compressImage()) {
-      this.isLoading = true
-      this.requestSuccess = false
-      const data = new FormData()
-
-      if (this.imageResize.length > 0) {
-        Object.values(this.imageResize).forEach(image => {
-          console.log(image)
-          data.append('image', image)
-        })
-      }
-
-      Object.values(this.imagePreview).forEach(value => {
-        data.append('imagePreview', value)
-      })
-
-      Object.entries(this.pet.getJson()).forEach(([key, value]) => {
-        if (key !== 'userAdopt' && key !== 'userTransit' && key !== 'image') {
-          data.append(key, value)
-        }
-        if (key === 'userAdopt') {
-          if (value !== '' && value !== undefined) {
-            data.append(key, value)
-          }
-        }
-        if (key === 'userTransit') {
-          if (value !== '' && value !== undefined) {
-            data.append(key, value)
-          }
-        }
-      })
-
-      try {
-        const response = await this.createPetServices.editPet(data)
-
-        runInAction(() => {
-          this.pet = response
-          this.isLoading = false
-          this.idPet = this.pet._id
-
-          this.requestSuccess = true
-          window.location.reload()
-        })
-      } catch (e) {
-        runInAction(() => {
-          this.isLoading = false
-          console.log(e)
-        })
-      }
-    }
-  }
-
-  @action
-  async searchPetForId(id) {
+  async save() {
     this.isLoading = true
+    const data = new FormData()
+    this.requestSuccess = false
+
+    Object.entries(this.pet.getJson()).forEach(([key, value]) => {
+      if (
+        key !== 'image' &&
+        key !== '_id' &&
+        key !== 'userCreator' &&
+        key !== 'userTransit' &&
+        key !== 'userAdopter'
+      ) {
+        data.append(key, value)
+      }
+    })
+
+    if (this.pet.image.value.length > 0) {
+      Object.values(this.pet.image.value).forEach(value => {
+        data.append('image', value)
+      })
+    }
 
     try {
-      const response = await this.createPetServices.searchPet(id)
+      const response = await this.createPetServices.addPet(data)
 
       runInAction(() => {
         this.isLoading = false
-        this.pet.fillJson(response)
-        this.imagePreview = this.pet.image.value
-
-        if (this.pet.userAdopt.value) {
-          this.emailUserAdopt = this.pet.userAdopt.value
-        }
+        this.idPet = response._id
+        this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
@@ -255,7 +180,82 @@ class CreatePetStore {
 
   @action
   setActivity(value) {
-    this.pet.activity.setValue(value.value)
+    this.pet.activityLevel.setValue(value.value)
+  }
+
+  @action
+  setPet(value) {
+    this.pet.vet.setValue(value.value)
+  }
+
+  @action
+  setLastVisitVet(value) {
+    this.pet.lastVisitVet.setValue(value)
+  }
+
+  @action
+  setVet(value) {
+    this.pet.vet.setValue(value)
+  }
+
+  @action
+  setIsCastrated() {
+    this.pet.isCastrated = !this.pet.isCastrated
+  }
+
+  @action
+  setDistemperVaccine() {
+    this.pet.distemperVaccine = !this.pet.distemperVaccine
+  }
+
+  @action
+  setFelineFluVaccine() {
+    this.pet.felineFluVaccine = !this.pet.felineFluVaccine
+  }
+
+  @action
+  setFelineLeukemiaVaccine() {
+    this.pet.felineLeukemiaVaccine = !this.pet.felineLeukemiaVaccine
+  }
+
+  @action
+  setFelineInfectiousPeritonitisVaccine() {
+    this.pet.felineInfectiousPeritonitisVaccine = !this.pet.felineInfectiousPeritonitisVaccine
+  }
+
+  @action
+  setRabiesVaccine() {
+    this.pet.rabiesVaccine = !this.pet.rabiesVaccine
+  }
+
+  @action
+  setHepatitisVaccine() {
+    this.pet.hepatitisVaccine = !this.pet.hepatitisVaccine
+  }
+
+  @action
+  setLeptospirosisVaccine() {
+    this.pet.leptospirosisVaccine = !this.pet.leptospirosisVaccine
+  }
+
+  @action
+  setParvovirusVaccine() {
+    this.pet.parvovirusVaccine = !this.pet.parvovirusVaccine
+  }
+
+  @action
+  setParainfluenzaVaccine() {
+    this.pet.parainfluenzaVaccine = !this.pet.parainfluenzaVaccine
+  }
+
+  @action
+  setBordetellaBronchisepticVaccine() {
+    this.pet.bordetellaBronchisepticVaccine = !this.pet.bordetellaBronchisepticVaccine
+  }
+
+  @action
+  setNotes(value) {
+    this.pet.notes.setValue(value)
   }
 
   @action
@@ -269,11 +269,11 @@ class CreatePetStore {
   }
 
   @action
-  validationForm() {
+  firstStepValidation() {
     let isValidForm = true
     this.clearError()
 
-    const { name, category, gender, history, requiredToAdoption, activity, textAddress } = this.pet
+    const { name, category, gender } = this.pet
 
     if (!name.value) {
       name.setError(true, REQUIRED)
@@ -293,44 +293,18 @@ class CreatePetStore {
       isValidForm = false
     }
 
-    if (!activity.value) {
-      activity.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
-    if (!requiredToAdoption.value) {
-      requiredToAdoption.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
-    if (!history.value) {
-      history.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
-    if (!textAddress.value) {
-      textAddress.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
     return isValidForm
   }
 
   @action
   clearError() {
-    const { name, category, gender, history, requiredToAdoption, activity, textAddress } = this.pet
+    const { name, category, gender, history, activityLevel, textAddress } = this.pet
 
     name.clearError()
     category.clearError()
     gender.clearError()
     history.clearError()
-    requiredToAdoption.clearError()
-    activity.clearError()
-    requiredToAdoption.clearError()
+    activityLevel.clearError()
     textAddress.clearError()
   }
 

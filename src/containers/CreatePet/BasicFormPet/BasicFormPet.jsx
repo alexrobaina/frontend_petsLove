@@ -5,14 +5,13 @@ import { observer } from 'mobx-react'
 import InputUploadImage from 'components/commons/InputUploadImage'
 import Input from 'components/commons/Input'
 import CreatePetStore from 'stores/CreatePetStore'
-import OptionsSelectsStore from 'stores/OptionsSelectsStore'
 import LayoutForm from 'components/commons/LayoutForm'
 import InputSelect from 'components/commons/InputSelect'
+import InputCheckbox from 'components/commons/InputCheckbox'
+import Textarea from 'components/commons/Textarea/Textarea'
 import styles from './basicFormPet.scss'
-import i18next from 'i18next'
-import InputCheckbox from '../../../components/commons/InputCheckbox'
 
-const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
+const BasicFormPet = ({ createPetStore }) => {
   const { t } = useTranslation('createPet')
 
   const ageOptions = [
@@ -41,21 +40,21 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
     { value: '11year', label: t('11year') },
     { value: '12year', label: t('12year') },
   ]
-  
+
   const categoryOptions = [
     { value: 'dog', label: t('Dog') },
     { value: 'cat', label: t('Cat') },
   ]
-  
+
   const genderOptions = [
     { value: 'female', label: t('Female') },
     { value: 'male', label: t('Male') },
   ]
-  
+
   const activityOptions = [
-    { value: 'quiet', label: t('Quiet') },
-    { value: 'active', label: t('Active') },
-    { value: 'superActive', label: t('Super active') },
+    { value: 'quiet', label: t('quiet') },
+    { value: 'active', label: t('active') },
+    { value: 'superActive', label: t('superActive') },
     { value: 'LotsEnergy', label: t('Lots of energy') },
   ]
 
@@ -65,6 +64,9 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
 
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
+  }, [])
+  const handleChangeHistory = useCallback(e => {
+    createPetStore.setHistory(e.target.value)
   }, [])
 
   const handleChangeCategory = useCallback(selectedValue => {
@@ -82,18 +84,18 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
   const handleChangeActivity = useCallback(selectedValue => {
     createPetStore.setActivity(selectedValue)
   }, [])
-  
+
   const handleChangeLost = useCallback(() => {
     createPetStore.setLost()
   }, [])
 
   return (
     <LayoutForm>
-      <div className={styles.subtitle}>{t('Información básica de la mascota')}</div>
+      <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
       <InputUploadImage
+        isEdit
         store={createPetStore}
         deleteImage={deleteImage}
-        isEdit={createPetStore.isEdit}
         previewImage={createPetStore.newPreviewsImage}
       />
       <div className={styles.colums}>
@@ -101,12 +103,12 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
           isEdit
           value={createPetStore.pet.lost}
           handleChange={handleChangeLost}
-          text={t('¿Es una mascota perdida?')}
+          text={t('lost')}
         />
       </div>
       <div className={styles.colums}>
         <Input
-          isEdit={createPetStore.isEdit}
+          isEdit
           handleChange={handleChangeName}
           placeholder={t('placeholderName')}
           inputStore={createPetStore.pet.name}
@@ -115,38 +117,52 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
       </div>
       <div className={styles.colums}>
         <InputSelect
-          isEdit={createPetStore.isEdit}
+          isEdit
+          options={categoryOptions}
           placeholder={t('categoryPets')}
           handleChange={handleChangeCategory}
+          inputStore={createPetStore.pet.category}
           value={createPetStore.pet.category.value}
-          options={categoryOptions}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
-          placeholder={t('Sex')}
-          isEdit={createPetStore.isEdit}
-          handleChange={handleChangeGender}
+          isEdit
+          placeholder={t('gender')}
           options={genderOptions}
+          handleChange={handleChangeGender}
+          inputStore={createPetStore.pet.gender}
           value={createPetStore.pet.gender.value}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
-          placeholder={t('Age')}
+          isEdit
+          options={ageOptions}
+          placeholder={t('age')}
           handleChange={handleChangeAge}
-          isEdit={createPetStore.isEdit}
-          options={optionsSelectsStore.ages}
+          inputStore={createPetStore.pet.age}
           value={createPetStore.pet.age.value}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
-          placeholder={t('Activity')}
-          isEdit={createPetStore.isEdit}
-          handleChange={handleChangeActivity}
+          isEdit
           options={activityOptions}
-          value={createPetStore.pet.activity.value}
+          placeholder={t('activity')}
+          handleChange={handleChangeActivity}
+          inputStore={createPetStore.pet.activityLevel}
+          value={createPetStore.pet.activityLevel.value}
+        />
+      </div>
+      <div className={styles.colums}>
+        <Textarea
+          isEdit
+          rows={5}
+          label={t('mascotStory')}
+          handleChange={handleChangeHistory}
+          inputStore={createPetStore.pet.history}
+          value={createPetStore.pet.history.value}
         />
       </div>
     </LayoutForm>
@@ -154,8 +170,7 @@ const BasicFormPet = ({ createPetStore, optionsSelectsStore }) => {
 }
 
 BasicFormPet.propTypes = {
-  createPetStore: PropTypes.instanceOf(CreatePetStore),
-  optionsSelectsStore: PropTypes.instanceOf(OptionsSelectsStore),
+  createPetStore: PropTypes.instanceOf(CreatePetStore).isRequired,
 }
 
 export default observer(BasicFormPet)

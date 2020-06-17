@@ -84,13 +84,13 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
   const { authStore } = rootStore
 
   const initMenuUser = useCallback(() => {
-    if (authStore.user.rol === 'protectionist') {
+    if (authStore.user.role === 'protectionist') {
       setMenuUser(routesUserProtectionist)
     }
-    if (authStore.user.rol === 'adopter') {
+    if (authStore.user.role === 'adopter') {
       setMenuUser(routesUserAdopter)
     }
-    if (authStore.user.rol === 'transitUser') {
+    if (authStore.user.role === 'transitUser') {
       setMenuUser(routesUserTransitUser)
     }
   }, [])
@@ -110,18 +110,18 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
       </div>
       <ToggleNavegationUser
         routesUser={routesUserProtectionist}
-        handleToggleViewMenuUser={handleToggleViewMenuUser}
         toggleViewMenuUser={toggleViewMenuUser}
+        handleToggleViewMenuUser={handleToggleViewMenuUser}
       />
       {menuUser.map(route => (
         <div key={route.link} className={styles.containerLinks}>
           <LinkNavbarUser
+            link={route.link}
+            icon={route.icon}
             haveId={route.haveId}
             id={authStore.user._id}
-            link={route.link}
-            text={t(`${route.text}`)}
-            icon={route.icon}
             handleMenu={handleMenu}
+            text={t(`${route.text}`)}
           />
         </div>
       ))}

@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router'
+import Tooltip from '@material-ui/core/Tooltip'
+import { useHistory } from 'react-router'
 import c from 'classnames'
-import { FaUserCog } from 'react-icons/fa'
 import { GiHealthPotion } from 'react-icons/gi'
 import { MdEditLocation, MdPets } from 'react-icons/md'
 import LayoutContainer from 'components/commons/LayoutContainer'
@@ -11,31 +11,31 @@ import CreatePetStore from 'stores/CreatePetStore'
 import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
 import BasicFormPet from './BasicFormPet/BasicFormPet'
-import InformationUserPet from './InformationUserPet/InformationUserPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
-import styles from './createPet.scss'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
+import styles from './createPet.scss'
 
 const CreatePet = () => {
   const { t } = useTranslation('createPet')
   const history = useHistory()
-  const { id } = useParams()
-  const [onlySave, setOnlySave] = useState(false)
   const [step, setStep] = useState(1)
   const rootStore = useContext(UserContext)
   const { optionsSelectsStore, authStore } = rootStore
   const createPetStore = useLocalStore(() => new CreatePetStore())
 
   const handleSave = useCallback(() => {
-    if (id) {
-      createPetStore.saveEdit()
-    } else {
-      createPetStore.save(authStore.user._id)
-    }
+    createPetStore.save()
   }, [])
 
   const handleNext = step => {
-    setStep(step + 1)
+    if (step === 1) {
+      if (createPetStore.firstStepValidation()) {
+        setStep(step + 1)
+      }
+    }
+    if (step === 2) {
+      setStep(step + 1)
+    }
   }
 
   const handleBack = step => {
@@ -43,36 +43,18 @@ const CreatePet = () => {
   }
 
   useEffect(() => {
-    optionsSelectsStore.listAges()
-    optionsSelectsStore.listGender()
-    optionsSelectsStore.listActiviy()
-    optionsSelectsStore.listCategories()
-
-    if (id) {
-      createPetStore.searchPetForId(id)
-      createPetStore.setCancelEdit()
-    } else {
-      createPetStore.setEdit()
-      setOnlySave(true)
-    }
-
     if (createPetStore.requestSuccess) {
-      history.push('/')
-      history.push(`/profile-pets/${createPetStore.idPet}`)
+      history.push(`/dashboard`)
     }
   }, [createPetStore.requestSuccess])
-  
-  console.log(createPetStore.pet.category.value)
-  
+
   function getStepForm() {
     if (step === 1) {
-      return (
-        <BasicFormPet createPetStore={createPetStore} optionsSelectsStore={optionsSelectsStore} />
-      )
+      return <BasicFormPet createPetStore={createPetStore} />
     }
 
     if (step === 2) {
-      return <MedicalReportsPets createPetStore={createPetStore} optionsSelectsStore={optionsSelectsStore}/>
+      return <MedicalReportsPets createPetStore={createPetStore} />
     }
 
     if (step === 3) {
@@ -83,33 +65,30 @@ const CreatePet = () => {
   return (
     <LayoutContainer title={t('title')}>
       <div className={styles.containerSteps}>
-        <div
-          onClick={() => setStep(1)}
-          className={c(styles.stepInformation, step === 1 && styles.formSelected)}
-        >
-          <MdPets size={20} />
-        </div>
-        <div
-          onClick={() => setStep(2)}
-          className={c(styles.stepInformation, step === 2 && styles.formSelected)}
-        >
-          <GiHealthPotion size={20} />
-        </div>
-        <div
-          onClick={() => setStep(3)}
-          className={c(styles.stepInformation, step === 3 && styles.formSelected)}
-        >
-          <MdEditLocation size={20} />
-        </div>
+        <Tooltip title={t('subtitleStepOne')}>
+          <div className={c(styles.stepInformation, step === 1 && styles.formSelected)}>
+            <MdPets size={20} />
+          </div>
+        </Tooltip>
+        <Tooltip title={t('subtitleStepTwo')}>
+          <div className={c(styles.stepInformation, step === 2 && styles.formSelected)}>
+            <GiHealthPotion size={20} />
+          </div>
+        </Tooltip>
+        <Tooltip title={t('subtitleStepThree')}>
+          <div className={c(styles.stepInformation, step === 3 && styles.formSelected)}>
+            <MdEditLocation size={20} />
+          </div>
+        </Tooltip>
         <div className={styles.stepLine} />
       </div>
       {getStepForm()}
       <div className={styles.containerButton}>
-        <Button disable={step === 1} handleClick={() => handleBack(step)} text={'Back'} />
+        <Button disable={step === 1} handleClick={() => handleBack(step)} text={t('back')} />
         {step === 3 ? (
-          <Button handleClick={handleSave} text={'Save'} />
+          <Button handleClick={handleSave} text={t('save')} />
         ) : (
-          <Button handleClick={() => handleNext(step)} text={'Next'} />
+          <Button handleClick={() => handleNext(step)} text={t('next')} />
         )}
       </div>
     </LayoutContainer>

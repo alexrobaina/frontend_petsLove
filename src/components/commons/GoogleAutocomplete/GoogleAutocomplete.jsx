@@ -20,7 +20,6 @@ const GoogleAutocomplete = observer(
     handleChangeTextAddress,
   }) => {
     const [address, setAddress] = useState('')
-
     // eslint-disable-next-line no-shadow
     const handleChange = useCallback(address => {
       setAddress(address)
@@ -50,7 +49,6 @@ const GoogleAutocomplete = observer(
                     {label && <Label text={label} />}
                     <input
                       name={name}
-                      value={value}
                       className={c(
                         styles.input,
                         inputStoreError ? inputStoreError.error && styles.isError : ''

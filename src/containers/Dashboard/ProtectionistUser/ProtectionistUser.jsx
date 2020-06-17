@@ -35,16 +35,16 @@ const ProtectionistUser = () => {
     <LayoutContainer>
       <div className={styles.container}>
         <DashboardCard
-          handleClick={handlePetsForAdoption}
           icon={dog}
-          numberCard={searchPetsStore.petsForAdoption.length}
+          handleClick={handlePetsForAdoption}
           titleCard={t('protectionistUser.petsAdopt')}
+          numberCard={searchPetsStore.petsForAdoption.length}
         />
         <DashboardCard
-          handleClick={handlePetsAdopted}
           icon={cat}
-          numberCard={searchPetsStore.petsAdopted.length}
+          handleClick={handlePetsAdopted}
           titleCard={t('protectionistUser.petsAdopted')}
+          numberCard={searchPetsStore.petsAdopted.length}
         />
       </div>
       {swith && <PetsAdopted id={authStore.user._id} />}
