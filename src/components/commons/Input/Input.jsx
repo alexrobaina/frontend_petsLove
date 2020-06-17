@@ -7,6 +7,7 @@ import c from 'classnames'
 import InputStore from 'stores/InputStore'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './input.scss'
+import Label from '../Label/Input'
 
 const Input = ({
   inputStore,
@@ -18,6 +19,7 @@ const Input = ({
   type,
   isErrorEmail,
   multiple,
+  label,
   disabled,
   name,
   title,
@@ -37,6 +39,7 @@ const Input = ({
 
   return (
     <>
+      {label && isEdit && <Label text={label} />}
       {isEdit ? (
         <div className={styles.containerInput}>
           <input
@@ -75,6 +78,7 @@ Input.propTypes = {
   type: PropTypes.string,
   handleChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onBlur: PropTypes.string,
   multiple: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
@@ -87,6 +91,7 @@ Input.defaultProps = {
   handleChange: null,
   isEdit: false,
   value: '',
+  label: '',
   type: 'text',
   multiple: false,
   isErrorEmail: false,

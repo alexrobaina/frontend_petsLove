@@ -45,10 +45,10 @@ class AuthStore {
       runInAction(() => {
         this.isLogin = true
         this.setUser(response.user)
-        this.setToken(response.tokenReturn)
+        this.setToken(response.token)
         this.user = response.user
         this.isErrorLogin = false
-        this.token = response.tokenReturn
+        this.token = response.token
         setTimeout(() => {
           this.isLoading = false
         }, 1000)

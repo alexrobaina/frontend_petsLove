@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './button.scss'
+import { ToastContainer } from 'react-toastify'
 
 const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTransparent }) => {
   if (circle) {
@@ -16,10 +17,10 @@ const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTranspa
   return (
     <div className={styles.containerButton}>
       <button
-        disabled={disable}
-        className={c(styles.primary, bigButton && styles.bigButton)}
         type="button"
+        disabled={disable}
         onClick={handleClick}
+        className={c(styles.primary, bigButton && styles.bigButton)}
       >
         {text}
       </button>

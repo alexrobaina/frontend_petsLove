@@ -44,18 +44,18 @@ class UserStore {
     const data = new FormData()
 
     Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      if (key !== 'password') {
-        data.append(key, value)
-      }
       if (key === 'password') {
         if (value !== '') {
           data.append(key, value)
         }
       }
+      if (key !== 'password') {
+        data.append(key, value)
+      }
     })
 
     try {
-      await this.editUserServices.save(data)
+      await this.editUserServices.userUpdate(data)
 
       runInAction(() => {
         this.isLoading = false
@@ -79,6 +79,7 @@ class UserStore {
       runInAction(() => {
         this.formatNameRole()
         this.user.fillJson(response)
+        console.log(this.user)
         this.setLocalStorage.setUser(response)
         this.isLoading = false
       })
@@ -107,13 +108,13 @@ class UserStore {
 
   @action
   formatNameRole() {
-    if (this.user.rol.value === 'transitUser') {
+    if (this.user.role.value === 'transitUser') {
       this.nameRol = USER_TRANSIT
     }
-    if (this.user.rol.value === 'protectionist') {
+    if (this.user.role.value === 'protectionist') {
       this.nameRol = USER_PROTECTIONIST
     }
-    if (this.user.rol.value === 'adopter') {
+    if (this.user.role.value === 'adopter') {
       this.nameRol = USER_ADOPTER
     }
   }

@@ -3,7 +3,7 @@ import { SERVER } from '../config'
 
 class CreatePetServices {
   addPet = data => {
-    return axios.post(`${SERVER}/api/pet/add`, data).then(response => response.data)
+    return axios.post(`${SERVER}/api/pet/create`, data).then(response => response.data)
   }
 
   editPet = data => {

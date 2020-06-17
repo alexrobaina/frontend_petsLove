@@ -8,7 +8,7 @@
   align-items: center;
 
   @include media-breakpoint-only(xs) {
-    padding: 18px 16px 18px 21px;
+    padding: 0 0 0 0;
   }
 }
 
@@ -51,6 +51,12 @@
   color: $title;
   padding-top: 5px;
   padding-bottom: 2px;
+
+
+  @include media-breakpoint-only(xs) {
+    font-size: 11px;
+  }
+
 }
 
 .label {

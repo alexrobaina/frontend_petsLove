@@ -1,0 +1,21 @@
+@import 'styles/mixings';
+
+.containerMap {
+  margin-bottom: 20px;
+}
+
+.colMap {
+  padding: 10px;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+.subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}

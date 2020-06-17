@@ -1,5 +1,6 @@
 {
   "title": "My profile",
+  "chooseFile": "Choose a photo",
   "name": "Name",
   "email": "Email",
   "userRol": "User role",

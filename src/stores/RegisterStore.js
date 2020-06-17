@@ -51,8 +51,13 @@ class RegisterStore {
   }
 
   @action
-  setName(value) {
-    this.registerUser.name.setValue(value)
+  setFirstname(value) {
+    this.registerUser.firstname.setValue(value)
+  }
+
+  @action
+  setLastname(value) {
+    this.registerUser.lastname.setValue(value)
   }
 
   @action
@@ -67,7 +72,7 @@ class RegisterStore {
 
   @action
   setRole(value) {
-    this.registerUser.rol.setValue(value)
+    this.registerUser.role.setValue(value)
   }
 
   @action
@@ -104,10 +109,16 @@ class RegisterStore {
     let isValidForm = true
     this.clearError()
 
-    const { name, email, password, rol, phone, username } = this.registerUser
+    const { firstname, lastname, email, password, role, phone, username } = this.registerUser
 
-    if (!name.value) {
-      name.setError(true, REQUIRED)
+    if (!firstname.value) {
+      firstname.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!lastname.value) {
+      lastname.setError(true, REQUIRED)
 
       isValidForm = false
     }
@@ -124,8 +135,8 @@ class RegisterStore {
       isValidForm = false
     }
 
-    if (!rol.value) {
-      rol.setError(true, REQUIRED)
+    if (!role.value) {
+      role.setError(true, REQUIRED)
 
       isValidForm = false
     }
@@ -160,12 +171,13 @@ class RegisterStore {
 
   @action
   clearError() {
-    const { name, email, password, rol, phone, username } = this.registerUser
-
-    name.clearError()
+    const { firstname, lastname, email, password, role, phone, username } = this.registerUser
+  
+    firstname.clearError()
+    lastname.clearError()
     email.clearError()
     password.clearError()
-    rol.clearError()
+    role.clearError()
     phone.clearError()
     username.clearError()
   }

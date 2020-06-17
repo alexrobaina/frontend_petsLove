@@ -18,8 +18,12 @@ const FormRegister = ({ registerStore }) => {
   const { t } = useTranslation('signIn')
   const history = useHistory()
 
-  const handleChangeName = useCallback(e => {
-    registerStore.setName(e.target.value)
+  const handleChangeFirstname = useCallback(e => {
+    registerStore.setFirstname(e.target.value)
+  }, [])
+
+  const handleChangeLastname = useCallback(e => {
+    registerStore.setLastname(e.target.value)
   }, [])
 
   const handleChangeEmail = useCallback(e => {
@@ -57,7 +61,7 @@ const FormRegister = ({ registerStore }) => {
     }
   }, [registerStore.isRegister])
 
-  const { name, email, password, rol, username } = registerStore.registerUser
+  const { firstname, email, password, role, username, lastname } = registerStore.registerUser
 
   return (
     <LayoutTrantitions>
@@ -75,10 +79,21 @@ const FormRegister = ({ registerStore }) => {
                     isEdit
                     canEdit
                     name="name"
-                    inputStore={name}
-                    value={name.value}
-                    handleChange={handleChangeName}
-                    placeholder={t('register.name')}
+                    inputStore={firstname}
+                    value={firstname.value}
+                    handleChange={handleChangeFirstname}
+                    placeholder={t('register.firstname')}
+                  />
+                </div>
+                <div className={styles.inputForm}>
+                  <Input
+                    isEdit
+                    canEdit
+                    name="name"
+                    inputStore={lastname}
+                    value={lastname.value}
+                    handleChange={handleChangeLastname}
+                    placeholder={t('register.lastname')}
                   />
                 </div>
                 <div className={styles.inputForm}>
@@ -139,16 +154,17 @@ const FormRegister = ({ registerStore }) => {
                 <div className={styles.inputForm}>
                   <InputSelect
                     isEdit
-                    name="rol"
+                    name="role"
                     needValidate
-                    inputStore={rol}
-                    value={rol.value}
+                    inputStore={role}
+                    value={role.value}
                     handleChange={handleChangeRole}
                     placeholder={t('register.selectTypeUser')}
                     options={[
                       { value: 'adopter', label: t('register.typeUserAdopter') },
                       { value: 'protectionist', label: t('register.typeUserProtectionist') },
                       { value: 'transitUser', label: t('register.typeUserTransit') },
+                      { value: 'vet', label: t('register.typeUserVet') },
                     ]}
                   />
                 </div>
@@ -156,8 +172,8 @@ const FormRegister = ({ registerStore }) => {
                   <PhoneInput
                     name="phone"
                     country="ar"
-                    inputStyle={{ width: '100%' }}
                     onChange={phone => handleChangePhone(phone)}
+                    inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a'  }}
                   />
                 </div>
                 <div className={styles.buttonRegister}>

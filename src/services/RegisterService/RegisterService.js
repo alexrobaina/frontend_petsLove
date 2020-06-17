@@ -4,7 +4,7 @@ import i18next from 'i18next'
 
 class RegisterService {
   register = data => {
-    return axios.post(`${SERVER}/api/user/add`, data).then(response => response.data)
+    return axios.post(`${SERVER}/api/user/create`, data).then(response => response.data)
   }
 
   getUserRol = () => {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SERVER } from 'services/config'
 
 class EditUserServices {
-  save = data => {
+  userUpdate = data => {
     return axios.put(`${SERVER}/api/user/update`, data).then(response => response.data)
   }
 

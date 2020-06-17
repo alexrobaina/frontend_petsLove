@@ -17,7 +17,7 @@ const LayoutContainer = ({
       animationIn="fadeIn"
       animationOut="fadeInUp"
       animationInDelay={1000}
-      animationInDuration={500}
+      animationInDuration={300}
     >
       <div className={styles.containerLayout}>
         {viewButtonBack && <ButtonBack text={textButton} handleClick={handleBack} />}
@@ -25,6 +25,8 @@ const LayoutContainer = ({
         <div className={styles.information}>{information}</div>
         {children}
       </div>
+      
+      <div className={styles.spaceBotton} />
     </Animated>
   )
 }

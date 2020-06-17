@@ -10,7 +10,7 @@
   }
 
   @include media-breakpoint-only(sm) {
-    padding-left: 80px;
+    padding-left: 50px;
     padding-right: 50px;
   }
 
@@ -63,3 +63,6 @@
   color: $primary;
 }
 
+.spaceBotton {
+  height: 200px;
+}

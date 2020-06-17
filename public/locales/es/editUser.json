@@ -1,6 +1,7 @@
 {
   "title": "Mi perfil",
   "name": "Nombre",
+  "chooseFile": "Seleccione una foto",
   "email": "Correo",
   "userRol": "El de usuario",
   "phone": "Teléfono",

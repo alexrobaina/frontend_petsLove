@@ -10,11 +10,11 @@ const Dashboard = () => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
-  if (authStore.user.rol === 'protectionist') {
+  if (authStore.user.role === 'protectionist') {
     return <ProtectionistUser />
   }
 
-  if (authStore.user.rol === 'adopter') {
+  if (authStore.user.role === 'adopter') {
     return <AdopterUser />
   }
 

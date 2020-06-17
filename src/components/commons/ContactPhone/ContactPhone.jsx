@@ -11,10 +11,9 @@ const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
       <div className={styles.inputPhone}>
         {phone !== '' ? (
           <PhoneInput
-            value={phone}
-            inputStyle={isWithBase ? { width: '260px' } : { width: '100% !important' }}
             country="ar"
             disabled={disabled}
+            inputStyle={isWithBase ? { width: '260px' } : { width: '100% !important' }}
           />
         ) : (
           <div className={styles.containerEmail}>

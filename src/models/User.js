@@ -10,11 +10,14 @@ class User {
   @observable terms = false
   @observable canTransit = false
 
-  constructor(id) {
+  constructor(id, location) {
     this._id = id
+    this.location = location
     this.image = new InputStore()
     this.name = new InputStore()
-    this.rol = new InputStore()
+    this.firstname = new InputStore()
+    this.lastname = new InputStore()
+    this.role = new InputStore()
     this.email = new InputStore()
     this.phone = new InputStore()
     this.aboutUs = new InputStore()
@@ -32,13 +35,13 @@ class User {
   }
 
   setRole() {
-    if (this.rol.value === 'transitUser') {
+    if (this.role.value === 'transitUser') {
       return USER_TRANSIT
     }
-    if (this.rol.value === 'protectionist') {
+    if (this.role.value === 'protectionist') {
       return USER_PROTECTIONIST
     }
-    if (this.rol.value === 'adopter') {
+    if (this.role.value === 'adopter') {
       return USER_ADOPTER
     }
     return ''
@@ -48,15 +51,18 @@ class User {
     this._id = user._id
     this.image.setValue(user.image)
     this.name.setValue(user.name)
-    this.rol.setValue(user.rol)
+    this.firstname = user.firstname
+    this.lastname = user.lastname
+    this.role.setValue(user.role)
     this.email.setValue(user.email)
     this.phone.setValue(user.phone)
     this.aboutUs.setValue(user.aboutUs)
-    this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.lat.setValue(user.lat)
     this.lng.setValue(user.lng)
     this.textAddress.setValue(user.textAddress)
+    this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.username.setValue(user.username)
+    this.location = user.location
     this.terms = user.terms
     this.canTransit = user.canTransit
   }
@@ -66,7 +72,9 @@ class User {
       _id: this._id,
       image: this.image.value,
       name: this.name.value,
-      rol: this.rol.value,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      role: this.role.value,
       email: this.email.value,
       phone: this.phone.value,
       aboutUs: this.aboutUs.value,
@@ -74,6 +82,7 @@ class User {
       lng: this.lng.value,
       username: this.username.value,
       textAddress: this.textAddress.value,
+      location: this.location,
       password: this.password.value,
       requirementsToAdopt: this.requirementsToAdopt.value,
       canTransit: this.canTransit,
