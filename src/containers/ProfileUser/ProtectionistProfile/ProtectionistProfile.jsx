@@ -33,7 +33,7 @@ const ProtectionistProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-
+  
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>

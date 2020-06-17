@@ -79,6 +79,7 @@ class UserStore {
       runInAction(() => {
         this.formatNameRole()
         this.user.fillJson(response)
+        console.log(this.user)
         this.setLocalStorage.setUser(response)
         this.isLoading = false
       })

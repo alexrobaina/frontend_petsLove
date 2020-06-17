@@ -176,7 +176,7 @@ const EditUser = () => {
               isEdit={userStore.isEdit}
               placeholder={t('userRol')}
               value={userStore.user.setRole()}
-              inputStore={userStore.user.rol}
+              inputStore={userStore.user.role}
             />
           </div>
           <div className={styles.colbig}>

@@ -17,11 +17,7 @@ const ProfileUser = () => {
   const { role } = userIdStore.user
 
   if (role === 'protectionist') {
-    return (
-      <>
-        <ProtectionistProfile user={userIdStore.user} />
-      </>
-    )
+    return <ProtectionistProfile user={userIdStore.user} />
   }
 
   if (role === 'transitUser') {

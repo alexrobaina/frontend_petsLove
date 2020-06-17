@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
-import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import useMediaQuery from 'utils/Hooks'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useHistory } from 'react-router'
 import { Helmet } from 'react-helmet'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -12,15 +13,11 @@ import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
 import { SERVER } from 'services/config'
 import Button from 'components/commons/Button'
-import Modal from 'components/commons/Modal/Modal'
-import ContactPhone from 'components/commons/ContactPhone'
+import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
-  const [openModal, setOpenModal] = useState(false)
-  const isWithBase = useMediaQuery('(max-width: 500px)')
+const ButtonsPet = ({ petIsEdit, pet, phone, image }) => {
   const iconsSocialMedia = useMediaQuery('(max-width: 400px)')
-  const { t } = useTranslation('whatsappMessage')
   const history = useHistory()
 
   const editPet = useCallback(id => {
@@ -28,23 +25,19 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
     history.push(`edit-pet/${id}`)
   }, [])
 
-  const handleSendMessage = useCallback(number => {
-    if (number) {
-      window.open(`https://api.whatsapp.com/send?phone=${number}`)
+  const handleWhatsapp = useCallback(() => {
+    if (!phone) {
+      return toast('This user does not have a phone', {
+        position: toast.POSITION.TOP_CENTER,
+        className: styles.toast,
+      })
     }
-    setOpenModal()
+    window.open(`https://api.whatsapp.com/send?phone=${phone}`)
   }, [])
-
-  const handleToggle = () => {
-    if (openModal === false) {
-      setOpenModal(true)
-    } else {
-      setOpenModal(false)
-    }
-  }
 
   return (
     <div className={styles.containerButtons}>
+      <AlertToast />
       <Helmet>
         <meta charSet="utf-8" />
         <title>Profile pets</title>
@@ -60,18 +53,8 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
         </TwitterShareButton>
       </div>
       <div className={styles.btnMargin}>
-        <Modal
-          notIcon
-          title={t('contact')}
-          openModal={openModal}
-          handleToggle={handleToggle}
-          handleSendMessage={() => handleSendMessage(phone)}
-        >
-          <div className={styles.textInformation}>{t('descriptionModal')}</div>
-          <ContactPhone phone={phone} isWithBase={isWithBase} email={email} />
-        </Modal>
         <div
-          onClick={handleToggle}
+          onClick={handleWhatsapp}
           className={c(styles.buttonLink, iconsSocialMedia && styles.buttonLinkQuery)}
         >
           <FaWhatsapp size={iconsSocialMedia ? 18 : 25} />
@@ -80,10 +63,10 @@ const ButtonsPet = ({ petIsEdit, pet, phone, email, image }) => {
       {petIsEdit && (
         <div className={styles.editButton}>
           <Button
-            type="button"
-            handleClick={() => editPet(pet._id)}
-            icon={<MdEdit size={20} />}
             circle
+            type="button"
+            icon={<MdEdit size={20} />}
+            handleClick={() => editPet(pet._id)}
           />
         </div>
       )}
