@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './linkNavbarUser.scss'
 
-const LinkNavbarUser = ({ link, handleMenu, icon, text, id, haveId }) => {
+const LinkNavbarUser = ({ link, handleMenu, icon, text, id, haveId = false }) => {
   const { t } = useTranslation('navbar')
   const [textView, setTextView] = useState(false)
 
@@ -16,14 +16,18 @@ const LinkNavbarUser = ({ link, handleMenu, icon, text, id, haveId }) => {
     setTextView(false)
   }, [])
 
+  const handleMenuClick = useCallback(() => {
+    handleMenu(link, id, haveId)
+  }, [])
+
   return (
     <div className={styles.containerMenuLink}>
       <button
-        onClick={() => handleMenu(link, id, haveId)}
+        type="button"
+        onClick={handleMenuClick}
         onMouseOver={handleMouseUp}
         onMouseOut={handleMouseOut}
         className={styles.btnCircle}
-        type="button"
       >
         <div className={styles.icon}>{icon}</div>
         <div className={c(textView ? styles.text : styles.textNone)}>{t(text)}</div>
@@ -33,9 +37,9 @@ const LinkNavbarUser = ({ link, handleMenu, icon, text, id, haveId }) => {
 }
 
 LinkNavbarUser.propTypes = {
+  id: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   handleMenu: PropTypes.func.isRequired,
 }

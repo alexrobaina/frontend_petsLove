@@ -7,6 +7,7 @@ button:focus {
 
 .containerMenuLink {
   padding-top: 20px;
+  width: 100%;
 }
 
 .btnCircle {
@@ -28,17 +29,16 @@ button:focus {
   text-decoration: none;
 
   &:hover {
-    color: $title;
     background-color: $ligth;
+    width: 250px;
     transform: translateY(-0.25em);
-    width: 100%;
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:focus {
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
     transform: translateY(-0.25em);
-    background-color: $filters;
+    background-color: $secundaryLight;
     outline: 0;
   }
 }
@@ -46,6 +46,10 @@ button:focus {
 .icon {
   margin-left: 4px;
   color: $title;
+}
+
+.selectedIcon {
+  color: $ligth;
 }
 
 .text {

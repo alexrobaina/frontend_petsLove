@@ -2,36 +2,39 @@
 
 .containerLayout {
   padding-top: 100px;
+  padding-left: 100px;
+  padding-right: 100px;
 
   @include media-breakpoint-only(xs) {
+    padding-top: 55px;
     margin-top: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @include media-breakpoint-only(sm) {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   @include media-breakpoint-between(sm, xs) {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   @include media-breakpoint-only(md) {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   @include media-breakpoint-between(md, xl) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 180px;
+    padding-right: 180px;
   }
 
   @include media-breakpoint-only(xxl) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
   }
 }
 

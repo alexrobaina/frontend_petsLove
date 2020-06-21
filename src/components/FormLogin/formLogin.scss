@@ -15,7 +15,7 @@
 
 .title {
   color: $title;
-  font-family: 'Noto Sans HK', sans-serif;
+  @include site-font('text', 600);
   font-size: 32px;
   font-weight: 700;
   text-align: center;
@@ -57,7 +57,7 @@
 .textForgot,
 .textSingIn {
   cursor: pointer;
-  font-family: 'Noto Sans HK', sans-serif;
+  @include site-font('text', 600);
   font-size: 14px;
   font-weight: 400;
 }

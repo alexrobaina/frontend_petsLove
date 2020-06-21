@@ -336,19 +336,19 @@ const EditPet = () => {
             placeholder={t('history')}
           />
         </div>
-        <div className={styles.col}>
-          <Textarea
-            isEdit={createPetStore.isEdit}
-            rows={4}
-            value={createPetStore.pet.requiredToAdoption.value}
-            handleChange={handleChangeRequired}
-            placeholder={t('RequiredToAdoption')}
-          />
-        </div>
+        {/*<div className={styles.col}>*/}
+        {/*  <Textarea*/}
+        {/*    isEdit={createPetStore.isEdit}*/}
+        {/*    rows={4}*/}
+        {/*    value={createPetStore.pet.requiredToAdoption.value}*/}
+        {/*    handleChange={handleChangeRequired}*/}
+        {/*    placeholder={t('RequiredToAdoption')}*/}
+        {/*  />*/}
+        {/*</div>*/}
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.pet.activity.value}
+            value={createPetStore.pet.activityLevel.value}
             options={optionsSelectsStore.activity}
             handleChange={handleChangeActivity}
             placeholder={t('activity')}

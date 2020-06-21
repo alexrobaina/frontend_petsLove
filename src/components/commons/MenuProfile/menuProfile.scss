@@ -50,11 +50,11 @@
   &:hover {
     border-radius: 5px;
     color: $filters;
-    background-color: $colorNavbar;
+    background-color: $primaryLight;
   }
 
   &:target {
-    background-color: $colorNavbar;
+    background-color: $primaryLight;
     color: red;
   }
 }

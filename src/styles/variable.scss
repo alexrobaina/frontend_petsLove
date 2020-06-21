@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,700;0,900;1,200;1,300;1,400;1,700;1,900&display=swap');
+
 $backgroundApp: rgba(255, 255, 255, 0.98);
 
 $primary: #8e99f3;
@@ -17,13 +19,14 @@ $whatsaap: #00bfa5;
 $ligth: rgb(255, 255, 255);
 $colorLight: rgba(146, 154, 230, 0.3);
 
-// Navbar
-$colorNavbar: #f6f5ff;
+$primaryNavbar: #f6f5ff;
+$primaryLight: #dee1f8;
+$secundaryLight: #ee6293;
 
 // Message errors and success
 $error: #f44336;
 $success: forestgreen;
 
 //Fonts
-$NotoSansHk: 'Noto Sans HK', sans-serif;
+$sourceSans: 'Source Sans Pro', sans-serif;
 $BowlbyOneSC: 'Bowlby One SC', cursive;

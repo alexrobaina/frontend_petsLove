@@ -12,9 +12,9 @@ button:focus {
 }
 
 .primary {
-  color: $ligth;
+  color: $title;
   display: flex;
-  background-color: $primary;
+  background-color: $primaryLight;
   border: none;
   border-radius: 50px;
   justify-content: center;
@@ -33,17 +33,18 @@ button:focus {
   }
 
   &:hover {
-    background-color: $secundary;
-    transform: translateY(-0.25em);
+    background-color: $secundaryLight;
+    transform: translateY(-2px);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:disabled {
     background: #dddddd;
+    color: $ligth;
   }
 
   &:focus {
-    background-color: $secundary;
+    background-color: $secundaryLight;
     transform: translateY(-0.25em);
   }
 
@@ -57,9 +58,9 @@ button:focus {
 }
 
 .btnCircle {
-  color: $ligth;
+  color: $title;
   display: flex;
-  background-color: $primary;
+  background-color: $primaryLight;
   border: none;
   border-radius: 100px;
   justify-content: center;
@@ -74,17 +75,19 @@ button:focus {
   align-items: center;
 
   .transparent & {
-    color: $title;
     background-color: rgba(29, 183, 255, 0) !important;
   }
 
   &:hover {
-    background-color: $secundary;
+    color: $ligth;
+    background-color: $secundaryLight;
     transform: translateY(-0.25em);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:focus {
+    color: $ligth;
+    background-color: $secundaryLight;
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
     transform: translateY(-0.25em);
     outline: 0;

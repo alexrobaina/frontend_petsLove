@@ -13,7 +13,7 @@ class PetsService {
   }
 
   getPetId = id => {
-    return axios.get(`${SERVER}/api/pet/query/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data)
   }
 
   loadPetsForUser = id => {
@@ -33,11 +33,11 @@ class PetsService {
   }
 
   loadPetsAdopted = id => {
-    return axios.get(`${SERVER}/api/pet/listAdopted/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/petsAdopted/?_id=${id}`).then(response => response.data)
   }
 
   loadPetForAdoption = id => {
-    return axios.get(`${SERVER}/api/pet/listForAdoption/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/petsForAdoption/?_id=${id}`).then(response => response.data)
   }
 }
 
