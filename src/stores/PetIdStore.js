@@ -9,7 +9,7 @@ class PetIdStore {
   }
 
   @observable id = ''
-  @observable pet = []
+  @observable pet = {}
   @observable name = []
   @observable protectionist = []
   @observable images = []
@@ -51,11 +51,11 @@ class PetIdStore {
         setTimeout(() => {
           this.isLoading = false
         }, 2000)
-        this.pet = response
-        this.userName = this.pet.user.name
-        this.email = this.pet.user.email
-        this.phone = this.pet.user.phone
-        this.idUser = this.pet.user._id
+        this.pet = response[0]
+        this.userName = this.pet.userCreator.name
+        this.email = this.pet.userCreator.email
+        this.phone = this.pet.userCreator.phone
+        this.idUser = this.pet.userCreator._id
         this.images = this.pet.image
         this.setPetIsEdit()
       })

@@ -79,11 +79,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 10px;
 
   @include media-breakpoint-down(sm) {
     text-align: center;
-    padding: 20px;
     width: 100%;
   }
 }
@@ -117,7 +115,6 @@
 
 .btnTertiary {
   margin-top: 30px;
-  margin-bottom: 30px;
   cursor: pointer;
   display: flex;
   justify-content: center;

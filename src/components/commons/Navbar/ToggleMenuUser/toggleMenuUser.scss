@@ -1,15 +1,21 @@
-@import "styles/variable";
+@import 'styles/mixings';
 
 .container {
   position: absolute;
-  top: 0;
-  left: 0;
+  margin-top: 190px;
   width: 50px;
+  left: 0;
+
+  @include media-breakpoint-only(xs) {
+    position: relative;
+    margin-top: 0;
+    width: 50px;
+    left: 0;
+  }
 }
 
 .open {
   z-index: 500;
-  left: 0px;
   width: 50px;
   height: 100%;
 }
@@ -17,8 +23,6 @@
 .showMenu {
   position: fixed;
   z-index: 95;
-  top: 0;
-  left: 0px;
   background-color: white;
   width: 300px;
   height: 100%;
@@ -31,15 +35,11 @@
   font-size: 14px;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
-  margin-top: 20px;
   margin-left: 20px;
   animation: fadeIn 3s;
 }
 
 .containerSelects {
   z-index: 530;
-  position: absolute;
-  margin-top: 75px;
   margin-left: 10px;
 }
-

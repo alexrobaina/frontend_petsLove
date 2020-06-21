@@ -1,8 +1,8 @@
-@import "styles/mixings";
+@import 'styles/mixings';
 
 .title {
   color: $title;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: site-font('text', 600);
   font-size: 32px;
   font-weight: 700;
 

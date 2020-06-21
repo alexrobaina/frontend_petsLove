@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -13,12 +13,15 @@ import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
+import UserContext from '../../Context/UserContext'
 
 const CreatePet = () => {
   const { t } = useTranslation('createPet')
   const history = useHistory()
   const [step, setStep] = useState(1)
   const createPetStore = useLocalStore(() => new CreatePetStore())
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
 
   const handleSave = useCallback(() => {
     createPetStore.save()
@@ -38,6 +41,10 @@ const CreatePet = () => {
   const handleBack = step => {
     setStep(step - 1)
   }
+
+  useEffect(() => {
+    createPetStore.setIdUser(authStore.user._id)
+  }, [])
 
   useEffect(() => {
     if (createPetStore.requestSuccess) {

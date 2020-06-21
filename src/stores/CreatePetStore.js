@@ -39,13 +39,7 @@ class CreatePetStore {
     this.requestSuccess = false
 
     Object.entries(this.pet.getJson()).forEach(([key, value]) => {
-      if (
-        key !== 'image' &&
-        key !== '_id' &&
-        key !== 'userCreator' &&
-        key !== 'userTransit' &&
-        key !== 'userAdopter'
-      ) {
+      if (key !== 'image' && key !== '_id' && value !== null) {
         data.append(key, value)
       }
     })
@@ -95,6 +89,11 @@ class CreatePetStore {
   @action
   setNewsPreviewsImage(image) {
     this.newPreviewsImage = image
+  }
+
+  @action
+  setIdUser(id) {
+    this.pet.setIdUserCreator(id)
   }
 
   @action

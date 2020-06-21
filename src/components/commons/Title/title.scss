@@ -27,9 +27,11 @@
   font-size: 32px;
   font-family: 'Noto Sans HK', sans-serif;
   font-weight: 700;
+  line-height: 34px;
   margin-top: 10px;
 
   @include media-breakpoint-only(xs) {
+  line-height: 22px;
     font-size: 22px;
   }
 }

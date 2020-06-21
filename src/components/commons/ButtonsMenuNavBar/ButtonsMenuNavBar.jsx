@@ -102,7 +102,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
   useEffect(() => {
     initMenuUser()
   }, [])
-
+  
   return (
     <>
       <div className={styles.containerButton}>
@@ -113,18 +113,20 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
         toggleViewMenuUser={toggleViewMenuUser}
         handleToggleViewMenuUser={handleToggleViewMenuUser}
       />
-      {menuUser.map(route => (
-        <div key={route.link} className={styles.containerLinks}>
-          <LinkNavbarUser
-            link={route.link}
-            icon={route.icon}
-            haveId={route.haveId}
-            id={authStore.user._id}
-            handleMenu={handleMenu}
-            text={t(`${route.text}`)}
-          />
-        </div>
-      ))}
+      {menuUser.map(route => {
+        return (
+          <div key={route.link} className={styles.containerLinks}>
+            <LinkNavbarUser
+              link={route.link}
+              icon={route.icon}
+              haveId={route.haveId}
+              id={authStore.user._id}
+              handleMenu={handleMenu}
+              text={t(`${route.text}`)}
+            />
+          </div>
+        )
+      })}
     </>
   )
 }

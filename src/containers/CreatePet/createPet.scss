@@ -74,12 +74,13 @@
 }
 
 .containerButton {
+  background-color: $ligth;
   position: fixed;
   display: flex;
   text-align: center;
   justify-content: center;
   flex-direction: row;
-  bottom: 20px;
+  bottom: 0;
   left: 0;
   width: 100%;
 }
@@ -100,8 +101,8 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid #fff;
-  background-color: #F6F5FF;
+  border: 1px solid $ligth;
+  background-color: $colorLight;
   z-index: 100;
   border-radius: 100px;
   text-align: center;
@@ -113,12 +114,12 @@
 .stepLine {
   margin-top: 10px;
   position: absolute;
-  border: 1px solid #F6F5FF;
+  border: 1px solid $ligth;
   width: 100%;
 }
 
 .formSelected {
-  background-color: rgba(255, 0, 0, 0.39);
+  background-color: $primary;
   width: 50px;
   height: 50px;
   transform: scale(1.1);

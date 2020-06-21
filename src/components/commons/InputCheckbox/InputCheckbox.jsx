@@ -1,8 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import Switch from 'react-input-switch'
 import c from 'classnames'
+import Switch from 'react-input-switch'
 import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
@@ -34,7 +34,7 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
                   },
                   buttonChecked: {
                     left: '22px',
-                    backgroundColor: '#FFD95A',
+                    backgroundColor: '#EE6293',
                   },
                 }}
                 on="yes"
@@ -63,6 +63,7 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
               <div>
                 <div className={styles.value}>No</div>
               </div>
+              <div className={styles.lineLabel} />
             </div>
           )}
         </>
@@ -72,10 +73,10 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
 }
 
 InputCheckbox.propTypes = {
-  text: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
   value: PropTypes.bool,
   isEdit: PropTypes.bool,
+  text: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
 }
 
 InputCheckbox.defaultProps = {

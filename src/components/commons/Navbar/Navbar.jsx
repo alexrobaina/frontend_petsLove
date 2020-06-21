@@ -52,18 +52,18 @@ const Navbar = ({ children }) => {
     <>
       <div className={styles.containerNavbar}>
         <div className={styles.buttonSearch}>
-          {/* This is button its for go to search protectionist with google maps */}
-          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
-          <div className={styles.logo}>Pets love</div>
-        </div>
-        {rootStore.authStore.isLogin ? (
-          <>
             {/* When user is login show menu user */}
             <ToggleMenuUser
               handleMenu={handleMenu}
               toggle={toggleNavegationUser}
               handleToggle={setToggleNavegationUser}
             />
+          {/* This is button its for go to search protectionist with google maps */}
+          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
+          <div className={styles.logo}>Pets love</div>
+        </div>
+        {rootStore.authStore.isLogin ? (
+          <>
             {/* This container id Image user login and change language */}
             <div className={styles.containerProfile}>
               <div className={styles.containerLanguage}>

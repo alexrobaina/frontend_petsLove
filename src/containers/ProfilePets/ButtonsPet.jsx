@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import useMediaQuery from 'utils/Hooks'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useHistory } from 'react-router'
 import { Helmet } from 'react-helmet'
@@ -16,7 +16,7 @@ import Button from 'components/commons/Button'
 import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ petIsEdit, pet, phone, image }) => {
+const ButtonsPet = ({ userCreatorExist, pet, phone, image }) => {
   const iconsSocialMedia = useMediaQuery('(max-width: 400px)')
   const history = useHistory()
 
@@ -60,7 +60,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, image }) => {
           <FaWhatsapp size={iconsSocialMedia ? 18 : 25} />
         </div>
       </div>
-      {petIsEdit && (
+      {userCreatorExist && (
         <div className={styles.editButton}>
           <Button
             circle
@@ -77,7 +77,7 @@ const ButtonsPet = ({ petIsEdit, pet, phone, image }) => {
 ButtonsPet.propTypes = {
   phone: PropTypes.string,
   email: PropTypes.string,
-  petIsEdit: PropTypes.bool,
+  userCreatorExist: PropTypes.bool,
   pet: PropTypes.oneOfType([PropTypes.array]),
 }
 
@@ -85,7 +85,7 @@ ButtonsPet.defaultProps = {
   pet: null,
   email: '',
   phone: '',
-  petIsEdit: false,
+  userCreatorExist: false,
 }
 
 export default observer(ButtonsPet)

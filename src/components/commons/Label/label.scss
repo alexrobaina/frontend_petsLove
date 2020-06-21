@@ -1,8 +1,10 @@
-@import 'styles/variable';
+@import 'styles/mixings';
 
 .label {
   text-align: left;
   font-size: 12px;
-  color: rgba(146, 136, 221, 0.66);
+  @include site-font('text', 600);
+  color: $secundaryLight;
   padding-bottom: 5px;
+
 }

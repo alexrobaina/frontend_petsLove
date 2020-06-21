@@ -41,8 +41,13 @@ class Pet {
     this.lastVisitVet = new InputStore()
     this.userTransit = new InputStore()
     this.medicalHistory = medicalHistory
+    
     this.image.setValue([])
     this.image.setValue([])
+    this.userCreator.setValue(null)
+    this.userAdopter.setValue(null)
+    this.userTransit.setValue(null)
+    this.vet.setValue(null)
   }
 
   setAddress(address) {
@@ -97,6 +102,10 @@ class Pet {
       lng: this.pet.lng,
     }
     return addressObject
+  }
+
+  setIdUserCreator(id) {
+    this.userCreator.setValue(id)
   }
 
   getJson() {

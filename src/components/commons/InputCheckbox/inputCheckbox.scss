@@ -1,11 +1,12 @@
 @import 'styles/mixings';
 
 .container {
-  padding: 20px 8px 18px 10px;
+  padding: 20px 8px 12px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid $colorLight;
 
   @include media-breakpoint-only(xs) {
     padding: 0 0 0 0;
@@ -48,15 +49,13 @@
 
 .labelSwitch {
   cursor: pointer;
-  color: $title;
+  color: $secundaryLight;
   padding-top: 5px;
   padding-bottom: 2px;
-
 
   @include media-breakpoint-only(xs) {
     font-size: 11px;
   }
-
 }
 
 .label {
