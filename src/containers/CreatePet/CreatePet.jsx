@@ -24,7 +24,7 @@ const CreatePet = () => {
   const { authStore } = rootStore
 
   const handleSave = useCallback(() => {
-    createPetStore.save()
+    createPetStore.saveImage(() => createPetStore.savePet())
   }, [])
 
   const handleNext = step => {

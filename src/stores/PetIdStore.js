@@ -56,7 +56,7 @@ class PetIdStore {
         this.email = this.pet.userCreator.email
         this.phone = this.pet.userCreator.phone
         this.idUser = this.pet.userCreator._id
-        this.images = this.pet.image
+        this.images = this.pet.image.filenames
         this.setPetIsEdit()
       })
     } catch (e) {

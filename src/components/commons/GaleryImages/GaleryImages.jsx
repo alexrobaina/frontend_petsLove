@@ -19,16 +19,18 @@ const GaleryImages = ({ arrayImages, isLoading }) => {
         <Loading icon={<MdPets size={40} />} />
       ) : (
         <div className={styles.galery}>
-          {arrayImages.map(image => (
-            <div key={image} className={styles.colGalery}>
-              <img
-                onError={onError}
-                className={styles.imageGalery}
-                src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
-                alt="pets-photos"
-              />
-            </div>
-          ))}
+          {arrayImages.map(image => {
+            return (
+              <div key={image} className={styles.colGalery}>
+                <img
+                  onError={onError}
+                  className={styles.imageGalery}
+                  src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+                  alt="pets-photos"
+                />
+              </div>
+            )
+          })}
         </div>
       )}
     </div>

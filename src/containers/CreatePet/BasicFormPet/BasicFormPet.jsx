@@ -10,6 +10,7 @@ import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import Textarea from 'components/commons/Textarea/Textarea'
 import styles from './basicFormPet.scss'
+import InputDate from '../../../components/commons/InputDate'
 
 const BasicFormPet = ({ createPetStore }) => {
   const { t } = useTranslation('createPet')
@@ -77,8 +78,8 @@ const BasicFormPet = ({ createPetStore }) => {
     createPetStore.setGender(selectedValue)
   }, [])
 
-  const handleChangeAge = useCallback(selectedValue => {
-    createPetStore.setAge(selectedValue)
+  const handleDateBirthday = useCallback(selectedValue => {
+    createPetStore.setBirthday(selectedValue)
   }, [])
 
   const handleChangeActivity = useCallback(selectedValue => {
@@ -136,13 +137,10 @@ const BasicFormPet = ({ createPetStore }) => {
         />
       </div>
       <div className={styles.colums}>
-        <InputSelect
-          isEdit
-          options={ageOptions}
-          placeholder={t('age')}
-          handleChange={handleChangeAge}
-          inputStore={createPetStore.pet.age}
-          value={createPetStore.pet.age.value}
+        <InputDate
+          label={t('birthday')}
+          handleDateChange={handleDateBirthday}
+          value={createPetStore.pet.birthday.value}
         />
       </div>
       <div className={styles.colums}>

@@ -12,49 +12,44 @@ import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ name, userCreatorExist, images, pet, userAdopt, phone, email }) => {
-	const { t } = useTranslation('profilePets')
-	
-	return (
-		<>
-			<div className={styles.name}>
-				<Title title={t('title', { name })}/>
-				<ButtonsPet email={email} phone={phone} pet={pet} userCreatorExist={userCreatorExist}/>
-			</div>
-			<div className={c(styles.containerCard, styles.layourCard)}>
-				{/*<ImageProfilePet images={images}/>*/}
-				{/*<GoogleMapsLocation*/}
-				{/*	petLocation={pet.textAddress}*/}
-				{/*	isProfilePet*/}
-				{/*	location={*/}
-				{/*		{*/}
-				{/*			lat: pet.lat,*/}
-				{/*			lng: pet.lng,*/}
-				{/*		}*/}
-				{/*	}*/}
-				{/*/>*/}
-					<InformationPet name={pet.name}/>
-				
-				{/*<InformationPet userAdopt={userAdopt} pet={pet} />*/}
-				<div>
-					<TextCard title={t('history')} text={pet.history}/>
-					{!pet.adopted && (
-						<TextCard title={t('requiredToAdoption')} text={pet.requiredToAdoption}/>
-					)}
-				</div>
-			</div>
-		</>
-	)
+  const { t } = useTranslation('profilePets')
+
+  return (
+    <>
+      <div className={styles.name}>
+        <Title title={t('title', { name })} />
+        <ButtonsPet email={email} phone={phone} pet={pet} userCreatorExist={userCreatorExist} />
+      </div>
+      <div className={c(styles.containerCard, styles.layourCard)}>
+        <ImageProfilePet images={images} />
+        <GoogleMapsLocation
+          petLocation={pet.textAddress}
+          isProfilePet
+          location={pet.foundLocation}
+        />
+        <InformationPet name={pet.name} />
+
+        {/*<InformationPet userAdopt={userAdopt} pet={pet} />*/}
+        <div>
+          <TextCard title={t('history')} text={pet.history} />
+          {!pet.adopted && (
+            <TextCard title={t('requiredToAdoption')} text={pet.requiredToAdoption} />
+          )}
+        </div>
+      </div>
+    </>
+  )
 }
 
 LayoutProfilePets.propTypes = {
-	images: PropTypes.oneOfType([PropTypes.array]).isRequired,
-	pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
-	name: PropTypes.string.isRequired,
-	petIsEdit: PropTypes.bool,
+  images: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  pet: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  name: PropTypes.string.isRequired,
+  petIsEdit: PropTypes.bool,
 }
 
 LayoutProfilePets.defaultProps = {
-	petIsEdit: false,
+  petIsEdit: false,
 }
 
 export default observer(LayoutProfilePets)

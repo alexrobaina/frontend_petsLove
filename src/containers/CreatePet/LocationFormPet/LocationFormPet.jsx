@@ -43,10 +43,7 @@ const LocationFormPet = ({ createPetStore }) => {
             showAddress
             title={t('messageMap')}
             location={createPetStore.location}
-            addressValue={{
-              lat: createPetStore.pet.lat.value,
-              lng: createPetStore.pet.lng.value,
-            }}
+            addressValue={createPetStore.pet.location}
           />
         </div>
       </div>

@@ -11,14 +11,14 @@ import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
   const petIdStore = useLocalStore(() => new PetIdStore())
-  const { phone, email, name } = petIdStore.pet
   const { t } = useTranslation('profilePets')
   const { id } = useParams()
 
   useEffect(() => {
     petIdStore.getPetId(id)
   }, [])
-
+  
+  const { phone, email } = petIdStore.pet
   return (
     <LayoutContainer>
       <Link to={`/profile-user/${petIdStore.idUser}`}>{t('linkBack')}</Link>

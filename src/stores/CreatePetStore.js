@@ -1,7 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
-import CreatePetServices from 'services/CreatePetServices'
 import imageCompression from 'browser-image-compression'
-import FormData from 'form-data'
+import CreatePetServices from 'services/CreatePetServices'
+import ImageService from 'services/ImageService/ImageService'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
@@ -9,6 +9,7 @@ const REQUIRED = 'This input is required'
 class CreatePetStore {
   constructor() {
     this.createPetServices = new CreatePetServices()
+    this.imageService = new ImageService()
     this.pet = new Pet()
   }
 
@@ -17,15 +18,18 @@ class CreatePetStore {
   @observable image = []
   @observable lost = false
   @observable address = {}
+  @observable idImagePet = ''
   @observable imagesNews = []
   @observable imageResize = []
   @observable urgent = false
   @observable isEdit = false
   @observable adopted = false
+  @observable imageForResize = null
   @observable isError = false
   @observable canEdit = false
   @observable isLoading = false
   @observable imagePreview = []
+  @observable sterilized = false
   @observable sterilized = false
   @observable vaccinated = false
   @observable newPreviewsImage = []
@@ -33,30 +37,36 @@ class CreatePetStore {
   @observable location = { lat: -34.603722, lng: -58.381592 }
 
   @action
-  async save() {
+  async savePet() {
     this.isLoading = true
-    const data = new FormData()
     this.requestSuccess = false
 
-    Object.entries(this.pet.getJson()).forEach(([key, value]) => {
-      if (key !== 'image' && key !== '_id' && value !== null) {
-        data.append(key, value)
-      }
-    })
-
-    if (this.pet.image.value.length > 0) {
-      Object.values(this.pet.image.value).forEach(value => {
-        data.append('image', value)
-      })
-    }
-
     try {
-      const response = await this.createPetServices.addPet(data)
+      const response = await this.createPetServices.addPet(this.pet.getJson())
 
       runInAction(() => {
         this.isLoading = false
         this.idPet = response._id
         this.requestSuccess = true
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async saveImage(savePet) {
+    try {
+      this.isLoading = true
+      const response = await this.imageService.addImage(this.imageResize)
+
+      runInAction(() => {
+        this.isLoading = false
+        this.pet.image.setValue(response._id)
+        savePet()
       })
     } catch (e) {
       runInAction(() => {
@@ -124,7 +134,7 @@ class CreatePetStore {
   @action
   setAddress(value) {
     this.location = value
-    this.pet.setAddress(value)
+    this.pet.location.setValue(value)
   }
 
   @action
@@ -163,8 +173,8 @@ class CreatePetStore {
   }
 
   @action
-  setAge(value) {
-    this.pet.age.setValue(value.value)
+  setBirthday(value) {
+    this.pet.birthday.setValue(value)
   }
 
   @action
@@ -313,8 +323,8 @@ class CreatePetStore {
 
   @action
   resize() {
-    if (this.pet.image.value.length > 0) {
-      Object.values(this.pet.image.value).forEach(image => {
+    if (this.imageForResize.length > 0) {
+      Object.values(this.imageForResize).forEach(image => {
         this.compressImage(image)
       })
     }
@@ -353,7 +363,7 @@ class CreatePetStore {
 
   @action
   setImage(value) {
-    this.pet.image.setValue(value)
+    this.imageForResize = value
     this.resize()
   }
 

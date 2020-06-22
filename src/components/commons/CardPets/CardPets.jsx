@@ -22,7 +22,7 @@ const CardPets = ({ history, image, namePet, isAdopted }) => {
           <img
             onError={onError}
             className={styles.imgCard}
-            src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+            src={image && isImageNotFound ? `${SERVER}/${image.filenames[0]}` : noImage}
             alt="photos-pets"
           />
           {isAdopted && <Chips text="Adopted" isAdopted={isAdopted} />}

@@ -56,7 +56,6 @@
     "esri-leaflet-geocoder": "^2.3.2",
     "file-loader": "6.0.0",
     "form-data": "^3.0.0",
-    "formik": "^2.1.4",
     "fs-extra": "^9.0.0",
     "google-maps-react": "^2.0.2",
     "history": "^4.10.1",
