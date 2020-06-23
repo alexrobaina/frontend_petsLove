@@ -57,27 +57,15 @@ class Pet {
     this.notes.setValue(pet.notes)
     this.image.setValue(pet.image)
     this.history.setValue(pet.history)
-    this.userCreator.setValue(pet.userCreator._id)
-    this.userAdopter.setValue(pet.userAdopter._id)
+    this.userCreator.setValue(pet.userCreator)
     this.birthday.setValue(pet.birthday)
     this.foundLocation.setValue(pet.foundLocation)
-    this.location.setValue(pet.location)
+    this.location.setValue(pet.foundLocation)
     this.lastVisitVet.setValue(pet.lastVisitVet)
-    this.userTransit.setValue(pet.userTransit._id)
     this.state = pet.state
     this.lost = pet.lost
     this.urgent = pet.urgent
     this.adopted = pet.adopted
-    this.distemperVaccine = pet.distemperVaccine
-    this.felineFluVaccine = pet.felineFluVaccine
-    this.felineLeukemiaVaccine = pet.felineLeukemiaVaccine
-    this.felineInfectiousPeritonitisVaccine = pet.felineInfectiousPeritonitisVaccine
-    this.rabiesVaccine = pet.rabiesVaccine
-    this.hepatitisVaccine = pet.hepatitisVaccine
-    this.leptospirosisVaccine = pet.leptospirosisVaccine
-    this.parvovirusVaccine = pet.parvovirusVaccine
-    this.parainfluenzaVaccine = pet.parainfluenzaVaccine
-    this.bordetellaBronchisepticVaccine = pet.bordetellaBronchisepticVaccine
 
     if (pet.category === 'cat') {
       this.catMedicalHistory = pet.catMedicalHistory
@@ -87,11 +75,11 @@ class Pet {
       this.dogMedicalHistory = pet.dogMedicalHistory
     }
 
-    if (pet.userAdopt) {
-      this.userAdopt.setValue(pet.userAdopt.value)
+    if (pet.userAdopter) {
+      this.userAdopter.setValue(pet.userAdopter)
     }
     if (pet.userTransit) {
-      this.userTransit.setValue(pet.userTransit.value)
+      this.userTransit.setValue(pet.userTransit)
     }
   }
 
@@ -123,7 +111,7 @@ class Pet {
       notes: this.notes.value,
     }
   }
-
+  
   getJson() {
     const petData = {
       _id: this._id,

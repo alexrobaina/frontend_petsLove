@@ -27,12 +27,13 @@ const ButtonsPet = ({ userCreatorExist, pet, phone, image }) => {
 
   const handleWhatsapp = useCallback(() => {
     if (!phone) {
-      return toast('This user does not have a phone', {
+      toast('This user does not have a phone', {
         position: toast.POSITION.TOP_CENTER,
         className: styles.toast,
       })
+    } else {
+      window.open(`https://api.whatsapp.com/send?phone=${phone}`)
     }
-    window.open(`https://api.whatsapp.com/send?phone=${phone}`)
   }, [])
 
   return (

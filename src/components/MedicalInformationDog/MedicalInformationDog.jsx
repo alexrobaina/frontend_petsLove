@@ -2,51 +2,50 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'react-icons/fa'
-import { GiJumpingDog } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
-import styles from './informationPet.scss'
+import styles from './medicalInformationDog.scss'
 
-const  InformationPet = ({ pet }) => {
+const MedicalInformationDog = ({ pet }) => {
   const { t } = useTranslation('profilePets')
 
   return (
     <LayoutCards>
       <div className={styles.info}>
         <TextCardInformation
-          text={t('nam')}
-          value={pet.name.value}
+          text={t('lastVisitVet')}
+          value={pet.lastVisitVet.value}
           icon={<FaUser size={20} />}
         />
         <TextCardInformation
-          text={t('birthday')}
-          value={t(`${pet.birthday.value}`)}
+          text={t('distemperVaccine')}
+          value={t(`${pet.rabiesVaccine}`)}
           icon={<FaBirthdayCake size={20} />}
         />
         <TextCardInformation
-          text={t('category')}
+          text={t('rabiesVaccine')}
           icon={<FaCat size={20} />}
-          value={t(`${pet.category.value}`)}
+          value={t(`${pet.hepatitisVaccine}`)}
         />
         <TextCardInformation
-          text={t('gender')}
-          value={t(`${pet.gender.value}`)}
-          icon={<FaTransgender size={25} />}
-        />
-        <TextCardInformation
-          text={t('activity')}
-          icon={<GiJumpingDog size={25} />}
-          value={t(`${pet.activityLevel.value}`)}
-        />
-        <TextCardInformation
-          text={t('lost')}
-          informationPet={pet.lost}
+          text={t('felineFluVaccine')}
+          informationPet={pet.leptospirosisVaccine}
           icon={<FaStreetView size={25} />}
         />
         <TextCardInformation
-          text={t('urgent')}
-          informationPet={pet.urgent}
+          text={t('felineLeukemiaVaccine')}
+          informationPet={pet.parvovirusVaccine}
+          icon={<IoIosHelpBuoy size={25} />}
+        />
+        <TextCardInformation
+          text={t('felineInfectiousPeritonitisVaccine')}
+          informationPet={pet.parainfluenzaVaccine}
+          icon={<IoIosHelpBuoy size={25} />}
+        />
+        <TextCardInformation
+          text={t('felineInfectiousPeritonitisVaccine')}
+          informationPet={pet.bordetellaBronchisepticVaccine}
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>
@@ -54,8 +53,8 @@ const  InformationPet = ({ pet }) => {
   )
 }
 
-InformationPet.propTypes = {
+MedicalInformationDog.propTypes = {
   pet: PropTypes.node.isRequired,
 }
 
-export default InformationPet
+export default MedicalInformationDog

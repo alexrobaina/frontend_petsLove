@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { SERVER } from 'services/config'
+import Pet from 'models/Pet'
 
 class PetsService {
   getPets = data => {
@@ -13,7 +14,7 @@ class PetsService {
   }
 
   getPetId = id => {
-    return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 
   loadPetsForUser = id => {

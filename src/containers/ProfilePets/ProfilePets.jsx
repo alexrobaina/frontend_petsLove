@@ -18,18 +18,19 @@ const ProfilePets = () => {
     petIdStore.getPetId(id)
   }, [])
   
-  const { phone, email } = petIdStore.pet
+  // const { phone, email } = petIdStore.pet
   return (
     <LayoutContainer>
       <Link to={`/profile-user/${petIdStore.idUser}`}>{t('linkBack')}</Link>
       <LayoutProfilePets
-        name={petIdStore.pet.name}
-        email={email}
-        phone={phone}
-        pet={petIdStore.pet}
-        images={petIdStore.images}
-        userCreatorExist={petIdStore.idUser}
-        userAdopt={petIdStore.pet.userAdopter}
+        // email={email}
+        // phone={phone}
+        // pet={petIdStore.pet}
+        store={petIdStore}
+        // name={petIdStore.pet.name}
+        // images={petIdStore.images}
+        // userCreatorExist={petIdStore.idUser}
+        // userAdopter={petIdStore.pet.userAdopter}
       />
       {petIdStore.images !== [] ? (
         <GaleryImages isLoading={petIdStore.isLoading} arrayImages={petIdStore.images} />

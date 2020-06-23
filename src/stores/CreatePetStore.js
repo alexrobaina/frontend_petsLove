@@ -2,6 +2,7 @@ import { action, observable, runInAction } from 'mobx'
 import imageCompression from 'browser-image-compression'
 import CreatePetServices from 'services/CreatePetServices'
 import ImageService from 'services/ImageService/ImageService'
+import ImageStore from 'stores/ImageStore'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
@@ -10,6 +11,7 @@ class CreatePetStore {
   constructor() {
     this.createPetServices = new CreatePetServices()
     this.imageService = new ImageService()
+    this.imageStore = new ImageStore()
     this.pet = new Pet()
   }
 
@@ -41,6 +43,8 @@ class CreatePetStore {
     this.isLoading = true
     this.requestSuccess = false
 
+    this.pet.image.setValue(this.imageStore.imageId)
+
     try {
       const response = await this.createPetServices.addPet(this.pet.getJson())
 
@@ -58,21 +62,11 @@ class CreatePetStore {
   }
 
   @action
-  async saveImage(savePet) {
+  async save() {
     try {
-      this.isLoading = true
-      const response = await this.imageService.addImage(this.imageResize)
-
-      runInAction(() => {
-        this.isLoading = false
-        this.pet.image.setValue(response._id)
-        savePet()
-      })
+      await this.imageStore.saveImage(() => this.savePet())
     } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        console.log(e)
-      })
+      console.log(e)
     }
   }
 
@@ -85,6 +79,11 @@ class CreatePetStore {
     this.imagePreview.forEach(preview => {
       this.pet.image.setValue(preview !== image)
     })
+  }
+
+  @action
+  setImage(value) {
+    this.imageStore.setImage(value)
   }
 
   // this function is only for set image previews
@@ -316,60 +315,6 @@ class CreatePetStore {
     activityLevel.clearError()
     textAddress.clearError()
   }
-
-  // ============================================
-  // This functions resize images. Need move to ultils
-  // ============================================
-
-  @action
-  resize() {
-    if (this.imageForResize.length > 0) {
-      Object.values(this.imageForResize).forEach(image => {
-        this.compressImage(image)
-      })
-    }
-
-    return true
-  }
-
-  @action
-  async compressImage(event) {
-    this.isLoading = true
-    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
-    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
-
-    const options = {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 800,
-      useWebWorker: true,
-    }
-    try {
-      const compressedFile = await imageCompression(event, options)
-      this.isLoading = false
-      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
-      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
-
-      await this.setImageResize(compressedFile) // write your own logic
-    } catch (error) {
-      this.isLoading = false
-      console.log(error)
-    }
-  }
-
-  @action
-  setImageResize(image) {
-    this.imageResize.push(image)
-  }
-
-  @action
-  setImage(value) {
-    this.imageForResize = value
-    this.resize()
-  }
-
-  // ============================================
-  // END resize images.
-  // ============================================
 }
 
 export default CreatePetStore

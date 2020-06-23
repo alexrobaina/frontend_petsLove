@@ -1,15 +1,16 @@
 @import 'styles/mixings';
 
-.name {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.containerCard {
+.colums {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+  padding-top: 5px;
 
   @include media-breakpoint-down(md) {
     display: grid;
@@ -17,8 +18,4 @@
     grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
   }
-}
-
-.layourCard {
-  padding-top: 5px;
 }

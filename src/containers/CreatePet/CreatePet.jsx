@@ -24,7 +24,7 @@ const CreatePet = () => {
   const { authStore } = rootStore
 
   const handleSave = useCallback(() => {
-    createPetStore.saveImage(() => createPetStore.savePet())
+    createPetStore.save()
   }, [])
 
   const handleNext = step => {
@@ -61,9 +61,7 @@ const CreatePet = () => {
       return <MedicalReportsPets createPetStore={createPetStore} />
     }
 
-    if (step === 3) {
-      return <LocationFormPet createPetStore={createPetStore} />
-    }
+    return <LocationFormPet createPetStore={createPetStore} />
   }
 
   return (

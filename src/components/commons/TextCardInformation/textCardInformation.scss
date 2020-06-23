@@ -7,7 +7,7 @@
 
 .info {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
 }
 
 .icon {
@@ -20,8 +20,9 @@
 }
 
 .title {
+  width: 225px;
   letter-spacing: 1px;
-  text-align: center;
+  text-align: left;
   @include site-font('text', 600);
   color: $filters;
   margin-left: 15px;

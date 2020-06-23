@@ -15,6 +15,8 @@ const AlertToast = ({}) => {
   return <ToastContainer draggable={true} closeButton={CloseButton} />
 }
 
-AlertToast.propTypes = {}
+AlertToast.propTypes = {
+  closeToast: PropTypes.string.isRequired,
+}
 
 export default AlertToast

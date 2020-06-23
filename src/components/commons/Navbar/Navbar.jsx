@@ -7,7 +7,6 @@ import { MdSearch } from 'react-icons/md'
 import { HOME, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/commons/ChangeLanguage'
 import UserContext from 'Context/UserContext'
-import Footer from 'components/commons/Footer'
 import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
 import ImageUserLog from 'components/commons/ImageUserLog'
@@ -52,12 +51,12 @@ const Navbar = ({ children }) => {
     <>
       <div className={styles.containerNavbar}>
         <div className={styles.buttonSearch}>
-            {/* When user is login show menu user */}
-            <ToggleMenuUser
-              handleMenu={handleMenu}
-              toggle={toggleNavegationUser}
-              handleToggle={setToggleNavegationUser}
-            />
+          {/* When user is login show menu user */}
+          <ToggleMenuUser
+            handleMenu={handleMenu}
+            toggle={toggleNavegationUser}
+            handleToggle={setToggleNavegationUser}
+          />
           {/* This is button its for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
           <div className={styles.logo}>Pets love</div>

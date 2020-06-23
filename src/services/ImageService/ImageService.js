@@ -4,8 +4,9 @@ import { SERVER } from '../config'
 
 class ImageService {
   addImage = data => {
+    console.log(data)
     const formData = new FormData()
-    Object.entries(data).forEach(([key, value]) => {
+    Object.values(data).forEach(value => {
       formData.append('image', value)
     })
 
