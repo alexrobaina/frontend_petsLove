@@ -1,7 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
-import imageCompression from 'browser-image-compression'
-import FormData from 'form-data'
+import ImageService from 'services/ImageService/ImageService'
+import ImageStore from 'stores/ImageStore'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
@@ -9,49 +9,37 @@ const REQUIRED = 'This input is required'
 class CreatePetStore {
   constructor() {
     this.createPetServices = new CreatePetServices()
+    this.imageService = new ImageService()
+    this.imageStore = new ImageStore()
     this.pet = new Pet()
   }
 
   @observable pet = []
   @observable vets = []
   @observable image = []
-  @observable lost = false
   @observable address = {}
+  @observable idImagePet = ''
   @observable imagesNews = []
   @observable imageResize = []
-  @observable urgent = false
-  @observable isEdit = false
-  @observable adopted = false
+  @observable imageForResize = null
   @observable isError = false
   @observable canEdit = false
   @observable isLoading = false
   @observable imagePreview = []
-  @observable sterilized = false
-  @observable vaccinated = false
   @observable newPreviewsImage = []
   @observable requestSuccess = false
   @observable location = { lat: -34.603722, lng: -58.381592 }
 
   @action
-  async save() {
+  async savePet() {
     this.isLoading = true
-    const data = new FormData()
     this.requestSuccess = false
 
-    Object.entries(this.pet.getJson()).forEach(([key, value]) => {
-      if (key !== 'image' && key !== '_id' && value !== null) {
-        data.append(key, value)
-      }
-    })
-
-    if (this.pet.image.value.length > 0) {
-      Object.values(this.pet.image.value).forEach(value => {
-        data.append('image', value)
-      })
-    }
+    this.pet.image.setValue(this.imageStore.imageId)
+    console.log(this.pet.getJson())
 
     try {
-      const response = await this.createPetServices.addPet(data)
+      const response = await this.createPetServices.addPet(this.pet.getJson())
 
       runInAction(() => {
         this.isLoading = false
@@ -66,6 +54,15 @@ class CreatePetStore {
     }
   }
 
+  @action
+  async save() {
+    try {
+      await this.imageStore.saveImage(() => this.savePet())
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   // this function is only for set image previews
   @action
   deleteImageArray(image) {
@@ -75,6 +72,11 @@ class CreatePetStore {
     this.imagePreview.forEach(preview => {
       this.pet.image.setValue(preview !== image)
     })
+  }
+
+  @action
+  setImage(value) {
+    this.imageStore.setImage(value)
   }
 
   // this function is only for set image previews
@@ -124,7 +126,7 @@ class CreatePetStore {
   @action
   setAddress(value) {
     this.location = value
-    this.pet.setAddress(value)
+    this.pet.location.setValue(value)
   }
 
   @action
@@ -163,8 +165,8 @@ class CreatePetStore {
   }
 
   @action
-  setAge(value) {
-    this.pet.age.setValue(value.value)
+  setBirthday(value) {
+    this.pet.birthday.setValue(value)
   }
 
   @action
@@ -178,7 +180,7 @@ class CreatePetStore {
   }
 
   @action
-  setActivity(value) {
+  setActivityLevel(value) {
     this.pet.activityLevel.setValue(value.value)
   }
 
@@ -306,60 +308,6 @@ class CreatePetStore {
     activityLevel.clearError()
     textAddress.clearError()
   }
-
-  // ============================================
-  // This functions resize images. Need move to ultils
-  // ============================================
-
-  @action
-  resize() {
-    if (this.pet.image.value.length > 0) {
-      Object.values(this.pet.image.value).forEach(image => {
-        this.compressImage(image)
-      })
-    }
-
-    return true
-  }
-
-  @action
-  async compressImage(event) {
-    this.isLoading = true
-    // console.log('originalFile instanceof Blob', event instanceof Blob) // true
-    // console.log(`originalFile size ${event.size / 1024 / 1024} MB`)
-
-    const options = {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 800,
-      useWebWorker: true,
-    }
-    try {
-      const compressedFile = await imageCompression(event, options)
-      this.isLoading = false
-      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
-      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
-
-      await this.setImageResize(compressedFile) // write your own logic
-    } catch (error) {
-      this.isLoading = false
-      console.log(error)
-    }
-  }
-
-  @action
-  setImageResize(image) {
-    this.imageResize.push(image)
-  }
-
-  @action
-  setImage(value) {
-    this.pet.image.setValue(value)
-    this.resize()
-  }
-
-  // ============================================
-  // END resize images.
-  // ============================================
 }
 
 export default CreatePetStore

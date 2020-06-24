@@ -107,10 +107,6 @@ const EditPet = () => {
     createPetStore.setHistory(e.target.value)
   }, [])
 
-  const handleChangeRequired = useCallback(e => {
-    createPetStore.setRequiredToAdoption(e.target.value)
-  }, [])
-
   const handleChangeActivity = useCallback(selectedValue => {
     createPetStore.setActivity(selectedValue)
   }, [])
@@ -321,7 +317,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.pet.age.value}
+            value={createPetStore.pet.birthday.value}
             options={optionsSelectsStore.ages}
             handleChange={handleChangeAge}
             placeholder={t('age')}
@@ -336,15 +332,6 @@ const EditPet = () => {
             placeholder={t('history')}
           />
         </div>
-        {/*<div className={styles.col}>*/}
-        {/*  <Textarea*/}
-        {/*    isEdit={createPetStore.isEdit}*/}
-        {/*    rows={4}*/}
-        {/*    value={createPetStore.pet.requiredToAdoption.value}*/}
-        {/*    handleChange={handleChangeRequired}*/}
-        {/*    placeholder={t('RequiredToAdoption')}*/}
-        {/*  />*/}
-        {/*</div>*/}
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}

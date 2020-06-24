@@ -1,37 +1,22 @@
 import { observable, action, runInAction } from 'mobx'
 import SetLocalStorage from 'utils/setLocalStorage'
 import PetsService from 'services/PetsService'
+import Pet from 'models/Pet'
 
 class PetIdStore {
   constructor() {
     this.petsService = new PetsService()
     this.setLocalStorage = new SetLocalStorage()
+    this.pet = new Pet()
   }
 
   @observable id = ''
-  @observable pet = {}
-  @observable name = []
   @observable protectionist = []
-  @observable images = []
-  @observable gender = ''
-  @observable age = ''
-  @observable phone = ''
-  @observable email = ''
-  @observable categorie = ''
-  @observable activity = ''
+  @observable filenames = []
   @observable idUser = ''
-  @observable lat = null
-  @observable lng = null
-  @observable userName = ''
   @observable isLoading = false
   @observable petIsEdit = false
   @observable mapPosition = []
-  @observable defaultPosition = [
-    {
-      lat: -34.61315,
-      lng: -58.37723,
-    },
-  ]
 
   @action
   setPetIsEdit() {
@@ -48,16 +33,13 @@ class PetIdStore {
       const response = await this.petsService.getPetId(id)
 
       runInAction(() => {
-        setTimeout(() => {
-          this.isLoading = false
-        }, 2000)
-        this.pet = response[0]
-        this.userName = this.pet.userCreator.name
-        this.email = this.pet.userCreator.email
-        this.phone = this.pet.userCreator.phone
-        this.idUser = this.pet.userCreator._id
-        this.images = this.pet.image
-        this.setPetIsEdit()
+        this.pet.fillJson(response)
+        this.isLoading = false
+  
+        console.log('this.pet.image.value ', this.pet.image.value)
+        if (this.pet.image.value !== []) {
+          this.filenames = this.pet.image.value.filenames
+        }
       })
     } catch (e) {
       runInAction(() => {

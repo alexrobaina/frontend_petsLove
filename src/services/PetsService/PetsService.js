@@ -13,7 +13,7 @@ class PetsService {
   }
 
   getPetId = id => {
-    return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 
   loadPetsForUser = id => {

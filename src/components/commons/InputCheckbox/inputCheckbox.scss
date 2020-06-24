@@ -9,7 +9,7 @@
   border-bottom: 1px solid $colorLight;
 
   @include media-breakpoint-only(xs) {
-    padding: 0 0 0 0;
+    padding: 0 0 5px 0;
   }
 }
 
@@ -33,6 +33,16 @@
     font-size: 9px;
     top: -8px;
     left: -39px;
+
+    @media (max-width: 500px) {
+      top: -10px;
+      left: -40px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    top: -9px;
+    left: -26px;
   }
 }
 
@@ -52,10 +62,6 @@
   color: $secundaryLight;
   padding-top: 5px;
   padding-bottom: 2px;
-
-  @include media-breakpoint-only(xs) {
-    font-size: 11px;
-  }
 }
 
 .label {

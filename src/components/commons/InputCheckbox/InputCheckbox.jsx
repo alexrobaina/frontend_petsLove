@@ -3,9 +3,12 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import Switch from 'react-input-switch'
+import useMediaQuery from 'utils/Hooks'
 import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
+  const mediaQuery = useMediaQuery('(max-width: 500px)')
+  
   return (
     <>
       {isEdit && (
@@ -19,21 +22,21 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
                 styles={{
                   track: {
                     borderRadius: '50px',
-                    width: '40px',
-                    height: '22px',
+                    width: mediaQuery ? '35px' : '40px',
+                    height: mediaQuery ? '18.5px' : '22px',
                     backgroundColor: 'rgba(146, 154, 230, 0.30)',
                   },
                   trackChecked: {
                     backgroundColor: 'rgba(146, 154, 230, 0.30)',
                   },
                   button: {
-                    width: '16px',
-                    height: '16px',
+                    width: mediaQuery ? '13px' : '16px',
+                    height: mediaQuery ? '13px' : '16px',
                     backgroundColor: '#5E92F3',
                     top: '3px',
                   },
                   buttonChecked: {
-                    left: '22px',
+                    left: mediaQuery ? '20px' : '22px',
                     backgroundColor: '#EE6293',
                   },
                 }}

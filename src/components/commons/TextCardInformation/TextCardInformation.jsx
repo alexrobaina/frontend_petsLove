@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import styles from './textCardInformation.scss'
 
 const TextCardInformation = ({ text, informationPet, value, icon }) => {
+  const { t } = useTranslation()
   return (
     <div className={styles.containerData}>
       <div className={styles.iconTitle}>
@@ -14,6 +16,9 @@ const TextCardInformation = ({ text, informationPet, value, icon }) => {
         <div className={styles.infoTitle}>No</div>
       )}
       {value !== undefined && <div className={styles.infoTitle}>{value}</div>}
+      {value === undefined && informationPet === undefined && (
+        <div className={styles.infoTitle}>{t('thereIsNoInformation')}</div>
+      )}
     </div>
   )
 }

@@ -11,7 +11,6 @@ import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
   const petIdStore = useLocalStore(() => new PetIdStore())
-  const { phone, email, name } = petIdStore.pet
   const { t } = useTranslation('profilePets')
   const { id } = useParams()
 
@@ -21,18 +20,14 @@ const ProfilePets = () => {
 
   return (
     <LayoutContainer>
-      <Link to={`/profile-user/${petIdStore.idUser}`}>{t('linkBack')}</Link>
-      <LayoutProfilePets
-        name={petIdStore.pet.name}
-        email={email}
-        phone={phone}
-        pet={petIdStore.pet}
-        images={petIdStore.images}
-        userCreatorExist={petIdStore.idUser}
-        userAdopt={petIdStore.pet.userAdopter}
-      />
-      {petIdStore.images !== [] ? (
-        <GaleryImages isLoading={petIdStore.isLoading} arrayImages={petIdStore.images} />
+      <Link
+        to={`/profile-user/${petIdStore.pet.userCreator.value && petIdStore.pet.getUserCreatorId}`}
+      >
+        {t('linkBack')}
+      </Link>
+      <LayoutProfilePets store={petIdStore} />
+      {petIdStore.filenames.value !== [] ? (
+        <GaleryImages isLoading={petIdStore.isLoading} store={petIdStore} />
       ) : (
         <ErrorMessage text={t('notImage')} typeMessage="warning" />
       )}

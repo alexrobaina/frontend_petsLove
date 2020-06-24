@@ -2,7 +2,7 @@
 
 .iconTitle {
   display: flex;
-  width: 100%;
+  width: auto;
 }
 
 .info {
@@ -21,7 +21,7 @@
 
 .title {
   letter-spacing: 1px;
-  text-align: center;
+  text-align: left;
   @include site-font('text', 600);
   color: $filters;
   margin-left: 15px;
@@ -35,7 +35,6 @@
   letter-spacing: 1px;
   margin-left: 15px;
   text-align: right;
-  width: 150px;
   color: $filters;
 
   @include site-font('text', 400);
@@ -48,6 +47,7 @@
 
 .containerData {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 15px 44px 15px 20px;
 

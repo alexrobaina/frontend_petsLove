@@ -1,6 +1,6 @@
 import { observable } from 'mobx'
-import InputStore from 'stores/InputStore'
 import moment from 'moment'
+import InputStore from 'stores/InputStore'
 
 class Pet {
   @observable state = true
@@ -20,128 +20,153 @@ class Pet {
   @observable parainfluenzaVaccine = false
   @observable bordetellaBronchisepticVaccine = false
 
-  constructor(id, medicalHistory) {
+  constructor(id, medicalCat) {
     this._id = id
     this.name = new InputStore()
-    this.image = new InputStore()
+    this.image = new InputStore([])
     this.category = new InputStore()
     this.gender = new InputStore()
-    this.age = new InputStore()
     this.history = new InputStore()
     this.activityLevel = new InputStore()
-    this.lat = new InputStore()
-    this.lng = new InputStore()
+    this.birthday = new InputStore()
     this.history = new InputStore()
+    this.foundLocation = new InputStore()
     this.textAddress = new InputStore()
     this.notes = new InputStore()
     this.vet = new InputStore()
+    this.location = new InputStore()
     this.userCreator = new InputStore()
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
     this.lastVisitVet = new InputStore()
     this.userTransit = new InputStore()
-    this.medicalHistory = medicalHistory
-    
-    this.image.setValue([])
-    this.image.setValue([])
+    this.medicalCat = medicalCat
+
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
     this.vet.setValue(null)
   }
 
-  setAddress(address) {
-    this.lat.setValue(address.lat)
-    this.lng.setValue(address.lng)
-  }
-
   fillJson(pet) {
     this._id = pet._id
-    this.image.setValue(pet.image)
-    this.age.setValue(pet.age)
-    this.lat.setValue(pet.lat)
-    this.lng.setValue(pet.lng)
     this.name.setValue(pet.name)
     this.gender.setValue(pet.gender)
     this.category.setValue(pet.category)
     this.activityLevel.setValue(pet.activity)
     this.textAddress.setValue(pet.textAddress)
-    this.notes.setValue(pet.notes)
+    this.image.setValue(pet.image)
     this.history.setValue(pet.history)
-    this.userCreator.setValue(pet.userCreator._id)
-    this.userAdopter.setValue(pet.userAdopter._id)
-    this.lastVisitVet.setValue(pet.lastVisitVet._id)
-    this.userTransit.setValue(pet.userTransit._id)
+    this.userCreator.setValue(pet.userCreator)
+    this.birthday.setValue(moment(pet.birthday).format('MMM Do YY'))
+    this.foundLocation.setValue(pet.foundLocation)
+    this.location.setValue(pet.foundLocation)
     this.state = pet.state
     this.lost = pet.lost
     this.urgent = pet.urgent
     this.adopted = pet.adopted
-    this.medicalHistory = pet.medicalHistory
-    this.distemperVaccine = pet.distemperVaccine
-    this.felineFluVaccine = pet.felineFluVaccine
-    this.felineLeukemiaVaccine = pet.felineLeukemiaVaccine
-    this.felineInfectiousPeritonitisVaccine = pet.felineInfectiousPeritonitisVaccine
-    this.rabiesVaccine = pet.rabiesVaccine
-    this.hepatitisVaccine = pet.hepatitisVaccine
-    this.leptospirosisVaccine = pet.leptospirosisVaccine
-    this.parvovirusVaccine = pet.parvovirusVaccine
-    this.parainfluenzaVaccine = pet.parainfluenzaVaccine
-    this.bordetellaBronchisepticVaccine = pet.bordetellaBronchisepticVaccine
 
-    if (pet.userAdopt) {
-      this.userAdopt.setValue(pet.userAdopt.value)
+    if (pet.category === 'cat') {
+      this.lastVisitVet.setValue(moment(pet.catMedicalHistory.lastVisitVet).format('MMM Do YY'))
+      this.notes.setValue(pet.catMedicalHistory.notes)
+      this.distemperVaccine = pet.catMedicalHistory.distemperVaccine
+      this.rabiesVaccine = pet.catMedicalHistory.rabiesVaccine
+      this.felineFluVaccine = pet.catMedicalHistory.felineFluVaccine
+      this.felineLeukemiaVaccine = pet.catMedicalHistory.felineLeukemiaVaccine
+      this.felineInfectiousPeritonitisVaccine =
+        pet.catMedicalHistory.felineInfectiousPeritonitisVaccine
+    }
+
+    if (pet.category === 'dog') {
+      this.lastVisitVet.setValue(moment(pet.dogMedicalHistory.lastVisitVet).format('MMM Do YY'))
+      this.notes.setValue(pet.dogMedicalHistory.notes)
+      this.dogMedicalHistory = pet.dogMedicalHistory
+    }
+
+    if (pet.userAdopter) {
+      this.userAdopter.setValue(pet.userAdopter)
     }
     if (pet.userTransit) {
-      this.userTransit.setValue(pet.userTransit.value)
+      this.userTransit.setValue(pet.userTransit)
     }
-  }
-
-  getAddress() {
-    const addressObject = {
-      lat: this.pet.lat,
-      lng: this.pet.lng,
-    }
-    return addressObject
   }
 
   setIdUserCreator(id) {
     this.userCreator.setValue(id)
   }
 
-  getJson() {
+  catDogMedicalHistory() {
     return {
-      _id: this._id,
-      name: this.name.value,
-      category: this.category.value,
-      gender: this.gender.value,
-      age: this.age.value,
-      activityLevel: this.activityLevel.value,
-      lost: this.lost,
-      image: this.image.value,
-      lat: this.lat.value,
-      lng: this.lng.value,
-      history: this.history.value,
       lastVisitVet: this.lastVisitVet.value,
-      textAddress: this.textAddress.value,
-      userCreator: this.userCreator.value,
-      userAdopter: this.userAdopter.value,
-      userTransit: this.userTransit.value,
-      medicalHistory: this.medicalHistory,
-      state: this.state,
-      notes: this.notes.value,
-      urgent: this.urgent,
-      adopted: this.adopted,
       distemperVaccine: this.distemperVaccine,
+      rabiesVaccine: this.rabiesVaccine,
       felineFluVaccine: this.felineFluVaccine,
       felineLeukemiaVaccine: this.felineLeukemiaVaccine,
       felineInfectiousPeritonitisVaccine: this.felineInfectiousPeritonitisVaccine,
+      notes: this.notes.value,
+    }
+  }
+
+  dogDogMedicalHistory() {
+    return {
+      lastVisitVet: this.lastVisitVet.value,
       rabiesVaccine: this.rabiesVaccine,
       hepatitisVaccine: this.hepatitisVaccine,
       leptospirosisVaccine: this.leptospirosisVaccine,
       parvovirusVaccine: this.parvovirusVaccine,
       parainfluenzaVaccine: this.parainfluenzaVaccine,
       bordetellaBronchisepticVaccine: this.bordetellaBronchisepticVaccine,
+      notes: this.notes.value,
     }
+  }
+
+  getJson() {
+    const petData = {
+      _id: this._id,
+      name: this.name.value,
+      category: this.category.value,
+      lost: this.lost,
+      state: this.state,
+      urgent: this.urgent,
+      gender: this.gender.value,
+      adopted: this.adopted,
+      userCreator: this.userCreator.value,
+      birthday: this.birthday.value,
+      activityLevel: this.activityLevel.value,
+      foundLocation: this.location.value,
+      notes: this.notes.value,
+      history: this.history.value,
+    }
+
+    if (this.userAdopter.value !== '') {
+      petData.userAdopter = this.userAdopter.value
+    }
+
+    if (this.userTransit.value !== '') {
+      petData.userTransit = this.userTransit.value
+    }
+
+    if (this.category.value === 'cat') {
+      petData.medicalCat = this.catDogMedicalHistory()
+    }
+
+    if (this.category.value === 'dog') {
+      petData.medicalDog = this.dogDogMedicalHistory()
+    }
+
+    if (this.image.value) {
+      petData.image = this.image.value
+    }
+
+    return petData
+  }
+
+  // ============================================
+  // Getters
+  // ============================================
+
+  get getUserCreatorId() {
+    return this.userCreator.value._id
   }
 }
 

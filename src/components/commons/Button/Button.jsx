@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './button.scss'
-import { ToastContainer } from 'react-toastify'
 
 const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTransparent }) => {
   if (circle) {

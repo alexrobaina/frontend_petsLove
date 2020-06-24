@@ -11,14 +11,14 @@ const ImageProfilePet = ({ images }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-
+  
   return (
     <div>
       <img
-        className={styles.imagePet}
-        onError={onError}
-        src={images.length > 0 && isImageNotFound ? `${SERVER}/${images[0]}` : noImage}
         alt="photos-pet"
+        onError={onError}
+        className={styles.imagePet}
+        src={images && isImageNotFound ? `${SERVER}/${images[0]}` : noImage}
       />
     </div>
   )

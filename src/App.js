@@ -1,4 +1,6 @@
 import React from 'react'
+import DateFnsUtils from '@date-io/date-fns'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
@@ -44,10 +46,6 @@ import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
 
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-
-// pick a date util library
-import DateFnsUtils from '@date-io/date-fns'
 
 dotenv.config()
 const rootStore = new RootStore()

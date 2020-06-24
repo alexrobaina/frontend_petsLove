@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
+import UserContext from 'Context/UserContext'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useHistory } from 'react-router'
 import c from 'classnames'
@@ -13,7 +14,6 @@ import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
-import UserContext from '../../Context/UserContext'
 
 const CreatePet = () => {
   const { t } = useTranslation('createPet')
@@ -27,7 +27,7 @@ const CreatePet = () => {
     createPetStore.save()
   }, [])
 
-  const handleNext = step => {
+  const handleNext = () => {
     if (step === 1) {
       if (createPetStore.firstStepValidation()) {
         setStep(step + 1)
@@ -38,7 +38,7 @@ const CreatePet = () => {
     }
   }
 
-  const handleBack = step => {
+  const handleBack = () => {
     setStep(step - 1)
   }
 
@@ -61,9 +61,7 @@ const CreatePet = () => {
       return <MedicalReportsPets createPetStore={createPetStore} />
     }
 
-    if (step === 3) {
-      return <LocationFormPet createPetStore={createPetStore} />
-    }
+    return <LocationFormPet createPetStore={createPetStore} />
   }
 
   return (
@@ -88,11 +86,17 @@ const CreatePet = () => {
       </div>
       {getStepForm()}
       <div className={styles.containerButton}>
-        <Button disable={step === 1} handleClick={() => handleBack(step)} text={t('back')} />
+        <div className={styles.button}>
+          <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
+        </div>
         {step === 3 ? (
-          <Button handleClick={handleSave} text={t('save')} />
+          <div className={styles.button}>
+            <Button handleClick={handleSave} text={t('save')} />
+          </div>
         ) : (
-          <Button handleClick={() => handleNext(step)} text={t('next')} />
+          <div className={styles.button}>
+            <Button handleClick={handleNext} text={t('next')} />
+          </div>
         )}
       </div>
     </LayoutContainer>
