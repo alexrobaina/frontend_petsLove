@@ -1,5 +1,4 @@
 import { action, observable, runInAction } from 'mobx'
-import imageCompression from 'browser-image-compression'
 import CreatePetServices from 'services/CreatePetServices'
 import ImageService from 'services/ImageService/ImageService'
 import ImageStore from 'stores/ImageStore'
@@ -18,22 +17,15 @@ class CreatePetStore {
   @observable pet = []
   @observable vets = []
   @observable image = []
-  @observable lost = false
   @observable address = {}
   @observable idImagePet = ''
   @observable imagesNews = []
   @observable imageResize = []
-  @observable urgent = false
-  @observable isEdit = false
-  @observable adopted = false
   @observable imageForResize = null
   @observable isError = false
   @observable canEdit = false
   @observable isLoading = false
   @observable imagePreview = []
-  @observable sterilized = false
-  @observable sterilized = false
-  @observable vaccinated = false
   @observable newPreviewsImage = []
   @observable requestSuccess = false
   @observable location = { lat: -34.603722, lng: -58.381592 }
@@ -44,6 +36,7 @@ class CreatePetStore {
     this.requestSuccess = false
 
     this.pet.image.setValue(this.imageStore.imageId)
+    console.log(this.pet.getJson())
 
     try {
       const response = await this.createPetServices.addPet(this.pet.getJson())
@@ -187,7 +180,7 @@ class CreatePetStore {
   }
 
   @action
-  setActivity(value) {
+  setActivityLevel(value) {
     this.pet.activityLevel.setValue(value.value)
   }
 

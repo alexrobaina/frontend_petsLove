@@ -317,7 +317,7 @@ const EditPet = () => {
         <div className={styles.col}>
           <InputSelect
             isEdit={createPetStore.isEdit}
-            value={createPetStore.pet.age.value}
+            value={createPetStore.pet.birthday.value}
             options={optionsSelectsStore.ages}
             handleChange={handleChangeAge}
             placeholder={t('age')}

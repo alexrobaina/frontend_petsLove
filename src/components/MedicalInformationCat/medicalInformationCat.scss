@@ -1,3 +1,14 @@
+@import 'styles/mixings';
+
+.title {
+  margin: 20px 0 20px 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  @include site-font('text', 600);
+  color: $filters;
+}
+
 .info {
   display: flex;
   flex-direction: column;

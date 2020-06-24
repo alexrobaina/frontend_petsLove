@@ -11,29 +11,12 @@ class PetIdStore {
   }
 
   @observable id = ''
-  @observable pet = []
-  @observable name = []
   @observable protectionist = []
-  @observable images = []
-  @observable gender = ''
-  @observable age = ''
-  @observable phone = ''
-  @observable email = ''
-  @observable categorie = ''
-  @observable activity = ''
+  @observable filenames = []
   @observable idUser = ''
-  @observable lat = null
-  @observable lng = null
-  @observable userName = ''
   @observable isLoading = false
   @observable petIsEdit = false
   @observable mapPosition = []
-  @observable defaultPosition = [
-    {
-      lat: -34.61315,
-      lng: -58.37723,
-    },
-  ]
 
   @action
   setPetIsEdit() {
@@ -50,11 +33,13 @@ class PetIdStore {
       const response = await this.petsService.getPetId(id)
 
       runInAction(() => {
-        setTimeout(() => {
-          this.isLoading = false
-        }, 2000)
-
         this.pet.fillJson(response)
+        this.isLoading = false
+  
+        console.log('this.pet.image.value ', this.pet.image.value)
+        if (this.pet.image.value !== []) {
+          this.filenames = this.pet.image.value.filenames
+        }
       })
     } catch (e) {
       runInAction(() => {

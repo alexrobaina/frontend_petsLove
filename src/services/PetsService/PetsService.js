@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { SERVER } from 'services/config'
-import Pet from 'models/Pet'
 
 class PetsService {
   getPets = data => {

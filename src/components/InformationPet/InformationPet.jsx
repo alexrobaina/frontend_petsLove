@@ -8,20 +8,17 @@ import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './informationPet.scss'
 
-const  InformationPet = ({ pet }) => {
+const InformationPet = ({ pet, title }) => {
   const { t } = useTranslation('profilePets')
 
   return (
     <LayoutCards>
+      <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation
-          text={t('nam')}
-          value={pet.name.value}
-          icon={<FaUser size={20} />}
-        />
+        <TextCardInformation text={t('nam')} value={pet.name.value} icon={<FaUser size={20} />} />
         <TextCardInformation
           text={t('birthday')}
-          value={t(`${pet.birthday.value}`)}
+          value={pet.birthday.value}
           icon={<FaBirthdayCake size={20} />}
         />
         <TextCardInformation
@@ -56,6 +53,11 @@ const  InformationPet = ({ pet }) => {
 
 InformationPet.propTypes = {
   pet: PropTypes.node.isRequired,
+  title: PropTypes.string,
+}
+
+InformationPet.defaultProps = {
+  title: '',
 }
 
 export default InformationPet

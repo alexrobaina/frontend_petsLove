@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
-
-import styles from './alertToast.scss'
 import { IoMdClose } from 'react-icons/io'
+import styles from './alertToast.scss'
 
 const CloseButton = ({ closeToast }) => (
   <i className={styles.closeButton} onClick={closeToast}>
@@ -11,12 +9,8 @@ const CloseButton = ({ closeToast }) => (
   </i>
 )
 
-const AlertToast = ({}) => {
-  return <ToastContainer draggable={true} closeButton={CloseButton} />
-}
-
-AlertToast.propTypes = {
-  closeToast: PropTypes.string.isRequired,
+const AlertToast = () => {
+  return <ToastContainer className={styles.toast} draggable closeButton={CloseButton} />
 }
 
 export default AlertToast

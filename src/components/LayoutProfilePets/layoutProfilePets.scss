@@ -4,6 +4,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 }
 
 .colums {

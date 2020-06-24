@@ -85,6 +85,10 @@
   width: 100%;
 }
 
+.button {
+  padding: 20px 10px 20px 10px;
+}
+
 .containerSteps {
   position: relative;
   display: flex;
@@ -108,7 +112,7 @@
   text-align: center;
   align-items: center;
   cursor: pointer;
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .stepLine {

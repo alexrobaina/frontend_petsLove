@@ -7,41 +7,42 @@ import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationCat.scss'
 
-const MedicalInformationCat = ({ pet }) => {
-  const { t } = useTranslation('profilePets')
+const MedicalInformationCat = ({ pet, title = '' }) => {
+  const { t } = useTranslation('medicalInformationCat')
 
   return (
     <LayoutCards>
+      <div className={styles.title}>{title}</div>
       <div className={styles.info}>
         <TextCardInformation
-          text={t('lastVisitVet')}
-          value={pet.lastVisitVet.value}
           icon={<FaUser size={20} />}
+          value={pet.lastVisitVet.value}
+          text={t('Last visit to the vet')}
         />
         <TextCardInformation
           text={t('distemperVaccine')}
-          value={t(`${pet.distemperVaccine}`)}
           icon={<FaBirthdayCake size={20} />}
+          informationPet={pet.distemperVaccine}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<FaCat size={20} />}
-          value={t(`${pet.rabiesVaccine}`)}
+          informationPet={pet.rabiesVaccine}
         />
         <TextCardInformation
           text={t('felineFluVaccine')}
-          informationPet={pet.felineFluVaccine}
           icon={<FaStreetView size={25} />}
+          informationPet={pet.felineFluVaccine}
         />
         <TextCardInformation
           text={t('felineLeukemiaVaccine')}
-          informationPet={pet.felineLeukemiaVaccine}
           icon={<IoIosHelpBuoy size={25} />}
+          informationPet={pet.felineLeukemiaVaccine}
         />
         <TextCardInformation
+          icon={<IoIosHelpBuoy size={25} />}
           text={t('felineInfectiousPeritonitisVaccine')}
           informationPet={pet.felineInfectiousPeritonitisVaccine}
-          icon={<IoIosHelpBuoy size={25} />}
         />
       </div>
     </LayoutCards>

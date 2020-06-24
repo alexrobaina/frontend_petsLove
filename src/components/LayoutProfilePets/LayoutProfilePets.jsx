@@ -15,37 +15,37 @@ import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ store }) => {
   const { t } = useTranslation('profilePets')
-
+  
   return (
     <>
       <div className={styles.header}>
         <Title title={t('title', { name: store.pet.name.value })} />
         <ButtonsPet
+          pet={store.pet}
           email={store.pet.email}
           phone={store.pet.phone}
-          pet={store.pet.pet}
           userCreatorExist={store.pet.userCreator}
         />
       </div>
       <div className={styles.colums}>
         <ImageProfilePet images={store.pet.images} />
         <GoogleMapsLocation
-          petLocation={store.pet.textAddress}
           isProfilePet
-          location={store.pet.foundLocation}
+          location={store.pet.foundLocation.value}
+          petLocation={store.pet.textAddress.value}
         />
       </div>
       <div className={styles.colums}>
-        <InformationPet pet={store.pet} />
-        {store.pet.category.value === 'dog' && <MedicalInformationDog pet={store.pet} />}
-        {store.pet.category.value === 'cat' && <MedicalInformationCat pet={store.pet} />}
+        <InformationPet title={t('common:basicInformation')} pet={store.pet} />
+        {store.pet.category.value === 'dog' && <MedicalInformationDog title={t('common:basicInformation')} pet={store.pet} />}
+        {store.pet.category.value === 'cat' && <MedicalInformationCat title={t('common:basicInformation')} pet={store.pet} />}
       </div>
       <div className={styles.colums}>
         <div>
           <TextCard title={t('history')} text={store.pet.history.value} />
         </div>
         <div>
-          <TextCard title={t('history')} text={store.pet.history.value} />
+          <TextCard title={t('Notes')} text={store.pet.notes.value} />
         </div>
       </div>
     </>

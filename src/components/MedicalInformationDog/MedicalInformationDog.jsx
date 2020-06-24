@@ -1,21 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'react-icons/fa'
+import { FaBirthdayCake, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationDog.scss'
 
-const MedicalInformationDog = ({ pet }) => {
-  const { t } = useTranslation('profilePets')
-
+const MedicalInformationDog = ({ pet, title = '' }) => {
+  const { t } = useTranslation('medicalInformationDog')
+  
   return (
     <LayoutCards>
+      <div className={styles.title}>{title}</div>
       <div className={styles.info}>
         <TextCardInformation
           text={t('lastVisitVet')}
-          value={pet.lastVisitVet.value}
+          value={pet.dogMedicalHistory.lastVisitVet.value}
           icon={<FaUser size={20} />}
         />
         <TextCardInformation

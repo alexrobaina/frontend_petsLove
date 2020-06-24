@@ -1,4 +1,5 @@
 import { observable } from 'mobx'
+import moment from 'moment'
 import InputStore from 'stores/InputStore'
 
 class Pet {
@@ -22,7 +23,7 @@ class Pet {
   constructor(id, medicalCat) {
     this._id = id
     this.name = new InputStore()
-    this.image = new InputStore()
+    this.image = new InputStore([])
     this.category = new InputStore()
     this.gender = new InputStore()
     this.history = new InputStore()
@@ -54,24 +55,31 @@ class Pet {
     this.category.setValue(pet.category)
     this.activityLevel.setValue(pet.activity)
     this.textAddress.setValue(pet.textAddress)
-    this.notes.setValue(pet.notes)
     this.image.setValue(pet.image)
     this.history.setValue(pet.history)
     this.userCreator.setValue(pet.userCreator)
-    this.birthday.setValue(pet.birthday)
+    this.birthday.setValue(moment(pet.birthday).format('MMM Do YY'))
     this.foundLocation.setValue(pet.foundLocation)
     this.location.setValue(pet.foundLocation)
-    this.lastVisitVet.setValue(pet.lastVisitVet)
     this.state = pet.state
     this.lost = pet.lost
     this.urgent = pet.urgent
     this.adopted = pet.adopted
 
     if (pet.category === 'cat') {
-      this.catMedicalHistory = pet.catMedicalHistory
+      this.lastVisitVet.setValue(moment(pet.catMedicalHistory.lastVisitVet).format('MMM Do YY'))
+      this.notes.setValue(pet.catMedicalHistory.notes)
+      this.distemperVaccine = pet.catMedicalHistory.distemperVaccine
+      this.rabiesVaccine = pet.catMedicalHistory.rabiesVaccine
+      this.felineFluVaccine = pet.catMedicalHistory.felineFluVaccine
+      this.felineLeukemiaVaccine = pet.catMedicalHistory.felineLeukemiaVaccine
+      this.felineInfectiousPeritonitisVaccine =
+        pet.catMedicalHistory.felineInfectiousPeritonitisVaccine
     }
 
     if (pet.category === 'dog') {
+      this.lastVisitVet.setValue(moment(pet.dogMedicalHistory.lastVisitVet).format('MMM Do YY'))
+      this.notes.setValue(pet.dogMedicalHistory.notes)
       this.dogMedicalHistory = pet.dogMedicalHistory
     }
 
@@ -111,7 +119,7 @@ class Pet {
       notes: this.notes.value,
     }
   }
-  
+
   getJson() {
     const petData = {
       _id: this._id,
@@ -126,6 +134,7 @@ class Pet {
       birthday: this.birthday.value,
       activityLevel: this.activityLevel.value,
       foundLocation: this.location.value,
+      notes: this.notes.value,
       history: this.history.value,
     }
 
@@ -150,6 +159,14 @@ class Pet {
     }
 
     return petData
+  }
+
+  // ============================================
+  // Getters
+  // ============================================
+
+  get getUserCreatorId() {
+    return this.userCreator.value._id
   }
 }
 

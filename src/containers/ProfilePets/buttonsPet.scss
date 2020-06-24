@@ -1,16 +1,30 @@
 @import 'styles/mixings';
 
-.containerButtons {
+.container {
   display: flex;
   align-items: center;
-  flex-direction: row;
+}
+
+.containerButtons {
+  position: fixed;
+  justify-content: center;
+  display: flex;
+  top: 80px;
+  right: 40px;
+  flex-direction: column;
+  z-index: 100;
+
+  @include media-breakpoint-only(xs) {
+    right: 20px;
+  }
 }
 
 .btnMargin {
   margin-left: 10px;
+  padding: 5px;
 
-  @include media-breakpoint-only(xs) {
-    margin-left: 2px;
+  @include media-breakpoint-only(sm) {
+    padding: 10px;
   }
 }
 
@@ -20,7 +34,6 @@
 }
 
 .butonsShare {
-  margin-left: 10px;
   border-radius: 100px;
 
   &:hover {
@@ -36,7 +49,6 @@
   }
 
   @include media-breakpoint-only(xs) {
-    margin: 0;
     margin-left: 2px;
   }
 }
@@ -75,6 +87,11 @@
     transform: translateY(-0.25em);
     outline: 0;
   }
+
+  @include media-breakpoint-only(xs) {
+    height: 30px;
+    width: 30px;
+  }
 }
 
 .buttonLinkQuery {
@@ -87,4 +104,8 @@
   border-radius: 10px;
   margin-top: 80px;
   color: $ligth;
+
+  @include media-breakpoint-only(xs) {
+    width: 300px;
+  }
 }

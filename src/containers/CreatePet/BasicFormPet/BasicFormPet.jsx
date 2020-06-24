@@ -55,8 +55,8 @@ const BasicFormPet = ({ createPetStore }) => {
     createPetStore.setBirthday(selectedValue)
   }, [])
 
-  const handleChangeActivity = useCallback(selectedValue => {
-    createPetStore.setActivity(selectedValue)
+  const handleChangeActivityLevel = useCallback(selectedValue => {
+    createPetStore.setActivityLevel(selectedValue)
   }, [])
 
   const handleChangeLost = useCallback(() => {
@@ -121,7 +121,7 @@ const BasicFormPet = ({ createPetStore }) => {
           isEdit
           options={activityOptions}
           placeholder={t('activity')}
-          handleChange={handleChangeActivity}
+          handleChange={handleChangeActivityLevel}
           inputStore={createPetStore.pet.activityLevel}
           value={createPetStore.pet.activityLevel.value}
         />
