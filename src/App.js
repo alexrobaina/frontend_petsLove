@@ -46,7 +46,6 @@ import historyBrowser from './history'
 import 'aos/dist/aos.css'
 import './App.scss'
 
-
 dotenv.config()
 const rootStore = new RootStore()
 axiosInterceptors(rootStore)

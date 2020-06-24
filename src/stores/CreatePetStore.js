@@ -36,7 +36,6 @@ class CreatePetStore {
     this.requestSuccess = false
 
     this.pet.image.setValue(this.imageStore.imageId)
-    console.log(this.pet.getJson())
 
     try {
       const response = await this.createPetServices.addPet(this.pet.getJson())
