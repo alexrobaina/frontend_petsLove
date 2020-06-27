@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { MdClose } from 'react-icons/md'
@@ -24,10 +24,10 @@ const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, ro
       <div className={styles.line} />
       {routesUser.map(route => (
         <Link
-          to={route.haveId ? `${route.link}/${_id}` : route.link}
           key={route.text}
           onClick={handleToggleViewMenuUser}
           className={styles.containerLinks}
+          to={route.haveId ? `${route.link}/${_id}` : route.link}
         >
           <div className={styles.icon}>{route.icon}</div>
           <div className={styles.text}>{t(route.text)}</div>

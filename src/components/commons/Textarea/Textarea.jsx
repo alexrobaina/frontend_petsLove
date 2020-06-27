@@ -15,7 +15,7 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputS
         <textarea
           rows={rows}
           cols={cols}
-          defaultValue={value}
+          value={value}
           onChange={handleChange}
           placeholder={placeholder}
           className={c(styles.textarea, inputStore.error && styles.isError)}
@@ -31,11 +31,11 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputS
 Textarea.propTypes = {
   cols: PropTypes.number,
   rows: PropTypes.number,
-  handleChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  isEdit: PropTypes.bool,
   value: PropTypes.string,
   label: PropTypes.string,
-  isEdit: PropTypes.bool,
+  placeholder: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
   inputStore: PropTypes.instanceOf(InputStore),
 }
 
@@ -44,8 +44,9 @@ Textarea.defaultProps = {
   rows: 4,
   label: '',
   value: '',
-  inputStore: false,
   isEdit: false,
+  placeholder: '',
+  inputStore: false,
 }
 
 export default observer(Textarea)

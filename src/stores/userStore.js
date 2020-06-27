@@ -30,7 +30,7 @@ class UserStore {
   @observable textAddress = ''
   @observable isResize = false
   @observable isLoading = false
-  @observable newPreviewsImage = ''
+  @observable newPreviewsImage = []
   @observable passwordError = false
   @observable isUserTransit = false
   @observable localStorageUser = []

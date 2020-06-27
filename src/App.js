@@ -2,6 +2,7 @@ import React from 'react'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { observer } from 'mobx-react'
+import moment from 'moment'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
@@ -48,6 +49,7 @@ import './App.scss'
 
 dotenv.config()
 const rootStore = new RootStore()
+
 axiosInterceptors(rootStore)
 
 function App() {

@@ -8,11 +8,11 @@ import CreatePetStore from 'stores/CreatePetStore'
 import LayoutForm from 'components/commons/LayoutForm'
 import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
+import InputDate from 'components/commons/InputDate'
 import Textarea from 'components/commons/Textarea/Textarea'
 import styles from './basicFormPet.scss'
-import InputDate from '../../../components/commons/InputDate'
 
-const BasicFormPet = ({ createPetStore }) => {
+const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   const { t } = useTranslation('createPet')
 
   const categoryOptions = [
@@ -32,13 +32,10 @@ const BasicFormPet = ({ createPetStore }) => {
     { value: 'LotsEnergy', label: t('Lots of energy') },
   ]
 
-  const deleteImage = useCallback(image => {
-    createPetStore.deleteNewPreviewsImage(image)
-  }, [])
-
   const handleChangeName = useCallback(e => {
     createPetStore.setName(e.target.value)
   }, [])
+
   const handleChangeHistory = useCallback(e => {
     createPetStore.setHistory(e.target.value)
   }, [])
@@ -68,21 +65,21 @@ const BasicFormPet = ({ createPetStore }) => {
       <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
       <InputUploadImage
         isEdit
-        store={createPetStore}
-        deleteImage={deleteImage}
-        previewImage={createPetStore.newPreviewsImage}
+        oldImage={createPetStore.pet.getImagePreviews}
+        inputUploadImageStore={inputUploadImageStore}
       />
       <div className={styles.colums}>
         <InputCheckbox
           isEdit
-          value={createPetStore.pet.lost}
-          handleChange={handleChangeLost}
           text={t('lost')}
+          handleChange={handleChangeLost}
+          value={createPetStore.pet.lost}
         />
       </div>
       <div className={styles.colums}>
         <Input
           isEdit
+          label={t('common:name')}
           handleChange={handleChangeName}
           placeholder={t('placeholderName')}
           inputStore={createPetStore.pet.name}
@@ -93,7 +90,8 @@ const BasicFormPet = ({ createPetStore }) => {
         <InputSelect
           isEdit
           options={categoryOptions}
-          placeholder={t('categoryPets')}
+          label={t('common:typePet')}
+          placeholder={t('typePets')}
           handleChange={handleChangeCategory}
           inputStore={createPetStore.pet.category}
           value={createPetStore.pet.category.value}
@@ -102,8 +100,9 @@ const BasicFormPet = ({ createPetStore }) => {
       <div className={styles.colums}>
         <InputSelect
           isEdit
-          placeholder={t('gender')}
           options={genderOptions}
+          placeholder={t('common:gender')}
+          label={t('common:gender')}
           handleChange={handleChangeGender}
           inputStore={createPetStore.pet.gender}
           value={createPetStore.pet.gender.value}
@@ -111,16 +110,17 @@ const BasicFormPet = ({ createPetStore }) => {
       </div>
       <div className={styles.colums}>
         <InputDate
-          label={t('birthday')}
+          label={t('common:birthday')}
           handleDateChange={handleDateBirthday}
-          value={createPetStore.pet.birthday.value}
+          value={createPetStore.pet.birthdayFormatView}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
           isEdit
           options={activityOptions}
-          placeholder={t('activity')}
+          placeholder={t('activityLevel')}
+          label={t('common:activityLevel')}
           handleChange={handleChangeActivityLevel}
           inputStore={createPetStore.pet.activityLevel}
           value={createPetStore.pet.activityLevel.value}
@@ -130,7 +130,7 @@ const BasicFormPet = ({ createPetStore }) => {
         <Textarea
           isEdit
           rows={5}
-          label={t('mascotStory')}
+          label={t('common:mascotStory')}
           handleChange={handleChangeHistory}
           inputStore={createPetStore.pet.history}
           value={createPetStore.pet.history.value}
@@ -142,6 +142,11 @@ const BasicFormPet = ({ createPetStore }) => {
 
 BasicFormPet.propTypes = {
   createPetStore: PropTypes.instanceOf(CreatePetStore).isRequired,
+  isEdition: PropTypes.bool,
+}
+
+BasicFormPet.defaultProps = {
+  isEdition: false,
 }
 
 export default observer(BasicFormPet)

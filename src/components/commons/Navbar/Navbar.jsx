@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { MdSearch } from 'react-icons/md'
 import { HOME, LOGIN, REGISTER } from 'routing/routes'
-import ChangeLanguage from 'components/commons/ChangeLanguage'
+import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
@@ -52,11 +52,13 @@ const Navbar = ({ children }) => {
       <div className={styles.containerNavbar}>
         <div className={styles.buttonSearch}>
           {/* When user is login show menu user */}
-          <ToggleMenuUser
-            handleMenu={handleMenu}
-            toggle={toggleNavegationUser}
-            handleToggle={setToggleNavegationUser}
-          />
+          {rootStore.authStore.isLogin && (
+            <ToggleMenuUser
+              handleMenu={handleMenu}
+              toggle={toggleNavegationUser}
+              handleToggle={setToggleNavegationUser}
+            />
+          )}
           {/* This is button its for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
           <div className={styles.logo}>Pets love</div>

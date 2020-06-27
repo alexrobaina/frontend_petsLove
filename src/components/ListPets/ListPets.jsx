@@ -28,8 +28,8 @@ const ListPets = ({ pets, isUserAdopt }) => {
                 <LazyLoad height={50} offsetVertical={50}>
                   <div onClick={() => goToPet(pet._id)}>
                     <CardPets
+                      image={pet.image}
                       namePet={pet.name}
-                      image={pet.image[0]}
                       history={pet.history}
                       onClick={() => goToPet(pet._id)}
                       isAdopted={!isUserAdopt && pet.adopted}

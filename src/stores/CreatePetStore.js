@@ -1,17 +1,17 @@
 import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
 import ImageService from 'services/ImageService/ImageService'
-import ImageStore from 'stores/ImageStore'
+import EditPetService from 'services/EditPetService/EditPetService'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
 
 class CreatePetStore {
   constructor() {
-    this.createPetServices = new CreatePetServices()
-    this.imageService = new ImageService()
-    this.imageStore = new ImageStore()
     this.pet = new Pet()
+    this.imageService = new ImageService()
+    this.editPetService = new EditPetService()
+    this.createPetServices = new CreatePetServices()
   }
 
   @observable pet = []
@@ -20,29 +20,71 @@ class CreatePetStore {
   @observable address = {}
   @observable idImagePet = ''
   @observable imagesNews = []
-  @observable imageResize = []
-  @observable imageForResize = null
   @observable isError = false
   @observable canEdit = false
   @observable isLoading = false
-  @observable imagePreview = []
-  @observable newPreviewsImage = []
+  @observable previewsImage = []
+  @observable imageForResize = null
   @observable requestSuccess = false
   @observable location = { lat: -34.603722, lng: -58.381592 }
 
   @action
-  async savePet() {
+  async savePet(id) {
     this.isLoading = true
     this.requestSuccess = false
 
-    this.pet.image.setValue(this.imageStore.imageId)
-
+    this.pet.image.setValue(id)
     try {
       const response = await this.createPetServices.addPet(this.pet.getJson())
 
       runInAction(() => {
         this.isLoading = false
         this.idPet = response._id
+        this.requestSuccess = true
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.isLoading = false
+      })
+    }
+  }
+
+  @action
+  async saveImageCreation(images) {
+    this.isLoading = true
+    this.requestSuccess = false
+
+    try {
+      const response = await this.imageService.addImage(images)
+
+      runInAction(() => {
+        this.savePet(response._id)
+
+        this.isLoading = false
+        this.requestSuccess = true
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async findOnePet(id) {
+    this.isLoading = true
+    this.requestSuccess = false
+
+    try {
+      const response = await this.editPetService.gePet(id)
+
+      runInAction(() => {
+        this.isLoading = false
+        this.idPet = response._id
+        this.pet.fillJson(response)
+        this.previewImage = this.pet.image.value
+
         this.requestSuccess = true
       })
     } catch (e) {
@@ -54,43 +96,42 @@ class CreatePetStore {
   }
 
   @action
-  async save() {
+  async updatePet() {
+    this.isLoading = true
+    this.requestSuccess = false
+
     try {
-      await this.imageStore.saveImage(() => this.savePet())
+      const response = await this.createPetServices.update(this.pet.getJson())
+
+      runInAction(() => {
+        this.isLoading = false
+        this.idPet = response._id
+        this.requestSuccess = true
+      })
     } catch (e) {
-      console.log(e)
+      runInAction(() => {
+        console.log(e)
+        this.isLoading = false
+      })
+    }
+  }
+
+  @action
+  async uploadImage(images) {
+    try {
+      await this.imageService.uploadImage(images, this.pet.getImageId)
+
+      runInAction(() => {
+        this.updatePet()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+      })
     }
   }
 
   // this function is only for set image previews
-  @action
-  deleteImageArray(image) {
-    this.imagePreview = this.imagePreview.filter(preview => {
-      return preview !== image
-    })
-    this.imagePreview.forEach(preview => {
-      this.pet.image.setValue(preview !== image)
-    })
-  }
-
-  @action
-  setImage(value) {
-    this.imageStore.setImage(value)
-  }
-
-  // this function is only for set image previews
-  @action
-  deleteNewPreviewsImage(image) {
-    const imageTemporal = this.newPreviewsImage.filter(preview => {
-      return preview.preview !== image.preview
-    })
-    this.newPreviewsImage = imageTemporal
-  }
-
-  @action
-  setNewsPreviewsImage(image) {
-    this.newPreviewsImage = image
-  }
 
   @action
   setIdUser(id) {

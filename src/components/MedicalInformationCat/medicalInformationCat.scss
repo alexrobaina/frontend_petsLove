@@ -6,7 +6,7 @@
   letter-spacing: 1px;
   text-align: center;
   @include site-font('text', 600);
-  color: $filters;
+  color: $secundaryLight;
 }
 
 .info {

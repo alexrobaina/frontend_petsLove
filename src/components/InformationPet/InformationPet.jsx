@@ -15,7 +15,7 @@ const InformationPet = ({ pet, title }) => {
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation text={t('nam')} value={pet.name.value} icon={<FaUser size={20} />} />
+        <TextCardInformation text={t('name')} value={pet.name.value} icon={<FaUser size={20} />} />
         <TextCardInformation
           text={t('birthday')}
           value={pet.birthday.value}

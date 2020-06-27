@@ -53,7 +53,11 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
     <LayoutForm>
       <div className={styles.title}>{t('subtitleStepTwo')}</div>
       <div className={styles.colums}>
-        <InputDate handleDateChange={handleDateChange} label={t('visitVet')} />
+        <InputDate
+          label={t('visitVet')}
+          handleDateChange={handleDateChange}
+          value={createPetStore.pet.getLastVisitVet}
+        />
       </div>
       <div className={styles.colums}>
         <InputSelect
@@ -118,7 +122,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <Textarea
           isEdit
           rows={5}
-          label={t('Notes')}
+          label={t('common:notes')}
           handleChange={handleChangeNotes}
           inputStore={createPetStore.pet.notes}
           value={createPetStore.pet.notes.value}

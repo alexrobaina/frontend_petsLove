@@ -15,7 +15,7 @@ import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ store }) => {
   const { t } = useTranslation('profilePets')
-  
+
   return (
     <>
       <div className={styles.header}>
@@ -37,8 +37,12 @@ const LayoutProfilePets = ({ store }) => {
       </div>
       <div className={styles.colums}>
         <InformationPet title={t('common:basicInformation')} pet={store.pet} />
-        {store.pet.category.value === 'dog' && <MedicalInformationDog title={t('common:basicInformation')} pet={store.pet} />}
-        {store.pet.category.value === 'cat' && <MedicalInformationCat title={t('common:basicInformation')} pet={store.pet} />}
+        {store.pet.category.value === 'dog' && (
+          <MedicalInformationDog title={t('common:basicInformation')} pet={store.pet} />
+        )}
+        {store.pet.category.value === 'cat' && (
+          <MedicalInformationCat title={t('common:basicInformation')} pet={store.pet} />
+        )}
       </div>
       <div className={styles.colums}>
         <div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react'
 import { FaBirthdayCake, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
@@ -22,12 +23,12 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
         <TextCardInformation
           text={t('distemperVaccine')}
           icon={<FaBirthdayCake size={20} />}
-          informationPet={pet.distemperVaccine}
+          value={pet.distemperVaccine}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<FaCat size={20} />}
-          informationPet={pet.rabiesVaccine}
+          value={pet.rabiesVaccine}
         />
         <TextCardInformation
           text={t('felineFluVaccine')}
@@ -53,4 +54,4 @@ MedicalInformationCat.propTypes = {
   pet: PropTypes.node.isRequired,
 }
 
-export default MedicalInformationCat
+export default observer(MedicalInformationCat)

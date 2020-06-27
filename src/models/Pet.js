@@ -91,10 +91,6 @@ class Pet {
     }
   }
 
-  setIdUserCreator(id) {
-    this.userCreator.setValue(id)
-  }
-
   catDogMedicalHistory() {
     return {
       lastVisitVet: this.lastVisitVet.value,
@@ -162,11 +158,35 @@ class Pet {
   }
 
   // ============================================
+  // Setters
+  // ============================================
+
+  setIdUserCreator(id) {
+    this.userCreator.setValue(id)
+  }
+
+  // ============================================
   // Getters
   // ============================================
 
   get getUserCreatorId() {
     return this.userCreator.value._id
+  }
+
+  get birthdayFormatView() {
+    return this.birthday.value
+  }
+
+  get getLastVisitVet() {
+    return this.lastVisitVet.value
+  }
+
+  get getImagePreviews() {
+    return this.image.value.filenames
+  }
+
+  get getImageId() {
+    return this.image.value._id
   }
 }
 

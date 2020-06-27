@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import styles from './inputDate.scss'
 import Label from '../Label/Input'
+import { useTranslation } from 'react-i18next'
 
-const InputDate = ({ label, handleDateChange }) => {
+const InputDate = ({ label, handleDateChange, value }) => {
+  const { t } = useTranslation()
   const [selectedDate, handleDate] = useState(new Date())
 
   useEffect(() => {
@@ -15,13 +17,12 @@ const InputDate = ({ label, handleDateChange }) => {
     <div className={styles.containerDate}>
       {label && <Label text={label} />}
       <KeyboardDatePicker
-        className={styles.inputDate}
         margin="normal"
-        id="date-picker-dialog"
-        label="Date picker dialog"
-        format="MM/dd/yyyy"
-        value={selectedDate}
+        format="dd/MM/yyyy"
         onChange={handleDate}
+        id="date-picker-dialog"
+        className={styles.inputDate}
+        value={value ? value : selectedDate}
         KeyboardButtonProps={{
           'aria-label': 'change date',
         }}

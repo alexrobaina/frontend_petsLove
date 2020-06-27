@@ -172,7 +172,7 @@ class RegisterStore {
   @action
   clearError() {
     const { firstname, lastname, email, password, role, phone, username } = this.registerUser
-  
+
     firstname.clearError()
     lastname.clearError()
     email.clearError()

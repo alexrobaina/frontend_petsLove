@@ -1,30 +1,39 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState, useEffect } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
 import Tooltip from '@material-ui/core/Tooltip'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import c from 'classnames'
 import { GiHealthPotion } from 'react-icons/gi'
 import { MdEditLocation, MdPets } from 'react-icons/md'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import CreatePetStore from 'stores/CreatePetStore'
 import Button from 'components/commons/Button'
 import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
+import CreatePetStore from 'stores/CreatePetStore'
+import InputUploadImageStore from 'stores/InputUploadImageStore'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
 
-const CreatePet = () => {
+const CreatePet = ({ title, isEdit }) => {
+  const createPetStore = useLocalStore(() => new CreatePetStore())
+  const inputUploadImageStore = useLocalStore(() => new InputUploadImageStore())
   const { t } = useTranslation('createPet')
   const history = useHistory()
+  const { id } = useParams()
   const [step, setStep] = useState(1)
-  const createPetStore = useLocalStore(() => new CreatePetStore())
+
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
   const handleSave = useCallback(() => {
-    createPetStore.save()
+    if (id) {
+      createPetStore.uploadImage(inputUploadImageStore.getImage)
+      return
+    }
+    createPetStore.saveImageCreation(inputUploadImageStore.getImage)
   }, [])
 
   const handleNext = () => {
@@ -41,31 +50,34 @@ const CreatePet = () => {
   const handleBack = () => {
     setStep(step - 1)
   }
+  //
+  // useEffect(() => {
+  //   if (createPetStore.requestSuccess) {
+  //     history.push(`/dashboard`)
+  //   }
+  // }, [createPetStore.requestSuccess])
 
   useEffect(() => {
-    createPetStore.setIdUser(authStore.user._id)
-  }, [])
-
-  useEffect(() => {
-    if (createPetStore.requestSuccess) {
-      history.push(`/dashboard`)
+    if (id) {
+      createPetStore.findOnePet(id)
     }
-  }, [createPetStore.requestSuccess])
+    createPetStore.pet.setIdUserCreator(authStore.user._id)
+  }, [])
 
   function getStepForm() {
     if (step === 1) {
-      return <BasicFormPet createPetStore={createPetStore} />
+      return <BasicFormPet isEdit={isEdit} createPetStore={createPetStore} inputUploadImageStore={inputUploadImageStore} />
     }
 
     if (step === 2) {
-      return <MedicalReportsPets createPetStore={createPetStore} />
+      return <MedicalReportsPets isEdit={isEdit} createPetStore={createPetStore} />
     }
 
-    return <LocationFormPet createPetStore={createPetStore} />
+    return <LocationFormPet isEdit={isEdit} createPetStore={createPetStore} />
   }
 
   return (
-    <LayoutContainer title={t('title')}>
+    <LayoutContainer title={c(isEdit ? title : t('title'))}>
       <div className={styles.containerSteps}>
         <Tooltip title={t('subtitleStepOne')}>
           <div className={c(styles.stepInformation, step === 1 && styles.formSelected)}>
@@ -101,6 +113,17 @@ const CreatePet = () => {
       </div>
     </LayoutContainer>
   )
+}
+
+CreatePet.prototype = {
+  title: PropTypes.string,
+  isEdit: PropTypes.bool,
+  inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore),
+}
+
+CreatePet.defaultProps = {
+  name: '',
+  isEdit: false,
 }
 
 export default observer(CreatePet)

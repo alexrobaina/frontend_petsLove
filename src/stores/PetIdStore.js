@@ -36,7 +36,6 @@ class PetIdStore {
         this.pet.fillJson(response)
         this.isLoading = false
 
-        console.log('this.pet.image.value ', this.pet.image.value)
         if (this.pet.image.value !== []) {
           this.filenames = this.pet.image.value.filenames
         }
