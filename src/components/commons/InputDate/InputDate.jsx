@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import DateFnsUtils from "@date-io/date-fns";
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import styles from './inputDate.scss'
 import Label from '../Label/Input'
@@ -17,12 +18,13 @@ const InputDate = ({ label, handleDateChange, value }) => {
     <div className={styles.containerDate}>
       {label && <Label text={label} />}
       <KeyboardDatePicker
+        fullWidth
         margin="normal"
-        format="dd/MM/yyyy"
+        format={'dd-MM-yyyy'}
         onChange={handleDate}
         id="date-picker-dialog"
         className={styles.inputDate}
-        value={value ? value : selectedDate}
+        value={selectedDate}
         KeyboardButtonProps={{
           'aria-label': 'change date',
         }}

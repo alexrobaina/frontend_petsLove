@@ -15,35 +15,35 @@ const InformationPet = ({ pet, title }) => {
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation text={t('name')} value={pet.name.value} icon={<FaUser size={20} />} />
+        <TextCardInformation text={t('name')} value={pet.getName} icon={<FaUser size={20} />} />
         <TextCardInformation
           text={t('birthday')}
-          value={pet.birthday.value}
+          value={pet.getBirthday}
           icon={<FaBirthdayCake size={20} />}
         />
         <TextCardInformation
           text={t('category')}
           icon={<FaCat size={20} />}
-          value={t(`${pet.category.value}`)}
+          value={pet.getCategory}
         />
         <TextCardInformation
           text={t('gender')}
-          value={t(`${pet.gender.value}`)}
+          value={pet.getGender}
           icon={<FaTransgender size={25} />}
         />
         <TextCardInformation
           text={t('activity')}
           icon={<GiJumpingDog size={25} />}
-          value={t(`${pet.activityLevel.value}`)}
+          value={pet.getActivityLevel}
         />
         <TextCardInformation
           text={t('lost')}
-          informationPet={pet.lost}
+          informationPet={pet.getLost}
           icon={<FaStreetView size={25} />}
         />
         <TextCardInformation
           text={t('urgent')}
-          informationPet={pet.urgent}
+          informationPet={pet.getUrgent}
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>

@@ -18,11 +18,12 @@ class InputUploadImageStore {
   // this function is only for remove old image
   @action
   removePreviosImage(image) {
-    this.imagePreview = this.previewImage.filter(preview => {
+    let imagePreview
+    imagePreview = this.previewImage.filter(preview => {
       return preview !== image
     })
 
-    this.previewImage = this.imagePreview
+    this.previewImage = imagePreview
   }
 
   // this function is only for remove new images
@@ -43,7 +44,7 @@ class InputUploadImageStore {
   // This function set new imageResized for send to service
   @action
   setNewImageResized(image) {
-    this.imageResized = imageResizedfiltered
+    this.imageResized = image
   }
 
   // This function set new image

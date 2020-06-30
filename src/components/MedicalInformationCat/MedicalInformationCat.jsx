@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-import { FaBirthdayCake, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
+import { FaBirthdayCake, FaCalendar, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
@@ -16,9 +16,9 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
         <TextCardInformation
-          icon={<FaUser size={20} />}
+          icon={<FaCalendar size={20} />}
           value={pet.lastVisitVet.value}
-          text={t('Last visit to the vet')}
+          text={t('lastVisitVet')}
         />
         <TextCardInformation
           text={t('distemperVaccine')}

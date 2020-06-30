@@ -1,26 +1,17 @@
 import { observable } from 'mobx'
-import moment from 'moment'
+import { observer } from 'mobx-react'
 import InputStore from 'stores/InputStore'
+import MedicalInformationCat from 'models/MedicalInformationCat'
+import MedicalInformationDog from 'models/MedicalInformationDog'
 
 class Pet {
   @observable state = true
   @observable lost = false
   @observable urgent = false
   @observable terms = false
-  @observable isCastrated = false
   @observable adopted = false
-  @observable distemperVaccine = false
-  @observable felineFluVaccine = false
-  @observable felineLeukemiaVaccine = false
-  @observable felineInfectiousPeritonitisVaccine = false
-  @observable rabiesVaccine = false
-  @observable hepatitisVaccine = false
-  @observable leptospirosisVaccine = false
-  @observable parvovirusVaccine = false
-  @observable parainfluenzaVaccine = false
-  @observable bordetellaBronchisepticVaccine = false
 
-  constructor(id, medicalCat) {
+  constructor(id) {
     this._id = id
     this.name = new InputStore()
     this.image = new InputStore([])
@@ -32,20 +23,20 @@ class Pet {
     this.history = new InputStore()
     this.foundLocation = new InputStore()
     this.textAddress = new InputStore()
-    this.notes = new InputStore()
-    this.vet = new InputStore()
     this.location = new InputStore()
     this.userCreator = new InputStore()
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
-    this.lastVisitVet = new InputStore()
     this.userTransit = new InputStore()
-    this.medicalCat = medicalCat
+    this.medicalCat = {}
+    this.medicalDog = {}
 
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
-    this.vet.setValue(null)
+
+    this.medicalInformationCat = new MedicalInformationCat()
+    this.medicalInformationDog = new MedicalInformationDog()
   }
 
   fillJson(pet) {
@@ -53,12 +44,12 @@ class Pet {
     this.name.setValue(pet.name)
     this.gender.setValue(pet.gender)
     this.category.setValue(pet.category)
-    this.activityLevel.setValue(pet.activity)
+    this.activityLevel.setValue(pet.activityLevel)
     this.textAddress.setValue(pet.textAddress)
     this.image.setValue(pet.image)
     this.history.setValue(pet.history)
     this.userCreator.setValue(pet.userCreator)
-    this.birthday.setValue(moment(pet.birthday).format('MMM Do YY'))
+    this.birthday.setValue(pet.birthday)
     this.foundLocation.setValue(pet.foundLocation)
     this.location.setValue(pet.foundLocation)
     this.state = pet.state
@@ -67,20 +58,12 @@ class Pet {
     this.adopted = pet.adopted
 
     if (pet.category === 'cat') {
-      this.lastVisitVet.setValue(moment(pet.catMedicalHistory.lastVisitVet).format('MMM Do YY'))
-      this.notes.setValue(pet.catMedicalHistory.notes)
-      this.distemperVaccine = pet.catMedicalHistory.distemperVaccine
-      this.rabiesVaccine = pet.catMedicalHistory.rabiesVaccine
-      this.felineFluVaccine = pet.catMedicalHistory.felineFluVaccine
-      this.felineLeukemiaVaccine = pet.catMedicalHistory.felineLeukemiaVaccine
-      this.felineInfectiousPeritonitisVaccine =
-        pet.catMedicalHistory.felineInfectiousPeritonitisVaccine
+      this.medicalCat = this.medicalInformationCat.fillJson(pet.catMedicalHistory)
     }
 
     if (pet.category === 'dog') {
-      this.lastVisitVet.setValue(moment(pet.dogMedicalHistory.lastVisitVet).format('MMM Do YY'))
-      this.notes.setValue(pet.dogMedicalHistory.notes)
-      this.dogMedicalHistory = pet.dogMedicalHistory
+      console.log('pet.dogMedicalHistory ', pet.dogMedicalHistory)
+      this.medicalDog = this.medicalInformationDog.fillJson(pet.dogMedicalHistory)
     }
 
     if (pet.userAdopter) {
@@ -88,31 +71,6 @@ class Pet {
     }
     if (pet.userTransit) {
       this.userTransit.setValue(pet.userTransit)
-    }
-  }
-
-  catDogMedicalHistory() {
-    return {
-      lastVisitVet: this.lastVisitVet.value,
-      distemperVaccine: this.distemperVaccine,
-      rabiesVaccine: this.rabiesVaccine,
-      felineFluVaccine: this.felineFluVaccine,
-      felineLeukemiaVaccine: this.felineLeukemiaVaccine,
-      felineInfectiousPeritonitisVaccine: this.felineInfectiousPeritonitisVaccine,
-      notes: this.notes.value,
-    }
-  }
-
-  dogDogMedicalHistory() {
-    return {
-      lastVisitVet: this.lastVisitVet.value,
-      rabiesVaccine: this.rabiesVaccine,
-      hepatitisVaccine: this.hepatitisVaccine,
-      leptospirosisVaccine: this.leptospirosisVaccine,
-      parvovirusVaccine: this.parvovirusVaccine,
-      parainfluenzaVaccine: this.parainfluenzaVaccine,
-      bordetellaBronchisepticVaccine: this.bordetellaBronchisepticVaccine,
-      notes: this.notes.value,
     }
   }
 
@@ -130,7 +88,6 @@ class Pet {
       birthday: this.birthday.value,
       activityLevel: this.activityLevel.value,
       foundLocation: this.location.value,
-      notes: this.notes.value,
       history: this.history.value,
     }
 
@@ -143,11 +100,12 @@ class Pet {
     }
 
     if (this.category.value === 'cat') {
-      petData.medicalCat = this.catDogMedicalHistory()
+      petData.medicalCat = this.medicalInformationCat.getJson()
     }
 
     if (this.category.value === 'dog') {
-      petData.medicalDog = this.dogDogMedicalHistory()
+      console.log('this.medicalInformationDog.getJson() ', this.medicalInformationDog.getJson())
+      petData.medicalDog = this.medicalInformationDog.getJson()
     }
 
     if (this.image.value) {
@@ -161,28 +119,179 @@ class Pet {
   // Setters
   // ============================================
 
+  setFoundLocation(value) {
+    this.foundLocation.setValue(value)
+  }
+
+  setLocation(value) {
+    this.location.setValue(value)
+  }
+
+  setTextAddress(value) {
+    this.textAddress.setValue(value)
+  }
+
   setIdUserCreator(id) {
     this.userCreator.setValue(id)
+  }
+
+  setName(value) {
+    this.name.setValue(value)
+  }
+
+  setCategoty(value) {
+    this.category.setValue(value)
+  }
+
+  setLost() {
+    this.lost = !this.lost
+  }
+
+  setUrgent(value) {
+    this.urgent = !this.urgent
+  }
+
+  setGender(value) {
+    this.gender.setValue(value)
+  }
+
+  setAdopted(value) {
+    this.adopted = value
+  }
+
+  setUserCreator(value) {
+    this.userCreator.setValue(value)
+  }
+
+  setBirthday(value) {
+    this.birthday.setValue(value)
+  }
+
+  setUserAdopter(value) {
+    this.userAdopter.setValue(value)
+  }
+
+  setUserTransit(value) {
+    this.userTransit.setValue(value)
+  }
+
+  setActivityLevel(value) {
+    this.activityLevel.setValue(value)
+  }
+
+  setFoundLocation(value) {
+    this.foundLocation.setValue(value)
+  }
+
+  setNotes(value) {
+    if (this.category === 'cat') {
+      this.medicalInformationCat.setNotes(value)
+    }
+    if (this.category === 'dog') {
+      this.medicalInformationDog.setNotes(value)
+    }
+  }
+
+  setHistory(value) {
+    this.history.setValue(value)
+  }
+
+  setLastVisitVet(value) {
+    if (this.category.value === 'cat') {
+      this.medicalInformationCat.setLastVisitVet(value)
+    }
+    if (this.category.value === 'dog') {
+      this.medicalInformationDog.setLastVisitVet(value)
+    }
   }
 
   // ============================================
   // Getters
   // ============================================
 
+  get getRabiesVaccine() {
+    if (this.category.value === 'cat') {
+      return this.medicalInformationCat.getLastVisitVet
+    }
+    if (this.category.value === 'dog') {
+      return this.medicalInformationDog.getRabiesVaccine
+    }
+  }
+
+  get idUserCreator() {
+    return this.userCreator.value
+  }
+
+  get getName() {
+    return this.name.value
+  }
+
+  get getCategory() {
+    return this.category.value
+  }
+
+  get getLost() {
+    return this.lost
+  }
+
+  get getUrgent() {
+    return this.urgent
+  }
+
+  get getGender() {
+    return this.gender.value
+  }
+
+  get getAdopted() {
+    return this.adopted
+  }
+
+  get getUserCreator() {
+    return this.userCreator.value
+  }
+
+  get getUserAdopter() {
+    return this.userAdopter.value
+  }
+
+  get getUserTransit() {
+    return this.userTransit.value
+  }
+
+  get getBirthday() {
+    return this.birthday.value
+  }
+
+  get getActivityLevel() {
+    return this.activityLevel.value
+  }
+
+  get getFoundLocation() {
+    return this.foundLocation.value
+  }
+
+  get getTextAddress() {
+    return this.textAddress.value
+  }
+
+  get getHistory() {
+    return this.history.value
+  }
+
   get getUserCreatorId() {
     return this.userCreator.value._id
   }
 
-  get birthdayFormatView() {
-    return this.birthday.value
-  }
-
-  get getLastVisitVet() {
-    return this.lastVisitVet.value
-  }
-
   get getImagePreviews() {
     return this.image.value.filenames
+  }
+
+  get getUserCreatorName() {
+    return this.userCreator.value.name
+  }
+
+  get getUserCreatorPhone() {
+    return this.userCreator.value.phone
   }
 
   get getImageId() {

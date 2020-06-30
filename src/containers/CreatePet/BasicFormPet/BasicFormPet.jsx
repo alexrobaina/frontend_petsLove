@@ -10,6 +10,8 @@ import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import InputDate from 'components/commons/InputDate'
 import Textarea from 'components/commons/Textarea/Textarea'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import styles from './basicFormPet.scss'
 
 const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
@@ -33,33 +35,48 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   ]
 
   const handleChangeName = useCallback(e => {
-    createPetStore.setName(e.target.value)
+    createPetStore.pet.setName(e.target.value)
   }, [])
 
   const handleChangeHistory = useCallback(e => {
-    createPetStore.setHistory(e.target.value)
+    createPetStore.pet.setHistory(e.target.value)
   }, [])
 
   const handleChangeCategory = useCallback(selectedValue => {
-    createPetStore.setCategory(selectedValue)
+    createPetStore.pet.setCategoty(selectedValue.value)
   }, [])
 
   const handleChangeGender = useCallback(selectedValue => {
-    createPetStore.setGender(selectedValue)
+    createPetStore.pet.setGender(selectedValue.value)
   }, [])
 
   const handleDateBirthday = useCallback(selectedValue => {
-    createPetStore.setBirthday(selectedValue)
+    createPetStore.pet.setBirthday(selectedValue)
   }, [])
 
   const handleChangeActivityLevel = useCallback(selectedValue => {
-    createPetStore.setActivityLevel(selectedValue)
+    createPetStore.pet.setActivityLevel(selectedValue.value)
   }, [])
 
   const handleChangeLost = useCallback(() => {
-    createPetStore.setLost()
+    createPetStore.pet.setLost()
   }, [])
 
+  const {
+    getLost,
+    getName,
+    name,
+    getCategory,
+    category,
+    getGender,
+    gender,
+    getActivityLevel,
+    activityLevel,
+    getBirthday,
+    getHistory,
+    history,
+  } = createPetStore.pet
+  console.log(getBirthday)
   return (
     <LayoutForm>
       <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
@@ -69,71 +86,67 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
         inputUploadImageStore={inputUploadImageStore}
       />
       <div className={styles.colums}>
-        <InputCheckbox
-          isEdit
-          text={t('lost')}
-          handleChange={handleChangeLost}
-          value={createPetStore.pet.lost}
-        />
+        <InputCheckbox isEdit text={t('lost')} value={getLost} handleChange={handleChangeLost} />
       </div>
       <div className={styles.colums}>
         <Input
           isEdit
+          value={getName}
+          inputStore={name}
           label={t('common:name')}
           handleChange={handleChangeName}
           placeholder={t('placeholderName')}
-          inputStore={createPetStore.pet.name}
-          value={createPetStore.pet.name.value}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
           isEdit
+          value={getCategory}
+          inputStore={category}
           options={categoryOptions}
           label={t('common:typePet')}
           placeholder={t('typePets')}
           handleChange={handleChangeCategory}
-          inputStore={createPetStore.pet.category}
-          value={createPetStore.pet.category.value}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
           isEdit
+          value={getGender}
+          inputStore={gender}
           options={genderOptions}
-          placeholder={t('common:gender')}
           label={t('common:gender')}
+          placeholder={t('common:gender')}
           handleChange={handleChangeGender}
-          inputStore={createPetStore.pet.gender}
-          value={createPetStore.pet.gender.value}
         />
       </div>
       <div className={styles.colums}>
-        <InputDate
-          label={t('common:birthday')}
-          handleDateChange={handleDateBirthday}
-          value={createPetStore.pet.birthdayFormatView}
-        />
+        <DatePicker selected={getBirthday} onChange={handleDateBirthday} />
+        {/*<InputDate*/}
+        {/*  label={t('common:birthday')}*/}
+        {/*  handleDateChange={handleDateBirthday}*/}
+        {/*  value={getBirthday}*/}
+        {/*/>*/}
       </div>
       <div className={styles.colums}>
         <InputSelect
           isEdit
+          value={getActivityLevel}
           options={activityOptions}
+          inputStore={activityLevel}
           placeholder={t('activityLevel')}
           label={t('common:activityLevel')}
           handleChange={handleChangeActivityLevel}
-          inputStore={createPetStore.pet.activityLevel}
-          value={createPetStore.pet.activityLevel.value}
         />
       </div>
       <div className={styles.colums}>
         <Textarea
           isEdit
           rows={5}
+          value={getHistory}
+          inputStore={history}
           label={t('common:mascotStory')}
           handleChange={handleChangeHistory}
-          inputStore={createPetStore.pet.history}
-          value={createPetStore.pet.history.value}
         />
       </div>
     </LayoutForm>

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-import { FaBirthdayCake, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
+import { FaBirthdayCake, FaCalendar, FaCat, FaStreetView } from 'react-icons/fa'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
@@ -17,37 +17,47 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
       <div className={styles.info}>
         <TextCardInformation
           text={t('lastVisitVet')}
-          value={pet.dogMedicalHistory.lastVisitVet.value}
-          icon={<FaUser size={20} />}
+          icon={<FaCalendar size={20} />}
+          value={pet.medicalInformationDog.getLastVisitVet}
         />
         <TextCardInformation
           text={t('distemperVaccine')}
-          informationPet={pet.rabiesVaccine}
-          icon={<FaBirthdayCake size={20} />}
+          icon={<FaCat size={20} />}
+          informationPet={pet.medicalInformationDog.getDistemperVaccine}
+        />        
+        <TextCardInformation
+          text={t('isCastrated')}
+          icon={<FaCat size={20} />}
+          informationPet={pet.medicalInformationDog.getIsCastrated}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<FaCat size={20} />}
-          informationPet={pet.hepatitisVaccine}
+          informationPet={pet.medicalInformationDog.getRabiesVaccine}
         />
         <TextCardInformation
-          text={t('felineFluVaccine')}
-          informationPet={pet.leptospirosisVaccine}
+          text={t('hepatitisVaccine')}
+          icon={<FaBirthdayCake size={20} />}
+          informationPet={pet.medicalInformationDog.getHepatitisVaccine}
+        />
+        <TextCardInformation
+          text={t('parvovirusVaccine')}
           icon={<FaStreetView size={25} />}
+          informationPet={pet.medicalInformationDog.getParvovirusVaccine}
         />
         <TextCardInformation
-          text={t('felineLeukemiaVaccine')}
-          informationPet={pet.parvovirusVaccine}
+          text={t('leptospirosisVaccine')}
+          informationPet={pet.medicalInformationDog.getLeptospirosisVaccine}
           icon={<IoIosHelpBuoy size={25} />}
         />
         <TextCardInformation
-          text={t('felineInfectiousPeritonitisVaccine')}
-          informationPet={pet.parainfluenzaVaccine}
+          text={t('parainfluenzaVaccine')}
+          informationPet={pet.medicalInformationDog.getParainfluenzaVaccine}
           icon={<IoIosHelpBuoy size={25} />}
         />
         <TextCardInformation
-          text={t('felineInfectiousPeritonitisVaccine')}
-          informationPet={pet.bordetellaBronchisepticVaccine}
+          text={t('bordetellaBronchisepticVaccine')}
+          informationPet={pet.medicalInformationDog.getBordetellaBronchisepticVaccine}
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>

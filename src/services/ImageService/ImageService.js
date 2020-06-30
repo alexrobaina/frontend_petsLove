@@ -36,7 +36,6 @@ class ImageService {
     }
 
     formData.append('_id', idImage)
-
     return axios.post(`${SERVER}/api/pet/updateImage`, formData).then(response => response.data)
   }
 }

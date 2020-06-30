@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
+import moment from 'moment'
 import PropTypes from 'prop-types'
 import CreatePetStore from 'stores/CreatePetStore'
 import InputCheckbox from 'components/commons/InputCheckbox'
@@ -14,41 +15,54 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
   const { t } = useTranslation('createPet')
 
   const handleDateChange = useCallback(date => {
-    createPetStore.setLastVisitVet(date)
+    createPetStore.pet.medicalInformationCat.setLastVisitVet(date)
   }, [])
 
-  const handleChangeVet = useCallback(option => {
-    createPetStore.setVet(option)
+  const handleChangeVet = useCallback(selectedOption => {
+    createPetStore.per.medicalInformationCat.setVet(selectedOption.value)
   }, [])
 
   const handleDateIsCastrated = useCallback(() => {
-    createPetStore.setIsCastrated()
+    createPetStore.pet.medicalInformationCat.setIsCastrated()
   }, [])
 
   const handleChangeDistemperVaccine = useCallback(() => {
-    createPetStore.setDistemperVaccine()
+    createPetStore.pet.medicalInformationCat.setDistemperVaccine()
   }, [])
 
   const handleChangeFelineFluVaccine = useCallback(() => {
-    createPetStore.setFelineFluVaccine()
+    createPetStore.pet.medicalInformationCat.setFelineFluVaccine()
   }, [])
 
   const handleChangeFelineLeukemiaVaccine = useCallback(() => {
-    createPetStore.setFelineLeukemiaVaccine()
+    createPetStore.pet.medicalInformationCat.setFelineLeukemiaVaccine()
   }, [])
 
   const handleChangePeritonitisVaccine = useCallback(() => {
-    createPetStore.setFelineInfectiousPeritonitisVaccine()
+    createPetStore.pet.medicalInformationCat.setFelineInfectiousPeritonitisVaccine()
   }, [])
 
   const handleChangeRabiesVaccine = useCallback(() => {
-    createPetStore.setRabiesVaccine()
+    createPetStore.pet.medicalInformationCat.setRabiesVaccine()
   }, [])
 
   const handleChangeNotes = useCallback(e => {
-    createPetStore.setNotes(e.target.value)
+    createPetStore.pet.medicalInformationCat.setNotes(e.target.value)
   }, [])
 
+  const {
+    getLastVisitpet,
+    getVet,
+    getIsCastrated,
+    getDistemperVaccine,
+    getFelineFluVaccine,
+    getFelineLeukemiaVaccine,
+    getFelineInfectiousPeritonitisVaccine,
+    getRabiesVaccine,
+    getNotes,
+    getLastVisitVet,
+  } = createPetStore.pet.medicalInformationCat
+  
   return (
     <LayoutForm>
       <div className={styles.title}>{t('subtitleStepTwo')}</div>
@@ -56,12 +70,13 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputDate
           label={t('visitVet')}
           handleDateChange={handleDateChange}
-          value={createPetStore.pet.getLastVisitVet}
+          value={moment(getLastVisitVet)}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
           label={t('whoVet')}
+          value={getVet}
           options={createPetStore.vets}
           isEdit={createPetStore.isEdit}
           handleChange={handleChangeVet}
@@ -70,8 +85,8 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
       <div className={styles.colums}>
         <InputCheckbox
           isEdit
+          value={getIsCastrated}
           text={t('isCastrated')}
-          value={createPetStore.pet.isCastrated}
           handleChange={handleDateIsCastrated}
         />
       </div>
@@ -81,8 +96,8 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
       <div className={styles.colums}>
         <InputCheckbox
           isEdit
+          value={getDistemperVaccine}
           text={t('isDistemperVaccine')}
-          value={createPetStore.pet.distemperVaccine}
           handleChange={handleChangeDistemperVaccine}
         />
       </div>
@@ -90,7 +105,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputCheckbox
           isEdit
           text={t('felineFluVaccine')}
-          value={createPetStore.pet.felineFluVaccine}
+          value={getFelineFluVaccine}
           handleChange={handleChangeFelineFluVaccine}
         />
       </div>
@@ -98,7 +113,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputCheckbox
           isEdit
           text={t('felineLeukemia')}
-          value={createPetStore.pet.felineLeukemiaVaccine}
+          value={getFelineLeukemiaVaccine}
           handleChange={handleChangeFelineLeukemiaVaccine}
         />
       </div>
@@ -106,15 +121,15 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputCheckbox
           isEdit
           text={t('felineInfectiousPeritonitis')}
-          value={createPetStore.pet.felineInfectiousPeritonitisVaccine}
+          value={getFelineInfectiousPeritonitisVaccine}
           handleChange={handleChangePeritonitisVaccine}
         />
       </div>
       <div className={styles.colums}>
         <InputCheckbox
           isEdit
+          value={getRabiesVaccine}
           text={t('vaccinatedRabies')}
-          value={createPetStore.pet.rabiesVaccine}
           handleChange={handleChangeRabiesVaccine}
         />
       </div>
@@ -122,10 +137,10 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <Textarea
           isEdit
           rows={5}
+          value={getNotes}
           label={t('common:notes')}
           handleChange={handleChangeNotes}
           inputStore={createPetStore.pet.notes}
-          value={createPetStore.pet.notes.value}
         />
       </div>
     </LayoutForm>

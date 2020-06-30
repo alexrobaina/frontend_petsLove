@@ -13,12 +13,15 @@ const LocationFormPet = ({ createPetStore }) => {
   const { t } = useTranslation('createPet')
 
   const handleChangeAddress = useCallback(address => {
-    createPetStore.setAddress(address)
+    createPetStore.pet.setFoundLocation(address)
+    createPetStore.pet.setLocation(address)
   }, [])
 
   const handleChangeTextAddress = useCallback(address => {
-    createPetStore.setTextAddress(address)
+    createPetStore.pet.setTextAddress(address)
   }, [])
+
+  const { textAddress, getFoundLocation, location, getTextAddress } = createPetStore.pet
 
   return (
     <LayoutForm>
@@ -27,23 +30,21 @@ const LocationFormPet = ({ createPetStore }) => {
         <GoogleAutocomplete
           isEdit
           label={t('whereFound')}
+          value={getFoundLocation}
           placeholder={t('addAddressPet')}
+          inputStoreError={textAddress}
           handleChangeAddress={handleChangeAddress}
-          value={createPetStore.pet.textAddress.value}
-          inputStoreError={createPetStore.pet.textAddress}
           handleChangeTextAddress={handleChangeTextAddress}
         />
       </div>
       <div className={styles.colMap}>
-        {createPetStore.pet.textAddress && (
-          <Label text={createPetStore.pet.textAddress.value} />
-        )}
+        {textAddress && <Label text={getTextAddress} />}
         <div className={styles.containerMap}>
           <GoogleMapsLocation
             showAddress
+            location={location.value}
             title={t('messageMap')}
-            location={createPetStore.location}
-            addressValue={createPetStore.pet.location}
+            addressValue={location.value}
           />
         </div>
       </div>

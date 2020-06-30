@@ -33,7 +33,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
   })
 
   const removePreviewImage = useCallback(image => {
-    // inputUploadImageStore.removePreviosImage(image)
+    inputUploadImageStore.removePreviosImage(image)
   }, [])
 
   const removeNewPreviewImage = useCallback(image => {
@@ -45,7 +45,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
   }, [])
 
   useEffect(() => {
-    if (oldImage.length > 0) {
+    if (oldImage.length > 0 && inputUploadImageStore.previewImage.length === 0) {
       inputUploadImageStore.setPreviewsImage(oldImage)
     }
   }, [oldImage])

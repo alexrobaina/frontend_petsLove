@@ -34,6 +34,7 @@ class PetIdStore {
 
       runInAction(() => {
         this.pet.fillJson(response)
+        console.log(this.pet.getJson())
         this.isLoading = false
 
         if (this.pet.image.value !== []) {

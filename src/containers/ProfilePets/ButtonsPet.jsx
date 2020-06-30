@@ -6,7 +6,6 @@ import useMediaQuery from 'utils/Hooks'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useHistory } from 'react-router'
-import { Helmet } from 'react-helmet'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
@@ -15,7 +14,7 @@ import Button from 'components/commons/Button'
 import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ userCreatorExist, pet, phone, image }) => {
+const ButtonsPet = ({ userCreatorExist, pet, phone }) => {
   const iconsSocialMedia = useMediaQuery('(max-width: 768px)')
   const history = useHistory()
 
@@ -38,12 +37,6 @@ const ButtonsPet = ({ userCreatorExist, pet, phone, image }) => {
   return (
     <div className={styles.container}>
       <AlertToast />
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Profile pets</title>
-        <meta property="og:image" content={`${SERVER}/${image}`} />
-        <meta property="og:image:secure_url" content={`${SERVER}/${image}`} />
-      </Helmet>
       <div className={styles.containerButtons}>
         <div className={styles.btnMargin}>
           {userCreatorExist && (

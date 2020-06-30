@@ -66,7 +66,13 @@ const CreatePet = ({ title, isEdit }) => {
 
   function getStepForm() {
     if (step === 1) {
-      return <BasicFormPet isEdit={isEdit} createPetStore={createPetStore} inputUploadImageStore={inputUploadImageStore} />
+      return (
+        <BasicFormPet
+          isEdit={isEdit}
+          createPetStore={createPetStore}
+          inputUploadImageStore={inputUploadImageStore}
+        />
+      )
     }
 
     if (step === 2) {

@@ -16,15 +16,18 @@ import styles from './layoutProfilePets.scss'
 const LayoutProfilePets = ({ store }) => {
   const { t } = useTranslation('profilePets')
 
+  const { getName, getUserCreator } = store.pet
+
+  console.log(store.pet.medicalInformationDog)
   return (
     <>
       <div className={styles.header}>
-        <Title title={t('title', { name: store.pet.name.value })} />
+        <Title title={t('title', { name: getName })} />
         <ButtonsPet
           pet={store.pet}
-          email={store.pet.email}
-          phone={store.pet.phone}
-          userCreatorExist={store.pet.userCreator}
+          // email={userCreator.email}
+          // phone={getUserCreatorPhone}
+          userCreatorExist={getUserCreator}
         />
       </div>
       <div className={styles.colums}>
@@ -37,20 +40,20 @@ const LayoutProfilePets = ({ store }) => {
       </div>
       <div className={styles.colums}>
         <InformationPet title={t('common:basicInformation')} pet={store.pet} />
-        {store.pet.category.value === 'dog' && (
-          <MedicalInformationDog title={t('common:basicInformation')} pet={store.pet} />
+        {store.pet.getCategory === 'dog' && (
+          <MedicalInformationDog title={t('common:medicalInformation')} pet={store.pet} />
         )}
-        {store.pet.category.value === 'cat' && (
-          <MedicalInformationCat title={t('common:basicInformation')} pet={store.pet} />
-        )}
-      </div>
-      <div className={styles.colums}>
-        <div>
-          <TextCard title={t('history')} text={store.pet.history.value} />
-        </div>
-        <div>
-          <TextCard title={t('Notes')} text={store.pet.notes.value} />
-        </div>
+          {store.pet.category.value === 'cat' && (
+            <MedicalInformationCat title={t('common:medicalInformation')} pet={store.pet} />
+          )}
+        {/*</div>*/}
+        {/*<div className={styles.colums}>*/}
+        {/*  <div>*/}
+        {/*    <TextCard title={t('history')} text={store.pet.history.value} />*/}
+        {/*  </div>*/}
+        {/*  <div>*/}
+        {/*    <TextCard title={t('Notes')} text={store.pet.notes.value} />*/}
+        {/*  </div>*/}
       </div>
     </>
   )
