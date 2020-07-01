@@ -74,7 +74,6 @@ class CreatePetStore {
   async findOnePet(id) {
     this.pet = new Pet()
     this.isLoading = true
-    this.requestSuccess = false
 
     try {
       const response = await this.editPetService.gePet(id)
@@ -84,8 +83,6 @@ class CreatePetStore {
         this.idPet = response._id
         this.pet.fillJson(response)
         this.previewImage = this.pet.image.value
-
-        this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
@@ -99,8 +96,6 @@ class CreatePetStore {
   async updatePet() {
     this.isLoading = true
     this.requestSuccess = false
-
-    console.log(this.pet.getJson())
 
     try {
       const response = await this.createPetServices.update(this.pet.getJson())

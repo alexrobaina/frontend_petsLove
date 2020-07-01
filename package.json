@@ -16,7 +16,6 @@
   "dependencies": {
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.9.13",
     "@material-ui/pickers": "^3.2.10",
     "@svgr/webpack": "5.4.0",
@@ -39,7 +38,6 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
     "css-loader": "^3.4.2",
-    "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.6.0",

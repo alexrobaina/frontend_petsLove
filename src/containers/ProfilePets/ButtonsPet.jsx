@@ -9,14 +9,16 @@ import { useHistory } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
 import { MdEdit } from 'react-icons/md'
-import { SERVER } from 'services/config'
+import PetIdStore from 'stores/PetIdStore'
 import Button from 'components/commons/Button'
 import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonsPet.scss'
 
-const ButtonsPet = ({ userCreatorExist, pet, phone }) => {
+const ButtonsPet = ({ store }) => {
   const iconsSocialMedia = useMediaQuery('(max-width: 768px)')
   const history = useHistory()
+
+  const { _id } = store.pet
 
   const editPet = useCallback(id => {
     history.push(`/`)
@@ -24,27 +26,27 @@ const ButtonsPet = ({ userCreatorExist, pet, phone }) => {
   }, [])
 
   const handleWhatsapp = useCallback(() => {
-    if (!phone) {
+    if (!store.userCreatorPhone) {
       toast('This user does not have a phone', {
         position: toast.POSITION.TOP_CENTER,
         className: styles.toast,
       })
     } else {
-      window.open(`https://api.whatsapp.com/send?phone=${phone}`)
+      window.open(`https://api.whatsapp.com/send?phone=${store.userCreatorPhone}`)
     }
   }, [])
-
+  
   return (
     <div className={styles.container}>
       <AlertToast />
       <div className={styles.containerButtons}>
         <div className={styles.btnMargin}>
-          {userCreatorExist && (
+          {store.pet.userCreator && (
             <Button
               circle
               type="button"
               icon={<MdEdit size={iconsSocialMedia ? 18 : 25} />}
-              handleClick={() => editPet(pet._id)}
+              handleClick={() => editPet(_id)}
             />
           )}
         </div>
@@ -69,15 +71,7 @@ const ButtonsPet = ({ userCreatorExist, pet, phone }) => {
 }
 
 ButtonsPet.propTypes = {
-  phone: PropTypes.string,
-  userCreatorExist: PropTypes.bool,
-  pet: PropTypes.oneOfType([PropTypes.array]),
-}
-
-ButtonsPet.defaultProps = {
-  pet: null,
-  phone: '',
-  userCreatorExist: false,
+  store: PropTypes.instanceOf(PetIdStore).isRequired,
 }
 
 export default observer(ButtonsPet)

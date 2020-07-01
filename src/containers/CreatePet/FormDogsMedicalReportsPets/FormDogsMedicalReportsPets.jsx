@@ -9,7 +9,6 @@ import InputDate from 'components/commons/InputDate'
 import Textarea from 'components/commons/Textarea/Textarea'
 import InputSelect from 'components/commons/InputSelect'
 import styles from './formDogsMedicalReportsPets.scss'
-import moment from 'moment'
 
 const FormDogsMedicalReportsPets = ({ createPetStore }) => {
   const { t } = useTranslation('createPet')
@@ -80,7 +79,7 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
         <InputDate
           label={t('visitVet')}
           handleDateChange={handleDateChange}
-          value={getLastVisitVet && moment(getLastVisitVet).format('DD-MM-YYYY')}
+          value={getLastVisitVet}
         />
       </div>
       <div className={styles.colums}>

@@ -18,8 +18,7 @@ class InputUploadImageStore {
   // this function is only for remove old image
   @action
   removePreviosImage(image) {
-    let imagePreview
-    imagePreview = this.previewImage.filter(preview => {
+    const imagePreview = this.previewImage.filter(preview => {
       return preview !== image
     })
 

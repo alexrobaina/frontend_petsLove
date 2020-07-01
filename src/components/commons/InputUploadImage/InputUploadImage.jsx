@@ -111,7 +111,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
 InputUploadImage.propTypes = {
   isEdit: PropTypes.bool,
   oldImage: PropTypes.arrayOf([String]),
-  inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore),
+  inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore).isRequired,
 }
 
 InputUploadImage.defaultProps = {

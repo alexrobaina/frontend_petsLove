@@ -10,10 +10,10 @@ import { GiHealthPotion } from 'react-icons/gi'
 import { MdEditLocation, MdPets } from 'react-icons/md'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
-import BasicFormPet from './BasicFormPet/BasicFormPet'
-import LocationFormPet from './LocationFormPet/LocationFormPet'
 import CreatePetStore from 'stores/CreatePetStore'
 import InputUploadImageStore from 'stores/InputUploadImageStore'
+import BasicFormPet from './BasicFormPet/BasicFormPet'
+import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
 
@@ -50,12 +50,12 @@ const CreatePet = ({ title, isEdit }) => {
   const handleBack = () => {
     setStep(step - 1)
   }
-  //
-  // useEffect(() => {
-  //   if (createPetStore.requestSuccess) {
-  //     history.push(`/dashboard`)
-  //   }
-  // }, [createPetStore.requestSuccess])
+
+  useEffect(() => {
+    if (createPetStore.requestSuccess) {
+      history.push(`/dashboard`)
+    }
+  }, [createPetStore.requestSuccess])
 
   useEffect(() => {
     if (id) {

@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 import { observer } from 'mobx-react'
 import InputUploadImage from 'components/commons/InputUploadImage'
 import Input from 'components/commons/Input'
@@ -10,8 +11,6 @@ import InputSelect from 'components/commons/InputSelect'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import InputDate from 'components/commons/InputDate'
 import Textarea from 'components/commons/Textarea/Textarea'
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import styles from './basicFormPet.scss'
 
 const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
@@ -61,11 +60,16 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   const handleChangeLost = useCallback(() => {
     createPetStore.pet.setLost()
   }, [])
+  
+  const handleChangeUrgent = useCallback(() => {
+    createPetStore.pet.setUrgent()
+  }, [])
 
   const {
     getLost,
     getName,
     name,
+    getUrgent,
     getCategory,
     category,
     getGender,
@@ -76,7 +80,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     getHistory,
     history,
   } = createPetStore.pet
-  console.log(getBirthday)
+
   return (
     <LayoutForm>
       <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
@@ -87,6 +91,9 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
       />
       <div className={styles.colums}>
         <InputCheckbox isEdit text={t('lost')} value={getLost} handleChange={handleChangeLost} />
+      </div>
+      <div className={styles.colums}>
+        <InputCheckbox isEdit text={t('urgent')} value={getUrgent} handleChange={handleChangeUrgent} />
       </div>
       <div className={styles.colums}>
         <Input
@@ -121,12 +128,11 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
         />
       </div>
       <div className={styles.colums}>
-        <DatePicker selected={getBirthday} onChange={handleDateBirthday} />
-        {/*<InputDate*/}
-        {/*  label={t('common:birthday')}*/}
-        {/*  handleDateChange={handleDateBirthday}*/}
-        {/*  value={getBirthday}*/}
-        {/*/>*/}
+        <InputDate
+          label={t('common:birthday')}
+          handleDateChange={handleDateBirthday}
+          value={moment(getBirthday).format('L')}
+        />
       </div>
       <div className={styles.colums}>
         <InputSelect
@@ -155,11 +161,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
 
 BasicFormPet.propTypes = {
   createPetStore: PropTypes.instanceOf(CreatePetStore).isRequired,
-  isEdition: PropTypes.bool,
 }
 
-BasicFormPet.defaultProps = {
-  isEdition: false,
-}
 
 export default observer(BasicFormPet)

@@ -6,11 +6,11 @@ import FormCatsMedicalReportsPets from '../FormCatsMedicalReportsPets'
 import FormDogsMedicalReportsPets from '../FormDogsMedicalReportsPets'
 
 const MedicalReportsPets = ({ createPetStore }) => {
-  // if (createPetStore.pet.category.value === 'cat') {
+  if (createPetStore.pet.category.value === 'cat') {
     return <FormCatsMedicalReportsPets createPetStore={createPetStore} />
-  // }
-  //
-  // return <FormDogsMedicalReportsPets createPetStore={createPetStore} />
+  }
+
+  return <FormDogsMedicalReportsPets createPetStore={createPetStore} />
 }
 
 MedicalReportsPets.propTypes = {

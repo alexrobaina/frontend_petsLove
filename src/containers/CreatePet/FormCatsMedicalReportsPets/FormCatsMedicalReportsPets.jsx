@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
-import moment from 'moment'
 import PropTypes from 'prop-types'
 import CreatePetStore from 'stores/CreatePetStore'
 import InputCheckbox from 'components/commons/InputCheckbox'
@@ -51,7 +50,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const {
-    getLastVisitpet,
+    getLastVisitVet,
     getVet,
     getIsCastrated,
     getDistemperVaccine,
@@ -60,7 +59,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
     getFelineInfectiousPeritonitisVaccine,
     getRabiesVaccine,
     getNotes,
-    getLastVisitVet,
+    notes,
   } = createPetStore.pet.medicalInformationCat
   
   return (
@@ -70,7 +69,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputDate
           label={t('visitVet')}
           handleDateChange={handleDateChange}
-          value={moment(getLastVisitVet)}
+          value={getLastVisitVet}
         />
       </div>
       <div className={styles.colums}>
@@ -138,9 +137,9 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
           isEdit
           rows={5}
           value={getNotes}
+          inputStore={notes}
           label={t('common:notes')}
           handleChange={handleChangeNotes}
-          inputStore={createPetStore.pet.notes}
         />
       </div>
     </LayoutForm>

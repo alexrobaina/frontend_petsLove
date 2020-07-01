@@ -1,6 +1,4 @@
 import React from 'react'
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { observer } from 'mobx-react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
@@ -41,7 +39,6 @@ import EditPet from 'containers/EditPet'
 import ResetPassword from 'containers/ResetPassword'
 import SearchProtectionist from 'containers/SearchProtectionist/SearchProtectionist'
 import Navbar from 'components/commons/Navbar'
-import moment from 'moment'
 import axiosInterceptors from './utils/axiosInterceptors'
 import historyBrowser from './history'
 
@@ -56,79 +53,77 @@ axiosInterceptors(rootStore)
 function App() {
   return (
     <UserContext.Provider value={rootStore}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Router history={historyBrowser}>
-          <ScrollMemory />
-          <Navbar>
-            <Switch>
-              <Route exact path={REGISTER} component={Register} />
-              <Route exact path={RESET_PASSWORD} component={ResetPassword} />
-              <Route exact path={LOGIN} component={Login} />
-              <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
-              <Route exact path={HOME} component={Home} />
-              <Route exact path={PROFILE_PET} component={ProfilePets} />
-              <Route exact path={PROFILE_USER} component={ProfileUser} />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path="/dashboard"
-                component={Dashboard}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={CREATE_PET}
-                component={CreatePet}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={EDIT_PET}
-                component={EditPet}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={EDIT_USER}
-                component={EditUser}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={SEARCH_VOLANTEERS}
-                component={SearchVolunteers}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={SEARCH_PROTECTIONIST}
-                component={SearchProtectionist}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={PETS_ADOPTER}
-                component={PetsAdopted}
-              />
-              <PrivateRoute
-                exact
-                isLogin={rootStore.authStore.isLogin}
-                redirectPath={LOGIN}
-                path={MY_PETS}
-                component={ForAdoption}
-              />
-              <Route component={PageNotFound} />
-            </Switch>
-          </Navbar>
-        </Router>
-      </MuiPickersUtilsProvider>
+      <Router history={historyBrowser}>
+        <ScrollMemory />
+        <Navbar>
+          <Switch>
+            <Route exact path={REGISTER} component={Register} />
+            <Route exact path={RESET_PASSWORD} component={ResetPassword} />
+            <Route exact path={LOGIN} component={Login} />
+            <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
+            <Route exact path={HOME} component={Home} />
+            <Route exact path={PROFILE_PET} component={ProfilePets} />
+            <Route exact path={PROFILE_USER} component={ProfileUser} />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path="/dashboard"
+              component={Dashboard}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={CREATE_PET}
+              component={CreatePet}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={EDIT_PET}
+              component={EditPet}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={EDIT_USER}
+              component={EditUser}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={SEARCH_VOLANTEERS}
+              component={SearchVolunteers}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={SEARCH_PROTECTIONIST}
+              component={SearchProtectionist}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={PETS_ADOPTER}
+              component={PetsAdopted}
+            />
+            <PrivateRoute
+              exact
+              isLogin={rootStore.authStore.isLogin}
+              redirectPath={LOGIN}
+              path={MY_PETS}
+              component={ForAdoption}
+            />
+            <Route component={PageNotFound} />
+          </Switch>
+        </Navbar>
+      </Router>
     </UserContext.Provider>
   )
 }

@@ -4,11 +4,46 @@
   width: 100%;
 }
 
-.react-datepicker-wrapper {
-  display: flex !important;
-  padding: 1000px !important;
+input:focus {
+  outline: none;
 }
 
-.inputDate {
+.input {
+  cursor: pointer;
   width: 100%;
+  text-align: left;
+  border: 1px solid $borderPrimary;
+  box-shadow: none;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  border-radius: 4px;
+  font-family: 'Noto Sans HK', sans-serif;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: 0;
+    border-radius: 4px;
+    border: 1px solid $secundary;
+  }
+
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid $secundary;
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    font-family: 'Noto Sans HK', sans-serif;
+  }
+}
+
+.isError {
+  border: 1px solid $error;
+}
+
+.errorMessage {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  color: red;
 }

@@ -1,5 +1,4 @@
 import { observable } from 'mobx'
-import moment from 'moment'
 import InputStore from 'stores/InputStore'
 
 class MedicalInformationDog {

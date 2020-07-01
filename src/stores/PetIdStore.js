@@ -14,6 +14,8 @@ class PetIdStore {
   @observable protectionist = []
   @observable filenames = []
   @observable idUser = ''
+  @observable userCreatorPhone = ''
+  @observable userCreatorEmail = ''
   @observable isLoading = false
   @observable petIsEdit = false
   @observable mapPosition = []
@@ -34,7 +36,8 @@ class PetIdStore {
 
       runInAction(() => {
         this.pet.fillJson(response)
-        console.log(this.pet.getJson())
+        this.userCreatorEmail = response.userCreator.email
+        this.userCreatorPhone = response.userCreator.phone
         this.isLoading = false
 
         if (this.pet.image.value !== []) {

@@ -8,6 +8,7 @@ import styles from './textarea.scss'
 import Label from '../Label/Input'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
+  
   return (
     <>
       {label && isEdit && <Label text={label} />}

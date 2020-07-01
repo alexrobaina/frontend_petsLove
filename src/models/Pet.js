@@ -1,5 +1,4 @@
 import { observable } from 'mobx'
-import { observer } from 'mobx-react'
 import InputStore from 'stores/InputStore'
 import MedicalInformationCat from 'models/MedicalInformationCat'
 import MedicalInformationDog from 'models/MedicalInformationDog'
@@ -62,7 +61,6 @@ class Pet {
     }
 
     if (pet.category === 'dog') {
-      console.log('pet.dogMedicalHistory ', pet.dogMedicalHistory)
       this.medicalDog = this.medicalInformationDog.fillJson(pet.dogMedicalHistory)
     }
 
@@ -147,7 +145,7 @@ class Pet {
     this.lost = !this.lost
   }
 
-  setUrgent(value) {
+  setUrgent() {
     this.urgent = !this.urgent
   }
 
@@ -155,8 +153,8 @@ class Pet {
     this.gender.setValue(value)
   }
 
-  setAdopted(value) {
-    this.adopted = value
+  setAdopted() {
+    this.adopted = !this.adopted
   }
 
   setUserCreator(value) {
@@ -177,10 +175,6 @@ class Pet {
 
   setActivityLevel(value) {
     this.activityLevel.setValue(value)
-  }
-
-  setFoundLocation(value) {
-    this.foundLocation.setValue(value)
   }
 
   setNotes(value) {
@@ -216,6 +210,7 @@ class Pet {
     if (this.category.value === 'dog') {
       return this.medicalInformationDog.getRabiesVaccine
     }
+    return false
   }
 
   get idUserCreator() {

@@ -1,5 +1,4 @@
 import { observable } from 'mobx'
-import moment from 'moment'
 import InputStore from 'stores/InputStore'
 
 class MedicalInformationCat {
@@ -30,11 +29,12 @@ class MedicalInformationCat {
     this.felineFluVaccine = medicalCat.felineFluVaccine
     this.felineLeukemiaVaccine = medicalCat.felineLeukemiaVaccine
     this.felineInfectiousPeritonitisVaccine = medicalCat.felineInfectiousPeritonitisVaccine
-    this.notes = medicalCat.notes
+    this.notes.setValue(medicalCat.notes)
   }
 
   getJson() {
     return {
+      _id: this._id,
       lastVisitVet: this.lastVisitVet.value,
       distemperVaccine: this.distemperVaccine,
       rabiesVaccine: this.rabiesVaccine,
@@ -62,11 +62,11 @@ class MedicalInformationCat {
     this.distemperVaccine = !this.distemperVaccine
   }
 
-  setIsCastrated(value) {
+  setIsCastrated() {
     this.isCastrated = !this.isCastrated
   }
 
-  setRabiesVaccine(value) {
+  setRabiesVaccine() {
     this.rabiesVaccine = !this.rabiesVaccine
   }
 
