@@ -1,17 +1,13 @@
 import { observable, action, runInAction } from 'mobx'
 import LocationsService from 'services/LocationsService'
-import GenderService from 'services/GenderService'
 import CategoriesPetsService from 'services/CategoriesPetsService'
-import PetsAgesServices from 'services/PetsAgesService/PetsAgesServices'
 import ActivityService from 'services/ActivityService'
 import Utils from 'utils'
 
 class OptionsSelectsStore {
   constructor() {
     this.locationsService = new LocationsService()
-    this.genderServices = new GenderService()
     this.categoriesPetsService = new CategoriesPetsService()
-    this.petsAgesService = new PetsAgesServices()
     this.activityService = new ActivityService()
     this.utils = new Utils()
   }
@@ -71,42 +67,12 @@ class OptionsSelectsStore {
   }
 
   @action
-  async listGender() {
-    try {
-      const response = await this.genderServices.getGender()
-
-      runInAction(() => {
-        this.gender = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   async listCategories() {
     try {
       const response = await this.categoriesPetsService.getTypePets()
 
       runInAction(() => {
         this.categories = response
-      })
-    } catch (e) {
-      runInAction(() => {
-        console.log(e)
-      })
-    }
-  }
-
-  @action
-  async listAges() {
-    try {
-      const response = await this.petsAgesService.getAge()
-
-      runInAction(() => {
-        this.ages = response
       })
     } catch (e) {
       runInAction(() => {

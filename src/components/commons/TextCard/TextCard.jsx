@@ -10,12 +10,12 @@ const TextCard = ({ title, text }) => {
   
   return (
     <LayoutCards>
-      <div className={styles.historyPets}>
-        <div className={styles.titleHistory}>{title}</div>
+      <div className={styles.container}>
+        <div className={styles.title}>{title}</div>
         {text ? (
-          <div className={styles.history}>{text}</div>
+          <div className={styles.text}>{text}</div>
         ) : (
-          <div className={styles.history}>{t('wasNotCompleted')}</div>
+          <div className={styles.text}>{t('wasNotCompleted')}</div>
         )}
       </div>
     </LayoutCards>

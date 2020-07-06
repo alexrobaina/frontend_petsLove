@@ -1,49 +1,49 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { useTranslation } from 'react-i18next'
 import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'react-icons/fa'
 import { GiJumpingDog } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
+import Pet from 'models/Pet'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './informationPet.scss'
 
 const InformationPet = ({ pet, title }) => {
   const { t } = useTranslation('profilePets')
 
+  const { getBirthday, getCategory, getGender, getActivityLevel, getLost, getUrgent } = pet
+
   return (
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation text={t('nam')} value={pet.name.value} icon={<FaUser size={20} />} />
+        <TextCardInformation text={t('name')} value={pet.getName} icon={<FaUser size={20} />} />
         <TextCardInformation
           text={t('birthday')}
-          value={pet.birthday.value}
           icon={<FaBirthdayCake size={20} />}
+          value={moment(getBirthday).format('L')}
         />
-        <TextCardInformation
-          text={t('category')}
-          icon={<FaCat size={20} />}
-          value={t(`${pet.category.value}`)}
-        />
+        <TextCardInformation text={t('category')} icon={<FaCat size={20} />} value={getCategory} />
         <TextCardInformation
           text={t('gender')}
-          value={t(`${pet.gender.value}`)}
+          value={getGender}
           icon={<FaTransgender size={25} />}
         />
         <TextCardInformation
           text={t('activity')}
           icon={<GiJumpingDog size={25} />}
-          value={t(`${pet.activityLevel.value}`)}
+          value={getActivityLevel}
         />
         <TextCardInformation
           text={t('lost')}
-          informationPet={pet.lost}
+          informationPet={getLost}
           icon={<FaStreetView size={25} />}
         />
         <TextCardInformation
           text={t('urgent')}
-          informationPet={pet.urgent}
+          informationPet={getUrgent}
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>
@@ -52,7 +52,7 @@ const InformationPet = ({ pet, title }) => {
 }
 
 InformationPet.propTypes = {
-  pet: PropTypes.node.isRequired,
+  pet: PropTypes.instanceOf(Pet).isRequired,
   title: PropTypes.string,
 }
 

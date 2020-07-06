@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { KeyboardDatePicker } from '@material-ui/pickers'
-import styles from './inputDate.scss'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import Label from '../Label/Input'
+import styles from './inputDate.scss'
 
-const InputDate = ({ label, handleDateChange }) => {
+const CustomInput = ({ value, onClick }) => (
+  <button type="button" className={styles.input} onClick={onClick}>
+    {value}
+  </button>
+)
+
+const InputDate = ({ label, handleDateChange, value }) => {
   const [selectedDate, handleDate] = useState(new Date())
 
   useEffect(() => {
@@ -14,17 +22,13 @@ const InputDate = ({ label, handleDateChange }) => {
   return (
     <div className={styles.containerDate}>
       {label && <Label text={label} />}
-      <KeyboardDatePicker
-        className={styles.inputDate}
-        margin="normal"
-        id="date-picker-dialog"
-        label="Date picker dialog"
-        format="MM/dd/yyyy"
-        value={selectedDate}
-        onChange={handleDate}
-        KeyboardButtonProps={{
-          'aria-label': 'change date',
-        }}
+      <DatePicker
+        value={value}
+        showYearDropdown
+        dateFormat="dd/MM/yyyy"
+        selected={selectedDate}
+        customInput={<CustomInput />}
+        onChange={date => handleDate(date)}
       />
     </div>
   )
@@ -39,4 +43,4 @@ InputDate.defaultProps = {
   label: '',
 }
 
-export default InputDate
+export default observer(InputDate)

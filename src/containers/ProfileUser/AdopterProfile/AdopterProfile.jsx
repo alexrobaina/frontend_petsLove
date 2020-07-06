@@ -13,6 +13,7 @@ import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
 import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
+import ButtonShare from '../../../components/commons/ButtonShare'
 
 const AdopterProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
@@ -31,6 +32,7 @@ const AdopterProfile = ({ user }) => {
 
   return (
     <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
+      <ButtonShare phone={user.phone || ''} route="edit-user" />
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           onError={onError}

@@ -14,19 +14,19 @@ const InitialFilters = ({ searchPetsStore }) => {
   const { t } = useTranslation('home')
 
   const handleChangeCountry = useCallback(selectedValue => {
-    searchPetsStore.setCountry(selectedValue)
+    searchPetsStore.setCountry(selectedValue.value)
   })
 
   const handleChanceCity = useCallback(selectedValue => {
-    searchPetsStore.setCity(selectedValue)
+    searchPetsStore.setCity(selectedValue.value)
   })
 
   const handleChanceCategory = useCallback(selectedValue => {
-    searchPetsStore.setCategory(selectedValue)
+    searchPetsStore.setCategory(selectedValue.value)
   })
 
   const handleChanceGender = useCallback(selectedValue => {
-    searchPetsStore.setGender(selectedValue)
+    searchPetsStore.setGender(selectedValue.value)
   })
 
   const handleSearch = () => {
@@ -38,10 +38,11 @@ const InitialFilters = ({ searchPetsStore }) => {
       <div className={styles.container}>
         <div className={styles.selectCountry}>
           <InputSelect
-            isClearable
+            isEdit
             placeholder={t('country')}
             handleChange={handleChangeCountry}
             inputStore={searchPetsStore.country}
+            value={searchPetsStore.country.value}
             options={[
               { value: 'argentina', label: 'Argentina' },
               { value: 'colombia', label: 'Colombia' },
@@ -51,19 +52,21 @@ const InitialFilters = ({ searchPetsStore }) => {
         </div>
         <div className={styles.selectCity}>
           <InputSelect
-            isClearable
+            isEdit
             placeholder={t('city')}
             handleChange={handleChanceCity}
             inputStore={searchPetsStore.city}
+            value={searchPetsStore.city.value}
             options={searchPetsStore.optionsCities}
           />
         </div>
         <div className={styles.selectCategory}>
           <InputSelect
-            isClearable
+            isEdit
             placeholder={t('category')}
             handleChange={handleChanceCategory}
             inputStore={searchPetsStore.category}
+            value={searchPetsStore.category.value}
             options={[
               { value: 'dog', label: t('dogs') },
               { value: 'cat', label: t('cats') },
@@ -72,10 +75,11 @@ const InitialFilters = ({ searchPetsStore }) => {
         </div>
         <div className={styles.selectGender}>
           <InputSelect
-            isClearable
+            isEdit
             placeholder={t('gender')}
             handleChange={handleChanceGender}
             inputStore={searchPetsStore.gender}
+            value={searchPetsStore.gender.value}
             options={[
               { value: 'female', label: t('female') },
               { value: 'male', label: t('male') },
@@ -84,11 +88,11 @@ const InitialFilters = ({ searchPetsStore }) => {
         </div>
         <div className={styles.btnSearch}>
           <Button
-            icon={<MdSearch size={18} />}
-            handleClick={handleSearch}
             type="button"
-            styleButton="primary"
             text={t('search')}
+            styleButton="primary"
+            handleClick={handleSearch}
+            icon={<MdSearch size={18} />}
           />
         </div>
         {searchPetsStore.isLoading ? (

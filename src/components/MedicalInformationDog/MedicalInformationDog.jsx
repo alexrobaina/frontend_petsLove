@@ -1,53 +1,77 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { FaBirthdayCake, FaCat, FaStreetView, FaUser } from 'react-icons/fa'
-import { IoIosHelpBuoy } from 'react-icons/io'
+import moment from 'moment'
+import { observer } from 'mobx-react'
+import { FaCalendar } from 'react-icons/fa'
+import { GiLoveInjection } from 'react-icons/gi'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationDog.scss'
 
 const MedicalInformationDog = ({ pet, title = '' }) => {
   const { t } = useTranslation('medicalInformationDog')
-  
+
+  const {
+    getLastVisitVet,
+    distemperVaccine,
+    isCastrated,
+    rabiesVaccine,
+    hepatitisVaccine,
+    parvovirusVaccine,
+    leptospirosisVaccine,
+    parainfluenzaVaccine,
+    bordetellaBronchisepticVaccine,
+  } = pet.medicalInformationDog
+
   return (
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
         <TextCardInformation
           text={t('lastVisitVet')}
-          value={pet.dogMedicalHistory.lastVisitVet.value}
-          icon={<FaUser size={20} />}
+          icon={<FaCalendar size={20} />}
+          value={moment(getLastVisitVet).format('L')}
         />
         <TextCardInformation
           text={t('distemperVaccine')}
-          value={t(`${pet.rabiesVaccine}`)}
-          icon={<FaBirthdayCake size={20} />}
+          icon={<GiLoveInjection size={20} />}
+          informationPet={distemperVaccine}
+        />
+        <TextCardInformation
+          text={t('isCastrated')}
+          icon={<GiLoveInjection size={20} />}
+          informationPet={isCastrated}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
-          icon={<FaCat size={20} />}
-          value={t(`${pet.hepatitisVaccine}`)}
+          icon={<GiLoveInjection size={20} />}
+          informationPet={rabiesVaccine}
         />
         <TextCardInformation
-          text={t('felineFluVaccine')}
-          informationPet={pet.leptospirosisVaccine}
-          icon={<FaStreetView size={25} />}
+          text={t('hepatitisVaccine')}
+          icon={<GiLoveInjection size={20} />}
+          informationPet={hepatitisVaccine}
         />
         <TextCardInformation
-          text={t('felineLeukemiaVaccine')}
-          informationPet={pet.parvovirusVaccine}
-          icon={<IoIosHelpBuoy size={25} />}
+          text={t('parvovirusVaccine')}
+          icon={<GiLoveInjection size={25} />}
+          informationPet={parvovirusVaccine}
         />
         <TextCardInformation
-          text={t('felineInfectiousPeritonitisVaccine')}
-          informationPet={pet.parainfluenzaVaccine}
-          icon={<IoIosHelpBuoy size={25} />}
+          text={t('leptospirosisVaccine')}
+          icon={<GiLoveInjection size={25} />}
+          informationPet={leptospirosisVaccine}
         />
         <TextCardInformation
-          text={t('felineInfectiousPeritonitisVaccine')}
-          informationPet={pet.bordetellaBronchisepticVaccine}
-          icon={<IoIosHelpBuoy size={25} />}
+          text={t('parainfluenzaVaccine')}
+          icon={<GiLoveInjection size={25} />}
+          informationPet={parainfluenzaVaccine}
+        />
+        <TextCardInformation
+          icon={<GiLoveInjection size={25} />}
+          text={t('bordetellaBronchisepticVaccine')}
+          informationPet={bordetellaBronchisepticVaccine}
         />
       </div>
     </LayoutCards>
@@ -58,4 +82,4 @@ MedicalInformationDog.propTypes = {
   pet: PropTypes.node.isRequired,
 }
 
-export default MedicalInformationDog
+export default observer(MedicalInformationDog)

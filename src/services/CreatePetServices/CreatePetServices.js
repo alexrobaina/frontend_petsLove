@@ -6,8 +6,8 @@ class CreatePetServices {
     return axios.post(`${SERVER}/api/pet/create`, data).then(response => response.data)
   }
 
-  editPet = data => {
-    return axios.put(`${SERVER}/api/pet/update`, data).then(response => response.data)
+  update = data => {
+    return axios.put(`${SERVER}/api/pet/updatePet`, data).then(response => response.data)
   }
 
   searchPet = id => {

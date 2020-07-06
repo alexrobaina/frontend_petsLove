@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { observer, useLocalStore } from 'mobx-react'
+import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
-import ProtectionistStore from 'stores/ProtectionistStore'
+// import ProtectionistStore from 'stores/ProtectionistStore'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
@@ -12,7 +12,7 @@ import styles from './searchProtectionist.scss'
 const SearchProtectionist = () => {
   const { t } = useTranslation('home')
   const [address, setAddress] = useState({})
-  const protectionistStore = useLocalStore(() => new ProtectionistStore())
+  // const protectionistStore = useLocalStore(() => new ProtectionistStore())
 
   // eslint-disable-next-line no-shadow
   const handleChangeAddress = useCallback(address => {
@@ -28,7 +28,7 @@ const SearchProtectionist = () => {
       navigator.geolocation.getCurrentPosition(showPosition)
     }
 
-    protectionistStore.searchProtectionists()
+    // protectionistStore.searchProtectionists()
   }, [])
 
   return (
@@ -46,13 +46,12 @@ const SearchProtectionist = () => {
             <LayoutTrantitions>
               <GoogleMapsLocation
                 location={address}
-                users={protectionistStore.protectionists}
-                arrayLocation={protectionistStore.arrayLocationProtectionists}
+                // users={protectionistStore.protectionists}
+                // arrayLocation={protectionistStore.arrayLocationProtectionists}
               />
             </LayoutTrantitions>
           </div>
         )}
-        
       </div>
     </LayoutContainer>
   )

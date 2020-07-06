@@ -12,7 +12,7 @@ import ForAdoption from 'containers/ForAdoption'
 import PetsAdopted from 'containers/PetsAdopted'
 import TextCardContact from 'components/commons/TextCardContact'
 import Title from 'components/commons/Title'
-import ButtonsPet from '../../ProfilePets/ButtonsPet'
+import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
 import styles from './protectionistProfile.scss'
 
@@ -33,7 +33,7 @@ const ProtectionistProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-  
+
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
@@ -41,7 +41,7 @@ const ProtectionistProfile = ({ user }) => {
           rolText={t('protectionistUser.role')}
           title={t('protectionistUser.titleNameUser', { name })}
         />
-        <ButtonsPet email={email} phone={phone} image={image} />
+        <ButtonShare phone={user.phone || ''} route="edit-user" />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img

@@ -1,6 +1,14 @@
 {
-    "thereIsNoInformation": "No hay información",
-    "wasNotCompleted": "Esta sección no fué completada",
-    "basicInformation": "Información básica"
-
+  "thereIsNoInformation": "No hay información",
+  "wasNotCompleted": "Esta sección no fué completada",
+  "basicInformation": "Información básica",
+  "medicalInformation": "Información medica",
+  "email": "Correo",
+  "name": "Nombre",
+  "typePet": "Tipo de mascota",
+  "gender": "Genero",
+  "birthdate": "Fecha de nacimiento",
+  "activityLevel": "Nivel de actividad",
+  "mascotStory": "Historia de la mascota",
+  "last": "last"
 }

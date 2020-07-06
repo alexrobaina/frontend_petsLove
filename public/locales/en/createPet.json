@@ -1,5 +1,6 @@
 {
   "title": "Create a new pet",
+  "editTo": "Editar a {{ name }}",
   "subtitle": "It is very important to fill out the entire form",
   "backPets": "Back to profile",
   "placeholderImages": "Add images pet",
@@ -8,6 +9,9 @@
   "assignUser": "Assign adopter",
   "placeholderName": "Pet Name",
   "edit": "Edit",
+  "adopted": "the pet was adopted?",
+  "statusPet": "Status of the pet",
+  "whoAdopted": "Who adopted?",
   "save": "Save",
   "next": "Next",
   "back": "Back",

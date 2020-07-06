@@ -1,18 +1,18 @@
 @import 'styles/mixings';
 
-.historyPets {
+.container {
   padding: 20px 20px 20px 20px;
 }
 
-.titleHistory {
+.title {
   font-size: 20px;
   letter-spacing: 1px;
   text-align: center;
   @include site-font('text', 600);
-  color: $filters;
+  color: $secundaryLight;
 }
 
-.history {
+.text {
   letter-spacing: 1px;
   line-height: 22px;
   margin-top: 20px;

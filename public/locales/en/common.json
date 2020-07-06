@@ -1,5 +1,14 @@
 {
-    "thereIsNoInformation": "There is no information",
-    "wasNotCompleted": "This field was not completed",
-    "basicInformation": "Basic information"
+  "thereIsNoInformation": "There is no information",
+  "wasNotCompleted": "This field was not completed",
+  "basicInformation": "Basic information",
+  "medicalInformation": "Medical information",
+  "email": "Email",
+  "name": "Name",
+  "typePet": "Type pets",
+  "gender": "gender",
+  "birthdate": "Birtdate",
+  "activityLevel": "Activity level",
+  "mascotStory": "Mascot story",
+  "last": "last"
 }

@@ -1,16 +1,25 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
-import { MdCancel, MdUpdate } from 'react-icons/md'
 import c from 'classnames'
+import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
+import InputUploadImageStore from 'stores/InputUploadImageStore'
+import { MdCancel, MdUpdate } from 'react-icons/md'
+import { SERVER } from 'services/config'
+import noImage from 'components/commons/GaleryImages/noImage.svg'
 import styles from './inputUploadImage.scss'
 
-const InputUploadImage = ({ isEdit, deleteImage, previewImage, store }) => {
+const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
   const { t } = useTranslation('createPet')
   const fileUpload = useRef()
 
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
   const handleChangeImage = useCallback(e => {
-    store.setImage(e.target.files)
+    inputUploadImageStore.setImage(e.target.files)
 
     const fileList = Array.from(e.target.files)
 
@@ -20,23 +29,58 @@ const InputUploadImage = ({ isEdit, deleteImage, previewImage, store }) => {
       imageName: file,
     }))
 
-    store.setNewsPreviewsImage(mappedFiles)
+    inputUploadImageStore.setNewsPreviewsImage(mappedFiles)
   })
+
+  const removePreviewImage = useCallback(image => {
+    inputUploadImageStore.removePreviosImage(image)
+  }, [])
+
+  const removeNewPreviewImage = useCallback(image => {
+    inputUploadImageStore.removeNewPreviewsImage(image)
+  }, [])
 
   const onClickFileUpload = useCallback(() => {
     fileUpload.current.click()
   }, [])
 
+  useEffect(() => {
+    if (oldImage.length > 0 && inputUploadImageStore.previewImage.length === 0) {
+      inputUploadImageStore.setPreviewsImage(oldImage)
+    }
+  }, [oldImage])
+
   return (
     <div>
       <div className={styles.containerImagePreview}>
-        {previewImage &&
-          previewImage.map(image => {
+        {inputUploadImageStore.previewImage &&
+          inputUploadImageStore.previewImage.map(image => {
             return (
-              <div className={styles.containerImage}>
+              <div key={image} className={styles.containerImage}>
+                <img
+                  alt="pets"
+                  onError={onError}
+                  className={styles.imagePreview}
+                  src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+                />
+                <div className={styles.middle}>
+                  <div onClick={() => removePreviewImage(image)} className={styles.containerIcon}>
+                    <MdCancel className={styles.iconImage} size={20} />
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        {inputUploadImageStore.newPreviewsImage &&
+          inputUploadImageStore.newPreviewsImage.map(image => {
+            return (
+              <div key={image.preview} className={styles.containerImage}>
                 <img className={styles.imagePreview} src={image.preview} alt="pets" />
                 <div className={styles.middle}>
-                  <div onClick={() => deleteImage(image)} className={styles.containerIcon}>
+                  <div
+                    onClick={() => removeNewPreviewImage(image)}
+                    className={styles.containerIcon}
+                  >
                     <MdCancel className={styles.iconImage} size={20} />
                   </div>
                 </div>
@@ -66,12 +110,13 @@ const InputUploadImage = ({ isEdit, deleteImage, previewImage, store }) => {
 
 InputUploadImage.propTypes = {
   isEdit: PropTypes.bool,
-  deleteImage: PropTypes.func.isRequired,
-  previewImage: PropTypes.arrayOf([String]).isRequired,
+  oldImage: PropTypes.arrayOf(PropTypes.string),
+  inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore).isRequired,
 }
 
 InputUploadImage.defaultProps = {
+  oldImage: [],
   isEdit: false,
 }
 
-export default InputUploadImage
+export default observer(InputUploadImage)

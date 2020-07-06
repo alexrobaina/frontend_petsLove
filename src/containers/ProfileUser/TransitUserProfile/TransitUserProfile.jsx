@@ -9,8 +9,8 @@ import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Title from 'components/commons/Title'
 import noImage from '../noImage.svg'
-import ButtonsPet from '../../ProfilePets/ButtonsPet'
 import styles from './transitUserProfile.scss'
+import ButtonShare from '../../../components/commons/ButtonShare'
 
 const TransitUserProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
@@ -19,14 +19,14 @@ const TransitUserProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-  
+
   const { name, image, lat, lng, phone, email, _id } = user
-  
+
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
         <Title rolText={t('transitUser.role')} title={t('transitUser.titleNameUser', { name })} />
-        <ButtonsPet email={email} phone={phone} />
+        <ButtonShare phone={user.phone || ''} route="edit-user" />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img

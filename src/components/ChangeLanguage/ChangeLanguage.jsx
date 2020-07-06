@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 import c from 'classnames'
 import { MdLanguage } from 'react-icons/md'
 import styles from './changeLanguage.scss'
@@ -10,11 +11,13 @@ const ChangeLanguage = () => {
 
   const handleSpanish = useCallback(() => {
     i18n.changeLanguage('es')
+    moment.locale('es')
     setToggleMenu(true)
   }, [])
 
   const handleEnglish = useCallback(() => {
     i18n.changeLanguage('en')
+    moment.locale('en')
     setToggleMenu(true)
   }, [])
 

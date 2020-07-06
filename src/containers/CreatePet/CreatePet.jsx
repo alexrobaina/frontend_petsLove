@@ -1,30 +1,40 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState, useEffect } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
+import LayoutForm from 'components/commons/LayoutForm'
 import Tooltip from '@material-ui/core/Tooltip'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import c from 'classnames'
 import { GiHealthPotion } from 'react-icons/gi'
 import { MdEditLocation, MdPets } from 'react-icons/md'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import CreatePetStore from 'stores/CreatePetStore'
 import Button from 'components/commons/Button'
+import CreatePetStore from 'stores/CreatePetStore'
+import InputUploadImageStore from 'stores/InputUploadImageStore'
 import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
 
-const CreatePet = () => {
+const CreatePet = ({ isEdit }) => {
+  const createPetStore = useLocalStore(() => new CreatePetStore())
+  const inputUploadImageStore = useLocalStore(() => new InputUploadImageStore())
   const { t } = useTranslation('createPet')
   const history = useHistory()
+  const { id } = useParams()
   const [step, setStep] = useState(1)
-  const createPetStore = useLocalStore(() => new CreatePetStore())
+
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
   const handleSave = useCallback(() => {
-    createPetStore.save()
+    if (id) {
+      createPetStore.uploadImage(inputUploadImageStore.getImage)
+      return
+    }
+    createPetStore.saveImageCreation(inputUploadImageStore.getImage)
   }, [])
 
   const handleNext = () => {
@@ -43,64 +53,94 @@ const CreatePet = () => {
   }
 
   useEffect(() => {
-    createPetStore.setIdUser(authStore.user._id)
-  }, [])
-
-  useEffect(() => {
     if (createPetStore.requestSuccess) {
       history.push(`/dashboard`)
     }
   }, [createPetStore.requestSuccess])
 
+  useEffect(() => {
+    if (id) {
+      createPetStore.findOnePet(id)
+    }
+    createPetStore.pet.setIdUserCreator(authStore.user._id)
+  }, [])
+
   function getStepForm() {
     if (step === 1) {
-      return <BasicFormPet createPetStore={createPetStore} />
+      return (
+        <BasicFormPet
+          isEdit={isEdit}
+          createPetStore={createPetStore}
+          inputUploadImageStore={inputUploadImageStore}
+        />
+      )
     }
 
     if (step === 2) {
-      return <MedicalReportsPets createPetStore={createPetStore} />
+      return <MedicalReportsPets isEdit={isEdit} createPetStore={createPetStore} />
     }
 
-    return <LocationFormPet createPetStore={createPetStore} />
+    return <LocationFormPet isEdit={isEdit} createPetStore={createPetStore} />
   }
 
+  const { name } = createPetStore.pet
+
   return (
-    <LayoutContainer title={t('title')}>
-      <div className={styles.containerSteps}>
-        <Tooltip title={t('subtitleStepOne')}>
-          <div className={c(styles.stepInformation, step === 1 && styles.formSelected)}>
-            <MdPets size={20} />
-          </div>
-        </Tooltip>
-        <Tooltip title={t('subtitleStepTwo')}>
-          <div className={c(styles.stepInformation, step === 2 && styles.formSelected)}>
-            <GiHealthPotion size={20} />
-          </div>
-        </Tooltip>
-        <Tooltip title={t('subtitleStepThree')}>
-          <div className={c(styles.stepInformation, step === 3 && styles.formSelected)}>
-            <MdEditLocation size={20} />
-          </div>
-        </Tooltip>
-        <div className={styles.stepLine} />
-      </div>
-      {getStepForm()}
-      <div className={styles.containerButton}>
-        <div className={styles.button}>
-          <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
+    <LayoutContainer title={c(isEdit ? t('editTo', { name: name.value }) : t('title'))}>
+      <LayoutForm>
+        <div className={styles.containerSteps}>
+          <Tooltip title={t('subtitleStepOne')}>
+            <div
+              onClick={() => setStep(1)}
+              className={c(styles.stepInformation, step === 1 && styles.formSelected)}
+            >
+              <MdPets size={20} />
+            </div>
+          </Tooltip>
+          <Tooltip title={t('subtitleStepTwo')}>
+            <div
+              onClick={() => setStep(2)}
+              className={c(styles.stepInformation, step === 2 && styles.formSelected)}
+            >
+              <GiHealthPotion size={20} />
+            </div>
+          </Tooltip>
+          <Tooltip title={t('subtitleStepThree')}>
+            <div
+              onClick={() => setStep(3)}
+              className={c(styles.stepInformation, step === 3 && styles.formSelected)}
+            >
+              <MdEditLocation size={20} />
+            </div>
+          </Tooltip>
+          <div className={styles.stepLine} />
         </div>
-        {step === 3 ? (
+        {getStepForm()}
+        <div className={styles.containerButton}>
           <div className={styles.button}>
-            <Button handleClick={handleSave} text={t('save')} />
+            <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
           </div>
-        ) : (
-          <div className={styles.button}>
-            <Button handleClick={handleNext} text={t('next')} />
-          </div>
-        )}
-      </div>
+          {step === 3 ? (
+            <div className={styles.button}>
+              <Button handleClick={handleSave} text={t('save')} />
+            </div>
+          ) : (
+            <div className={styles.button}>
+              <Button handleClick={handleNext} text={t('next')} />
+            </div>
+          )}
+        </div>
+      </LayoutForm>
     </LayoutContainer>
   )
+}
+
+CreatePet.prototype = {
+  isEdit: PropTypes.bool,
+}
+
+CreatePet.defaultProps = {
+  isEdit: false,
 }
 
 export default observer(CreatePet)

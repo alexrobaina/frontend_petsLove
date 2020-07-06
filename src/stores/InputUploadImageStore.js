@@ -1,38 +1,61 @@
-import { action, observable, runInAction } from 'mobx'
-import imageCompression from 'browser-image-compression'
+import { action, observable } from 'mobx'
 import ImageService from 'services/ImageService/ImageService'
+import imageCompression from 'browser-image-compression'
 
-class ImageStore {
+class InputUploadImageStore {
   constructor() {
     this.imageService = new ImageService()
   }
 
   @observable image = []
-  @observable imageId = ''
   @observable isError = false
+  @observable imageResized = []
   @observable isLoading = false
-  @observable imageResize = []
+  @observable previewImage = []
   @observable newPreviewsImage = []
   @observable requestSuccess = false
 
+  // this function is only for remove old image
   @action
-  async saveImage(save: function) {
-    try {
-      this.isLoading = true
-      const response = await this.imageService.addImage(this.imageResize)
+  removePreviosImage(image) {
+    const imagePreview = this.previewImage.filter(preview => {
+      return preview !== image
+    })
 
-      runInAction(() => {
-        console.log(response)
-        this.isLoading = false
-        this.imageId = response._id
-        save(this.imageId)
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        console.log(e)
-      })
-    }
+    this.previewImage = imagePreview
+  }
+
+  // this function is only for remove new images
+  @action
+  removeNewPreviewsImage(image) {
+    const imageTemporal = this.newPreviewsImage.filter(preview => {
+      return preview.preview !== image.preview
+    })
+
+    const imageResizedfiltered = this.imageResized.filter(imageResized => {
+      return imageResized.name !== image.imageName.name
+    })
+
+    this.setNewImageResized(imageResizedfiltered)
+    this.setNewsPreviewsImage(imageTemporal)
+  }
+
+  // This function set new imageResized for send to service
+  @action
+  setNewImageResized(image) {
+    this.imageResized = image
+  }
+
+  // This function set new image
+  @action
+  setNewsPreviewsImage(image) {
+    this.newPreviewsImage = image
+  }
+
+  // This function set image from entity
+  @action
+  setPreviewsImage(image) {
+    this.previewImage = image
   }
 
   @action
@@ -76,7 +99,7 @@ class ImageStore {
 
   @action
   setImageResize(image) {
-    this.imageResize.push(image)
+    this.imageResized.push(image)
   }
 
   @action
@@ -84,6 +107,13 @@ class ImageStore {
     this.image = value
     this.resize()
   }
+
+  get getImage() {
+    return {
+      imageResized: this.imageResized,
+      previewImage: this.previewImage,
+    }
+  }
 }
 
-export default ImageStore
+export default InputUploadImageStore

@@ -9,19 +9,13 @@ class Utils {
   }
 
   // this function format data for selects
-  formatDataReactSelect = (data, nameObject) => {
+  formatReactSelectUsers = data => {
     const result = []
+
     data.forEach(item => {
-      if (nameObject === 'age') {
-        result.push(zipObject(['value', 'label'], [item._id, item.age]))
-      }
-      if (nameObject === 'activity') {
-        result.push(zipObject(['value', 'label'], [item._id, item.activity]))
-      }
-      if (nameObject === 'name') {
-        result.push(zipObject(['value', 'label'], [item._id, item.name]))
-      }
+      result.push(zipObject(['value', 'label'], [item._id, item.email]))
     })
+
     return result
   }
 }

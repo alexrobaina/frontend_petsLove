@@ -24,7 +24,7 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
             <img
               onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={imagePreview[0].preview}
+              src={imagePreview.length > 0 && imagePreview[0].preview}
               alt="user"
             />
           ) : (
