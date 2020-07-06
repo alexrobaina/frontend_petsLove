@@ -169,7 +169,7 @@ class SearchPetsStore {
   @action
   setCountry(value) {
     if (value) {
-      this.country.setValue(value.value)
+      this.country.setValue(value)
     }
     this.selectedCities()
   }
@@ -177,7 +177,7 @@ class SearchPetsStore {
   @action
   setCity(value) {
     if (value) {
-      this.city.setValue(value.value)
+      this.city.setValue(value)
     } else {
       this.city.setValue('')
     }
@@ -186,7 +186,7 @@ class SearchPetsStore {
   @action
   setGender(value) {
     if (value) {
-      this.gender.setValue(value.value)
+      this.gender.setValue(value)
     } else {
       this.gender.setValue('')
     }
@@ -195,7 +195,7 @@ class SearchPetsStore {
   @action
   setCategory(value) {
     if (value) {
-      this.category.setValue(value.value)
+      this.category.setValue(value)
     } else {
       this.category.setValue('')
     }

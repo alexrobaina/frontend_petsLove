@@ -35,6 +35,7 @@ class MedicalInformationCat {
   getJson() {
     return {
       _id: this._id,
+      vet: this.vet.value,
       lastVisitVet: this.lastVisitVet.value,
       distemperVaccine: this.distemperVaccine,
       rabiesVaccine: this.rabiesVaccine,

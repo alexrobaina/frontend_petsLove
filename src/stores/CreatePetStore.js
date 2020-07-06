@@ -2,6 +2,8 @@ import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
 import ImageService from 'services/ImageService/ImageService'
 import EditPetService from 'services/EditPetService/EditPetService'
+import AuthService from 'services/AuthService'
+import Utils from 'utils'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'This input is required'
@@ -12,6 +14,8 @@ class CreatePetStore {
     this.imageService = new ImageService()
     this.editPetService = new EditPetService()
     this.createPetServices = new CreatePetServices()
+    this.authService = new AuthService()
+    this.utils = new Utils()
   }
 
   @observable vets = []
@@ -25,6 +29,9 @@ class CreatePetStore {
   @observable previewsImage = []
   @observable imageForResize = null
   @observable requestSuccess = false
+  @observable optionsUserVet = []
+  @observable optionsUserAdopter = []
+  @observable optionsUserTransit = []
   @observable location = { lat: -34.603722, lng: -58.381592 }
 
   @action
@@ -33,6 +40,7 @@ class CreatePetStore {
     this.requestSuccess = false
 
     this.pet.image.setValue(id)
+
     try {
       const response = await this.createPetServices.addPet(this.pet.getJson())
 
@@ -80,8 +88,8 @@ class CreatePetStore {
 
       runInAction(() => {
         this.isLoading = false
-        this.idPet = response._id
-        this.pet.fillJson(response)
+        this.idPet = response[0]._id
+        this.pet.fillJson(response[0])
         this.previewImage = this.pet.image.value
       })
     } catch (e) {
@@ -128,7 +136,68 @@ class CreatePetStore {
     }
   }
 
-  // this function is only for set image previews
+  @action
+  async listUserAdopter() {
+    this.isLoading = true
+
+    const role = 'adopter'
+
+    try {
+      const response = await this.authService.getUserForRole(role)
+
+      runInAction(() => {
+        this.isLoading = false
+        this.optionsUserAdopter = this.utils.formatReactSelectUsers(response)
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.isLoading = false
+      })
+    }
+  }
+
+  @action
+  async listUserVet() {
+    this.isLoading = true
+
+    const role = 'vet'
+
+    try {
+      const response = await this.authService.getUserForRole(role)
+
+      runInAction(() => {
+        this.isLoading = false
+        this.optionsUserVet = this.utils.formatReactSelectUsers(response)
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.isLoading = false
+      })
+    }
+  }
+
+  @action
+  async listUserTransit() {
+    this.isLoading = true
+
+    const role = 'transitUser'
+
+    try {
+      const response = await this.authService.getUserForRole(role)
+
+      runInAction(() => {
+        this.isLoading = false
+        this.optionsUserTransit = this.utils.formatReactSelectUsers(response)
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.isLoading = false
+      })
+    }
+  }
 
   @action
   setIdUser(id) {

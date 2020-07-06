@@ -18,12 +18,15 @@ class MedicalInformationDog {
     this.lastVisitVet = new InputStore()
 
     this.vet.setValue(null)
+
+    this.userVetId = new InputStore()
   }
 
   fillJson(medicalDog) {
     this._id = medicalDog._id
     this.lastVisitVet.setValue(medicalDog.lastVisitVet)
     this.vet.setValue(medicalDog.vet)
+    this.userVetId.setValue(medicalDog.vet._id)
     this.isCastrated = medicalDog.isCastrated
     this.rabiesVaccine = medicalDog.rabiesVaccine
     this.distemperVaccine = medicalDog.distemperVaccine
@@ -106,6 +109,10 @@ class MedicalInformationDog {
 
   get getVet() {
     return this.vet.value
+  }
+
+  get getUserVetId() {
+    return this.userVetId.value
   }
 
   get getLastVisitVet() {

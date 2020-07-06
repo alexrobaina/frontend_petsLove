@@ -20,6 +20,8 @@ class UserStore {
     this.user = new User()
   }
 
+  @observable phone = ''
+  @observable email = ''
   @observable address = {}
   @observable location = {}
   @observable password = ''
@@ -79,7 +81,8 @@ class UserStore {
       runInAction(() => {
         this.formatNameRole()
         this.user.fillJson(response)
-        console.log(this.user)
+        this.phone = response.phone
+        this.email = response.email
         this.setLocalStorage.setUser(response)
         this.isLoading = false
       })

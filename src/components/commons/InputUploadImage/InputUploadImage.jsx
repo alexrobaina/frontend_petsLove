@@ -56,7 +56,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
         {inputUploadImageStore.previewImage &&
           inputUploadImageStore.previewImage.map(image => {
             return (
-              <div key={image.preview} className={styles.containerImage}>
+              <div key={image} className={styles.containerImage}>
                 <img
                   alt="pets"
                   onError={onError}
@@ -110,7 +110,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
 
 InputUploadImage.propTypes = {
   isEdit: PropTypes.bool,
-  oldImage: PropTypes.arrayOf([String]),
+  oldImage: PropTypes.arrayOf(PropTypes.string),
   inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore).isRequired,
 }
 

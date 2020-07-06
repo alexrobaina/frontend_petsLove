@@ -3,6 +3,7 @@ import { observer, useLocalStore } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
+import LayoutForm from 'components/commons/LayoutForm'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useHistory, useParams } from 'react-router'
 import c from 'classnames'
@@ -17,7 +18,7 @@ import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
 
-const CreatePet = ({ title, isEdit }) => {
+const CreatePet = ({ isEdit }) => {
   const createPetStore = useLocalStore(() => new CreatePetStore())
   const inputUploadImageStore = useLocalStore(() => new InputUploadImageStore())
   const { t } = useTranslation('createPet')
@@ -82,53 +83,63 @@ const CreatePet = ({ title, isEdit }) => {
     return <LocationFormPet isEdit={isEdit} createPetStore={createPetStore} />
   }
 
+  const { name } = createPetStore.pet
+
   return (
-    <LayoutContainer title={c(isEdit ? title : t('title'))}>
-      <div className={styles.containerSteps}>
-        <Tooltip title={t('subtitleStepOne')}>
-          <div className={c(styles.stepInformation, step === 1 && styles.formSelected)}>
-            <MdPets size={20} />
-          </div>
-        </Tooltip>
-        <Tooltip title={t('subtitleStepTwo')}>
-          <div className={c(styles.stepInformation, step === 2 && styles.formSelected)}>
-            <GiHealthPotion size={20} />
-          </div>
-        </Tooltip>
-        <Tooltip title={t('subtitleStepThree')}>
-          <div className={c(styles.stepInformation, step === 3 && styles.formSelected)}>
-            <MdEditLocation size={20} />
-          </div>
-        </Tooltip>
-        <div className={styles.stepLine} />
-      </div>
-      {getStepForm()}
-      <div className={styles.containerButton}>
-        <div className={styles.button}>
-          <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
+    <LayoutContainer title={c(isEdit ? t('editTo', { name: name.value }) : t('title'))}>
+      <LayoutForm>
+        <div className={styles.containerSteps}>
+          <Tooltip title={t('subtitleStepOne')}>
+            <div
+              onClick={() => setStep(1)}
+              className={c(styles.stepInformation, step === 1 && styles.formSelected)}
+            >
+              <MdPets size={20} />
+            </div>
+          </Tooltip>
+          <Tooltip title={t('subtitleStepTwo')}>
+            <div
+              onClick={() => setStep(2)}
+              className={c(styles.stepInformation, step === 2 && styles.formSelected)}
+            >
+              <GiHealthPotion size={20} />
+            </div>
+          </Tooltip>
+          <Tooltip title={t('subtitleStepThree')}>
+            <div
+              onClick={() => setStep(3)}
+              className={c(styles.stepInformation, step === 3 && styles.formSelected)}
+            >
+              <MdEditLocation size={20} />
+            </div>
+          </Tooltip>
+          <div className={styles.stepLine} />
         </div>
-        {step === 3 ? (
+        {getStepForm()}
+        <div className={styles.containerButton}>
           <div className={styles.button}>
-            <Button handleClick={handleSave} text={t('save')} />
+            <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
           </div>
-        ) : (
-          <div className={styles.button}>
-            <Button handleClick={handleNext} text={t('next')} />
-          </div>
-        )}
-      </div>
+          {step === 3 ? (
+            <div className={styles.button}>
+              <Button handleClick={handleSave} text={t('save')} />
+            </div>
+          ) : (
+            <div className={styles.button}>
+              <Button handleClick={handleNext} text={t('next')} />
+            </div>
+          )}
+        </div>
+      </LayoutForm>
     </LayoutContainer>
   )
 }
 
 CreatePet.prototype = {
-  title: PropTypes.string,
   isEdit: PropTypes.bool,
-  inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore),
 }
 
 CreatePet.defaultProps = {
-  name: '',
   isEdit: false,
 }
 

@@ -24,10 +24,10 @@ const InputDate = ({ label, handleDateChange, value }) => {
       {label && <Label text={label} />}
       <DatePicker
         value={value}
-        customInput={<CustomInput />}
         showYearDropdown
-        dateFormat="dd/MM/yyy"
+        dateFormat="dd/MM/yyyy"
         selected={selectedDate}
+        customInput={<CustomInput />}
         onChange={date => handleDate(date)}
       />
     </div>

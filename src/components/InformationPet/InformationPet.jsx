@@ -6,6 +6,7 @@ import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'reac
 import { GiJumpingDog } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
+import Pet from 'models/Pet'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './informationPet.scss'
 
@@ -21,8 +22,8 @@ const InformationPet = ({ pet, title }) => {
         <TextCardInformation text={t('name')} value={pet.getName} icon={<FaUser size={20} />} />
         <TextCardInformation
           text={t('birthday')}
-          value={moment(getBirthday).format('L')}
           icon={<FaBirthdayCake size={20} />}
+          value={moment(getBirthday).format('L')}
         />
         <TextCardInformation text={t('category')} icon={<FaCat size={20} />} value={getCategory} />
         <TextCardInformation
@@ -51,7 +52,7 @@ const InformationPet = ({ pet, title }) => {
 }
 
 InformationPet.propTypes = {
-  pet: PropTypes.node.isRequired,
+  pet: PropTypes.instanceOf(Pet).isRequired,
   title: PropTypes.string,
 }
 

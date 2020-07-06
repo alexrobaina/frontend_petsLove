@@ -20,19 +20,23 @@ class Pet {
     this.activityLevel = new InputStore()
     this.birthday = new InputStore()
     this.history = new InputStore()
+    this.textarea = new InputStore()
     this.foundLocation = new InputStore()
     this.textAddress = new InputStore()
     this.location = new InputStore()
     this.userCreator = new InputStore()
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
-    this.userTransit = new InputStore()
+    this.userCreatorId = new InputStore()
     this.medicalCat = {}
     this.medicalDog = {}
 
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
+
+    this.userAdopterId = new InputStore()
+    this.userTransitId = new InputStore()
 
     this.medicalInformationCat = new MedicalInformationCat()
     this.medicalInformationDog = new MedicalInformationDog()
@@ -55,6 +59,16 @@ class Pet {
     this.lost = pet.lost
     this.urgent = pet.urgent
     this.adopted = pet.adopted
+
+    this.userCreatorId.setValue(pet.userCreator._id)
+
+    if (pet.userAdopter) {
+      this.userAdopterId.setValue(pet.userAdopter._id)
+    }
+
+    if (pet.userTransit) {
+      this.userTransitId.setValue(pet.userTransit._id)
+    }
 
     if (pet.category === 'cat') {
       this.medicalCat = this.medicalInformationCat.fillJson(pet.catMedicalHistory)
@@ -86,6 +100,7 @@ class Pet {
       birthday: this.birthday.value,
       activityLevel: this.activityLevel.value,
       foundLocation: this.location.value,
+      textAddress: this.textAddress.value,
       history: this.history.value,
     }
 
@@ -102,7 +117,6 @@ class Pet {
     }
 
     if (this.category.value === 'dog') {
-      console.log('this.medicalInformationDog.getJson() ', this.medicalInformationDog.getJson())
       petData.medicalDog = this.medicalInformationDog.getJson()
     }
 
@@ -171,6 +185,14 @@ class Pet {
 
   setUserTransit(value) {
     this.userTransit.setValue(value)
+  }
+
+  setUserAdopterId(value) {
+    this.userAdopterId.setValue(value)
+  }
+
+  setUserTransitId(value) {
+    this.userTransitId.setValue(value)
   }
 
   setActivityLevel(value) {
@@ -246,11 +268,19 @@ class Pet {
   }
 
   get getUserAdopter() {
-    return this.userAdopter.value
+    return this.idUserAdopter
+  }
+
+  get getUserAdopterId() {
+    return this.userAdopterId.value
   }
 
   get getUserTransit() {
     return this.userTransit.value
+  }
+
+  get getUserTransitId() {
+    return this.userTransitId.value
   }
 
   get getBirthday() {
@@ -274,7 +304,7 @@ class Pet {
   }
 
   get getUserCreatorId() {
-    return this.userCreator.value._id
+    return this.userCreatorId.value
   }
 
   get getImagePreviews() {

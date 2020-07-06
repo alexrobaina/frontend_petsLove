@@ -8,7 +8,7 @@ import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
   const mediaQuery = useMediaQuery('(max-width: 500px)')
-  
+
   return (
     <>
       {isEdit && (

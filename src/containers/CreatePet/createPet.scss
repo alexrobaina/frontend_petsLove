@@ -123,8 +123,9 @@
 }
 
 .formSelected {
-  background-color: $primary;
-  width: 50px;
-  height: 50px;
+  background-color: $secundaryLight;
+  color: $ligth;
+  width: 45px;
+  height: 45px;
   transform: scale(1.1);
 }

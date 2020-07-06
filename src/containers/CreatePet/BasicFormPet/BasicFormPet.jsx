@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import { observer } from 'mobx-react'
+import UserContext from 'Context/UserContext'
 import InputUploadImage from 'components/commons/InputUploadImage'
 import Input from 'components/commons/Input'
 import CreatePetStore from 'stores/CreatePetStore'
@@ -15,6 +16,9 @@ import styles from './basicFormPet.scss'
 
 const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   const { t } = useTranslation('createPet')
+
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
 
   const categoryOptions = [
     { value: 'dog', label: t('Dog') },
@@ -57,12 +61,29 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     createPetStore.pet.setActivityLevel(selectedValue.value)
   }, [])
 
+  const handleChangeUserAdopter = useCallback(selectedValue => {
+    createPetStore.pet.setUserAdopter(selectedValue.value)
+  }, [])
+
+  const handleChangeUserTransit = useCallback(selectedValue => {
+    createPetStore.pet.setUserTransit(selectedValue.value)
+  }, [])
+
+  const handleChangeAdopted = useCallback(() => {
+    createPetStore.pet.setAdopted()
+  }, [])
+
   const handleChangeLost = useCallback(() => {
     createPetStore.pet.setLost()
   }, [])
-  
+
   const handleChangeUrgent = useCallback(() => {
     createPetStore.pet.setUrgent()
+  }, [])
+
+  useEffect(() => {
+    createPetStore.listUserAdopter()
+    createPetStore.listUserTransit()
   }, [])
 
   const {
@@ -79,21 +100,35 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     getBirthday,
     getHistory,
     history,
+    getAdopted,
+    getUserCreatorId,
+    userAdopter,
+    userTransit,
+    getImagePreviews,
+    getUserAdopterId,
+    getUserTransitId,
   } = createPetStore.pet
+
+  const { optionsUserAdopter, optionsUserTransit } = createPetStore
 
   return (
     <LayoutForm>
       <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
       <InputUploadImage
         isEdit
-        oldImage={createPetStore.pet.getImagePreviews}
+        oldImage={getImagePreviews}
         inputUploadImageStore={inputUploadImageStore}
       />
       <div className={styles.colums}>
         <InputCheckbox isEdit text={t('lost')} value={getLost} handleChange={handleChangeLost} />
       </div>
       <div className={styles.colums}>
-        <InputCheckbox isEdit text={t('urgent')} value={getUrgent} handleChange={handleChangeUrgent} />
+        <InputCheckbox
+          isEdit
+          text={t('urgent')}
+          value={getUrgent}
+          handleChange={handleChangeUrgent}
+        />
       </div>
       <div className={styles.colums}>
         <Input
@@ -129,7 +164,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
       </div>
       <div className={styles.colums}>
         <InputDate
-          label={t('common:birthday')}
+          label={t('common:birthdate')}
           handleDateChange={handleDateBirthday}
           value={moment(getBirthday).format('L')}
         />
@@ -155,6 +190,41 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           handleChange={handleChangeHistory}
         />
       </div>
+      {getUserCreatorId === authStore.user._id && (
+        <>
+          <div className={styles.colums}>
+            <div className={styles.containerStatusPet}>{t('statusPet')}</div>
+            <InputSelect
+              isEdit
+              value={getUserAdopterId}
+              label={t('whoAdopted')}
+              inputStore={userAdopter}
+              options={optionsUserAdopter}
+              placeholder={t('whoAdopted')}
+              handleChange={handleChangeUserAdopter}
+            />
+          </div>
+          <div className={styles.colums}>
+            <InputSelect
+              isEdit
+              value={getUserTransitId}
+              inputStore={userTransit}
+              label={t('userTransit')}
+              options={optionsUserTransit}
+              placeholder={t('userTransit')}
+              handleChange={handleChangeUserTransit}
+            />
+          </div>
+          <div className={styles.colums}>
+            <InputCheckbox
+              isEdit
+              value={getAdopted}
+              text={t('adopted')}
+              handleChange={handleChangeAdopted}
+            />
+          </div>
+        </>
+      )}
     </LayoutForm>
   )
 }
@@ -162,6 +232,5 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
 BasicFormPet.propTypes = {
   createPetStore: PropTypes.instanceOf(CreatePetStore).isRequired,
 }
-
 
 export default observer(BasicFormPet)

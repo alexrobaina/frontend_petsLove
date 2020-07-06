@@ -47,7 +47,7 @@ const InputSelect = ({
             onChange={handleChange}
             placeholder={placeholder}
             isClearable={isClearable}
-            value={options.filter(option => option.value === value)}
+            value={options && options.filter(option => option.value === value)}
             theme={theme => ({
               ...theme,
               colors: {
@@ -75,12 +75,13 @@ InputSelect.propTypes = {
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   inputStore: PropTypes.instanceOf(InputStore),
-  options: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object),
 }
 
 InputSelect.defaultProps = {
   value: '',
   label: '',
+  options: {},
   isMulti: false,
   inputStore: null,
   isLoading: false,

@@ -1,6 +1,15 @@
 {
-    "compilerOptions": {
-      "baseUrl": "src"
-    },
-    "include": ["src"]
-  }
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "ES6",
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": false,
+    "paths": {
+      "Config/*": ["src/config/*"],
+      "Components/*": ["src/components/*"],
+      "App/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

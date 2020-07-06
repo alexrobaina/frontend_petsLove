@@ -1,5 +1,6 @@
 {
   "title": "Crear una nueva mascota",
+  "editTo": "Editar a {{ name }}",
   "subtitle": "Completar todos los campos aumenta las probabilidadades de adopción",
   "backPets": "Volver al perfil",
   "placeholderImages": "Agregue imágenes de la mascota",
@@ -8,6 +9,9 @@
   "assignUser": "Asignar adoptante",
   "whereFound": "¿Donde Fué encontrada?",
   "placeholderName": "Nombre de la mascota",
+  "adopted": "¿La mascota fué adoptada?",
+  "statusPet": "Estatus de la mascota",
+  "whoAdopted": "¿Quien Adoptó?",
   "edit": "Editar",
   "save": "Guardar",
   "next": "Siguiente",

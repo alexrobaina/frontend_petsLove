@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 import { observer } from 'mobx-react'
 import { FaCalendar } from 'react-icons/fa'
 import { GiLoveInjection } from 'react-icons/gi'
@@ -11,6 +12,18 @@ import styles from './medicalInformationDog.scss'
 const MedicalInformationDog = ({ pet, title = '' }) => {
   const { t } = useTranslation('medicalInformationDog')
 
+  const {
+    getLastVisitVet,
+    distemperVaccine,
+    isCastrated,
+    rabiesVaccine,
+    hepatitisVaccine,
+    parvovirusVaccine,
+    leptospirosisVaccine,
+    parainfluenzaVaccine,
+    bordetellaBronchisepticVaccine,
+  } = pet.medicalInformationDog
+
   return (
     <LayoutCards>
       <div className={styles.title}>{title}</div>
@@ -18,47 +31,47 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
         <TextCardInformation
           text={t('lastVisitVet')}
           icon={<FaCalendar size={20} />}
-          value={pet.medicalInformationDog.getLastVisitVet}
+          value={moment(getLastVisitVet).format('L')}
         />
         <TextCardInformation
           text={t('distemperVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={pet.medicalInformationDog.getDistemperVaccine}
+          informationPet={distemperVaccine}
         />
         <TextCardInformation
           text={t('isCastrated')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={pet.medicalInformationDog.getIsCastrated}
+          informationPet={isCastrated}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={pet.medicalInformationDog.getRabiesVaccine}
+          informationPet={rabiesVaccine}
         />
         <TextCardInformation
           text={t('hepatitisVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={pet.medicalInformationDog.getHepatitisVaccine}
+          informationPet={hepatitisVaccine}
         />
         <TextCardInformation
           text={t('parvovirusVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={pet.medicalInformationDog.getParvovirusVaccine}
+          informationPet={parvovirusVaccine}
         />
         <TextCardInformation
           text={t('leptospirosisVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={pet.medicalInformationDog.getLeptospirosisVaccine}
+          informationPet={leptospirosisVaccine}
         />
         <TextCardInformation
           text={t('parainfluenzaVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={pet.medicalInformationDog.getParainfluenzaVaccine}
+          informationPet={parainfluenzaVaccine}
         />
         <TextCardInformation
           icon={<GiLoveInjection size={25} />}
           text={t('bordetellaBronchisepticVaccine')}
-          informationPet={pet.medicalInformationDog.getBordetellaBronchisepticVaccine}
+          informationPet={bordetellaBronchisepticVaccine}
         />
       </div>
     </LayoutCards>

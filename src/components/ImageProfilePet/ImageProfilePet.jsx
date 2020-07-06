@@ -11,7 +11,7 @@ const ImageProfilePet = ({ images }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-  
+
   return (
     <div>
       <img
@@ -25,7 +25,11 @@ const ImageProfilePet = ({ images }) => {
 }
 
 ImageProfilePet.propTypes = {
-  images: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  images: PropTypes.oneOfType([PropTypes.array]),
+}
+
+ImageProfilePet.defaultProps = {
+  images: [],
 }
 
 export default observer(ImageProfilePet)

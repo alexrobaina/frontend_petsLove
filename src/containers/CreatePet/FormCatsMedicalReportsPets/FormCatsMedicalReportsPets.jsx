@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import CreatePetStore from 'stores/CreatePetStore'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import { useTranslation } from 'react-i18next'
@@ -18,7 +19,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const handleChangeVet = useCallback(selectedOption => {
-    createPetStore.per.medicalInformationCat.setVet(selectedOption.value)
+    createPetStore.pet.medicalInformationCat.setVet(selectedOption.value)
   }, [])
 
   const handleDateIsCastrated = useCallback(() => {
@@ -49,8 +50,13 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
     createPetStore.pet.medicalInformationCat.setNotes(e.target.value)
   }, [])
 
+  useEffect(() => {
+    createPetStore.listUserVet()
+  }, [])
+
   const {
     getLastVisitVet,
+    vet,
     getVet,
     getIsCastrated,
     getDistemperVaccine,
@@ -61,7 +67,9 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
     getNotes,
     notes,
   } = createPetStore.pet.medicalInformationCat
-  
+
+  const { optionsUserVet } = createPetStore
+
   return (
     <LayoutForm>
       <div className={styles.title}>{t('subtitleStepTwo')}</div>
@@ -69,15 +77,16 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         <InputDate
           label={t('visitVet')}
           handleDateChange={handleDateChange}
-          value={getLastVisitVet}
+          value={moment(getLastVisitVet).format('L')}
         />
       </div>
       <div className={styles.colums}>
         <InputSelect
-          label={t('whoVet')}
+          isEdit
           value={getVet}
-          options={createPetStore.vets}
-          isEdit={createPetStore.isEdit}
+          inputStore={vet}
+          label={t('whoVet')}
+          options={optionsUserVet}
           handleChange={handleChangeVet}
         />
       </div>
