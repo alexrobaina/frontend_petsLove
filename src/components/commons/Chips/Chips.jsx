@@ -17,11 +17,12 @@ const Chips = ({ isAdopted, handleChips, icon, text }) => {
 Chips.propTypes = {
   isAdopted: PropTypes.bool,
   handleChips: PropTypes.func,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
   text: PropTypes.string.isRequired,
 }
 
 Chips.defaultProps = {
+  icon: null,
   isAdopted: false,
   handleChips: null,
 }

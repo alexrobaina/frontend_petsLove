@@ -88,6 +88,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
           label={t('whoVet')}
           options={optionsUserVet}
           handleChange={handleChangeVet}
+          placeholder={t('common:select')}
         />
       </div>
       <div className={styles.colums}>

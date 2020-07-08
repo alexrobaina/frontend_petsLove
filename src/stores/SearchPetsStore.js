@@ -59,26 +59,6 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetForUser(userId) {
-    this.isLoading = true
-
-    try {
-      const response = await this.petsService.loadPetsUserAdopt(userId)
-
-      runInAction(() => {
-        this.petsUserAdopt = response
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isError = true
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   async getPetAdopted(userId) {
     this.isLoading = true
 

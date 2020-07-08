@@ -36,14 +36,10 @@ const InformationPet = ({ pet, title }) => {
           icon={<GiJumpingDog size={25} />}
           value={getActivityLevel}
         />
-        <TextCardInformation
-          text={t('lost')}
-          informationPet={getLost}
-          icon={<FaStreetView size={25} />}
-        />
+        <TextCardInformation text={t('lost')} value={getLost} icon={<FaStreetView size={25} />} />
         <TextCardInformation
           text={t('urgent')}
-          informationPet={getUrgent}
+          value={getUrgent}
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>

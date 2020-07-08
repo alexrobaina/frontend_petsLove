@@ -54,7 +54,7 @@ const EditUser = () => {
   }, [])
 
   const handleChangeAddress = useCallback(address => {
-    userStore.setAddress(address)
+    userStore.user.setAddress(address)
   }, [])
 
   const handleChangePhone = useCallback(phone => {
@@ -109,18 +109,32 @@ const EditUser = () => {
     )
   }
 
+  const {
+    image,
+    isLoadingResizem,
+    name,
+    email,
+    role,
+    username,
+    aboutUs,
+    requirementsToAdopt,
+    textAddress,
+    location,
+    password,
+  } = userStore.user
+  
   return (
     <LayoutContainer title={t('title')}>
       <LayoutForm>
         <div className={styles.containerImage}>
-          {userStore.user.isLoadingResize ? (
+          {isLoadingResizem ? (
             <Loading loadingRing />
           ) : (
             <div className={styles.col}>
               <ImageUserLog
                 size={50}
                 isProfile
-                imgUser={userStore.user.image}
+                imgUser={image}
                 imagePreview={userStore.newPreviewsImage}
                 isUserLogin={rootStore.authStore.isLogin}
               />
@@ -153,8 +167,8 @@ const EditUser = () => {
               label={t('name')}
               placeholder={t('name')}
               isEdit={userStore.isEdit}
-              inputStore={userStore.user.name}
-              value={userStore.user.name.value}
+              inputStore={name}
+              value={name.value}
             />
           </div>
           <div className={styles.colbig}>
@@ -163,19 +177,19 @@ const EditUser = () => {
               label={t('email')}
               placeholder={t('email')}
               isEdit={userStore.isEdit}
-              inputStore={userStore.user.email}
-              value={userStore.user.email.value}
+              inputStore={email}
+              value={email.value}
             />
           </div>
           <div className={styles.colbig}>
             <Input
               canEdit
               disabled
+              value={userStore.user.getRole()}
               label={t('userRol')}
+              inputStore={role}
               isEdit={userStore.isEdit}
               placeholder={t('userRol')}
-              value={userStore.user.setRole()}
-              inputStore={userStore.user.role}
             />
           </div>
           <div className={styles.colbig}>
@@ -199,8 +213,8 @@ const EditUser = () => {
               isEdit={userStore.isEdit}
               placeholder={t('username')}
               handleChange={handleChangeUsername}
-              inputStore={userStore.user.username}
-              value={userStore.user.username.value}
+              inputStore={username}
+              value={username.value}
             />
             <div className={styles.messageInformation}>{t('helpUserName')}</div>
           </div>
@@ -219,11 +233,11 @@ const EditUser = () => {
             <Textarea
               canEdit
               rows={4}
-              isEdit={userStore.isEdit}
+              inputStore={aboutUs}
               label={t('aboutUs')}
+              isEdit={userStore.isEdit}
               placeholder={t('aboutUs')}
               handleChange={handleChangeAboutUs}
-              inputStore={userStore.user.username}
               value={userStore.user.aboutUs.value}
             />
           </div>
@@ -235,8 +249,8 @@ const EditUser = () => {
               label={t('requirementsToAdopt')}
               placeholder={t('requirementsToAdopt')}
               handleChange={handleChangeRequirementsToAdopt}
-              inputStore={userStore.user.requirementsToAdopt}
-              value={userStore.user.requirementsToAdopt.value}
+              inputStore={requirementsToAdopt}
+              value={requirementsToAdopt.value}
             />
           </div>
           <div className={styles.colbig}>
@@ -244,20 +258,13 @@ const EditUser = () => {
               label={t('address')}
               isEdit={userStore.isEdit}
               placeholder={t('address')}
-              inputStoreError={userStore.user.textAddress}
-              value={userStore.user.textAddress.value}
+              inputStoreError={textAddress}
+              value={textAddress.value}
               handleChangeAddress={handleChangeAddress}
               handleChangeTextAddress={handleChangeTextAddress}
             />
             <div className={styles.colbig}>
-              <GoogleMapsLocation
-                showAddress
-                title={t('messageMap')}
-                location={{
-                  lat: userStore.user.lat.value,
-                  lng: userStore.user.lng.value,
-                }}
-              />
+              <GoogleMapsLocation showAddress title={t('messageMap')} location={location.value} />
             </div>
           </div>
           <div className={styles.colbig}>
@@ -270,7 +277,7 @@ const EditUser = () => {
               isEdit={userStore.isEdit}
               placeholder={t('password')}
               handleChange={handleChangePassword}
-              inputStore={userStore.user.password}
+              inputStore={password}
             />
             {userStore.passwordError && (
               <div className={styles.errorMessage}>{t('errorPassword')}</div>

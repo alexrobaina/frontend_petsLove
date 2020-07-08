@@ -10,9 +10,9 @@ class User {
   @observable terms = false
   @observable canTransit = false
 
-  constructor(id, location) {
+  constructor(id) {
     this._id = id
-    this.location = location
+    this.location = new InputStore()
     this.image = new InputStore()
     this.name = new InputStore()
     this.firstname = new InputStore()
@@ -29,24 +29,6 @@ class User {
     this.password = new InputStore()
   }
 
-  setAddress(address) {
-    this.lat.setValue(address.lat)
-    this.lng.setValue(address.lng)
-  }
-
-  setRole() {
-    if (this.role.value === 'transitUser') {
-      return USER_TRANSIT
-    }
-    if (this.role.value === 'protectionist') {
-      return USER_PROTECTIONIST
-    }
-    if (this.role.value === 'adopter') {
-      return USER_ADOPTER
-    }
-    return ''
-  }
-
   fillJson(user) {
     this._id = user._id
     this.image.setValue(user.image)
@@ -57,12 +39,10 @@ class User {
     this.email.setValue(user.email)
     this.phone.setValue(user.phone)
     this.aboutUs.setValue(user.aboutUs)
-    this.lat.setValue(user.lat)
-    this.lng.setValue(user.lng)
+    this.location.setValue(user.location)
     this.textAddress.setValue(user.textAddress)
     this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.username.setValue(user.username)
-    this.location = user.location
     this.terms = user.terms
     this.canTransit = user.canTransit
   }
@@ -72,23 +52,46 @@ class User {
       _id: this._id,
       image: this.image.value,
       name: this.name.value,
-      firstname: this.firstname,
-      lastname: this.lastname,
+      firstname: this.firstname.value,
+      lastname: this.lastname.value,
       role: this.role.value,
       email: this.email.value,
       phone: this.phone.value,
       aboutUs: this.aboutUs.value,
-      lat: this.lat.value,
-      lng: this.lng.value,
+      location: this.location.value,
       username: this.username.value,
       textAddress: this.textAddress.value,
-      location: this.location,
       password: this.password.value,
       requirementsToAdopt: this.requirementsToAdopt.value,
       canTransit: this.canTransit,
       state: this.state,
       terms: this.terms,
     }
+  }
+
+  // ============================================
+  // Setters
+  // ============================================
+
+  setAddress(address) {
+    this.location.setValue(address)
+  }
+
+  // ============================================
+  // Getters
+  // ============================================
+
+  getRole() {
+    if (this.role.value === 'transitUser') {
+      return USER_TRANSIT
+    }
+    if (this.role.value === 'protectionist') {
+      return USER_PROTECTIONIST
+    }
+    if (this.role.value === 'adopter') {
+      return USER_ADOPTER
+    }
+    return ''
   }
 }
 

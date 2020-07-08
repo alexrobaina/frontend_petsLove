@@ -5,6 +5,7 @@ import moment from 'moment'
 import { observer } from 'mobx-react'
 import { FaCalendar } from 'react-icons/fa'
 import { GiLoveInjection } from 'react-icons/gi'
+import Pet from 'models/Pet'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationDog.scss'
@@ -36,42 +37,42 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
         <TextCardInformation
           text={t('distemperVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={distemperVaccine}
+          value={distemperVaccine}
         />
         <TextCardInformation
           text={t('isCastrated')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={isCastrated}
+          value={isCastrated}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={rabiesVaccine}
+          value={rabiesVaccine}
         />
         <TextCardInformation
           text={t('hepatitisVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={hepatitisVaccine}
+          value={hepatitisVaccine}
         />
         <TextCardInformation
           text={t('parvovirusVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={parvovirusVaccine}
+          value={parvovirusVaccine}
         />
         <TextCardInformation
           text={t('leptospirosisVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={leptospirosisVaccine}
+          value={leptospirosisVaccine}
         />
         <TextCardInformation
           text={t('parainfluenzaVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={parainfluenzaVaccine}
+          value={parainfluenzaVaccine}
         />
         <TextCardInformation
           icon={<GiLoveInjection size={25} />}
           text={t('bordetellaBronchisepticVaccine')}
-          informationPet={bordetellaBronchisepticVaccine}
+          value={bordetellaBronchisepticVaccine}
         />
       </div>
     </LayoutCards>
@@ -79,7 +80,7 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
 }
 
 MedicalInformationDog.propTypes = {
-  pet: PropTypes.node.isRequired,
+  pet: PropTypes.instanceOf(Pet).isRequired,
 }
 
 export default observer(MedicalInformationDog)

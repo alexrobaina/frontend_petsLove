@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import LazyLoad from 'react-lazyload'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
-import TextCardInformation from 'components/commons/TextCardInformation'
 import CardPets from 'components/commons/CardPets'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
-import ErrorMessage from '../commons/ErrorMessage'
+import ErrorMessage from 'components/commons/ErrorMessage'
 import styles from './listPets.scss'
 
 const ListPets = ({ pets, isUserAdopt }) => {
@@ -47,13 +46,13 @@ const ListPets = ({ pets, isUserAdopt }) => {
   )
 }
 
-TextCardInformation.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+ListPets.propTypes = {
+  pets: PropTypes.arrayOf(PropTypes.object),
   isUserAdopt: PropTypes.bool,
-  isError: PropTypes.bool.isRequired,
 }
 
-TextCardInformation.defaultProps = {
+ListPets.defaultProps = {
+  pets: [],
   isUserAdopt: false,
 }
 

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import { FaRegCalendarAlt } from 'react-icons/fa'
 import { GiLoveInjection } from 'react-icons/gi'
 import moment from 'moment'
+import Pet from 'models/Pet'
 import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationCat.scss'
@@ -33,27 +34,27 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
         <TextCardInformation
           text={t('distemperVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={distemperVaccine}
+          value={distemperVaccine}
         />
         <TextCardInformation
           text={t('rabiesVaccine')}
           icon={<GiLoveInjection size={20} />}
-          informationPet={rabiesVaccine}
+          value={rabiesVaccine}
         />
         <TextCardInformation
           text={t('felineFluVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={felineFluVaccine}
+          value={felineFluVaccine}
         />
         <TextCardInformation
           text={t('felineLeukemiaVaccine')}
           icon={<GiLoveInjection size={25} />}
-          informationPet={felineLeukemiaVaccine}
+          value={felineLeukemiaVaccine}
         />
         <TextCardInformation
           icon={<GiLoveInjection size={25} />}
           text={t('felineInfectiousPeritonitisVaccine')}
-          informationPet={felineInfectiousPeritonitisVaccine}
+          value={felineInfectiousPeritonitisVaccine}
         />
       </div>
     </LayoutCards>
@@ -61,7 +62,7 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
 }
 
 MedicalInformationCat.propTypes = {
-  pet: PropTypes.node.isRequired,
+  pet: PropTypes.instanceOf(Pet).isRequired,
 }
 
 export default observer(MedicalInformationCat)

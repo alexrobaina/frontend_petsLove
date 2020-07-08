@@ -1,6 +1,11 @@
 import { observable } from 'mobx'
 import InputStore from 'stores/InputStore'
 
+const POSITION_DEFAULT = {
+  lat: -34.603722,
+  lng: -58.381592,
+}
+
 class RegisterUser {
   @observable terms = true
 
@@ -21,10 +26,22 @@ class RegisterUser {
       email: this.email.value,
       password: this.password.value,
       role: this.role.value,
+      location: this.setLocationFormat(),
       username: this.username.value,
       phone: this.phone.value,
       terms: this.terms,
     }
+  }
+
+  // ============================================
+  // Setters
+  // ============================================
+
+  setLocationFormat() {
+    if (this.location) {
+      return this.location.value
+    }
+    return POSITION_DEFAULT
   }
 }
 

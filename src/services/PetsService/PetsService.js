@@ -18,12 +18,6 @@ class PetsService {
     return axios.get(`${SERVER}/api/pet/listForUser/?_id=${id}`).then(response => response.data)
   }
 
-  loadPetsUserAdopt = id => {
-    return axios
-      .get(`${SERVER}/api/pet/listPetsUserAdopt/?_id=${id}`)
-      .then(response => response.data)
-  }
-
   loadPetsUserTransit = id => {
     return axios
       .get(`${SERVER}/api/pet/listPetsUserTransit/?_id=${id}`)

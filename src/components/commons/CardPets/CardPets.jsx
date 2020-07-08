@@ -39,11 +39,12 @@ const CardPets = ({ history, image, namePet, isAdopted }) => {
 CardPets.propTypes = {
   isAdopted: PropTypes.bool,
   history: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
   namePet: PropTypes.string.isRequired,
 }
 
 CardPets.defaultProps = {
+  image: '',
   isAdopted: false,
 }
 

@@ -11,24 +11,21 @@ import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
+import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
-import ButtonShare from '../../../components/commons/ButtonShare'
 
 const AdopterProfile = ({ user }) => {
-  const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
-  const { t } = useTranslation('profileUser')
   const param = useParams()
-  const { name, image, lat, lng, aboutUs } = user
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
+  const { t } = useTranslation('profileUser')
+  const searchPetsStore = useLocalStore(() => new SearchPetsStore(param.id))
 
   const onError = () => {
     setIsImageNotFound(false)
   }
-
-  useEffect(() => {
-    searchPetsStore.getPetForUser(param.id)
-  }, [])
+  
+  const { name, image, lat, lng, aboutUs } = user
 
   return (
     <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
