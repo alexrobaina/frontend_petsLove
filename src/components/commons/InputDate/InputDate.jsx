@@ -6,14 +6,14 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Label from '../Label/Input'
 import styles from './inputDate.scss'
 
-const CustomInput = ({ value, onClick }) => (
-  <button type="button" className={styles.input} onClick={onClick}>
-    {value}
-  </button>
-)
-
 const InputDate = ({ label, handleDateChange, value }) => {
   const [selectedDate, handleDate] = useState(new Date())
+
+  const CustomInput = React.forwardRef((props, ref) => (
+    <button ref={ref} type="button" className={styles.input} onClick={props.onClick}>
+      {props.value}
+    </button>
+  ))
 
   useEffect(() => {
     handleDateChange(selectedDate)
@@ -27,7 +27,7 @@ const InputDate = ({ label, handleDateChange, value }) => {
         showYearDropdown
         dateFormat="dd/MM/yyyy"
         selected={selectedDate}
-        customInput={<CustomInput />}
+        customInput={React.cloneElement(<CustomInput />)}
         onChange={date => handleDate(date)}
       />
     </div>

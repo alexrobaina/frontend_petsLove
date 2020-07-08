@@ -13,7 +13,7 @@ const ViewValue = ({ placeholder, value }) => {
 
 ViewValue.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default ViewValue

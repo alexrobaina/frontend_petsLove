@@ -24,7 +24,7 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
             <img
               onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={imagePreview.length > 0 && imagePreview[0].preview}
+              src={imagePreview.length > 0 && isImageNotFound ? imagePreview[0].preview : noImage}
               alt="user"
             />
           ) : (
@@ -48,13 +48,13 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
 ImageUserLog.propTypes = {
   isUserLogin: PropTypes.bool,
   isProfile: PropTypes.bool,
-  imagePreview: PropTypes.string,
+  imagePreview: PropTypes.arrayOf(PropTypes.string),
 }
 
 ImageUserLog.defaultProps = {
   isUserLogin: false,
   isProfile: false,
-  imagePreview: null,
+  imagePreview: [],
 }
 
 export default observer(ImageUserLog)

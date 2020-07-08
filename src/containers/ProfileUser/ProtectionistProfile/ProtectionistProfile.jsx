@@ -20,7 +20,6 @@ const ProtectionistProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const [swith, setSwith] = useState(false)
   const { t } = useTranslation('profileUser')
-  const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
 
   const handleAdopted = useCallback(() => {
     setSwith(true)
@@ -33,6 +32,8 @@ const ProtectionistProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
+  
+  const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
 
   return (
     <LayoutContainer>
@@ -84,7 +85,11 @@ const ProtectionistProfile = ({ user }) => {
 }
 
 ProtectionistProfile.propTypes = {
-  user: PropTypes.arrayOf([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
+  user: PropTypes.oneOfType([
+    PropTypes.number, 
+    PropTypes.string, 
+    PropTypes.object, 
+    PropTypes.bool]).isRequired,
 }
 
 export default observer(ProtectionistProfile)

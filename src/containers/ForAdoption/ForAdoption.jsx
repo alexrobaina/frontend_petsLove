@@ -15,7 +15,7 @@ const ForAdoption = ({ id }) => {
   useEffect(() => {
     searchPetsStore.getPetsForAdoption(id)
   }, [])
-
+  
   return (
     <>
       <LayoutContainerCardsPets>

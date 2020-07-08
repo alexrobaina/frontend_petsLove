@@ -11,6 +11,7 @@ import Loading from 'components/commons/Loading/Loading'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
+import RegisterStore from 'stores/RegisterStore'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
 import styles from './formRegister.scss'
 
@@ -207,7 +208,7 @@ const FormRegister = ({ registerStore }) => {
 }
 
 FormRegister.propTypes = {
-  registerStore: PropTypes.node.isRequired,
+  registerStore: PropTypes.instanceOf(RegisterStore).isRequired,
 }
 
 export default observer(FormRegister)

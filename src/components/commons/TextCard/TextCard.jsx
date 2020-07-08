@@ -24,7 +24,11 @@ const TextCard = ({ title, text }) => {
 
 TextCard.propTypes = {
   title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
+}
+
+TextCard.defaultProps = {
+  text: '',
 }
 
 export default observer(TextCard)

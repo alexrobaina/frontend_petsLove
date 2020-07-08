@@ -8,6 +8,11 @@ import Loading from 'components/commons/Loading'
 import CardGoogle from 'components/commons/CardGoogle'
 import styles from './googleMapsLocation.scss'
 
+const POSITION_DEFAULT = {
+  lat: -34.603722,
+  lng: -58.381592,
+}
+
 const GoogleMapsLocation = observer(
   ({ google, location, isProfilePet, users, isLocationPet, petLocation }) => {
     const [isImageNotFound, setIsImageNotFound] = useState(true)
@@ -35,21 +40,24 @@ const GoogleMapsLocation = observer(
     setTimeout(() => {
       setLoading(false)
     }, 1500)
-
+  
     if (isLoading) {
       return <Loading loadingRing />
     }
-
+    
     return (
       <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
         <Map
           google={google}
           zoom={15}
-          initialCenter={location}
+          initialCenter={location.lat ? location : POSITION_DEFAULT}
           className={styles.map}
-          center={location}
+          center={{
+            lat: parseFloat(location.lat),
+            lng: parseFloat(location.lng),
+          }}
         >
-          <Marker onClick={onMarkerUserClick} position={location} />
+          <Marker onClick={onMarkerUserClick} position={location.lat ? location : POSITION_DEFAULT} />
           {users &&
             users.map(user => {
               return (
@@ -94,8 +102,8 @@ const GoogleMapsLocation = observer(
 )
 
 GoogleMapsLocation.propTypes = {
-  location: PropTypes.string  ,
-  users: PropTypes.arrayOf([PropTypes.number, PropTypes.string, PropTypes.bool]),
+  location: PropTypes.oneOfType(PropTypes.object, PropTypes.string),
+  users: PropTypes.arrayOf(PropTypes.number, PropTypes.string, PropTypes.bool),
   showAddress: PropTypes.bool,
   isProfilePet: PropTypes.bool,
   card: PropTypes.node,
@@ -112,6 +120,10 @@ GoogleMapsLocation.defaultProps = {
   phone: 'No have phone',
   email: 'Not have email',
   title: '',
+  location: {
+    lat: -34.603722,
+    lng: -58.381592,
+  },
   showAddress: false,
   isProfilePet: false,
 }

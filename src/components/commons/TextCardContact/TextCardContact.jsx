@@ -24,7 +24,7 @@ const TextCardContact = ({ phone, email, title }) => {
 TextCardContact.propTypes = {
   title: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  phone: PropTypes.number.isRequired,
 }
 
 export default TextCardContact

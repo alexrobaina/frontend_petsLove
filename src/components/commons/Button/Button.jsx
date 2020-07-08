@@ -29,7 +29,7 @@ const Button = ({ handleClick, text, circle, bigButton, icon, disable, isTranspa
 
 Button.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   circle: PropTypes.bool,
   bigButton: PropTypes.bool,
   isTransparent: PropTypes.bool,
@@ -38,11 +38,12 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  text: '',
   icon: null,
   circle: false,
-  isTransparent: false,
-  bigButton: false,
   disable: false,
+  bigButton: false,
+  isTransparent: false,
 }
 
 export default Button

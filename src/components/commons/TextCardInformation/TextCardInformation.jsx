@@ -3,22 +3,19 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import styles from './textCardInformation.scss'
 
-const TextCardInformation = ({ text, informationPet, value, icon }) => {
+const TextCardInformation = ({ text, value, icon }) => {
   const { t } = useTranslation()
+
   return (
     <div className={styles.containerData}>
       <div className={styles.iconTitle}>
         <div className={styles.icon}>{icon}</div>
         <div className={styles.title}>{text}</div>
       </div>
-      {value === undefined && informationPet === true && <div className={styles.infoTitle}>Si</div>}
-      {value === undefined && informationPet === false && (
-        <div className={styles.infoTitle}>No</div>
-      )}
-      {value !== undefined && <div className={styles.infoTitle}>{value}</div>}
-      {value === undefined && informationPet === undefined && (
-        <div className={styles.infoTitle}>{t('thereIsNoInformation')}</div>
-      )}
+      {value === true && <div className={styles.infoTitle}>Si</div>}
+      {value === false && <div className={styles.infoTitle}>No</div>}
+      {value !== '' && typeof value !== 'boolean' && <div className={styles.infoTitle}>{value}</div>}
+      {value === '' && <div className={styles.infoTitle}>{t('thereIsNoInformation')}</div>}
     </div>
   )
 }
@@ -26,12 +23,11 @@ const TextCardInformation = ({ text, informationPet, value, icon }) => {
 TextCardInformation.propTypes = {
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  informationPet: PropTypes.bool,
+  value: PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
 }
 
 TextCardInformation.defaultProps = {
-  informationPet: false,
+  value: '',
 }
 
 export default TextCardInformation
