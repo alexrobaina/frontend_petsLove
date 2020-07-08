@@ -11,9 +11,9 @@ import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
+import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
-import ButtonShare from '../../../components/commons/ButtonShare'
 
 const AdopterProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
