@@ -223,7 +223,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.10.4",
     "components": "^0.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.1.0",
