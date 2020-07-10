@@ -26,7 +26,6 @@ class MedicalInformationDog {
     this._id = medicalDog._id
     this.lastVisitVet.setValue(medicalDog.lastVisitVet)
     this.vet.setValue(medicalDog.vet)
-    this.userVetId.setValue(medicalDog.vet._id)
     this.isCastrated = medicalDog.isCastrated
     this.rabiesVaccine = medicalDog.rabiesVaccine
     this.distemperVaccine = medicalDog.distemperVaccine
@@ -36,9 +35,14 @@ class MedicalInformationDog {
     this.parainfluenzaVaccine = medicalDog.parainfluenzaVaccine
     this.bordetellaBronchisepticVaccine = medicalDog.bordetellaBronchisepticVaccine
     this.notes.setValue(medicalDog.notes)
+
+    if (medicalDog.vet) {
+      this.userVetId.setValue(medicalDog.vet._id)
+    }
   }
 
   getJson() {
+    console.log('this._id', this._id)
     return {
       _id: this._id,
       vet: this.vet.value,
