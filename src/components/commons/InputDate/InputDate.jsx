@@ -8,17 +8,17 @@ import styles from './inputDate.scss'
 
 const InputDate = ({ label, handleDateChange, value }) => {
   const [selectedDate, handleDate] = useState(new Date())
-
+  
+  
   const CustomInput = React.forwardRef((props, ref) => (
     <button ref={ref} type="button" className={styles.input} onClick={props.onClick}>
       {props.value}
     </button>
   ))
-
   useEffect(() => {
     handleDateChange(selectedDate)
   }, [selectedDate])
-
+  
   return (
     <div className={styles.containerDate}>
       {label && <Label text={label} />}
