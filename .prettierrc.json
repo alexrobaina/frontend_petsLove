@@ -3,5 +3,41 @@
   "semi": false,
   "trailingComma": "es5",
   "singleQuote": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": "src/**/*.ts",
+      "options": {
+        "parser": "typescript",
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "./**/*.js",
+      "options": {
+        "parser": "babylon",
+        "singleQuote": false
+      }
+    },
+    {
+      "files": "src/**/*.{scss,css}",
+      "options": {
+        "parser": "postcss",
+        "singleQuote": false,
+        "semi": true
+      }
+    },
+    {
+      "files": "./**/*.json",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
 }
