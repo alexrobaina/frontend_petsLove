@@ -47,13 +47,15 @@ const LayoutProfilePets = ({ store }) => {
           </>
         )}
       </div>
-      {getHistory && <TextCard title={t('history')} text={getHistory} />}
-      {store.pet.medicalInformationDog.notes.value && (
-        <TextCard title={t('common:notes')} text={store.pet.medicalInformationDog.notes.value} />
-      )}
-      {store.pet.medicalInformationCat.notes.value && (
-        <TextCard title={t('common:notes')} text={store.pet.medicalInformationCat.notes.value} />
-      )}
+      <div className={styles.colums}>
+        {getHistory && <TextCard title={t('history')} text={getHistory} />}
+        {store.pet.medicalInformationDog.notes.value && (
+          <TextCard title={t('common:notes')} text={store.pet.medicalInformationDog.notes.value} />
+        )}
+        {store.pet.medicalInformationCat.notes.value && (
+          <TextCard title={t('common:notes')} text={store.pet.medicalInformationCat.notes.value} />
+        )}
+      </div>
     </>
   )
 }
