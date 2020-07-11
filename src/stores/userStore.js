@@ -1,6 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
 import imageCompression from 'browser-image-compression'
+import ImageService from "services/ImageService/ImageService";
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
@@ -17,6 +18,8 @@ class UserStore {
   constructor() {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
+    this.imageService = new ImageService()
+    
     this.user = new User()
   }
 
@@ -39,6 +42,7 @@ class UserStore {
   @observable isLoadingResize = false
   @observable passwordSuccess = false
   @observable confirmPassword = new InputStore()
+  @observable selectedImageUser = new InputStore()
 
   @action
   async saveUser() {
@@ -70,7 +74,28 @@ class UserStore {
       })
     }
   }
-
+  
+  @action
+  async saveImage() {
+    this.isLoading = true
+    const data = new FormData()
+    
+    try {
+      const response = await this.imageService.addImageUser(this.selectedImageUser.value)
+      
+      runInAction(() => {
+        console.log(response)
+        // this.saveUser()
+        
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
+    }
+  }
+  
   @action
   async loadUser(id) {
     this.isLoading = true
@@ -213,7 +238,7 @@ class UserStore {
 
   @action
   resize() {
-    this.compressImage(this.user.image.value)
+    this.compressImage(this.selectedImageUser.value)
   }
 
   @action
@@ -249,7 +274,7 @@ class UserStore {
 
   @action
   setImage(value) {
-    this.user.image.setValue(value)
+    this.selectedImageUser.setValue(value)
     this.resize()
   }
 

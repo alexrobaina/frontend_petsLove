@@ -38,6 +38,14 @@ class ImageService {
     formData.append('_id', idImage)
     return axios.post(`${SERVER}/api/pet/updateImage`, formData).then(response => response.data)
   }
+  
+  addImageUser = data => {
+    const formData = new FormData()
+  
+    formData.append('image', data)
+    
+    return axios.post(`${SERVER}/api/pet/imageUser`, formData).then(response => response.data)
+  }
 }
 
 export default ImageService
