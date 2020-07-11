@@ -14,10 +14,12 @@ const PASSWORD_MATCH = 'The password need match'
 const REQUERID = 'The password is requerid'
 
 class UserStore {
-  constructor() {
+  constructor(id) {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
     this.user = new User()
+    
+    this.loadUser(id)
   }
 
   @observable phone = ''
@@ -44,21 +46,42 @@ class UserStore {
   async saveUser() {
     this.isLoading = true
     const data = new FormData()
-
-    Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      if (key === 'password') {
-        if (value !== '') {
-          data.append(key, value)
-        }
-      }
-      if (key !== 'password') {
-        data.append(key, value)
-      }
-    })
+    //
+    // Object.entries(this.user.getJson()).forEach(([key, value]) => {
+    //   if (key === 'password') {
+    //     if (value !== '') {
+    //       data.append(key, value)
+    //     }
+    //   }
+    //   if (key !== 'password') {
+    //     data.append(key, value)
+    //   }
+    // })
 
     try {
       await this.editUserServices.userUpdate(data)
 
+      runInAction(() => {
+        this.isLoading = false
+        window.location.reload()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
+    }
+  }
+  
+  
+  @action
+  async saveImage() {
+    this.isLoading = true
+    const data = new FormData()
+    
+    try {
+      await this.editUserServices.userUpdate(data)
+      
       runInAction(() => {
         this.isLoading = false
         window.location.reload()

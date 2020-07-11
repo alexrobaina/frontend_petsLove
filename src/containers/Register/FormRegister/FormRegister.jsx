@@ -11,6 +11,7 @@ import Loading from 'components/commons/Loading/Loading'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
+import { ADOPTER, PROTECTIONIST, TRANSIT_USER, VET } from 'config/Roles'
 import RegisterStore from 'stores/RegisterStore'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
 import styles from './formRegister.scss'
@@ -162,10 +163,10 @@ const FormRegister = ({ registerStore }) => {
                     handleChange={handleChangeRole}
                     placeholder={t('register.selectTypeUser')}
                     options={[
-                      { value: 'adopter', label: t('register.typeUserAdopter') },
-                      { value: 'protectionist', label: t('register.typeUserProtectionist') },
-                      { value: 'transitUser', label: t('register.typeUserTransit') },
-                      { value: 'vet', label: t('register.typeUserVet') },
+                      { value: ADOPTER, label: t('register.typeUserAdopter') },
+                      { value: PROTECTIONIST, label: t('register.typeUserProtectionist') },
+                      { value: TRANSIT_USER, label: t('register.typeUserTransit') },
+                      { value: VET, label: t('register.typeUserVet') },
                     ]}
                   />
                 </div>
@@ -174,7 +175,7 @@ const FormRegister = ({ registerStore }) => {
                     name="phone"
                     country="ar"
                     onChange={phone => handleChangePhone(phone)}
-                    inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a'  }}
+                    inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a' }}
                   />
                 </div>
                 <div className={styles.buttonRegister}>

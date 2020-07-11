@@ -28,13 +28,11 @@ const SearchVolunteers = () => {
 
     setTimeout(() => {
       setSetLoadint(false)
-    }, 1500)
+    }, 500)
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
     }
-
-    volunteersStore.searchVolunteers()
   }, [])
 
   if (loading) {
@@ -55,14 +53,9 @@ const SearchVolunteers = () => {
             handleChangeAddress={handleChangeAddress}
           />
           {stateAddress.lat && (
-            <div className={styles.containerMap}>
-              <LayoutTrantitions>
-                <GoogleMapsLocation
-                  location={stateAddress}
-                  users={volunteersStore.volunteers}
-                />
-              </LayoutTrantitions>
-            </div>
+            <LayoutTrantitions>
+              <GoogleMapsLocation location={stateAddress} users={volunteersStore.volunteers} />
+            </LayoutTrantitions>
           )}
         </div>
       </LayoutContainer>
