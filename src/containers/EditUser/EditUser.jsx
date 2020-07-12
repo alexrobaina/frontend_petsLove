@@ -122,7 +122,7 @@ const EditUser = () => {
     location,
     password,
   } = userStore.user
-  
+
   return (
     <LayoutContainer title={t('title')}>
       <LayoutForm>
@@ -136,7 +136,7 @@ const EditUser = () => {
                 isProfile
                 imgUser={image}
                 imagePreview={userStore.newPreviewsImage}
-                isUserLogin={rootStore.authStore.isLogin}
+                isUserLogin={authStore.isLogin}
               />
             </div>
           )}

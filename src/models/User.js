@@ -34,7 +34,7 @@ class User {
     this._id = user._id
     this.image.setValue(user.image)
     this.name.setValue(user.name)
-    this.firstname.setValue(user.firstname) 
+    this.firstname.setValue(user.firstname)
     this.lastname.setValue(user.lastname)
     this.role.setValue(user.role)
     this.email.setValue(user.email)
@@ -50,7 +50,7 @@ class User {
   }
 
   getJson() {
-    let userEntity = {
+    const userEntity = {
       _id: this._id,
       image: this.getImageId(),
       name: this.name.value,

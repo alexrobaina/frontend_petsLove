@@ -51,7 +51,6 @@ class ImageService {
     const formData = new FormData()
 
     if (data) {
-      alert('123')
       formData.append('image', data)
     }
 

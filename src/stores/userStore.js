@@ -52,7 +52,7 @@ class UserStore {
 
       runInAction(() => {
         this.isLoading = false
-        window.location.reload()
+        // window.location.reload()
       })
     } catch (e) {
       runInAction(() => {
@@ -67,15 +67,17 @@ class UserStore {
     this.isLoading = true
 
     try {
-      console.log(this.user.getImageId())
       if (this.user.getImageId()) {
-        const response = await this.imageService.updateImageUser(this.user.getImageId(), this.selectedImageUser.value)
+        await this.imageService.updateImageUser(
+          this.user.getImageId(),
+          this.selectedImageUser.value
+        )
       } else {
         const response = await this.imageService.addImageUser(this.selectedImageUser.value)
+        this.user.image.setValue(response._id)
       }
 
       runInAction(() => {
-        this.user.image.setValue(response._id)
         this.saveUser()
       })
     } catch (e) {
