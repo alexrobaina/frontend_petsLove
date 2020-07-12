@@ -308,6 +308,9 @@ class Pet {
   }
 
   get getImagePreviews() {
+    if (this.image.value === null) {
+      return []
+    }
     return this.image.value.filenames
   }
 
@@ -320,7 +323,10 @@ class Pet {
   }
 
   get getImageId() {
-    return this.image.value._id
+    if (this.image.value) {
+      return this.image.value._id
+    }
+    return ''
   }
 }
 

@@ -94,7 +94,7 @@ const EditUser = () => {
   }, [])
 
   const handleSave = useCallback(() => {
-    userStore.saveUser(authStore.user._id)
+    userStore.save()
   }, [])
 
   useEffect(() => {

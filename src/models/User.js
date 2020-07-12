@@ -21,6 +21,7 @@ class User {
     this.email = new InputStore()
     this.phone = new InputStore()
     this.aboutUs = new InputStore()
+    this.imageId = new InputStore()
     this.requirementsToAdopt = new InputStore()
     this.lat = new InputStore()
     this.lng = new InputStore()
@@ -33,8 +34,8 @@ class User {
     this._id = user._id
     this.image.setValue(user.image)
     this.name.setValue(user.name)
-    this.firstname = user.firstname
-    this.lastname = user.lastname
+    this.firstname.setValue(user.firstname) 
+    this.lastname.setValue(user.lastname)
     this.role.setValue(user.role)
     this.email.setValue(user.email)
     this.phone.setValue(user.phone)
@@ -43,14 +44,15 @@ class User {
     this.textAddress.setValue(user.textAddress)
     this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.username.setValue(user.username)
+    this.setImageId(user.image._id)
     this.terms = user.terms
     this.canTransit = user.canTransit
   }
 
   getJson() {
-    return {
+    let userEntity = {
       _id: this._id,
-      image: this.image.value,
+      image: this.getImageId(),
       name: this.name.value,
       firstname: this.firstname.value,
       lastname: this.lastname.value,
@@ -61,12 +63,17 @@ class User {
       location: this.location.value,
       username: this.username.value,
       textAddress: this.textAddress.value,
-      password: this.password.value,
       requirementsToAdopt: this.requirementsToAdopt.value,
       canTransit: this.canTransit,
       state: this.state,
       terms: this.terms,
     }
+
+    if (this.password.value !== '') {
+      userEntity.password = this.password.value
+    }
+
+    return userEntity
   }
 
   // ============================================
@@ -77,9 +84,28 @@ class User {
     this.location.setValue(address)
   }
 
+  setImage(idImage) {
+    this.image.setValue(idImage)
+  }
+
+  setImageId(idImage) {
+    this.imageId.setValue(idImage)
+  }
+
   // ============================================
   // Getters
   // ============================================
+
+  getImageId() {
+    if (this.imageId.value) {
+      return this.imageId.value
+    }
+    return null
+  }
+
+  getUserId() {
+    return this.user._id
+  }
 
   getRole() {
     if (this.role.value === 'transitUser') {

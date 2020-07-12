@@ -1,7 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
 import imageCompression from 'browser-image-compression'
-import ImageService from "services/ImageService/ImageService";
+import ImageService from 'services/ImageService/ImageService'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
@@ -19,7 +19,7 @@ class UserStore {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
     this.imageService = new ImageService()
-    
+
     this.user = new User()
   }
 
@@ -47,21 +47,8 @@ class UserStore {
   @action
   async saveUser() {
     this.isLoading = true
-    const data = new FormData()
-
-    Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      if (key === 'password') {
-        if (value !== '') {
-          data.append(key, value)
-        }
-      }
-      if (key !== 'password') {
-        data.append(key, value)
-      }
-    })
-
     try {
-      await this.editUserServices.userUpdate(data)
+      await this.editUserServices.userUpdate(this.user.getJson())
 
       runInAction(() => {
         this.isLoading = false
@@ -74,19 +61,22 @@ class UserStore {
       })
     }
   }
-  
+
   @action
-  async saveImage() {
+  async save() {
     this.isLoading = true
-    const data = new FormData()
-    
+
     try {
-      const response = await this.imageService.addImageUser(this.selectedImageUser.value)
-      
+      console.log(this.user.getImageId())
+      if (this.user.getImageId()) {
+        const response = await this.imageService.updateImageUser(this.user.getImageId(), this.selectedImageUser.value)
+      } else {
+        const response = await this.imageService.addImageUser(this.selectedImageUser.value)
+      }
+
       runInAction(() => {
-        console.log(response)
-        // this.saveUser()
-        
+        this.user.image.setValue(response._id)
+        this.saveUser()
       })
     } catch (e) {
       runInAction(() => {
@@ -95,7 +85,7 @@ class UserStore {
       })
     }
   }
-  
+
   @action
   async loadUser(id) {
     this.isLoading = true

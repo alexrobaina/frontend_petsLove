@@ -19,11 +19,11 @@ const LayoutProfilePets = ({ store }) => {
   const { getCategory, getHistory, getName, images, foundLocation, textAddress } = store.pet
 
   const { phone } = store
-  console.log(store.pet.medicalInformationDog.notes.value)
+
   return (
     <>
       <div className={styles.header}>
-        <Title title={t('title', { getName })} />
+        <Title title={t('title', { name: getName })} />
         <ButtonShare canEdit route="edit-pet" phone={phone} />
       </div>
       <div className={styles.colums}>
