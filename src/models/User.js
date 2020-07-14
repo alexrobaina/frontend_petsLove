@@ -97,10 +97,7 @@ class User {
   // ============================================
 
   getImageId() {
-    if (this.imageId.value) {
-      return this.imageId.value
-    }
-    return null
+    return this.imageId.value
   }
 
   getUserId() {
