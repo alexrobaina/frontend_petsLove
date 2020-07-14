@@ -74,7 +74,8 @@ class UserStore {
         )
       } else {
         const response = await this.imageService.addImageUser(this.selectedImageUser.value)
-        this.user.image.setValue(response._id)
+
+        this.user.setImageId(response._id)
       }
 
       runInAction(() => {
