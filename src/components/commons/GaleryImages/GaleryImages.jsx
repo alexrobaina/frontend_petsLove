@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { MdPets } from 'react-icons/md'
-import { AWS_STORAGE, SERVER } from "services/config";
+import { AWS_STORAGE } from "services/config";
 import PetIdStore from 'stores/PetIdStore'
 import Loading from 'components/commons/Loading'
 import noImage from './noImage.svg'

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import c from 'classnames'
-import { AWS_STORAGE, SERVER } from "services/config";
+import { AWS_STORAGE } from "services/config";
 import { useParams } from 'react-router'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
