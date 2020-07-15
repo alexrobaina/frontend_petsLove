@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { AWS_STORAGE, SERVER } from "services/config";
+import { AWS_STORAGE } from "services/config";
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
 import TextCard from 'components/commons/TextCard'

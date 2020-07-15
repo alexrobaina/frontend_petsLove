@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import InputUploadImageStore from 'stores/InputUploadImageStore'
 import { MdCancel, MdUpdate } from 'react-icons/md'
-import { AWS_STORAGE } from "services/config";
+import { AWS_STORAGE } from 'services/config'
 import noImage from 'components/commons/GaleryImages/noImage.svg'
 import styles from './inputUploadImage.scss'
 
@@ -55,7 +55,8 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
                 <img
                   alt="pets"
                   className={styles.imagePreview}
-                  src={image ? `${AWS_STORAGE}/${image}` : noImage} />
+                  src={image ? `${AWS_STORAGE}/${image}` : noImage}
+                />
                 <div className={styles.middle}>
                   <div onClick={() => removePreviewImage(image)} className={styles.containerIcon}>
                     <MdCancel className={styles.iconImage} size={20} />
