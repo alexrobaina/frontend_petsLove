@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { observer } from "mobx-react";
 import LazyLoad from 'react-lazyload'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
@@ -27,7 +28,7 @@ const ListPets = ({ pets, isUserAdopt }) => {
                 <LazyLoad height={50} offsetVertical={50}>
                   <div onClick={() => goToPet(pet._id)}>
                     <CardPets
-                      image={pet.image}
+                      image={pet.image.filenames[0]}
                       namePet={pet.name}
                       history={pet.history}
                       onClick={() => goToPet(pet._id)}
@@ -56,4 +57,4 @@ ListPets.defaultProps = {
   isUserAdopt: false,
 }
 
-export default ListPets
+export default observer(ListPets)

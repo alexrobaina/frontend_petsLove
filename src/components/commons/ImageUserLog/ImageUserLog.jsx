@@ -35,7 +35,7 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
               src={
                 authStore.user.image && isImageNotFound
-                  ? `${AWS_STORAGE}/${image.filenames[0]}`
+                  ? `${AWS_STORAGE}/${image.filenames}`
                   : noImage
               }
               alt="user"

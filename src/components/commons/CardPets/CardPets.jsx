@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
-import { SERVER } from 'services/config'
+import { AWS_STORAGE } from 'services/config'
 import LayoutCards from 'components/commons/LayoutCards'
 import noImage from './noImage.svg'
 import styles from './cardPets.scss'
@@ -22,7 +22,7 @@ const CardPets = ({ history, image, namePet, isAdopted }) => {
           <img
             onError={onError}
             className={styles.imgCard}
-            src={image && isImageNotFound ? `${SERVER}/${image.filenames[0]}` : noImage}
+            src={image && isImageNotFound ? `${AWS_STORAGE}/${image}` : noImage}
             alt="photos-pets"
           />
           {isAdopted && <Chips text="Adopted" isAdopted={isAdopted} />}
