@@ -17,6 +17,7 @@ import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
 import styles from './createPet.scss'
+import Loading from '../../components/commons/Loading'
 
 const CreatePet = ({ isEdit }) => {
   const createPetStore = useLocalStore(() => new CreatePetStore())
@@ -64,6 +65,10 @@ const CreatePet = ({ isEdit }) => {
     }
     createPetStore.pet.setIdUserCreator(authStore.user._id)
   }, [])
+
+  if (createPetStore.isLoading) {
+    return <Loading loadingRing />
+  }
 
   function getStepForm() {
     if (step === 1) {
