@@ -16,7 +16,14 @@ import styles from './layoutProfilePets.scss'
 const LayoutProfilePets = ({ store }) => {
   const { t } = useTranslation('profilePets')
 
-  const { getCategory, getHistory, getName, images, foundLocation, textAddress } = store.pet
+  const {
+    getCategory,
+    getHistory,
+    getName,
+    foundLocation,
+    textAddress,
+    getImagePreviews,
+  } = store.pet
 
   const { phone } = store
 
@@ -27,7 +34,7 @@ const LayoutProfilePets = ({ store }) => {
         <ButtonShare canEdit route="edit-pet" phone={phone} />
       </div>
       <div className={styles.colums}>
-        <ImageProfilePet images={images} />
+        <ImageProfilePet image={getImagePreviews} />
         <GoogleMapsLocation
           isProfilePet
           location={foundLocation.value}

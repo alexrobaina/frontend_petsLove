@@ -32,7 +32,7 @@ const TransitUserProfile = ({ user }) => {
         <img
           onError={onError}
           className={styles.userImage}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation

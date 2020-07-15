@@ -16,7 +16,7 @@ const ProfilePets = () => {
   useEffect(() => {
     petIdStore.getPetId(id)
   }, [])
-
+  
   return (
     <LayoutContainer>
       <Link

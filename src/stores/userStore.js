@@ -52,7 +52,7 @@ class UserStore {
 
       runInAction(() => {
         this.isLoading = false
-        // window.location.reload()
+        window.location.reload()
       })
     } catch (e) {
       runInAction(() => {
