@@ -1,17 +1,22 @@
 import { observable, action, runInAction } from 'mobx'
-import AuthService from "services/AuthService";
 import { TRANSIT_USER } from 'config/roles'
+import AuthService from "services/AuthService";
 
 class VolunteersStore {
   constructor() {
     this.authService = new AuthService()
     
-    this.searchVolunteers()
+    this.init()
   }
 
   @observable volunteers = []
   @observable arrayLocationVolunteers = []
   @observable isError = false
+
+  @action
+  init() {
+    this.searchVolunteers()
+  }
 
   @action
   async searchVolunteers() {
@@ -22,7 +27,6 @@ class VolunteersStore {
 
       runInAction(() => {
         this.volunteers = response
-        console.log(response)
         this.setArrayLocationVolunteers(response)
       })
     } catch (e) {

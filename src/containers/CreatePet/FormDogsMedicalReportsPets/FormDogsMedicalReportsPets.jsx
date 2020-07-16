@@ -58,10 +58,6 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
     createPetStore.pet.medicalInformationDog.setNotes(e.target.value)
   }, [])
 
-  useEffect(() => {
-    createPetStore.listUserVet()
-  }, [])
-
   const {
     getLastVisitVet,
     getIsCastrated,

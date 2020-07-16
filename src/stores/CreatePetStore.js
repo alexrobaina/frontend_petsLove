@@ -16,6 +16,8 @@ class CreatePetStore {
     this.createPetServices = new CreatePetServices()
     this.authService = new AuthService()
     this.utils = new Utils()
+
+    this.init()
   }
 
   @observable vets = []
@@ -33,6 +35,13 @@ class CreatePetStore {
   @observable optionsUserAdopter = []
   @observable optionsUserTransit = []
   @observable location = { lat: -34.603722, lng: -58.381592 }
+
+  @action
+  init() {
+    this.listUserAdopter()
+    this.listUserTransit()
+    this.listUserVet()
+  }
 
   @action
   async savePet(id) {
@@ -67,8 +76,7 @@ class CreatePetStore {
 
       runInAction(() => {
         this.savePet(response._id)
-
-        this.isLoading = false
+        
         this.requestSuccess = true
       })
     } catch (e) {
@@ -109,8 +117,8 @@ class CreatePetStore {
       const response = await this.createPetServices.update(this.pet.getJson())
 
       runInAction(() => {
-        this.isLoading = false
         this.idPet = response._id
+        this.isLoading = false
         this.requestSuccess = true
       })
     } catch (e) {
@@ -130,6 +138,7 @@ class CreatePetStore {
         this.updatePet()
       })
     } catch (e) {
+      this.isLoading = false
       runInAction(() => {
         console.log(e)
       })
