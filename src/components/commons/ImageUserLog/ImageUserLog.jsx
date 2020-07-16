@@ -12,6 +12,10 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
   const { image } = authStore.user
 
   return (
@@ -20,14 +24,20 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
         <>
           {imagePreview.length > 0 ? (
             <img
+              onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={imagePreview.length > 0 ? imagePreview[0].preview : noImage}
+              src={imagePreview.length > 0 && isImageNotFound ? imagePreview[0].preview : noImage}
               alt="user"
             />
           ) : (
             <img
+              onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={`${AWS_STORAGE}/${image.filenames[0]}`}
+              src={
+                authStore.user.image && isImageNotFound
+                  ? `${AWS_STORAGE}/${image.filenames}`
+                  : noImage
+              }
               alt="user"
             />
           )}
