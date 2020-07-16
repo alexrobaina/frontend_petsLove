@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx'
 import AuthService from "services/AuthService";
-import { TRANSIT_USER } from 'config/Roles'
+import { TRANSIT_USER } from 'config/roles'
 
 class VolunteersStore {
   constructor() {
