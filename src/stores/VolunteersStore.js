@@ -1,9 +1,12 @@
 import { observable, action, runInAction } from 'mobx'
-import VolunteersService from 'services/VolunteersService/VolunteersService'
+import { TRANSIT_USER } from 'config/roles'
+import AuthService from "services/AuthService";
 
 class VolunteersStore {
   constructor() {
-    this.volunteersService = new VolunteersService()
+    this.authService = new AuthService()
+    
+    this.init()
   }
 
   @observable volunteers = []
@@ -11,11 +14,16 @@ class VolunteersStore {
   @observable isError = false
 
   @action
+  init() {
+    this.searchVolunteers()
+  }
+
+  @action
   async searchVolunteers() {
     this.isError = false
 
     try {
-      const response = await this.volunteersService.getVolunteers()
+      const response = await this.authService.getUserForRole(TRANSIT_USER)
 
       runInAction(() => {
         this.volunteers = response

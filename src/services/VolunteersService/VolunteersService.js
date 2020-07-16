@@ -2,9 +2,9 @@ import axios from 'axios'
 import { SERVER } from 'services/config'
 
 class VolunteersService {
-  getVolunteers = () => {
+  getVolunteers = role => {
     return axios
-      .post(`${SERVER}/api/user/listUserRol`, { rol: 'transitUser' })
+      .get(`${SERVER}/api/user/listUsersRole?role=${role}`)
       .then(response => response.data)
   }
 }

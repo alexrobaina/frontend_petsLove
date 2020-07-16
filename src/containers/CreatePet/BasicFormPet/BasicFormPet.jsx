@@ -81,11 +81,6 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     createPetStore.pet.setUrgent()
   }, [])
 
-  useEffect(() => {
-    createPetStore.listUserAdopter()
-    createPetStore.listUserTransit()
-  }, [])
-
   const {
     getLost,
     getName,

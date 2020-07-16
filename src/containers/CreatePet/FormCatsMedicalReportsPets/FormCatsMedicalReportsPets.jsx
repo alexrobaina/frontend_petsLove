@@ -50,10 +50,6 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
     createPetStore.pet.medicalInformationCat.setNotes(e.target.value)
   }, [])
 
-  useEffect(() => {
-    createPetStore.listUserVet()
-  }, [])
-
   const {
     getLastVisitVet,
     vet,

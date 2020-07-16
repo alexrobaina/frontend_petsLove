@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import c from 'classnames'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import Loading from 'components/commons/Loading'
+import { AWS_STORAGE } from 'services/config'
 import CardGoogle from 'components/commons/CardGoogle'
 import styles from './googleMapsLocation.scss'
 
@@ -40,11 +41,11 @@ const GoogleMapsLocation = observer(
     setTimeout(() => {
       setLoading(false)
     }, 1500)
-  
+
     if (isLoading) {
       return <Loading loadingRing />
     }
-    
+
     return (
       <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
         <Map
@@ -57,7 +58,10 @@ const GoogleMapsLocation = observer(
             lng: parseFloat(location.lng),
           }}
         >
-          <Marker onClick={onMarkerUserClick} position={location.lat ? location : POSITION_DEFAULT} />
+          <Marker
+            onClick={onMarkerUserClick}
+            position={location.lat ? location : POSITION_DEFAULT}
+          />
           {users &&
             users.map(user => {
               return (
@@ -66,10 +70,10 @@ const GoogleMapsLocation = observer(
                   onError={onError}
                   key={user._id}
                   onClick={onMarkerClick}
-                  position={{ lat: user.lat, lng: user.lng }}
+                  position={user.location}
                   name={user.name}
                   email={user.email}
-                  image={user.image}
+                  image={user.image.filenames[0]}
                   id={user._id}
                 />
               )

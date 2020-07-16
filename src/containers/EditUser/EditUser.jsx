@@ -27,7 +27,7 @@ const EditUser = () => {
   const { id } = useParams()
   const { t } = useTranslation('editUser')
   const fileUpload = useRef()
-  const userStore = useLocalStore(() => new UserStore())
+  const userStore = useLocalStore(() => new UserStore(id))
 
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -95,10 +95,6 @@ const EditUser = () => {
 
   const handleSave = useCallback(() => {
     userStore.save()
-  }, [])
-
-  useEffect(() => {
-    userStore.loadUser(id)
   }, [])
 
   if (userStore.isLoading) {

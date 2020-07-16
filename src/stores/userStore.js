@@ -15,12 +15,14 @@ const PASSWORD_MATCH = 'The password need match'
 const REQUERID = 'The password is requerid'
 
 class UserStore {
-  constructor() {
+  constructor(id) {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
     this.imageService = new ImageService()
 
     this.user = new User()
+    
+    this.loadUser(id)
   }
 
   @observable phone = ''
@@ -50,6 +52,27 @@ class UserStore {
     try {
       await this.editUserServices.userUpdate(this.user.getJson())
 
+      runInAction(() => {
+        this.isLoading = false
+        window.location.reload()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
+    }
+  }
+  
+  
+  @action
+  async saveImage() {
+    this.isLoading = true
+    const data = new FormData()
+    
+    try {
+      await this.editUserServices.userUpdate(data)
+      
       runInAction(() => {
         this.isLoading = false
         window.location.reload()
