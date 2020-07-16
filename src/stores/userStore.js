@@ -46,17 +46,17 @@ class UserStore {
   async saveUser() {
     this.isLoading = true
     const data = new FormData()
-    //
-    // Object.entries(this.user.getJson()).forEach(([key, value]) => {
-    //   if (key === 'password') {
-    //     if (value !== '') {
-    //       data.append(key, value)
-    //     }
-    //   }
-    //   if (key !== 'password') {
-    //     data.append(key, value)
-    //   }
-    // })
+
+    Object.entries(this.user.getJson()).forEach(([key, value]) => {
+      if (key === 'password') {
+        if (value !== '') {
+          data.append(key, value)
+        }
+      }
+      if (key !== 'password') {
+        data.append(key, value)
+      }
+    })
 
     try {
       await this.editUserServices.userUpdate(data)
