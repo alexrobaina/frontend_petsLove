@@ -2,15 +2,15 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { SERVER } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
 import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import ButtonShare from 'components/commons/ButtonShare'
+import { AWS_STORAGE } from 'services/config'
 import Title from 'components/commons/Title'
 import noImage from '../noImage.svg'
 import styles from './transitUserProfile.scss'
-import ButtonShare from '../../../components/commons/ButtonShare'
 
 const TransitUserProfile = ({ user }) => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
@@ -32,7 +32,7 @@ const TransitUserProfile = ({ user }) => {
         <img
           onError={onError}
           className={styles.userImage}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation

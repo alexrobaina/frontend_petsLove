@@ -1,6 +1,7 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
 import imageCompression from 'browser-image-compression'
+import ImageService from 'services/ImageService/ImageService'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
 import InputStore from './InputStore'
@@ -17,6 +18,8 @@ class UserStore {
   constructor(id) {
     this.editUserServices = new EditUserServices()
     this.setLocalStorage = new SetLocalStorage()
+    this.imageService = new ImageService()
+
     this.user = new User()
     
     this.loadUser(id)
@@ -41,25 +44,13 @@ class UserStore {
   @observable isLoadingResize = false
   @observable passwordSuccess = false
   @observable confirmPassword = new InputStore()
+  @observable selectedImageUser = new InputStore()
 
   @action
   async saveUser() {
     this.isLoading = true
-    const data = new FormData()
-
-    Object.entries(this.user.getJson()).forEach(([key, value]) => {
-      if (key === 'password') {
-        if (value !== '') {
-          data.append(key, value)
-        }
-      }
-      if (key !== 'password') {
-        data.append(key, value)
-      }
-    })
-
     try {
-      await this.editUserServices.userUpdate(data)
+      await this.editUserServices.userUpdate(this.user.getJson())
 
       runInAction(() => {
         this.isLoading = false
@@ -85,6 +76,33 @@ class UserStore {
       runInAction(() => {
         this.isLoading = false
         window.location.reload()
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        console.log(e)
+      })
+    }
+  }
+
+  @action
+  async save() {
+    this.isLoading = true
+
+    try {
+      if (this.user.getImageId()) {
+        await this.imageService.updateImageUser(
+          this.user.getImageId(),
+          this.selectedImageUser.value
+        )
+      } else {
+        const response = await this.imageService.addImageUser(this.selectedImageUser.value)
+
+        this.user.setImageId(response._id)
+      }
+
+      runInAction(() => {
+        this.saveUser()
       })
     } catch (e) {
       runInAction(() => {
@@ -236,7 +254,7 @@ class UserStore {
 
   @action
   resize() {
-    this.compressImage(this.user.image.value)
+    this.compressImage(this.selectedImageUser.value)
   }
 
   @action
@@ -272,7 +290,7 @@ class UserStore {
 
   @action
   setImage(value) {
-    this.user.image.setValue(value)
+    this.selectedImageUser.setValue(value)
     this.resize()
   }
 

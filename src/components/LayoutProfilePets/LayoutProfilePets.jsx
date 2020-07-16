@@ -16,18 +16,25 @@ import styles from './layoutProfilePets.scss'
 const LayoutProfilePets = ({ store }) => {
   const { t } = useTranslation('profilePets')
 
-  const { getCategory, getHistory, getName, images, foundLocation, textAddress } = store.pet
+  const {
+    getCategory,
+    getHistory,
+    getName,
+    foundLocation,
+    textAddress,
+    getImagePreviews,
+  } = store.pet
 
   const { phone } = store
-  console.log(store.pet.medicalInformationDog.notes.value)
+
   return (
     <>
       <div className={styles.header}>
-        <Title title={t('title', { getName })} />
+        <Title title={t('title', { name: getName })} />
         <ButtonShare canEdit route="edit-pet" phone={phone} />
       </div>
       <div className={styles.colums}>
-        <ImageProfilePet images={images} />
+        <ImageProfilePet image={getImagePreviews} />
         <GoogleMapsLocation
           isProfilePet
           location={foundLocation.value}

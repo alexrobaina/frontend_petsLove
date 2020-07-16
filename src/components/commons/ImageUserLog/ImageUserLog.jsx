@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import { SERVER } from 'services/config'
+import { AWS_STORAGE } from 'services/config'
 import UserContext from 'Context/UserContext'
 import noImage from './noimg.png'
 import styles from './imageUserLog.scss'
@@ -16,11 +16,13 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
     setIsImageNotFound(false)
   }, [])
 
+  const { image } = authStore.user
+
   return (
     <div onMouseUp={handleToggleMenu}>
       {isUserLogin && (
         <>
-          {imagePreview ? (
+          {imagePreview.length > 0 ? (
             <img
               onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
@@ -33,7 +35,7 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
               src={
                 authStore.user.image && isImageNotFound
-                  ? `${SERVER}/${authStore.user.image}`
+                  ? `${AWS_STORAGE}/${image.filenames}`
                   : noImage
               }
               alt="user"

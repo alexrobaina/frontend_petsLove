@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { SERVER } from 'services/config'
+import { AWS_STORAGE } from "services/config";
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
 import TextCard from 'components/commons/TextCard'
@@ -48,7 +48,7 @@ const ProtectionistProfile = ({ user }) => {
         <img
           onError={onError}
           className={styles.userImage}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation

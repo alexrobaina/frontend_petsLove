@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import c from 'classnames'
-import { SERVER } from 'services/config'
+import { AWS_STORAGE } from "services/config";
 import { useParams } from 'react-router'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
@@ -37,7 +37,7 @@ const AdopterProfile = ({ user }) => {
         <img
           onError={onError}
           className={styles.userImage}
-          src={image && isImageNotFound ? `${SERVER}/${image}` : noImage}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
           alt="photos-users"
         />
         <GoogleMapsLocation
