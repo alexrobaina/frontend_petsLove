@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'

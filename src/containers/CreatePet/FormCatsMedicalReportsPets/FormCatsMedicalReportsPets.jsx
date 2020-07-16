@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import moment from 'moment'

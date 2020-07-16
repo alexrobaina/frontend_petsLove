@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import PhoneInput from 'react-phone-input-2'

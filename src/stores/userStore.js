@@ -21,7 +21,7 @@ class UserStore {
     this.imageService = new ImageService()
 
     this.user = new User()
-    
+
     this.loadUser(id)
   }
 
@@ -63,16 +63,15 @@ class UserStore {
       })
     }
   }
-  
-  
+
   @action
   async saveImage() {
     this.isLoading = true
     const data = new FormData()
-    
+
     try {
       await this.editUserServices.userUpdate(data)
-      
+
       runInAction(() => {
         this.isLoading = false
         window.location.reload()
