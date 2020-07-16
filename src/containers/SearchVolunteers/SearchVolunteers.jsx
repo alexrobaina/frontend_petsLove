@@ -54,9 +54,8 @@ const SearchVolunteers = () => {
           />
           {stateAddress.lat && (
             <LayoutTrantitions>
-                <GoogleMapsLocation location={stateAddress} users={volunteersStore.volunteers} />
-              </LayoutTrantitions>
-            
+              <GoogleMapsLocation location={stateAddress} users={volunteersStore.volunteers} />
+            </LayoutTrantitions>
           )}
         </div>
       </LayoutContainer>

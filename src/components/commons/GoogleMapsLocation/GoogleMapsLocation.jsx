@@ -5,7 +5,6 @@ import { observer } from 'mobx-react'
 import c from 'classnames'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import Loading from 'components/commons/Loading'
-import { AWS_STORAGE } from 'services/config'
 import CardGoogle from 'components/commons/CardGoogle'
 import styles from './googleMapsLocation.scss'
 

@@ -6,7 +6,6 @@ import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
 
 const CardGoogle = ({ image, name, email, textButton, id }) => {
-  const [isImageNotFound, setIsImageNotFound] = useState(true)
 
   return (
     <div className={styles.container}>
