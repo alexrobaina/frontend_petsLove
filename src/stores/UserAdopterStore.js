@@ -1,9 +1,5 @@
 import { observable, action, runInAction } from 'mobx'
 import UserAdopterService from 'services/UserAdopterService'
-import PetsService from 'services/PetsService'
-import InputStore from './InputStore'
-
-const REQUIRED = 'Is required for search pets'
 
 class SearchPetsStore {
   constructor(id) {
