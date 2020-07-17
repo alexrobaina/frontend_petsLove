@@ -12,7 +12,8 @@
   "adopterUser": {
     "titleNameUser": "Profile of {{ name }}",
     "role": "Adopter Pets",
-    "name": "Name"
+    "name": "Name",
+    "myPets": "My Pets"
   },
   "protectionistUser": {
     "titleNameUser": "Profile of {{ name }}",
