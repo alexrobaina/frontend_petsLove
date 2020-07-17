@@ -17,7 +17,7 @@ const AdopterUser = () => {
   const { authStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetForUser(authStore.user._id)
+    searchPetsStore.loadPetsForUser(authStore.user._id)
   }, [])
 
   return (

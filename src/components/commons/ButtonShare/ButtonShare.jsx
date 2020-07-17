@@ -13,7 +13,7 @@ import Button from 'components/commons/Button'
 import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonShare.scss'
 
-const ButtonShare = ({ phone, route }) => {
+const ButtonShare = ({ phone, route, canView }) => {
   const iconsSocialMedia = useMediaQuery('(max-width: 768px)')
   const history = useHistory()
   const { id } = useParams()
@@ -38,14 +38,16 @@ const ButtonShare = ({ phone, route }) => {
     <div className={styles.container}>
       <AlertToast />
       <div className={styles.containerButtons}>
-        <div className={styles.btnMargin}>
-          <Button
-            circle
-            type="button"
-            handleClick={editPet}
-            icon={<MdEdit size={iconsSocialMedia ? 18 : 25} />}
-          />
-        </div>
+        {canView && (
+          <div className={styles.btnMargin}>
+            <Button
+              circle
+              type="button"
+              handleClick={editPet}
+              icon={<MdEdit size={iconsSocialMedia ? 18 : 25} />}
+            />
+          </div>
+        )}
         <div className={styles.btnMargin}>
           <FacebookShareButton url={window.location.href}>
             <FacebookIcon className={styles.butonsShare} size={iconsSocialMedia ? 30 : 40} />
@@ -69,6 +71,11 @@ const ButtonShare = ({ phone, route }) => {
 ButtonShare.propTypes = {
   phone: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   route: PropTypes.string.isRequired,
+  canView: PropTypes.bool,
+}
+
+ButtonShare.defaultProps = {
+  canView: false,
 }
 
 export default observer(ButtonShare)

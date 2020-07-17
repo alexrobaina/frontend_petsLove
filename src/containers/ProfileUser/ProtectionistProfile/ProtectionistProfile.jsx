@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { AWS_STORAGE } from "services/config";
+import { AWS_STORAGE } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import { observer } from 'mobx-react'
 import TextCard from 'components/commons/TextCard'
@@ -15,8 +15,12 @@ import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
 import styles from './protectionistProfile.scss'
+import UserContext from '../../../Context/UserContext'
+import { useParams } from 'react-router'
 
 const ProtectionistProfile = ({ user }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const [swith, setSwith] = useState(false)
   const { t } = useTranslation('profileUser')
@@ -32,7 +36,7 @@ const ProtectionistProfile = ({ user }) => {
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
-  
+
   const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
 
   return (
@@ -42,7 +46,7 @@ const ProtectionistProfile = ({ user }) => {
           rolText={t('protectionistUser.role')}
           title={t('protectionistUser.titleNameUser', { name })}
         />
-        <ButtonShare phone={user.phone || ''} route="edit-user" />
+        <ButtonShare canView={_id === authStore.user._id} phone={user.phone || ''} route="edit-user" />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
@@ -85,11 +89,8 @@ const ProtectionistProfile = ({ user }) => {
 }
 
 ProtectionistProfile.propTypes = {
-  user: PropTypes.oneOfType([
-    PropTypes.number, 
-    PropTypes.string, 
-    PropTypes.object, 
-    PropTypes.bool]).isRequired,
+  user: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object, PropTypes.bool])
+    .isRequired,
 }
 
 export default observer(ProtectionistProfile)

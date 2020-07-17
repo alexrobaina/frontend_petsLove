@@ -1,6 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router'
+import UserContext from 'Context/UserContext'
 import c from 'classnames'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
@@ -13,7 +15,10 @@ import noImage from '../noImage.svg'
 import styles from './transitUserProfile.scss'
 
 const TransitUserProfile = ({ user }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
+  const { id } = useParams()
   const { t } = useTranslation('profileUser')
 
   const onError = useCallback(() => {
@@ -26,14 +31,14 @@ const TransitUserProfile = ({ user }) => {
     <LayoutContainer>
       <div className={styles.containerTitle}>
         <Title rolText={t('transitUser.role')} title={t('transitUser.titleNameUser', { name })} />
-        <ButtonShare phone={user.phone || ''} route="edit-user" />
+        <ButtonShare canView={id === authStore.user._id} phone={user.phone || ''} route="edit-user" />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           onError={onError}
+          alt="photos-users"
           className={styles.userImage}
           src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
-          alt="photos-users"
         />
         <GoogleMapsLocation
           isProfilePet

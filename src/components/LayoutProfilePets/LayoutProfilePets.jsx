@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
@@ -10,10 +10,13 @@ import PetIdStore from 'stores/PetIdStore'
 import MedicalInformationDog from 'components/MedicalInformationDog'
 import ButtonShare from 'components/commons/ButtonShare'
 import MedicalInformationCat from 'components/MedicalInformationCat'
+import UserContext from 'Context/UserContext'
 import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ store }) => {
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
   const { t } = useTranslation('profilePets')
 
   const {
@@ -26,12 +29,16 @@ const LayoutProfilePets = ({ store }) => {
   } = store.pet
 
   const { phone } = store
-
+  
   return (
     <>
       <div className={styles.header}>
         <Title title={t('title', { name: getName })} />
-        <ButtonShare canEdit route="edit-pet" phone={phone} />
+        <ButtonShare
+          phone={phone}
+          route="edit-pet"
+          canView={authStore.user._id === store.pet.userCreatorId.value}
+        />
       </div>
       <div className={styles.colums}>
         <ImageProfilePet image={getImagePreviews} />
