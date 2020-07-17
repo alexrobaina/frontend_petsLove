@@ -13,10 +13,9 @@ import PetsAdopted from 'containers/PetsAdopted'
 import TextCardContact from 'components/commons/TextCardContact'
 import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
+import UserContext from 'Context/UserContext'
 import noImage from '../noImage.svg'
 import styles from './protectionistProfile.scss'
-import UserContext from '../../../Context/UserContext'
-import { useParams } from 'react-router'
 
 const ProtectionistProfile = ({ user }) => {
   const rootStore = useContext(UserContext)
@@ -46,7 +45,11 @@ const ProtectionistProfile = ({ user }) => {
           rolText={t('protectionistUser.role')}
           title={t('protectionistUser.titleNameUser', { name })}
         />
-        <ButtonShare canView={_id === authStore.user._id} phone={user.phone || ''} route="edit-user" />
+        <ButtonShare
+          canView={_id === authStore.user._id}
+          phone={user.phone || ''}
+          route="edit-user"
+        />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
