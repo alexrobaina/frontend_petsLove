@@ -1,12 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { HOST, AWS_STORAGE } from "services/config";
+import { HOST, AWS_STORAGE } from 'services/config'
 import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
 
 const CardGoogle = ({ image, name, email, textButton, id }) => {
-
   return (
     <div className={styles.container}>
       <div className={styles.containerImage}>
