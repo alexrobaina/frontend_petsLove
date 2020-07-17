@@ -2,6 +2,7 @@ import { action, observable, runInAction } from 'mobx'
 import CreatePetServices from 'services/CreatePetServices'
 import ImageService from 'services/ImageService/ImageService'
 import EditPetService from 'services/EditPetService/EditPetService'
+import { PROTECTIONIST, ADOPTER, VET, TRANSIT_USER } from 'config/roles'
 import AuthService from 'services/AuthService'
 import Utils from 'utils'
 import Pet from 'models/Pet'
@@ -149,7 +150,7 @@ class CreatePetStore {
   async listUserAdopter() {
     this.isLoading = true
 
-    const role = 'adopter'
+    const role = ADOPTER
 
     try {
       const response = await this.authService.getUserForRole(role)
@@ -170,7 +171,7 @@ class CreatePetStore {
   async listUserVet() {
     this.isLoading = true
 
-    const role = 'vet'
+    const role = VET
 
     try {
       const response = await this.authService.getUserForRole(role)
@@ -191,7 +192,7 @@ class CreatePetStore {
   async listUserTransit() {
     this.isLoading = true
 
-    const role = 'transitUser'
+    const role = TRANSIT_USET
 
     try {
       const response = await this.authService.getUserForRole(role)
