@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { observer } from "mobx-react";
 import { MdClose } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import UserContext from 'Context/UserContext'
-import ImageUserLog from '../../ImageUserLog'
+import ImageUserLog from 'components/commons/ImageUserLog'
 import styles from './toggleNavegationUser.scss'
 
 const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, routesUser }) => {
@@ -41,4 +42,4 @@ ToggleNavegationUser.propTypes = {
   routesUser: PropTypes.oneOfType([PropTypes.array]).isRequired,
 }
 
-export default ToggleNavegationUser
+export default observer(ToggleNavegationUser)

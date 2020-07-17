@@ -15,7 +15,7 @@ class PetsService {
   }
 
   loadPetsForUser = id => {
-    return axios.get(`${SERVER}/api/pet/listForUser/?_id=${id}`).then(response => response.data)
+    return axios.get(`${SERVER}/api/pet/listPetsForUser/?_id=${id}`).then(response => response.data)
   }
 
   loadPetsUserTransit = id => {

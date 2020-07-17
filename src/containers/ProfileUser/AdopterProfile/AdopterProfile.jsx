@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
-import SearchPetsStore from 'stores/SearchPetsStore'
+import UserAdopterStore from 'stores/UserAdopterStore'
 import c from 'classnames'
 import { AWS_STORAGE } from 'services/config'
 import { useParams } from 'react-router'
@@ -18,17 +18,13 @@ import styles from './adopterProfile.scss'
 const AdopterProfile = ({ user }) => {
   const { id } = useParams()
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const searchPetsStore = useLocalStore(() => new SearchPetsStore())
+  const userAdopterStore = useLocalStore(() => new UserAdopterStore())
   const { t } = useTranslation('profileUser')
   const { name, image, lat, lng, aboutUs } = user
 
   const onError = () => {
     setIsImageNotFound(false)
   }
-  
-  useEffect(() => {
-    searchPetsStore.loadPetsForUser(id)
-  }, [])
 
   return (
     <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
@@ -49,10 +45,10 @@ const AdopterProfile = ({ user }) => {
         />
       </div>
       {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs} />}
-      {searchPetsStore.petsUserAdopt && (
+      {userAdopterStore.pets && (
         <>
           {' '}
-          <Title title="My pets" /> <ListPets isUserAdopt pets={searchPetsStore.petsUserAdopt} />
+          <Title title="My pets" /> <ListPets isUserAdopt pets={userAdopterStore.pets} />
         </>
       )}
     </LayoutContainer>
