@@ -38,13 +38,13 @@ const ProtectionistUser = () => {
           icon={dog}
           handleClick={handlePetsForAdoption}
           titleCard={t('protectionistUser.petsAdopt')}
-          numberCard={searchPetsStore.petsForAdoption.length}
+          totalPets={searchPetsStore.petsForAdoption.length}
         />
         <DashboardCard
           icon={cat}
           handleClick={handlePetsAdopted}
           titleCard={t('protectionistUser.petsAdopted')}
-          numberCard={searchPetsStore.petsAdopted.length}
+          totalPets={searchPetsStore.petsAdopted.length}
         />
       </div>
       {swith && <PetsAdopted id={authStore.user._id} />}

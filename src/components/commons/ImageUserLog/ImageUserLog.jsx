@@ -19,15 +19,15 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
         <>
           {imagePreview.length > 0 ? (
             <img
+              alt="user"
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
               src={imagePreview.length > 0 ? imagePreview[0].preview : noImage}
-              alt="user"
             />
           ) : (
             <img
-              className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={authStore.user.image ? `${AWS_STORAGE}/${image.filenames}` : noImage}
               alt="user"
+              className={c(isProfile ? styles.imageProfile : styles.userImage)}
+              src={image ? `${AWS_STORAGE}/${image.filenames}` : noImage}
             />
           )}
         </>

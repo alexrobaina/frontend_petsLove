@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import LayoutContainerCard from 'components/commons/LayoutContainerCard'
 import styles from './dashboardCard.scss'
 
-const DashboardCard = ({ icon, iconTwo, titleCard, numberCard, handleClick }) => {
+const DashboardCard = ({ icon, iconTwo, titleCard, totalPets, handleClick }) => {
   return (
     <LayoutContainerCard>
       <div onClick={handleClick} className={styles.cardContainar}>
@@ -11,7 +11,7 @@ const DashboardCard = ({ icon, iconTwo, titleCard, numberCard, handleClick }) =>
           {iconTwo && <img className={styles.icon} src={iconTwo} alt="icons-images" />}
           <div className={styles.containerText}>
             <div className={styles.title}>{titleCard}</div>
-            <div className={styles.number}>{numberCard}</div>
+            <div className={styles.number}>{totalPets}</div>
           </div>
           <img className={styles.icon} src={icon} alt="icons-images" />
         </div>
@@ -23,14 +23,14 @@ const DashboardCard = ({ icon, iconTwo, titleCard, numberCard, handleClick }) =>
 DashboardCard.propTypes = {
   handleClick: PropTypes.func,
   titleCard: PropTypes.string,
-  numberCard: PropTypes.number,
+  totalPets: PropTypes.number,
   icon: PropTypes.node,
   iconTwo: PropTypes.node,
 }
 
 DashboardCard.defaultProps = {
   handleClick: null,
-  numberCard: 0,
+  totalPets: 0,
   titleCard: '',
   icon: null,
   iconTwo: null,
