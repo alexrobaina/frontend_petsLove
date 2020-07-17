@@ -18,7 +18,7 @@ import styles from './adopterProfile.scss'
 const AdopterProfile = ({ user }) => {
   const { id } = useParams()
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const userAdopterStore = useLocalStore(() => new UserAdopterStore())
+  const userAdopterStore = useLocalStore(() => new UserAdopterStore(id))
   const { t } = useTranslation('profileUser')
   const { name, image, lat, lng, aboutUs } = user
 
@@ -47,8 +47,8 @@ const AdopterProfile = ({ user }) => {
       {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs} />}
       {userAdopterStore.pets && (
         <>
-          {' '}
-          <Title title="My pets" /> <ListPets isUserAdopt pets={userAdopterStore.pets} />
+          <Title title="My pets" />
+          <ListPets isUserAdopt pets={userAdopterStore.pets} />
         </>
       )}
     </LayoutContainer>
