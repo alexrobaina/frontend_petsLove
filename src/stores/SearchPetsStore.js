@@ -59,9 +59,8 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetForUser(userId) {
+  async loadPetsForUser(userId) {
     this.isLoading = true
-
     try {
       const response = await this.petsService.loadPetsUserAdopt(userId)
 

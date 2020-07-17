@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import SearchPetsStore from 'stores/SearchPetsStore'
 import c from 'classnames'
-import { AWS_STORAGE } from "services/config";
+import { AWS_STORAGE } from 'services/config'
 import { useParams } from 'react-router'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
@@ -16,23 +16,23 @@ import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
 
 const AdopterProfile = ({ user }) => {
+  const { id } = useParams()
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const { t } = useTranslation('profileUser')
-  const param = useParams()
   const { name, image, lat, lng, aboutUs } = user
 
   const onError = () => {
     setIsImageNotFound(false)
   }
-
+  
   useEffect(() => {
-    searchPetsStore.getPetForUser(param.id)
+    searchPetsStore.loadPetsForUser(id)
   }, [])
 
   return (
     <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
-      <ButtonShare phone={user.phone || ''} route="edit-user" />
+      <ButtonShare canView={id === user._id} phone={user.phone || ''} route="edit-user" />
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           onError={onError}
