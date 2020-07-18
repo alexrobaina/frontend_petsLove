@@ -10,20 +10,20 @@ import ViewValue from 'components/commons/ViewValue'
 import styles from './input.scss'
 
 const Input = ({
-  inputStore,
-  isEdit,
-  value,
-  required,
-  handleChange,
-  placeholder,
-  type,
-  isErrorEmail,
-  multiple,
-  label,
-  disabled,
   name,
+  type,
   title,
+  value,
+  label,
   onBlur,
+  isEdit,
+  required,
+  multiple,
+  disabled,
+  inputStore,
+  placeholder,
+  isErrorEmail,
+  handleChange,
 }) => {
   const { t } = useTranslation('createPet')
   const [viewPassword, setViewPassword] = useState('password')
@@ -37,14 +37,12 @@ const Input = ({
       setViewPassword('password')
     }
   }
-  
+
   useEffect(() => {
     if (inputStore) {
-      if (inputStore.error)
-      setError(true)
+      if (inputStore.error) setError(true)
     }
   }, [])
-  
 
   return (
     <>
@@ -62,7 +60,7 @@ const Input = ({
             onChange={handleChange}
             placeholder={placeholder}
             type={type === 'password' ? viewPassword : type}
-            className={c(styles.input, error && styles.isError)}
+            className={c(styles.input, inputStore && inputStore.error ? styles.isError : '')}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>
@@ -85,27 +83,27 @@ const Input = ({
 
 Input.propTypes = {
   type: PropTypes.string,
-  handleChange: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
+  isEdit: PropTypes.bool,
   label: PropTypes.string,
+  value: PropTypes.string,
   onBlur: PropTypes.string,
   multiple: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
-  isEdit: PropTypes.bool,
-  value: PropTypes.string,
+  handleChange: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
   inputStore: PropTypes.instanceOf(InputStore),
 }
 
 Input.defaultProps = {
-  handleChange: null,
-  inputStore: null,
-  isEdit: false,
   value: '',
   label: '',
   type: 'text',
-  multiple: false,
-  isErrorEmail: false,
   onBlur: null,
+  isEdit: false,
+  multiple: false,
+  inputStore: null,
+  handleChange: null,
+  isErrorEmail: false,
 }
 
 export default observer(Input)
