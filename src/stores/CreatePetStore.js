@@ -76,8 +76,9 @@ class CreatePetStore {
       const response = await this.imageService.addImage(images)
 
       runInAction(() => {
+        this.isLoading = false
         this.savePet(response._id)
-        
+
         this.requestSuccess = true
       })
     } catch (e) {
@@ -132,10 +133,12 @@ class CreatePetStore {
 
   @action
   async uploadImage(images) {
+    this.isLoading = true
     try {
       await this.imageService.uploadImage(images, this.pet.getImageId)
 
       runInAction(() => {
+        this.isLoading = false
         this.updatePet()
       })
     } catch (e) {
@@ -148,7 +151,6 @@ class CreatePetStore {
 
   @action
   async listUserAdopter() {
-    this.isLoading = true
 
     const role = ADOPTER
 
@@ -156,55 +158,45 @@ class CreatePetStore {
       const response = await this.authService.getUserForRole(role)
 
       runInAction(() => {
-        this.isLoading = false
         this.optionsUserAdopter = this.utils.formatReactSelectUsers(response)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
-        this.isLoading = false
       })
     }
   }
 
   @action
   async listUserVet() {
-    this.isLoading = true
-
     const role = VET
 
     try {
       const response = await this.authService.getUserForRole(role)
 
       runInAction(() => {
-        this.isLoading = false
         this.optionsUserVet = this.utils.formatReactSelectUsers(response)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
-        this.isLoading = false
       })
     }
   }
 
   @action
   async listUserTransit() {
-    this.isLoading = true
-
     const role = TRANSIT_USET
 
     try {
       const response = await this.authService.getUserForRole(role)
 
       runInAction(() => {
-        this.isLoading = false
         this.optionsUserTransit = this.utils.formatReactSelectUsers(response)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
-        this.isLoading = false
       })
     }
   }
