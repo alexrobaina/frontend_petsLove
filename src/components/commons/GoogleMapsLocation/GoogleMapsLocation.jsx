@@ -72,7 +72,7 @@ const GoogleMapsLocation = observer(
                   position={user.location}
                   name={user.name}
                   email={user.email}
-                  image={user.image.filenames[0]}
+                  image={user.image && user.image.filenames[0]}
                   id={user._id}
                 />
               )

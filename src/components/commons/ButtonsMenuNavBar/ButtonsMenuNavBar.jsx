@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
+import { PROTECTIONIST, TRANSIT_USER, ADOPTER, VET } from 'config/roles'
 import { FaHandHoldingHeart, FaPeopleCarry, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
@@ -10,6 +11,35 @@ import LinkNavbarUser from './LinkNavbarUser/LinkNavbarUser'
 import styles from './buttonsMenuNavBar.scss'
 
 const routesUserProtectionist = [
+  {
+    icon: <FaUser size={22} />,
+    text: 'myProfile',
+    link: '/profile-user',
+    haveId: true,
+  },
+  {
+    icon: <MdDashboard size={25} />,
+    text: 'dashboard',
+    link: '/dashboard',
+  },
+  {
+    icon: <FaHandHoldingHeart size={25} />,
+    text: 'searchVolanteers',
+    link: '/search-volanteers',
+  },
+  {
+    icon: <FaPeopleCarry size={22} />,
+    text: 'Search Protectionists',
+    link: '/search-protectionist',
+  },
+  {
+    icon: <MdCreate size={25} />,
+    text: 'createPet',
+    link: '/create-pet',
+  },
+]
+
+const routesUserVet = [
   {
     icon: <FaUser size={22} />,
     text: 'myProfile',
@@ -84,14 +114,17 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
   const { authStore } = rootStore
 
   const initMenuUser = useCallback(() => {
-    if (authStore.user.role === 'protectionist') {
+    if (authStore.user.role === PROTECTIONIST) {
       setMenuUser(routesUserProtectionist)
     }
-    if (authStore.user.role === 'adopter') {
+    if (authStore.user.role === ADOPTER) {
       setMenuUser(routesUserAdopter)
     }
-    if (authStore.user.role === 'transitUser') {
+    if (authStore.user.role === TRANSIT_USER) {
       setMenuUser(routesUserTransitUser)
+    }
+    if (authStore.user.role === VET) {
+      setMenuUser(routesUserVet)
     }
   }, [])
 
@@ -102,7 +135,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
   useEffect(() => {
     initMenuUser()
   }, [])
-  
+
   return (
     <>
       <div className={styles.containerButton}>

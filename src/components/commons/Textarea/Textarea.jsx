@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import { observer } from 'mobx-react'
 import InputStore from 'stores/InputStore'
+import Label from 'components/commons/Label'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
-import Label from '../Label/Input'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
   
