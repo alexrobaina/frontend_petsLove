@@ -42,7 +42,6 @@ class MedicalInformationDog {
   }
 
   getJson() {
-    console.log('this._id', this._id)
     return {
       _id: this._id,
       vet: this.vet.value,

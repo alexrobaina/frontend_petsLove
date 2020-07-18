@@ -69,7 +69,7 @@ const CreatePet = ({ isEdit }) => {
   if (createPetStore.isLoading) {
     return <Loading loadingRing />
   }
-
+  
   function getStepForm() {
     if (step === 1) {
       return (
