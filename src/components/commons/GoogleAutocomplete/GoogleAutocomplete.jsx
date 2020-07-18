@@ -4,9 +4,9 @@ import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import Label from 'components/commons/Label'
 import ViewValue from '../ViewValue'
 import styles from './googleAutocomplete.scss'
-import Label from '../Label/Input'
 
 const GoogleAutocomplete = observer(
   ({

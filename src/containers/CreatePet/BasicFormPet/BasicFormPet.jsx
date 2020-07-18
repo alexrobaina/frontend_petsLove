@@ -100,8 +100,6 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     userAdopter,
     userTransit,
     getImagePreviews,
-    getUserAdopterId,
-    getUserTransitId,
   } = createPetStore.pet
 
   const { optionsUserAdopter, optionsUserTransit } = createPetStore
@@ -191,7 +189,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
             <div className={styles.containerStatusPet}>{t('statusPet')}</div>
             <InputSelect
               isEdit
-              value={getUserAdopterId}
+              value={userAdopter.value}
               label={t('whoAdopted')}
               inputStore={userAdopter}
               options={optionsUserAdopter}
@@ -202,7 +200,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           <div className={styles.colums}>
             <InputSelect
               isEdit
-              value={getUserTransitId}
+              value={userTransit.value}
               inputStore={userTransit}
               label={t('userTransit')}
               options={optionsUserTransit}

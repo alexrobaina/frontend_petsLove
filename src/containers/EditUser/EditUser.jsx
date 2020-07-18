@@ -19,7 +19,7 @@ import Loading from 'components/commons/Loading'
 import Title from 'components/commons/Title'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import ViewValue from 'components/commons/ViewValue'
-import Label from 'components/commons/Label/Input'
+import Label from 'components/commons/Label'
 import LayoutForm from 'components/commons/LayoutForm'
 import styles from './editUser.scss'
 

@@ -4,8 +4,8 @@ import c from 'classnames'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Label from 'components/commons/Label'
 import './customDataPicker.css'
-import Label from '../Label/Input'
 import styles from './inputDate.scss'
 
 const InputDate = ({ label, handleDateChange, value }) => {

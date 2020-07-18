@@ -4,10 +4,10 @@ import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import c from 'classnames'
+import Label from 'components/commons/Label'
 import InputStore from 'stores/InputStore'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './input.scss'
-import Label from '../Label/Input'
 
 const Input = ({
   inputStore,
