@@ -10,6 +10,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
+import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
@@ -47,7 +48,9 @@ const AdopterProfile = ({ user }) => {
       {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs} />}
       {userAdopterStore.pets && (
         <>
-          <Title title="My pets" />
+          <LayoutContainerCardsPets>
+            <Title title={t('adopterUser.myPets')} />
+          </LayoutContainerCardsPets>
           <ListPets isUserAdopt pets={userAdopterStore.pets} />
         </>
       )}
