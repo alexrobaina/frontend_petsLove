@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import Select from 'react-select'
 import InputStore from 'stores/InputStore'
-import ViewValue from '../ViewValue'
+import ViewValue from 'components/commons/ViewValue'
+import Label from 'components/commons/Label'
 import styles from './inputSelect.scss'
-import Label from '../Label/Input'
 
 const InputSelect = ({
   name,
@@ -28,7 +28,7 @@ const InputSelect = ({
       minHeight: 41,
     }),
   }
-
+  
   return (
     <>
       {label && <Label text={label} />}
@@ -47,7 +47,7 @@ const InputSelect = ({
             onChange={handleChange}
             placeholder={placeholder}
             isClearable={isClearable}
-            value={options && options.filter(option => option.value === value)}
+            value={options.filter(option => option.value === value)}
             theme={theme => ({
               ...theme,
               colors: {

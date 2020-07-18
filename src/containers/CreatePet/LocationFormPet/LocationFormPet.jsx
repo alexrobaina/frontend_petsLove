@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import CreatePetStore from 'stores/CreatePetStore'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete'
+import Label from 'components/commons/Label'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import LayoutForm from 'components/commons/LayoutForm'
-import Label from 'components/commons/Label/Input'
 import styles from './locationFormPet.scss'
 
 const LocationFormPet = ({ createPetStore }) => {
