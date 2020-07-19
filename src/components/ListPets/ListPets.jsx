@@ -1,15 +1,16 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react'
 import LazyLoad from 'react-lazyload'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import CardPets from 'components/commons/CardPets'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
+import Loading from 'components/commons/Loading'
 import ErrorMessage from 'components/commons/ErrorMessage'
 import styles from './listPets.scss'
 
-const ListPets = ({ pets, isUserAdopt }) => {
+const ListPets = ({ pets, isUserAdopt, isLoading }) => {
   const { t } = useTranslation('listPets')
   const history = useHistory()
   const goToPet = useCallback(id => {
@@ -17,6 +18,10 @@ const ListPets = ({ pets, isUserAdopt }) => {
     history.push(`profile-pets/${id}`)
     window.location.reload()
   }, [])
+
+  if (isLoading) {
+    return <Loading loadingRing />
+  }
 
   return (
     <>
@@ -50,11 +55,13 @@ const ListPets = ({ pets, isUserAdopt }) => {
 ListPets.propTypes = {
   pets: PropTypes.arrayOf(PropTypes.object),
   isUserAdopt: PropTypes.bool,
+  isLoading: PropTypes.bool,
 }
 
 ListPets.defaultProps = {
   pets: [],
   isUserAdopt: false,
+  isLoading: false,
 }
 
 export default observer(ListPets)

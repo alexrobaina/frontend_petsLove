@@ -12,11 +12,13 @@ class SearchPetsStore {
   }
 
   @observable pets = []
+  @observable totalPetsForAdoption = 0
+  @observable totalPetsAdopted = 0
   @observable isError = false
-  @observable petsAdopted = []
   @observable isLoading = false
   @observable petsUserAdopt = []
   @observable petsForAdoption = []
+  @observable petsAdopted = []
   @observable petsUserTransit = []
   @observable optionsCities = []
   @observable city = new InputStore()
@@ -59,14 +61,15 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetAdopted(userId) {
+  async getPetAdopted(userId, limit, page) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetsAdopted(userId)
+      const response = await this.petsService.loadPetsAdopted(userId, limit, page)
 
       runInAction(() => {
-        this.petsAdopted = response
+        this.totalPetsAdopted = response.totalPets
+        this.petsAdopted = response.registers
         this.isLoading = false
       })
     } catch (e) {
@@ -79,14 +82,15 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsForAdoption(userId) {
+  async getPetsForAdoption(userId, limit, page) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetForAdoption(userId)
+      const response = await this.petsService.loadPetForAdoption(userId, limit, page)
 
       runInAction(() => {
-        this.petsForAdoption = response
+        this.totalPetsForAdoption = response.totalPets
+        this.petsForAdoption = response.registers
         this.isLoading = false
       })
     } catch (e) {

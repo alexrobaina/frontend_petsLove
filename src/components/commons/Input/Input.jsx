@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
@@ -27,7 +27,6 @@ const Input = ({
 }) => {
   const { t } = useTranslation('createPet')
   const [viewPassword, setViewPassword] = useState('password')
-  const [error, setError] = useState(false)
 
   const handleViewPassword = () => {
     if (viewPassword === 'password') {
@@ -37,12 +36,6 @@ const Input = ({
       setViewPassword('password')
     }
   }
-
-  useEffect(() => {
-    if (inputStore) {
-      if (inputStore.error) setError(true)
-    }
-  }, [])
 
   return (
     <>
