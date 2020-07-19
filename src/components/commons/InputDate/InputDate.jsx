@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Label from 'components/commons/Label'
-import './customDataPicker.css'
 import styles from './inputDate.scss'
 
 const InputDate = ({ label, handleDateChange, value }) => {
@@ -21,17 +20,19 @@ const InputDate = ({ label, handleDateChange, value }) => {
   }, [selectedDate])
 
   return (
-    <div className={c(styles.containerDate, 'customDatePickerWidth')}>
+    <>
       {label && <Label text={label} />}
-      <DatePicker
-        value={value}
-        showYearDropdown
-        dateFormat="dd/MM/yyyy"
-        selected={selectedDate}
-        customInput={React.cloneElement(<CustomInput />)}
-        onChange={date => handleDate(date)}
-      />
-    </div>
+      <div className={c(styles.containerDate, styles.myDatePickerWrapper)}>
+        <DatePicker
+          value={value}
+          showYearDropdown
+          dateFormat="dd/MM/yyyy"
+          selected={selectedDate}
+          customInput={React.cloneElement(<CustomInput />)}
+          onChange={date => handleDate(date)}
+        />
+      </div>
+    </>
   )
 }
 

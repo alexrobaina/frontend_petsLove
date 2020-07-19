@@ -1,5 +1,10 @@
 @import 'styles/variable';
 
+.myDatePickerWrapper > div {
+  display: block !important;
+  width: 100%;
+}
+
 .containerDate {
   width: 100%;
 }
