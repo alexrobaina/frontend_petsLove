@@ -25,6 +25,8 @@ const LayoutProfilePets = ({ store }) => {
     getName,
     foundLocation,
     textAddress,
+    userCreatorId,
+    category,
     getImagePreviews,
   } = store.pet
 
@@ -37,7 +39,7 @@ const LayoutProfilePets = ({ store }) => {
         <ButtonShare
           phone={phone}
           route="edit-pet"
-          canView={authStore.user._id === store.pet.userCreatorId.value}
+          canView={authStore.user._id === userCreatorId.value}
         />
       </div>
       <div className={styles.colums}>
@@ -49,15 +51,15 @@ const LayoutProfilePets = ({ store }) => {
         />
       </div>
       <div className={styles.colums}>
-        <InformationPet title={t('common:basicInformation')} pet={store.pet} />
+        <InformationPet title={t('basicInformation')} pet={store.pet} />
         {getCategory === 'dog' && (
           <>
-            <MedicalInformationDog title={t('common:medicalInformation')} pet={store.pet} />
+            <MedicalInformationDog title={t('medicalInformation')} pet={store.pet} />
           </>
         )}
-        {store.pet.category.value === 'cat' && (
+        {category.value === 'cat' && (
           <>
-            <MedicalInformationCat title={t('common:medicalInformation')} pet={store.pet} />
+            <MedicalInformationCat title={t('medicalInformation')} pet={store.pet} />
           </>
         )}
       </div>

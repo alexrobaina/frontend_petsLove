@@ -10,7 +10,7 @@ import LayoutCards from 'components/commons/LayoutCards'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './medicalInformationCat.scss'
 
-const MedicalInformationCat = ({ pet, title = '' }) => {
+const MedicalInformationCat = ({ pet, title }) => {
   const { t } = useTranslation('medicalInformationCat')
 
   const {
@@ -19,9 +19,10 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
     rabiesVaccine,
     felineFluVaccine,
     felineLeukemiaVaccine,
+    isCastrated,
     felineInfectiousPeritonitisVaccine,
   } = pet.medicalInformationCat
-  
+
   return (
     <LayoutCards>
       <div className={styles.title}>{title}</div>
@@ -30,6 +31,11 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
           icon={<FaRegCalendarAlt size={20} />}
           value={moment(getLastVisitVet).format('L')}
           text={t('lastVisitVet')}
+        />
+        <TextCardInformation
+          text={t('isCastrated')}
+          icon={<GiLoveInjection size={20} />}
+          value={isCastrated}
         />
         <TextCardInformation
           text={t('distemperVaccine')}
@@ -63,6 +69,11 @@ const MedicalInformationCat = ({ pet, title = '' }) => {
 
 MedicalInformationCat.propTypes = {
   pet: PropTypes.instanceOf(Pet).isRequired,
+  title: PropTypes.string,
+}
+
+MedicalInformationCat.defaultProps = {
+  title: '',
 }
 
 export default observer(MedicalInformationCat)

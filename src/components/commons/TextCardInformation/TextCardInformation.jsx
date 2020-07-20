@@ -12,8 +12,8 @@ const TextCardInformation = ({ text, value, icon }) => {
         <div className={styles.icon}>{icon}</div>
         <div className={styles.title}>{text}</div>
       </div>
-      {value === true && <div className={styles.infoTitle}>Si</div>}
-      {value === false && <div className={styles.infoTitle}>No</div>}
+      {value === true && <div className={styles.infoTitle}>{t('common:yes')}</div>}
+      {value === false && <div className={styles.infoTitle}>{t('common:no')}</div>}
       {value !== '' && typeof value !== 'boolean' && <div className={styles.infoTitle}>{value}</div>}
       {value === '' && <div className={styles.infoTitle}>{t('thereIsNoInformation')}</div>}
     </div>
