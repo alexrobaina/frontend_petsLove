@@ -1,9 +1,11 @@
 import { observable } from 'mobx'
 import InputStore from 'stores/InputStore'
+import { TRANSIT_USER, PROTECTIONIST, VET, ADOPTER } from 'config/roles'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
 const USER_ADOPTER = 'You want adopt.'
+const USER_VET = 'You are vet.'
 
 class User {
   @observable state = true
@@ -105,14 +107,17 @@ class User {
   }
 
   getRole() {
-    if (this.role.value === 'transitUser') {
+    if (this.role.value === TRANSIT_USER) {
       return USER_TRANSIT
     }
-    if (this.role.value === 'protectionist') {
+    if (this.role.value === PROTECTIONIST) {
       return USER_PROTECTIONIST
     }
-    if (this.role.value === 'adopter') {
+    if (this.role.value === ADOPTER) {
       return USER_ADOPTER
+    }
+    if (this.role.value === VET) {
+      return USER_VET
     }
     return ''
   }

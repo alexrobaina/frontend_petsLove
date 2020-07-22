@@ -30,7 +30,7 @@ const TransitUserProfile = ({ user }) => {
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('transitUser.role')} title={t('transitUser.titleNameUser', { name })} />
+        <Title rolText={t('transitUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonShare canView={id === authStore.user._id} phone={user.phone || ''} route="edit-user" />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>

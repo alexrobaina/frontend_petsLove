@@ -10,13 +10,11 @@
     "userName": "Username"
   },
   "adopterUser": {
-    "titleNameUser": "Profile of {{ name }}",
     "role": "Adopter Pets",
     "name": "Name",
     "myPets": "My Pets"
   },
   "protectionistUser": {
-    "titleNameUser": "Profile of {{ name }}",
     "role": "Shelter pets",
     "messageWhatsapp": "Hi! I'd like to adopt a pet. Can I visit the shelter?",
     "requirementsToAdopt": "Requirements to adopt",

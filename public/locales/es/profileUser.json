@@ -1,6 +1,6 @@
 {
   "common": {
-    "titleNameUser": "Profile of {{ name }}",
+    "titleNameUser": "Perfil de {{ name }}",
     "contact": "Contacto",
     "aboutUs": "Sobre nosotros",
     "phone": "Teléfono",
@@ -15,7 +15,6 @@
     "myPets": "Mis mascotas"
   },
   "protectionistUser": {
-    "titleNameUser": "Perfil de {{ name }}",
     "role": "Refugio de mascocas",
     "messageWhatsapp": "Hola, me gustaría adoptar unas mascota. Puedo ir al refugio?",
     "requirementsToAdopt": "Requisitos para adoptar",
@@ -23,7 +22,6 @@
     "adopted": "Adoptados"
   },
   "transitUser": {
-    "titleNameUser": "Perfil de {{ name }}",
     "messageWhatsapp": "Hola! Te contacto porque necesitamos un voluntario para hacer transito de una mascota ",
     "role": "Transito de mascotas",
     "information": "Encuentra personas que hacen transito de mascotas."

@@ -33,9 +33,9 @@ const AdopterProfile = ({ user }) => {
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           onError={onError}
+          alt="photos-users"
           className={styles.userImage}
           src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
-          alt="photos-users"
         />
         <GoogleMapsLocation
           isProfilePet
@@ -49,7 +49,11 @@ const AdopterProfile = ({ user }) => {
       {userAdopterStore.pets && (
         <>
           <LayoutContainerCardsPets>
-            <Title title={t('adopterUser.myPets')} />
+            <Title
+              title={
+                userAdopterStore.pets.length > 1 ? t('adopterUser.myPets') : t('adopterUser.myPet')
+              }
+            />
           </LayoutContainerCardsPets>
           <ListPets isUserAdopt pets={userAdopterStore.pets} />
         </>

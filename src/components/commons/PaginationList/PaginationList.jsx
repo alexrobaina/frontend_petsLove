@@ -14,7 +14,9 @@ const PaginationList = ({ handleChange, page, total, limit }) => {
 
   return (
     <div className={styles.containerPagination}>
-      <Pagination page={page} color="secondary" count={numberPage} onChange={handleChange} />
+      <div className={styles.pagination}>
+        <Pagination page={page} color="secondary" count={numberPage} onChange={handleChange} />
+      </div>
     </div>
   )
 }

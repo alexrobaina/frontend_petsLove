@@ -1,7 +1,6 @@
 {
   "register": {
     "signUp": "SignUp",
-    "name": "Name",
     "email": "Email",
     "username": "Username",
     "firstname": "Firstname",

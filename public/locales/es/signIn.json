@@ -1,8 +1,9 @@
 {
   "register": {
     "signUp": "Registrate",
-    "name": "Nombre",
     "email": "Correo",
+    "firstname": "Nombre",
+    "lastname": "Apellído",
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "confirmPassword": "Confirmar contraseña",
