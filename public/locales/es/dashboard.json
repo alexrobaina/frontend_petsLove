@@ -12,5 +12,9 @@
   "transitUser": {
     "titleCard": "Necesitan hogar",
     "titlepetsList": "Historial de mascotas cuidadas"
+  },
+  "userVet": {
+    "titleCard": "Mascotas Atendidas",
+    "titlePetsList": "Lista de mascotas atendidas"
   }
 }
