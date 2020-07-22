@@ -12,5 +12,9 @@
   "transitUser": {
     "titleCard": "Need home",
     "titlepetsList": "History of pets care"
+  },
+  "userVet": {
+    "titleCard": "Pets Nurse",
+    "titlePetsList": "List of pets nurse"
   }
 }

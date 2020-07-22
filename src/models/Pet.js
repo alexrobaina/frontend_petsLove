@@ -28,12 +28,14 @@ class Pet {
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
     this.userCreatorId = new InputStore()
+    this.userVet = new InputStore()
     this.medicalCat = {}
     this.medicalDog = {}
 
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
+    this.userVet.setValue(null)
 
     this.userAdopterId = new InputStore()
     this.userTransitId = new InputStore()
@@ -64,6 +66,10 @@ class Pet {
 
     if (pet.userAdopter) {
       this.userAdopterId.setValue(pet.userAdopter._id)
+    }
+
+    if (pet.userVet) {
+      this.userVet.setValue(pet.userVet._id)
     }
 
     if (pet.userTransit) {
@@ -102,6 +108,10 @@ class Pet {
       foundLocation: this.location.value,
       textAddress: this.textAddress.value,
       history: this.history.value,
+    }
+
+    if (this.userVet.value !== '') {
+      petData.userVet = this.userVet.value
     }
 
     if (this.userAdopter.value !== '') {
@@ -181,6 +191,10 @@ class Pet {
 
   setUserAdopter(value) {
     this.userAdopter.setValue(value)
+  }
+
+  setUserVet(value) {
+    this.userVet.setValue(value)
   }
 
   setUserTransit(value) {
@@ -265,6 +279,10 @@ class Pet {
 
   get getUserCreator() {
     return this.userCreator.value
+  }
+
+  get getUserVet() {
+    return this.userVet.value
   }
 
   get getUserAdopter() {

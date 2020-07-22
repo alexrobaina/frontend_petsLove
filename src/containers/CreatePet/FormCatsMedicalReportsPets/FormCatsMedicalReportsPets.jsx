@@ -19,7 +19,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const handleChangeVet = useCallback(selectedOption => {
-    createPetStore.pet.medicalInformationCat.setVet(selectedOption.value)
+    createPetStore.pet.setUserVet(selectedOption.value)
   }, [])
 
   const handleDateIsCastrated = useCallback(() => {
@@ -51,9 +51,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const {
-    vet,
     notes,
-    getVet,
     getNotes,
     getIsCastrated,
     getLastVisitVet,
@@ -79,11 +77,11 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
       <div className={styles.colums}>
         <InputSelect
           isEdit
-          value={getVet}
-          inputStore={vet}
           label={t('labelVet')}
           options={optionsUserVet}
           handleChange={handleChangeVet}
+          value={createPetStore.pet.getUserVet}
+          inputStore={createPetStore.pet.userVet}
           placeholder={t('placeHolderSelectVet')}
         />
       </div>

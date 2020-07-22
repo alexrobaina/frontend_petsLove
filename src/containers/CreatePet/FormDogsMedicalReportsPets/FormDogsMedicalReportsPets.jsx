@@ -19,7 +19,7 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const handleChangeVet = useCallback(value => {
-    createPetStore.pet.medicalInformationDog.setVet(value.value)
+    createPetStore.pet.setUserVet(value.value)
   }, [])
 
   const handleDateIsCastrated = useCallback(() => {
@@ -59,6 +59,8 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
   }, [])
 
   const {
+    notes,
+    getNotes,
     getLastVisitVet,
     getIsCastrated,
     getRabiesVaccine,
@@ -68,9 +70,6 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
     getParvovirusVaccine,
     getParainfluenzaVaccine,
     getBordetellaBronchisepticVaccine,
-    getNotes,
-    notes,
-    vet,
   } = createPetStore.pet.medicalInformationDog
 
   const { optionsUserVet } = createPetStore
@@ -88,11 +87,11 @@ const FormDogsMedicalReportsPets = ({ createPetStore }) => {
       <div className={styles.colums}>
         <InputSelect
           isEdit
-          inputStore={vet}
-          value={vet.value}
           label={t('labelVet')}
           options={optionsUserVet}
           handleChange={handleChangeVet}
+          value={createPetStore.pet.getUserVet}
+          inputStore={createPetStore.pet.userVet}
           placeholder={t('placeHolderSelectVet')}
         />
       </div>

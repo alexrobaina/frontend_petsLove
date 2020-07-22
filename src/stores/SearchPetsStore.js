@@ -18,6 +18,8 @@ class SearchPetsStore {
   @observable isLoading = false
   @observable petsUserAdopt = []
   @observable petsForAdoption = []
+  @observable petsUserVet = []
+  @observable totalPetsVet = []
   @observable petsAdopted = []
   @observable petsUserTransit = []
   @observable optionsCities = []
@@ -131,6 +133,27 @@ class SearchPetsStore {
 
       runInAction(() => {
         this.petsUserTransit = response
+        this.isLoading = false
+      })
+    } catch (e) {
+      runInAction(() => {
+        this.isLoading = false
+        this.isError = true
+        console.log(e)
+      })
+    }
+  }
+  
+  @action
+  async getPetsUserVet(userId, limit, page) {
+    this.isLoading = true
+
+    try {
+      const response = await this.petsService.loadPetsUserVet(userId, limit, page)
+
+      runInAction(() => {
+        this.petsUserVet = response.pets
+        this.totalPetsVet = response.totalPets
         this.isLoading = false
       })
     } catch (e) {
