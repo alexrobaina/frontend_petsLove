@@ -80,7 +80,7 @@ const FormRegister = ({ registerStore }) => {
                   <Input
                     isEdit
                     canEdit
-                    name="name"
+                    name="firstname"
                     inputStore={firstname}
                     value={firstname.value}
                     handleChange={handleChangeFirstname}
@@ -91,7 +91,7 @@ const FormRegister = ({ registerStore }) => {
                   <Input
                     isEdit
                     canEdit
-                    name="name"
+                    name="lastname"
                     inputStore={lastname}
                     value={lastname.value}
                     handleChange={handleChangeLastname}

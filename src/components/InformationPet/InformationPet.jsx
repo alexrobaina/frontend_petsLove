@@ -19,20 +19,24 @@ const InformationPet = ({ pet, title }) => {
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation text={t('name')} value={pet.getName} icon={<FaUser size={20} />} />
+        <TextCardInformation text={t('common:name')} value={pet.getName} icon={<FaUser size={20} />} />
         <TextCardInformation
-          text={t('birthday')}
+          text={t('common:birthday')}
           icon={<FaBirthdayCake size={20} />}
           value={moment(getBirthday).format('L')}
         />
-        <TextCardInformation text={t('category')} icon={<FaCat size={20} />} value={getCategory} />
         <TextCardInformation
-          text={t('gender')}
-          value={getGender}
+          text={t('common:category')}
+          icon={<FaCat size={20} />}
+          value={t(getCategory)}
+        />
+        <TextCardInformation
+          text={t('common:gender')}
+          value={t(getGender)}
           icon={<FaTransgender size={25} />}
         />
         <TextCardInformation
-          text={t('activity')}
+          text={t('common:activityLevel')}
           icon={<GiJumpingDog size={25} />}
           value={getActivityLevel}
         />

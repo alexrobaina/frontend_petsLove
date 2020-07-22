@@ -6,6 +6,7 @@ import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
 import { observer, useLocalStore } from 'mobx-react'
 import UserContext from 'Context/UserContext'
+import { PROTECTIONIST, TRANSIT_USER } from 'config/roles'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Input from 'components/commons/Input'
 import Footer from 'components/commons/Footer/Footer'
@@ -97,7 +98,22 @@ const EditUser = () => {
     userStore.save()
   }, [])
 
-  if (userStore.isLoading) {
+  const {
+    name,
+    role,
+    email,
+    image,
+    aboutUs,
+    location,
+    password,
+    username,
+    isLoading,
+    textAddress,
+    isLoadingResizem,
+    requirementsToAdopt,
+  } = userStore.user
+
+  if (isLoading) {
     return (
       <div className={styles.containerLoading}>
         <Loading loadingRing />
@@ -105,22 +121,8 @@ const EditUser = () => {
     )
   }
 
-  const {
-    image,
-    isLoadingResizem,
-    name,
-    email,
-    role,
-    username,
-    aboutUs,
-    requirementsToAdopt,
-    textAddress,
-    location,
-    password,
-  } = userStore.user
-
   return (
-    <LayoutContainer title={t('title')}>
+    <LayoutContainer title={t('myProfile')}>
       <LayoutForm>
         <div className={styles.containerImage}>
           {isLoadingResizem ? (
@@ -131,8 +133,8 @@ const EditUser = () => {
                 size={50}
                 isProfile
                 imgUser={image}
-                imagePreview={userStore.newPreviewsImage}
                 isUserLogin={authStore.isLogin}
+                imagePreview={userStore.newPreviewsImage}
               />
             </div>
           )}
@@ -151,7 +153,7 @@ const EditUser = () => {
                 className={c(styles.textInput, styles.btnTertiary)}
               >
                 <MdUpdate className={styles.icon} size={15} />
-                <span className={styles.jsFileName}>{t('chooseFile')}</span>
+                <span className={styles.jsFileName}>{t('common:chooseFile')}</span>
               </label>
             </div>
           )}
@@ -160,38 +162,38 @@ const EditUser = () => {
           <div className={styles.colbig}>
             <Input
               disabled
-              label={t('name')}
-              placeholder={t('name')}
-              isEdit={userStore.isEdit}
               inputStore={name}
+              label={t('common:name')}
               value={name.value}
+              placeholder={t('common:name')}
+              isEdit={userStore.isEdit}
             />
           </div>
           <div className={styles.colbig}>
             <Input
               disabled
-              label={t('email')}
-              placeholder={t('email')}
-              isEdit={userStore.isEdit}
+              label={t('common:email')}
               inputStore={email}
               value={email.value}
+              placeholder={t('common:email')}
+              isEdit={userStore.isEdit}
             />
           </div>
           <div className={styles.colbig}>
             <Input
               canEdit
               disabled
-              value={userStore.user.getRole()}
-              label={t('userRol')}
               inputStore={role}
+              label={t('common:role')}
               isEdit={userStore.isEdit}
-              placeholder={t('userRol')}
+              placeholder={t('common:role')}
+              value={userStore.user.getRole()}
             />
           </div>
           <div className={styles.colbig}>
             {userStore.isEdit ? (
               <>
-                <Label text={t('phone')} />
+                <Label text={t('common:phone')} />
                 <PhoneInput
                   country="ar"
                   onChange={phone => handleChangePhone(phone)}
@@ -199,23 +201,23 @@ const EditUser = () => {
                 />
               </>
             ) : (
-              <ViewValue placeholder={t('phone')} value={userStore.user.phone.value} />
+              <ViewValue placeholder={t('common:phone')} value={userStore.user.phone.value} />
             )}
           </div>
           <div className={styles.colbig}>
             <Input
               canEdit
-              label={t('username')}
-              isEdit={userStore.isEdit}
-              placeholder={t('username')}
-              handleChange={handleChangeUsername}
+              label={t('common:username')}
               inputStore={username}
               value={username.value}
+              isEdit={userStore.isEdit}
+              placeholder={t('common:username')}
+              handleChange={handleChangeUsername}
             />
             <div className={styles.messageInformation}>{t('helpUserName')}</div>
           </div>
           <div className={styles.colbig}>
-            {userStore.rol === 'transitUser' && (
+            {userStore.rol === TRANSIT_USER && (
               <InputCheckbox
                 canEdit
                 isEdit={userStore.isEdit}
@@ -242,20 +244,20 @@ const EditUser = () => {
               canEdit
               rows={4}
               isEdit={userStore.isEdit}
+              inputStore={requirementsToAdopt}
               label={t('requirementsToAdopt')}
+              value={requirementsToAdopt.value}
               placeholder={t('requirementsToAdopt')}
               handleChange={handleChangeRequirementsToAdopt}
-              inputStore={requirementsToAdopt}
-              value={requirementsToAdopt.value}
             />
           </div>
           <div className={styles.colbig}>
             <GoogleAutocomplete
-              label={t('address')}
+              label={t('common:address')}
               isEdit={userStore.isEdit}
-              placeholder={t('address')}
-              inputStoreError={textAddress}
               value={textAddress.value}
+              placeholder={t('common:address')}
+              inputStoreError={textAddress}
               handleChangeAddress={handleChangeAddress}
               handleChangeTextAddress={handleChangeTextAddress}
             />
@@ -270,10 +272,10 @@ const EditUser = () => {
             <Input
               canEdit
               type="password"
-              isEdit={userStore.isEdit}
-              placeholder={t('password')}
-              handleChange={handleChangePassword}
               inputStore={password}
+              isEdit={userStore.isEdit}
+              placeholder={t('common:password')}
+              handleChange={handleChangePassword}
             />
             {userStore.passwordError && (
               <div className={styles.errorMessage}>{t('errorPassword')}</div>
@@ -287,7 +289,7 @@ const EditUser = () => {
               canEdit
               type="password"
               isEdit={userStore.isEdit}
-              placeholder={t('repeatPassword')}
+              placeholder={t('common:repeatPassword')}
               inputStore={userStore.confirmPassword}
               handleChange={handleChangeRepeatPassword}
             />

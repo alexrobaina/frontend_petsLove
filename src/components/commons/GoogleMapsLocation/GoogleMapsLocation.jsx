@@ -48,10 +48,10 @@ const GoogleMapsLocation = observer(
     return (
       <div className={c(isProfilePet ? styles.containerMapPets : styles.containerMap)}>
         <Map
-          google={google}
           zoom={15}
-          initialCenter={location.lat ? location : POSITION_DEFAULT}
+          google={google}
           className={styles.map}
+          initialCenter={location.lat ? location : POSITION_DEFAULT}
           center={{
             lat: parseFloat(location.lat),
             lng: parseFloat(location.lng),
@@ -65,27 +65,27 @@ const GoogleMapsLocation = observer(
             users.map(user => {
               return (
                 <Marker
-                  isImageNotFound={isImageNotFound}
-                  onError={onError}
+                  id={user._id}
                   key={user._id}
-                  onClick={onMarkerClick}
-                  position={user.location}
+                  onError={onError}
                   name={user.name}
                   email={user.email}
+                  onClick={onMarkerClick}
+                  position={user.location}
+                  isImageNotFound={isImageNotFound}
                   image={user.image && user.image.filenames[0]}
-                  id={user._id}
                 />
               )
             })}
           <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
             <CardGoogle
+              id={activeMarker.id}
+              name={activeMarker.name}
+              image={activeMarker.image}
+              email={activeMarker.email}
+              textButton={t('textButton')}
               onError={activeMarker.onError}
               isImageNotFound={activeMarker.isImageNotFound}
-              textButton={t('textButton')}
-              image={activeMarker.image}
-              name={activeMarker.name}
-              email={activeMarker.email}
-              id={activeMarker.id}
             />
           </InfoWindow>
           {!isLocationPet && (
@@ -105,30 +105,30 @@ const GoogleMapsLocation = observer(
 )
 
 GoogleMapsLocation.propTypes = {
-  location: PropTypes.oneOfType(PropTypes.object, PropTypes.string),
-  users: PropTypes.arrayOf(PropTypes.number, PropTypes.string, PropTypes.bool),
-  showAddress: PropTypes.bool,
-  isProfilePet: PropTypes.bool,
   card: PropTypes.node,
   phone: PropTypes.string,
   title: PropTypes.string,
   email: PropTypes.string,
+  showAddress: PropTypes.bool,
+  isProfilePet: PropTypes.bool,
   isLocationPet: PropTypes.bool,
+  location: PropTypes.oneOfType(PropTypes.object, PropTypes.string),
+  users: PropTypes.arrayOf(PropTypes.number, PropTypes.string, PropTypes.bool),
 }
 
 GoogleMapsLocation.defaultProps = {
-  isLocationPet: false,
-  users: null,
   card: null,
-  phone: 'No have phone',
-  email: 'Not have email',
   title: '',
   location: {
     lat: -34.603722,
     lng: -58.381592,
   },
+  users: null,
   showAddress: false,
   isProfilePet: false,
+  isLocationPet: false,
+  phone: 'No have phone',
+  email: 'Not have email',
 }
 
 export default GoogleApiWrapper(() => ({

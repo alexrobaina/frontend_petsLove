@@ -1,9 +1,11 @@
 {
-    "lastVisitVet": "Last VisitVet",
-    "distemperVaccine": "Distemper Vaccine",
-    "rabiesVaccine": "Rabies Vaccine",
-    "felineFluVaccine": "Feline Flu Vaccine",
-    "felineLeukemiaVaccine": "Feline Leukemia Vaccine",
-    "felineInfectiousPeritonitisVaccine": "Feline Infectious Peritonitis Vaccine",
-    "bordetellaBronchisepticVaccine": "Bordetella Bronchiseptic Vaccine"
+  "lastVisitVet": "last visit vet",
+  "distemperVaccine": "Distemper Vaccine",
+  "rabiesVaccine": "Rabies Vaccine",
+  "isCastrated": "Is Castrated",
+  "hepatitisVaccine": "Hepatitis Vaccine",
+  "parvovirusVaccine": "Parvovirus Vaccine",
+  "leptospirosisVaccine": "Leptospirosis Vaccine",
+  "parainfluenzaVaccine": "Parainfluenza Vaccine",
+  "bordetellaBronchisepticVaccine": "Bordetella Bronchiseptic Vaccine"
 }

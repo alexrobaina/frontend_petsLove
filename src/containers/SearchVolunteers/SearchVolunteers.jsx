@@ -10,7 +10,7 @@ import VolunteersStore from 'stores/VolunteersStore'
 import styles from './searchVolunteers.scss'
 
 const SearchVolunteers = () => {
-  const { t } = useTranslation('allSearch')
+  const { t } = useTranslation('searchVolunteers')
   const [stateAddress, setAddress] = useState({})
   const [loading, setSetLoadint] = useState(false)
   const volunteersStore = useLocalStore(() => new VolunteersStore())
@@ -41,15 +41,12 @@ const SearchVolunteers = () => {
 
   return (
     <div className={styles.containerTransit}>
-      <LayoutContainer
-        title={t('transitSearch.title')}
-        information={t('transitSearch.information')}
-      >
+      <LayoutContainer title={t('searchVolunteers')} information={t('information')}>
         <div className={styles.colbig}>
           <GoogleAutocomplete
             isEdit
-            label={t('transitSearch.labelGoogle')}
-            placeholder={t('transitSearch.placeholderGoogle')}
+            label={t('labelGoogle')}
+            placeholder={t('placeholderGoogle')}
             handleChangeAddress={handleChangeAddress}
           />
           {stateAddress.lat && (

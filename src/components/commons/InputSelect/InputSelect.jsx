@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import Select from 'react-select'
 import InputStore from 'stores/InputStore'
+import { useTranslation } from "react-i18next";
 import ViewValue from 'components/commons/ViewValue'
 import Label from 'components/commons/Label'
 import styles from './inputSelect.scss'
@@ -21,6 +22,7 @@ const InputSelect = ({
   isClearable,
   handleChange,
 }) => {
+  const { t } = useTranslation()
   const customStyles = {
     control: base => ({
       ...base,
@@ -59,7 +61,7 @@ const InputSelect = ({
               },
             })}
           />
-          {inputStore && <div className={styles.errorMessage}>{inputStore.errorMessage}</div>}
+          {inputStore && <div className={styles.errorMessage}>{t(`${inputStore.errorMessage}`)}</div>}
         </>
       )}
     </>

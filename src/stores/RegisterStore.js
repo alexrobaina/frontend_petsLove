@@ -3,8 +3,8 @@ import RegisterService from 'services/RegisterService'
 import RegisterUser from 'models/RegisterUser'
 import InputStore from './InputStore'
 
-const REQUIRED = 'This input is required'
-const EMAIL_ERROR = 'The email is incorrect'
+const REQUIRED = 'common:isRequired'
+const EMAIL_ERROR = 'common:errorEmail'
 const VALIDATION_EMAIL = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
 class RegisterStore {

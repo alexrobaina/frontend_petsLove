@@ -25,13 +25,13 @@ const LocationFormPet = ({ createPetStore }) => {
 
   return (
     <LayoutForm>
-      <div className={styles.subtitle}>{t('subtitleStepThree')}</div>
+      <div className={styles.subtitle}>{t('locationTitle')}</div>
       <div className={styles.colMap}>
         <GoogleAutocomplete
           isEdit
-          label={t('whereFound')}
+          label={t('labelWhereFoundPet')}
           value={getFoundLocation}
-          placeholder={t('addAddressPet')}
+          placeholder={t('placeHolderGoogleAutoComplete')}
           inputStoreError={textAddress}
           handleChangeAddress={handleChangeAddress}
           handleChangeTextAddress={handleChangeTextAddress}

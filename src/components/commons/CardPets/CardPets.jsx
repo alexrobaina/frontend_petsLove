@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
+import { useTranslation } from 'react-i18next'
 import { AWS_STORAGE } from 'services/config'
 import LayoutCards from 'components/commons/LayoutCards'
+import Chips from 'components/commons/Chips'
 import noImage from './noImage.svg'
 import styles from './cardPets.scss'
-import Chips from '../Chips'
 
 const CardPets = ({ history, image, namePet, isAdopted }) => {
+  const { t } = useTranslation('petsCard')
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const utils = new Utils()
 
@@ -25,10 +27,10 @@ const CardPets = ({ history, image, namePet, isAdopted }) => {
             src={image && isImageNotFound ? `${AWS_STORAGE}/${image}` : noImage}
             alt="photos-pets"
           />
-          {isAdopted && <Chips text="Adopted" isAdopted={isAdopted} />}
+          {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
           <div className={styles.title}>{namePet}</div>
           <div className={styles.textHistory}>
-            {history ? utils.shortenText(history, 110) : 'They did not add history'}
+            {history ? utils.shortenText(history, 110) : t('notFoundHistory')}
           </div>
         </div>
       </LayoutCards>

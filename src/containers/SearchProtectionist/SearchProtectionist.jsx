@@ -10,51 +10,50 @@ import ProtectionistStore from 'stores/ProtectionistStore'
 import styles from './searchProtectionist.scss'
 
 const SearchProtectionist = () => {
-  const { t } = useTranslation('allSearch')
+  const { t } = useTranslation('searchProtectionist')
   const [stateAddress, setAddress] = useState({})
   const [loading, setSetLoadint] = useState(false)
   const protectionistStore = useLocalStore(() => new ProtectionistStore())
-  
+
   const handleChangeAddress = useCallback(address => {
     setAddress(address)
   }, [])
-  
+
   const showPosition = position => {
     setAddress({ lat: position.coords.latitude, lng: position.coords.longitude })
   }
-  
+
   useEffect(() => {
     setSetLoadint(true)
-    
+
     setTimeout(() => {
       setSetLoadint(false)
     }, 500)
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
     }
   }, [])
-  
+
   if (loading) {
     return <Loading loadingRing />
   }
-  
+
   return (
     <div className={styles.containerTransit}>
-      <LayoutContainer
-        title={t('transitSearch.title')}
-        information={t('transitSearch.information')}
-      >
+      <LayoutContainer title={t('searchProtectionist')} information={t('information')}>
         <div className={styles.colbig}>
           <GoogleAutocomplete
             isEdit
-            label={t('transitSearch.labelGoogle')}
-            placeholder={t('transitSearch.placeholderGoogle')}
+            placeholder={t('placeholderGoogle')}
             handleChangeAddress={handleChangeAddress}
           />
           {stateAddress.lat && (
             <LayoutTrantitions>
-              <GoogleMapsLocation location={stateAddress} users={protectionistStore.protectionist} />
+              <GoogleMapsLocation
+                location={stateAddress}
+                users={protectionistStore.protectionist}
+              />
             </LayoutTrantitions>
           )}
         </div>

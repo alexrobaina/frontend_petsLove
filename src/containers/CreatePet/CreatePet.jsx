@@ -69,7 +69,7 @@ const CreatePet = ({ isEdit }) => {
   if (createPetStore.isLoading) {
     return <Loading loadingRing />
   }
-  
+
   function getStepForm() {
     if (step === 1) {
       return (
@@ -91,10 +91,10 @@ const CreatePet = ({ isEdit }) => {
   const { name } = createPetStore.pet
 
   return (
-    <LayoutContainer title={c(isEdit ? t('editTo', { name: name.value }) : t('title'))}>
+    <LayoutContainer title={c(isEdit ? t('editTo', { name: name.value }) : t('createPetTitle'))}>
       <LayoutForm>
         <div className={styles.containerSteps}>
-          <Tooltip title={t('subtitleStepOne')}>
+          <Tooltip title={t('basicInformation')}>
             <div
               onClick={() => setStep(1)}
               className={c(styles.stepInformation, step === 1 && styles.formSelected)}
@@ -102,7 +102,7 @@ const CreatePet = ({ isEdit }) => {
               <MdPets size={20} />
             </div>
           </Tooltip>
-          <Tooltip title={t('subtitleStepTwo')}>
+          <Tooltip title={t('medicalInformation')}>
             <div
               onClick={() => setStep(2)}
               className={c(styles.stepInformation, step === 2 && styles.formSelected)}
@@ -110,7 +110,7 @@ const CreatePet = ({ isEdit }) => {
               <GiHealthPotion size={20} />
             </div>
           </Tooltip>
-          <Tooltip title={t('subtitleStepThree')}>
+          <Tooltip title={t('locationTitle')}>
             <div
               onClick={() => setStep(3)}
               className={c(styles.stepInformation, step === 3 && styles.formSelected)}
@@ -123,15 +123,15 @@ const CreatePet = ({ isEdit }) => {
         {getStepForm()}
         <div className={styles.containerButton}>
           <div className={styles.button}>
-            <Button disable={step === 1} handleClick={handleBack} text={t('back')} />
+            <Button disable={step === 1} handleClick={handleBack} text={t('common:back')} />
           </div>
           {step === 3 ? (
             <div className={styles.button}>
-              <Button handleClick={handleSave} text={t('save')} />
+              <Button handleClick={handleSave} text={t('common:save')} />
             </div>
           ) : (
             <div className={styles.button}>
-              <Button handleClick={handleNext} text={t('next')} />
+              <Button handleClick={handleNext} text={t('common:next')} />
             </div>
           )}
         </div>

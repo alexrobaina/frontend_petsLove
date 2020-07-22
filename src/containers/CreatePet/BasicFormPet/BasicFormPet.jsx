@@ -21,13 +21,13 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   const { authStore } = rootStore
 
   const categoryOptions = [
-    { value: 'dog', label: t('Dog') },
-    { value: 'cat', label: t('Cat') },
+    { value: 'dog', label: t('common:dog') },
+    { value: 'cat', label: t('common:cat') },
   ]
 
   const genderOptions = [
-    { value: 'female', label: t('Female') },
-    { value: 'male', label: t('Male') },
+    { value: 'female', label: t('common:female') },
+    { value: 'male', label: t('common:male') },
   ]
 
   const activityOptions = [
@@ -82,44 +82,49 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   }, [])
 
   const {
+    name,
+    gender,
     getLost,
     getName,
-    name,
-    getUrgent,
-    getCategory,
+    history,
     category,
     getGender,
-    gender,
-    getActivityLevel,
-    activityLevel,
-    getBirthday,
-    getHistory,
-    history,
+    getUrgent,
     getAdopted,
-    getUserCreatorId,
+    getHistory,
+    getCategory,
+    getBirthday,
     userAdopter,
     userTransit,
+    activityLevel,
     getImagePreviews,
+    getActivityLevel,
+    getUserCreatorId,
   } = createPetStore.pet
 
   const { optionsUserAdopter, optionsUserTransit } = createPetStore
 
   return (
     <LayoutForm>
-      <div className={styles.subtitle}>{t('subtitleStepOne')}</div>
+      <div className={styles.subtitle}>{t('basicInformation')}</div>
       <InputUploadImage
         isEdit
         oldImage={getImagePreviews}
         inputUploadImageStore={inputUploadImageStore}
       />
       <div className={styles.colums}>
-        <InputCheckbox isEdit text={t('lost')} value={getLost} handleChange={handleChangeLost} />
+        <InputCheckbox
+          isEdit
+          value={getLost}
+          text={t('lostLabel')}
+          handleChange={handleChangeLost}
+        />
       </div>
       <div className={styles.colums}>
         <InputCheckbox
           isEdit
-          text={t('urgent')}
           value={getUrgent}
+          text={t('urgentLabel')}
           handleChange={handleChangeUrgent}
         />
       </div>
@@ -140,7 +145,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           inputStore={category}
           options={categoryOptions}
           label={t('common:typePet')}
-          placeholder={t('typePets')}
+          placeholder={t('common:typePet')}
           handleChange={handleChangeCategory}
         />
       </div>
@@ -157,7 +162,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
       </div>
       <div className={styles.colums}>
         <InputDate
-          label={t('common:birthdate')}
+          label={t('birthdate')}
           handleDateChange={handleDateBirthday}
           value={moment(getBirthday).format('L')}
         />
@@ -168,7 +173,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           value={getActivityLevel}
           options={activityOptions}
           inputStore={activityLevel}
-          placeholder={t('activityLevel')}
+          placeholder={t('placeholderActivityLevel')}
           label={t('common:activityLevel')}
           handleChange={handleChangeActivityLevel}
         />
@@ -190,10 +195,10 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
             <InputSelect
               isEdit
               value={userAdopter.value}
-              label={t('whoAdopted')}
+              label={t('labelWhoAdopted', { name: getName })}
               inputStore={userAdopter}
               options={optionsUserAdopter}
-              placeholder={t('whoAdopted')}
+              placeholder={t('placeHolderSearchAdopter')}
               handleChange={handleChangeUserAdopter}
             />
           </div>

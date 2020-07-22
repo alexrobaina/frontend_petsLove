@@ -10,9 +10,9 @@ const CardGoogle = ({ image, name, email, textButton, id }) => {
     <div className={styles.container}>
       <div className={styles.containerImage}>
         <img
+          alt="photos-user"
           className={styles.imageCard}
           src={image ? `${AWS_STORAGE}/${image}` : noImage}
-          alt="photos-user"
         />
       </div>
       <div className={styles.containerCard}>
@@ -29,19 +29,19 @@ const CardGoogle = ({ image, name, email, textButton, id }) => {
 }
 
 CardGoogle.propTypes = {
-  name: PropTypes.string,
   id: PropTypes.string,
+  name: PropTypes.string,
+  image: PropTypes.string,
   email: PropTypes.string,
   textButton: PropTypes.string,
-  image: PropTypes.string,
 }
 
 CardGoogle.defaultProps = {
+  id: '',
+  name: '',
   image: '',
   email: '',
   textButton: '',
-  id: '',
-  name: '',
 }
 
 export default observer(CardGoogle)
