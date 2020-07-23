@@ -1,5 +1,5 @@
+import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
@@ -7,6 +7,7 @@ import SearchPetsStore from 'stores/SearchPetsStore'
 import InputSelect from 'components/commons/InputSelect'
 import ListPets from 'components/ListPets'
 import Button from 'components/commons/Button'
+import PetsFiltered from 'containers/PetsFiltered/PetsFiltered'
 import Loading from 'components/commons/Loading'
 import styles from './initialFilters.scss'
 
@@ -30,7 +31,7 @@ const InitialFilters = ({ searchPetsStore }) => {
   })
 
   const handleSearch = () => {
-    searchPetsStore.searchPets()
+    searchPetsStore.searchPets(6, 1)
   }
 
   return (
@@ -95,12 +96,8 @@ const InitialFilters = ({ searchPetsStore }) => {
             icon={<MdSearch size={18} />}
           />
         </div>
-        {searchPetsStore.isLoading ? (
-          <Loading loadingRing />
-        ) : (
-          <>{searchPetsStore.pets.length > 0 && <ListPets pets={searchPetsStore.pets} />}</>
-        )}
       </div>
+      <PetsFiltered searchPetsStore={searchPetsStore} />
     </div>
   )
 }

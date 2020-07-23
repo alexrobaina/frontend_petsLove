@@ -332,6 +332,10 @@ class Pet {
     return this.userCreatorId.value
   }
 
+  get getUsersId() {
+    return [this.getUserCreatorId, this.getUserVetId, this.getUserAdopterId, this.getUserTransitId]
+  }
+
   get getImagePreviews() {
     if (this.image.value === null) {
       return []

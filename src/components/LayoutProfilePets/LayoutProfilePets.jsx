@@ -35,21 +35,14 @@ const LayoutProfilePets = ({ store }) => {
   } = store.pet
 
   useEffect(() => {
-    if (
-      authStore.user._id === userCreatorId.value ||
-      authStore.user._id === userVetId.value ||
-      authStore.user._id === userAdopterId.value ||
-      authStore.user._id === userTransitId.value
-    ) {
-      setUserCanEdit(true)
-    }
-  }, [
-    userAdopterId.value,
-    userVetId.value,
-    userAdopterId.value,
-    userTransitId.value,
-    userCreatorId.value,
-  ])
+    store.pet.getUsersId.forEach(user => {
+      if (user) {
+        if (authStore.user._id === user) {
+          setUserCanEdit(true)
+        }
+      }
+    })
+  }, [])
 
   const { phone } = store
 

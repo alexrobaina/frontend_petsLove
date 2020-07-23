@@ -22,7 +22,6 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
   if (isLoading) {
     return <Loading loadingRing />
   }
-
   return (
     <>
       {pets.length > 0 ? (
@@ -34,7 +33,7 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
                   <LazyLoad height={50} offsetVertical={50}>
                     <div onClick={() => goToPet(pet._id)}>
                       <CardPets
-                        image={pet.image.filenames[0]}
+                        image={pet.image ? pet.image.filenames[0] : ''}
                         namePet={pet.name}
                         history={pet.history}
                         onClick={() => goToPet(pet._id)}

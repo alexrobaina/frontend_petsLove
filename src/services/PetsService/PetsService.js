@@ -2,11 +2,13 @@ import axios from 'axios'
 import { SERVER } from 'services/config'
 
 class PetsService {
-  getPets = data => {
+  getPets = (data, limit, page) => {
     const { city, category, gender } = data
-
+  
     return axios
-      .get(`${SERVER}/api/pet/queryList/?city=${city}&category=${category}&gender=${gender}`)
+      .get(
+        `${SERVER}/api/pet/queryList/?city=${city}&category=${category}&gender=${gender}&limit=${limit}&page=${page}`
+      )
       .then(response => response.data)
   }
 
