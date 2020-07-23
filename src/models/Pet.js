@@ -28,6 +28,9 @@ class Pet {
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
     this.userCreatorId = new InputStore()
+    this.userTransitId = new InputStore()
+    this.userAdopterId = new InputStore()
+    this.userVetId = new InputStore()
     this.userVet = new InputStore()
     this.medicalCat = {}
     this.medicalDog = {}
@@ -65,14 +68,17 @@ class Pet {
     this.userCreatorId.setValue(pet.userCreator._id)
 
     if (pet.userAdopter) {
+      this.userAdopter.setValue(pet.userAdopter)
       this.userAdopterId.setValue(pet.userAdopter._id)
     }
 
     if (pet.userVet) {
-      this.userVet.setValue(pet.userVet._id)
+      this.userVet.setValue(pet.userVet)
+      this.userVetId.setValue(pet.userVet._id)
     }
 
     if (pet.userTransit) {
+      this.userTransit.setValue(pet.userTransit)
       this.userTransitId.setValue(pet.userTransit._id)
     }
 

@@ -6,11 +6,11 @@ import UserContext from 'Context/UserContext'
 import { useLocalStore } from 'mobx-react'
 import PetsUserTransit from 'containers/PetsUserTransit'
 import SearchPetsStore from 'stores/SearchPetsStore'
-import cat from '../AdopterUser/animal.svg'
-import dog from '../AdopterUser/dog-tags-military.svg'
-import styles from './transitUser.scss'
+import cat from '../DashboardAdopter/animal.svg'
+import dog from '../DashboardAdopter/dog-tags-military.svg'
+import styles from './dashboardTransit.scss'
 
-const TransitUser = () => {
+const DashboardTransit = () => {
   const { t } = useTranslation('dashboard')
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
@@ -30,6 +30,4 @@ const TransitUser = () => {
   )
 }
 
-TransitUser.propTypes = {}
-
-export default TransitUser
+export default DashboardTransit

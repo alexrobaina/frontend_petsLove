@@ -2,7 +2,7 @@
   "titleError": "Error!",
   "titleSuccess": "Great. :D.",
   "title": "My name is {{ name }}",
-  "linkBack": "Go to protectionist profile",
+  "goToProfile": "Go to the rescuers profile",
   "requiredToAdoption": "Required to Adoption",
   "medicalInformation": "Medical information",
   "history": "History",

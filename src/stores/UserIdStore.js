@@ -2,8 +2,10 @@ import { observable, action, runInAction } from 'mobx'
 import ProfilesUsersService from 'services/ProfilesUsersService'
 
 class UserIdStore {
-  constructor() {
+  constructor(id) {
     this.profilesUsersService = new ProfilesUsersService()
+
+    this.getUserId(id)
   }
 
   @observable id = ''

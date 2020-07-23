@@ -85,6 +85,11 @@ const routesUserAdopter = [
     text: 'Search Protectionists',
     link: '/search-protectionist',
   },
+  {
+    icon: <MdCreate size={25} />,
+    text: 'createPet',
+    link: '/create-pet',
+  },
 ]
 
 const routesUserTransitUser = [
