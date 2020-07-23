@@ -1,17 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import UserContext from 'Context/UserContext'
+import React, { useCallback, useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
-import { useTranslation } from 'react-i18next'
-import Title from 'components/commons/Title'
 import PaginationList from 'components/commons/PaginationList'
-import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
 const PetsFiltered = ({ searchPetsStore }) => {
   const [page, setPage] = useState(1)
   const [limit] = useState(6)
-  const { t } = useTranslation('dashboard')
 
   useEffect(() => {
     searchPetsStore.searchPets(6, page)
