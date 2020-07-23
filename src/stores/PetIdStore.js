@@ -4,10 +4,12 @@ import PetsService from 'services/PetsService'
 import Pet from 'models/Pet'
 
 class PetIdStore {
-  constructor() {
+  constructor(id) {
     this.petsService = new PetsService()
     this.setLocalStorage = new SetLocalStorage()
     this.pet = new Pet()
+
+    this.getPetId(id)
   }
 
   @observable id = ''
@@ -32,7 +34,7 @@ class PetIdStore {
   async getPetId(id) {
     this.isLoading = true
     try {
-      const response = await this.petsService.getPetId(id)
+      const response = await this.petsService.loadPetId(id)
 
       runInAction(() => {
         this.pet.fillJson(response)

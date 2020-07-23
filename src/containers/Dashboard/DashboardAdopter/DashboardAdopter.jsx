@@ -8,9 +8,9 @@ import UserAdopterStore from 'stores/UserAdopterStore'
 import UserContext from 'Context/UserContext'
 import cat from './animal.svg'
 import dog from './dog-tags-military.svg'
-import styles from './adopterUser.scss'
+import styles from './dashboardAdopter.scss'
 
-const AdopterUser = () => {
+const DashboardAdopter = () => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const { t } = useTranslation('dashboard')
@@ -31,4 +31,4 @@ const AdopterUser = () => {
   )
 }
 
-export default observer(AdopterUser)
+export default observer(DashboardAdopter)

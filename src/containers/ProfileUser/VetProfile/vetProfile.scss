@@ -1,0 +1,32 @@
+@import 'styles/mixings';
+
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userImage {
+  width: 100%;
+  image-orientation: from-image;
+  object-fit: cover;
+  height: 400px;
+  border-radius: 3px;
+}
+
+.containerCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+  @include media-breakpoint-down(md) {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+.layourCard {
+  padding-top: 15px;
+}

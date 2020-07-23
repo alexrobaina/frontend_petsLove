@@ -9,20 +9,16 @@ import ErrorMessage from 'components/commons/ErrorMessage'
 import LayoutProfilePets from 'components/LayoutProfilePets'
 
 const ProfilePets = () => {
-  const petIdStore = useLocalStore(() => new PetIdStore())
-  const { t } = useTranslation('profilePets')
   const { id } = useParams()
-
-  useEffect(() => {
-    petIdStore.getPetId(id)
-  }, [])
-
+  const petIdStore = useLocalStore(() => new PetIdStore(id))
+  const { t } = useTranslation('profilePets')
+  
   return (
     <LayoutContainer>
       <Link
         to={`/profile-user/${petIdStore.pet.userCreator.value && petIdStore.pet.getUserCreatorId}`}
       >
-        {t('linkBack')}
+        {t('goToProfile', { role: petIdStore.pet.getRole })}
       </Link>
       <LayoutProfilePets store={petIdStore} />
       {petIdStore.filenames.value !== [] ? (

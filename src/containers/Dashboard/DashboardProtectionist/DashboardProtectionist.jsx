@@ -9,9 +9,9 @@ import ForAdoption from 'containers/ForAdoption'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import dog from '../pet.svg'
 import cat from '../cat.svg'
-import styles from './protectionistUser.scss'
+import styles from './dashboardProtectionist.scss'
 
-const ProtectionistUser = () => {
+const DashboardProtectionist = () => {
   const [swith, setSwith] = useState(false)
   const searchPetsStore = useLocalStore(() => new SearchPetsStore())
   const rootStore = useContext(UserContext)
@@ -53,4 +53,4 @@ const ProtectionistUser = () => {
   )
 }
 
-export default observer(ProtectionistUser)
+export default observer(DashboardProtectionist)

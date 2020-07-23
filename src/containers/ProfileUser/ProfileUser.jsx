@@ -2,18 +2,15 @@ import React, { useEffect } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
 import UserIdStore from 'stores/UserIdStore'
-import { PROTECTIONIST, TRANSIT_USER } from 'config/roles'
+import { PROTECTIONIST, TRANSIT_USER, VET } from 'config/roles'
 import ProtectionistProfile from './ProtectionistProfile'
 import TransitUserProfile from './TransitUserProfile'
 import AdopterProfile from './AdopterProfile'
+import VetProfile from './VetProfile'
 
 const ProfileUser = () => {
-  const userIdStore = useLocalStore(() => new UserIdStore())
   const { id } = useParams()
-
-  useEffect(() => {
-    userIdStore.getUserId(id)
-  }, [])
+  const userIdStore = useLocalStore(() => new UserIdStore(id))
 
   const { role } = userIdStore.user
 
@@ -23,6 +20,10 @@ const ProfileUser = () => {
 
   if (role === TRANSIT_USER) {
     return <TransitUserProfile user={userIdStore.user} />
+  }
+
+  if (role === VET) {
+    return <VetProfile user={userIdStore.user} />
   }
 
   return <AdopterProfile user={userIdStore.user} />

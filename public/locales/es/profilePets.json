@@ -2,7 +2,7 @@
   "titleError": "Error!",
   "titleSuccess": "Genial :D",
   "title": "Mi nombre es {{ name }}",
-  "linkBack": "Ir al perfil del protectionista",
+  "goToProfile": "Ir al perfil del rescatista",
   "requiredToAdoption": "Requisitos pada adoptar",
   "history": "Historia",
   "lost": "Esta Perdida",

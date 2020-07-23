@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import UserContext from 'Context/UserContext'
 import PetsUserVet from 'containers/PetsUserVet'
-import cat from '../AdopterUser/animal.svg'
-import dog from '../AdopterUser/dog-tags-military.svg'
+import cat from '../DashboardAdopter/animal.svg'
+import dog from '../DashboardAdopter/dog-tags-military.svg'
 import styles from './dashboardVet.scss'
 
 const DashboardVet = () => {

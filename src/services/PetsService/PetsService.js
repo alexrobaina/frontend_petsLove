@@ -9,8 +9,8 @@ class PetsService {
       .get(`${SERVER}/api/pet/queryList/?city=${city}&category=${category}&gender=${gender}`)
       .then(response => response.data)
   }
-
-  getPetId = id => {
+  
+  loadPetId = id => {
     return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 

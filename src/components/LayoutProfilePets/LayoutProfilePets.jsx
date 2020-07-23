@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
@@ -15,32 +15,51 @@ import TextCard from 'components/commons/TextCard'
 import styles from './layoutProfilePets.scss'
 
 const LayoutProfilePets = ({ store }) => {
+  const [userCanEdit, setUserCanEdit] = useState(false)
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const { t } = useTranslation('profilePets')
 
   const {
-    getCategory,
-    getHistory,
     getName,
-    foundLocation,
-    textAddress,
-    userCreatorId,
     category,
+    getHistory,
+    getCategory,
+    textAddress,
+    foundLocation,
+    userVetId,
+    userCreatorId,
+    userAdopterId,
+    userTransitId,
     getImagePreviews,
   } = store.pet
 
+  console.log(authStore.user._id === userAdopterId.value)
+
+  useEffect(() => {
+    if (
+      authStore.user._id === userCreatorId.value ||
+      authStore.user._id === userVetId.value ||
+      authStore.user._id === userAdopterId.value ||
+      authStore.user._id === userTransitId.value
+    ) {
+      setUserCanEdit(true)
+    }
+  }, [
+    userAdopterId.value,
+    userVetId.value,
+    userAdopterId.value,
+    userTransitId.value,
+    userCreatorId.value,
+  ])
+
   const { phone } = store
-  
+
   return (
     <>
       <div className={styles.header}>
         <Title title={t('title', { name: getName })} />
-        <ButtonShare
-          phone={phone}
-          route="edit-pet"
-          canView={authStore.user._id === userCreatorId.value}
-        />
+        <ButtonShare phone={phone} route="edit-pet" canView={userCanEdit} />
       </div>
       <div className={styles.colums}>
         <ImageProfilePet image={getImagePreviews} />

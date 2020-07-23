@@ -16,15 +16,18 @@
   },
   "protectionistUser": {
     "role": "Shelter pets",
-    "messageWhatsapp": "Hi! I'd like to adopt a pet. Can I visit the shelter?",
     "requirementsToAdopt": "Requirements to adopt",
     "needHome": "Need home",
     "adopted": "Adopted"
   },
   "transitUser": {
     "titleNameUser": "Profile of {{ name }}",
-    "messageWhatsapp": "Hello! I contact you because we need a volunteer to transit a pet",
     "role": "Transit Pets",
-    "information": "Find people who take care in transit of pets "
+    "information": "Find people who take care in transit of pets"
+  },
+  "userVet": {
+    "titleNameUser": "Profile of {{ name }}",
+    "role": "I'm Vet",
+    "information": "Veterinary medical care"
   }
 }

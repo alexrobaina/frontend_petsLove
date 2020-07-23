@@ -16,14 +16,17 @@
   },
   "protectionistUser": {
     "role": "Refugio de mascocas",
-    "messageWhatsapp": "Hola, me gustaría adoptar unas mascota. Puedo ir al refugio?",
     "requirementsToAdopt": "Requisitos para adoptar",
     "needHome": "Necesita hogar",
     "adopted": "Adoptados"
   },
   "transitUser": {
-    "messageWhatsapp": "Hola! Te contacto porque necesitamos un voluntario para hacer transito de una mascota ",
     "role": "Transito de mascotas",
     "information": "Encuentra personas que hacen transito de mascotas."
+  },
+  "userVet": {
+    "titleNameUser": "Profile of {{ name }}",
+    "role": "Veterinario",
+    "information": "Atención medica veterinaria"
   }
 }
