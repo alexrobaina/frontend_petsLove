@@ -9,18 +9,14 @@ class PetsService {
       .get(`${SERVER}/api/pet/queryList/?city=${city}&category=${category}&gender=${gender}`)
       .then(response => response.data)
   }
-  
+
   loadPetId = id => {
     return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 
-  loadPetsForUser = id => {
-    return axios.get(`${SERVER}/api/pet/listPetsForUser/?_id=${id}`).then(response => response.data)
-  }
-
-  loadPetsUserTransit = id => {
+  loadPetsUserTransit = (id, limit, page) => {
     return axios
-      .get(`${SERVER}/api/pet/listPetsUserTransit/?_id=${id}`)
+      .get(`${SERVER}/api/pet/listPetsForUserTransit/?_id=${id}&limit=${limit}&page=${page}`)
       .then(response => response.data)
   }
 

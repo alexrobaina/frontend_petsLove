@@ -207,9 +207,9 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
               isEdit
               value={userTransit.value}
               inputStore={userTransit}
-              label={t('userTransit')}
+              label={t('labelSelectTransit')}
               options={optionsUserTransit}
-              placeholder={t('userTransit')}
+              placeholder={t('placeholderSelectTransit')}
               handleChange={handleChangeUserTransit}
             />
           </div>

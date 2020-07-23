@@ -34,8 +34,6 @@ const LayoutProfilePets = ({ store }) => {
     getImagePreviews,
   } = store.pet
 
-  console.log(authStore.user._id === userAdopterId.value)
-
   useEffect(() => {
     if (
       authStore.user._id === userCreatorId.value ||

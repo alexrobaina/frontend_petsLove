@@ -28,21 +28,23 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
       {pets.length > 0 ? (
         <div className={styles.container}>
           {pets.map(pet => {
-            return (
-              <LayoutTrantitions key={`${pet._id}`}>
-                <LazyLoad height={50} offsetVertical={50}>
-                  <div onClick={() => goToPet(pet._id)}>
-                    <CardPets
-                      image={pet.image.filenames[0]}
-                      namePet={pet.name}
-                      history={pet.history}
-                      onClick={() => goToPet(pet._id)}
-                      isAdopted={!isUserAdopt && pet.adopted}
-                    />
-                  </div>
-                </LazyLoad>
-              </LayoutTrantitions>
-            )
+            if (pet) {
+              return (
+                <LayoutTrantitions key={`${pet._id}`}>
+                  <LazyLoad height={50} offsetVertical={50}>
+                    <div onClick={() => goToPet(pet._id)}>
+                      <CardPets
+                        image={pet.image.filenames[0]}
+                        namePet={pet.name}
+                        history={pet.history}
+                        onClick={() => goToPet(pet._id)}
+                        isAdopted={!isUserAdopt && pet.adopted}
+                      />
+                    </div>
+                  </LazyLoad>
+                </LayoutTrantitions>
+              )
+            }
           })}
         </div>
       ) : (
