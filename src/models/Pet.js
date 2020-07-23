@@ -6,39 +6,40 @@ import MedicalInformationDog from 'models/MedicalInformationDog'
 class Pet {
   @observable state = true
   @observable lost = false
-  @observable urgent = false
   @observable terms = false
+  @observable urgent = false
   @observable adopted = false
 
   constructor(id) {
     this._id = id
     this.name = new InputStore()
-    this.image = new InputStore([])
-    this.category = new InputStore()
     this.gender = new InputStore()
     this.history = new InputStore()
-    this.activityLevel = new InputStore()
     this.birthday = new InputStore()
     this.history = new InputStore()
+    this.image = new InputStore([])
+    this.userVet = new InputStore()
     this.textarea = new InputStore()
-    this.foundLocation = new InputStore()
-    this.textAddress = new InputStore()
+    this.category = new InputStore()
     this.location = new InputStore()
+    this.userVetId = new InputStore()
     this.userCreator = new InputStore()
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
+    this.textAddress = new InputStore()
+    this.activityLevel = new InputStore()
+    this.foundLocation = new InputStore()
     this.userCreatorId = new InputStore()
     this.userTransitId = new InputStore()
     this.userAdopterId = new InputStore()
-    this.userVetId = new InputStore()
-    this.userVet = new InputStore()
+
     this.medicalCat = {}
     this.medicalDog = {}
 
+    this.userVet.setValue(null)
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
-    this.userVet.setValue(null)
 
     this.userAdopterId = new InputStore()
     this.userTransitId = new InputStore()
@@ -49,21 +50,21 @@ class Pet {
 
   fillJson(pet) {
     this._id = pet._id
-    this.name.setValue(pet.name)
-    this.gender.setValue(pet.gender)
-    this.category.setValue(pet.category)
-    this.activityLevel.setValue(pet.activityLevel)
-    this.textAddress.setValue(pet.textAddress)
-    this.image.setValue(pet.image)
-    this.history.setValue(pet.history)
-    this.userCreator.setValue(pet.userCreator)
-    this.birthday.setValue(pet.birthday)
-    this.foundLocation.setValue(pet.foundLocation)
-    this.location.setValue(pet.foundLocation)
-    this.state = pet.state
     this.lost = pet.lost
+    this.state = pet.state
     this.urgent = pet.urgent
     this.adopted = pet.adopted
+    this.name.setValue(pet.name)
+    this.image.setValue(pet.image)
+    this.gender.setValue(pet.gender)
+    this.history.setValue(pet.history)
+    this.birthday.setValue(pet.birthday)
+    this.category.setValue(pet.category)
+    this.location.setValue(pet.foundLocation)
+    this.textAddress.setValue(pet.textAddress)
+    this.userCreator.setValue(pet.userCreator)
+    this.foundLocation.setValue(pet.foundLocation)
+    this.activityLevel.setValue(pet.activityLevel)
 
     this.userCreatorId.setValue(pet.userCreator._id)
 
@@ -101,19 +102,19 @@ class Pet {
   getJson() {
     const petData = {
       _id: this._id,
-      name: this.name.value,
-      category: this.category.value,
       lost: this.lost,
       state: this.state,
       urgent: this.urgent,
-      gender: this.gender.value,
+      name: this.name.value,
       adopted: this.adopted,
-      userCreator: this.userCreator.value,
+      gender: this.gender.value,
+      history: this.history.value,
+      category: this.category.value,
       birthday: this.birthday.value,
-      activityLevel: this.activityLevel.value,
       foundLocation: this.location.value,
       textAddress: this.textAddress.value,
-      history: this.history.value,
+      userCreator: this.userCreator.value,
+      activityLevel: this.activityLevel.value,
     }
 
     if (this.userVet.value !== '') {

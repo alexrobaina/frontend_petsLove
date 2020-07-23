@@ -125,14 +125,15 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsUserTransit(userId) {
+  async getPetsUserTransit(userId, limit, page) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetsUserTransit(userId)
+      const response = await this.petsService.loadPetsUserTransit(userId, limit, page)
 
       runInAction(() => {
-        this.petsUserTransit = response
+        this.petsUserTransit = response.pets
+        this.totalPetsTransit = response.totalPets
         this.isLoading = false
       })
     } catch (e) {
@@ -143,7 +144,7 @@ class SearchPetsStore {
       })
     }
   }
-  
+
   @action
   async getPetsUserVet(userId, limit, page) {
     this.isLoading = true
