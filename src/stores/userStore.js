@@ -43,6 +43,8 @@ class UserStore {
   @observable localStorageUser = []
   @observable isLoadingResize = false
   @observable passwordSuccess = false
+  @observable isSaved = false
+  @observable isUpdated = false
   @observable confirmPassword = new InputStore()
   @observable selectedImageUser = new InputStore()
 
@@ -53,6 +55,8 @@ class UserStore {
 
       runInAction(() => {
         this.isLoading = false
+        this.isSaved = true
+        this.isUpdated = true
       })
     } catch (e) {
       runInAction(() => {
@@ -82,6 +86,8 @@ class UserStore {
 
   @action
   async save() {
+    this.isSaved = false
+    this.isUpdated = false
     this.isLoading = true
 
     try {
@@ -101,6 +107,8 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isSaved = false
+        this.isUpdated = false
         this.isLoading = false
         console.log(e)
       })

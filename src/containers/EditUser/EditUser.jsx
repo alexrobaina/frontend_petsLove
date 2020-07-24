@@ -1,6 +1,7 @@
-import React, { useCallback, useContext, useRef } from 'react'
+import React, { useCallback, useContext, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
+import { toast } from 'react-toastify'
 import PhoneInput from 'react-phone-input-2'
 import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
@@ -20,6 +21,7 @@ import Loading from 'components/commons/Loading'
 import Title from 'components/commons/Title'
 import InputCheckbox from 'components/commons/InputCheckbox'
 import ViewValue from 'components/commons/ViewValue'
+import AlertToast from 'components/commons/AlertToast/AlertToast'
 import Label from 'components/commons/Label'
 import LayoutForm from 'components/commons/LayoutForm'
 import styles from './editUser.scss'
@@ -99,6 +101,7 @@ const EditUser = () => {
   }, [])
 
   const {
+    _id,
     name,
     role,
     email,
@@ -112,6 +115,16 @@ const EditUser = () => {
     requirementsToAdopt,
   } = userStore.user
 
+  useEffect(() => {
+    if (userStore.isSaved && userStore.isUpdated) {
+      userStore.loadUser(userStore.user._id)
+      toast(t('common:saveSuccess'), {
+        position: toast.POSITION.TOP_CENTER,
+        className: styles.toast,
+      })
+    }
+  }, [userStore.isSaved, userStore.isUpdated])
+
   if (userStore.isLoading) {
     return (
       <div className={styles.containerLoading}>
@@ -122,6 +135,7 @@ const EditUser = () => {
 
   return (
     <LayoutContainer title={t('myProfile')}>
+      <AlertToast />
       <LayoutForm>
         <div className={styles.containerImage}>
           {isLoadingResizem ? (

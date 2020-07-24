@@ -137,3 +137,14 @@
   font-size: 10px;
   color: green;
 }
+
+.toast {
+  background-color: $primaryNavbar;
+  border-radius: 50px;
+  margin-top: 80px;
+  color: $title;
+
+  @include media-breakpoint-only(xs) {
+    width: 300px;
+  }
+}
