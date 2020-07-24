@@ -48,13 +48,11 @@ class UserStore {
 
   @action
   async saveUser() {
-    this.isLoading = true
     try {
       await this.editUserServices.userUpdate(this.user.getJson())
 
       runInAction(() => {
         this.isLoading = false
-        window.location.reload()
       })
     } catch (e) {
       runInAction(() => {
@@ -66,7 +64,6 @@ class UserStore {
 
   @action
   async saveImage() {
-    this.isLoading = true
     const data = new FormData()
 
     try {
@@ -74,7 +71,6 @@ class UserStore {
 
       runInAction(() => {
         this.isLoading = false
-        window.location.reload()
       })
     } catch (e) {
       runInAction(() => {

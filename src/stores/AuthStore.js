@@ -29,21 +29,29 @@ class AuthStore {
   @observable tokenLocalStorage = ''
 
   @action
-  async loginUser() {
+  async loginUser(email = '', password = '') {
     this.isLogin = false
     this.isLoading = true
     this.isErrorLogin = false
-
-    const data = {
-      email: this.email.value,
-      password: this.password.value,
-    }
+    let data
+    let response
 
     try {
-      const response = await this.authService.login(data)
+      if (email && password) {
+        console.log(email, password);
+        response = await this.authService.login({ email, password })
+      } else {
+        console.log(2)
+        data = {
+          email: this.email.value,
+          password: this.password.value,
+        }
+        response = await this.authService.login(data)
+      }
 
       runInAction(() => {
         this.isLogin = true
+        this.isLoading = false
         this.setUser(response.user)
         this.setToken(response.token)
         this.user = response.user

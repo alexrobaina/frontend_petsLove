@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
@@ -11,6 +11,7 @@ import Loading from 'components/commons/Loading/Loading'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
+import UserContext from 'Context/UserContext'
 import { ADOPTER, PROTECTIONIST, TRANSIT_USER, VET } from 'config/roles'
 import RegisterStore from 'stores/RegisterStore'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
@@ -19,6 +20,8 @@ import styles from './formRegister.scss'
 const FormRegister = ({ registerStore }) => {
   const { t } = useTranslation('signIn')
   const history = useHistory()
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
 
   const handleChangeFirstname = useCallback(e => {
     registerStore.setFirstname(e.target.value)
@@ -56,14 +59,19 @@ const FormRegister = ({ registerStore }) => {
     registerStore.createUser()
   }, [])
 
+  const { firstname, email, password, role, username, lastname } = registerStore.registerUser
+
   useEffect(() => {
     if (registerStore.isRegister) {
-      history.push('/')
-      history.push('/login')
+      authStore.loginUser(email.value, password.value)
     }
   }, [registerStore.isRegister])
 
-  const { firstname, email, password, role, username, lastname } = registerStore.registerUser
+  useEffect(() => {
+    if (authStore.isLogin) {
+      history.push('/dashboard')
+    }
+  }, [authStore.isLogin])
 
   return (
     <LayoutTrantitions>
