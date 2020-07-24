@@ -24,7 +24,7 @@ const PetsFiltered = ({ searchPetsStore }) => {
       ) : (
         <>
           <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsFiltered} />
-          {searchPetsStore.totalPetsFiltered && (
+          {searchPetsStore.totalPetsFiltered !== 0 && (
             <PaginationList
               page={page}
               limit={limit}

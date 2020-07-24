@@ -34,7 +34,7 @@ const PetsUserVet = ({ id }) => {
       ) : (
         <>
           <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsUserVet} />
-          {searchPetsStore.totalPetsVet && (
+          {searchPetsStore.totalPetsVet !== 0 && (
             <PaginationList
               page={page}
               limit={limit}
