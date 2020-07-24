@@ -43,18 +43,20 @@ class UserStore {
   @observable localStorageUser = []
   @observable isLoadingResize = false
   @observable passwordSuccess = false
+  @observable isSaved = false
+  @observable isUpdated = false
   @observable confirmPassword = new InputStore()
   @observable selectedImageUser = new InputStore()
 
   @action
   async saveUser() {
-    this.isLoading = true
     try {
       await this.editUserServices.userUpdate(this.user.getJson())
 
       runInAction(() => {
         this.isLoading = false
-        window.location.reload()
+        this.isSaved = true
+        this.isUpdated = true
       })
     } catch (e) {
       runInAction(() => {
@@ -74,7 +76,6 @@ class UserStore {
 
       runInAction(() => {
         this.isLoading = false
-        window.location.reload()
       })
     } catch (e) {
       runInAction(() => {
@@ -86,6 +87,8 @@ class UserStore {
 
   @action
   async save() {
+    this.isSaved = false
+    this.isUpdated = false
     this.isLoading = true
 
     try {
@@ -105,6 +108,8 @@ class UserStore {
       })
     } catch (e) {
       runInAction(() => {
+        this.isSaved = false
+        this.isUpdated = false
         this.isLoading = false
         console.log(e)
       })

@@ -2,4 +2,9 @@
 
 .closeButton {
   color: $ligth;
+  margin-right: 15px;
+}
+
+.toast > div {
+  padding-left: 15px !important;
 }
