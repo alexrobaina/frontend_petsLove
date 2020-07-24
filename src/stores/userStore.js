@@ -68,7 +68,6 @@ class UserStore {
 
   @action
   async saveImage() {
-    this.isLoading = true
     const data = new FormData()
 
     try {
