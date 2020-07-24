@@ -24,18 +24,15 @@ const LayoutProfilePets = ({ store }) => {
     getName,
     category,
     getHistory,
+    getUsersId,
     getCategory,
     textAddress,
     foundLocation,
-    userVetId,
-    userCreatorId,
-    userAdopterId,
-    userTransitId,
     getImagePreviews,
   } = store.pet
 
   useEffect(() => {
-    store.pet.getUsersId.forEach(user => {
+    getUsersId.forEach(user => {
       if (user) {
         if (authStore.user._id === user) {
           setUserCanEdit(true)

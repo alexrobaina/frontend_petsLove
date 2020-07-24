@@ -6,12 +6,11 @@ import UserContext from 'Context/UserContext'
 import c from 'classnames'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
-import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ButtonShare from 'components/commons/ButtonShare'
 import { AWS_STORAGE } from 'services/config'
 import Title from 'components/commons/Title'
-import PetsUserVet from "containers/PetsUserVet";
+import PetsUserVet from 'containers/PetsUserVet'
 import noImage from '../noImage.svg'
 import styles from './vetProfile.scss'
 

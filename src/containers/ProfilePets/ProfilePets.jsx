@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useLocalStore, observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +12,7 @@ const ProfilePets = () => {
   const { id } = useParams()
   const petIdStore = useLocalStore(() => new PetIdStore(id))
   const { t } = useTranslation('profilePets')
-  
+
   return (
     <LayoutContainer>
       <Link

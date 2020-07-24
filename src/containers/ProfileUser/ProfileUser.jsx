@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
 import UserIdStore from 'stores/UserIdStore'

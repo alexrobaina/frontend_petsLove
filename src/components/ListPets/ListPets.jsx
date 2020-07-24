@@ -22,6 +22,7 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
   if (isLoading) {
     return <Loading loadingRing />
   }
+  
   return (
     <>
       {pets.length > 0 ? (
@@ -44,6 +45,7 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
                 </LayoutTrantitions>
               )
             }
+            return ''
           })}
         </div>
       ) : (
