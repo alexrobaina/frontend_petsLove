@@ -107,13 +107,12 @@ const EditUser = () => {
     location,
     password,
     username,
-    isLoading,
     textAddress,
     isLoadingResizem,
     requirementsToAdopt,
   } = userStore.user
 
-  if (isLoading) {
+  if (userStore.isLoading) {
     return (
       <div className={styles.containerLoading}>
         <Loading loadingRing />
@@ -299,6 +298,7 @@ const EditUser = () => {
           handleEdit={handleEdit}
           handleSave={handleSave}
           isEdit={userStore.isEdit}
+          isLoading={userStore.isLoading}
           handleCancelEdit={handleCancelEdit}
         />
       </LayoutForm>
