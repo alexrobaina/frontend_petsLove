@@ -85,7 +85,6 @@ class RegisterStore {
     this.registerUser.password.setValue(value)
     if (this.registerUser.password.value === this.confirmPassword.value) {
       this.passwordSuccess = true
-      this.passwordError = false
     } else {
       this.passwordSuccess = false
       this.passwordError = true

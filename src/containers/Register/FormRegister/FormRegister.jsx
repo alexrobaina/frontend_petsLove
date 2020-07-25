@@ -141,12 +141,6 @@ const FormRegister = ({ registerStore }) => {
                     handleChange={handleChangePassword}
                     placeholder={t('register.password')}
                   />
-                  {registerStore.passwordError && (
-                    <div className={styles.errorMessage}>{t('register.errorPassword')}</div>
-                  )}
-                  {registerStore.passwordSuccess && (
-                    <div className={styles.successMessage}>{t('register.successPassword')}</div>
-                  )}
                 </div>
                 <div className={styles.inputForm}>
                   <Input
@@ -161,6 +155,12 @@ const FormRegister = ({ registerStore }) => {
                     title={t('register.titleConfirmPassword')}
                   />
                 </div>
+                {registerStore.passwordError && (
+                  <div className={styles.errorMessage}>{t('register.errorPassword')}</div>
+                )}
+                {registerStore.passwordSuccess && (
+                  <div className={styles.successMessage}>{t('register.successPassword')}</div>
+                )}
                 <div className={styles.inputForm}>
                   <InputSelect
                     isEdit
@@ -183,8 +183,17 @@ const FormRegister = ({ registerStore }) => {
                     name="phone"
                     country="ar"
                     onChange={phone => handleChangePhone(phone)}
-                    inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a' }}
+                    inputStyle={{
+                      width: '100%',
+                      height: '40px',
+                      borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#ffd95a',
+                    }}
                   />
+                  {registerStore.registerUser.phone.error && (
+                    <div className={styles.errorMessage}>
+                      {t(`${registerStore.registerUser.phone.errorMessage}`)}
+                    </div>
+                  )}
                 </div>
                 <div className={styles.buttonRegister}>
                   <Button
