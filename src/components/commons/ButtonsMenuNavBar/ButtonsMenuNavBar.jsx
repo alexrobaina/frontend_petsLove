@@ -1,8 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdDashboard, MdMenu, MdCreate } from 'react-icons/md'
+import { MdDashboard, MdMenu } from "react-icons/md";
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
+import { AiFillFileAdd } from "react-icons/ai";
 import { PROTECTIONIST, TRANSIT_USER, ADOPTER, VET } from 'config/roles'
 import { FaHandHoldingHeart, FaPeopleCarry, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
@@ -33,7 +34,7 @@ const routesUserProtectionist = [
     link: '/search-protectionist',
   },
   {
-    icon: <MdCreate size={25} />,
+    icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
     link: '/create-pet',
   },
@@ -62,7 +63,7 @@ const routesUserVet = [
     link: '/search-protectionist',
   },
   {
-    icon: <MdCreate size={25} />,
+    icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
     link: '/create-pet',
   },
@@ -86,7 +87,7 @@ const routesUserAdopter = [
     link: '/search-protectionist',
   },
   {
-    icon: <MdCreate size={25} />,
+    icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
     link: '/create-pet',
   },

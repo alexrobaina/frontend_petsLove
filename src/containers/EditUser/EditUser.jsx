@@ -117,7 +117,7 @@ const EditUser = () => {
 
   useEffect(() => {
     if (userStore.isSaved && userStore.isUpdated) {
-      userStore.loadUser(userStore.user._id)
+      userStore.loadUser(_id)
       toast(t('common:saveSuccess'), {
         position: toast.POSITION.TOP_CENTER,
         className: styles.toast,

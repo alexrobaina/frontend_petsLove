@@ -39,7 +39,7 @@ const LayoutProfilePets = ({ store }) => {
         }
       }
     })
-  }, [])
+  }, [getUsersId])
 
   const { phone } = store
 
