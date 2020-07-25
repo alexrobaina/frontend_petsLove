@@ -29,7 +29,7 @@ const ForAdoption = ({ id }) => {
         <Title title={t('protectionistUser.needHome')} />
       </LayoutContainerCardsPets>
       <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsForAdoption} />
-      {searchPetsStore.totalPetsForAdoption && (
+      {searchPetsStore.totalPetsForAdoption !== 0 && (
         <PaginationList
           page={page}
           limit={limit}
