@@ -10,6 +10,7 @@
   "no": "No",
   "name": "Name",
   "phone": "Phone",
+  "email": "Email",
   "saveSuccess": "The saved was a success",
   "username": "Username",
   "typePet": "Type pet",

@@ -105,6 +105,7 @@ const EditUser = () => {
     name,
     role,
     email,
+    phone,
     image,
     aboutUs,
     location,
@@ -154,10 +155,10 @@ const EditUser = () => {
           {userStore.isEdit && (
             <div className={c(styles.col, styles.buttonFile)}>
               <input
-                ref={fileUpload}
                 id="file"
                 type="file"
                 name="file"
+                ref={fileUpload}
                 onChange={handleChangeImage}
                 className={styles.inputFile}
               />
@@ -185,11 +186,11 @@ const EditUser = () => {
           <div className={styles.colbig}>
             <Input
               disabled
-              label={t('common:email')}
               inputStore={email}
               value={email.value}
-              placeholder={t('common:email')}
               isEdit={userStore.isEdit}
+              label={t('common:email')}
+              placeholder={t('common:email')}
             />
           </div>
           <div className={styles.colbig}>
@@ -209,12 +210,13 @@ const EditUser = () => {
                 <Label text={t('common:phone')} />
                 <PhoneInput
                   country="ar"
+                  value={phone.value.toString()}
                   onChange={phone => handleChangePhone(phone)}
-                  inputStyle={{ width: '100%', height: '40px' }}
+                  inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a', hover: 'red' }}
                 />
               </>
             ) : (
-              <ViewValue placeholder={t('common:phone')} value={userStore.user.phone.value} />
+              <ViewValue placeholder={t('common:phone')} value={phone.value} />
             )}
           </div>
           <div className={styles.colbig}>
