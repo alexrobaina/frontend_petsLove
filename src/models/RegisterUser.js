@@ -21,7 +21,7 @@ class RegisterUser {
 
   getJson() {
     return {
-      firstname: this.lastname.value,
+      firstname: this.firstname.value,
       lastname: this.lastname.value,
       email: this.email.value,
       password: this.password.value,
