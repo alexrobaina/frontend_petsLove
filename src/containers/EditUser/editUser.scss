@@ -143,6 +143,7 @@
   border-radius: 50px;
   margin-top: 80px;
   color: $title;
+  text-align: center;
 
   @include media-breakpoint-only(xs) {
     width: 300px;

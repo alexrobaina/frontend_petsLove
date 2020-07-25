@@ -117,11 +117,14 @@ const EditUser = () => {
 
   useEffect(() => {
     if (userStore.isSaved && userStore.isUpdated) {
-      userStore.loadUser(_id)
-      toast(t('common:saveSuccess'), {
-        position: toast.POSITION.TOP_CENTER,
-        className: styles.toast,
-      })
+      if (userStore.loadUser(_id)) {
+        setTimeout(() => {
+          toast(t('common:saveSuccess'), {
+            position: toast.POSITION.TOP_RIGHT,
+            className: styles.toast,
+          })
+        }, 500)
+      }
     }
   }, [userStore.isSaved, userStore.isUpdated])
 

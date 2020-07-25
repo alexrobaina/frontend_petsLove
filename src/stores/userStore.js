@@ -129,6 +129,7 @@ class UserStore {
         this.email = response.email
         this.setLocalStorage.setUser(response)
         this.isLoading = false
+        return true
       })
     } catch (e) {
       runInAction(() => {
