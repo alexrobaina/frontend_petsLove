@@ -8,6 +8,7 @@ import InputSelect from 'components/commons/InputSelect'
 import Button from 'components/commons/Button'
 import PetsFiltered from 'containers/PetsFiltered/PetsFiltered'
 import styles from './initialFilters.scss'
+import LayoutTrantitions from '../commons/LayoutTrantitions'
 
 const InitialFilters = ({ searchPetsStore }) => {
   const { t } = useTranslation('home')
