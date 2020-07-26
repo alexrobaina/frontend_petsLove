@@ -32,13 +32,13 @@ const LayoutProfilePets = ({ store }) => {
   } = store.pet
 
   useEffect(() => {
-    getUsersId.forEach(user => {
-      if (user) {
+    if (authStore.user) {
+      getUsersId.forEach(user => {
         if (authStore.user._id === user) {
           setUserCanEdit(true)
         }
-      }
-    })
+      })
+    }
   }, [getUsersId])
 
   const { phone } = store
