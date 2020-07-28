@@ -27,9 +27,9 @@ const CreatePet = ({ isEdit }) => {
   const { id } = useParams()
   const [step, setStep] = useState(1)
 
-  const handleStepValidation = useCallback(step => {
+  const handleStepValidation = useCallback(stepValidation => {
     if (createPetStore.firstStepValidation()) {
-      setStep(step)
+      setStep(stepValidation)
     }
   }, [])
 
