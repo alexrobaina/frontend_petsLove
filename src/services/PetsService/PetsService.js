@@ -3,11 +3,11 @@ import { SERVER } from 'services/config'
 
 class PetsService {
   getPets = (data, limit, page) => {
-    const { city, category, gender } = data
-  
+    const { country, city, category, gender } = data
+
     return axios
       .get(
-        `${SERVER}/api/pet/queryList/?city=${city}&category=${category}&gender=${gender}&limit=${limit}&page=${page}`
+        `${SERVER}/api/pet/queryList/?country=${country}&city=${city}&category=${category}&gender=${gender}&limit=${limit}&page=${page}`
       )
       .then(response => response.data)
   }

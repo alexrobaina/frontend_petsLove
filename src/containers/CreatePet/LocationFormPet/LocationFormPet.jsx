@@ -21,6 +21,11 @@ const LocationFormPet = ({ createPetStore }) => {
     createPetStore.pet.setTextAddress(address)
   }, [])
 
+  const handleChangeAddressComponents = useCallback(location => {
+    createPetStore.pet.setCity(location)
+    createPetStore.pet.setCountry(location)
+  }, [])
+
   const { textAddress, getFoundLocation, location, getTextAddress } = createPetStore.pet
 
   return (
@@ -29,12 +34,13 @@ const LocationFormPet = ({ createPetStore }) => {
       <div className={styles.colMap}>
         <GoogleAutocomplete
           isEdit
-          label={t('labelWhereFoundPet')}
           value={getFoundLocation}
-          placeholder={t('placeHolderGoogleAutoComplete')}
           inputStoreError={textAddress}
+          label={t('labelWhereFoundPet')}
           handleChangeAddress={handleChangeAddress}
+          placeholder={t('placeHolderGoogleAutoComplete')}
           handleChangeTextAddress={handleChangeTextAddress}
+          handleChangeAddressComponents={handleChangeAddressComponents}
         />
       </div>
       <div className={styles.colMap}>
@@ -42,8 +48,8 @@ const LocationFormPet = ({ createPetStore }) => {
         <div className={styles.containerMap}>
           <GoogleMapsLocation
             showAddress
-            location={location.value}
             title={t('messageMap')}
+            location={location.value}
             addressValue={location.value}
           />
         </div>

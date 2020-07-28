@@ -29,39 +29,6 @@ class SearchPetsStore {
   @observable category = new InputStore()
 
   @action
-  async searchPets(limit, page) {
-    this.isLoading = true
-
-    const data = {
-      city: this.city.value,
-      gender: this.gender.value,
-      category: this.category.value,
-    }
-
-    const searchPets = {
-      country: this.country,
-      city: this.city,
-    }
-
-    localStorage.setItem('searchPets', JSON.stringify(searchPets))
-
-    try {
-      const response = await this.petsService.getPets(data, limit, page)
-
-      runInAction(() => {
-        this.petsFiltered = response.pets
-        this.totalPetsFiltered = response.totalPets
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   async getPetAdopted(userId, limit, page) {
     this.isLoading = true
 

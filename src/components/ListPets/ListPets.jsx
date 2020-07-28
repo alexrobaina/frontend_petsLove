@@ -16,13 +16,12 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
   const goToPet = useCallback(id => {
     history.push(`/`)
     history.push(`profile-pets/${id}`)
-    window.location.reload()
   }, [])
 
   if (isLoading) {
     return <Loading loadingRing />
   }
-  
+
   return (
     <>
       {pets.length > 0 ? (
