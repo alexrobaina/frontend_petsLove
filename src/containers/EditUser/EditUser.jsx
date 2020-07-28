@@ -214,7 +214,7 @@ const EditUser = () => {
                 <PhoneInput
                   country="ar"
                   value={phone.value.toString()}
-                  onChange={phone => handleChangePhone(phone)}
+                  onChange={phoneNumber => handleChangePhone(phoneNumber)}
                   inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a', hover: 'red' }}
                 />
               </>

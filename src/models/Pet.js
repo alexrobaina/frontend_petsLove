@@ -13,11 +13,13 @@ class Pet {
   constructor(id) {
     this._id = id
     this.name = new InputStore()
+    this.city = new InputStore()
     this.gender = new InputStore()
     this.history = new InputStore()
     this.birthday = new InputStore()
     this.history = new InputStore()
     this.image = new InputStore([])
+    this.country = new InputStore()
     this.userVet = new InputStore()
     this.textarea = new InputStore()
     this.category = new InputStore()
@@ -54,9 +56,11 @@ class Pet {
     this.state = pet.state
     this.urgent = pet.urgent
     this.adopted = pet.adopted
+    this.city.setValue(pet.city)
     this.name.setValue(pet.name)
     this.image.setValue(pet.image)
     this.gender.setValue(pet.gender)
+    this.country.setValue(pet.country)
     this.history.setValue(pet.history)
     this.birthday.setValue(pet.birthday)
     this.category.setValue(pet.category)
@@ -106,8 +110,10 @@ class Pet {
       state: this.state,
       urgent: this.urgent,
       name: this.name.value,
+      city: this.city.value,
       adopted: this.adopted,
       gender: this.gender.value,
+      country: this.country.value,
       history: this.history.value,
       category: this.category.value,
       birthday: this.birthday.value,
@@ -147,6 +153,26 @@ class Pet {
   // ============================================
   // Setters
   // ============================================
+
+  setCity(address) {
+    address.address_components.forEach(components => {
+      components.types.forEach(type => {
+        if (type === 'administrative_area_level_1') {
+          this.city.setValue(components.long_name)
+        }
+      })
+    })
+  }
+
+  setCountry(address) {
+    address.address_components.forEach(components => {
+      components.types.forEach(type => {
+        if (type === 'country') {
+          this.country.setValue(components.long_name)
+        }
+      })
+    })
+  }
 
   setFoundLocation(value) {
     this.foundLocation.setValue(value)
@@ -258,6 +284,10 @@ class Pet {
 
   get idUserCreator() {
     return this.userCreator.value
+  }
+
+  get getCountry() {
+    return this.country.value
   }
 
   get getName() {

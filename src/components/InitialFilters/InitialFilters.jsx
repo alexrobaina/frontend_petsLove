@@ -1,36 +1,36 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { observer } from 'mobx-react'
+import { observer, useLocalStore } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
-import SearchPetsStore from 'stores/SearchPetsStore'
+import FilterPetsStore from 'stores/FilterPetsStore'
 import InputSelect from 'components/commons/InputSelect'
 import Button from 'components/commons/Button'
 import PetsFiltered from 'containers/PetsFiltered/PetsFiltered'
 import styles from './initialFilters.scss'
-import LayoutTrantitions from '../commons/LayoutTrantitions'
 
-const InitialFilters = ({ searchPetsStore }) => {
+const InitialFilters = () => {
+  const filterPetsStore = useLocalStore(() => new FilterPetsStore())
+
   const { t } = useTranslation('home')
 
   const handleChangeCountry = useCallback(selectedValue => {
-    searchPetsStore.setCountry(selectedValue.value)
+    filterPetsStore.setCountry(selectedValue.value)
   })
 
   const handleChanceCity = useCallback(selectedValue => {
-    searchPetsStore.setCity(selectedValue.value)
+    filterPetsStore.setCity(selectedValue.value)
   })
 
   const handleChanceCategory = useCallback(selectedValue => {
-    searchPetsStore.setCategory(selectedValue.value)
+    filterPetsStore.setCategory(selectedValue.value)
   })
 
   const handleChanceGender = useCallback(selectedValue => {
-    searchPetsStore.setGender(selectedValue.value)
+    filterPetsStore.setGender(selectedValue.value)
   })
 
   const handleSearch = () => {
-    searchPetsStore.searchPets(6, 1)
+    filterPetsStore.searchPets(6, 1)
   }
 
   return (
@@ -41,8 +41,8 @@ const InitialFilters = ({ searchPetsStore }) => {
             isEdit
             placeholder={t('country')}
             handleChange={handleChangeCountry}
-            inputStore={searchPetsStore.country}
-            value={searchPetsStore.country.value}
+            inputStore={filterPetsStore.country}
+            value={filterPetsStore.country.value}
             options={[
               { value: 'argentina', label: 'Argentina' },
               { value: 'colombia', label: 'Colombia' },
@@ -55,9 +55,9 @@ const InitialFilters = ({ searchPetsStore }) => {
             isEdit
             placeholder={t('city')}
             handleChange={handleChanceCity}
-            inputStore={searchPetsStore.city}
-            value={searchPetsStore.city.value}
-            options={searchPetsStore.optionsCities}
+            inputStore={filterPetsStore.city}
+            value={filterPetsStore.city.value}
+            options={filterPetsStore.optionsCities}
           />
         </div>
         <div className={styles.selectCategory}>
@@ -65,8 +65,8 @@ const InitialFilters = ({ searchPetsStore }) => {
             isEdit
             placeholder={t('category')}
             handleChange={handleChanceCategory}
-            inputStore={searchPetsStore.category}
-            value={searchPetsStore.category.value}
+            inputStore={filterPetsStore.category}
+            value={filterPetsStore.category.value}
             options={[
               { value: 'dog', label: t('dogs') },
               { value: 'cat', label: t('cats') },
@@ -78,8 +78,8 @@ const InitialFilters = ({ searchPetsStore }) => {
             isEdit
             placeholder={t('gender')}
             handleChange={handleChanceGender}
-            inputStore={searchPetsStore.gender}
-            value={searchPetsStore.gender.value}
+            inputStore={filterPetsStore.gender}
+            value={filterPetsStore.gender.value}
             options={[
               { value: 'female', label: t('female') },
               { value: 'male', label: t('male') },
@@ -96,13 +96,9 @@ const InitialFilters = ({ searchPetsStore }) => {
           />
         </div>
       </div>
-      <PetsFiltered searchPetsStore={searchPetsStore} />
+      <PetsFiltered store={filterPetsStore} />
     </div>
   )
-}
-
-InitialFilters.Prototypes = {
-  searchPetsStore: PropTypes.instanceOf(SearchPetsStore).isRequired,
 }
 
 export default observer(InitialFilters)

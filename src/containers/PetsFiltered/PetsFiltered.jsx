@@ -1,41 +1,47 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import PaginationList from 'components/commons/PaginationList'
+import FilterPetsStore from 'stores/FilterPetsStore'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
-const PetsFiltered = ({ searchPetsStore }) => {
+const PetsFiltered = ({ store }) => {
   const [page, setPage] = useState(1)
   const [limit] = useState(6)
 
   useEffect(() => {
-    searchPetsStore.searchPets(6, page)
+    store.searchPets(6, page)
   }, [])
 
   const handleChangePage = useCallback((e, newPage) => {
-    searchPetsStore.searchPets(6, newPage)
+    store.searchPets(6, newPage)
     setPage(newPage)
   }, [])
 
   return (
     <>
-      {searchPetsStore.isLoading ? (
+      {store.isLoading ? (
         <Loading loadingRing />
       ) : (
         <>
-          <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsFiltered} />
-          {searchPetsStore.totalPetsFiltered !== 0 && (
+          <ListPets isLoading={store.isLoading} pets={store.petsFiltered} />
+          {store.totalPetsFiltered !== 0 && (
             <PaginationList
               page={page}
               limit={limit}
               handleChange={handleChangePage}
-              total={searchPetsStore.totalPetsFiltered}
+              total={store.totalPetsFiltered}
             />
           )}
         </>
       )}
     </>
   )
+}
+
+PetsFiltered.propTypes = {
+  store: PropTypes.instanceOf(FilterPetsStore).isRequired,
 }
 
 export default observer(PetsFiltered)

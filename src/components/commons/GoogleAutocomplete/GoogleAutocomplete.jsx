@@ -4,8 +4,9 @@ import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import Loading from 'components/commons/Loading'
 import Label from 'components/commons/Label'
-import ViewValue from '../ViewValue'
+import ViewValue from 'components/commons/ViewValue'
 import styles from './googleAutocomplete.scss'
 
 const GoogleAutocomplete = observer(
@@ -18,6 +19,7 @@ const GoogleAutocomplete = observer(
     inputStoreError,
     handleChangeAddress,
     handleChangeTextAddress,
+    handleChangeAddressComponents,
   }) => {
     const [address, setAddress] = useState('')
     // eslint-disable-next-line no-shadow
@@ -25,20 +27,19 @@ const GoogleAutocomplete = observer(
       setAddress(address)
     }, [])
 
-    // eslint-disable-next-line no-shadow
-    const handleSelect = useCallback(address => {
+    const configAddress = async addressSelected => {
       if (handleChangeTextAddress) {
-        handleChangeTextAddress(address)
+        handleChangeTextAddress(addressSelected)
       }
-      geocodeByAddress(address)
-        .then(results => getLatLng(results[0]))
-        .then(latLng => handleChangeAddress(latLng))
-        .catch(error => console.error('Error', error))
-    }, [])
+      const results = await geocodeByAddress(addressSelected)
+      const latLng = await getLatLng(results[0])
+      handleChangeAddress(latLng)
+      handleChangeAddressComponents(results[0])
+    }
 
     return (
       <>
-        <PlacesAutocomplete value={address} onChange={handleChange} onSelect={handleSelect}>
+        <PlacesAutocomplete value={address} onChange={handleChange} onSelect={configAddress}>
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
             return (
               <div>
@@ -60,7 +61,7 @@ const GoogleAutocomplete = observer(
                   </>
                 )}
                 <div className={styles.dropdown}>
-                  {loading && <div className={styles.text}>Loading...</div>}
+                  {loading && <Loading loadingRing />}
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
                       ? 'suggestion-item--active'
@@ -108,6 +109,7 @@ GoogleAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   handleChangeAddress: PropTypes.func,
   handleChangeTextAddress: PropTypes.func,
+  handleChangeAddressComponents: PropTypes.func,
   inputStoreError: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string])),
 }
 
@@ -119,6 +121,7 @@ GoogleAutocomplete.defaultProps = {
   inputStoreError: null,
   handleChangeAddress: null,
   handleChangeTextAddress: null,
+  handleChangeAddressComponents: null,
 }
 
 export default GoogleApiWrapper({
