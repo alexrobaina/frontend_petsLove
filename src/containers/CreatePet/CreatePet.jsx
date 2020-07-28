@@ -27,6 +27,12 @@ const CreatePet = ({ isEdit }) => {
   const { id } = useParams()
   const [step, setStep] = useState(1)
 
+  const handleStepValidation = useCallback(step => {
+    if (createPetStore.firstStepValidation()) {
+      setStep(step)
+    }
+  }, [])
+
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
@@ -96,7 +102,7 @@ const CreatePet = ({ isEdit }) => {
         <div className={styles.containerSteps}>
           <Tooltip title={t('basicInformation')}>
             <div
-              onClick={() => setStep(1)}
+              onClick={() => handleStepValidation(1)}
               className={c(styles.stepInformation, step === 1 && styles.formSelected)}
             >
               <MdPets size={20} />
@@ -104,7 +110,7 @@ const CreatePet = ({ isEdit }) => {
           </Tooltip>
           <Tooltip title={t('medicalInformation')}>
             <div
-              onClick={() => setStep(2)}
+              onClick={() => handleStepValidation(2)}
               className={c(styles.stepInformation, step === 2 && styles.formSelected)}
             >
               <GiHealthPotion size={20} />
@@ -112,7 +118,7 @@ const CreatePet = ({ isEdit }) => {
           </Tooltip>
           <Tooltip title={t('locationTitle')}>
             <div
-              onClick={() => setStep(3)}
+              onClick={() => handleStepValidation(3)}
               className={c(styles.stepInformation, step === 3 && styles.formSelected)}
             >
               <MdEditLocation size={20} />

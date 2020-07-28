@@ -105,7 +105,6 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid $ligth;
   background-color: $colorLight;
   z-index: 100;
   border-radius: 100px;
@@ -118,8 +117,8 @@
 .stepLine {
   margin-top: 10px;
   position: absolute;
-  border: 1px solid $ligth;
-  width: 100%;
+  border: 1px solid $colorLight;
+  width: 99%;
 }
 
 .formSelected {
