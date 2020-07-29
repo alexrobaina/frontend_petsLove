@@ -1,16 +1,10 @@
 import { observable, action, runInAction } from 'mobx'
-import Cities from 'services/Cities'
 import PetsService from 'services/PetsService'
 import InputStore from './InputStore'
 
 const REQUIRED = 'Is required for search pets'
 
-class FilterPetsStore {
-  constructor() {
-    this.petsService = new PetsService()
-    this.cities = new Cities()
-  }
-
+class FilterSearchPetsStore {
   @observable isError = false
   @observable petsFiltered = []
   @observable isLoading = false
@@ -19,6 +13,11 @@ class FilterPetsStore {
   @observable gender = new InputStore()
   @observable country = new InputStore()
   @observable category = new InputStore()
+  @observable textAddress = new InputStore()
+
+  constructor() {
+    this.petsService = new PetsService()
+  }
 
   @action
   async searchPets(limit, page) {
@@ -32,8 +31,8 @@ class FilterPetsStore {
     }
 
     const searchPets = {
-      country: this.country,
-      city: this.city,
+      country: this.country.value,
+      city: this.city.value,
     }
 
     localStorage.setItem('searchPets', JSON.stringify(searchPets))
@@ -55,28 +54,29 @@ class FilterPetsStore {
   }
 
   @action
+  setAddressComponents(address) {
+    address.address_components.forEach(components => {
+      components.types.forEach(type => {
+        if (type === 'country') {
+          this.country.setValue(components.long_name)
+        }
+        if (type === 'administrative_area_level_1') {
+          this.city.setValue(components.long_name)
+        }
+      })
+    })
+  }
+
+  @action
+  setTextAddress(value) {
+    this.textAddress.setValue(value)
+  }
+
+  @action
   setLoadingFalse() {
     setTimeout(() => {
       this.isLoading = false
     }, 2000)
-  }
-
-  // set items for search
-  @action
-  setCountry(value) {
-    if (value) {
-      this.country.setValue(value)
-    }
-    this.selectedCities()
-  }
-
-  @action
-  setCity(value) {
-    if (value) {
-      this.city.setValue(value)
-    } else {
-      this.city.setValue('')
-    }
   }
 
   @action
@@ -98,31 +98,12 @@ class FilterPetsStore {
   }
 
   @action
-  selectedCities() {
-    if (this.country.value === 'argentina') {
-      this.optionsCities = this.cities.argentina
-    }
-    if (this.country.value === 'venezuela') {
-      this.optionsCities = this.cities.venezuela
-    }
-    if (this.country.value === 'colombia') {
-      this.optionsCities = this.cities.colombia
-    }
-  }
-
-  @action
   validate() {
     this.cleanError()
     let isValid = true
 
-    if (!this.country.value) {
-      this.country.setError(true, REQUIRED)
-
-      isValid = false
-    }
-
-    if (!this.city.value) {
-      this.city.setError(true, REQUIRED)
+    if (!this.textAddress.value) {
+      this.textAddress.setError(true, REQUIRED)
 
       isValid = false
     }
@@ -132,9 +113,8 @@ class FilterPetsStore {
 
   @action
   cleanError() {
-    this.city.setError(false, '')
-    this.country.setError(false, '')
+    this.textAddress.setError(false, '')
   }
 }
 
-export default FilterPetsStore
+export default FilterSearchPetsStore

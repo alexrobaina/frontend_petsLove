@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from "react-i18next";
 import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import Loading from 'components/commons/Loading'
 import Label from 'components/commons/Label'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './googleAutocomplete.scss'
@@ -21,6 +21,7 @@ const GoogleAutocomplete = observer(
     handleChangeTextAddress,
     handleChangeAddressComponents,
   }) => {
+    const { t } = useTranslation()
     const [address, setAddress] = useState('')
     // eslint-disable-next-line no-shadow
     const handleChange = useCallback(address => {
@@ -61,7 +62,7 @@ const GoogleAutocomplete = observer(
                   </>
                 )}
                 <div className={styles.dropdown}>
-                  {loading && <Loading loadingRing />}
+                  {loading && <div className={styles.text}>{t('common:loading')}</div>}
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
                       ? 'suggestion-item--active'

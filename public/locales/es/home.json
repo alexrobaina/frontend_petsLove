@@ -6,6 +6,8 @@
   "gender": "Genero",
   "category": "Categoria",
   "city": "Ciudad",
+  "labelGoogleAutocomplete": "¿Cual es tu dirección?",
+  "placeholderGoogleAutocomplete": "Busca mascotas cerca de tu ubicación...",
   "country": "País",
   "search": "Buscar"
 }

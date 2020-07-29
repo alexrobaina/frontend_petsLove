@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import PaginationList from 'components/commons/PaginationList'
-import FilterPetsStore from 'stores/FilterPetsStore'
+import FilterSearchPetsStore from 'stores/FilterSearchPetsStore'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
@@ -41,7 +41,7 @@ const PetsFiltered = ({ store }) => {
 }
 
 PetsFiltered.propTypes = {
-  store: PropTypes.instanceOf(FilterPetsStore).isRequired,
+  store: PropTypes.instanceOf(FilterSearchPetsStore).isRequired,
 }
 
 export default observer(PetsFiltered)
