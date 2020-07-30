@@ -8,7 +8,6 @@ import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
-  
   return (
     <>
       {label && isEdit && <Label text={label} />}
