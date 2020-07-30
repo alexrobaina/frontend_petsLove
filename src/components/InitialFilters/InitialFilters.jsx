@@ -2,71 +2,66 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
-import FilterPetsStore from 'stores/FilterPetsStore'
 import InputSelect from 'components/commons/InputSelect'
+import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAutocomplete'
+import FilterSearchPetsStore from "stores/FilterSearchPetsStore";
 import Button from 'components/commons/Button'
-import PetsFiltered from 'containers/PetsFiltered/PetsFiltered'
+import PetsFiltered from 'containers/PetsFiltered'
 import styles from './initialFilters.scss'
 
 const InitialFilters = () => {
-  const filterPetsStore = useLocalStore(() => new FilterPetsStore())
+  const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
 
   const { t } = useTranslation('home')
 
-  const handleChangeCountry = useCallback(selectedValue => {
-    filterPetsStore.setCountry(selectedValue.value)
-  })
-
-  const handleChanceCity = useCallback(selectedValue => {
-    filterPetsStore.setCity(selectedValue.value)
-  })
-
   const handleChanceCategory = useCallback(selectedValue => {
-    filterPetsStore.setCategory(selectedValue.value)
+    filterSearchPetsStore.setCategory(selectedValue.value)
   })
 
   const handleChanceGender = useCallback(selectedValue => {
-    filterPetsStore.setGender(selectedValue.value)
+    filterSearchPetsStore.setGender(selectedValue.value)
+  })
+
+  const handleChangeAddress = useCallback(address => {
+    console.log(address);
+  })
+
+  const handleChangeTextAddress = useCallback(address => {
+    filterSearchPetsStore.setTextAddress(address)
+  })
+
+  const handleChangeAddressComponents = useCallback(addressComponent => {
+    filterSearchPetsStore.setAddressComponents(addressComponent)
   })
 
   const handleSearch = () => {
-    filterPetsStore.searchPets(6, 1)
+    filterSearchPetsStore.searchPets(10, 1)
   }
-
+  
+  const { textAddress, category, gender } = filterSearchPetsStore
+  
   return (
     <div>
       <div className={styles.container}>
-        <div className={styles.selectCountry}>
-          <InputSelect
+        <div className={styles.googleAutocomplete}>
+          <GoogleAutocomplete
             isEdit
-            placeholder={t('country')}
-            handleChange={handleChangeCountry}
-            inputStore={filterPetsStore.country}
-            value={filterPetsStore.country.value}
-            options={[
-              { value: 'argentina', label: 'Argentina' },
-              { value: 'colombia', label: 'Colombia' },
-              { value: 'venezuela', label: 'Venezuela' },
-            ]}
-          />
-        </div>
-        <div className={styles.selectCity}>
-          <InputSelect
-            isEdit
-            placeholder={t('city')}
-            handleChange={handleChanceCity}
-            inputStore={filterPetsStore.city}
-            value={filterPetsStore.city.value}
-            options={filterPetsStore.optionsCities}
+            label={t('labelGoogleAutocomplete')}
+            value={textAddress.value}
+            inputStoreError={textAddress}
+            handleChangeAddress={handleChangeAddress}
+            placeholder={t('placeholderGoogleAutocomplete')}
+            handleChangeTextAddress={handleChangeTextAddress}
+            handleChangeAddressComponents={handleChangeAddressComponents}
           />
         </div>
         <div className={styles.selectCategory}>
           <InputSelect
             isEdit
+            inputStore={category}
+            value={category.value}
             placeholder={t('category')}
             handleChange={handleChanceCategory}
-            inputStore={filterPetsStore.category}
-            value={filterPetsStore.category.value}
             options={[
               { value: 'dog', label: t('dogs') },
               { value: 'cat', label: t('cats') },
@@ -76,10 +71,10 @@ const InitialFilters = () => {
         <div className={styles.selectGender}>
           <InputSelect
             isEdit
+            inputStore={gender}
+            value={gender.value}
             placeholder={t('gender')}
             handleChange={handleChanceGender}
-            inputStore={filterPetsStore.gender}
-            value={filterPetsStore.gender.value}
             options={[
               { value: 'female', label: t('female') },
               { value: 'male', label: t('male') },
@@ -96,7 +91,7 @@ const InitialFilters = () => {
           />
         </div>
       </div>
-      <PetsFiltered store={filterPetsStore} />
+      <PetsFiltered store={filterSearchPetsStore} />
     </div>
   )
 }

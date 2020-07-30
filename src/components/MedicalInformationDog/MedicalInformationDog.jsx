@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import { observer } from 'mobx-react'
-import { FaCalendar } from 'react-icons/fa'
+import { FaCalendar, FaUserMd } from "react-icons/fa";
 import { GiLoveInjection } from 'react-icons/gi'
 import Pet from 'models/Pet'
 import LayoutCards from 'components/commons/LayoutCards'
@@ -31,9 +31,16 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
       <div className={styles.info}>
         <TextCardInformation
           text={t('lastVisitVet')}
-          icon={<FaCalendar size={20} />}
+          icon={<FaCalendar size={18} />}
           value={moment(getLastVisitVet).format('L')}
         />
+        {pet.getEmailUserVet && (
+          <TextCardInformation
+            text={t('common:userVeterinary')}
+            icon={<FaUserMd size={18} />}
+            value={pet.getEmailUserVet}
+          />
+        )}
         <TextCardInformation
           text={t('distemperVaccine')}
           icon={<GiLoveInjection size={20} />}
@@ -56,21 +63,21 @@ const MedicalInformationDog = ({ pet, title = '' }) => {
         />
         <TextCardInformation
           text={t('parvovirusVaccine')}
-          icon={<GiLoveInjection size={25} />}
+          icon={<GiLoveInjection size={20} />}
           value={parvovirusVaccine}
         />
         <TextCardInformation
           text={t('leptospirosisVaccine')}
-          icon={<GiLoveInjection size={25} />}
+          icon={<GiLoveInjection size={20} />}
           value={leptospirosisVaccine}
         />
         <TextCardInformation
           text={t('parainfluenzaVaccine')}
-          icon={<GiLoveInjection size={25} />}
+          icon={<GiLoveInjection size={20} />}
           value={parainfluenzaVaccine}
         />
         <TextCardInformation
-          icon={<GiLoveInjection size={25} />}
+          icon={<GiLoveInjection size={20} />}
           text={t('bordetellaBronchisepticVaccine')}
           value={bordetellaBronchisepticVaccine}
         />

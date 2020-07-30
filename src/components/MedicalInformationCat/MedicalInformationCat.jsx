@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-import { FaRegCalendarAlt } from 'react-icons/fa'
+import { FaRegCalendarAlt, FaUserMd } from 'react-icons/fa'
 import { GiLoveInjection } from 'react-icons/gi'
 import moment from 'moment'
 import Pet from 'models/Pet'
@@ -14,12 +14,12 @@ const MedicalInformationCat = ({ pet, title }) => {
   const { t } = useTranslation('medicalInformationCat')
 
   const {
+    isCastrated,
+    rabiesVaccine,
     getLastVisitVet,
     distemperVaccine,
-    rabiesVaccine,
     felineFluVaccine,
     felineLeukemiaVaccine,
-    isCastrated,
     felineInfectiousPeritonitisVaccine,
   } = pet.medicalInformationCat
 
@@ -28,39 +28,46 @@ const MedicalInformationCat = ({ pet, title }) => {
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
         <TextCardInformation
+          text={t('lastVisitVet')}
           icon={<FaRegCalendarAlt size={20} />}
           value={moment(getLastVisitVet).format('L')}
-          text={t('lastVisitVet')}
         />
+        {pet.getEmailUserVet && (
+          <TextCardInformation
+            value={pet.getEmailUserVet}
+            icon={<FaUserMd size={18} />}
+            text={t('common:userVeterinary')}
+          />
+        )}
         <TextCardInformation
+          value={isCastrated}
           text={t('isCastrated')}
           icon={<GiLoveInjection size={20} />}
-          value={isCastrated}
         />
         <TextCardInformation
+          value={distemperVaccine}
           text={t('distemperVaccine')}
           icon={<GiLoveInjection size={20} />}
-          value={distemperVaccine}
         />
         <TextCardInformation
+          value={rabiesVaccine}
           text={t('rabiesVaccine')}
           icon={<GiLoveInjection size={20} />}
-          value={rabiesVaccine}
         />
         <TextCardInformation
+          value={felineFluVaccine}
           text={t('felineFluVaccine')}
           icon={<GiLoveInjection size={25} />}
-          value={felineFluVaccine}
         />
         <TextCardInformation
+          value={felineLeukemiaVaccine}
           text={t('felineLeukemiaVaccine')}
           icon={<GiLoveInjection size={25} />}
-          value={felineLeukemiaVaccine}
         />
         <TextCardInformation
           icon={<GiLoveInjection size={25} />}
-          text={t('felineInfectiousPeritonitisVaccine')}
           value={felineInfectiousPeritonitisVaccine}
+          text={t('felineInfectiousPeritonitisVaccine')}
         />
       </div>
     </LayoutCards>

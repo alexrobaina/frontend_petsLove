@@ -2,7 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
-import { FaBirthdayCake, FaCat, FaStreetView, FaTransgender, FaUser } from 'react-icons/fa'
+import {
+  FaCat,
+  FaDog,
+  FaUserPlus,
+  FaStreetView,
+  FaTransgender,
+  FaUserAstronaut,
+  FaRegCalendarAlt,
+} from 'react-icons/fa'
 import { GiJumpingDog } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
 import LayoutCards from 'components/commons/LayoutCards'
@@ -13,32 +21,65 @@ import styles from './informationPet.scss'
 const InformationPet = ({ pet, title }) => {
   const { t } = useTranslation('profilePets')
 
-  const { getBirthday, getCategory, getGender, getActivityLevel, getLost, getUrgent } = pet
+  const {
+    getLost,
+    getUrgent,
+    getGender,
+    getCategory,
+    getBirthday,
+    getActivityLevel,
+    getEmailUserAdopter,
+    getEmailUserTransit,
+    getEmailUserCreator,
+  } = pet
 
   return (
     <LayoutCards>
       <div className={styles.title}>{title}</div>
       <div className={styles.info}>
-        <TextCardInformation text={t('common:name')} value={pet.getName} icon={<FaUser size={20} />} />
+        {getEmailUserAdopter && (
+          <TextCardInformation
+            value={getEmailUserAdopter}
+            text={t('common:userAdopter')}
+            icon={<FaUserPlus size={20} />}
+          />
+        )}
+        <TextCardInformation
+          value={getEmailUserCreator}
+          text={t('common:userCreator')}
+          icon={<FaUserPlus size={20} />}
+        />
+        {getEmailUserTransit && (
+          <TextCardInformation
+            value={getEmailUserTransit}
+            text={t('common:userTransit')}
+            icon={<FaUserAstronaut size={20} />}
+          />
+        )}
+        <TextCardInformation
+          value={pet.getName}
+          text={t('common:name')}
+          icon={<FaDog size={20} />}
+        />
         <TextCardInformation
           text={t('common:birthday')}
-          icon={<FaBirthdayCake size={20} />}
+          icon={<FaRegCalendarAlt size={20} />}
           value={moment(getBirthday).format('L')}
         />
         <TextCardInformation
-          text={t('common:category')}
-          icon={<FaCat size={20} />}
           value={t(getCategory)}
+          icon={<FaCat size={20} />}
+          text={t('common:category')}
         />
         <TextCardInformation
-          text={t('common:gender')}
           value={t(getGender)}
-          icon={<FaTransgender size={25} />}
+          text={t('common:gender')}
+          icon={<FaTransgender size={20} />}
         />
         <TextCardInformation
-          text={t('common:activityLevel')}
-          icon={<GiJumpingDog size={25} />}
           value={getActivityLevel}
+          text={t('common:activityLevel')}
+          icon={<GiJumpingDog size={20} />}
         />
         <TextCardInformation text={t('lost')} value={getLost} icon={<FaStreetView size={25} />} />
         <TextCardInformation
@@ -52,8 +93,8 @@ const InformationPet = ({ pet, title }) => {
 }
 
 InformationPet.propTypes = {
-  pet: PropTypes.instanceOf(Pet).isRequired,
   title: PropTypes.string,
+  pet: PropTypes.instanceOf(Pet).isRequired,
 }
 
 InformationPet.defaultProps = {

@@ -29,11 +29,15 @@ class Pet {
     this.userAdopter = new InputStore()
     this.userTransit = new InputStore()
     this.textAddress = new InputStore()
+    this.emailUserVet = new InputStore()
     this.activityLevel = new InputStore()
     this.foundLocation = new InputStore()
     this.userCreatorId = new InputStore()
     this.userTransitId = new InputStore()
     this.userAdopterId = new InputStore()
+    this.emailUserAdopter = new InputStore()
+    this.emailUserCreator = new InputStore()
+    this.emailUserTransit = new InputStore()
 
     this.medicalCat = {}
     this.medicalDog = {}
@@ -69,22 +73,26 @@ class Pet {
     this.userCreator.setValue(pet.userCreator)
     this.foundLocation.setValue(pet.foundLocation)
     this.activityLevel.setValue(pet.activityLevel)
+    this.emailUserCreator.setValue(pet.userCreator.email)
 
     this.userCreatorId.setValue(pet.userCreator._id)
 
     if (pet.userAdopter) {
       this.userAdopter.setValue(pet.userAdopter)
       this.userAdopterId.setValue(pet.userAdopter._id)
+      this.emailUserAdopter.setValue(pet.userAdopter.email)
     }
 
     if (pet.userVet) {
       this.userVet.setValue(pet.userVet)
       this.userVetId.setValue(pet.userVet._id)
+      this.emailUserVet.setValue(pet.userVet.email)
     }
 
     if (pet.userTransit) {
       this.userTransit.setValue(pet.userTransit)
       this.userTransitId.setValue(pet.userTransit._id)
+      this.emailUserTransit.setValue(pet.userTransit.email)
     }
 
     if (pet.category === 'cat') {
@@ -243,6 +251,7 @@ class Pet {
   }
 
   setActivityLevel(value) {
+    console.log(value)
     this.activityLevel.setValue(value)
   }
 
@@ -320,6 +329,22 @@ class Pet {
 
   get getUserVet() {
     return this.userVet.value
+  }
+
+  get getEmailUserVet() {
+    return this.emailUserVet.value
+  }
+
+  get getEmailUserAdopter() {
+    return this.emailUserAdopter.value
+  }
+
+  get getEmailUserTransit() {
+    return this.emailUserTransit.value
+  }
+
+  get getEmailUserCreator() {
+    return this.emailUserCreator.value
   }
 
   get getUserAdopter() {
