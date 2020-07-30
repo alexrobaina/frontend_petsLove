@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import DashboardCard from 'components/commons/DashboardCard'
 import { observer, useLocalStore } from 'mobx-react'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import ListPets from 'components/ListPets'
 import UserAdopterStore from 'stores/UserAdopterStore'
 import UserContext from 'Context/UserContext'
+import PetsAdopter from 'containers/PetsAdopter'
 import cat from './animal.svg'
 import dog from './dog-tags-military.svg'
 import styles from './dashboardAdopter.scss'
@@ -26,7 +26,7 @@ const DashboardAdopter = () => {
           titleCard={t('adopterUser.rol')}
         />
       </div>
-      <ListPets isUserAdopt pets={userAdopterStore.pets} />
+      <PetsAdopter id={authStore.user._id} />
     </LayoutContainer>
   )
 }

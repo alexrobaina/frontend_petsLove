@@ -41,10 +41,7 @@ const ProtectionistProfile = ({ user }) => {
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title
-          rolText={t('protectionistUser.role')}
-          title={t('common.titleNameUser', { name })}
-        />
+        <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonShare
           canView={_id === authStore.user._id}
           phone={user.phone || ''}

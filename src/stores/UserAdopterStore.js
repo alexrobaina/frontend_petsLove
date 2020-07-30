@@ -3,7 +3,6 @@ import UserAdopterService from 'services/UserAdopterService'
 
 class SearchPetsStore {
   constructor(id) {
-    
     this.userAdopterService = new UserAdopterService()
 
     this.init(id)
@@ -12,6 +11,7 @@ class SearchPetsStore {
   @observable pets = []
   @observable isError = false
   @observable isLoading = false
+  @observable totalPets = false
 
   @action
   init(id) {
@@ -26,7 +26,8 @@ class SearchPetsStore {
       const response = await this.userAdopterService.loadPets(userId)
 
       runInAction(() => {
-        this.pets = response
+        this.pets = response.pets
+        this.totalPets = response.totalPets
         this.isLoading = false
       })
     } catch (e) {

@@ -7,7 +7,7 @@ import LayoutCards from '../LayoutCards'
 
 const TextCard = ({ title, text }) => {
   const { t } = useTranslation()
-  
+
   return (
     <LayoutCards>
       <div className={styles.container}>
