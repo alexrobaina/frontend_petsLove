@@ -14,6 +14,7 @@ class SearchPetsStore {
   @observable petsFiltered = []
   @observable totalPetsForAdoption = 0
   @observable totalPetsAdopted = 0
+  @observable totalPetsTransit = 0
   @observable isError = false
   @observable isLoading = false
   @observable petsUserAdopt = []
