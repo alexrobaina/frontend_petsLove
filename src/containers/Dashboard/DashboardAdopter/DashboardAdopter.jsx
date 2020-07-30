@@ -26,7 +26,7 @@ const DashboardAdopter = () => {
           titleCard={t('adopterUser.rol')}
         />
       </div>
-      <PetsAdopter id={authStore.user._id} />
+      <PetsAdopter store={userAdopterStore} id={authStore.user._id} />
     </LayoutContainer>
   )
 }

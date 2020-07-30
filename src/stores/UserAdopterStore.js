@@ -15,15 +15,15 @@ class SearchPetsStore {
 
   @action
   init(id) {
-    this.getPets(id)
+    this.getPets(id, 5, 1)
   }
 
   @action
-  async getPets(userId) {
+  async getPets(userId, limit, page) {
     this.isLoading = true
 
     try {
-      const response = await this.userAdopterService.loadPets(userId)
+      const response = await this.userAdopterService.loadPets(userId, limit, page)
 
       runInAction(() => {
         this.pets = response.pets

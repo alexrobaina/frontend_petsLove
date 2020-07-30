@@ -1,0 +1,88 @@
+# Query: containers/PetsAdopter/
+
+45 results - 20 files
+
+src/containers/CreatePet/FormDogsMedicalReportsPets/FormDogsMedicalReportsPets.jsx:
+  2: import { observer } from 'mobx-react'
+  7: import { useTranslation } from 'react-i18next'
+
+src/containers/CreatePet/LocationFormPet/LocationFormPet.jsx:
+  2: import { observer } from 'mobx-react'
+  4: import { useTranslation } from 'react-i18next'
+
+src/containers/CreatePet/MedicalReportsPets/MedicalReportsPets.jsx:
+  2: import { observer } from 'mobx-react'
+
+src/containers/Dashboard/Dashboard.jsx:
+  3: import { observer } from 'mobx-react'
+
+src/containers/Dashboard/DashboardAdopter/DashboardAdopter.jsx:
+   2: import { useTranslation } from 'react-i18next'
+   4: import { observer, useLocalStore } from 'mobx-react'
+  11: import PetsAdopter from 'index'
+
+src/containers/Dashboard/DashboardProtectionist/DashboardProtectionist.jsx:
+  2: import { observer, useLocalStore } from 'mobx-react'
+  3: import { useTranslation } from 'react-i18next'
+
+src/containers/Dashboard/DashboardTransit/DashboardTransit.jsx:
+  3: import { useTranslation } from 'react-i18next'
+  6: import { useLocalStore } from 'mobx-react'
+
+src/containers/Dashboard/DashboardVet/DashboardVet.jsx:
+  3: import { useTranslation } from 'react-i18next'
+
+src/containers/Home/Home.jsx:
+  2: import { observer } from 'mobx-react'
+  3: import { useTranslation } from 'react-i18next'
+
+src/containers/Login/Login.jsx:
+  2: import { observer } from 'mobx-react'
+
+src/containers/PetsUserVet/PetsUserVet.jsx:
+  3: import { observer } from 'mobx-react'
+  4: import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
+  5: import Title from 'components/commons/Title'
+  6: import ListPets from 'components/ListPets'
+  7: import { useTranslation } from 'react-i18next'
+  8: import Loading from 'components/commons/Loading'
+  9: import PaginationList from 'components/commons/PaginationList'
+
+src/containers/ProfilePets/ProfilePets.jsx:
+  3: import { useLocalStore, observer } from 'mobx-react'
+  4: import { useTranslation } from 'react-i18next'
+
+src/containers/ProfileUser/ProfileUser.jsx:
+  2: import { observer, useLocalStore } from 'mobx-react'
+
+src/containers/ProfileUser/AdopterProfile/AdopterProfile.jsx:
+   3: import { useTranslation } from 'react-i18next'
+   4: import { observer, useLocalStore } from 'mobx-react'
+  12: import ListPets from 'components/ListPets'
+  13: import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
+  14: import Title from 'components/commons/Title'
+
+src/containers/ProfileUser/ProtectionistProfile/ProtectionistProfile.jsx:
+   3: import { useTranslation } from 'react-i18next'
+   7: import { observer } from 'mobx-react'
+  14: import Title from 'components/commons/Title'
+
+src/containers/ProfileUser/TransitUserProfile/TransitUserProfile.jsx:
+   3: import { useTranslation } from 'react-i18next'
+  13: import Title from 'components/commons/Title'
+
+src/containers/ProfileUser/VetProfile/VetProfile.jsx:
+   3: import { useTranslation } from 'react-i18next'
+  12: import Title from 'components/commons/Title'
+
+src/containers/Register/FormRegister/FormRegister.jsx:
+  3: import { useTranslation } from 'react-i18next'
+  4: import { observer } from 'mobx-react'
+
+src/containers/SearchVolunteers/SearchVolunteers.jsx:
+  2: import { observer, useLocalStore } from 'mobx-react'
+  3: import { useTranslation } from 'react-i18next'
+  7: import Loading from 'components/commons/Loading'
+
+src/routing/PrivateRoute.jsx:
+  3: import { observer } from 'mobx-react'
