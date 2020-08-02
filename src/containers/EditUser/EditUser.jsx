@@ -118,6 +118,7 @@ const EditUser = () => {
 
   useEffect(() => {
     if (userStore.isSaved && userStore.isUpdated) {
+      authStore.loadUser()
       if (userStore.loadUser(_id)) {
         setTimeout(() => {
           toast(t('common:saveSuccess'), {
@@ -215,7 +216,12 @@ const EditUser = () => {
                   country="ar"
                   value={phone.value.toString()}
                   onChange={phoneNumber => handleChangePhone(phoneNumber)}
-                  inputStyle={{ width: '100%', height: '40px', borderColor: '#ffd95a', hover: 'red' }}
+                  inputStyle={{
+                    width: '100%',
+                    height: '40px',
+                    borderColor: '#ffd95a',
+                    hover: 'red',
+                  }}
                 />
               </>
             ) : (

@@ -1,20 +1,30 @@
 {
   "adopterUser": {
     "rol": "I'm Adopter",
-    "historyPets": "All pets"
+    "historyPets": "All pets",
+    "myPets": "My pets",
+    "addPet": "Add pet",
+    "searchPets": "Search Pets",
+    "searchShelters": "Search Shelters"
   },
   "protectionistUser": {
     "petsAdopt": "Pets to adopt",
     "petsAdopted": "Pets adopted",
     "adopted": "Adopted",
-    "needHome": "Need a home"
+    "needHome": "Need a home",
+    "addPet": "Add pet",
+    "searchPets": "Search Pets",
+    "searchVolanteers": "Search Volanteers"
   },
   "transitUser": {
     "titleCard": "Need home",
-    "titlePetsList": "List of pets care"
+    "titlePetsList": "List of pets care",
+    "searchShelters": "Search Shelters"
   },
   "userVet": {
-    "titleCard": "Pets Nurse",
-    "titlePetsList": "List of pets nurse"
+    "totalPets": "Pets Nurse",
+    "titlePetsList": "List of pets nurse",
+    "addPet": "Add pet",
+    "searchShelters": "Search Shelters"
   }
 }

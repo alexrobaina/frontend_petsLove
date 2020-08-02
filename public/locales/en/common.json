@@ -5,6 +5,7 @@
   "notImage": "This pet has no images",
   "isRequired": "This field is required",
   "category": "Type of pet",
+  "dashboard": "Dashboard",
   "notes": "Notes",
   "yes": "Yes",
   "loading": "Loading...",

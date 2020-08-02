@@ -3,10 +3,10 @@
 .container {
   display: grid;
   justify-content: center;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
 
   @include media-breakpoint-down(sm) {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

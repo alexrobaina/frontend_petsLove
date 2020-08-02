@@ -4,7 +4,6 @@ import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
 import PaginationList from 'components/commons/PaginationList'
-import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
@@ -26,9 +25,7 @@ const PetsAdopted = ({ id }) => {
 
   return (
     <>
-      <LayoutContainerCardsPets>
-        <Title title={t('protectionistUser.petsAdopted')} />
-      </LayoutContainerCardsPets>
+      <Title mTop="50px" mBottom="30px" title={t('protectionistUser.petsAdopted')} />
       {searchPetsStore.isLoading ? (
         <Loading loadingRing />
       ) : (

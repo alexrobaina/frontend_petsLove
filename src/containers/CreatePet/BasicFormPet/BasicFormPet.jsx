@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useEffect, useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
@@ -79,6 +79,10 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
 
   const handleChangeUrgent = useCallback(() => {
     createPetStore.pet.setUrgent()
+  }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
 
   const {

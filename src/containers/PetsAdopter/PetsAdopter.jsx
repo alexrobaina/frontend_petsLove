@@ -1,16 +1,14 @@
 import React, { useCallback, useState } from 'react'
+import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
 import PaginationList from 'components/commons/PaginationList'
-import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
-const PetsAdopter = ({ store, id }) => {
+const PetsAdopter = ({ store, id, title }) => {
   const [page, setPage] = useState(1)
   const [limit] = useState(5)
-  const { t } = useTranslation('dashboard')
 
   const handleChangePage = useCallback((e, newPage) => {
     store.getPets(id, 5, newPage)
@@ -19,9 +17,7 @@ const PetsAdopter = ({ store, id }) => {
 
   return (
     <>
-      <LayoutContainerCardsPets>
-        <Title title={t('protectionistUser.petsAdopted')} />
-      </LayoutContainerCardsPets>
+      <Title mTop="50px" mBottom="30px" title={title} />
       {store.isLoading ? (
         <Loading loadingRing />
       ) : (
@@ -39,6 +35,14 @@ const PetsAdopter = ({ store, id }) => {
       )}
     </>
   )
+}
+
+PetsAdopter.prototype = {
+  title: PropTypes.string,
+}
+
+PetsAdopter.defaultProps = {
+  title: '',
 }
 
 export default observer(PetsAdopter)

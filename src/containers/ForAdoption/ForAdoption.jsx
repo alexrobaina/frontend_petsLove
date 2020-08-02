@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import UserContext from 'Context/UserContext'
 import { useTranslation } from 'react-i18next'
-import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import ListPets from 'components/ListPets'
 import Title from 'components/commons/Title'
 import PaginationList from 'components/commons/PaginationList'
@@ -25,9 +24,7 @@ const ForAdoption = ({ id }) => {
 
   return (
     <>
-      <LayoutContainerCardsPets>
-        <Title title={t('protectionistUser.needHome')} />
-      </LayoutContainerCardsPets>
+      <Title mTop="50px" mBottom="30px" title={t('protectionistUser.needHome')} />
       <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsForAdoption} />
       {searchPetsStore.totalPetsForAdoption !== 0 && (
         <PaginationList

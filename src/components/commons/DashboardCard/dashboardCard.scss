@@ -1,16 +1,18 @@
 @import 'styles/mixings';
 
 .cardContainar {
+  border-left: 5px solid $primaryNavbar;
+  border-right: 5px solid $primaryNavbar;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $ligth;
   text-align: center;
-  width: 100%;
+  height: 100px;
   border-radius: 16px;
   transition: 0.2s;
   cursor: pointer;
-  box-shadow: 0 7px 15px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
 
   &:hover {
     transform: translateY(-0.25em);
@@ -31,21 +33,6 @@
   flex-direction: row;
 }
 
-.icon {
-  width: 60px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-
-  @include media-breakpoint-only(xs) {
-    padding-left: 23px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-}
-
 .containerText {
   display: flex;
   justify-content: center;
@@ -54,9 +41,9 @@
 
 .title {
   text-transform: capitalize;
-  color: grey;
+  color: $title;
   font-size: 15px;
-  @include site-font(text);
+  @include site-font(text, 700);
   letter-spacing: 3px;
 
   @include media-breakpoint-only(xs) {
@@ -65,11 +52,17 @@
 }
 
 .number {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 40px;
+  color: $title;
   @include site-font('text', 700);
 
   @include media-breakpoint-only(xs) {
     font-size: 20spx;
   }
+}
+
+.iconColor {
+  margin-top: 10px;
+  color: $title;
 }

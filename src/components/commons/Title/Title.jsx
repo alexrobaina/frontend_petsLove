@@ -3,8 +3,8 @@ import c from 'classnames'
 import PropTypes from 'prop-types'
 import styles from './title.scss'
 
-const Title = ({ title, subTitle, withMargin, mTop, rolText }) => {
-  const marginTop = { marginTop: mTop }
+const Title = ({ title, subTitle, withMargin, mTop, rolText, mBottom }) => {
+  const marginTop = { marginTop: mTop, marginBottom: mBottom }
 
   return (
     <div style={marginTop} className={c(styles.container, withMargin && styles.withMargin)}>
@@ -16,19 +16,21 @@ const Title = ({ title, subTitle, withMargin, mTop, rolText }) => {
 }
 
 Title.propTypes = {
+  mTop: PropTypes.string,
   title: PropTypes.string,
+  mBottom: PropTypes.string,
   rolText: PropTypes.string,
   subTitle: PropTypes.string,
   withMargin: PropTypes.string,
-  mTop: PropTypes.string,
 }
 
 Title.defaultProps = {
-  title: '',
-  subTitle: '',
-  rolText: '',
-  withMargin: '',
+  mBottom: '',
   mTop: '',
+  title: '',
+  rolText: '',
+  subTitle: '',
+  withMargin: '',
 }
 
 export default Title

@@ -1,9 +1,16 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { MdDashboard, MdMenu } from "react-icons/md";
+import { MdDashboard, MdMenu } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
-import { AiFillFileAdd } from "react-icons/ai";
+import { AiFillFileAdd } from 'react-icons/ai'
+import {
+  DASHBOARD,
+  CREATE_PET,
+  PROFILE_USER,
+  SEARCH_VOLANTEERS,
+  SEARCH_PROTECTIONIST,
+} from 'routing/routes'
 import { PROTECTIONIST, TRANSIT_USER, ADOPTER, VET } from 'config/roles'
 import { FaHandHoldingHeart, FaPeopleCarry, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
@@ -15,28 +22,28 @@ const routesUserProtectionist = [
   {
     icon: <FaUser size={22} />,
     text: 'myProfile',
-    link: '/profile-user',
+    link: PROFILE_USER,
     haveId: true,
   },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
-    link: '/dashboard',
+    link: DASHBOARD,
   },
   {
     icon: <FaHandHoldingHeart size={25} />,
     text: 'searchVolanteers',
-    link: '/search-volanteers',
+    link: SEARCH_VOLANTEERS,
   },
   {
     icon: <FaPeopleCarry size={22} />,
     text: 'Search Protectionists',
-    link: '/search-protectionist',
+    link: SEARCH_PROTECTIONIST,
   },
   {
     icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
-    link: '/create-pet',
+    link: CREATE_PET,
   },
 ]
 
@@ -44,28 +51,28 @@ const routesUserVet = [
   {
     icon: <FaUser size={22} />,
     text: 'myProfile',
-    link: '/profile-user',
+    link: PROFILE_USER,
     haveId: true,
   },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
-    link: '/dashboard',
+    link: DASHBOARD,
   },
   {
     icon: <FaHandHoldingHeart size={25} />,
     text: 'searchVolanteers',
-    link: '/search-volanteers',
+    link: SEARCH_VOLANTEERS,
   },
   {
     icon: <FaPeopleCarry size={22} />,
     text: 'Search Protectionists',
-    link: '/search-protectionist',
+    link: SEARCH_PROTECTIONIST,
   },
   {
     icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
-    link: '/create-pet',
+    link: CREATE_PET,
   },
 ]
 
@@ -73,23 +80,23 @@ const routesUserAdopter = [
   {
     icon: <FaUser size={22} />,
     text: 'myProfile',
-    link: '/profile-user',
+    link: PROFILE_USER,
     haveId: true,
   },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
-    link: '/dashboard',
+    link: DASHBOARD,
   },
   {
     icon: <FaPeopleCarry size={22} />,
     text: 'Search Protectionists',
-    link: '/search-protectionist',
+    link: SEARCH_PROTECTIONIST,
   },
   {
     icon: <AiFillFileAdd size={25} />,
     text: 'createPet',
-    link: '/create-pet',
+    link: CREATE_PET,
   },
 ]
 
@@ -97,18 +104,23 @@ const routesUserTransitUser = [
   {
     icon: <FaUser size={22} />,
     text: 'myProfile',
-    link: '/profile-user',
+    link: PROFILE_USER,
     haveId: true,
   },
   {
     icon: <MdDashboard size={25} />,
     text: 'dashboard',
-    link: '/dashboard',
+    link: DASHBOARD,
   },
   {
     icon: <FaPeopleCarry size={22} />,
     text: 'Search Protectionists',
-    link: '/search-protectionist',
+    link: SEARCH_PROTECTIONIST,
+  },
+  {
+    icon: <FaHandHoldingHeart size={25} />,
+    text: 'searchVolanteers',
+    link: SEARCH_VOLANTEERS,
   },
 ]
 
