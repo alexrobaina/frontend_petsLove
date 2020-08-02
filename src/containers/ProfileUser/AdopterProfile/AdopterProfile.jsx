@@ -28,7 +28,11 @@ const AdopterProfile = ({ user }) => {
   }
 
   return (
-    <LayoutContainer rolText={t('adopterUser.role')} title={t('common.titleNameUser', { name })}>
+    <LayoutContainer
+      information={t('adopterUser.role')}
+      title={t('common.titleNameUser')}
+      name={name}
+    >
       <ButtonShare canView={id === user._id} phone={user.phone || ''} route="edit-user" />
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img

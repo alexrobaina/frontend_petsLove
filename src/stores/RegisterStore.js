@@ -4,6 +4,8 @@ import RegisterUser from 'models/RegisterUser'
 import InputStore from './InputStore'
 
 const REQUIRED = 'common:isRequired'
+const USERNAME_EXIST = 'common:usernameExist'
+const USER_EXIST = 'common:userExist'
 const EMAIL_ERROR = 'common:errorEmail'
 const VALIDATION_EMAIL = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
@@ -15,6 +17,7 @@ class RegisterStore {
   @observable isErrorRequest = ''
   @observable confirmPassword = new InputStore()
   @observable passwordError = false
+  @observable toastError = ''
   @observable passwordSuccess = false
 
   constructor() {
@@ -34,7 +37,8 @@ class RegisterStore {
       this.isLoading = true
 
       try {
-        await this.registerService.register(this.registerUser.getJson())
+        const response = await this.registerService.register(this.registerUser.getJson())
+        console.log(response)
 
         runInAction(() => {
           this.isLoading = false
@@ -44,7 +48,21 @@ class RegisterStore {
         runInAction(() => {
           this.isLoading = false
           this.isErrorRequest = true
-          console.log(e)
+
+          if (e.response) {
+            if (e.response.data.message === 'The username already exist') {
+              this.registerUser.username.setError(true, USERNAME_EXIST)
+
+              this.toastError = USERNAME_EXIST
+              this.registerUser.isValidForm = false
+            }
+            if (e.response.data.message === 'The user already exist') {
+              this.registerUser.email.setError(true, USER_EXIST)
+
+              this.toastError = USER_EXIST
+              this.registerUser.isValidForm = false
+            }
+          }
         })
       }
     }
@@ -105,6 +123,7 @@ class RegisterStore {
 
   @action
   validate() {
+    this.toastError = ''
     let isValidForm = true
     this.clearError()
 

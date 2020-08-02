@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { Link, useHistory } from 'react-router-dom'
@@ -14,6 +15,7 @@ import LayoutLogin from 'components/commons/LayoutLogin'
 import UserContext from 'Context/UserContext'
 import { ADOPTER, PROTECTIONIST, TRANSIT_USER, VET } from 'config/roles'
 import RegisterStore from 'stores/RegisterStore'
+import AlertToast from 'components/commons/AlertToast'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
 import styles from './formRegister.scss'
 
@@ -65,7 +67,16 @@ const FormRegister = ({ registerStore }) => {
     if (registerStore.isRegister) {
       authStore.loginUser(email.value, password.value)
     }
-  }, [registerStore.isRegister])
+
+    if (registerStore.toastError !== '') {
+      setTimeout(() => {
+        toast(t(registerStore.toastError), {
+          position: toast.POSITION.TOP_CENTER,
+          className: styles.toast,
+        })
+      }, 500)
+    }
+  }, [registerStore.isRegister, registerStore.toastError])
 
   useEffect(() => {
     if (authStore.isLogin) {
@@ -75,6 +86,7 @@ const FormRegister = ({ registerStore }) => {
 
   return (
     <LayoutTrantitions>
+      <AlertToast />
       <div className={styles.containerRegister}>
         <ImageInformationLeft image={fidelImage} />
         <div className={styles.register}>
