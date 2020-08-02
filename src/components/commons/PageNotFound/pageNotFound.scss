@@ -1,17 +1,20 @@
 @import 'styles/mixings';
 
 .pageNotFound {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .imagePNF {
-  align-items: center;
-  width: 550px;
+  image-rendering: auto;
+  width: 750px;
 
   @include media-breakpoint-only(xs) {
-    width: 310px;
+    width: 500px;
   }
 }
 
