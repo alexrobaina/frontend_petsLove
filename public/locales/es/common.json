@@ -8,6 +8,7 @@
   "password": "Contraseña",
   "isRequired": "Este campo es requerido",
   "repeatPassword": "Repetir contraseña",
+  "dashboard": "Panel de control",
   "yes": "Si",
   "loading": "Cargando...",
   "results": "Resultados",

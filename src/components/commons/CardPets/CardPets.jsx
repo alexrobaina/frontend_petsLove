@@ -18,23 +18,21 @@ const CardPets = ({ history, image, namePet, isAdopted }) => {
   }, [])
 
   return (
-    <div className={styles.rowCard}>
-      <LayoutCards isButton>
-        <div className={styles.containerCard}>
-          <img
-            onError={onError}
-            className={styles.imgCard}
-            src={image && isImageNotFound ? `${AWS_STORAGE}/${image}` : noImage}
-            alt="photos-pets"
-          />
-          {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
-          <div className={styles.title}>{namePet}</div>
-          <div className={styles.textHistory}>
-            {history ? utils.shortenText(history, 110) : t('notFoundHistory')}
-          </div>
+    <LayoutCards isButton>
+      <div className={styles.containerCard}>
+        <img
+          onError={onError}
+          alt="photos-pets"
+          className={styles.imgCard}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image}` : noImage}
+        />
+        {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
+        <div className={styles.title}>{namePet}</div>
+        <div className={styles.textHistory}>
+          {history ? utils.shortenText(history, 110) : t('notFoundHistory')}
         </div>
-      </LayoutCards>
-    </div>
+      </div>
+    </LayoutCards>
   )
 }
 

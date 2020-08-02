@@ -26,9 +26,7 @@ const PetsUserVet = ({ id }) => {
 
   return (
     <>
-      <LayoutContainerCardsPets>
-        <Title title={t('userVet.titlePetsList')} />
-      </LayoutContainerCardsPets>
+      <Title mTop="50px" mBottom="30px" title={t('userVet.titlePetsList')} />
       {searchPetsStore.isLoading ? (
         <Loading loadingRing />
       ) : (

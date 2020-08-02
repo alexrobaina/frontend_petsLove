@@ -99,6 +99,7 @@ class SearchPetsStore {
       const response = await this.petsService.loadPetsUserTransit(userId, limit, page)
 
       runInAction(() => {
+        console.log(response)
         this.petsUserTransit = response.pets
         this.totalPetsTransit = response.totalPets
         this.isLoading = false

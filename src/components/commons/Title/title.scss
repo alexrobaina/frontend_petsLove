@@ -4,7 +4,7 @@
 .container {
   &.withMargin {
     margin-top: 0;
-
+    
     @include media-breakpoint-only(xs) {
       margin-top: 0;
     }

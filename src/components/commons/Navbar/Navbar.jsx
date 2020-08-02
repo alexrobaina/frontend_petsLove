@@ -74,6 +74,7 @@ const Navbar = ({ children }) => {
                 <ImageUserLog
                   handleToggleMenu={handleToggleMenu}
                   isUserLogin={rootStore.authStore.isLogin}
+                  imagePreview={rootStore.authStore.imagePreview}
                 />
                 {authStore.isLoading ? (
                   <Loading loadingRing />

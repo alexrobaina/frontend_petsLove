@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
 import {
+  DASHBOARD,
   FORGOT_PASSWORD,
   LOGIN,
   HOME,
@@ -62,13 +63,13 @@ function App() {
             <Route exact path={LOGIN} component={Login} />
             <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
             <Route exact path={HOME} component={Home} />
-            <Route exact path={PROFILE_PET} component={ProfilePets} />
-            <Route exact path={PROFILE_USER} component={ProfileUser} />
+            <Route exact path={`${PROFILE_PET}/:id`} component={ProfilePets} />
+            <Route exact path={`${PROFILE_USER}/:id`} component={ProfileUser} />
             <PrivateRoute
               exact
               isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path="/dashboard"
+              path={DASHBOARD}
               component={Dashboard}
             />
             <PrivateRoute
@@ -82,14 +83,14 @@ function App() {
               exact
               isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path={EDIT_PET}
+              path={`${EDIT_PET}/:id`}
               component={EditPet}
             />
             <PrivateRoute
               exact
               isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path={EDIT_USER}
+              path={`${EDIT_USER}/:id`}
               component={EditUser}
             />
             <PrivateRoute

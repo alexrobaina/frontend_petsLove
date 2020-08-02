@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
@@ -24,6 +24,10 @@ const LocationFormPet = ({ createPetStore }) => {
   const handleChangeAddressComponents = useCallback(location => {
     createPetStore.pet.setCity(location)
     createPetStore.pet.setCountry(location)
+  }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
 
   const { textAddress, getFoundLocation, location, getTextAddress } = createPetStore.pet
