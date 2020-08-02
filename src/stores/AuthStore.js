@@ -41,7 +41,6 @@ class AuthStore {
         console.log(email, password)
         response = await this.authService.login({ email, password })
       } else {
-        console.log(2)
         data = {
           email: this.email.value,
           password: this.password.value,

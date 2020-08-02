@@ -8,6 +8,8 @@
   "password": "Contraseña",
   "isRequired": "Este campo es requerido",
   "repeatPassword": "Repetir contraseña",
+  "usernameExist": "Este nombre de usuario existe.",
+  "userExist": "Este usuario ya esta registrado.",
   "dashboard": "Panel de control",
   "yes": "Si",
   "loading": "Cargando...",

@@ -11,6 +11,7 @@ const LayoutContainer = ({
   handleBack,
   viewButtonBack,
   textButton,
+  name,
 }) => {
   return (
     <Animated
@@ -21,11 +22,14 @@ const LayoutContainer = ({
     >
       <div className={styles.containerLayout}>
         {viewButtonBack && <ButtonBack text={textButton} handleClick={handleBack} />}
-        <div className={styles.title}>{title}</div>
+        <div className={styles.containerTitle}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.name}>{name}</div>
+        </div>
         <div className={styles.information}>{information}</div>
         {children}
       </div>
-      
+
       <div className={styles.spaceBotton} />
     </Animated>
   )

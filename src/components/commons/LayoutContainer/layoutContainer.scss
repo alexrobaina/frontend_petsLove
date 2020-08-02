@@ -36,8 +36,26 @@
   }
 }
 
+.containerTitle {
+  display: flex;
+}
+
 .title {
   color: $title;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 22px;
+  }
+}
+
+
+.name {
+  margin-left: 11px;
+  color: $title;
+  text-transform: capitalize;
   font-family: 'Noto Sans HK', sans-serif;
   font-size: 32px;
   font-weight: 700;

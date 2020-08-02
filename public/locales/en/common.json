@@ -6,6 +6,8 @@
   "isRequired": "This field is required",
   "category": "Type of pet",
   "dashboard": "Dashboard",
+  "usernameExist": "This username exists.",
+  "userExist": "This user is already registered",
   "notes": "Notes",
   "yes": "Yes",
   "loading": "Loading...",

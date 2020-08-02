@@ -1,6 +1,6 @@
 {
   "common": {
-    "titleNameUser": "Profile of {{ name }}",
+    "titleNameUser": "Profile of",
     "contact": "Contact",
     "aboutUs": "About Us",
     "phone": "Phone",
