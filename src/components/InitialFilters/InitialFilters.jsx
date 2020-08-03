@@ -4,7 +4,7 @@ import { observer, useLocalStore } from 'mobx-react'
 import { MdSearch } from 'react-icons/md'
 import InputSelect from 'components/commons/InputSelect'
 import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAutocomplete'
-import FilterSearchPetsStore from "stores/FilterSearchPetsStore";
+import FilterSearchPetsStore from 'stores/FilterSearchPetsStore'
 import Button from 'components/commons/Button'
 import PetsFiltered from 'containers/PetsFiltered'
 import styles from './initialFilters.scss'
@@ -23,7 +23,7 @@ const InitialFilters = () => {
   })
 
   const handleChangeAddress = useCallback(address => {
-    console.log(address);
+    console.log(address)
   })
 
   const handleChangeTextAddress = useCallback(address => {
@@ -37,18 +37,18 @@ const InitialFilters = () => {
   const handleSearch = () => {
     filterSearchPetsStore.searchPets(10, 1)
   }
-  
+
   const { textAddress, category, gender } = filterSearchPetsStore
-  
+
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.googleAutocomplete}>
           <GoogleAutocomplete
             isEdit
-            label={t('labelGoogleAutocomplete')}
             value={textAddress.value}
             inputStoreError={textAddress}
+            label={t('labelGoogleAutocomplete')}
             handleChangeAddress={handleChangeAddress}
             placeholder={t('placeholderGoogleAutocomplete')}
             handleChangeTextAddress={handleChangeTextAddress}

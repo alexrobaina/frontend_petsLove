@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
