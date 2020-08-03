@@ -37,13 +37,13 @@ const DashboardTransit = () => {
       <Title mBottom="30px" title={t('common:dashboard')} />
       <div className={styles.container}>
         <DashboardCard
-          titleCard={t('protectionistUser.petsAdopted')}
+          titleCard={t('transitUser.petsCare')}
           total={searchPetsStore.totalPetsTransit}
         />
         <DashboardCard
           handleClick={handleSearchVolanteers}
           icon={<AiFillFileAdd size={25} />}
-          titleCard={t('protectionistUser.searchVolanteers')}
+          titleCard={t('transitUser.searchVolanteers')}
         />
         <DashboardCard
           handleClick={handleSearchShelters}

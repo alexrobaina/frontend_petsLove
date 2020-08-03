@@ -8,22 +8,24 @@
     "searchShelters": "Buscar Refugios"
   },
   "protectionistUser": {
-    "petsAdopt": "Mascotas en adopción",
-    "petsAdopted": "Mascotas adoptadas",
-    "adopted": "Adoptadas",
+    "petsAdopt": "En Adopción",
+    "petsAdopted": "Adoptadas",
     "needHome": "Necesitan hogar",
     "addPet": "Crear Mascota",
     "searchPets": "Buscar mascotas",
-    "searchVolanteers": "Search Volanteers"
+    "searchVolanteers": "Buscar Voluntarios"
   },
   "transitUser": {
     "titleCard": "Necesitan hogar",
+    "petsCare": "Mascotas Cuidadas",
     "titlePetsList": "Lista de mascotas cuidadas",
-    "searchShelters": "Buscar Refugios"
+    "searchShelters": "Buscar Refugios",
+    "searchVolanteers": "Buscar Voluntarios"
   },
   "userVet": {
     "totalPets": "Mascotas Atendidas",
     "titlePetsList": "Lista de mascotas atendidas",
-    "searchShelters": "Buscar Refugios"
+    "searchShelters": "Buscar Refugios",
+    "addPet": "Crear Mascota"
   }
 }

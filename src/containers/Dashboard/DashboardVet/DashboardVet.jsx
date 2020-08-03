@@ -29,10 +29,7 @@ const DashboardVet = () => {
     <LayoutContainer>
       <Title mBottom="30px" title={t('common:dashboard')} />
       <div className={styles.container}>
-        <DashboardCard
-          titleCard={t('userVet.totalPets')}
-          totalPets={searchPetsStore.totalPetsVet}
-        />
+        <DashboardCard titleCard={t('userVet.totalPets')} total={searchPetsStore.totalPetsVet} />
         <DashboardCard
           handleClick={handleCreatePet}
           titleCard={t('userVet.addPet')}

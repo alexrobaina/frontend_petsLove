@@ -8,8 +8,8 @@
     "searchShelters": "Search Shelters"
   },
   "protectionistUser": {
-    "petsAdopt": "Pets to adopt",
-    "petsAdopted": "Pets adopted",
+    "petsAdopt": "For adoption",
+    "petsAdopted": "Adopted",
     "adopted": "Adopted",
     "needHome": "Need a home",
     "addPet": "Add pet",
@@ -19,12 +19,15 @@
   "transitUser": {
     "titleCard": "Need home",
     "titlePetsList": "List of pets care",
-    "searchShelters": "Search Shelters"
+    "petsCare": "Pets Care",
+    "searchShelters": "Search Shelters",
+    "searchVolanteers": "Search Volanteers"
   },
   "userVet": {
     "totalPets": "Pets Nurse",
     "titlePetsList": "List of pets nurse",
     "addPet": "Add pet",
-    "searchShelters": "Search Shelters"
+    "searchShelters": "Search Shelters",
+    "addPet": "Add pet"
   }
 }

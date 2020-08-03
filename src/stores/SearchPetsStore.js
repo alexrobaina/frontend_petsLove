@@ -20,7 +20,7 @@ class SearchPetsStore {
   @observable petsUserAdopt = []
   @observable petsForAdoption = []
   @observable petsUserVet = []
-  @observable totalPetsVet = []
+  @observable totalPetsVet = 0
   @observable petsAdopted = []
   @observable petsUserTransit = []
   @observable optionsCities = []
@@ -122,6 +122,7 @@ class SearchPetsStore {
 
       runInAction(() => {
         this.petsUserVet = response.pets
+        console.log(response)
         this.totalPetsVet = response.totalPets
         this.isLoading = false
       })

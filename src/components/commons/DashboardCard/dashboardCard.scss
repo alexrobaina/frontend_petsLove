@@ -1,6 +1,7 @@
 @import 'styles/mixings';
 
 .cardContainar {
+  padding: 20px;
   border-left: 5px solid $primaryNavbar;
   border-right: 5px solid $primaryNavbar;
   display: flex;
@@ -8,7 +9,7 @@
   align-items: center;
   background-color: $ligth;
   text-align: center;
-  height: 100px;
+  height: auto;
   border-radius: 16px;
   transition: 0.2s;
   cursor: pointer;
