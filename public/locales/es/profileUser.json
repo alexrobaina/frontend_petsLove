@@ -12,7 +12,8 @@
     "titleNameUser": "Profile of {{ name }}",
     "role": "Adopto mascotas",
     "name": "Name",
-    "myPets": "Mis mascotas"
+    "myPets": "Mis mascotas",
+    "myPet": "Mi mascota"
   },
   "protectionistUser": {
     "role": "Refugio de mascocas",
