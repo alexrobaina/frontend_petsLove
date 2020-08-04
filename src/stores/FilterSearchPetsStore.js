@@ -24,11 +24,13 @@ class FilterSearchPetsStore {
     this.isLoading = true
 
     const data = {
-      city: this.city.value,
-      country: this.country.value,
+      city: this.city.value.toLowerCase(),
+      country: this.country.value.toLowerCase(),
       gender: this.gender.value,
       category: this.category.value,
     }
+
+    console.log(data)
 
     const searchPets = {
       country: this.country.value,

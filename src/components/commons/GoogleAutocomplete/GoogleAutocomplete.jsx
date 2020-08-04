@@ -34,7 +34,10 @@ const GoogleAutocomplete = observer(
       }
       const results = await geocodeByAddress(addressSelected)
       const latLng = await getLatLng(results[0])
-      handleChangeAddress(latLng)
+
+      if (handleChangeAddress) {
+        handleChangeAddress(latLng)
+      }
       handleChangeAddressComponents(results[0])
     }
 
