@@ -22,10 +22,6 @@ const InitialFilters = () => {
     filterSearchPetsStore.setGender(selectedValue.value)
   })
 
-  const handleChangeAddress = useCallback(address => {
-    console.log(address)
-  })
-
   const handleChangeTextAddress = useCallback(address => {
     filterSearchPetsStore.setTextAddress(address)
   })
@@ -49,7 +45,6 @@ const InitialFilters = () => {
             value={textAddress.value}
             inputStoreError={textAddress}
             label={t('labelGoogleAutocomplete')}
-            handleChangeAddress={handleChangeAddress}
             placeholder={t('placeholderGoogleAutocomplete')}
             handleChangeTextAddress={handleChangeTextAddress}
             handleChangeAddressComponents={handleChangeAddressComponents}

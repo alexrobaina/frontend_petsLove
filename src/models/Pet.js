@@ -166,7 +166,7 @@ class Pet {
     address.address_components.forEach(components => {
       components.types.forEach(type => {
         if (type === 'administrative_area_level_1') {
-          this.city.setValue(components.long_name)
+          this.city.setValue(components.long_name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
         }
       })
     })
@@ -176,7 +176,9 @@ class Pet {
     address.address_components.forEach(components => {
       components.types.forEach(type => {
         if (type === 'country') {
-          this.country.setValue(components.long_name)
+          this.country.setValue(
+            components.long_name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          )
         }
       })
     })
