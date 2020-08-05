@@ -77,7 +77,7 @@ const InformationPet = ({ pet, title }) => {
           icon={<FaTransgender size={20} />}
         />
         <TextCardInformation
-          value={getActivityLevel}
+          value={t(`${getActivityLevel}`)}
           text={t('common:activityLevel')}
           icon={<GiJumpingDog size={20} />}
         />
