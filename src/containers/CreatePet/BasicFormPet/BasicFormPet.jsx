@@ -34,7 +34,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
     { value: 'quiet', label: t('quiet') },
     { value: 'active', label: t('active') },
     { value: 'superActive', label: t('superActive') },
-    { value: 'LotsEnergy', label: t('Lots of energy') },
+    { value: 'LotsEnergy', label: t('lotsEnergy') },
   ]
 
   const handleChangeName = useCallback(e => {

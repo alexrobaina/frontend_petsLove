@@ -61,7 +61,9 @@ const CreatePet = ({ isEdit }) => {
 
   useEffect(() => {
     if (createPetStore.requestSuccess) {
-      history.push(`/dashboard`)
+      setTimeout(() => {
+        history.push(`/dashboard`)
+      }, 1000)
     }
   }, [createPetStore.requestSuccess])
 

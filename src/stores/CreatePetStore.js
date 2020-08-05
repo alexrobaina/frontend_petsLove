@@ -7,7 +7,7 @@ import AuthService from 'services/AuthService'
 import Utils from 'utils'
 import Pet from 'models/Pet'
 
-const REQUIRED = 'This input is required'
+const REQUIRED = 'common:isRequired'
 
 class CreatePetStore {
   constructor() {
@@ -70,16 +70,12 @@ class CreatePetStore {
   @action
   async saveImageCreation(images) {
     this.isLoading = true
-    this.requestSuccess = false
 
     try {
       const response = await this.imageService.addImage(images)
 
       runInAction(() => {
-        this.isLoading = false
         this.savePet(response._id)
-
-        this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
@@ -120,12 +116,12 @@ class CreatePetStore {
 
       runInAction(() => {
         this.idPet = response._id
-        this.isLoading = false
         this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.requestSuccess = false
         this.isLoading = false
       })
     }
@@ -138,7 +134,6 @@ class CreatePetStore {
       await this.imageService.uploadImage(images, this.pet.getImageId)
 
       runInAction(() => {
-        this.isLoading = false
         this.updatePet()
       })
     } catch (e) {
