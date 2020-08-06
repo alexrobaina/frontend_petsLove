@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { Link, useHistory } from 'react-router-dom'
@@ -61,20 +60,15 @@ const FormRegister = ({ registerStore }) => {
     registerStore.createUser()
   }, [])
 
-  const { firstname, email, password, role, username, lastname } = registerStore.registerUser
+  const handleToggleToast = useCallback(() => {
+    registerStore.setToggleToast()
+  }, [])
+
+  const { email, role, username, password, lastname, firstname } = registerStore.registerUser
 
   useEffect(() => {
     if (registerStore.isRegister) {
       authStore.loginUser(email.value, password.value)
-    }
-
-    if (registerStore.toastError !== '') {
-      setTimeout(() => {
-        toast(t(registerStore.toastError), {
-          position: toast.POSITION.TOP_CENTER,
-          className: styles.toast,
-        })
-      }, 500)
     }
   }, [registerStore.isRegister, registerStore.toastError])
 
@@ -83,157 +77,162 @@ const FormRegister = ({ registerStore }) => {
       history.push('/dashboard')
     }
   }, [authStore.isLogin])
-
   return (
-    <LayoutTrantitions>
-      <AlertToast />
-      <div className={styles.containerRegister}>
-        <ImageInformationLeft image={fidelImage} />
-        <div className={styles.register}>
-          <LayoutLogin>
-            <div className={styles.title}>{t('register.signUp')}</div>
-            {registerStore.isloading ? (
-              <Loading loadingRing />
-            ) : (
-              <>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    name="firstname"
-                    inputStore={firstname}
-                    value={firstname.value}
-                    handleChange={handleChangeFirstname}
-                    placeholder={t('register.firstname')}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    name="lastname"
-                    inputStore={lastname}
-                    value={lastname.value}
-                    handleChange={handleChangeLastname}
-                    placeholder={t('register.lastname')}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    name="email"
-                    inputStore={email}
-                    value={email.value}
-                    handleChange={handleChangeEmail}
-                    placeholder={t('register.email')}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    type="text"
-                    name="username"
-                    inputStore={username}
-                    value={username.value}
-                    title={t('titleUsername')}
-                    handleChange={handleChangeUsername}
-                    placeholder={t('register.username')}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    name="password"
-                    type="password"
-                    inputStore={password}
-                    value={password.value}
-                    handleChange={handleChangePassword}
-                    placeholder={t('register.password')}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <Input
-                    isEdit
-                    canEdit
-                    type="password"
-                    name="passwordConfirm"
-                    handleChange={handleChangePasswordConfirm}
-                    inputStore={registerStore.passwordConfirm}
-                    placeholder={t('register.confirmPassword')}
-                    value={registerStore.confirmPassword.value}
-                    title={t('register.titleConfirmPassword')}
-                  />
-                </div>
-                {registerStore.passwordError && (
-                  <div className={styles.errorMessage}>{t('register.errorPassword')}</div>
-                )}
-                {registerStore.passwordSuccess && (
-                  <div className={styles.successMessage}>{t('register.successPassword')}</div>
-                )}
-                <div className={styles.inputForm}>
-                  <InputSelect
-                    isEdit
-                    name="role"
-                    needValidate
-                    inputStore={role}
-                    value={role.value}
-                    handleChange={handleChangeRole}
-                    placeholder={t('register.selectTypeUser')}
-                    options={[
-                      { value: ADOPTER, label: t('register.typeUserAdopter') },
-                      { value: PROTECTIONIST, label: t('register.typeUserProtectionist') },
-                      { value: TRANSIT_USER, label: t('register.typeUserTransit') },
-                      { value: VET, label: t('register.typeUserVet') },
-                    ]}
-                  />
-                </div>
-                <div className={styles.inputForm}>
-                  <PhoneInput
-                    name="phone"
-                    country="ar"
-                    onChange={phone => handleChangePhone(phone)}
-                    inputStyle={{
-                      width: '100%',
-                      height: '40px',
-                      borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#ffd95a',
-                    }}
-                  />
-                  {registerStore.registerUser.phone.error && (
-                    <div className={styles.errorMessage}>
-                      {t(`${registerStore.registerUser.phone.errorMessage}`)}
-                    </div>
+    <>
+      <AlertToast
+        handleToggleToast={handleToggleToast}
+        toggleToast={registerStore.toggleToast}
+        text={registerStore.toastError.error && t(`${registerStore.toastError.errorMessage}`)}
+      />
+      <LayoutTrantitions>
+        <div className={styles.containerRegister}>
+          <ImageInformationLeft image={fidelImage} />
+          <div className={styles.register}>
+            <LayoutLogin>
+              <div className={styles.title}>{t('register.signUp')}</div>
+              {registerStore.isloading ? (
+                <Loading loadingRing />
+              ) : (
+                <>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      name="firstname"
+                      inputStore={firstname}
+                      value={firstname.value}
+                      handleChange={handleChangeFirstname}
+                      placeholder={t('register.firstname')}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      name="lastname"
+                      inputStore={lastname}
+                      value={lastname.value}
+                      handleChange={handleChangeLastname}
+                      placeholder={t('register.lastname')}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      name="email"
+                      inputStore={email}
+                      value={email.value}
+                      handleChange={handleChangeEmail}
+                      placeholder={t('register.email')}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      type="text"
+                      name="username"
+                      inputStore={username}
+                      value={username.value}
+                      title={t('titleUsername')}
+                      handleChange={handleChangeUsername}
+                      placeholder={t('register.username')}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      name="password"
+                      type="password"
+                      inputStore={password}
+                      value={password.value}
+                      handleChange={handleChangePassword}
+                      placeholder={t('register.password')}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <Input
+                      isEdit
+                      canEdit
+                      type="password"
+                      name="passwordConfirm"
+                      handleChange={handleChangePasswordConfirm}
+                      inputStore={registerStore.passwordConfirm}
+                      placeholder={t('register.confirmPassword')}
+                      value={registerStore.confirmPassword.value}
+                      title={t('register.titleConfirmPassword')}
+                    />
+                  </div>
+                  {registerStore.passwordError && (
+                    <div className={styles.errorMessage}>{t('register.errorPassword')}</div>
                   )}
-                </div>
-                <div className={styles.buttonRegister}>
-                  <Button
-                    bigButton
-                    type="submit"
-                    handleClick={handleSubmit}
-                    text={t('register.signUp')}
-                  />
-                </div>
-                {/* <div className={styles.buttonSocialRegister}> */}
-                {/*   <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" /> */}
-                {/*   <ButtonLoginSocialMedia textButton="Google" socialButton="google" /> */}
-                {/* </div> */}
-                <div className={styles.forgotPassword}>
+                  {registerStore.passwordSuccess && (
+                    <div className={styles.successMessage}>{t('register.successPassword')}</div>
+                  )}
+                  <div className={styles.inputForm}>
+                    <InputSelect
+                      isEdit
+                      name="role"
+                      needValidate
+                      inputStore={role}
+                      value={role.value}
+                      handleChange={handleChangeRole}
+                      placeholder={t('register.selectTypeUser')}
+                      options={[
+                        { value: ADOPTER, label: t('register.typeUserAdopter') },
+                        { value: PROTECTIONIST, label: t('register.typeUserProtectionist') },
+                        { value: TRANSIT_USER, label: t('register.typeUserTransit') },
+                        { value: VET, label: t('register.typeUserVet') },
+                      ]}
+                    />
+                  </div>
+                  <div className={styles.inputForm}>
+                    <PhoneInput
+                      name="phone"
+                      country="ar"
+                      onChange={phone => handleChangePhone(phone)}
+                      inputStyle={{
+                        width: '100%',
+                        height: '40px',
+                        borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#ffd95a',
+                      }}
+                    />
+                    {registerStore.registerUser.phone.error && (
+                      <div className={styles.errorMessage}>
+                        {t(`${registerStore.registerUser.phone.errorMessage}`)}
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.buttonRegister}>
+                    <Button
+                      bigButton
+                      type="submit"
+                      handleClick={handleSubmit}
+                      text={t('register.signUp')}
+                    />
+                  </div>
+                  {/* <div className={styles.buttonSocialRegister}> */}
+                  {/*   <ButtonLoginSocialMedia textButton="Facebook" socialButton="facebook" /> */}
+                  {/*   <ButtonLoginSocialMedia textButton="Google" socialButton="google" /> */}
+                  {/* </div> */}
+                  <div className={styles.forgotPassword}>
+                    <Link to="/login" className={styles.textForgot}>
+                      {t('register.goToLogin')}
+                    </Link>
+                  </div>
+                  <div className={styles.inputForm}>{t('register.textTerms')}</div>
                   <Link to="/login" className={styles.textForgot}>
-                    {t('register.goToLogin')}
+                    {t('register.readTerm')}
                   </Link>
-                </div>
-                <div className={styles.inputForm}>{t('register.textTerms')}</div>
-                <Link to="/login" className={styles.textForgot}>
-                  {t('register.readTerm')}
-                </Link>
-              </>
-            )}
-          </LayoutLogin>
+                </>
+              )}
+            </LayoutLogin>
+          </div>
         </div>
-      </div>
-    </LayoutTrantitions>
+      </LayoutTrantitions>
+    </>
   )
 }
 

@@ -1,31 +1,18 @@
 @import 'styles/mixings.scss';
 
-.containerCard {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+.goToProfile {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+  color: $secundaryLight;
+  width: 300px;
 
-  @include media-breakpoint-down(sm) {
-    grid-template-columns: 1fr;
+  @include media-breakpoint-down(xs) {
+    font-size: 12px;
   }
 }
 
-.layourCard {
-  padding-top: 15px;
-}
-
-.containerImagePet {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.name {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.icon {
-  margin-left: 30px;
+.iconGoToprofile {
+  margin-right: 5px;
 }

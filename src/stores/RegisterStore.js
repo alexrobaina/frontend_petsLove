@@ -14,11 +14,12 @@ class RegisterStore {
   @observable isError = false
   @observable isLoading = false
   @observable isRegister = false
+  @observable toggleToast = false
   @observable isErrorRequest = ''
-  @observable confirmPassword = new InputStore()
   @observable passwordError = false
-  @observable toastError = ''
   @observable passwordSuccess = false
+  @observable toastError = new InputStore()
+  @observable confirmPassword = new InputStore()
 
   constructor() {
     this.registerService = new RegisterService()
@@ -53,15 +54,16 @@ class RegisterStore {
             if (e.response.data.message === 'The username already exist') {
               this.registerUser.username.setError(true, USERNAME_EXIST)
 
-              this.toastError = USERNAME_EXIST
+              this.toastError.setError(true, USERNAME_EXIST)
               this.registerUser.isValidForm = false
             }
             if (e.response.data.message === 'The user already exist') {
               this.registerUser.email.setError(true, USER_EXIST)
 
-              this.toastError = USER_EXIST
+              this.toastError.setError(true, USER_EXIST)
               this.registerUser.isValidForm = false
             }
+            this.setToggleToast(true)
           }
         })
       }
@@ -99,6 +101,11 @@ class RegisterStore {
   }
 
   @action
+  setToggleToast(value) {
+    this.toggleToast = value
+  }
+
+  @action
   setPassword(value) {
     this.registerUser.password.setValue(value)
     if (this.registerUser.password.value === this.confirmPassword.value) {
@@ -123,7 +130,6 @@ class RegisterStore {
 
   @action
   validate() {
-    this.toastError = ''
     let isValidForm = true
     this.clearError()
 
@@ -191,6 +197,7 @@ class RegisterStore {
   clearError() {
     const { firstname, lastname, email, password, role, phone, username } = this.registerUser
 
+    this.toastError.clearError()
     firstname.clearError()
     lastname.clearError()
     email.clearError()

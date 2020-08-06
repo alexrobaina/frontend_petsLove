@@ -37,6 +37,7 @@ class UserStore {
   @observable textAddress = ''
   @observable isResize = false
   @observable isLoading = false
+  @observable toggleToast = false
   @observable newPreviewsImage = []
   @observable passwordError = false
   @observable isUserTransit = false
@@ -250,6 +251,11 @@ class UserStore {
   @action
   setUsername(value) {
     this.user.username.setValue(value)
+  }
+
+  @action
+  setToggleToast(value) {
+    this.toggleToast = value
   }
 
   // ============================================

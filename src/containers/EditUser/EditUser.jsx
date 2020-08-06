@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { toast } from 'react-toastify'
+import { motion } from 'framer-motion'
 import PhoneInput from 'react-phone-input-2'
 import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
@@ -100,6 +100,10 @@ const EditUser = () => {
     userStore.save()
   }, [])
 
+  const handleToggleToast = useCallback(value => {
+    userStore.setToggleToast(value)
+  }, [])
+
   const {
     _id,
     name,
@@ -120,12 +124,7 @@ const EditUser = () => {
     if (userStore.isSaved && userStore.isUpdated) {
       authStore.loadUser()
       if (userStore.loadUser(_id)) {
-        setTimeout(() => {
-          toast(t('common:saveSuccess'), {
-            position: toast.POSITION.TOP_RIGHT,
-            className: styles.toast,
-          })
-        }, 500)
+        handleToggleToast(true)
       }
     }
   }, [userStore.isSaved, userStore.isUpdated])
@@ -140,7 +139,11 @@ const EditUser = () => {
 
   return (
     <LayoutContainer title={t('myProfile')}>
-      <AlertToast />
+      <AlertToast
+        text={t('saveSuccess')}
+        toggleToast={userStore.toggleToast}
+        handleToggleToast={handleToggleToast}
+      />
       <LayoutForm>
         <div className={styles.containerImage}>
           {isLoadingResizem ? (

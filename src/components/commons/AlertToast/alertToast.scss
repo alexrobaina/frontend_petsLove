@@ -1,10 +1,43 @@
-@import "styles/variable";
+@import "styles/mixings";
 
-.closeButton {
-  color: $title;
-  margin-right: 15px;
+.container {
+  z-index: 1000;
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  right: -380px;
+  top: 120px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 300px;
+  height: 70px;
+  background-color: $filters;
+  color: $ligth;
+  transition: transform 0.5s ease;
+  transform: translateX(-50px);
+
+  @include media-breakpoint-down(sm) {
+    top: 100px;
+    width: 280px;
+    height: 60px;
+  }
+  
+  &.toast {
+    transform: translateX(-400px);
+
+    @include media-breakpoint-down(sm) {
+
+    }
+  }
 }
 
-.toast > div {
-  padding-left: 15px !important;
+.containerIconClose {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.text {
+ color: $ligth;
 }
