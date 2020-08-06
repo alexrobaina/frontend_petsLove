@@ -1,10 +1,9 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import useMediaQuery from 'utils/Hooks'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { useHistory, useParams } from 'react-router'
 import { FaWhatsapp } from 'react-icons/fa'
 import 'react-phone-input-2/lib/style.css'
@@ -14,6 +13,8 @@ import AlertToast from 'components/commons/AlertToast/AlertToast'
 import styles from './buttonShare.scss'
 
 const ButtonShare = ({ phone, route, canView }) => {
+  const { t } = useTranslation()
+  const [toggleToast, setToggleToast] = useState(false)
   const iconsSocialMedia = useMediaQuery('(max-width: 768px)')
   const history = useHistory()
   const { id } = useParams()
@@ -23,20 +24,25 @@ const ButtonShare = ({ phone, route, canView }) => {
     history.push(`${route}/${id}`)
   }, [])
 
+  const handleToggleToast = useCallback(() => {
+    setToggleToast(false)
+  }, [])
+
   const handleWhatsapp = useCallback(() => {
     if (phone) {
       window.open(`https://api.whatsapp.com/send?phone=${phone}`)
     } else {
-      toast('This user does not have a phone', {
-        position: toast.POSITION.TOP_CENTER,
-        className: styles.toast,
-      })
+      setToggleToast(true)
     }
   }, [phone])
 
   return (
     <div className={styles.container}>
-      <AlertToast />
+      <AlertToast
+        text={t('common:callUser')}
+        toggleToast={toggleToast}
+        handleToggleToast={handleToggleToast}
+      />
       <div className={styles.containerButtons}>
         {canView && (
           <div className={styles.btnMargin}>

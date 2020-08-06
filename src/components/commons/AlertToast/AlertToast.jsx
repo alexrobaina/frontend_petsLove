@@ -1,16 +1,36 @@
-import React from 'react'
-import { ToastContainer } from 'react-toastify'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import { IoMdClose } from 'react-icons/io'
+import c from 'classnames'
 import styles from './alertToast.scss'
 
-const CloseButton = ({ closeToast }) => (
-  <i className={styles.closeButton} onClick={closeToast}>
-    <IoMdClose size={15} />
-  </i>
-)
+const AlertToast = ({ toggleToast, handleToggleToast, text }) => {
+  useEffect(() => {
+    if (toggleToast) {
+      setTimeout(() => {
+        handleToggleToast(false)
+      }, 4000)
+    }
+  }, [toggleToast])
 
-const AlertToast = () => {
-  return <ToastContainer className={styles.toast} draggable closeButton={CloseButton} />
+  return (
+    <div
+      onClick={() => handleToggleToast(false)}
+      className={c(styles.container, toggleToast && styles.toast)}
+    >
+      <div className={styles.containerIconClose}>
+        <IoMdClose size={20} />
+      </div>
+      <div className={styles.text}>{text}</div>
+    </div>
+  )
 }
 
-export default AlertToast
+AlertToast.proptype = {
+  handleToggleToast: PropTypes.func.isRequired,
+  toggleToast: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+}
+
+export default observer(AlertToast)

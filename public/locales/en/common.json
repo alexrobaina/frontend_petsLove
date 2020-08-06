@@ -9,6 +9,7 @@
   "usernameExist": "This username exists.",
   "userExist": "This user is already registered",
   "notes": "Notes",
+  "callUser": "This user does not have a phone",
   "yes": "Yes",
   "loading": "Loading...",
   "no": "No",

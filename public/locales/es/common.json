@@ -10,6 +10,7 @@
   "repeatPassword": "Repetir contraseña",
   "usernameExist": "Este nombre de usuario existe.",
   "userExist": "Este usuario ya esta registrado.",
+  "callUser": "Este usuario no agregó numero",
   "dashboard": "Panel de control",
   "yes": "Si",
   "loading": "Cargando...",
