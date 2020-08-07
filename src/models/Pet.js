@@ -27,6 +27,7 @@ class Pet {
     this.userVetId = new InputStore()
     this.userCreator = new InputStore()
     this.userAdopter = new InputStore()
+    this.userShelter = new InputStore()
     this.userTransit = new InputStore()
     this.textAddress = new InputStore()
     this.emailUserVet = new InputStore()
@@ -38,6 +39,7 @@ class Pet {
     this.emailUserAdopter = new InputStore()
     this.emailUserCreator = new InputStore()
     this.emailUserTransit = new InputStore()
+    this.emailUserShelter = new InputStore()
 
     this.medicalCat = {}
     this.medicalDog = {}
@@ -46,6 +48,7 @@ class Pet {
     this.userCreator.setValue(null)
     this.userAdopter.setValue(null)
     this.userTransit.setValue(null)
+    this.userShelter.setValue(null)
 
     this.userAdopterId = new InputStore()
     this.userTransitId = new InputStore()
@@ -85,7 +88,6 @@ class Pet {
 
     if (pet.userVet) {
       this.userVet.setValue(pet.userVet)
-      this.userVetId.setValue(pet.userVet._id)
       this.emailUserVet.setValue(pet.userVet.email)
     }
 
@@ -93,6 +95,10 @@ class Pet {
       this.userTransit.setValue(pet.userTransit)
       this.userTransitId.setValue(pet.userTransit._id)
       this.emailUserTransit.setValue(pet.userTransit.email)
+    }
+
+    if (pet.userShelter) {
+      this.emailUserShelter.setValue(pet.userShelter.email)
     }
 
     if (pet.category === 'cat') {
@@ -106,6 +112,11 @@ class Pet {
     if (pet.userAdopter) {
       this.userAdopter.setValue(pet.userAdopter)
     }
+
+    if (pet.userShelter) {
+      this.userShelter.setValue(pet.userShelter)
+    }
+
     if (pet.userTransit) {
       this.userTransit.setValue(pet.userTransit)
     }
@@ -141,6 +152,10 @@ class Pet {
 
     if (this.userTransit.value !== '') {
       petData.userTransit = this.userTransit.value
+    }
+
+    if (this.userShelter.value !== '') {
+      petData.userShelter = this.userShelter.value
     }
 
     if (this.category.value === 'cat') {
@@ -226,6 +241,10 @@ class Pet {
 
   setUserCreator(value) {
     this.userCreator.setValue(value)
+  }
+
+  setUserShelter(value) {
+    this.userShelter.setValue(value)
   }
 
   setBirthday(value) {
@@ -329,6 +348,10 @@ class Pet {
     return this.userCreator.value
   }
 
+  get getUserShelter() {
+    return this.userShelter.value
+  }
+
   get getUserVet() {
     return this.userVet.value
   }
@@ -347,6 +370,10 @@ class Pet {
 
   get getEmailUserCreator() {
     return this.emailUserCreator.value
+  }
+
+  get getEmailUserShelter() {
+    return this.emailUserShelter.value
   }
 
   get getUserAdopter() {

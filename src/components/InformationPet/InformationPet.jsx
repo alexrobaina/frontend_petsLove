@@ -30,7 +30,7 @@ const InformationPet = ({ pet, title }) => {
     getActivityLevel,
     getEmailUserAdopter,
     getEmailUserTransit,
-    getEmailUserCreator,
+    getEmailUserShelter,
   } = pet
 
   return (
@@ -45,8 +45,8 @@ const InformationPet = ({ pet, title }) => {
           />
         )}
         <TextCardInformation
-          value={getEmailUserCreator}
-          text={t('common:userCreator')}
+          value={getEmailUserShelter}
+          text={t('common:userShelter')}
           icon={<FaUserPlus size={20} />}
         />
         {getEmailUserTransit && (
