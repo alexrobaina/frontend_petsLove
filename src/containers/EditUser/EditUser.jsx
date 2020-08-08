@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { motion } from 'framer-motion'
 import PhoneInput from 'react-phone-input-2'
 import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'

@@ -58,8 +58,9 @@ const InitialFilters = () => {
             placeholder={t('category')}
             handleChange={handleChanceCategory}
             options={[
-              { value: 'dog', label: t('dogs') },
-              { value: 'cat', label: t('cats') },
+              { value: '', label: t('common:searchAllCategory') },
+              { value: 'dog', label: t('common:dogs') },
+              { value: 'cat', label: t('common:cats') },
             ]}
           />
         </div>
@@ -71,8 +72,9 @@ const InitialFilters = () => {
             placeholder={t('gender')}
             handleChange={handleChanceGender}
             options={[
-              { value: 'female', label: t('female') },
-              { value: 'male', label: t('male') },
+              { value: '', label: t('common:searchAllGender') },
+              { value: 'female', label: t('common:female') },
+              { value: 'male', label: t('common:male') },
             ]}
           />
         </div>

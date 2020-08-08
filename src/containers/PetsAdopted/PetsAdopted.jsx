@@ -3,23 +3,24 @@ import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import Title from 'components/commons/Title'
+import { LIMIT_LIST } from 'services/config'
 import PaginationList from 'components/commons/PaginationList'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
 const PetsAdopted = ({ id }) => {
   const [page, setPage] = useState(1)
-  const [limit] = useState(5)
+  const [limit] = useState(LIMIT_LIST)
   const { t } = useTranslation('dashboard')
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetAdopted(id, 5, page)
+    searchPetsStore.getPetAdopted(id, LIMIT_LIST, page)
   }, [])
 
   const handleChangePage = useCallback((e, newPage) => {
-    searchPetsStore.getPetAdopted(id, 5, newPage)
+    searchPetsStore.getPetAdopted(id, LIMIT_LIST, newPage)
     setPage(newPage)
   }, [])
 

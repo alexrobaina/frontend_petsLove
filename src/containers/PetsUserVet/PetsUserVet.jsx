@@ -6,20 +6,21 @@ import ListPets from 'components/ListPets'
 import { useTranslation } from 'react-i18next'
 import Loading from 'components/commons/Loading'
 import PaginationList from 'components/commons/PaginationList'
+import { LIMIT_LIST } from 'services/config'
 
 const PetsUserVet = ({ id }) => {
   const { t } = useTranslation('dashboard')
   const [page, setPage] = useState(1)
-  const [limit] = useState(5)
+  const [limit] = useState(LIMIT_LIST)
   const rootStore = useContext(UserContext)
   const { searchPetsStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetsUserVet(id, 5, page)
+    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, page)
   }, [])
 
   const handleChangePage = useCallback((e, newPage) => {
-    searchPetsStore.getPetsUserVet(id, 5, newPage)
+    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, newPage)
     setPage(newPage)
   }, [])
 

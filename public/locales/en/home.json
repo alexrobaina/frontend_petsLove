@@ -1,7 +1,7 @@
 {
   "title": "Find a pet for adoption",
   "subTitle": "Please, do not buy a breed pet, adopt a homeless one",
-  "gender": "Gender",
+  "gender": "Sex",
   "category": "Category",
   "city": "City",
   "country": "Country",
