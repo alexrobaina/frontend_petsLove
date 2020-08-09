@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import UserContext from 'Context/UserContext'
 import c from 'classnames'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
+import TextCard from 'components/commons/TextCard'
 import TextCardContact from 'components/commons/TextCardContact'
 import PetsUserTransit from 'containers/PetsUserTransit'
 import LayoutContainer from 'components/commons/LayoutContainer'
@@ -25,7 +26,7 @@ const TransitUserProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, phone, email, _id } = user
+  const { name, image, lat, lng, phone, email, _id, aboutUs } = user
 
   return (
     <LayoutContainer>
@@ -52,7 +53,10 @@ const TransitUserProfile = ({ user }) => {
           }}
         />
       </div>
-      <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+      <div className={styles.containerCard}>
+        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs} />}
+      </div>
       <PetsUserTransit id={_id} />
     </LayoutContainer>
   )

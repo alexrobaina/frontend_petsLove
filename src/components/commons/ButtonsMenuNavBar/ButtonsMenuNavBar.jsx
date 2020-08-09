@@ -37,7 +37,7 @@ const routesUserProtectionist = [
   },
   {
     icon: <FaPeopleCarry size={22} />,
-    text: 'Search Protectionists',
+    text: 'SearchShelters',
     link: SEARCH_PROTECTIONIST,
   },
   {
@@ -66,7 +66,7 @@ const routesUserVet = [
   },
   {
     icon: <FaPeopleCarry size={22} />,
-    text: 'Search Protectionists',
+    text: 'SearchShelters',
     link: SEARCH_PROTECTIONIST,
   },
   {
@@ -90,7 +90,7 @@ const routesUserAdopter = [
   },
   {
     icon: <FaPeopleCarry size={22} />,
-    text: 'Search Protectionists',
+    text: 'SearchShelters',
     link: SEARCH_PROTECTIONIST,
   },
   {
@@ -114,7 +114,7 @@ const routesUserTransitUser = [
   },
   {
     icon: <FaPeopleCarry size={22} />,
-    text: 'Search Protectionists',
+    text: 'SearchShelters',
     link: SEARCH_PROTECTIONIST,
   },
   {

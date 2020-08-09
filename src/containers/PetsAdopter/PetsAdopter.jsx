@@ -2,16 +2,17 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import Title from 'components/commons/Title'
+import { LIMIT_LIST } from 'services/config'
 import PaginationList from 'components/commons/PaginationList'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
 
 const PetsAdopter = ({ store, id, title }) => {
   const [page, setPage] = useState(1)
-  const [limit] = useState(5)
+  const [limit] = useState(LIMIT_LIST)
 
   const handleChangePage = useCallback((e, newPage) => {
-    store.getPets(id, 5, newPage)
+    store.getPets(id, LIMIT_LIST, newPage)
     setPage(newPage)
   }, [])
 

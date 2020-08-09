@@ -5,17 +5,18 @@ import PaginationList from 'components/commons/PaginationList'
 import FilterSearchPetsStore from 'stores/FilterSearchPetsStore'
 import ListPets from 'components/ListPets'
 import Loading from 'components/commons/Loading'
+import { LIMIT_LIST } from 'services/config'
 
 const PetsFiltered = ({ store }) => {
   const [page, setPage] = useState(1)
-  const [limit] = useState(6)
+  const [limit] = useState(LIMIT_LIST)
 
   useEffect(() => {
-    store.searchPets(6, page)
+    store.searchPets(LIMIT_LIST, page)
   }, [])
 
   const handleChangePage = useCallback((e, newPage) => {
-    store.searchPets(6, newPage)
+    store.searchPets(LIMIT_LIST, newPage)
     setPage(newPage)
   }, [])
 

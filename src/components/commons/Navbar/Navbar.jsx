@@ -61,7 +61,9 @@ const Navbar = ({ children }) => {
           )}
           {/* This is button its for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
-          <div className={styles.logo}>{t('searchPets')}</div>
+          <div onClick={goToSeach} className={styles.logo}>
+            {t('searchPets')}
+          </div>
         </div>
         {rootStore.authStore.isLogin ? (
           <>

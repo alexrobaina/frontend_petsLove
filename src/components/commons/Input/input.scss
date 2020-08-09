@@ -33,6 +33,10 @@ input:focus {
     font-size: 14px;
     font-family: 'Noto Sans HK', sans-serif;
   }
+
+  &.icon {
+    padding: 10px 0 10px 50px;
+  }
 }
 
 .isError {
@@ -76,4 +80,10 @@ input[type='number'] {
   right: 12px;
   top: 10px;
   cursor: pointer;
+}
+
+.containerIcon {
+  top: 10px;
+  left: 15px;
+  position: absolute;
 }

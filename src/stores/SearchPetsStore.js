@@ -11,30 +11,30 @@ class SearchPetsStore {
     this.cities = new Cities()
   }
 
-  @observable petsFiltered = []
-  @observable totalPetsForAdoption = 0
-  @observable totalPetsAdopted = 0
-  @observable totalPetsTransit = 0
   @observable isError = false
-  @observable isLoading = false
-  @observable petsUserAdopt = []
-  @observable petsForAdoption = []
   @observable petsUserVet = []
   @observable totalPetsVet = 0
   @observable petsAdopted = []
-  @observable petsUserTransit = []
+  @observable petsFiltered = []
+  @observable isLoading = false
+  @observable petsUserAdopt = []
   @observable optionsCities = []
+  @observable totalPetsAdopted = 0
+  @observable totalPetsTransit = 0
+  @observable petsUserTransit = []
+  @observable petsForAdoption = []
   @observable city = new InputStore()
+  @observable totalPetsForAdoption = 0
   @observable gender = new InputStore()
   @observable country = new InputStore()
   @observable category = new InputStore()
 
   @action
-  async getPetAdopted(userId, limit, page) {
+  async getPetAdopted(userId, limit, page, search) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetsAdopted(userId, limit, page)
+      const response = await this.petsService.loadPetsAdopted(userId, limit, page, search)
 
       runInAction(() => {
         this.totalPetsAdopted = response.totalPets
@@ -51,11 +51,11 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsForAdoption(userId, limit, page) {
+  async getPetsForAdoption(userId, limit, page, search) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetForAdoption(userId, limit, page)
+      const response = await this.petsService.loadPetForAdoption(userId, limit, page, search)
 
       runInAction(() => {
         this.totalPetsForAdoption = response.totalPets
@@ -92,14 +92,13 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsUserTransit(userId, limit, page) {
+  async getPetsUserTransit(userId, limit, page, search) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetsUserTransit(userId, limit, page)
+      const response = await this.petsService.loadPetsUserTransit(userId, limit, page, search)
 
       runInAction(() => {
-        console.log(response)
         this.petsUserTransit = response.pets
         this.totalPetsTransit = response.totalPets
         this.isLoading = false
@@ -114,15 +113,14 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsUserVet(userId, limit, page) {
+  async getPetsUserVet(userId, limit, page, search) {
     this.isLoading = true
 
     try {
-      const response = await this.petsService.loadPetsUserVet(userId, limit, page)
+      const response = await this.petsService.loadPetsUserVet(userId, limit, page, search)
 
       runInAction(() => {
         this.petsUserVet = response.pets
-        console.log(response)
         this.totalPetsVet = response.totalPets
         this.isLoading = false
       })

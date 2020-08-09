@@ -1,13 +1,12 @@
 import React, { useCallback, useContext, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { motion } from 'framer-motion'
 import PhoneInput from 'react-phone-input-2'
 import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
 import { observer, useLocalStore } from 'mobx-react'
 import UserContext from 'Context/UserContext'
-import { TRANSIT_USER } from 'config/roles'
+import { TRANSIT_USER, PROTECTIONIST } from 'config/roles'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Input from 'components/commons/Input'
 import Footer from 'components/commons/Footer/Footer'
@@ -243,8 +242,8 @@ const EditUser = () => {
             />
             <div className={styles.messageInformation}>{t('helpUserName')}</div>
           </div>
-          <div className={styles.colbig}>
-            {userStore.rol === TRANSIT_USER && (
+          {role.value === TRANSIT_USER && (
+            <div className={styles.colbig}>
               <InputCheckbox
                 canEdit
                 isEdit={userStore.isEdit}
@@ -252,8 +251,8 @@ const EditUser = () => {
                 value={userStore.user.canTransit}
                 handleChange={handleChangeTransit}
               />
-            )}
-          </div>
+            </div>
+          )}
           <div className={styles.colbig}>
             <Textarea
               canEdit
@@ -266,18 +265,20 @@ const EditUser = () => {
               value={userStore.user.aboutUs.value}
             />
           </div>
-          <div className={styles.colbig}>
-            <Textarea
-              canEdit
-              rows={4}
-              isEdit={userStore.isEdit}
-              inputStore={requirementsToAdopt}
-              label={t('requirementsToAdopt')}
-              value={requirementsToAdopt.value}
-              placeholder={t('requirementsToAdopt')}
-              handleChange={handleChangeRequirementsToAdopt}
-            />
-          </div>
+          {role.value === PROTECTIONIST && (
+            <div className={styles.colbig}>
+              <Textarea
+                canEdit
+                rows={4}
+                isEdit={userStore.isEdit}
+                inputStore={requirementsToAdopt}
+                label={t('requirementsToAdopt')}
+                value={requirementsToAdopt.value}
+                placeholder={t('requirementsToAdopt')}
+                handleChange={handleChangeRequirementsToAdopt}
+              />
+            </div>
+          )}
           <div className={styles.colbig}>
             <GoogleAutocomplete
               label={t('common:address')}

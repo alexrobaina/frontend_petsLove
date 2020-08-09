@@ -6,12 +6,15 @@ import UserContext from 'Context/UserContext'
 import c from 'classnames'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
+import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import LayoutCards from 'components/commons/LayoutCards'
 import ButtonShare from 'components/commons/ButtonShare'
 import { AWS_STORAGE } from 'services/config'
 import Title from 'components/commons/Title'
 import PetsUserVet from 'containers/PetsUserVet'
 import noImage from '../noImage.svg'
+import imageVet from './imageVet.png'
 import styles from './vetProfile.scss'
 
 const VetProfile = ({ user }) => {
@@ -25,7 +28,7 @@ const VetProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, phone, email, _id } = user
+  const { name, image, lat, lng, phone, email, _id, aboutUs, requirementsToAdopt } = user
 
   return (
     <LayoutContainer>
@@ -52,7 +55,16 @@ const VetProfile = ({ user }) => {
           }}
         />
       </div>
-      <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+      <div className={styles.containerCard}>
+        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+        {requirementsToAdopt && (
+          <TextCard title={t('common:requirementsToAdopt')} text={requirementsToAdopt} />
+        )}
+        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs} />}
+        <LayoutCards>
+          <img className={styles.image} src={imageVet} alt="vet" />
+        </LayoutCards>
+      </div>
       <PetsUserVet id={_id} />
     </LayoutContainer>
   )
