@@ -10,13 +10,28 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "contact contact"
+    "requirementsToAdopt aboutUs";
 
   @include media-breakpoint-down(md) {
     display: grid;
-    grid-template-columns: none;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     grid-gap: 10px;
   }
+}
+
+.contact {
+  grid-area: contact;
+}
+
+.requirementsToAdopt {
+  grid-area: requirementsToAdopt;
+}
+
+.aboutUs {
+  grid-area: aboutUs;
 }
 
 .userImage {

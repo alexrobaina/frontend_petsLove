@@ -67,9 +67,17 @@ const ProtectionistProfile = ({ user }) => {
             lng,
           }}
         />
-        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
-        <TextCard title={t('protectionistUser.requirementsToAdopt')} text={requirementsToAdopt} />
-        <TextCard title={t('protectionistUser.requirementsToAdopt')} text={aboutUs} />
+      </div>
+      <div className={styles.containerCard}>
+        <div className={styles.contact}>
+          <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+        </div>
+        <div className={styles.requirementsToAdopt}>
+          <TextCard title={t('common:requirementsToAdopt')} text={requirementsToAdopt} />
+        </div>
+        <div className={styles.aboutUs}>
+          <TextCard title={t('common:aboutUs')} text={aboutUs} />
+        </div>
       </div>
       <div className={styles.containerPets}>
         <div className={styles.buttonsSwich}>

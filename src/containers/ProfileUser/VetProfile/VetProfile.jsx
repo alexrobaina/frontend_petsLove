@@ -56,14 +56,15 @@ const VetProfile = ({ user }) => {
         />
       </div>
       <div className={styles.containerCard}>
-        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
-        {requirementsToAdopt && (
+        <div className={styles.contact}>
+          <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+        </div>
+        <div className={styles.requirementsToAdopt}>
           <TextCard title={t('common:requirementsToAdopt')} text={requirementsToAdopt} />
-        )}
-        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs} />}
-        <LayoutCards>
-          <img className={styles.image} src={imageVet} alt="vet" />
-        </LayoutCards>
+        </div>
+        <div className={styles.aboutUs}>
+          <TextCard title={t('common:aboutUs')} text={aboutUs} />
+        </div>
       </div>
       <PetsUserVet id={_id} />
     </LayoutContainer>
