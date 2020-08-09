@@ -16,27 +16,43 @@ class PetsService {
     return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 
-  loadPetsUserTransit = (id, limit, page) => {
+  loadPetsUserTransit = (id, limit, page, search) => {
     return axios
-      .get(`${SERVER}/api/pet/listPetsForUserTransit/?_id=${id}&limit=${limit}&page=${page}`)
+      .get(
+        `${SERVER}/api/pet/listPetsForUserTransit/?_id=${id}&limit=${limit}&page=${page}&search=${
+          search || ''
+        }`
+      )
       .then(response => response.data)
   }
 
-  loadPetsUserVet = (id, limit, page) => {
+  loadPetsUserVet = (id, limit, page, search) => {
     return axios
-      .get(`${SERVER}/api/pet/listPetForUserVet/?_id=${id}&limit=${limit}&page=${page}`)
+      .get(
+        `${SERVER}/api/pet/listPetForUserVet/?_id=${id}&limit=${limit}&page=${page}&search=${
+          search || ''
+        }`
+      )
       .then(response => response.data)
   }
 
-  loadPetsAdopted = (id, limit, page) => {
+  loadPetsAdopted = (id, limit, page, search) => {
     return axios
-      .get(`${SERVER}/api/pet/petsAdopted/?_id=${id}&limit=${limit}&page=${page}`)
+      .get(
+        `${SERVER}/api/pet/petsAdopted/?_id=${id}&limit=${limit || ''}&page=${page || ''}&search=${
+          search || ''
+        }`
+      )
       .then(response => response.data)
   }
 
-  loadPetForAdoption = (id, limit, page) => {
+  loadPetForAdoption = (id, limit, page, search) => {
     return axios
-      .get(`${SERVER}/api/pet/petsForAdoption/?_id=${id}&limit=${limit}&page=${page}`)
+      .get(
+        `${SERVER}/api/pet/petsForAdoption/?_id=${id}&limit=${limit || ''}&page=${
+          page || ''
+        }&search=${search || ''}`
+      )
       .then(response => response.data)
   }
 }

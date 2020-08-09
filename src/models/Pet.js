@@ -321,7 +321,7 @@ class Pet {
   }
 
   get getName() {
-    return this.name.value
+    return this.name.value.charAt(0).toUpperCase() + this.name.value.slice(1)
   }
 
   get getCategory() {

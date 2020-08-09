@@ -38,7 +38,9 @@ const GoogleAutocomplete = observer(
       if (handleChangeAddress) {
         handleChangeAddress(latLng)
       }
-      handleChangeAddressComponents(results[0])
+      if (handleChangeAddressComponents) {
+        handleChangeAddressComponents(results[0])
+      }
     }
 
     return (

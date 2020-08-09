@@ -12,6 +12,7 @@ import styles from './input.scss'
 const Input = ({
   name,
   type,
+  icon,
   title,
   value,
   label,
@@ -53,7 +54,11 @@ const Input = ({
             onChange={handleChange}
             placeholder={placeholder}
             type={type === 'password' ? viewPassword : type}
-            className={c(styles.input, inputStore && inputStore.error ? styles.isError : '')}
+            className={c(
+              styles.input,
+              icon && styles.icon,
+              inputStore && inputStore.error ? styles.isError : ''
+            )}
           />
           {isErrorEmail && (
             <div className={styles.errorMessage}>Error!, verify your email please</div>
@@ -66,6 +71,7 @@ const Input = ({
           {inputStore && (
             <div className={styles.errorMessage}>{t(`${inputStore.errorMessage}`)}</div>
           )}
+          {icon && <div className={c(styles.containerIcon)}>{icon}</div>}
         </div>
       ) : (
         <ViewValue placeholder={placeholder} value={value} />
@@ -75,6 +81,7 @@ const Input = ({
 }
 
 Input.propTypes = {
+  icon: PropTypes.node,
   type: PropTypes.string,
   isEdit: PropTypes.bool,
   label: PropTypes.string,
@@ -88,6 +95,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+  icon: '',
   value: '',
   label: '',
   type: 'text',

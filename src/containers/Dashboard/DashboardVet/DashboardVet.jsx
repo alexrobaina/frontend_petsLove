@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from 'react'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { FaPeopleCarry } from 'react-icons/fa'
+import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import DashboardCard from 'components/commons/DashboardCard'
@@ -48,4 +49,4 @@ const DashboardVet = () => {
 
 DashboardVet.propTypes = {}
 
-export default DashboardVet
+export default observer(DashboardVet)

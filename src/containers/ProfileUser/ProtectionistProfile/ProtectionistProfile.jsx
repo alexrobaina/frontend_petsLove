@@ -36,16 +36,21 @@ const ProtectionistProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, requirementsToAdopt, _id, phone, email } = user
+  const { name, image, lat, lng, requirementsToAdopt, _id, phone, email, aboutUs } = user
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('protectionistUser.role')} title={t('common.titleNameUser', { name })} />
+        <Title
+          rolText={t('protectionistUser.role')}
+          title={t('common.titleNameUser', {
+            name,
+          })}
+        />
         <ButtonShare
-          canView={_id === authStore.user._id}
-          phone={user.phone || ''}
           route="edit-user"
+          phone={user.phone || ''}
+          canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>
@@ -64,6 +69,7 @@ const ProtectionistProfile = ({ user }) => {
         />
         <TextCardContact title={t('common.contact')} phone={phone} email={email} />
         <TextCard title={t('protectionistUser.requirementsToAdopt')} text={requirementsToAdopt} />
+        <TextCard title={t('protectionistUser.requirementsToAdopt')} text={aboutUs} />
       </div>
       <div className={styles.containerPets}>
         <div className={styles.buttonsSwich}>
