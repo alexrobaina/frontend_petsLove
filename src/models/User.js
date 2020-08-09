@@ -106,6 +106,10 @@ class User {
     return this.user._id
   }
 
+  get getName() {
+    return this.name.value
+  }
+
   getRole() {
     if (this.role.value === TRANSIT_USER) {
       return USER_TRANSIT

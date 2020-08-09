@@ -1,5 +1,6 @@
 import { observable, action, runInAction } from 'mobx'
 import UserAdopterService from 'services/UserAdopterService'
+import { LIMIT_LIST } from 'services/config'
 
 class SearchPetsStore {
   constructor(id) {
@@ -15,7 +16,7 @@ class SearchPetsStore {
 
   @action
   init(id) {
-    this.getPets(id, 5, 1)
+    this.getPets(id, LIMIT_LIST, 1)
   }
 
   @action

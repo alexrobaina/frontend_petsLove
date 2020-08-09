@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
+import { MdSearch } from 'react-icons/md'
 import Title from 'components/commons/Title'
+import Input from 'components/commons/Input'
 import ListPets from 'components/ListPets'
 import { useTranslation } from 'react-i18next'
 import Loading from 'components/commons/Loading'
@@ -16,17 +18,27 @@ const PetsUserVet = ({ id }) => {
   const { searchPetsStore } = rootStore
 
   useEffect(() => {
-    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, page)
+    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, page, '')
   }, [])
 
   const handleChangePage = useCallback((e, newPage) => {
-    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, newPage)
+    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, newPage, '')
     setPage(newPage)
+  }, [])
+
+  const handleSearch = useCallback(e => {
+    searchPetsStore.getPetsUserVet(id, LIMIT_LIST, page, e.target.value)
   }, [])
 
   return (
     <>
       <Title mTop="50px" mBottom="30px" title={t('userVet.titlePetsList')} />
+      <Input
+        isEdit
+        handleChange={handleSearch}
+        icon={<MdSearch size={20} />}
+        placeholder={t('common:filterForName')}
+      />
       {searchPetsStore.isLoading ? (
         <Loading loadingRing />
       ) : (
