@@ -8,13 +8,11 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
 import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import LayoutCards from 'components/commons/LayoutCards'
 import ButtonShare from 'components/commons/ButtonShare'
 import { AWS_STORAGE } from 'services/config'
 import Title from 'components/commons/Title'
 import PetsUserVet from 'containers/PetsUserVet'
 import noImage from '../noImage.svg'
-import imageVet from './imageVet.png'
 import styles from './vetProfile.scss'
 
 const VetProfile = ({ user }) => {
