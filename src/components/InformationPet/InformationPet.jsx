@@ -44,11 +44,13 @@ const InformationPet = ({ pet, title }) => {
             icon={<FaUserPlus size={20} />}
           />
         )}
-        <TextCardInformation
-          value={getEmailUserShelter}
-          text={t('common:userShelter')}
-          icon={<FaUserPlus size={20} />}
-        />
+        {getEmailUserShelter && (
+          <TextCardInformation
+            value={getEmailUserShelter}
+            text={t('common:userShelter')}
+            icon={<FaUserPlus size={20} />}
+          />
+        )}
         {getEmailUserTransit && (
           <TextCardInformation
             value={getEmailUserTransit}
