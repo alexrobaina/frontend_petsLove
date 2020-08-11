@@ -68,7 +68,7 @@ const ProtectionistProfile = ({ user }) => {
           }}
         />
       </div>
-      <div className={styles.containerCard}>
+      <div className={styles.containerCardInformation}>
         <div className={styles.contact}>
           <TextCardContact title={t('common.contact')} phone={phone} email={email} />
         </div>

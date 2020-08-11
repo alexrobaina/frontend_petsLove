@@ -10,15 +10,31 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  @include media-breakpoint-down(md) {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+.containerCardInformation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
   grid-template-rows: auto;
   grid-template-areas: 
     "contact contact"
     "requirementsToAdopt aboutUs";
 
   @include media-breakpoint-down(md) {
-    display: grid;
+  
     grid-template-rows: 1fr;
-    grid-gap: 10px;
+    grid-template-areas: 
+    "contact contact"
+    "requirementsToAdopt requirementsToAdopt"
+    "aboutUs aboutUs";  
   }
 }
 
@@ -49,10 +65,6 @@
 .containerPets {
   display: flex;
   justify-content: center;
-
-  @include media-breakpoint-only(xs) {
-    flex-direction: column;
-  }
 }
 
 .buttonsSwich {
