@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router'
 import UserContext from 'Context/UserContext'
 import c from 'classnames'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
@@ -19,7 +18,6 @@ const VetProfile = ({ user }) => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const { id } = useParams()
   const { t } = useTranslation('profileUser')
 
   const onError = useCallback(() => {
@@ -33,9 +31,9 @@ const VetProfile = ({ user }) => {
       <div className={styles.containerTitle}>
         <Title rolText={t('userVet.role')} title={t('common.titleNameUser', { name })} />
         <ButtonShare
-          canView={id === authStore.user._id}
-          phone={user.phone || ''}
           route="edit-user"
+          phone={user.phone || ''}
+          canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>

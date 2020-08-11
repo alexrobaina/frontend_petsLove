@@ -19,7 +19,6 @@ const TransitUserProfile = ({ user }) => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const { id } = useParams()
   const { t } = useTranslation('profileUser')
 
   const onError = useCallback(() => {
@@ -33,9 +32,9 @@ const TransitUserProfile = ({ user }) => {
       <div className={styles.containerTitle}>
         <Title rolText={t('transitUser.role')} title={t('common.titleNameUser', { name })} />
         <ButtonShare
-          canView={id === authStore.user._id}
-          phone={user.phone || ''}
           route="edit-user"
+          phone={user.phone || ''}
+          canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
       <div className={c(styles.containerCard, styles.layourCard)}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
@@ -8,6 +8,7 @@ import { AWS_STORAGE } from 'services/config'
 import { useParams } from 'react-router'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
+import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import ListPets from 'components/ListPets'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
@@ -18,10 +19,12 @@ import styles from './adopterProfile.scss'
 
 const AdopterProfile = ({ user }) => {
   const { id } = useParams()
+  const rootStore = useContext(UserContext)
+  const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const userAdopterStore = useLocalStore(() => new UserAdopterStore(id))
   const { t } = useTranslation('profileUser')
-  const { name, image, lat, lng, aboutUs } = user
+  const { name, image, lat, lng, aboutUs, _id } = user
 
   const onError = () => {
     setIsImageNotFound(false)
@@ -33,7 +36,11 @@ const AdopterProfile = ({ user }) => {
       title={t('common.titleNameUser')}
       name={name}
     >
-      <ButtonShare canView={id === user._id} phone={user.phone || ''} route="edit-user" />
+      <ButtonShare
+        route="edit-user"
+        phone={user.phone || ''}
+        canView={authStore.user ? _id === authStore.user._id : false}
+      />
       <div className={c(styles.containerCard, styles.layourCard)}>
         <img
           onError={onError}
