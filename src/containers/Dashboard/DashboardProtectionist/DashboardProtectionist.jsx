@@ -10,7 +10,7 @@ import DashboardCard from 'components/commons/DashboardCard'
 import PetsAdopted from 'containers/PetsAdopted'
 import { CREATE_PET, SEARCH_VOLANTEERS } from 'routing/routes'
 import Title from 'components/commons/Title'
-import ForAdoption from 'containers/ForAdoption'
+import PetsFromCreator from 'containers/PetsFromCreator'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import styles from './dashboardProtectionist.scss'
 
@@ -69,7 +69,9 @@ const DashboardProtectionist = () => {
         />
       </div>
       {swith && <PetsAdopted id={authStore.user._id} />}
-      {!swith && <ForAdoption id={authStore.user._id} />}
+      {!swith && (
+        <PetsFromCreator title={t('protectionistUser.needHome')} id={authStore.user._id} />
+      )}
     </LayoutContainer>
   )
 }

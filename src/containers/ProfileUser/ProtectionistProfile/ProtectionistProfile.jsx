@@ -8,7 +8,7 @@ import { observer } from 'mobx-react'
 import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
-import ForAdoption from 'containers/ForAdoption'
+import PetsFromCreator from 'containers/PetsFromCreator'
 import PetsAdopted from 'containers/PetsAdopted'
 import TextCardContact from 'components/commons/TextCardContact'
 import Title from 'components/commons/Title'
@@ -94,7 +94,7 @@ const ProtectionistProfile = ({ user }) => {
           </>
         ) : (
           <>
-            <ForAdoption id={_id} />
+            <PetsFromCreator title={t('protectionistUser.needHome')} id={_id} />
           </>
         )}
       </div>
