@@ -2,6 +2,7 @@ import React, { useState, useCallback, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
+import { LIMIT_LIST } from 'services/config'
 import { FaPeopleCarry } from 'react-icons/fa'
 import { AiFillFileAdd } from 'react-icons/ai'
 import DashboardCard from 'components/commons/DashboardCard'
@@ -14,7 +15,7 @@ import PetsFromCreator from 'containers/PetsFromCreator'
 import styles from './dashboardTransit.scss'
 
 const DashboardTransit = () => {
-  const [swith, setSwith] = useState(false)
+  const [swith, setSwith] = useState(true)
   const { t } = useTranslation('dashboard')
   const history = useHistory()
   const rootStore = useContext(UserContext)
@@ -38,6 +39,7 @@ const DashboardTransit = () => {
 
   useEffect(() => {
     searchPetsStore.getPetsUserTransit(authStore.user._id)
+    searchPetsStore.getPetsForAdoption(authStore.user._id, LIMIT_LIST, 1, '')
   }, [])
 
   return (
