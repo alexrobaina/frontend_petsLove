@@ -14,7 +14,6 @@ import {
   EDIT_USER,
   SEARCH_VOLANTEERS,
   PETS_ADOPTER,
-  MY_PETS,
   EDIT_PET,
   PROFILE_USER,
   RESET_PASSWORD,
@@ -28,7 +27,6 @@ import ProfilePets from 'containers/ProfilePets'
 import dotenv from 'dotenv'
 import SearchVolunteers from 'containers/SearchVolunteers'
 import PetsAdopted from 'containers/PetsAdopted'
-import ForAdoption from 'containers/ForAdoption'
 import Dashboard from 'containers/Dashboard'
 import EditUser from 'containers/EditUser/EditUser'
 import CreatePet from 'containers/CreatePet'
@@ -113,13 +111,6 @@ function App() {
               redirectPath={LOGIN}
               path={PETS_ADOPTER}
               component={PetsAdopted}
-            />
-            <PrivateRoute
-              exact
-              isLogin={rootStore.authStore.isLogin}
-              redirectPath={LOGIN}
-              path={MY_PETS}
-              component={ForAdoption}
             />
             <Route component={PageNotFound} />
           </Switch>

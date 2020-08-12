@@ -102,10 +102,9 @@ const routesUserAdopter = [
 
 const routesUserTransitUser = [
   {
-    icon: <FaUser size={22} />,
-    text: 'myProfile',
-    link: PROFILE_USER,
-    haveId: true,
+    icon: <AiFillFileAdd size={25} />,
+    text: 'createPet',
+    link: CREATE_PET,
   },
   {
     icon: <MdDashboard size={25} />,
@@ -121,6 +120,12 @@ const routesUserTransitUser = [
     icon: <FaHandHoldingHeart size={25} />,
     text: 'searchVolanteers',
     link: SEARCH_VOLANTEERS,
+  },
+  {
+    icon: <FaUser size={22} />,
+    text: 'myProfile',
+    link: PROFILE_USER,
+    haveId: true,
   },
 ]
 
