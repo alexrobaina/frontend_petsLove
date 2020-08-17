@@ -1,0 +1,55 @@
+@import "styles/mixings";
+
+.bigRow {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: 300px;
+
+  @include media-breakpoint-between(md, xl) {
+    height: 310px;
+  }
+
+  @include media-breakpoint-between(sm, md) {
+    height: 180px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    height: 130px;
+  }
+}
+
+.centerImage {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  position: absolute;
+  max-width: 900px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: auto;
+  object-fit: cover;
+  object-position: center center;
+
+  @include media-breakpoint-between(md, xl) {
+    max-width: 900px;
+  }
+
+  @include media-breakpoint-between(sm, md) {
+    margin-top: -70px;
+    max-width: 800px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+  }
+}

@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Redirect, Route } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, isLogin, redirectPath, ...rest }) => {
-  const [isLoginButIsNotLogin] = useState(true)
   const location = useLocation()
-  if (isLoginButIsNotLogin) {
+
+  if (isLogin) {
     return <Route {...rest} render={props => <Component {...props} />} />
   }
 

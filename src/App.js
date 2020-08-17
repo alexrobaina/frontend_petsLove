@@ -18,6 +18,7 @@ import {
   EDIT_PET,
   PROFILE_USER,
   RESET_PASSWORD,
+  LANDING_PAGE,
   SEARCH_PROTECTIONIST,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
@@ -37,6 +38,7 @@ import Login from 'containers/Login'
 import Home from 'containers/Home'
 import ProfileUser from 'containers/ProfileUser'
 import EditPet from 'containers/EditPet'
+import LandingPage from 'containers/LandingPage'
 import ResetPassword from 'containers/ResetPassword'
 import SearchProtectionist from 'containers/SearchProtectionist/SearchProtectionist'
 import Navbar from 'components/commons/Navbar'
@@ -63,6 +65,7 @@ function App() {
             <Route exact path={LOGIN} component={Login} />
             <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
             <Route exact path={HOME} component={Home} />
+            <Route exact path={LANDING_PAGE} component={LandingPage} />
             <Route exact path={`${PROFILE_PET}/:id`} component={ProfilePets} />
             <Route exact path={`${PROFILE_USER}/:id`} component={ProfileUser} />
             <PrivateRoute

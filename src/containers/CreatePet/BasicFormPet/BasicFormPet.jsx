@@ -192,7 +192,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           handleChange={handleChangeHistory}
         />
       </div>
-      {getUserCreatorId === authStore.user._id && (
+      {authStore.user && getUserCreatorId === authStore.user._id && (
         <>
           <div className={styles.colums}>
             <div className={styles.containerStatusPet}>{t('statusPet')}</div>

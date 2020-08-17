@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "target": "ES6",
+    "jsx": "react",
     "baseUrl": "./src",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": false,
