@@ -272,7 +272,6 @@ class Pet {
   }
 
   setActivityLevel(value) {
-    console.log(value)
     this.activityLevel.setValue(value)
   }
 

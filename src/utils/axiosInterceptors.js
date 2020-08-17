@@ -5,8 +5,8 @@ const axiosInterceptors = rootStore => {
   axios.interceptors.request.use(
     config => {
       if (rootStore.authStore.user) {
-        config.headers.Authorization = rootStore.authStore.tokenLocalStorage
-          ? `Bearer ${rootStore.authStore.tokenLocalStorage}`
+        config.headers.Authorization = rootStore.authStore.getTokenLocalStorage()
+          ? `Bearer ${rootStore.authStore.getTokenLocalStorage()}`
           : null
       }
       // Do something before request is sent

@@ -38,7 +38,6 @@ class AuthStore {
 
     try {
       if (email && password) {
-        console.log(email, password)
         response = await this.authService.login({ email, password })
       } else {
         data = {
@@ -113,6 +112,8 @@ class AuthStore {
   getTokenLocalStorage() {
     const token = localStorage.getItem('token')
     this.tokenLocalStorage = token
+
+    return token
   }
 
   @action
