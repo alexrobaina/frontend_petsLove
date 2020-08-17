@@ -30,8 +30,6 @@ class FilterSearchPetsStore {
       category: this.category.value,
     }
 
-    console.log(data)
-
     const searchPets = {
       country: this.country.value,
       city: this.city.value,

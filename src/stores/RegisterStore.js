@@ -38,8 +38,7 @@ class RegisterStore {
       this.isLoading = true
 
       try {
-        const response = await this.registerService.register(this.registerUser.getJson())
-        console.log(response)
+        await this.registerService.register(this.registerUser.getJson())
 
         runInAction(() => {
           this.isLoading = false
