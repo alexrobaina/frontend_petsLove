@@ -9,16 +9,22 @@
   width: 100%;
   height: 300px;
 
+  @include media-breakpoint-only(xxl) {
+    margin-top: 0;
+    height: 360px;
+  }
+
   @include media-breakpoint-between(md, xl) {
-    height: 310px;
+    margin-top: 50px;
+    height: 340px;
   }
 
   @include media-breakpoint-between(sm, md) {
-    height: 180px;
+    height: 200px;
   }
 
   @include media-breakpoint-only(xs) {
-    height: 130px;
+    height: 50px;
   }
 }
 
@@ -37,12 +43,15 @@
   object-fit: cover;
   object-position: center center;
 
+  @include media-breakpoint-only(xxl) {
+    max-width: 1200px;
+  }
+
   @include media-breakpoint-between(md, xl) {
     max-width: 900px;
   }
 
   @include media-breakpoint-between(sm, md) {
-    margin-top: -70px;
     max-width: 800px;
   }
 

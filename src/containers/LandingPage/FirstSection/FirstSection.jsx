@@ -1,14 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
 import { motion, useAnimation } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
+import { REGISTER } from 'routing/routes'
 import Button from 'components/commons/Button'
+import LayoutLandingPage from 'components/LayoutLandingPage'
 import boyAndDog from '../boyAndDog.jpg'
 import styles from './firstSection.scss'
 
 const FirstSection = () => {
+  const history = useHistory()
+  const { t } = useTranslation('landingPage')
   const animation = useAnimation()
   const animationImage = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.1 })
+
+  const gotToRegister = useCallback(() => {
+    history.push(REGISTER)
+  }, [])
 
   const variants = {
     visible: {
@@ -31,8 +41,8 @@ const FirstSection = () => {
       y: 0,
       opacity: 1,
       transition: {
-        delay: 1,
-        duration: 0.5,
+        delay: 0.6,
+        duration: 0.3,
         ease: 'easeOut',
       },
     },
@@ -48,40 +58,43 @@ const FirstSection = () => {
       animationImage.start(variantsImage.visible)
     } else {
       animation.start(variants.hidden)
-      animationImage.start(variantsImage.visible)
+      animationImage.start(variantsImage.hidden)
     }
   }, [animation, inView])
 
   return (
-    <div className={styles.containerSection}>
-      <div className={styles.containerInformation}>
-        <motion.div ref={ref} animate={animation} variants={{ variants }} initial={variants.hidden}>
-          <div className={styles.title}>
-            PetsLove es una web app para administrar
-            <span className={styles.titleSpan}>refugios y veterinarias.</span>
-          </div>
+    <LayoutLandingPage>
+      <div className={styles.containerSection}>
+        <div className={styles.containerInformation}>
+          <motion.div
+            ref={ref}
+            animate={animation}
+            variants={{ variants }}
+            initial={variants.hidden}
+          >
+            <div className={styles.title}>
+              {t('findAPet')}
+              <span className={styles.titleSpan}>{t('spanFindAPet')}</span>
+            </div>
 
-          <div className={styles.textInformation}>
-            Buscamos crear una comunidad de personas que aman a los animales y para contactar a
-            refugios con personas que adoptan y veterinarios que trabajan por el bienestar de
-            nuestros grandes compañeros.
-          </div>
-          <div className={styles.containerButtonRegister}>
-            <Button bigButton text="Quiero registrarme" />
+            <div className={styles.textInformation}>{t('textFindAPet')}</div>
+            <div className={styles.containerButtonRegister}>
+              <Button handleClick={gotToRegister} bigButton text={t('wantRegister')} />
+            </div>
+          </motion.div>
+        </div>
+        <motion.div
+          ref={ref}
+          animate={animationImage}
+          variants={{ variantsImage }}
+          initial={variantsImage.hidden}
+        >
+          <div className={styles.containerIlustration}>
+            <img className={styles.boyAndDog} src={boyAndDog} alt="boyAndDog" />
           </div>
         </motion.div>
       </div>
-      <motion.div
-        ref={ref}
-        animate={animationImage}
-        variants={{ variantsImage }}
-        initial={variantsImage.hidden}
-      >
-        <div className={styles.containerIlustration}>
-          <img className={styles.boyAndDog} src={boyAndDog} alt="boyAndDog" />
-        </div>
-      </motion.div>
-    </div>
+    </LayoutLandingPage>
   )
 }
 

@@ -9,7 +9,6 @@ const ImageCenter = ({ image }) => {
 
   const variantsImage = {
     visible: {
-      y: 0,
       opacity: 1,
       transition: {
         delay: 0.6,
@@ -18,7 +17,6 @@ const ImageCenter = ({ image }) => {
       },
     },
     hidden: {
-      y: 0,
       opacity: 0,
     },
   }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { MdSearch } from 'react-icons/md'
-import { HOME, LOGIN, REGISTER } from 'routing/routes'
+import { SEARCH_PETS, LOGIN, REGISTER } from 'routing/routes'
 import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
@@ -40,7 +40,7 @@ const Navbar = ({ children }) => {
   }, [])
 
   const goToSeach = useCallback(() => {
-    history.push(HOME)
+    history.push(SEARCH_PETS)
   }, [])
 
   if (rootStore.authStore.isLoading) {

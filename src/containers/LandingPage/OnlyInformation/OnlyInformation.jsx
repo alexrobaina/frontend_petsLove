@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
 import { motion, useAnimation } from 'framer-motion'
-import PropTypes from 'prop-types'
+import LayoutLandingPage from 'components/LayoutLandingPage'
 import styles from './onlyInformation.scss'
 
 const OnlyInformation = ({ title, text }) => {
@@ -13,6 +14,7 @@ const OnlyInformation = ({ title, text }) => {
       y: 0,
       opacity: 1,
       transition: {
+        delay: 0.6,
         duration: 0.3,
         ease: 'easeOut',
       },
@@ -32,12 +34,18 @@ const OnlyInformation = ({ title, text }) => {
   }, [animation, inView])
 
   return (
-    <div className={styles.containerContent}>
-      <motion.div ref={ref} animate={animation} initial={variants.hidden} variants={{ variants }}>
+    <LayoutLandingPage>
+      <motion.div
+        className={styles.containerContent}
+        ref={ref}
+        animate={animation}
+        initial={variants.hidden}
+        variants={{ variants }}
+      >
         <div className={styles.title}>{title}</div>
         <div className={styles.text}>{text}</div>
       </motion.div>
-    </div>
+    </LayoutLandingPage>
   )
 }
 

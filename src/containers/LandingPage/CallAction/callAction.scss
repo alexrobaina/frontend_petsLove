@@ -6,10 +6,16 @@
 }
 
 .containerAction {
-  height: 350px;
+  @include media-breakpoint-between(lg, xxl) {
+    height: 350px;
+  }
 
-  @include media-breakpoint-down(xs) {
-    height: 300px;
+  @include media-breakpoint-only(md) {
+    height: 280px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 280px;
   }
 }
 
@@ -18,7 +24,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 50px;
   left: 0;
   background-color: $primaryNavbar;
   width: 100%;

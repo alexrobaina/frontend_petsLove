@@ -13,7 +13,7 @@ const AuthorizedRouter = () => {
       <a href="/dashboard">Dashboard</a>
       <Router>
         <Switch>
-          <Route exact path={Routes.HOME} component={Home} />
+          <Route exact path={Routes.SEARCH_PETS} component={Home} />
           <Route exact path={Routes.PET_PROFILE} component={ProfilePets} />
           <Route path={Routes.DASHBOARD} component={Dashboard} />
         </Switch>

@@ -7,7 +7,7 @@ import {
   DASHBOARD,
   FORGOT_PASSWORD,
   LOGIN,
-  HOME,
+  SEARCH_PETS,
   REGISTER,
   CREATE_PET,
   PROFILE_PET,
@@ -64,7 +64,7 @@ function App() {
             <Route exact path={RESET_PASSWORD} component={ResetPassword} />
             <Route exact path={LOGIN} component={Login} />
             <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
-            <Route exact path={HOME} component={Home} />
+            <Route exact path={SEARCH_PETS} component={Home} />
             <Route exact path={LANDING_PAGE} component={LandingPage} />
             <Route exact path={`${PROFILE_PET}/:id`} component={ProfilePets} />
             <Route exact path={`${PROFILE_USER}/:id`} component={ProfileUser} />

@@ -2,10 +2,12 @@
 
 .containerSection {
   display: grid;
+  margin-top: 100px;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 
   @include media-breakpoint-only(xs) {
+    margin-top: 150px;
     grid-template-columns: 1fr;
   }
 }
@@ -79,6 +81,12 @@
     font-size: 30px;
     margin-top: 0;
   }
+}
+
+.textInformation {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .containerIlustration {

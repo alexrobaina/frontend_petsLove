@@ -1,24 +1,61 @@
 @import "styles/mixings";
 
 .containerFooter {
+  margin-top: 80px;
+  position: relative;
   display: flex;
   justify-content: center;
-  position: relative;
   bottom: 0;
   background-color: $primaryNavbar;
   height: 400px;
   width: 100%;
-  align-items: center;
 }
 
-.textFooter {
+.logo {
+  text-align: center;
+  margin-left: 100px;
+  margin-top: 20px;
+  font-size: 20px;
+  height: 50px;
+  width: 200px;
+  color: $title;
+  @include site-font(logo, 700);
+}
+
+.containerButtonSignUp {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.containerRow {
+  margin-top: 60px;
+  // padding: 50px 100px 100px 100px;
+  display: grid;
+  // justify-content: flex-start;
+  justify-content: center;
+  // grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+
+  @include media-breakpoint-only(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.socialMedia {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   animation-name: animationText;
   animation-duration: 1s;
   animation-delay: 3s;
   font-size: 12px;
   color: $title;
+}
+
+.cafecito {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 
 @keyframes animationText {

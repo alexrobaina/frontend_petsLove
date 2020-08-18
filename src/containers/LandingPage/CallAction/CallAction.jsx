@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Button from 'components/commons/Button'
 import styles from './callAction.scss'
 
-const CallAction = ({ title, textButton }) => {
+const CallAction = ({ title, textButton, handleAction }) => {
   const animation = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.1 })
 
@@ -34,26 +34,27 @@ const CallAction = ({ title, textButton }) => {
   }, [animation, inView])
 
   return (
-    <motion.div
-      ref={ref}
-      animate={animation}
-      variants={{ variantsTitle }}
-      initial={variantsTitle.hidden}
-    >
-      <div className={styles.containerAction}>
+    <div className={styles.containerAction}>
+      <motion.div
+        ref={ref}
+        animate={animation}
+        variants={{ variantsTitle }}
+        initial={variantsTitle.hidden}
+      >
         <div className={styles.actionSearchPets}>
           <div className={styles.title}>{title}</div>
           <div className={styles.buttonSearchPets}>
-            <Button bigButton text={textButton} />
+            <Button handleClick={handleAction} bigButton text={textButton} />
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }
 
 CallAction.propTypes = {
   textButton: PropTypes.string.isRequired,
+  handleAction: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
 }
 
