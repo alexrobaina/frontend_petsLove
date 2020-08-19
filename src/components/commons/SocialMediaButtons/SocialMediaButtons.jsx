@@ -8,29 +8,37 @@ function SocialMediaButtons() {
   const { t } = useTranslation('socialMediaButtons')
   return (
     <div className={styles.container}>
-      <Tooltip title={t('creatorPetsLove')}>
-        <div className={styles.icon}>
-          <FaGithub size={25} />
-        </div>
-      </Tooltip>
-      <Tooltip title={t('twitter')}>
-        <div className={styles.icon}>
-          <FaTwitter size={25} />
-        </div>
-      </Tooltip>
+      <a href="https://github.com/alexrobaina" rel="noopener noreferrer" target="_blank">
+        <Tooltip title={t('creatorPetsLove')}>
+          <div className={styles.icon}>
+            <FaGithub size={25} />
+          </div>
+        </Tooltip>
+      </a>
       <a href="https://www.instagram.com/petslove.app" rel="noopener noreferrer" target="_blank">
-        <div className={styles.icon}>
-          <FaInstagram size={25} />
-        </div>
+        <Tooltip title={t('twitter')}>
+          <div className={styles.icon}>
+            <FaTwitter size={25} />
+          </div>
+        </Tooltip>
+      </a>
+      <a href="https://www.instagram.com/petslove.app" rel="noopener noreferrer" target="_blank">
+        <Tooltip title="PetsLove Instagram">
+          <div className={styles.icon}>
+            <FaInstagram size={25} />
+          </div>
+        </Tooltip>
       </a>
       <a
-        href="https://www.facebook.com/Pets-love-316657072374034"
-        rel="noopener noreferrer"
         target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.facebook.com/Pets-love-316657072374034"
       >
-        <div className={styles.icon}>
-          <FaFacebookSquare size={25} />
-        </div>
+        <Tooltip title="PetsLove Facebook">
+          <div className={styles.icon}>
+            <FaFacebookSquare size={25} />
+          </div>
+        </Tooltip>
       </a>
     </div>
   )

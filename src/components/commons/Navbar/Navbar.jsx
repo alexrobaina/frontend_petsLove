@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { MdSearch } from 'react-icons/md'
-import { SEARCH_PETS, LOGIN, REGISTER } from 'routing/routes'
+import { SEARCH_PETS, LOGIN, REGISTER, LANDING_PAGE } from 'routing/routes'
 import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
@@ -24,6 +24,7 @@ const Navbar = ({ children }) => {
   const [toggleNavegationUser, setToggleNavegationUser] = useState(false)
   const [viewMenuProfile, setViewMenuProfile] = useState(true)
 
+  const goToHome = useCallback(() => history.push(LANDING_PAGE))
   const goToLogin = useCallback(() => history.push(LOGIN))
   const goToRegister = useCallback(() => history.push(REGISTER))
 
@@ -61,8 +62,8 @@ const Navbar = ({ children }) => {
           )}
           {/* This is button its for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
-          <div onClick={goToSeach} className={styles.logo}>
-            {t('searchPets')}
+          <div onClick={goToHome} className={styles.logo}>
+            {t('home')}
           </div>
         </div>
         {rootStore.authStore.isLogin ? (

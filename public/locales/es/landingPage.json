@@ -1,16 +1,17 @@
 {
   "findAPet": "Pets Love te ayuda a administrar",
   "spanFindAPet": "refugios y veterinarias",
-  "textFindAPet": "Pets love es una herramienta diseñada para la administración de refugios de mascotas los cuales podrán llevar el control de las mascotas en adopción y las adoptadas, pudiendo hacer seguimiento incluso después de la adopción.",
+  "textFindAPet": "Pets love es una herramienta diseñada para la administración de refugios de mascotas. Su principal función es poder llevar el control y hacer seguimiento de las distintas etapas de adopción, tomando en cuenta las principales necesidades que se requieren para mantener la mascota saludable y feliz.",
   "callAction": "¿Buscas mascotas en adopción?",
-  "ideals": "Pets love nace de la idea de que todos podemos ser felices si tenemos los recursos necesarios. Las mascotas necesitan de nosotros para poder tener una vida llena de momentos agradables y la tecnología nos brinda la posibilidad de acercarnos a ellos encontrando buenos compañeros y dando un paso más a un mundo más justo y empático para todos.",
-  "titleIdeals": "¿Porque existe petsLove y cuales son nuestros ideales?",
-  "responsibleAdoption": "We encourage responsible adoption.",
-  "responsibleAdoptionText": "Cuando una mascota es adoptada el refugio podrá asignarla al adoptante y de esta manera poder hacer seguimiento de la misma pudiendo visualizar las actualizaciones que el adoptante haga en perfil de la mascota. Esto permite a los refugios exigir a los adoptantes carga de fotos nuevas y actualización del estado medico.",
+  "titleIdeals": "Nuestros ideales",
+  "ideals": "Pets love nace de la idea de que todos podemos ser felices si tenemos los recursos necesarios. Las mascotas necesitan de nosotros para poder tener una vida llena de momentos agradables y la tecnología nos brinda la posibilidad de construir esa realidad.",
+  "responsibleAdoption": "Fomentamos la adopción responsable.",
+  "responsibleAdoptionText": "Al momento de adoptar una mascota el refugio y el adoptante podrán hacer de forma más precisa el seguimiento de los principales cuidados de la mascota. Generando un flujo de información más precisa como datos médicos y fotografías que permiten generar un historial que busca garantizar la seguridad y salud de la mascota.",
   "titleVolunteers": "¿Te gustaría ser voluntario Y hacer transito de mascotas?",
-  "textVolunteers": "Si te no puedes tener una mascota pero puedes a cuidar una temporalmente. Registrate como voluntario para que los refugios puedan contactarte. Vas a poder tener un registro de las mascotas que cuidaste a lo largo del tiempo y si te enamoraste de una y la adoptaste también podrás crear su perfil y llevar un control medico de tu nuevo compañero.",
-  "vetTitle": "¿Los veterinarios pueden usar la app?",
-  "vetText": "Si te no puedes tener una mascota pero puedes a cuidar una temporalmente. Registrate como voluntario para que los refugios puedan contactarte. Vas a poder tener un registro de las mascotas que cuidaste a lo largo del tiempo y si te enamoraste de una y la adoptaste también podrás crear su perfil y llevar un control medico de tu nuevo compañero.",
+  "textVolunteers": "Si te apasionan los animales y quieres formar parte del cuidado de mascotas durante el proceso de adopción, regístrate como voluntario para que los refugios puedan contactarte. Participando como voluntario vas a tener un registro de las mascotas que cuidaste y poder compartir información precisa al refugio y el adoptante.",
+  "vetTitle": "Uso veterinario",
+  "vetText": "Como veterinario podrás crear un perfil médico para las mascotas de una forma rápida y organizada. A su vez también tendrás la facilidad de generar información relevante como vacunas, notas sobre enfermedades, última visita al consultorio para poder compartir con tus clientes.",
   "wantRegister": "Quiero registrarme",
-  "goToSearch": "Encontrar mascota"
+  "helpToPetMessage": "Ayudanos a que millones de mascotas puedan conseguir un hogar",
+  "goToSearch": "Encontrar mascotas"
 }

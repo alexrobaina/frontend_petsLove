@@ -13,13 +13,24 @@
 
 .logo {
   text-align: center;
-  margin-left: 100px;
-  margin-top: 20px;
   font-size: 20px;
   height: 50px;
-  width: 200px;
   color: $title;
   @include site-font(logo, 700);
+}
+
+.text {
+  font-size: 14px;
+  color: $title;
+  @include site-font(text, 4 00);
+}
+
+.row {
+  text-align: center;
+  width: 310px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .containerButtonSignUp {
@@ -29,11 +40,8 @@
 
 .containerRow {
   margin-top: 60px;
-  // padding: 50px 100px 100px 100px;
   display: grid;
-  // justify-content: flex-start;
   justify-content: center;
-  // grid-template-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   grid-gap: 30px;
 
