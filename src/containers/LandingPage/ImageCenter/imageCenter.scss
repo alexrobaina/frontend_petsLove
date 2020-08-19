@@ -6,8 +6,11 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  height: 300px;
   margin-top: 80px;
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 0;
+  }
 }
 
 .image {
@@ -31,6 +34,6 @@
 
   @include media-breakpoint-only(xs) {
     margin-top: 50px;
-    max-width: 500px;
+    max-width: 350px;
   }
 }
