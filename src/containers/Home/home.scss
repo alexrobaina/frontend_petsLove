@@ -1,12 +1,10 @@
 @import 'styles/mixings';
-
 .title {
-  color: $title;
-  font-family: site-font('text', 600);
-  font-size: 32px;
-  font-weight: 700;
-
-  @include media-breakpoint-only(xs) {
-    font-size: 22px;
-  }
+    color: $title;
+    font-family: site-font('text', 600);
+    font-size: 32px;
+    font-weight: 700;
+    @include media-breakpoint-only(xs) {
+        font-size: 22px;
+    }
 }

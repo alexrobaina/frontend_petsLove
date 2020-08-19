@@ -1,0 +1,26 @@
+@import "styles/mixings";
+
+.container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.title {
+  font-size: 20px;
+  color: $title;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  cursor: pointer;
+  color: $title;
+  transition: 5ms;
+  text-align: center;
+
+  &:hover {
+    color: $secundaryLight;
+  }
+}

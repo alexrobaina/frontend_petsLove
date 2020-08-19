@@ -1,0 +1,36 @@
+@import "styles/mixings";
+
+.bigRow {
+  text-align: center;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: 300px;
+  margin-top: 80px;
+}
+
+.image {
+  max-width: 900px;
+  text-align: center;
+  margin: auto;
+  object-fit: cover;
+  object-position: center center;
+
+  @include media-breakpoint-only(xxl) {
+    max-width: 1200px;
+  }
+
+  @include media-breakpoint-between(md, xl) {
+    max-width: 900px;
+  }
+
+  @include media-breakpoint-between(sm, md) {
+    max-width: 800px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    margin-top: 50px;
+    max-width: 500px;
+  }
+}

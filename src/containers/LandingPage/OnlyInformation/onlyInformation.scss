@@ -1,0 +1,48 @@
+@import "styles/mixings";
+
+.containerContent {
+  margin-top: 100px;
+  text-align: center;
+
+  @include media-breakpoint-only(xs) {
+    text-align: left;
+  }
+}
+
+.title {
+  z-index: 100;
+  line-height: 50px;
+  font-size: 40px;
+  color: $title;
+  @include site-font(title, 700);
+
+  @include media-breakpoint-between(lg, xl) {
+    line-height: 50px;
+    font-size: 36px;
+  }
+
+  @include media-breakpoint-between(sm, md) {
+    line-height: 40px;
+    font-size: 28px;
+    margin-top: 40px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    line-height: 40px;
+    font-size: 28px;
+    margin-top: -20px;
+  }
+}
+
+.text {
+  margin-top: 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  line-height: 25px;
+  @include site-font(text, 400);
+
+  @include media-breakpoint-between(sm, md) {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

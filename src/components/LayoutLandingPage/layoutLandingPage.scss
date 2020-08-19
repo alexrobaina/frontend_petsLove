@@ -1,33 +1,29 @@
-@import 'styles/mixings.scss';
+@import "styles/mixings.scss";
 
 .containerLayout {
-  padding: 100px;
-
   @include media-breakpoint-only(xs) {
-    padding-top: 90px;
-    margin-top: 14px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   @include media-breakpoint-only(sm) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 
   @include media-breakpoint-between(sm, xs) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   @include media-breakpoint-only(md) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   @include media-breakpoint-between(md, xl) {
-    padding-left: 130px;
-    padding-right: 130px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   @include media-breakpoint-only(xxl) {
@@ -42,7 +38,7 @@
 
 .title {
   color: $title;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-size: 32px;
   font-weight: 700;
 
@@ -51,12 +47,11 @@
   }
 }
 
-
 .name {
   margin-left: 11px;
   color: $title;
   text-transform: capitalize;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-size: 32px;
   font-weight: 700;
 
@@ -68,7 +63,7 @@
 .subTitle {
   color: $colorLight;
   font-size: 32px;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-weight: 700;
   margin-top: 0;
 
@@ -81,4 +76,3 @@
   margin-top: 15px;
   color: $primary;
 }
-

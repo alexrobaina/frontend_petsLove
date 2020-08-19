@@ -105,6 +105,7 @@
     "react-icons": "^3.8.0",
     "react-images": "^1.1.7",
     "react-input-switch": "^2.2.1",
+    "react-intersection-observer": "^8.26.2",
     "react-lazyload": "^2.6.5",
     "react-leaflet": "^2.6.1",
     "react-leaflet-geosearch": "^0.3.0",
