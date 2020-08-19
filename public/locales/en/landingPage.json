@@ -1,16 +1,16 @@
 {
-  "findAPet": "Encuentra la mascota ideal contactando al",
-  "spanFindAPet": "refugio más cercano",
-  "textFindAPet": "Pets love es una herramienta diseñada para la administración de refugios de mascotas los cuales podrán llevar el control de las mascotas en adopción y las adoptadas, pudiendo hacer seguimiento incluso después de la adopción.",
-  "ideals": "Pets love nace de la idea de que todos podemos ser felices si tenemos los recursos necesarios. Las mascotas necesitan de nosotros para poder tener una vida llena de momentos agradables y la tecnología nos brinda la posibilidad de acercarnos a ellos encontrando buenos compañeros y dando un paso más a un mundo más justo y empático para todos.",
-  "titleIdeals": "¿Porque existe petsLove y cuales son nuestros ideales?",
-  "responsibleAdoptionText": "Cuando una mascota es adoptada el refugio podrá asignarla al adoptante y de esta manera poder hacer seguimiento de la misma pudiendo visualizar las actualizaciones que el adoptante haga en perfil de la mascota. Esto permite a los refugios exigir a los adoptantes carga de fotos nuevas y actualización del estado medico.",
+  "findAPet": "Find the ideal pet by contacting the",
+  "spanFindAPet": "nearest shelter.",
+  "textFindAPet": "Pets love is a tool designed for the administration of pet shelters which will be able to keep track of the pets for adoption and those adopted, being able to follow up even after adoption.",
+  "ideals": "Pets love was born from the idea that we can all be happy if we have the necessary resources. Pets need us to be able to have a life full of pleasant moments and technology gives us the possibility of getting closer to them, finding good companions and taking one more step towards a more just and empathetic world for all.",
+  "titleIdeals": "Why does petsLove exist and what are our ideals?",
+  "responsibleAdoptionText": "When a pet is adopted, the shelter will be able to assign it to the adopter and thus be able to follow up on it, being able to view the updates that the adopter makes on the pet's profile. This allows shelters to require adopters to upload new photos and update their medical status.",
   "wantRegister": "Going to register",
   "responsibleAdoption": "We encourage responsible adoption.",
-  "titleVolunteers": "¿Te gustaría ser voluntario Y hacer transito de mascotas?",
-  "textVolunteers": "Si te no puedes tener una mascota pero puedes a cuidar una temporalmente. Registrate como voluntario para que los refugios puedan contactarte. Vas a poder tener un registro de las mascotas que cuidaste a lo largo del tiempo y si te enamoraste de una y la adoptaste también podrás crear su perfil y llevar un control medico de tu nuevo compañero.",
-  "vetTitle": "¿Los veterinarios pueden usar la app?",
-  "vetText": "Si te no puedes tener una mascota pero puedes a cuidar una temporalmente. Registrate como voluntario para que los refugios puedan contactarte. Vas a poder tener un registro de las mascotas que cuidaste a lo largo del tiempo y si te enamoraste de una y la adoptaste también podrás crear su perfil y llevar un control medico de tu nuevo compañero.",
+  "titleVolunteers": "Would you like to be a volunteer AND do pet transit?",
+  "textVolunteers": "If you cannot have a pet but you can take care of one temporarily. Sign up as a volunteer so shelters can contact you. You will be able to keep a record of the pets that you took care of over time and if you fell in love with one and adopted it, you can also create its profile and keep a medical check-up on your new companion.",
+  "vetTitle": "Can vets use the app?",
+  "vetText": "Yes, you only have to register as a veterinarian and you will be able to create a profile for each pet generating a history of vaccines and notes regarding each patient, if your clients are registered in pets love, you can link the pet with the patient and have access to their data for communicating.",
   "callAction": "Looking for pets for adoption?",
-  "goToSearch": "Go to Search"
+  "goToSearch": "Find a pet"
 }
