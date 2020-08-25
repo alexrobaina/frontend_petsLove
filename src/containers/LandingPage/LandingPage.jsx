@@ -27,8 +27,8 @@ const LandingPage = () => {
     <>
       <FirstSection />
       <ImageCenter image={shelter} />
-      <OnlyInformation title={t('titleIdeals')} text={t('ideals')} />
       <ContainerAction />
+      <OnlyInformation title={t('titleIdeals')} text={t('ideals')} />
       <ExplicationModule
         mirror
         image={appImage}

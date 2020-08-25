@@ -1,6 +1,7 @@
 @import "styles/mixings";
 
 .containerContent {
+  margin-top: 100px;
   text-align: center;
 
   @include media-breakpoint-only(xs) {
