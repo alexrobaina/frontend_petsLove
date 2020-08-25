@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback } from 'react'
+import { RiMouseLine } from 'react-icons/ri'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
+import { Frame } from 'framer'
 import { motion, useAnimation } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
@@ -14,6 +16,7 @@ const FirstSection = () => {
   const { t } = useTranslation('landingPage')
   const animation = useAnimation()
   const animationImage = useAnimation()
+  const animationButtonDown = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.1 })
 
   const gotToRegister = useCallback(() => {
@@ -52,12 +55,29 @@ const FirstSection = () => {
     },
   }
 
+  const buttonDown = {
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.6,
+        duration: 0.3,
+        ease: 'easeOut',
+      },
+    },
+    hidden: {
+      y: 100,
+    },
+  }
+
   useEffect(() => {
     if (inView) {
       animation.start(variants.visible)
       animationImage.start(variantsImage.visible)
+      animationButtonDown.start(buttonDown.visible)
     } else {
       animation.start(variants.hidden)
+      animationButtonDown.start(buttonDown.hidden)
       animationImage.start(variantsImage.hidden)
     }
   }, [animation, inView])
@@ -92,6 +112,17 @@ const FirstSection = () => {
           <div className={styles.containerIlustration}>
             <img className={styles.boyAndDog} src={boyAndDog} alt="boyAndDog" />
           </div>
+        </motion.div>
+      </div>
+      <div className={styles.buttonDown}>
+        <motion.div
+          transition={{
+            y: { duration: 0.5, yoyo: Infinity, ease: 'easeOut' },
+            backgroundColor: { duration: 0, yoyo: Infinity, ease: 'easeOut', repeatDelay: 0.8 },
+          }}
+          animate={{ y: ['30%', '-30%'] }}
+        >
+          <RiMouseLine size={25} />
         </motion.div>
       </div>
     </LayoutLandingPage>

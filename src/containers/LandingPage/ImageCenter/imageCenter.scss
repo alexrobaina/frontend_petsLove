@@ -6,9 +6,14 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  margin-top: 80px;
+  margin-top: 100px;
 
-  @include media-breakpoint-only(xs) {
+  @include media-breakpoint-between(xl, xxl) {
+    margin-top: 130px;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
     margin-top: 0;
   }
 }
