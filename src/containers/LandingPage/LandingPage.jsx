@@ -1,9 +1,7 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-// import { useHistory } from 'react-router'
 import Footer from 'components/commons/Footer'
-import { SEARCH_PETS } from 'routing/routes'
 import shelter from './shelter.jpg'
 import dev from './dev.jpg'
 import vet from './vet.jpg'
@@ -16,12 +14,7 @@ import OnlyInformation from './OnlyInformation'
 import ExplicationModule from './ExplicationModule'
 
 const LandingPage = () => {
-  // const history = useHistory()
   const { t } = useTranslation('landingPage')
-
-  // const goToSearch = useCallback(() => {
-  //   history.push(SEARCH_PETS)
-  // }, [])
 
   return (
     <>

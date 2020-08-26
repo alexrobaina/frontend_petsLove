@@ -34,8 +34,9 @@
   border-radius: 10px;
   height: auto;
   width: 310px;
-  margin-top: 30px;
+  height: 345px;
   transition: 0.2s;
+  background-color: $ligth;
   cursor: pointer;
 
   &:hover {
@@ -46,7 +47,14 @@
   }
 }
 
+.buttonAction {
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+
 .image {
+  margin-top: 30px;
   max-width: 230px;
 }
 
