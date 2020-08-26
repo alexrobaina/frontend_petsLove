@@ -1,6 +1,7 @@
 @import "styles/mixings";
 
 .containerContent {
+  margin-top: 100px;
   text-align: center;
 
   @include media-breakpoint-only(xs) {
@@ -23,13 +24,13 @@
   @include media-breakpoint-between(sm, md) {
     line-height: 40px;
     font-size: 28px;
-    margin-top: 40px;
+    margin-top: 80px;
   }
 
   @include media-breakpoint-only(xs) {
     line-height: 40px;
     font-size: 28px;
-    margin-top: -20px;
+    margin-top: 80px;
   }
 }
 
