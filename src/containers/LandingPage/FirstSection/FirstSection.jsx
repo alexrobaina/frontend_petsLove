@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import { RiMouseLine } from 'react-icons/ri'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
-import { Frame } from 'framer'
 import { motion, useAnimation } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
@@ -86,12 +85,7 @@ const FirstSection = () => {
     <LayoutLandingPage>
       <div className={styles.containerSection}>
         <div className={styles.containerInformation}>
-          <motion.div
-            ref={ref}
-            animate={animation}
-            variants={{ variants }}
-            initial={variants.hidden}
-          >
+          <motion.div animate={animation} variants={{ variants }} initial={variants.hidden}>
             <div className={styles.title}>
               {t('findAPet')}
               <span className={styles.titleSpan}>{t('spanFindAPet')}</span>

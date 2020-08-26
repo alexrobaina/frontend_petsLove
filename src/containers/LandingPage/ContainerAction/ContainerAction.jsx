@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
+import useMediaQuery from 'utils/Hooks'
 import { motion, useAnimation } from 'framer-motion'
 import LayoutLandingPage from 'components/LayoutLandingPage'
 import { SEARCH_PETS, REGISTER } from 'routing/routes'
@@ -12,6 +13,7 @@ import transit from './transit.png'
 import styles from './containerAction.scss'
 
 const ContainerAction = () => {
+  const stopAnimation = useMediaQuery('(max-width: 992px)')
   const { t } = useTranslation('landingPage')
   const animation = useAnimation()
   const history = useHistory()
@@ -68,8 +70,8 @@ const ContainerAction = () => {
       >
         <motion.button
           onClick={goToSearch}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: stopAnimation ? null : 0.9 }}
+          whileHover={{ scale: stopAnimation ? null : 1.1 }}
           className={styles.buttonAction}
         >
           <div className={styles.containerCard}>
@@ -79,8 +81,8 @@ const ContainerAction = () => {
         </motion.button>
         <motion.button
           onClick={goToRegister}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: stopAnimation ? null : 0.9 }}
+          whileHover={{ scale: stopAnimation ? null : 1.1 }}
           className={styles.buttonAction}
         >
           <div className={styles.containerCard}>
@@ -90,8 +92,8 @@ const ContainerAction = () => {
         </motion.button>
         <motion.button
           onClick={goToRegister}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: stopAnimation ? null : 0.9 }}
+          whileHover={{ scale: stopAnimation ? null : 1.1 }}
           className={styles.buttonAction}
         >
           <div className={styles.containerCard}>
@@ -101,8 +103,8 @@ const ContainerAction = () => {
         </motion.button>
         <motion.button
           onClick={goToRegister}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: stopAnimation ? null : 0.9 }}
+          whileHover={{ scale: stopAnimation ? null : 1.1 }}
           className={styles.buttonAction}
         >
           <div className={styles.containerCard}>

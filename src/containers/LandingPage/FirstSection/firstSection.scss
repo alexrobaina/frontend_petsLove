@@ -18,8 +18,13 @@
     height: 550px;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-only(sm) {
     margin-top: 150px;
+    grid-template-columns: 1fr;
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin-top: 100px;
     grid-template-columns: 1fr;
   }
 }

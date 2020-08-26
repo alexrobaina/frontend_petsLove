@@ -28,6 +28,9 @@ const ExplicationModule = ({ title, text, image, mirror }) => {
 
   useEffect(() => {
     animation.start(variantsImage.hidden)
+  }, [])
+
+  useEffect(() => {
     if (inView) {
       animation.start(variantsImage.visible)
     }
