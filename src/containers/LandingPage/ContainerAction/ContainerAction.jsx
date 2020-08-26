@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
 import { motion, useAnimation } from 'framer-motion'
@@ -11,6 +12,7 @@ import transit from './transit.png'
 import styles from './containerAction.scss'
 
 const ContainerAction = () => {
+  const { t } = useTranslation('landingPage')
   const animation = useAnimation()
   const history = useHistory()
   const [ref, inView] = useInView({ threshold: 0.1 })
@@ -48,67 +50,67 @@ const ContainerAction = () => {
 
   return (
     <LayoutLandingPage>
-      <div className={styles.title}>¿Que te gustaria hacer?</div>
-      <div className={styles.container}>
-        <motion.div
-          ref={ref}
-          animate={animation}
-          variants={{ variantsImage }}
-          initial={variantsImage.hidden}
+      <motion.div
+        ref={ref}
+        animate={animation}
+        variants={{ variantsImage }}
+        initial={variantsImage.hidden}
+        className={styles.title}
+      >
+        {t('youWantMake')}
+      </motion.div>
+      <motion.div
+        ref={ref}
+        animate={animation}
+        variants={{ variantsImage }}
+        initial={variantsImage.hidden}
+        className={styles.container}
+      >
+        <motion.button
+          onClick={goToSearch}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          className={styles.buttonAction}
         >
-          <motion.button
-            onClick={goToSearch}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-            className={styles.buttonAction}
-          >
-            <div className={styles.containerCard}>
-              <img className={styles.image} src={adopter} alt="adopter" />
-              <div className={styles.subTitle}>Adoptar</div>
-            </div>
-          </motion.button>
-          <motion.button
-            onClick={goToRegister}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-            className={styles.buttonAction}
-          >
-            <div className={styles.containerCard}>
-              <img className={styles.image} src={transit} alt="adopter" />
-              <div className={styles.subTitle}>Administrar refugio</div>
-            </div>
-          </motion.button>
-        </motion.div>
-        <motion.div
-          ref={ref}
-          animate={animation}
-          variants={{ variantsImage }}
-          initial={variantsImage.hidden}
+          <div className={styles.containerCard}>
+            <img className={styles.image} src={adopter} alt="adopter" />
+            <div className={styles.subTitle}>{t('adopt')}</div>
+          </div>
+        </motion.button>
+        <motion.button
+          onClick={goToRegister}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          className={styles.buttonAction}
         >
-          <motion.button
-            onClick={goToRegister}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-            className={styles.buttonAction}
-          >
-            <div className={styles.containerCard}>
-              <img className={styles.image} src={dev} alt="adopter" />
-              <div className={styles.subTitle}>Transito de mascotas</div>
-            </div>
-          </motion.button>
-          <motion.button
-            onClick={goToRegister}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-            className={styles.buttonAction}
-          >
-            <div className={styles.containerCard}>
-              <img className={styles.image} src={vet} alt="adopter" />
-              <div className={styles.subTitle}>Administrar veterinaria</div>
-            </div>
-          </motion.button>
-        </motion.div>
-      </div>
+          <div className={styles.containerCard}>
+            <img className={styles.image} src={transit} alt="transit" />
+            <div className={styles.subTitle}>{t('manageShelter')}</div>
+          </div>
+        </motion.button>
+        <motion.button
+          onClick={goToRegister}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          className={styles.buttonAction}
+        >
+          <div className={styles.containerCard}>
+            <img className={styles.image} src={dev} alt="dev" />
+            <div className={styles.subTitle}>{t('petTransit')}</div>
+          </div>
+        </motion.button>
+        <motion.button
+          onClick={goToRegister}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          className={styles.buttonAction}
+        >
+          <div className={styles.containerCard}>
+            <img className={styles.image} src={vet} alt="vet" />
+            <div className={styles.subTitle}>{t('manageVeterinary')}</div>
+          </div>
+        </motion.button>
+      </motion.div>
     </LayoutLandingPage>
   )
 }

@@ -11,8 +11,13 @@
   "titleVolunteers": "Would you like to be a volunteer and do pet transit?",
   "textVolunteers": "If you are passionate about animals and want to be a part of caring for pets during the adoption process, sign up as a volunteer so shelters can contact you. By participating as a volunteer you will have a record of the pets you cared for and be able to share accurate information with the shelter and the adopter.",
   "vetTitle": "Veterinary use",
+  "youWantMake": "What would you like to do?",
   "vetText": "As a veterinarian, you can create a medical profile for pets in a fast and organized way. Moreover, you will be able to save and share relevant information with your clients, such as vaccinations, notes on diseases and last visit to the praxis.",
   "wantRegister": "Sing in",
+  "adopt": "Adopt",
+  "manageShelter": "Manage Shelter",
+  "petTransit": "Pet Transit",
+  "manageVeterinary": "Manage Veterinary",
   "helpToPetMessage": "Let's make millions of pets get a home.",
   "goToSearch": "Find pets"
 }

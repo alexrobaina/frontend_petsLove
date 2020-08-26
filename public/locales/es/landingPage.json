@@ -11,8 +11,13 @@
   "titleVolunteers": "¿Te gustaría ser voluntario Y hacer transito de mascotas?",
   "textVolunteers": "Si te apasionan los animales y quieres formar parte del cuidado de mascotas durante el proceso de adopción, regístrate como voluntario para que los refugios puedan contactarte. Participando como voluntario vas a tener un registro de las mascotas que cuidaste y poder compartir información precisa al refugio y el adoptante.",
   "vetTitle": "Uso veterinario",
+  "youWantMake": "¿Que te gustaria hacer?",
   "vetText": "Como veterinario podrás crear un perfil médico para las mascotas de una forma rápida y organizada. A su vez también tendrás la facilidad de generar información relevante como vacunas, notas sobre enfermedades, última visita al consultorio para poder compartir con tus clientes.",
   "wantRegister": "Registrar",
+  "adopt": "Adoptar",
+  "manageShelter": "Administrar refugio",
+  "petTransit": "Transito de mascotas",
+  "manageVeterinary": "Administrar Veterinaria",
   "helpToPetMessage": "Hagamos que millones de mascotas puedan conseguir un hogar.",
   "goToSearch": "Encontrar mascotas"
 }

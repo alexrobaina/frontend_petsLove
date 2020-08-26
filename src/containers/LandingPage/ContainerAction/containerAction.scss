@@ -1,8 +1,6 @@
 @import "styles/mixings";
 
 .container {
-  padding-left: 250px;
-  padding-right: 250px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -11,21 +9,6 @@
   justify-content: center;
   gap: 20px;
   align-items: center;
-
-  @include media-breakpoint-only(md) {
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-
-  @include media-breakpoint-only(sm) {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-
-  @include media-breakpoint-only(xs) {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 }
 
 .containerCard {
@@ -33,7 +16,7 @@
   box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.13);
   border-radius: 10px;
   height: auto;
-  width: 310px;
+  width: 280px;
   height: 345px;
   transition: 0.2s;
   background-color: $ligth;
@@ -43,7 +26,8 @@
     box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1), 0 2px 30px rgba(0, 0, 0, 0.1);
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-only(xs) {
+    width: 310px;
   }
 }
 
@@ -81,7 +65,7 @@
   @include media-breakpoint-only(xs) {
     line-height: 40px;
     font-size: 28px;
-    margin-top: -20px;
+    margin-top: 100px;
     margin-bottom: 20px;
   }
 }

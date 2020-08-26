@@ -27,7 +27,7 @@ const ChangeLanguage = () => {
         <MdLanguage size={24} />
       </div>
       <div
-        onMouseLeave={() => setToggleMenu(!toggleMenu)}
+        onMouseLeave={() => setToggleMenu(true)}
         className={c(styles.containerMenu, toggleMenu && styles.viewMenu)}
       >
         <div className={styles.contentButtos}>
