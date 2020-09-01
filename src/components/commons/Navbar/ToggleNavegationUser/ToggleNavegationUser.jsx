@@ -1,26 +1,42 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react'
 import { MdClose } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import UserContext from 'Context/UserContext'
-import ImageUserLog from 'components/commons/ImageUserLog'
+import { AWS_STORAGE } from 'services/config'
 import styles from './toggleNavegationUser.scss'
 
 const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, routesUser }) => {
+  const [isImageNotFound, setIsImageNotFound] = useState(true)
+
   const { t } = useTranslation('navbar')
   const rootStore = useContext(UserContext)
-  const { email, _id } = rootStore.authStore.user
+
+  const onError = useCallback(() => {
+    setIsImageNotFound(false)
+  }, [])
+
+  const { email, _id, name, image } = rootStore.authStore.user
 
   return (
-    <div className={c(toggleViewMenuUser ? styles.open : styles.showMenu)}>
+    <div
+      onClick={handleToggleViewMenuUser}
+      className={c(toggleViewMenuUser ? styles.open : styles.showMenu)}
+    >
       <ButtonIcon onclick={handleToggleViewMenuUser} icon={<MdClose size={25} />} />
       <div className={styles.titleNavbar}>
-        <ImageUserLog isUserLogin />
-        <div className={styles.name}>{email}</div>
+        <img
+          alt="user"
+          onError={onError}
+          className={styles.imageProfile}
+          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames}` : noImage}
+        />
+        <div className={styles.name}>{name}</div>
+        <div className={styles.email}>{email}</div>
       </div>
       <div className={styles.line} />
       {routesUser.map(route => (

@@ -5,7 +5,7 @@ import styles from './toggleMenuUser.scss'
 
 const ToggleMenuUser = ({ handleMenu }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={handleMenu}>
       <div className={styles.open}>
         <div className={styles.containerSelects}>
           <ButtonsMenuNavBar handleMenu={handleMenu} icon={<MdPets size={25} />} />
