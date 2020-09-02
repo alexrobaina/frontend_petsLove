@@ -11,11 +11,12 @@ import Title from 'components/commons/Title/Title'
 import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import PetsUserTransit from 'containers/PetsUserTransit'
-import PetsFromCreator from 'containers/PetsFromCreator'
+import ListPets from 'containers/ListPets'
 import styles from './dashboardTransit.scss'
 
 const DashboardTransit = () => {
-  const [swith, setSwith] = useState(true)
+  const [page, setPage] = useState(1)
+  const [limit] = useState(LIMIT_LIST)
   const { t } = useTranslation('dashboard')
   const history = useHistory()
   const rootStore = useContext(UserContext)
@@ -67,15 +68,24 @@ const DashboardTransit = () => {
           titleCard={t('transitUser.searchShelters')}
         />
       </div>
-      {swith && <PetsUserTransit id={authStore.user._id} />}
+      {/* {swith && <PetsUserTransit id={authStore.user._id} />}
       {!swith && (
-        <PetsFromCreator
+        <ListPets
           title={
             searchPetsStore.totalPetsForAdoption.length > 1 ? t('common:myPet') : t('common:myPets')
           }
           id={authStore.user._id}
         />
-      )}
+      )} */}
+      <ListPets
+        page={page}
+        limit={limit}
+        listPets={petsList}
+        totalPets={totalPets}
+        handleSearch={handleSearch}
+        handleChangePage={handleChangePage}
+        title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}
+      />
     </LayoutContainer>
   )
 }

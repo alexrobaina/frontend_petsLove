@@ -18,8 +18,6 @@ class ShelterStore extends AsyncApiStore {
   @observable totalPets = 0
   @observable isLoading = 0
   @observable swithPets = false
-  @observable totalPetsAdopted = 0
-  @observable totalPetsForAdoption = 0
 
   @action
   init() {
@@ -35,8 +33,7 @@ class ShelterStore extends AsyncApiStore {
         this.clearError()
         this.onSuccessRequest()
         this.petsList = response.registers
-        this.totalPets = response.registers
-        this.totalPetsForAdoption = response.totalPets
+        this.totalPets = response.totalPets
       })
     } catch (e) {
       runInAction(() => {
@@ -57,7 +54,6 @@ class ShelterStore extends AsyncApiStore {
         this.onSuccessRequest()
         this.petsList = response.registers
         this.totalPets = response.totalPets
-        this.totalPetsAdopted = response.totalPets
       })
     } catch (e) {
       runInAction(() => {

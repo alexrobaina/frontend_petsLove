@@ -10,7 +10,7 @@ import { LIMIT_LIST } from 'services/config'
 import DashboardCard from 'components/commons/DashboardCard'
 import { CREATE_PET, SEARCH_VOLANTEERS } from 'routing/routes'
 import Title from 'components/commons/Title'
-import PetsFromCreator from 'containers/PetsFromCreator'
+import ListPets from 'containers/ListPets'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import styles from './dashboardShelter.scss'
 
@@ -69,7 +69,7 @@ const DashboardShelter = () => {
       <Title mBottom="30px" title={t('common:dashboard')} />
       <div className={styles.container}>
         <DashboardCard
-          handleClick={handleForAdoption()}
+          handleClick={handleForAdoption}
           titleCard={t('shelter.petsAdopt')}
           total={totalPetsForAdoption.value}
         />
@@ -89,7 +89,7 @@ const DashboardShelter = () => {
           titleCard={t('shelter.searchVolanteers')}
         />
       </div>
-      <PetsFromCreator
+      <ListPets
         page={page}
         limit={limit}
         listPets={petsList}

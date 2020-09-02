@@ -8,7 +8,7 @@ import Input from 'components/commons/Input'
 import Title from 'components/commons/Title'
 import PaginationList from 'components/commons/PaginationList'
 
-const PetsFromCreator = ({
+const ListPets = ({
   page,
   title,
   limit,
@@ -42,9 +42,9 @@ const PetsFromCreator = ({
   )
 }
 
-PetsFromCreator.prototype = {
+ListPets.prototype = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }
 
-export default observer(PetsFromCreator)
+export default observer(ListPets)

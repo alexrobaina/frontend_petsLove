@@ -10,7 +10,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCard from 'components/commons/TextCard'
 import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import ListPets from 'components/ListPets'
+import ContainerPetsCards from 'components/ContainerPetsCards'
 import LayoutContainerCardsPets from 'components/commons/LayoutContainerCardsPets'
 import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
@@ -66,7 +66,7 @@ const AdopterProfile = ({ user }) => {
               }
             />
           </LayoutContainerCardsPets>
-          <ListPets isUserAdopt pets={userAdopterStore.pets} />
+          <ContainerPetsCards isUserAdopt pets={userAdopterStore.pets} />
         </>
       )}
     </LayoutContainer>

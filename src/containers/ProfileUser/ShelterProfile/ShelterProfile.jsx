@@ -10,7 +10,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
 import ShelterStore from 'stores/ShelterStore'
-import PetsFromCreator from 'containers/PetsFromCreator'
+import ListPets from 'containers/ListPets'
 import TextCardContact from 'components/commons/TextCardContact'
 import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
@@ -112,7 +112,7 @@ const ShelterProfile = ({ user }) => {
           <Button handleClick={handleAdopted} text={t('shelter.adopted')} />
         </div>
       </div>
-      <PetsFromCreator
+      <ListPets
         page={page}
         limit={limit}
         listPets={petsList}
