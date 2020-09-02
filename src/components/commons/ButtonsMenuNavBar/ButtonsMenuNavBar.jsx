@@ -11,7 +11,7 @@ import {
   SEARCH_VOLANTEERS,
   SEARCH_PROTECTIONIST,
 } from 'routing/routes'
-import { PROTECTIONIST, TRANSIT_USER, ADOPTER, VET } from 'config/roles'
+import { SHELTER, TRANSIT_USER, ADOPTER, VET } from 'config/roles'
 import { FaHandHoldingHeart, FaPeopleCarry, FaUser } from 'react-icons/fa'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import ToggleNavegationUser from '../Navbar/ToggleNavegationUser/ToggleNavegationUser'
@@ -137,7 +137,7 @@ const ButtonsMenuNavBar = ({ handleMenu }) => {
   const { authStore } = rootStore
 
   const initMenuUser = useCallback(() => {
-    if (authStore.user.role === PROTECTIONIST) {
+    if (authStore.user.role === SHELTER) {
       setMenuUser(routesUserProtectionist)
     }
     if (authStore.user.role === ADOPTER) {

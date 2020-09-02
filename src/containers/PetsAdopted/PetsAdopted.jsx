@@ -7,7 +7,7 @@ import Title from 'components/commons/Title'
 import Input from 'components/commons/Input'
 import { LIMIT_LIST } from 'services/config'
 import PaginationList from 'components/commons/PaginationList'
-import ListPets from 'components/ListPets'
+import ContainerPetsCards from 'components/ContainerPetsCards'
 import Loading from 'components/commons/Loading'
 
 const PetsAdopted = ({ id }) => {
@@ -43,7 +43,10 @@ const PetsAdopted = ({ id }) => {
         <Loading loadingRing />
       ) : (
         <>
-          <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsAdopted} />
+          <ContainerPetsCards
+            isLoading={searchPetsStore.isLoading}
+            pets={searchPetsStore.petsAdopted}
+          />
           {searchPetsStore.totalPetsAdopted !== 0 && (
             <PaginationList
               page={page}

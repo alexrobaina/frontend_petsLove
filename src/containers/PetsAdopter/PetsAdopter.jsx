@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 import Title from 'components/commons/Title'
 import { LIMIT_LIST } from 'services/config'
 import PaginationList from 'components/commons/PaginationList'
-import ListPets from 'components/ListPets'
+import ContainerPetsCards from 'components/ContainerPetsCards'
 import Loading from 'components/commons/Loading'
 
 const PetsAdopter = ({ store, id, title }) => {
@@ -23,7 +23,7 @@ const PetsAdopter = ({ store, id, title }) => {
         <Loading loadingRing />
       ) : (
         <>
-          <ListPets isLoading={store.isLoading} pets={store.pets} />
+          <ContainerPetsCards isLoading={store.isLoading} pets={store.pets} />
           {store.totalPets !== 0 && (
             <PaginationList
               page={page}

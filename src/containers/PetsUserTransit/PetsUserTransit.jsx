@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { MdSearch } from 'react-icons/md'
 import { observer } from 'mobx-react'
 import Title from 'components/commons/Title'
-import ListPets from 'components/ListPets'
+import ContainerPetsCards from 'components/ContainerPetsCards'
 import Input from 'components/commons/Input'
 import Loading from 'components/commons/Loading'
 import PaginationList from 'components/commons/PaginationList'
@@ -43,7 +43,10 @@ const PetsUserTransit = ({ id }) => {
         <Loading loadingRing />
       ) : (
         <>
-          <ListPets isLoading={searchPetsStore.isLoading} pets={searchPetsStore.petsUserTransit} />
+          <ContainerPetsCards
+            isLoading={searchPetsStore.isLoading}
+            pets={searchPetsStore.petsUserTransit}
+          />
           {searchPetsStore.totalPetsTransit !== 0 && (
             <PaginationList
               page={page}

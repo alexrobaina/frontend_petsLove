@@ -4,7 +4,7 @@ import axios from 'axios'
 const axiosInterceptors = rootStore => {
   axios.interceptors.request.use(
     config => {
-      if (rootStore.authStore.user) {
+      if (rootStore.authStore.getTokenLocalStorage()) {
         config.headers.Authorization = rootStore.authStore.getTokenLocalStorage()
           ? `Bearer ${rootStore.authStore.getTokenLocalStorage()}`
           : null

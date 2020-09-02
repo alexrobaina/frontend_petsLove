@@ -1,3 +1,3 @@
-import DashboardProtectionist from './DashboardProtectionist'
+import DashboardShelter from './DashboardShelter'
 
-export default DashboardProtectionist
+export default DashboardShelter

@@ -10,7 +10,7 @@ const PaginationList = ({ handleChange, page, total, limit }) => {
   useEffect(() => {
     const result = total / limit
     setNumberPage(Math.ceil(result, 1))
-  }, [])
+  }, [total])
 
   return (
     <div className={styles.containerPagination}>

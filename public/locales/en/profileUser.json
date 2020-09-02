@@ -16,7 +16,7 @@
     "myPets": "My Pets",
     "myPet": "My Pet"
   },
-  "protectionistUser": {
+  "shelter": {
     "role": "Shelter pets",
     "titleNameUser": "Profile of {{ name }}",
     "requirementsToAdopt": "Requirements to adopt",

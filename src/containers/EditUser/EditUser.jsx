@@ -6,7 +6,7 @@ import { MdUpdate } from 'react-icons/md'
 import { useParams } from 'react-router'
 import { observer, useLocalStore } from 'mobx-react'
 import UserContext from 'Context/UserContext'
-import { TRANSIT_USER, PROTECTIONIST } from 'config/roles'
+import { TRANSIT_USER, SHELTER } from 'config/roles'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Input from 'components/commons/Input'
 import Footer from 'components/commons/Footer/Footer'
@@ -265,7 +265,7 @@ const EditUser = () => {
               value={userStore.user.aboutUs.value}
             />
           </div>
-          {role.value === PROTECTIONIST && (
+          {role.value === SHELTER && (
             <div className={styles.colbig}>
               <Textarea
                 canEdit
