@@ -12,7 +12,7 @@ import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
 import UserContext from 'Context/UserContext'
-import { ADOPTER, PROTECTIONIST, TRANSIT_USER, VET } from 'config/roles'
+import { ADOPTER, SHELTER, TRANSIT_USER, VET } from 'config/roles'
 import RegisterStore from 'stores/RegisterStore'
 import AlertToast from 'components/commons/AlertToast'
 import fidelImage from './Screen Shot 2020-05-09 at 12.00.50.png'
@@ -182,7 +182,7 @@ const FormRegister = ({ registerStore }) => {
                       placeholder={t('register.selectTypeUser')}
                       options={[
                         { value: ADOPTER, label: t('register.typeUserAdopter') },
-                        { value: PROTECTIONIST, label: t('register.typeUserProtectionist') },
+                        { value: SHELTER, label: t('register.typeUserProtectionist') },
                         { value: TRANSIT_USER, label: t('register.typeUserTransit') },
                         { value: VET, label: t('register.typeUserVet') },
                       ]}

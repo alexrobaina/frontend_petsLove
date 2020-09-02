@@ -2,8 +2,8 @@ import React from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
 import UserIdStore from 'stores/UserIdStore'
-import { PROTECTIONIST, TRANSIT_USER, VET } from 'config/roles'
-import ProtectionistProfile from './ProtectionistProfile'
+import { SHELTER, TRANSIT_USER, VET } from 'config/roles'
+import ShelterProfile from './ShelterProfile'
 import TransitUserProfile from './TransitUserProfile'
 import AdopterProfile from './AdopterProfile'
 import VetProfile from './VetProfile'
@@ -14,8 +14,8 @@ const ProfileUser = () => {
 
   const { role } = userIdStore.user
 
-  if (role === PROTECTIONIST) {
-    return <ProtectionistProfile user={userIdStore.user} />
+  if (role === SHELTER) {
+    return <ShelterProfile user={userIdStore.user} />
   }
 
   if (role === TRANSIT_USER) {

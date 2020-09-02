@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import UserContext from 'Context/UserContext'
 import { observer } from 'mobx-react'
-import { PROTECTIONIST, ADOPTER, VET } from 'config/roles'
+import { SHELTER, ADOPTER, VET } from 'config/roles'
 import DashboardProtectionist from './DashboardProtectionist'
 import DashboardAdopter from './DashboardAdopter'
 import DashboardVet from './DashboardVet'
@@ -11,7 +11,7 @@ const Dashboard = () => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
 
-  if (authStore.user.role === PROTECTIONIST) {
+  if (authStore.user.role === SHELTER) {
     return <DashboardProtectionist />
   }
 

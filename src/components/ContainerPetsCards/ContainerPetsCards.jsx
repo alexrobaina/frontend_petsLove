@@ -8,10 +8,10 @@ import CardPets from 'components/commons/CardPets'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import Loading from 'components/commons/Loading'
 import ErrorMessage from 'components/commons/ErrorMessage'
-import styles from './listPets.scss'
+import styles from './containerPetsCards.scss'
 
-const ListPets = ({ pets, isUserAdopt, isLoading }) => {
-  const { t } = useTranslation('listPets')
+const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
+  const { t } = useTranslation('containerPetsCards')
   const history = useHistory()
   const goToPet = useCallback(id => {
     history.push(`/`)
@@ -54,16 +54,16 @@ const ListPets = ({ pets, isUserAdopt, isLoading }) => {
   )
 }
 
-ListPets.propTypes = {
+ContainerPetsCards.propTypes = {
   pets: PropTypes.arrayOf(PropTypes.object),
   isUserAdopt: PropTypes.bool,
   isLoading: PropTypes.bool,
 }
 
-ListPets.defaultProps = {
+ContainerPetsCards.defaultProps = {
   pets: [],
   isUserAdopt: false,
   isLoading: false,
 }
 
-export default observer(ListPets)
+export default observer(ContainerPetsCards)

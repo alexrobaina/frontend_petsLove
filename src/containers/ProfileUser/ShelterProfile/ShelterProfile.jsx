@@ -2,47 +2,72 @@ import React, { useCallback, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
-import { AWS_STORAGE } from 'services/config'
-import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
-import { observer } from 'mobx-react'
+import { observer, useLocalStore } from 'mobx-react'
+import { useParams } from 'react-router'
 import TextCard from 'components/commons/TextCard'
+import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
+import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import Button from 'components/commons/Button'
+import ShelterStore from 'stores/ShelterStore'
 import PetsFromCreator from 'containers/PetsFromCreator'
-import PetsAdopted from 'containers/PetsAdopted'
 import TextCardContact from 'components/commons/TextCardContact'
 import Title from 'components/commons/Title'
 import ButtonShare from 'components/commons/ButtonShare'
 import UserContext from 'Context/UserContext'
 import noImage from '../noImage.svg'
-import styles from './protectionistProfile.scss'
+import styles from './shelterProfile.scss'
 
-const ProtectionistProfile = ({ user }) => {
+const ShelterProfile = ({ user }) => {
+  const [page, setPage] = useState(1)
+  const [limit] = useState(LIMIT_LIST)
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
+  const { id } = useParams()
+  const shelterStore = useLocalStore(() => new ShelterStore(id))
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const [swith, setSwith] = useState(false)
   const { t } = useTranslation('profileUser')
 
-  const handleAdopted = useCallback(() => {
-    setSwith(true)
+  const handleForAdoption = useCallback(() => {
+    shelterStore.setSwithPets(false)
+    shelterStore.getPetsForAdoption(id, LIMIT_LIST, 1, '', false)
   })
 
-  const handleForAdoption = useCallback(() => {
-    setSwith(false)
+  const handleAdopted = useCallback(() => {
+    shelterStore.setSwithPets(true)
+    shelterStore.getPetsAdopted(id, LIMIT_LIST, 1, '', true)
   })
+
+  const handleChangePage = useCallback((e, newPage) => {
+    if (shelterStore.swithPets) {
+      shelterStore.getPetsForAdoption(id, LIMIT_LIST, newPage, '', false)
+      setPage(newPage)
+    } else {
+      shelterStore.getPetsAdopted(id, LIMIT_LIST, newPage, '', true)
+      setPage(newPage)
+    }
+  }, [])
+
+  const handleSearch = useCallback(e => {
+    if (shelterStore.swithPets) {
+      shelterStore.getPetsAdopted(id, LIMIT_LIST, page, e.target.value, true)
+    } else {
+      shelterStore.getPetsForAdoption(id, LIMIT_LIST, page, e.target.value, false)
+    }
+  }, [])
 
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
 
   const { name, image, lat, lng, requirementsToAdopt, _id, phone, email, aboutUs } = user
+  const { petsList, totalPets, swithPets } = shelterStore
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
         <Title
-          rolText={t('protectionistUser.role')}
+          rolText={t('shelter.role')}
           title={t('common.titleNameUser', {
             name,
           })}
@@ -81,30 +106,28 @@ const ProtectionistProfile = ({ user }) => {
       </div>
       <div className={styles.containerPets}>
         <div className={styles.buttonsSwich}>
-          <Button handleClick={handleForAdoption} text={t('protectionistUser.needHome')} />
+          <Button handleClick={handleForAdoption} text={t('shelter.needHome')} />
         </div>
         <div className={styles.buttonsSwich}>
-          <Button handleClick={handleAdopted} text={t('protectionistUser.adopted')} />
+          <Button handleClick={handleAdopted} text={t('shelter.adopted')} />
         </div>
       </div>
-      <div>
-        {swith ? (
-          <>
-            <PetsAdopted id={_id} />
-          </>
-        ) : (
-          <>
-            <PetsFromCreator title={t('protectionistUser.needHome')} id={_id} />
-          </>
-        )}
-      </div>
+      <PetsFromCreator
+        page={page}
+        limit={limit}
+        listPets={petsList}
+        totalPets={totalPets}
+        handleSearch={handleSearch}
+        handleChangePage={handleChangePage}
+        title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}
+      />
     </LayoutContainer>
   )
 }
 
-ProtectionistProfile.propTypes = {
+ShelterProfile.propTypes = {
   user: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object, PropTypes.bool])
     .isRequired,
 }
 
-export default observer(ProtectionistProfile)
+export default observer(ShelterProfile)

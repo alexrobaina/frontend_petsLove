@@ -1,11 +1,11 @@
 import { observable, action, runInAction } from 'mobx'
-import { PROTECTIONIST } from 'config/roles'
-import AuthService from "services/AuthService";
+import { SHELTER } from 'config/roles'
+import AuthService from 'services/AuthService'
 
 class ProtectionistStore {
   constructor() {
     this.authService = new AuthService()
-    
+
     this.init()
   }
 
@@ -23,7 +23,7 @@ class ProtectionistStore {
     this.isError = false
 
     try {
-      const response = await this.authService.getUserForRole(PROTECTIONIST)
+      const response = await this.authService.getUserForRole(SHELTER)
 
       runInAction(() => {
         this.protectionist = response

@@ -7,7 +7,7 @@
     "searchPets": "Search Pets",
     "searchShelters": "Search Shelters"
   },
-  "protectionistUser": {
+  "shelter": {
     "petsAdopt": "For adoption",
     "petsAdopted": "Adopted",
     "adopted": "Adopted",
@@ -27,7 +27,6 @@
     "totalPets": "Pets Nurse",
     "titlePetsList": "List of pets nurse",
     "addPet": "Add pet",
-    "searchShelters": "Search Shelters",
-    "addPet": "Add pet"
+    "searchShelters": "Search Shelters"
   }
 }

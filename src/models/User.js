@@ -1,6 +1,6 @@
 import { observable } from 'mobx'
 import InputStore from 'stores/InputStore'
-import { TRANSIT_USER, PROTECTIONIST, VET, ADOPTER } from 'config/roles'
+import { TRANSIT_USER, SHELTER, VET, ADOPTER } from 'config/roles'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
@@ -114,7 +114,7 @@ class User {
     if (this.role.value === TRANSIT_USER) {
       return USER_TRANSIT
     }
-    if (this.role.value === PROTECTIONIST) {
+    if (this.role.value === SHELTER) {
       return USER_PROTECTIONIST
     }
     if (this.role.value === ADOPTER) {
