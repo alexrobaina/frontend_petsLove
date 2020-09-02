@@ -1,4 +1,4 @@
-@import 'styles/variable';
+@import "styles/variable";
 
 .open {
   overflow-y: auto;
@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   background-color: $ligth;
-  width: 300px;
+  width: 100%;
   height: 100%;
   box-shadow: 0 3px 46px -5px rgba(0, 0, 0, 0.589);
   transform: translateX(0%);
@@ -20,7 +20,7 @@
   top: 0;
   left: 0;
   background-color: $ligth;
-  width: 300px;
+  width: 320px;
   height: 100%;
   transform: translateX(-100%);
   transition: 0.3s;
@@ -28,19 +28,32 @@
 
 .titleNavbar {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   text-align: center;
-  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   animation: fadeIn 3s;
 }
 
+.imageProfile {
+  border-radius: 100px;
+  width: 70px;
+}
+
 .name {
-  padding-left: 20px;
+  text-transform: capitalize;
   color: $title;
-  font-size: 10px;
+  font-size: 12px;
   font-family: $sourceSans;
   font-weight: 700;
+}
+
+.email {
+  color: $title;
+  font-size: 12px;
+  font-family: $sourceSans;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .line {
@@ -67,4 +80,18 @@
 .text {
   margin-left: 20px;
   transition: 0.3s;
+}
+
+.backgroundMenu {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s ease;
 }
