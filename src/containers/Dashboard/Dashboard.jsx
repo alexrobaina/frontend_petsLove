@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 import { SHELTER, ADOPTER, VET } from 'config/roles'
 import DashboardShelter from './DashboardShelter'
 import DashboardAdopter from './DashboardAdopter'
-import DashboardVet from './DashboardVet'
+import DashboardVeterinary from './DashboardVeterinary'
 import DashboardVoluntary from './DashboardVoluntary'
 
 const Dashboard = () => {
@@ -20,7 +20,7 @@ const Dashboard = () => {
   }
 
   if (authStore.user.role === VET) {
-    return <DashboardVet />
+    return <DashboardVeterinary />
   }
 
   return <DashboardVoluntary />

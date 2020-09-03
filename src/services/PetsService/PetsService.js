@@ -16,16 +16,6 @@ class PetsService {
     return axios.get(`${SERVER}/api/pet/pet/?_id=${id}`).then(response => response.data[0])
   }
 
-  loadPetsUserVet = (id, limit, page, search) => {
-    return axios
-      .get(
-        `${SERVER}/api/pet/listPetForUserVet/?_id=${id}&limit=${limit}&page=${page}&search=${
-          search || ''
-        }`
-      )
-      .then(response => response.data)
-  }
-
   loadPetsAdopted = (id, limit, page, search) => {
     return axios
       .get(

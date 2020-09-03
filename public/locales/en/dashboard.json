@@ -24,9 +24,9 @@
     "searchVolanteers": "Search Volanteers",
     "needHome": "Need home"
   },
-  "userVet": {
+  "veterinary": {
     "totalPets": "Pets Nurse",
-    "titlePetsList": "List of pets nurse",
+    "titlePetsList": "list of pets cared",
     "addPet": "Add pet",
     "searchShelters": "Search Shelters"
   }
