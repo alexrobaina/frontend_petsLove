@@ -45,6 +45,18 @@ const ListPets = ({
 ListPets.prototype = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  listPets: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  totalPets: PropTypes.number.isRequired,
+  handleSearch: PropTypes.func,
+  handleChangePage: PropTypes.func,
+}
+
+ListPets.defaultProps = {
+  handleSearch: null,
+  handleChangePage: null,
 }
 
 export default observer(ListPets)

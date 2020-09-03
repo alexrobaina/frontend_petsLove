@@ -1,55 +1,88 @@
+import AsyncApiStore from 'stores/AsyncApiStore'
 import { observable, action, runInAction } from 'mobx'
-import { TRANSIT_USER } from 'config/roles'
-import AuthService from "services/AuthService";
+import VolunteersService from 'services/VolunteersService'
+import DashboardStore from 'stores/DashboardStore'
+import { LIMIT_LIST } from 'services/config'
 
-class VolunteersStore {
-  constructor() {
-    this.authService = new AuthService()
-    
+class VolunteersStore extends AsyncApiStore {
+  constructor(userId) {
+    super()
+
+    this.volunteersService = new VolunteersService()
+    this.dashboardStore = new DashboardStore(userId)
+    this.id = userId
     this.init()
   }
 
-  @observable volunteers = []
-  @observable arrayLocationVolunteers = []
-  @observable isError = false
+  @observable petsList = []
+  @observable totalPets = 0
+  @observable isLoading = 0
+  @observable swithPets = false
 
   @action
   init() {
-    this.searchVolunteers()
+    this.loadPetsAssignedVolunteer(this.id, LIMIT_LIST, 1, '')
   }
 
   @action
-  async searchVolunteers() {
-    this.isError = false
+  async loadPetsVolunteersOwner(userId, limit, page, search, isAdopted = false) {
+    this.preRequest()
 
     try {
-      const response = await this.authService.getUserForRole(TRANSIT_USER)
+      const response = await this.volunteersService.getPetsVolunteersOwner(
+        userId,
+        limit,
+        page,
+        search,
+        isAdopted
+      )
 
       runInAction(() => {
-        this.volunteers = response
-        this.setArrayLocationVolunteers(response)
+        this.clearError()
+        this.onSuccessRequest()
+        this.petsList = response.pets
+        this.totalPets = response.totalPets
       })
     } catch (e) {
       runInAction(() => {
-        this.isError = true
         console.log(e)
+        this.finishRequest()
+        this.setServerError()
       })
     }
   }
 
   @action
-  setArrayLocationVolunteers(response) {
-    response.forEach(key => {
-      this.arrayLocationVolunteers.push({
-        lat: key.lat,
-        lng: key.lng,
+  async loadPetsAssignedVolunteer(userId, limit, page, search, isAdopted = false) {
+    this.preRequest()
+
+    try {
+      const response = await this.volunteersService.getPetsAssignedVolunteer(
+        userId,
+        limit,
+        page,
+        search,
+        isAdopted
+      )
+
+      runInAction(() => {
+        this.clearError()
+        this.onSuccessRequest()
+        this.petsList = response.registers
+        this.totalPets = response.totalPets
       })
-    })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.finishRequest()
+        this.setServerError()
+      })
+    }
   }
 
   @action
-  setIsError() {
-    this.isError = false
+  setSwithPets(value) {
+    this.swithPets = value
   }
 }
 

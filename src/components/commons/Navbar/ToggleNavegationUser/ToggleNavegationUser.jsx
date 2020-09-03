@@ -8,6 +8,7 @@ import c from 'classnames'
 import ButtonIcon from 'components/commons/ButtonIcon'
 import UserContext from 'Context/UserContext'
 import { AWS_STORAGE } from 'services/config'
+import noImage from './noimg.png'
 import styles from './toggleNavegationUser.scss'
 
 const ToggleNavegationUser = ({ handleToggleViewMenuUser, toggleViewMenuUser, routesUser }) => {

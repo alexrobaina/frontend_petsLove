@@ -30,48 +30,6 @@ class SearchPetsStore {
   @observable category = new InputStore()
 
   @action
-  async getPetAdopted(userId, limit, page, search) {
-    this.isLoading = true
-
-    try {
-      const response = await this.petsService.loadPetsAdopted(userId, limit, page, search)
-
-      runInAction(() => {
-        this.totalPetsAdopted = response.totalPets
-        this.petsAdopted = response.registers
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isError = true
-        console.log(e)
-      })
-    }
-  }
-
-  @action
-  async getPetsForAdoption(userId, limit, page, search) {
-    this.isLoading = true
-
-    try {
-      const response = await this.petsService.loadPetForAdoption(userId, limit, page, search)
-
-      runInAction(() => {
-        this.totalPetsForAdoption = response.totalPets
-        this.petsForAdoption = response.registers
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isError = true
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   async getPetsUserAdopt(userId) {
     this.isLoading = true
 
@@ -80,27 +38,6 @@ class SearchPetsStore {
 
       runInAction(() => {
         this.petsUserAdopt = response
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isError = true
-        console.log(e)
-      })
-    }
-  }
-
-  @action
-  async getPetsUserTransit(userId, limit, page, search) {
-    this.isLoading = true
-
-    try {
-      const response = await this.petsService.loadPetsUserTransit(userId, limit, page, search)
-
-      runInAction(() => {
-        this.petsUserTransit = response.pets
-        this.totalPetsTransit = response.totalPets
         this.isLoading = false
       })
     } catch (e) {

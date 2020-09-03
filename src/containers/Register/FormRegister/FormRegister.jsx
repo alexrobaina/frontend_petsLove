@@ -196,7 +196,7 @@ const FormRegister = ({ registerStore }) => {
                       inputStyle={{
                         width: '100%',
                         height: '40px',
-                        borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#ffd95a',
+                        borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#5e92f3',
                       }}
                     />
                     {registerStore.registerUser.phone.error && (

@@ -26,6 +26,8 @@ class ShelterStore extends AsyncApiStore {
 
   @action
   async getPetsForAdoption(userId, limit, page, search, isAdopted = false) {
+    this.preRequest()
+
     try {
       const response = await this.shelterService.getPets(userId, limit, page, search, isAdopted)
 
@@ -46,6 +48,8 @@ class ShelterStore extends AsyncApiStore {
 
   @action
   async getPetsAdopted(userId, limit, page, search, isAdopted = true) {
+    this.preRequest()
+
     try {
       const response = await this.shelterService.getPets(userId, limit, page, search, isAdopted)
 

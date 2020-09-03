@@ -26,8 +26,13 @@ class DashboardStore extends AsyncApiStore {
       runInAction(() => {
         this.clearError()
         this.onSuccessRequest()
-        this.petsList = response
         this.totalPetsAdopted = this.dashboard.setTotalPetsAdopted(response.totalPetsAdopted)
+        this.totalVolunteersPetsOwner = this.dashboard.setTotalVolunteersPetsOwner(
+          response.totalVolunteersPetsOwner
+        )
+        this.totalVolunteersPetsCare = this.dashboard.setTotalVolunteersPetsCare(
+          response.totalVolunteersPetsCare
+        )
         this.totalPetsForAdoption = this.dashboard.setTotalPetsForAdoption(
           response.totalPetsForAdoption
         )

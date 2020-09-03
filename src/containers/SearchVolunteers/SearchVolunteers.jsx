@@ -6,15 +6,14 @@ import GoogleAutocomplete from 'components/commons/GoogleAutocomplete/GoogleAuto
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import Loading from 'components/commons/Loading'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
-import VolunteersStore from 'stores/VolunteersStore'
+import SearchVolunteersStore from 'stores/SearchVolunteersStore'
 import styles from './searchVolunteers.scss'
 
 const SearchVolunteers = () => {
   const { t } = useTranslation('searchVolunteers')
   const [stateAddress, setAddress] = useState({})
   const [loading, setSetLoadint] = useState(false)
-  const volunteersStore = useLocalStore(() => new VolunteersStore())
-
+  const searchVolunteersStore = useLocalStore(() => new SearchVolunteersStore())
   const handleChangeAddress = useCallback(address => {
     setAddress(address)
   }, [])
@@ -51,7 +50,10 @@ const SearchVolunteers = () => {
           />
           {stateAddress.lat && (
             <LayoutTrantitions>
-              <GoogleMapsLocation location={stateAddress} users={volunteersStore.volunteers} />
+              <GoogleMapsLocation
+                location={stateAddress}
+                users={searchVolunteersStore.volunteers}
+              />
             </LayoutTrantitions>
           )}
         </div>

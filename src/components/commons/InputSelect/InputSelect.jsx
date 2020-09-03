@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import Select from 'react-select'
 import InputStore from 'stores/InputStore'
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 import ViewValue from 'components/commons/ViewValue'
 import Label from 'components/commons/Label'
 import styles from './inputSelect.scss'
@@ -30,7 +30,7 @@ const InputSelect = ({
       minHeight: 41,
     }),
   }
-  
+
   return (
     <>
       {label && <Label text={label} />}
@@ -55,13 +55,15 @@ const InputSelect = ({
               colors: {
                 ...theme.colors,
                 neutral30: '#8E99F3',
-                neutral20: inputStore && inputStore.error ? '#f44336' : '#FFD95A',
+                neutral20: inputStore && inputStore.error ? '#f44336' : '#5e92f3',
                 primary50: '#8E99F3',
-                primary: '#FFD95A',
+                primary: '#EE6293',
               },
             })}
           />
-          {inputStore && <div className={styles.errorMessage}>{t(`${inputStore.errorMessage}`)}</div>}
+          {inputStore && (
+            <div className={styles.errorMessage}>{t(`${inputStore.errorMessage}`)}</div>
+          )}
         </>
       )}
     </>
