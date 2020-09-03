@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import UserIdStore from 'stores/UserIdStore'
 import { SHELTER, TRANSIT_USER, VET } from 'config/roles'
 import ShelterProfile from './ShelterProfile'
-import TransitUserProfile from './TransitUserProfile'
+import VolunteersProfile from './VolunteersProfile'
 import AdopterProfile from './AdopterProfile'
 import VetProfile from './VetProfile'
 
@@ -19,7 +19,7 @@ const ProfileUser = () => {
   }
 
   if (role === TRANSIT_USER) {
-    return <TransitUserProfile user={userIdStore.user} />
+    return <VolunteersProfile user={userIdStore.user} />
   }
 
   if (role === VET) {

@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useHistory } from 'react-router'
-import { observer } from 'mobx-react'
+import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import { LIMIT_LIST } from 'services/config'
 import { FaPeopleCarry } from 'react-icons/fa'
@@ -8,26 +8,49 @@ import { AiFillFileAdd } from 'react-icons/ai'
 import DashboardCard from 'components/commons/DashboardCard'
 import { SEARCH_PROTECTIONIST, SEARCH_VOLANTEERS } from 'routing/routes'
 import Title from 'components/commons/Title/Title'
+import VolunteersStore from 'stores/VolunteersStore'
 import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
-import PetsUserTransit from 'containers/PetsUserTransit'
 import ListPets from 'containers/ListPets'
-import styles from './dashboardTransit.scss'
+import styles from './dashboardVoluntary.scss'
 
-const DashboardTransit = () => {
+const DashboardVoluntary = () => {
   const [page, setPage] = useState(1)
   const [limit] = useState(LIMIT_LIST)
   const { t } = useTranslation('dashboard')
   const history = useHistory()
   const rootStore = useContext(UserContext)
-  const { authStore, searchPetsStore } = rootStore
+  const { authStore } = rootStore
+  const volunteersStore = useLocalStore(() => new VolunteersStore(authStore.user._id))
 
-  const handleMyPets = useCallback(() => {
-    setSwith(false)
-  }, [])
+  const { _id } = authStore.user
 
   const handlePetsCare = useCallback(() => {
-    setSwith(true)
+    volunteersStore.setSwithPets(false)
+    volunteersStore.loadPetsAssignedVolunteer(_id, LIMIT_LIST, 1, '', false)
+  })
+
+  const handleMyPets = useCallback(() => {
+    volunteersStore.setSwithPets(true)
+    volunteersStore.loadPetsVolunteersOwner(_id, LIMIT_LIST, 1, '', false)
+  })
+
+  const handleChangePage = useCallback((e, newPage) => {
+    if (volunteersStore.swithPets) {
+      volunteersStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
+      setPage(newPage)
+    } else {
+      volunteersStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
+      setPage(newPage)
+    }
+  }, [])
+
+  const handleSearch = useCallback(e => {
+    if (volunteersStore.swithPets) {
+      volunteersStore.getPetsAdopted(_id, LIMIT_LIST, page, e.target.value, true)
+    } else {
+      volunteersStore.getPetsForAdoption(_id, LIMIT_LIST, page, e.target.value, false)
+    }
   }, [])
 
   const handleSearchVolanteers = useCallback(() => {
@@ -38,10 +61,11 @@ const DashboardTransit = () => {
     history.push(SEARCH_PROTECTIONIST)
   }, [])
 
-  useEffect(() => {
-    searchPetsStore.getPetsUserTransit(authStore.user._id)
-    searchPetsStore.getPetsForAdoption(authStore.user._id, LIMIT_LIST, 1, '')
-  }, [])
+  const { petsList, totalPets, swithPets } = volunteersStore
+  const {
+    totalVolunteersPetsOwner,
+    totalVolunteersPetsCare,
+  } = volunteersStore.dashboardStore.dashboard
 
   return (
     <LayoutContainer>
@@ -49,34 +73,25 @@ const DashboardTransit = () => {
       <div className={styles.container}>
         <DashboardCard
           handleClick={handlePetsCare}
-          titleCard={t('transitUser.petsCare')}
-          total={searchPetsStore.totalPetsTransit}
+          titleCard={t('volunteers.petsCare')}
+          total={totalVolunteersPetsCare.value}
         />
         <DashboardCard
           handleClick={handleMyPets}
           titleCard={t('common:myPets')}
-          total={searchPetsStore.totalPetsForAdoption}
+          total={totalVolunteersPetsOwner.value}
         />
         <DashboardCard
           handleClick={handleSearchVolanteers}
           icon={<AiFillFileAdd size={25} />}
-          titleCard={t('transitUser.searchVolanteers')}
+          titleCard={t('volunteers.searchVolanteers')}
         />
         <DashboardCard
           handleClick={handleSearchShelters}
           icon={<FaPeopleCarry size={22} />}
-          titleCard={t('transitUser.searchShelters')}
+          titleCard={t('volunteers.searchShelters')}
         />
       </div>
-      {/* {swith && <PetsUserTransit id={authStore.user._id} />}
-      {!swith && (
-        <ListPets
-          title={
-            searchPetsStore.totalPetsForAdoption.length > 1 ? t('common:myPet') : t('common:myPets')
-          }
-          id={authStore.user._id}
-        />
-      )} */}
       <ListPets
         page={page}
         limit={limit}
@@ -84,10 +99,10 @@ const DashboardTransit = () => {
         totalPets={totalPets}
         handleSearch={handleSearch}
         handleChangePage={handleChangePage}
-        title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}
+        title={swithPets ? t('common:myPets') : t('volunteers.needHome')}
       />
     </LayoutContainer>
   )
 }
 
-export default observer(DashboardTransit)
+export default observer(DashboardVoluntary)

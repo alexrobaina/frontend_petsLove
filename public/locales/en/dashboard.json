@@ -16,12 +16,13 @@
     "searchPets": "Search Pets",
     "searchVolanteers": "Search Volanteers"
   },
-  "transitUser": {
+  "volunteers": {
     "titleCard": "Need home",
     "titlePetsList": "List of pets care",
     "petsCare": "Pets Care",
     "searchShelters": "Search Shelters",
-    "searchVolanteers": "Search Volanteers"
+    "searchVolanteers": "Search Volanteers",
+    "needHome": "Need home"
   },
   "userVet": {
     "totalPets": "Pets Nurse",
