@@ -1,38 +1,53 @@
 import React, { useCallback, useContext, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import UserContext from 'Context/UserContext'
 import c from 'classnames'
+import UserContext from 'Context/UserContext'
+import { observer, useLocalStore } from 'mobx-react'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import TextCardContact from 'components/commons/TextCardContact'
 import TextCard from 'components/commons/TextCard'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import VeterinaryStore from 'stores/VeterinaryStore'
 import ButtonShare from 'components/commons/ButtonShare'
-import { AWS_STORAGE } from 'services/config'
+import ListPets from 'containers/ListPets'
+import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
 import Title from 'components/commons/Title'
-import PetsUserVet from 'containers/PetsUserVet'
 import noImage from '../noImage.svg'
-import styles from './vetProfile.scss'
+import styles from './veterinaryProfile.scss'
 
-const VetProfile = ({ user }) => {
+const VeterinaryProfile = () => {
+  const [page, setPage] = useState(1)
+  const [limit] = useState(LIMIT_LIST)
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const { t } = useTranslation('profileUser')
+  const { _id } = authStore.user
+  const veterinaryStore = useLocalStore(() => new VeterinaryStore(_id))
+
+  const handleChangePage = useCallback((e, newPage) => {
+    veterinaryStore.loadPetsVeterinaryCared(_id, LIMIT_LIST, newPage, '')
+    setPage(newPage)
+  }, [])
+
+  const handleSearch = useCallback(e => {
+    veterinaryStore.loadPetsVeterinaryCared(_id, LIMIT_LIST, page, e.target.value)
+  }, [])
 
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, phone, email, _id, aboutUs, requirementsToAdopt } = user
+  const { name, image, lat, lng, phone, email, aboutUs, requirementsToAdopt } = authStore.user
+  const { petsList, totalPets } = veterinaryStore
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('userVet.role')} title={t('common.titleNameUser', { name })} />
+        <Title rolText={t('veterinary.role')} title={t('common.titleNameUser', { name })} />
         <ButtonShare
           route="edit-user"
-          phone={user.phone || ''}
+          phone={phone || ''}
           canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
@@ -62,13 +77,17 @@ const VetProfile = ({ user }) => {
           <TextCard title={t('common:aboutUs')} text={aboutUs} />
         </div>
       </div>
-      <PetsUserVet id={_id} />
+      <ListPets
+        page={page}
+        limit={limit}
+        listPets={petsList}
+        totalPets={totalPets}
+        handleSearch={handleSearch}
+        title={t('veterinary.petsCared')}
+        handleChangePage={handleChangePage}
+      />
     </LayoutContainer>
   )
 }
 
-VetProfile.propTypes = {
-  user: PropTypes.arrayOf([PropTypes.array]).isRequired,
-}
-
-export default VetProfile
+export default observer(VeterinaryProfile)

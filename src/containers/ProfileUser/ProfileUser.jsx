@@ -6,7 +6,7 @@ import { SHELTER, TRANSIT_USER, VET } from 'config/roles'
 import ShelterProfile from './ShelterProfile'
 import VolunteersProfile from './VolunteersProfile'
 import AdopterProfile from './AdopterProfile'
-import VetProfile from './VetProfile'
+import VeterinaryProfile from './VeterinaryProfile'
 
 const ProfileUser = () => {
   const { id } = useParams()
@@ -23,7 +23,7 @@ const ProfileUser = () => {
   }
 
   if (role === VET) {
-    return <VetProfile user={userIdStore.user} />
+    return <VeterinaryProfile />
   }
 
   return <AdopterProfile user={userIdStore.user} />
