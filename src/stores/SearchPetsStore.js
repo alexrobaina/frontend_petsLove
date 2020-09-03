@@ -50,27 +50,6 @@ class SearchPetsStore {
   }
 
   @action
-  async getPetsUserVet(userId, limit, page, search) {
-    this.isLoading = true
-
-    try {
-      const response = await this.petsService.loadPetsUserVet(userId, limit, page, search)
-
-      runInAction(() => {
-        this.petsUserVet = response.pets
-        this.totalPetsVet = response.totalPets
-        this.isLoading = false
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.isLoading = false
-        this.isError = true
-        console.log(e)
-      })
-    }
-  }
-
-  @action
   setLoadingFalse() {
     setTimeout(() => {
       this.isLoading = false

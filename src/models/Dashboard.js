@@ -6,6 +6,7 @@ class Dashboard {
     this.totalPetsForAdoption = new InputStore()
     this.totalVolunteersPetsOwner = new InputStore()
     this.totalVolunteersPetsCare = new InputStore()
+    this.totalPetsVeterinaryCared = new InputStore()
   }
 
   getJson() {
@@ -14,6 +15,7 @@ class Dashboard {
       totalPetsForAdoption: this.totalPetsForAdoption,
       totalVolunteersPetsOwner: this.totalVolunteersPetsOwner,
       totalVolunteersPetsCare: this.totalVolunteersPetsCare,
+      totalPetsVeterinaryCared: this.totalPetsVeterinaryCared,
     }
   }
 
@@ -35,6 +37,10 @@ class Dashboard {
 
   setTotalVolunteersPetsCare(value) {
     this.totalVolunteersPetsCare.setValue(value)
+  }
+
+  setTotalVeterinaryCared(value) {
+    this.totalPetsVeterinaryCared.setValue(value)
   }
 }
 
