@@ -28,9 +28,10 @@
     "role": "Transit Pets",
     "information": "Find people who take care in transit of pets"
   },
-  "userVet": {
+  "veterinary": {
     "titleNameUser": "Profile of {{ name }}",
     "role": "I'm Vet",
-    "information": "Veterinary medical care"
+    "information": "Veterinary medical care",
+    "petsCared": "Pets Cared"
   }
 }

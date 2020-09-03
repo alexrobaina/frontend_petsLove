@@ -25,9 +25,10 @@
     "role": "Transito de mascotas",
     "information": "Encuentra personas que hacen transito de mascotas."
   },
-  "userVet": {
+  "veterinary": {
     "titleNameUser": "Profile of {{ name }}",
     "role": "Veterinario",
-    "information": "Atención medica veterinaria"
+    "information": "Atención medica veterinaria",
+    "petsCared": "Mascotas atendidas"
   }
 }
