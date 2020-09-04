@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react'
+import React, { useContext, useCallback, useState } from 'react'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { FaPeopleCarry } from 'react-icons/fa'
 import { useHistory } from 'react-router'
@@ -8,30 +8,41 @@ import DashboardCard from 'components/commons/DashboardCard'
 import { observer, useLocalStore } from 'mobx-react'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import { CREATE_PET, SEARCH_PROTECTIONIST } from 'routing/routes'
-import UserAdopterStore from 'stores/UserAdopterStore'
+import { LIMIT_LIST } from 'services/config'
+import AdopterStore from 'stores/AdopterStore'
 import Title from 'components/commons/Title/Title'
+import ListPets from 'containers/ListPets'
 import UserContext from 'Context/UserContext'
-import PetsAdopter from 'containers/PetsAdopter'
 import styles from './dashboardAdopter.scss'
 
 const DashboardAdopter = () => {
   const rootStore = useContext(UserContext)
   const history = useHistory()
+  const [page, setPage] = useState(1)
+  const [limit] = useState(LIMIT_LIST)
   const { authStore } = rootStore
+  const { _id } = authStore.user
   const { t } = useTranslation('dashboard')
-  const userAdopterStore = useLocalStore(() => new UserAdopterStore(authStore.user._id))
+  const adopterStore = useLocalStore(() => new AdopterStore(_id))
+
+  const handleChangePage = useCallback((e, newPage) => {
+    adopterStore.loadPetsAdopter(_id, LIMIT_LIST, newPage)
+    setPage(newPage)
+  }, [])
 
   const handleCreatePet = useCallback(() => {
     history.push(CREATE_PET)
   }, [])
 
   const handleSearch = useCallback(() => {
-    history.push('/')
+    history.push('/search')
   }, [])
 
   const handleSearchProtecctionist = useCallback(() => {
     history.push(SEARCH_PROTECTIONIST)
   }, [])
+
+  const { petsList, totalPets } = adopterStore
 
   return (
     <LayoutContainer>
@@ -42,7 +53,7 @@ const DashboardAdopter = () => {
           titleCard={t('adopterUser.addPet')}
           icon={<AiFillFileAdd size={25} />}
         />
-        <DashboardCard titleCard={t('adopterUser.myPets')} total={userAdopterStore.totalPets} />
+        <DashboardCard titleCard={t('adopterUser.myPets')} total={totalPets} />
         <DashboardCard
           handleClick={handleSearch}
           icon={<MdSearch size={25} />}
@@ -54,10 +65,13 @@ const DashboardAdopter = () => {
           titleCard={t('adopterUser.searchShelters')}
         />
       </div>
-      <PetsAdopter
-        id={authStore.user._id}
-        store={userAdopterStore}
-        title={t('adopterUser.myPets')}
+      <ListPets
+        page={page}
+        limit={limit}
+        listPets={petsList}
+        totalPets={totalPets}
+        handleChangePage={handleChangePage}
+        title={totalPets > 1 ? t('common:myPets') : t('common:myPet')}
       />
     </LayoutContainer>
   )

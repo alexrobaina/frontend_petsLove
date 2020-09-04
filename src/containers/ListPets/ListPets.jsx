@@ -23,12 +23,14 @@ const ListPets = ({
   return (
     <>
       <Title mTop="50px" mBottom="30px" title={title} />
-      <Input
-        isEdit
-        handleChange={handleSearch}
-        icon={<MdSearch size={20} />}
-        placeholder={t('common:filterForName')}
-      />
+      {handleSearch && (
+        <Input
+          isEdit
+          handleChange={handleSearch}
+          icon={<MdSearch size={20} />}
+          placeholder={t('common:filterForName')}
+        />
+      )}
       <ContainerPetsCards isLoading={isLoading} pets={listPets} />
       {totalPets !== 0 && (
         <PaginationList
@@ -43,15 +45,15 @@ const ListPets = ({
 }
 
 ListPets.prototype = {
+  handleSearch: PropTypes.func,
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  handleChangePage: PropTypes.func,
   page: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   limit: PropTypes.number.isRequired,
   listPets: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   totalPets: PropTypes.number.isRequired,
-  handleSearch: PropTypes.func,
-  handleChangePage: PropTypes.func,
 }
 
 ListPets.defaultProps = {

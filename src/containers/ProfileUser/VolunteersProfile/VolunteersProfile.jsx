@@ -17,7 +17,7 @@ import noImage from '../noImage.svg'
 import styles from './volunteersProfile.scss'
 
 const VolunteersProfile = ({ user }) => {
-  const [page, setPage] = useState(1)
+  const [page] = useState(1)
   const [limit] = useState(LIMIT_LIST)
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore

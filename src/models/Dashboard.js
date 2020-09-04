@@ -3,6 +3,7 @@ import InputStore from 'stores/InputStore'
 class Dashboard {
   constructor() {
     this.totalPetsAdopted = new InputStore()
+    this.totalPetsAdopter = new InputStore()
     this.totalPetsForAdoption = new InputStore()
     this.totalVolunteersPetsOwner = new InputStore()
     this.totalVolunteersPetsCare = new InputStore()
@@ -11,10 +12,11 @@ class Dashboard {
 
   getJson() {
     return {
+      totalPetsAdopter: this.totalPetsAdopter,
       totalPetsAdopted: this.totalPetsAdopted,
       totalPetsForAdoption: this.totalPetsForAdoption,
-      totalVolunteersPetsOwner: this.totalVolunteersPetsOwner,
       totalVolunteersPetsCare: this.totalVolunteersPetsCare,
+      totalVolunteersPetsOwner: this.totalVolunteersPetsOwner,
       totalPetsVeterinaryCared: this.totalPetsVeterinaryCared,
     }
   }
@@ -41,6 +43,10 @@ class Dashboard {
 
   setTotalVeterinaryCared(value) {
     this.totalPetsVeterinaryCared.setValue(value)
+  }
+
+  setTotalPetsAdopter(value) {
+    this.totalPetsAdopter.setValue(value)
   }
 }
 
