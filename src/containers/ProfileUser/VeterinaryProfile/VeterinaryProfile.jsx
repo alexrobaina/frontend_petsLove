@@ -38,13 +38,16 @@ const VeterinaryProfile = () => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, phone, email, aboutUs, requirementsToAdopt } = authStore.user
+  const { username, image, lat, lng, phone, email, aboutUs, requirementsToAdopt } = authStore.user
   const { petsList, totalPets } = veterinaryStore
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('veterinary.role')} title={t('common.titleNameUser', { name })} />
+        <Title
+          rolText={t('veterinary.role')}
+          title={t('common.titleNameUser', { name: username.split('-').join(' ') })}
+        />
         <ButtonShare
           route="edit-user"
           phone={phone || ''}

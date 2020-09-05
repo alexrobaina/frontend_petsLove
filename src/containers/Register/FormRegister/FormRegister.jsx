@@ -165,12 +165,12 @@ const FormRegister = ({ registerStore }) => {
                       title={t('register.titleConfirmPassword')}
                     />
                   </div>
-                  {registerStore.passwordError && (
+                  {/* {registerStore.passwordError && (
                     <div className={styles.errorMessage}>{t('register.errorPassword')}</div>
                   )}
                   {registerStore.passwordSuccess && (
                     <div className={styles.successMessage}>{t('register.successPassword')}</div>
-                  )}
+                  )} */}
                   <div className={styles.inputForm}>
                     <InputSelect
                       isEdit

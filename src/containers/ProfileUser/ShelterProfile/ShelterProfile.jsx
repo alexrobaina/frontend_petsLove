@@ -60,7 +60,7 @@ const ShelterProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, requirementsToAdopt, _id, phone, email, aboutUs } = user
+  const { image, lat, lng, requirementsToAdopt, _id, phone, email, aboutUs, username } = user
   const { petsList, totalPets, swithPets } = shelterStore
 
   return (
@@ -69,7 +69,7 @@ const ShelterProfile = ({ user }) => {
         <Title
           rolText={t('shelter.role')}
           title={t('common.titleNameUser', {
-            name,
+            name: username.split('-').join(' '),
           })}
         />
         <ButtonShare
