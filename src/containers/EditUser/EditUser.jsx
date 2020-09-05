@@ -331,7 +331,7 @@ const EditUser = () => {
           handleCancelEdit={handleCancelEdit}
         />
       </LayoutForm>
-      <Footer />
+      <div className={styles.footerEditUser} />
     </LayoutContainer>
   )
 }
