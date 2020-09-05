@@ -1,9 +1,9 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
 .label {
   text-align: left;
   font-size: 12px;
-  @include site-font('text', 600);
-  color: $secundaryLight;
+  @include site-font("text", 600);
+  color: $secundaryTitle;
   padding-bottom: 5px;
 }

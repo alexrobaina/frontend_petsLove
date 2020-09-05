@@ -1,4 +1,4 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
 .containerLoading {
   margin-top: 50px;
@@ -40,12 +40,12 @@
     cursor: pointer;
 
     .icon:before {
-      content: '\f093';
+      content: "\f093";
     }
     &.hasFile {
       margin-left: 20px;
       .icon:before {
-        content: '\f00c';
+        content: "\f00c";
         color: #5aac7b;
       }
     }
@@ -144,4 +144,8 @@
   margin-top: 80px;
   color: $ligth;
   text-align: center;
+}
+
+.footerEditUser {
+  height: 200px;
 }
