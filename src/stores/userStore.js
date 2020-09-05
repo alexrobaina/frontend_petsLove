@@ -1,26 +1,25 @@
 import { action, observable, runInAction } from 'mobx'
 import EditUserServices from 'services/EditUserServices'
 import imageCompression from 'browser-image-compression'
+import AsyncApiStore from 'stores/AsyncApiStore'
 import ImageService from 'services/ImageService/ImageService'
+import InputStore from 'stores/InputStore'
+import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import SetLocalStorage from '../utils/setLocalStorage'
 import User from '../models/User'
-import InputStore from './InputStore'
-import validationPassword from '../utils/validationPassword'
 
 const USER_TRANSIT = 'Transit pets.'
 const USER_PROTECTIONIST = 'You are protectionist of pets.'
 const USER_ADOPTER = 'You want adopt.'
 
-const PASSWORD_MATCH = 'The password need match'
-const REQUERID = 'The password is requerid'
-
-class UserStore {
+class UserStore extends AsyncApiStore {
   constructor(id) {
-    this.editUserServices = new EditUserServices()
-    this.setLocalStorage = new SetLocalStorage()
-    this.imageService = new ImageService()
+    super()
 
     this.user = new User()
+    this.imageService = new ImageService()
+    this.setLocalStorage = new SetLocalStorage()
+    this.editUserServices = new EditUserServices()
 
     this.loadUser(id)
   }
@@ -33,10 +32,11 @@ class UserStore {
   @observable isEdit = false
   @observable canEdit = false
   @observable isError = false
+  @observable isSaved = false
   @observable imageResize = []
   @observable textAddress = ''
   @observable isResize = false
-  @observable isLoading = false
+  @observable isUpdated = false
   @observable toggleToast = false
   @observable newPreviewsImage = []
   @observable passwordError = false
@@ -44,8 +44,6 @@ class UserStore {
   @observable localStorageUser = []
   @observable isLoadingResize = false
   @observable passwordSuccess = false
-  @observable isSaved = false
-  @observable isUpdated = false
   @observable confirmPassword = new InputStore()
   @observable selectedImageUser = new InputStore()
 
@@ -55,14 +53,16 @@ class UserStore {
       await this.editUserServices.userUpdate(this.user.getJson())
 
       runInAction(() => {
-        this.isLoading = false
+        this.clearError()
         this.isSaved = true
         this.isUpdated = true
+        this.onSuccessRequest()
       })
     } catch (e) {
       runInAction(() => {
-        this.isLoading = false
         console.log(e)
+        this.finishRequest()
+        this.setServerError()
       })
     }
   }
@@ -75,21 +75,23 @@ class UserStore {
       await this.editUserServices.userUpdate(data)
 
       runInAction(() => {
-        this.isLoading = false
+        this.clearError()
+        this.onSuccessRequest()
       })
     } catch (e) {
       runInAction(() => {
-        this.isLoading = false
         console.log(e)
+        this.finishRequest()
+        this.setServerError()
       })
     }
   }
 
   @action
   async save() {
+    this.preRequest()
     this.isSaved = false
     this.isUpdated = false
-    this.isLoading = true
 
     try {
       if (this.user.getImageId()) {
@@ -110,15 +112,16 @@ class UserStore {
       runInAction(() => {
         this.isSaved = false
         this.isUpdated = false
-        this.isLoading = false
         console.log(e)
+        this.finishRequest()
+        this.setServerError()
       })
     }
   }
 
   @action
   async loadUser(id) {
-    this.isLoading = true
+    this.preRequest()
 
     try {
       const response = await this.editUserServices.getUser(id)
@@ -129,13 +132,15 @@ class UserStore {
         this.phone = response.phone
         this.email = response.email
         this.setLocalStorage.setUser(response)
-        this.isLoading = false
+        this.clearError()
+        this.onSuccessRequest()
         return true
       })
     } catch (e) {
       runInAction(() => {
-        this.isLoading = false
         console.log(e)
+        this.finishRequest()
+        this.setServerError()
       })
     }
   }
@@ -189,19 +194,11 @@ class UserStore {
   validate() {
     let isValidate = true
 
-    if (!this.user.password.value) {
-      this.user.password.setError(true, REQUERID)
-
-      isValidate = false
-    }
-
-    if (this.confirmPassword.value !== this.user.password.value) {
-      this.confirmPassword.setError(true, PASSWORD_MATCH)
-
-      isValidate = false
-    }
-
     if (validationPassword(this.user.password)) {
+      isValidate = false
+    }
+
+    if (validationPasswordMatch(this.confirmPassword, this.user.password)) {
       isValidate = false
     }
 

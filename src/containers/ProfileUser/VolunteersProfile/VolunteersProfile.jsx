@@ -29,13 +29,16 @@ const VolunteersProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { name, image, lat, lng, phone, email, _id, aboutUs } = user
+  const { username, image, lat, lng, phone, email, _id, aboutUs } = user
   const { petsList, totalPets } = volunteersStore
 
   return (
     <LayoutContainer>
       <div className={styles.containerTitle}>
-        <Title rolText={t('transitUser.role')} title={t('common.titleNameUser', { name })} />
+        <Title
+          rolText={t('transitUser.role')}
+          title={t('common.titleNameUser', { name: username.split('-').join(' ') })}
+        />
         <ButtonShare
           route="edit-user"
           phone={user.phone || ''}

@@ -1,6 +1,7 @@
 import { observable, action, runInAction } from 'mobx'
 import RegisterService from 'services/RegisterService'
 import RegisterUser from 'models/RegisterUser'
+import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import InputStore from './InputStore'
 
 const REQUIRED = 'common:isRequired'
@@ -107,24 +108,28 @@ class RegisterStore {
   @action
   setPassword(value) {
     this.registerUser.password.setValue(value)
-    if (this.registerUser.password.value === this.confirmPassword.value) {
-      this.passwordSuccess = true
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+    this.validatePassword()
   }
 
   @action
   setConfirmPassword(value) {
     this.confirmPassword.setValue(value)
-    if (this.confirmPassword.value === this.registerUser.password.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
+    this.validatePassword()
+  }
+
+  @action
+  validatePassword() {
+    let isValidForm = true
+
+    if (validationPassword(this.registerUser.password)) {
+      isValidForm = false
     }
+
+    if (validationPasswordMatch(this.registerUser.password, this.confirmPassword)) {
+      isValidForm = false
+    }
+
+    return isValidForm
   }
 
   @action
@@ -132,7 +137,7 @@ class RegisterStore {
     let isValidForm = true
     this.clearError()
 
-    const { firstname, lastname, email, password, role, phone, username } = this.registerUser
+    const { firstname, lastname, email, role, phone, username } = this.registerUser
 
     if (!firstname.value) {
       firstname.setError(true, REQUIRED)
@@ -142,12 +147,6 @@ class RegisterStore {
 
     if (!lastname.value) {
       lastname.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
-    if (!password.value) {
-      password.setError(true, REQUIRED)
 
       isValidForm = false
     }
@@ -166,12 +165,6 @@ class RegisterStore {
 
     if (!username.value) {
       username.setError(true, REQUIRED)
-
-      isValidForm = false
-    }
-
-    if (!this.confirmPassword.value) {
-      this.confirmPassword.setError(true, REQUIRED)
 
       isValidForm = false
     }

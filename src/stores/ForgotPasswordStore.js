@@ -2,11 +2,8 @@ import { observable, action, runInAction } from 'mobx'
 import AuthService from 'services/AuthService'
 import SetLocalStorage from 'utils/setLocalStorage'
 import { HOST } from 'services/config'
-import validationPassword from 'utils/validationPassword'
+import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import InputStore from './InputStore'
-
-const PASSWORD_MATCH = 'The password need match'
-const REQUERID = 'The password is requerid'
 
 class ForgotPasswordStore {
   constructor() {
@@ -83,25 +80,13 @@ class ForgotPasswordStore {
   @action
   setPassword(value) {
     this.password.setValue(value)
-    if (this.password.value === this.confirmPassword.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+    this.validate()
   }
 
   @action
   setConfirmPassword(value) {
     this.confirmPassword.setValue(value)
-    if (this.confirmPassword.value === this.password.value) {
-      this.passwordSuccess = true
-      this.passwordError = false
-    } else {
-      this.passwordSuccess = false
-      this.passwordError = true
-    }
+    this.validate()
   }
 
   @action
@@ -109,17 +94,11 @@ class ForgotPasswordStore {
     this.resetErrors()
     let isValidate = true
 
-    if (!this.password.value) {
-      this.password.setError(true, REQUERID)
-
-      if (this.confirmPassword.value !== this.password.value) {
-        this.confirmPassword.setError(true, PASSWORD_MATCH)
-
-        isValidate = false
-      }
+    if (validationPassword(this.password)) {
+      isValidate = false
     }
 
-    if (validationPassword(this.password)) {
+    if (validationPasswordMatch(this.confirmPassword, this.password)) {
       isValidate = false
     }
 
