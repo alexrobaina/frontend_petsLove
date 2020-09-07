@@ -70,16 +70,10 @@ const FirstSection = () => {
   }
 
   useEffect(() => {
-    if (inView) {
-      animation.start(variants.visible)
-      animationImage.start(variantsImage.visible)
-      animationButtonDown.start(buttonDown.visible)
-    } else {
-      animation.start(variants.hidden)
-      animationButtonDown.start(buttonDown.hidden)
-      animationImage.start(variantsImage.hidden)
-    }
-  }, [animation, inView])
+    animation.start(variants.visible)
+    animationImage.start(variantsImage.visible)
+    animationButtonDown.start(buttonDown.visible)
+  }, [animation])
 
   return (
     <LayoutLandingPage>
