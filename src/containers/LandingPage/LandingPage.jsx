@@ -12,6 +12,7 @@ import ImageCenter from './ImageCenter'
 import ContainerAction from './ContainerAction'
 import OnlyInformation from './OnlyInformation'
 import ExplicationModule from './ExplicationModule'
+import CallAction from './CallAction/index'
 
 const LandingPage = () => {
   const { t } = useTranslation('landingPage')
@@ -22,6 +23,7 @@ const LandingPage = () => {
       <ImageCenter image={shelter} />
       <ContainerAction />
       <OnlyInformation title={t('titleIdeals')} text={t('ideals')} />
+      <CallAction title={t('textAnimalWorld')} />
       <ExplicationModule
         mirror
         image={appImage}

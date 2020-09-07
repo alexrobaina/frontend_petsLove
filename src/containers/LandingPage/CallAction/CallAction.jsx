@@ -40,22 +40,28 @@ const CallAction = ({ title, textButton, handleAction }) => {
         animate={animation}
         variants={{ variantsTitle }}
         initial={variantsTitle.hidden}
+        className={styles.actionSearchPets}
       >
-        <div className={styles.actionSearchPets}>
-          <div className={styles.title}>{title}</div>
+        <div className={styles.title}>{title}</div>
+        {handleAction && (
           <div className={styles.buttonSearchPets}>
             <Button handleClick={handleAction} bigButton text={textButton} />
           </div>
-        </div>
+        )}
       </motion.div>
     </div>
   )
 }
 
 CallAction.propTypes = {
-  textButton: PropTypes.string.isRequired,
-  handleAction: PropTypes.func.isRequired,
+  textButton: PropTypes.string,
+  handleAction: PropTypes.func,
   title: PropTypes.string.isRequired,
+}
+
+CallAction.defaultProps = {
+  textButton: '',
+  handleAction: null,
 }
 
 export default CallAction
