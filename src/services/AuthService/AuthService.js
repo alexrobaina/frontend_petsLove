@@ -18,7 +18,7 @@ class AuthService {
 
   sendForgotPassword = (email, server, token) => {
     return axios
-      .post(`${SERVER}/api/sendEmail/send`, { email, server, token })
+      .post(`${SERVER}/api/forgotPassword`, { email, server, token })
       .then(response => response.data)
   }
 
