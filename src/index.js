@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import 'utils/i18n'
-import 'leaflet/dist/leaflet.css'
 import './index.scss'
 import * as serviceWorker from './serviceWorker'
 
