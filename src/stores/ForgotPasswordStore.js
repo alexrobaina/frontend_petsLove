@@ -1,18 +1,20 @@
 import { observable, action, runInAction } from 'mobx'
 import AuthService from 'services/AuthService'
+import AsyncApiStore from 'stores/AsyncApiStore'
 import SetLocalStorage from 'utils/setLocalStorage'
 import { HOST } from 'services/config'
 import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import InputStore from './InputStore'
 
-class ForgotPasswordStore {
+class ForgotPasswordStore extends AsyncApiStore {
   constructor() {
+    super()
+
     this.authService = new AuthService()
     this.setLocalStorage = new SetLocalStorage()
   }
 
   @observable isReset = false
-  @observable isError = false
   @observable isLoading = false
   @observable isSuccess = false
   @observable sendSuccess = false
@@ -23,8 +25,8 @@ class ForgotPasswordStore {
 
   @action
   async forgotPassword() {
+    this.preRequest()
     this.sendSuccess = false
-    this.isLoading = true
     const server = HOST
 
     try {
@@ -33,14 +35,15 @@ class ForgotPasswordStore {
       runInAction(() => {
         this.isReset = true
         this.sendSuccess = true
-        this.isLoading = false
+        this.onSuccessRequest()
       })
     } catch (e) {
       runInAction(() => {
         this.sendSuccess = false
         this.isReset = false
         this.isLoading = false
-        this.isError = true
+        this.onSuccessRequest()
+        this.setServerError()
         console.log(e)
       })
     }
