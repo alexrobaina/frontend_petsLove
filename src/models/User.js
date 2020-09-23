@@ -15,7 +15,7 @@ class User {
   constructor(id) {
     this._id = id
     this.location = new InputStore()
-    this.image = new InputStore()
+    this.image = null
     this.name = new InputStore()
     this.firstname = new InputStore()
     this.lastname = new InputStore()
@@ -34,7 +34,7 @@ class User {
 
   fillJson(user) {
     this._id = user._id
-    this.image.setValue(user.image)
+    this.image = user.image
     this.name.setValue(user.name)
     this.firstname.setValue(user.firstname)
     this.lastname.setValue(user.lastname)
@@ -46,7 +46,7 @@ class User {
     this.textAddress.setValue(user.textAddress)
     this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.username.setValue(user.username)
-    this.setImageId(user.image._id)
+    this.setImageId(user.image?._id)
     this.terms = user.terms
     this.canTransit = user.canTransit
   }
@@ -100,6 +100,10 @@ class User {
 
   getImageId() {
     return this.imageId.value
+  }
+
+  getFilenamesImage() {
+    return this.image.value
   }
 
   getUserId() {

@@ -69,12 +69,12 @@ const ShelterProfile = ({ user }) => {
         <Title
           rolText={t('shelter.role')}
           title={t('common.titleNameUser', {
-            name: username.split('-').join(' '),
+            name: username.value.split('-').join(' '),
           })}
         />
         <ButtonShare
           route="edit-user"
-          phone={user.phone || ''}
+          phone={phone.value || ''}
           canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
@@ -88,22 +88,26 @@ const ShelterProfile = ({ user }) => {
         <GoogleMapsLocation
           isProfilePet
           location={{
-            lat,
-            lng,
+            lat: lat.value,
+            lng: lng.value,
           }}
         />
       </div>
       <div className={styles.containerCardInformation}>
         <div className={styles.contact}>
-          <TextCardContact title={t('common.contact')} phone={phone} email={email} />
+          <TextCardContact title={t('common.contact')} phone={phone.value} email={email.value} />
         </div>
         <div className={styles.requirementsToAdopt}>
-          <TextCard title={t('common:requirementsToAdopt')} text={requirementsToAdopt} />
+          <TextCard
+            title={t('common:requirementsToAdopt')}
+            text={requirementsToAdopt.value || ''}
+          />
         </div>
         <div className={styles.aboutUs}>
-          <TextCard title={t('common:aboutUs')} text={aboutUs} />
+          <TextCard title={t('common:aboutUs')} text={aboutUs.value || ''} />
         </div>
       </div>
+
       <div className={styles.containerPets}>
         <div className={styles.buttonsSwich}>
           <Button handleClick={handleForAdoption} text={t('shelter.needHome')} />

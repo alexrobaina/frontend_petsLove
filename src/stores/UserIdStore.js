@@ -1,4 +1,5 @@
 import { observable, action, runInAction } from 'mobx'
+import User from 'models/User'
 import ProfilesUsersService from 'services/ProfilesUsersService'
 
 class UserIdStore {
@@ -9,13 +10,12 @@ class UserIdStore {
   }
 
   @observable id = ''
-  @observable user = []
-  @observable images = []
   @observable lat = null
   @observable lng = null
+  @observable mapPosition = []
+  @observable user = new User()
   @observable isLoading = false
   @observable userIsEdit = false
-  @observable mapPosition = []
   @observable defaultPosition = [
     {
       lat: -34.61315,
@@ -27,11 +27,10 @@ class UserIdStore {
   async getUserId(id) {
     this.isLoading = true
     try {
-      const response = await this.profilesUsersService.getUSerId(id)
+      const response = await this.profilesUsersService.getUserId(id)
 
       runInAction(() => {
-        this.user = response
-        this.images = this.user.image
+        this.user.fillJson(response)
         setTimeout(() => {
           this.isLoading = false
         }, 2000)

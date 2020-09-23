@@ -14,7 +14,7 @@ import ButtonShare from 'components/commons/ButtonShare'
 import noImage from '../noImage.svg'
 import styles from './adopterProfile.scss'
 
-const AdopterProfile = () => {
+const AdopterProfile = ({ user }) => {
   const { id } = useParams()
   const [page, setPage] = useState(1)
   const [limit] = useState(LIMIT_LIST)
@@ -23,7 +23,7 @@ const AdopterProfile = () => {
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const adopterStore = useLocalStore(() => new AdopterStore(id))
   const { t } = useTranslation('profileUser')
-  const { name, image, lat, lng, aboutUs, _id, phone } = authStore.user
+  const { name, image, lat, lng, aboutUs, _id, phone } = user
 
   const handleChangePage = useCallback((e, newPage) => {
     adopterStore.loadPetsAdopter(_id, LIMIT_LIST, newPage)
@@ -38,7 +38,7 @@ const AdopterProfile = () => {
 
   return (
     <LayoutContainer
-      name={name}
+      name={name.value}
       title={t('common.titleNameUser')}
       information={t('adopterUser.role')}
     >
@@ -57,12 +57,12 @@ const AdopterProfile = () => {
         <GoogleMapsLocation
           isProfilePet
           location={{
-            lat,
-            lng,
+            lat: lat.value,
+            lng: lng.value,
           }}
         />
       </div>
-      {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs} />}
+      {aboutUs && <TextCard title={t('common.aboutUs')} text={aboutUs.value} />}
       <ListPets
         page={page}
         limit={limit}
