@@ -18,7 +18,7 @@ const ImageProfilePet = ({ image }) => {
         alt="photos-pet"
         onError={onError}
         className={styles.imagePet}
-        src={image && isImageNotFound ? `${AWS_STORAGE}/${image[0]}` : noImage}
+        src={image ? `${AWS_STORAGE}/${image[0]}` : noImage}
       />
     </div>
   )
