@@ -15,6 +15,10 @@ class ShelterService {
       )
       .then(response => response.data)
   }
+
+  getShelter = id => {
+    return axios.get(`${SERVER}/api/user/query/?_id=${id}`).then(response => response.data)
+  }
 }
 
 export default ShelterService

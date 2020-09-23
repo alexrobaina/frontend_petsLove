@@ -37,11 +37,11 @@ const VolunteersProfile = ({ user }) => {
       <div className={styles.containerTitle}>
         <Title
           rolText={t('transitUser.role')}
-          title={t('common.titleNameUser', { name: username.split('-').join(' ') })}
+          title={t('common.titleNameUser', { name: username.value.split('-').join(' ') })}
         />
         <ButtonShare
           route="edit-user"
-          phone={user.phone || ''}
+          phone={user.phone.value || ''}
           canView={authStore.user ? _id === authStore.user._id : false}
         />
       </div>
@@ -55,14 +55,14 @@ const VolunteersProfile = ({ user }) => {
         <GoogleMapsLocation
           isProfilePet
           location={{
-            lat,
-            lng,
+            lat: lat.value,
+            lng: lng.value,
           }}
         />
       </div>
       <div className={styles.containerCard}>
-        <TextCardContact title={t('common.contact')} phone={phone} email={email} />
-        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs} />}
+        <TextCardContact title={t('common.contact')} phone={phone.value} email={email.value} />
+        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs.value} />}
       </div>
       <ListPets
         page={page}

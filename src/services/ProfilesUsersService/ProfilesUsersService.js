@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SERVER } from 'services/config'
 
 class ProfilesUsersService {
-  getUSerId = id => {
+  getUserId = id => {
     return axios.get(`${SERVER}/api/user/query/?_id=${id}`).then(response => response.data)
   }
 }

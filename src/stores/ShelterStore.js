@@ -3,6 +3,7 @@ import { observable, action, runInAction } from 'mobx'
 import ShelterService from 'services/ShelterService'
 import DashboardStore from 'stores/DashboardStore'
 import { LIMIT_LIST } from 'services/config'
+import User from 'models/User'
 
 class ShelterStore extends AsyncApiStore {
   constructor(userId) {
@@ -14,10 +15,12 @@ class ShelterStore extends AsyncApiStore {
     this.init()
   }
 
+  @observable images = []
   @observable petsList = []
   @observable totalPets = 0
   @observable isLoading = 0
   @observable swithPets = false
+  @observable shelter = new User()
 
   @action
   init() {
