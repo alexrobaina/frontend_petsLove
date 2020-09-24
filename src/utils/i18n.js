@@ -4,11 +4,11 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
 const fallbackLng = ['es']
-const availableLanguages = ['es', 'en']
+const availableLanguages = ['es']
 
 const options = {
   // order and from where user language should be detected
-  order: ['navigator', 'htmlTag', 'path', 'subdomain'],
+  // order: ['navigator', 'htmlTag', 'path', 'subdomain'],
 
   // keys or params to lookup language from
   lookupQuerystring: 'lng',
