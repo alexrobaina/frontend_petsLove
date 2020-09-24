@@ -70,9 +70,9 @@ const Navbar = ({ children }) => {
           <>
             {/* This container id Image user login and change language */}
             <div className={styles.containerProfile}>
-              <div className={styles.containerLanguage}>
+              {/* <div className={styles.containerLanguage}>
                 <ChangeLanguage />
-              </div>
+              </div> */}
               <div className={styles.contectImageUser}>
                 <ImageUserLog
                   handleToggleMenu={handleToggleMenu}
