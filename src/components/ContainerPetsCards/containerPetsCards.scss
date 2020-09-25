@@ -1,9 +1,15 @@
-@import 'styles/mixings.scss';
+@import "styles/mixings.scss";
 
 .container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
   flex-wrap: wrap;
+  grid-template-columns: 49% 49%;
+  gap: 2%;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 20px;
+    grid-template-columns: 100%;
+  }
 
   @include media-breakpoint-only(xs) {
     flex-wrap: wrap;
