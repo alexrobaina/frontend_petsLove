@@ -1,5 +1,5 @@
-@import 'styles/mixings.scss';
-@import 'styles/globals.scss';
+@import "styles/mixings.scss";
+@import "styles/globals.scss";
 
 button:focus {
   outline: none;
@@ -8,6 +8,10 @@ button:focus {
 .containerButton {
   justify-content: center;
   display: flex;
+
+  &.bigButton {
+    width: 100%;
+  }
 }
 
 .primary {
@@ -29,11 +33,11 @@ button:focus {
 
   &.bigButton {
     width: 100%;
-    padding: 20px;
   }
 
   &:hover {
     background-color: $secundaryLight;
+    color: $ligth;
     transform: translateY(-2px);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
@@ -94,7 +98,7 @@ button:focus {
   }
 
   @include media-breakpoint-only(xs) {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }

@@ -1,48 +1,135 @@
-@import 'styles/mixings.scss';
+@import "styles/mixings.scss";
 
-.containerCard {
-  position: relative;
-  box-shadow: 0 1px 15px 0 rgba(0,0,0,0.13);
-  border-radius: 10px;
-  height: auto;
-  max-width: 310px;
-  min-width: 300px;
-  flex: 1 1 1;
-  margin-top: 30px;
-  transition: 0.2s;
-  cursor: pointer;
+.containerInfo {
+  padding: 24px 0 10px 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 100px;
 
-  &:hover {
-    box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1), 0 2px 30px rgba(0, 0, 0, 0.1);
+  @include media-breakpoint-down(lg) {
+    margin-top: 20px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px 0 10px 0;
   }
 }
 
+.borderImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: $secundary solid 2px;
+  border-radius: 100px;
+  height: 134px;
+  width: 134px;
+}
+
 .imgCard {
-  height: 200px;
-  width: 100%;
+  height: 128px;
+  width: 128px;
+  border-radius: 100px;
   object-fit: cover;
 }
 
-.title {
+.name {
   text-transform: capitalize;
   color: #001b61;
   display: flex;
-  justify-content: center;
-  font-family: 'Noto Sans HK', sans-serif;
-  font-size: 18px;
-  margin-top: 10px;
+  justify-content: flex-start;
+  font-family: "Noto Sans HK", sans-serif;
+  font-size: 22px;
+  margin-left: 20px;
+  font-weight: 700;
   letter-spacing: 0.85px;
   text-align: justify;
+
+  @include media-breakpoint-down(lg) {
+    margin-left: 0;
+    margin-top: 20px;
+    justify-content: center;
+  }
 }
 
 .textHistory {
   margin-top: 15px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 20px;
-  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 14px;
   color: rgba(0, 27, 97, 0.74);
   letter-spacing: 0.37px;
   line-height: 18px;
-  font-weight: 700;
+  font-weight: 400;
+
+  @include media-breakpoint-down(lg) {
+    text-align: left;
+    justify-content: center;
+  }
+}
+
+.line {
+  margin-top: 15px;
+  width: 100%;
+  border: $primaryNavbar 1px solid;
+}
+
+.containerButtos {
+  justify-content: space-evenly;
+  display: flex;
+  width: 96%;
+  align-items: center;
+  height: 50px;
+  padding: 2%;
+  gap: 10px;
+}
+
+.buttonAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: $secundary;
+  color: $ligth;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  transition: 0.1s;
+
+  &:hover {
+    color: $title;
+    background-color: $primaryNavbar;
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.tableInfo {
+  padding: 10px 20px 10px 50px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+  @include media-breakpoint-down(xs) {
+    padding: 10px 20px 10px 20px;
+  }
+}
+
+.titleItem {
+  font-size: 14px;
+  text-transform: uppercase;
+  @include site-font("text", 300);
+  color: $labelLight;
+}
+
+.infoItem {
+  @include site-font("text", 600);
+  font-size: 18px;
+  color: $title;
+}
+
+.emoji {
+  margin-top: 40px;
+  font-size: 20px;
 }
