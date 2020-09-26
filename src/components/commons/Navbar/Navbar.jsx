@@ -96,9 +96,9 @@ const Navbar = ({ children }) => {
           <div className={styles.containerButtonslog}>
             <ButtonLink onclick={goToLogin} text={t('login')} />
             <ButtonLink onclick={goToRegister} text={t('singIn')} />
-            <div className={styles.containerLanguage}>
+            {/* <div className={styles.containerLanguage}>
               <ChangeLanguage />
-            </div>
+            </div> */}
           </div>
         )}
       </div>
