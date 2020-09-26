@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react'
 import { observer, useLocalStore } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
+import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import Loading from 'components/commons/Loading'
 import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
+import SuccessMessage from 'components/commons/SuccessMessage'
 import styles from './formForgotPassword.scss'
 
 const FormForgotPassword = () => {
@@ -21,23 +22,30 @@ const FormForgotPassword = () => {
     forgotPasswordStore.forgotPassword()
   })
 
-  if (forgotPasswordStore.isLoading) {
+  const { isLoading, sendSuccess, serverError, email } = forgotPasswordStore
+
+  if (isLoading) {
     return <Loading loadingRing />
+  }
+
+  if (sendSuccess) {
+    return (
+      <SuccessMessage title={t('sendEmailSuccessfully')} message={t('textEmailSuccessfully')} />
+    )
   }
 
   return (
     <div className={styles.centerForgotPassword}>
       <div className={styles.title}>{t('title')}</div>
       <div className={styles.inputForm}>
-        {forgotPasswordStore.sendSuccess && (
-          <div className={styles.successEmail}>{t('goToEmail')}</div>
-        )}
-        {forgotPasswordStore.isError && <div className={styles.error}>{t('emailError')}</div>}
+        {sendSuccess && <div className={styles.successEmail}>{t('goToEmail')}</div>}
+        {serverError && <div className={styles.error}>{t('emailError')}</div>}
         <Input
           isEdit
           canEdit
           type="email"
-          inputStore={forgotPasswordStore.email}
+          inputStore={email}
+          value={email.value}
           handleChange={handleChangeEmail}
           placeholder={t('emailPlaceHolder')}
         />
