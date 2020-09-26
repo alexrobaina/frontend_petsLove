@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import Utils from 'utils'
+import { GrEdit } from 'react-icons/gr'
+import { AiOutlineFolderView } from 'react-icons/ai'
+import { RiDeleteBin2Line } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
 import { AWS_STORAGE } from 'services/config'
+import Utils from 'utils'
 import LayoutCards from 'components/commons/LayoutCards'
 import Chips from 'components/commons/Chips'
 import noImage from './noImage.svg'
-import styles from './cardPets.scss'
 import Button from '../Button/index'
+import styles from './cardPets.scss'
 
 const CardPets = ({
   id,
@@ -20,6 +23,7 @@ const CardPets = ({
   category,
   isAdopted,
   canDelete,
+  textAdress,
   handleEdit,
   handleDelete,
   activityLevel,
@@ -49,18 +53,30 @@ const CardPets = ({
             <div className={styles.textHistory}>
               {history ? utils.shortenText(history, 110) : t('notFoundHistory')}
             </div>
+            <div className={styles.textHistory}>{textAdress && <div>{textAdress}</div>}</div>
           </div>
         </div>
         <div className={styles.tableInfo}>
           <div className={styles.containerItem}>
             <div className={styles.titleItem}>{t('common:type')}</div>
-            <div className={styles.infoItem}>{t(`common:${category}`)}</div>
+            <div className={styles.infoItem}>
+              {t(`common:${category}`)}
+              {!category && (
+                <span role="img" aria-labelledby="emoji" className={styles.emoji}>
+                  🤷‍♀️
+                </span>
+              )}
+            </div>
           </div>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>{t('common:activityLevel')}</div>
-            <div className={styles.infoItem}>
-              {t(`common:${activityLevel}`)}
-              {!activityLevel && <span className={styles.emoji}>🤷‍♀️</span>}
+            <div className={styles.titleItem}>
+              <div className={styles.titleItem}>{t('common:activityLevel')}</div>
+              <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
+              {!activityLevel && (
+                <span role="img" aria-labelledby="emoji" className={styles.emoji}>
+                  🤷‍♀️
+                </span>
+              )}
             </div>
           </div>
           <div className={styles.containerItem}>
@@ -68,24 +84,37 @@ const CardPets = ({
             <div className={styles.infoItem}>{t(`common:${gender}`)}</div>
           </div>
         </div>
-        {/* {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />} */}
+        {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
+        <div className={styles.line} />
         <div className={styles.containerButtos}>
           {canEdit && (
-            <Button bigButton handleClick={() => handleEdit(id)} text={t('common:edit')} />
+            <Button
+              circle
+              bigButton
+              text={t('common:edit')}
+              icon={<GrEdit size={24} />}
+              handleClick={() => handleEdit(id)}
+            />
           )}
           {goToPet && (
-            <Button bigButton handleClick={() => goToPet(id)} text={t('common:goToProfile')} />
+            <Button
+              circle
+              bigButton
+              icon={<AiOutlineFolderView size={24} />}
+              text={t('common:goToProfile')}
+              handleClick={() => goToPet(id)}
+            />
           )}
           {canDelete && (
-            <Button bigButton handleClick={() => handleDelete(id)} text={t('common:delete')} />
+            <Button
+              circle
+              bigButton
+              text={t('common:delete')}
+              handleClick={() => handleDelete(id)}
+              icon={<RiDeleteBin2Line size={24} />}
+            />
           )}
         </div>
-        {/* <div className={styles.containerDetails}>
-          <div className={styles.name}>{namePet}</div>
-          <div className={styles.textHistory}>
-            {history ? utils.shortenText(history, 110) : t('notFoundHistory')}
-          </div>
-        </div> */}
       </div>
     </LayoutCards>
   )

@@ -100,7 +100,7 @@
     "react-google-autocomplete": "^1.1.2",
     "react-helmet": "^6.0.0",
     "react-i18next": "^11.3.3",
-    "react-icons": "^3.8.0",
+    "react-icons": "^3.11.0",
     "react-images": "^1.1.7",
     "react-input-switch": "^2.2.1",
     "react-intersection-observer": "^8.26.2",

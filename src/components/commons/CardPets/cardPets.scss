@@ -6,6 +6,14 @@
   justify-content: flex-start;
   align-items: center;
   border-radius: 100px;
+
+  @include media-breakpoint-down(lg) {
+    margin-top: 20px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px 0 10px 0;
+  }
 }
 
 .borderImage {
@@ -36,6 +44,12 @@
   font-weight: 700;
   letter-spacing: 0.85px;
   text-align: justify;
+
+  @include media-breakpoint-down(lg) {
+    margin-left: 0;
+    margin-top: 20px;
+    justify-content: center;
+  }
 }
 
 .textHistory {
@@ -47,12 +61,25 @@
   letter-spacing: 0.37px;
   line-height: 18px;
   font-weight: 400;
+
+  @include media-breakpoint-down(lg) {
+    text-align: left;
+    justify-content: center;
+  }
+}
+
+.line {
+  margin-top: 15px;
+  width: 100%;
+  border: $primaryNavbar 1px solid;
 }
 
 .containerButtos {
-  justify-content: space-between;
+  justify-content: space-evenly;
   display: flex;
   width: 96%;
+  align-items: center;
+  height: 50px;
   padding: 2%;
   gap: 10px;
 }
@@ -80,30 +107,29 @@
 }
 
 .tableInfo {
+  padding: 10px 20px 10px 50px;
   display: grid;
-  flex-wrap: wrap;
-  text-align: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
-  text-align: center;
-  gap: 20px;
-}
+  grid-template-columns: auto auto auto;
 
-.containerItem {
-  width: 120px;
+  @include media-breakpoint-down(xs) {
+    padding: 10px 20px 10px 20px;
+  }
 }
 
 .titleItem {
+  font-size: 14px;
   text-transform: uppercase;
-  color: grey;
+  @include site-font("text", 300);
+  color: $labelLight;
 }
 
 .infoItem {
+  @include site-font("text", 600);
   font-size: 18px;
   color: $title;
 }
 
 .emoji {
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 20px;
 }

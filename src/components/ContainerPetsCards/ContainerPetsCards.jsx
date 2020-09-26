@@ -53,6 +53,7 @@ const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
                         history={pet.history}
                         category={pet.category}
                         handleEdit={handleEdit}
+                        textAdress={pet.textAdress}
                         handleDelete={handleDelete}
                         activityLevel={pet.activityLevel}
                         gender={pet.gender}
