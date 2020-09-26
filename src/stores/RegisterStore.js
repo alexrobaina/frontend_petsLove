@@ -137,7 +137,13 @@ class RegisterStore {
     let isValidForm = true
     this.clearError()
 
-    const { firstname, lastname, email, role, phone, username } = this.registerUser
+    const { firstname, lastname, email, role, phone, username, password } = this.registerUser
+
+    if (!password.value) {
+      password.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
 
     if (!firstname.value) {
       firstname.setError(true, REQUIRED)
@@ -189,14 +195,14 @@ class RegisterStore {
   clearError() {
     const { firstname, lastname, email, password, role, phone, username } = this.registerUser
 
-    this.toastError.clearError()
-    firstname.clearError()
-    lastname.clearError()
-    email.clearError()
-    password.clearError()
     role.clearError()
     phone.clearError()
+    email.clearError()
+    password.clearError()
     username.clearError()
+    lastname.clearError()
+    firstname.clearError()
+    this.toastError.clearError()
   }
 }
 

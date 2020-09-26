@@ -60,12 +60,12 @@ const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
                         isAdopted={!isUserAdopt && pet.adopted}
                         image={pet.image ? pet.image.filenames[0] : ''}
                         canEdit={
-                          pet.userCreator === authStore.user._id ||
-                          pet.userAdopter === authStore.user._id
+                          pet.userCreator === authStore?.user?._id ||
+                          pet.userAdopter === authStore?.user?._id
                         }
                         canDelete={
-                          pet.userShelter === authStore.user._id ||
-                          pet.userCreator === authStore.user._id
+                          pet.userShelter === authStore?.user?._id ||
+                          pet.userCreator === authStore?.user?._id
                         }
                       />
                     </div>

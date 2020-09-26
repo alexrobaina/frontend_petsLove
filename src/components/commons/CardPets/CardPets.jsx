@@ -4,6 +4,7 @@ import { GrEdit } from 'react-icons/gr'
 import { AiOutlineFolderView } from 'react-icons/ai'
 import { RiDeleteBin2Line } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
+import Tooltip from '@material-ui/core/Tooltip'
 import { AWS_STORAGE } from 'services/config'
 import Utils from 'utils'
 import LayoutCards from 'components/commons/LayoutCards'
@@ -69,18 +70,16 @@ const CardPets = ({
             </div>
           </div>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>
-              <div className={styles.titleItem}>{t('common:activityLevel')}</div>
-              <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
-              {!activityLevel && (
-                <span role="img" aria-labelledby="emoji" className={styles.emoji}>
-                  🤷‍♀️
-                </span>
-              )}
-            </div>
+            <div className={styles.titleItem}>{t(`common:activity`)}</div>
+            {activityLevel && <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>}
+            {!activityLevel && (
+              <span role="img" aria-labelledby="emoji" className={styles.emoji}>
+                🤷‍♀️
+              </span>
+            )}
           </div>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>{t('common:gender')}</div>
+            <div className={styles.titleItem}>{t(`common:gender`)}</div>
             <div className={styles.infoItem}>{t(`common:${gender}`)}</div>
           </div>
         </div>
@@ -88,31 +87,43 @@ const CardPets = ({
         <div className={styles.line} />
         <div className={styles.containerButtos}>
           {canEdit && (
-            <Button
-              circle
-              bigButton
-              text={t('common:edit')}
-              icon={<GrEdit size={24} />}
-              handleClick={() => handleEdit(id)}
-            />
+            <Tooltip arrow title={t('common:editProfile')}>
+              <div>
+                <Button
+                  circle
+                  bigButton
+                  text={t('common:edit')}
+                  icon={<GrEdit size={20} />}
+                  handleClick={() => handleEdit(id)}
+                />
+              </div>
+            </Tooltip>
           )}
           {goToPet && (
-            <Button
-              circle
-              bigButton
-              icon={<AiOutlineFolderView size={24} />}
-              text={t('common:goToProfile')}
-              handleClick={() => goToPet(id)}
-            />
+            <Tooltip arrow title={t('common:goToProfile')}>
+              <div>
+                <Button
+                  circle
+                  bigButton
+                  icon={<AiOutlineFolderView size={24} />}
+                  text={t('common:goToProfile')}
+                  handleClick={() => goToPet(id)}
+                />
+              </div>
+            </Tooltip>
           )}
           {canDelete && (
-            <Button
-              circle
-              bigButton
-              text={t('common:delete')}
-              handleClick={() => handleDelete(id)}
-              icon={<RiDeleteBin2Line size={24} />}
-            />
+            <Tooltip arrow title={t('common:deletePet')}>
+              <div>
+                <Button
+                  circle
+                  bigButton
+                  text={t('common:delete')}
+                  handleClick={() => handleDelete(id)}
+                  icon={<RiDeleteBin2Line size={24} />}
+                />
+              </div>
+            </Tooltip>
           )}
         </div>
       </div>
