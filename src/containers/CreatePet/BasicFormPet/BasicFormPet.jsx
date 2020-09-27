@@ -31,10 +31,9 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   ]
 
   const activityOptions = [
-    { value: 'quiet', label: t('quiet') },
-    { value: 'active', label: t('active') },
-    { value: 'superActive', label: t('superActive') },
-    { value: 'LotsEnergy', label: t('lotsEnergy') },
+    { value: 'quiet', label: t('common:quiet') },
+    { value: 'active', label: t('common:active') },
+    { value: 'superActive', label: t('common:superActive') },
   ]
 
   const handleChangeName = useCallback(e => {

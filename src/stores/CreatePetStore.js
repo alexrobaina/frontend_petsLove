@@ -4,19 +4,22 @@ import ImageService from 'services/ImageService/ImageService'
 import EditPetService from 'services/EditPetService/EditPetService'
 import { ADOPTER, VET, TRANSIT_USER } from 'config/roles'
 import AuthService from 'services/AuthService'
+import AsyncApiStore from 'stores/AsyncApiStore'
 import Utils from 'utils'
 import Pet from 'models/Pet'
 
 const REQUIRED = 'common:isRequired'
 
-class CreatePetStore {
+class CreatePetStore extends AsyncApiStore {
   constructor() {
+    super()
+
     this.pet = new Pet()
+    this.utils = new Utils()
+    this.authService = new AuthService()
     this.imageService = new ImageService()
     this.editPetService = new EditPetService()
     this.createPetServices = new CreatePetServices()
-    this.authService = new AuthService()
-    this.utils = new Utils()
 
     this.init()
   }
@@ -28,7 +31,6 @@ class CreatePetStore {
   @observable imagesNews = []
   @observable isError = false
   @observable canEdit = false
-  @observable isLoading = false
   @observable previewsImage = []
   @observable imageForResize = null
   @observable requestSuccess = false
@@ -46,7 +48,7 @@ class CreatePetStore {
 
   @action
   async savePet(id) {
-    this.isLoading = true
+    this.preRequest()
     this.requestSuccess = false
 
     this.pet.image.setValue(id)
@@ -55,131 +57,156 @@ class CreatePetStore {
       const response = await this.createPetServices.addPet(this.pet.getJson())
 
       runInAction(() => {
-        this.isLoading = false
+        this.onSuccessRequest()
+
         this.idPet = response._id
         this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
-        this.isLoading = false
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async saveImageCreation(images) {
-    this.isLoading = true
+    this.preRequest()
 
     try {
       const response = await this.imageService.addImage(images)
 
       runInAction(() => {
+        this.onSuccessRequest()
         this.savePet(response._id)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async findOnePet(id) {
+    this.preRequest()
+
     this.pet = new Pet()
-    this.isLoading = true
 
     try {
       const response = await this.editPetService.gePet(id)
 
       runInAction(() => {
-        this.isLoading = false
+        this.onSuccessRequest()
         this.idPet = response[0]._id
         this.pet.fillJson(response[0])
         this.previewImage = this.pet.image.value
       })
     } catch (e) {
       runInAction(() => {
-        this.isLoading = false
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async updatePet() {
-    this.isLoading = true
+    this.preRequest()
     this.requestSuccess = false
 
     try {
       const response = await this.createPetServices.update(this.pet.getJson())
 
       runInAction(() => {
+        this.onSuccessRequest()
         this.idPet = response._id
         this.requestSuccess = true
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
+
         this.requestSuccess = false
-        this.isLoading = false
       })
     }
   }
 
   @action
   async uploadImage(images) {
-    this.isLoading = true
+    this.preRequest()
+
     try {
       await this.imageService.uploadImage(images, this.pet.getImageId)
 
       runInAction(() => {
         this.updatePet()
+        this.onSuccessRequest()
       })
     } catch (e) {
-      this.isLoading = false
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async listUserAdopter() {
+    this.preRequest()
+
     const role = ADOPTER
 
     try {
       const response = await this.authService.getUserForRole(role)
 
       runInAction(() => {
+        this.onSuccessRequest()
         this.optionsUserAdopter = this.utils.formatReactSelectUsers(response)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async listUserVet() {
+    this.preRequest()
+
     const role = VET
 
     try {
       const response = await this.authService.getUserForRole(role)
 
       runInAction(() => {
+        this.onSuccessRequest()
         this.optionsUserVet = this.utils.formatReactSelectUsers(response)
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
 
   @action
   async listUserTransit() {
+    this.preRequest()
+
     const role = TRANSIT_USER
 
     try {
@@ -187,10 +214,13 @@ class CreatePetStore {
 
       runInAction(() => {
         this.optionsUserTransit = this.utils.formatReactSelectUsers(response)
+        this.onSuccessRequest()
       })
     } catch (e) {
       runInAction(() => {
         console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
       })
     }
   }
@@ -220,7 +250,7 @@ class CreatePetStore {
     let isValidForm = true
     this.clearError()
 
-    const { name, category, gender } = this.pet
+    const { name, category, gender, history, activityLevel } = this.pet
 
     if (!name.value) {
       name.setError(true, REQUIRED)
@@ -236,6 +266,18 @@ class CreatePetStore {
 
     if (!gender.value) {
       gender.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!history.value) {
+      history.setError(true, REQUIRED)
+
+      isValidForm = false
+    }
+
+    if (!activityLevel.value) {
+      activityLevel.setError(true, REQUIRED)
 
       isValidForm = false
     }
