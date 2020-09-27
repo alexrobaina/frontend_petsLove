@@ -30,6 +30,14 @@
   @include media-breakpoint-only(xs) {
     height: 75px;
   }
+
+  &.noButton {
+    &:hover {
+      transform: translateY(0);
+      cursor: default;
+      box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+    }
+  }
 }
 
 .card {

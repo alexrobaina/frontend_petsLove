@@ -4,6 +4,7 @@
   "helpUserName": "Important for you profile. Example: pets-love.app/username",
   "requirementsToAdopt": "Requirements To Adopt",
   "address": "Your location",
+  "myDescription": "My Description",
   "titleChangePassword": "Change password",
   "saveSuccess": "User saved successfully",
   "availableTransit": "Available to receive pets",

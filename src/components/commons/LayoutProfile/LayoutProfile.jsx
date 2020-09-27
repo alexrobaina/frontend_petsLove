@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Animated } from 'react-animated-css'
 import ButtonBack from '../ButtonBack'
-import styles from './layoutContainer.scss'
+import styles from './layoutProfile.scss'
 
-const LayoutContainer = ({
+const LayoutProfile = ({
   name,
   title,
   children,
@@ -35,7 +35,7 @@ const LayoutContainer = ({
   )
 }
 
-LayoutContainer.propTypes = {
+LayoutProfile.propTypes = {
   children: PropTypes.node.isRequired,
   handleBack: PropTypes.func,
   title: PropTypes.string,
@@ -44,7 +44,7 @@ LayoutContainer.propTypes = {
   viewButtonBack: PropTypes.bool,
 }
 
-LayoutContainer.defaultProps = {
+LayoutProfile.defaultProps = {
   textButton: '',
   title: '',
   information: '',
@@ -52,4 +52,4 @@ LayoutContainer.defaultProps = {
   viewButtonBack: false,
 }
 
-export default LayoutContainer
+export default LayoutProfile

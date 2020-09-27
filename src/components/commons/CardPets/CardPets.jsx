@@ -71,8 +71,9 @@ const CardPets = ({
           <div className={styles.containerItem}>
             <div className={styles.titleItem}>
               <div className={styles.titleItem}>{t('common:activityLevel')}</div>
-              <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
-              {!activityLevel && (
+              {activityLevel ? (
+                <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
+              ) : (
                 <span role="img" aria-labelledby="emoji" className={styles.emoji}>
                   🤷‍♀️
                 </span>

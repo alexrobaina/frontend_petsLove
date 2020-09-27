@@ -43,6 +43,8 @@ class User {
     this.phone.setValue(user.phone)
     this.aboutUs.setValue(user.aboutUs)
     this.location.setValue(user.location)
+    this.lat.setValue(user.location.lat)
+    this.lng.setValue(user.location.lng)
     this.textAddress.setValue(user.textAddress)
     this.requirementsToAdopt.setValue(user.requirementsToAdopt)
     this.username.setValue(user.username)
