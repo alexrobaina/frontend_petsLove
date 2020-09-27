@@ -16,7 +16,7 @@ const FirstSection = () => {
   const animation = useAnimation()
   const animationImage = useAnimation()
   const animationButtonDown = useAnimation()
-  const [ref, inView] = useInView({ threshold: 0.1 })
+  const [ref] = useInView({ threshold: 0.1 })
 
   const gotToRegister = useCallback(() => {
     history.push(REGISTER)

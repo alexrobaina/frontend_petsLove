@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { MdSearch } from 'react-icons/md'
 import { SEARCH_PETS, LOGIN, REGISTER, LANDING_PAGE } from 'routing/routes'
-import ChangeLanguage from 'components/ChangeLanguage'
+// import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
@@ -35,7 +35,8 @@ const Navbar = ({ children }) => {
   const handleMenu = useCallback((link, id, haveId) => {
     if (haveId) {
       history.push('/')
-      return history.push(`${link}/${id}`)
+      history.push(`${link}/${id}`)
+      return
     }
     history.push(link)
   }, [])
@@ -47,6 +48,8 @@ const Navbar = ({ children }) => {
   if (rootStore.authStore.isLoading) {
     return <Loading loadingRing />
   }
+
+  /* Language is comment, please not delete. Thanks */
 
   return (
     <>

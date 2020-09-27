@@ -137,16 +137,16 @@ const CardPets = ({
 CardPets.propTypes = {
   goToPet: PropTypes.func,
   isAdopted: PropTypes.bool,
-  canEdit: PropTypes.string,
+  canEdit: PropTypes.bool,
   handleEdit: PropTypes.func,
-  canDelete: PropTypes.string,
+  canDelete: PropTypes.bool,
   handleDelete: PropTypes.func,
   id: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   history: PropTypes.string.isRequired,
   namePet: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  activityLevel: PropTypes.string.isRequired,
+  activityLevel: PropTypes.string,
   image: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
 }
 
@@ -157,6 +157,7 @@ CardPets.defaultProps = {
   canDelete: false,
   isAdopted: false,
   handleEdit: null,
+  activityLevel: '',
   handleDelete: null,
 }
 

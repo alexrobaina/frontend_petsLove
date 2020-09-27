@@ -28,7 +28,7 @@ const VolunteersProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { username, image, lat, lng, phone, email, _id, aboutUs, role, textAddress } = user
+  const { username, image, lat, lng, phone, email, aboutUs, role, textAddress } = user
   const { petsList, totalPets } = volunteersStore
   const { totalVolunteersPetsOwner } = volunteersStore.dashboardStore.dashboard
 

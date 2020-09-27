@@ -95,9 +95,9 @@ const TabViewInformation = ({ phone, email, aboutUs, requirementsToAdopt }) => {
 
 TabViewInformation.propTypes = {
   email: PropTypes.string,
-  phone: PropTypes.number,
-  aboutUs: PropTypes.number,
-  requirementsToAdopt: PropTypes.number,
+  phone: PropTypes.string,
+  aboutUs: PropTypes.string,
+  requirementsToAdopt: PropTypes.string,
 }
 
 TabViewInformation.defaultProps = {
