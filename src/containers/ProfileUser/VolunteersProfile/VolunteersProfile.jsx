@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { observer, useLocalStore } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 import UserContext from 'Context/UserContext'
-import c from 'classnames'
+import { MdLocationOn } from 'react-icons/md'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
-import TextCard from 'components/commons/TextCard'
-import TextCardContact from 'components/commons/TextCardContact'
-import LayoutContainer from 'components/commons/LayoutContainer'
-import ButtonShare from 'components/commons/ButtonShare'
+import DashboardCard from 'components/commons/DashboardCard'
+import TabViewInformation from 'components/commons/TabViewInformation'
 import VolunteersStore from 'stores/VolunteersStore'
+import LayoutProfile from 'components/commons/LayoutProfile'
 import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
 import Title from 'components/commons/Title'
 import ListPets from 'containers/ListPets'
@@ -29,29 +28,13 @@ const VolunteersProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { username, image, lat, lng, phone, email, _id, aboutUs } = user
+  const { username, image, lat, lng, phone, email, _id, aboutUs, role, textAddress } = user
   const { petsList, totalPets } = volunteersStore
+  const { totalVolunteersPetsOwner } = volunteersStore.dashboardStore.dashboard
 
   return (
-    <LayoutContainer>
-      <div className={styles.containerTitle}>
-        <Title
-          rolText={t('transitUser.role')}
-          title={t('common.titleNameUser', { name: username.value.split('-').join(' ') })}
-        />
-        <ButtonShare
-          route="edit-user"
-          phone={user.phone.value || ''}
-          canView={authStore.user ? _id === authStore.user._id : false}
-        />
-      </div>
-      <div className={c(styles.containerCard, styles.layourCard)}>
-        <img
-          onError={onError}
-          alt="photos-users"
-          className={styles.userImage}
-          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
-        />
+    <>
+      <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet
           location={{
@@ -60,18 +43,52 @@ const VolunteersProfile = ({ user }) => {
           }}
         />
       </div>
-      <div className={styles.containerCard}>
-        <TextCardContact title={t('common.contact')} phone={phone.value} email={email.value} />
-        {aboutUs && <TextCard title={t('common:aboutUs')} text={aboutUs.value} />}
-      </div>
-      <ListPets
-        page={page}
-        limit={limit}
-        listPets={petsList}
-        totalPets={totalPets}
-        title={t('common:needHome')}
-      />
-    </LayoutContainer>
+      <LayoutProfile>
+        <div className={styles.containerHeader}>
+          <div className={styles.userImageContainer}>
+            <img
+              onError={onError}
+              alt="photos-users"
+              className={styles.userImage}
+              src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
+            />
+            <Title title={username.value.split('-').join(' ')} />
+            {textAddress.value && (
+              <div className={styles.containerAddress}>
+                <span className={styles.icon}>
+                  <MdLocationOn size={20} />
+                </span>
+                <div className={styles.textAddress}>{textAddress.value}</div>
+              </div>
+            )}
+            {role && (
+              <div className={styles.containerAddress}>
+                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+              </div>
+            )}
+          </div>
+          <div className={styles.containerDashboardCard}>
+            <DashboardCard
+              titleCard={t('common:needHome')}
+              total={totalVolunteersPetsOwner.value}
+            />
+            <DashboardCard titleCard={t('common:myPets')} total={totalVolunteersPetsOwner.value} />
+          </div>
+        </div>
+        <div className={styles.containerCardInformation}>
+          <div className={styles.contact}>
+            <TabViewInformation phone={phone.value} email={email.value} aboutUs={aboutUs.value} />
+          </div>
+        </div>
+        <ListPets
+          page={page}
+          limit={limit}
+          listPets={petsList}
+          totalPets={totalPets}
+          title={t('common:needHome')}
+        />
+      </LayoutProfile>
+    </>
   )
 }
 

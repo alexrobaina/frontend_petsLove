@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import c from 'classnames'
 import styles from './dashboardCard.scss'
 
 const DashboardCard = ({ icon, titleCard, total, handleClick }) => {
   return (
-    <div onClick={handleClick} className={styles.cardContainar}>
+    <div onClick={handleClick} className={c(styles.cardContainar, !handleClick && styles.noButton)}>
       <div className={styles.card}>
         <div className={styles.containerText}>
           {icon ? (

@@ -1,28 +1,24 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import c from 'classnames'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
-import TextCard from 'components/commons/TextCard'
 import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
-import LayoutContainer from 'components/commons/LayoutContainer'
+import LayoutProfile from 'components/commons/LayoutProfile'
 import Button from 'components/commons/Button'
+import { MdLocationOn } from 'react-icons/md'
 import ShelterStore from 'stores/ShelterStore'
 import ListPets from 'containers/ListPets'
-import TextCardContact from 'components/commons/TextCardContact'
+import DashboardCard from 'components/commons/DashboardCard'
 import Title from 'components/commons/Title'
-import ButtonShare from 'components/commons/ButtonShare'
-import UserContext from 'Context/UserContext'
+import TabViewInformation from 'components/commons/TabViewInformation/TabViewInformation'
 import noImage from '../noImage.svg'
 import styles from './shelterProfile.scss'
 
 const ShelterProfile = ({ user }) => {
   const [page, setPage] = useState(1)
   const [limit] = useState(LIMIT_LIST)
-  const rootStore = useContext(UserContext)
-  const { authStore } = rootStore
   const { id } = useParams()
   const shelterStore = useLocalStore(() => new ShelterStore(id))
   const [isImageNotFound, setIsImageNotFound] = useState(true)
@@ -60,31 +56,26 @@ const ShelterProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
-  const { image, lat, lng, requirementsToAdopt, _id, phone, email, aboutUs, username } = user
+  const {
+    lat,
+    lng,
+    role,
+    email,
+    phone,
+    image,
+    aboutUs,
+    username,
+    textAddress,
+    requirementsToAdopt,
+  } = user
   const { petsList, totalPets, swithPets } = shelterStore
+  const { totalPetsAdopted, totalPetsForAdoption } = shelterStore.dashboardStore.dashboard
+
+  console.log(user)
 
   return (
-    <LayoutContainer>
-      <div className={styles.containerTitle}>
-        <Title
-          rolText={t('shelter.role')}
-          title={t('common.titleNameUser', {
-            name: username.value.split('-').join(' '),
-          })}
-        />
-        <ButtonShare
-          route="edit-user"
-          phone={phone.value || ''}
-          canView={authStore.user ? _id === authStore.user._id : false}
-        />
-      </div>
-      <div className={c(styles.containerCard, styles.layourCard)}>
-        <img
-          onError={onError}
-          className={styles.userImage}
-          src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
-          alt="photos-users"
-        />
+    <>
+      <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet
           location={{
@@ -93,39 +84,64 @@ const ShelterProfile = ({ user }) => {
           }}
         />
       </div>
-      <div className={styles.containerCardInformation}>
-        <div className={styles.contact}>
-          <TextCardContact title={t('common.contact')} phone={phone.value} email={email.value} />
+      <LayoutProfile>
+        <div className={styles.containerHeader}>
+          <div className={styles.userImageContainer}>
+            <img
+              onError={onError}
+              alt="photos-users"
+              className={styles.userImage}
+              src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
+            />
+            <Title title={username.value.split('-').join(' ')} />
+            {textAddress.value && (
+              <div className={styles.containerAddress}>
+                <span className={styles.icon}>
+                  <MdLocationOn size={20} />
+                </span>
+                <div className={styles.textAddress}>{textAddress.value}</div>
+              </div>
+            )}
+            {role && (
+              <div className={styles.containerAddress}>
+                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+              </div>
+            )}
+          </div>
+          <div className={styles.containerDashboardCard}>
+            <DashboardCard titleCard={t('common:needHome')} total={totalPetsForAdoption.value} />
+            <DashboardCard titleCard={t('common:adopted')} total={totalPetsAdopted.value} />
+          </div>
         </div>
-        <div className={styles.requirementsToAdopt}>
-          <TextCard
-            title={t('common:requirementsToAdopt')}
-            text={requirementsToAdopt.value || ''}
-          />
+        <div className={styles.containerCardInformation}>
+          <div className={styles.contact}>
+            <TabViewInformation
+              phone={phone.value}
+              email={email.value}
+              aboutUs={aboutUs.value}
+              requirementsToAdopt={requirementsToAdopt.value}
+            />
+          </div>
         </div>
-        <div className={styles.aboutUs}>
-          <TextCard title={t('common:aboutUs')} text={aboutUs.value || ''} />
+        <div className={styles.containerPets}>
+          <div className={styles.buttonsSwich}>
+            <Button bigButton handleClick={handleForAdoption} text={t('common:needHome')} />
+          </div>
+          <div className={styles.buttonsSwich}>
+            <Button bigButton handleClick={handleAdopted} text={t('common:adopted')} />
+          </div>
         </div>
-      </div>
-
-      <div className={styles.containerPets}>
-        <div className={styles.buttonsSwich}>
-          <Button handleClick={handleForAdoption} text={t('shelter.needHome')} />
-        </div>
-        <div className={styles.buttonsSwich}>
-          <Button handleClick={handleAdopted} text={t('shelter.adopted')} />
-        </div>
-      </div>
-      <ListPets
-        page={page}
-        limit={limit}
-        listPets={petsList}
-        totalPets={totalPets}
-        handleSearch={handleSearch}
-        handleChangePage={handleChangePage}
-        title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}
-      />
-    </LayoutContainer>
+        <ListPets
+          page={page}
+          limit={limit}
+          listPets={petsList}
+          totalPets={totalPets}
+          handleSearch={handleSearch}
+          handleChangePage={handleChangePage}
+          title={swithPets ? t('common:adopted') : t('common:needHome')}
+        />
+      </LayoutProfile>
+    </>
   )
 }
 
