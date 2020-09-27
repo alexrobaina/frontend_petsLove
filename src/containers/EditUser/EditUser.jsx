@@ -215,7 +215,7 @@ const EditUser = () => {
                 <Label text={t('common:phone')} />
                 <PhoneInput
                   country="ar"
-                  value={phone.value.toString()}
+                  value={phone.value ? phone?.value.toString() : ''}
                   onChange={phoneNumber => handleChangePhone(phoneNumber)}
                   inputStyle={{
                     width: '100%',
@@ -257,9 +257,9 @@ const EditUser = () => {
               canEdit
               rows={4}
               inputStore={aboutUs}
-              label={t('aboutUs')}
+              label={t('myDescription')}
               isEdit={userStore.isEdit}
-              placeholder={t('aboutUs')}
+              placeholder={t('myDescription')}
               handleChange={handleChangeAboutUs}
               value={userStore.user.aboutUs.value}
             />

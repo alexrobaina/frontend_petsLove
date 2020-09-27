@@ -70,13 +70,16 @@ const CardPets = ({
             </div>
           </div>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>{t(`common:activity`)}</div>
-            {activityLevel && <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>}
-            {!activityLevel && (
-              <span role="img" aria-labelledby="emoji" className={styles.emoji}>
-                🤷‍♀️
-              </span>
-            )}
+            <div className={styles.titleItem}>
+              <div className={styles.titleItem}>{t('common:activityLevel')}</div>
+              {activityLevel ? (
+                <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
+              ) : (
+                <span role="img" aria-labelledby="emoji" className={styles.emoji}>
+                  🤷‍♀️
+                </span>
+              )}
+            </div>
           </div>
           <div className={styles.containerItem}>
             <div className={styles.titleItem}>{t(`common:gender`)}</div>

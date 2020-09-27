@@ -1,9 +1,118 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
-.containerTitle {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+.containerMap {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 60px;
+  padding-bottom: 0;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  height: 350px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+
+  @include media-breakpoint-only(xs) {
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @include media-breakpoint-only(sm) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  @include media-breakpoint-between(sm, xs) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  @include media-breakpoint-only(md) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  @include media-breakpoint-between(md, xl) {
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+
+  @include media-breakpoint-only(xxl) {
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+}
+
+.containerHeader {
+  display: grid;
+  grid-template-columns: 180px auto 200px 200px;
+  align-items: center;
+  gap: 30px;
+
+  @include media-breakpoint-only(xs) {
+    justify-content: center;
+    grid-template-columns: 100%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-only(sm) {
+    justify-content: center;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-only(md) {
+    justify-content: center;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-only(lg) {
+    justify-content: center;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-only(xl) {
+    justify-content: center;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-only(xxl) {
+    justify-content: center;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    padding-bottom: 50px;
+  }
+}
+
+.containerDashboardCard {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  gap: 2%;
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 20px;
+  }
+}
+
+.userImage {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.userImageContainer {
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .containerCard {
@@ -24,17 +133,16 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   grid-template-rows: auto;
-  grid-template-areas: 
+  grid-template-areas:
     "contact contact"
     "requirementsToAdopt aboutUs";
 
   @include media-breakpoint-down(md) {
-  
     grid-template-rows: 1fr;
-    grid-template-areas: 
-    "contact contact"
-    "requirementsToAdopt requirementsToAdopt"
-    "aboutUs aboutUs";  
+    grid-template-areas:
+      "contact contact"
+      "requirementsToAdopt requirementsToAdopt"
+      "aboutUs aboutUs";
   }
 }
 
@@ -50,12 +158,36 @@
   grid-area: aboutUs;
 }
 
+.containerAddress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  color: $secundaryTitle;
+}
+
+.textAddress {
+  margin-left: 10px;
+  color: $secundary;
+}
+
+.role {
+  color: $secundaryTitle;
+}
+
 .userImage {
-  width: 100%;
-  height: 400px;
+  width: 174px;
+  height: 174px;
   image-orientation: from-image;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: 100px;
+
+  @include media-breakpoint-down(xs) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .layourCard {

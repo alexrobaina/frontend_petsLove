@@ -34,10 +34,10 @@ const Navbar = ({ children }) => {
 
   const handleMenu = useCallback((link, id, haveId) => {
     if (haveId) {
-      history.push(`${link}/${id}`)
-    } else {
-      history.push(link)
+      history.push('/')
+      return history.push(`${link}/${id}`)
     }
+    history.push(link)
   }, [])
 
   const goToSeach = useCallback(() => {

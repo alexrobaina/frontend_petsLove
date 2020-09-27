@@ -1,14 +1,10 @@
-@import 'styles/mixings';
-
-.container {
-  padding: 20px 20px 20px 20px;
-}
+@import "styles/mixings";
 
 .title {
   font-size: 20px;
   letter-spacing: 1px;
   text-align: center;
-  @include site-font('text', 600);
+  @include site-font("text", 600);
   color: $secundaryLight;
 }
 
@@ -16,8 +12,7 @@
   white-space: pre-line;
   letter-spacing: 1px;
   line-height: 22px;
-  margin-top: 20px;
   font-size: 14px;
-  @include site-font('text', 600);
+  @include site-font("text", 600);
   color: $filters;
 }
