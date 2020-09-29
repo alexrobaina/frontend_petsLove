@@ -13,7 +13,6 @@ import {
 } from 'react-icons/fa'
 import { GiJumpingDog } from 'react-icons/gi'
 import { IoIosHelpBuoy } from 'react-icons/io'
-import LayoutCards from 'components/commons/LayoutCards'
 import Pet from 'models/Pet'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './informationPet.scss'
@@ -34,8 +33,7 @@ const InformationPet = ({ pet, title }) => {
   } = pet
 
   return (
-    <LayoutCards>
-      <div className={styles.title}>{title}</div>
+    <>
       <div className={styles.info}>
         {getEmailUserAdopter && (
           <TextCardInformation
@@ -90,7 +88,7 @@ const InformationPet = ({ pet, title }) => {
           icon={<IoIosHelpBuoy size={25} />}
         />
       </div>
-    </LayoutCards>
+    </>
   )
 }
 

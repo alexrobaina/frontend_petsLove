@@ -71,8 +71,6 @@ const ShelterProfile = ({ user }) => {
   const { petsList, totalPets, swithPets } = shelterStore
   const { totalPetsAdopted, totalPetsForAdoption } = shelterStore.dashboardStore.dashboard
 
-  console.log(user)
-
   return (
     <>
       <div className={styles.containerMap}>

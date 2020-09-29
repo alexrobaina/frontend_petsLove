@@ -40,6 +40,7 @@ class Pet {
     this.emailUserCreator = new InputStore()
     this.emailUserTransit = new InputStore()
     this.emailUserShelter = new InputStore()
+    this.phoneUserShelter = new InputStore()
 
     this.medicalCat = {}
     this.medicalDog = {}
@@ -98,6 +99,7 @@ class Pet {
     }
 
     if (pet.userShelter) {
+      this.phoneUserShelter.setValue(pet.userShelter.phone)
       this.emailUserShelter.setValue(pet.userShelter.email)
     }
 
@@ -247,6 +249,10 @@ class Pet {
     this.userShelter.setValue(value)
   }
 
+  setPhoneUserShelter(value) {
+    this.phone.setValue(value)
+  }
+
   setBirthday(value) {
     this.birthday.setValue(value)
   }
@@ -349,6 +355,10 @@ class Pet {
 
   get getUserShelter() {
     return this.userShelter.value
+  }
+
+  get getPhoneUserShelter() {
+    return this.phoneUserShelter.value
   }
 
   get getUserVet() {

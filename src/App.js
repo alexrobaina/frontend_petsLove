@@ -4,19 +4,19 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
 import {
-  DASHBOARD,
-  FORGOT_PASSWORD,
   LOGIN,
-  SEARCH_PETS,
   REGISTER,
-  CREATE_PET,
-  PROFILE_PET,
-  EDIT_USER,
-  SEARCH_VOLANTEERS,
   EDIT_PET,
+  DASHBOARD,
+  EDIT_USER,
+  CREATE_PET,
+  SEARCH_PETS,
+  PROFILE_PET,
   PROFILE_USER,
-  RESET_PASSWORD,
   LANDING_PAGE,
+  RESET_PASSWORD,
+  FORGOT_PASSWORD,
+  SEARCH_VOLANTEERS,
   SEARCH_PROTECTIONIST,
 } from 'routing/routes'
 import RootStore from 'stores/RootStore'
@@ -66,45 +66,45 @@ function App() {
             <Route exact path={`${PROFILE_USER}/:id`} component={ProfileUser} />
             <PrivateRoute
               exact
-              isLogin={rootStore.authStore.isLogin}
-              redirectPath={LOGIN}
               path={DASHBOARD}
-              component={Dashboard}
-            />
-            <PrivateRoute
-              exact
-              isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path={CREATE_PET}
-              component={CreatePet}
+              component={Dashboard}
+              isLogin={rootStore.authStore.isLogin}
             />
             <PrivateRoute
               exact
+              path={CREATE_PET}
+              redirectPath={LOGIN}
+              component={CreatePet}
               isLogin={rootStore.authStore.isLogin}
+            />
+            <PrivateRoute
+              exact
+              component={EditPet}
               redirectPath={LOGIN}
               path={`${EDIT_PET}/:id`}
-              component={EditPet}
+              isLogin={rootStore.authStore.isLogin}
             />
             <PrivateRoute
               exact
-              isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
-              path={`${EDIT_USER}/:id`}
               component={EditUser}
+              path={`${EDIT_USER}/:id`}
+              isLogin={rootStore.authStore.isLogin}
             />
             <PrivateRoute
               exact
-              isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
               path={SEARCH_VOLANTEERS}
               component={SearchVolunteers}
+              isLogin={rootStore.authStore.isLogin}
             />
             <PrivateRoute
               exact
-              isLogin={rootStore.authStore.isLogin}
               redirectPath={LOGIN}
               path={SEARCH_PROTECTIONIST}
               component={SearchProtectionist}
+              isLogin={rootStore.authStore.isLogin}
             />
             <Route component={PageNotFound} />
           </Switch>

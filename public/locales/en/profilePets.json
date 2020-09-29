@@ -3,6 +3,7 @@
   "titleSuccess": "Great. :D.",
   "title": "My name is {{ name }}",
   "goToProfile": "Go to the shelter profile",
+  "adoptWhatsapp": "Contact Shelter",
   "requiredToAdoption": "Required to Adoption",
   "medicalInformation": "Medical information",
   "history": "History",
