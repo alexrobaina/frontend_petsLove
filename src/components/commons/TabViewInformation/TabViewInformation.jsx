@@ -7,7 +7,7 @@ import AlertToast from 'components/commons/AlertToast/AlertToast'
 import TextCard from 'components/commons/TextCard'
 import styles from './tabViewInformation.scss'
 
-const TabViewInformation = ({ phone, email, aboutUs, requirementsToAdopt }) => {
+const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt }) => {
   const [toggleToast, setToggleToast] = useState(false)
   const [step, setStep] = useState(1)
   const { t } = useTranslation('profileUser')
@@ -34,7 +34,7 @@ const TabViewInformation = ({ phone, email, aboutUs, requirementsToAdopt }) => {
     if (aboutUs) {
       setStep(1)
     }
-  }, [])
+  }, [aboutUs, requirementsToAdopt])
 
   return (
     <div className={styles.containerCard}>
@@ -50,7 +50,7 @@ const TabViewInformation = ({ phone, email, aboutUs, requirementsToAdopt }) => {
               onClick={() => setStep(1)}
               className={c(styles.actionButton, step === 1 && styles.actionButtonSelected)}
             >
-              {t('common:aboutUs')}
+              {isPet ? t('common:history') : t('common:aboutUs')}
             </div>
           )}
           {requirementsToAdopt && (
@@ -80,9 +80,11 @@ const TabViewInformation = ({ phone, email, aboutUs, requirementsToAdopt }) => {
             </div>
           )}
           <div className={c(styles.information, step === 3 && styles.contactData)}>
-            <div className={styles.contactButton}>
-              <Button bigButton handleClick={handleWhatsapp} text="Contactar por whatsapp" />
-            </div>
+            {phone && (
+              <div className={styles.contactButton}>
+                <Button bigButton handleClick={handleWhatsapp} text="Contactar por whatsapp" />
+              </div>
+            )}
             <div className={styles.contact}>
               {t('common:email')}:<span className={styles.email}>{email}</span>
             </div>

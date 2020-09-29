@@ -7,6 +7,7 @@ import ImageProfilePet from 'components/ImageProfilePet'
 import InformationPet from 'components/InformationPet'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import PetIdStore from 'stores/PetIdStore'
+import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
 import MedicalInformationDog from 'components/MedicalInformationDog'
 import ButtonShare from 'components/commons/ButtonShare'
 import MedicalInformationCat from 'components/MedicalInformationCat'
@@ -45,7 +46,11 @@ const LayoutProfilePets = ({ store }) => {
 
   return (
     <>
-      <div className={styles.header}>
+      <div className={styles.containerMap}>
+        <GoogleMapsLocation isProfilePet location={foundLocation.value} />
+      </div>
+
+      {/* <div className={styles.header}>
         <Title title={t('title', { name: getName })} />
         <ButtonShare phone={phone} route="edit-pet" canView={userCanEdit} />
       </div>
@@ -78,7 +83,7 @@ const LayoutProfilePets = ({ store }) => {
         {store.pet.medicalInformationCat.notes.value && (
           <TextCard title={t('common:notes')} text={store.pet.medicalInformationCat.notes.value} />
         )}
-      </div>
+      </div> */}
     </>
   )
 }
