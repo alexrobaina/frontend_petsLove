@@ -33,6 +33,10 @@ const VeterinaryProfile = ({ user }) => {
     setIsImageNotFound(false)
   }, [])
 
+  const handleDeletePet = useCallback(idPet => {
+    veterinaryStore.removePet(idPet)
+  }, [])
+
   const { username, image, lat, lng, phone, email, aboutUs, textAddress, role } = user
   const { petsList, totalPets } = veterinaryStore
 
@@ -86,6 +90,7 @@ const VeterinaryProfile = ({ user }) => {
           listPets={petsList}
           totalPets={totalPets}
           handleSearch={handleSearch}
+          handleDelete={handleDeletePet}
           title={t('veterinary.petsCared')}
           handleChangePage={handleChangePage}
         />

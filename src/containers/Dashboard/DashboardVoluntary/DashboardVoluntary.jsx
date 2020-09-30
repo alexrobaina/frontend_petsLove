@@ -61,6 +61,10 @@ const DashboardVoluntary = () => {
     history.push(SEARCH_PROTECTIONIST)
   }, [])
 
+  const handleDeletePet = useCallback(idPet => {
+    volunteersStore.removePet(idPet)
+  }, [])
+
   const { petsList, totalPets, swithPets } = volunteersStore
   const {
     totalVolunteersPetsOwner,
@@ -98,6 +102,7 @@ const DashboardVoluntary = () => {
         listPets={petsList}
         totalPets={totalPets}
         handleSearch={handleSearch}
+        handleDelete={handleDeletePet}
         handleChangePage={handleChangePage}
         title={swithPets ? t('common:myPets') : t('volunteers.needHome')}
       />

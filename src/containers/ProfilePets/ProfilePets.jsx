@@ -12,10 +12,9 @@ import Button from 'components/commons/Button'
 import GaleryImages from 'components/commons/GaleryImages'
 import AlertToast from 'components/commons/AlertToast'
 import TabViewInformationPet from 'components/commons/TabViewInformationPet'
-import ErrorMessage from 'components/commons/ErrorMessage'
+import Footer from 'components/commons/Footer/index'
 import noImage from './noImage.svg'
 import styles from './profilePets.scss'
-import Footer from 'components/commons/Footer/index'
 
 const ProfilePets = () => {
   const [toggleToast, setToggleToast] = useState(false)
@@ -50,7 +49,7 @@ const ProfilePets = () => {
 
   const handleWhatsapp = useCallback(() => {
     if (getPhoneUserShelter) {
-      window.open(`https://api.whatsapp.com/send?phone=${phone}`)
+      window.open(`https://api.whatsapp.com/send?phone=${getPhoneUserShelter}`)
     } else {
       setToggleToast(true)
     }

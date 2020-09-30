@@ -11,7 +11,7 @@ import Loading from 'components/commons/Loading'
 import ErrorMessage from 'components/commons/ErrorMessage'
 import styles from './containerPetsCards.scss'
 
-const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
+const ContainerPetsCards = ({ pets, isUserAdopt, isLoading, handleDelete }) => {
   const { t } = useTranslation('containerPetsCards')
   const history = useHistory()
   const rootStore = useContext(UserContext)
@@ -25,10 +25,6 @@ const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
   const handleEdit = useCallback(id => {
     history.push(`/`)
     history.push(`edit-pet/${id}`)
-  }, [])
-
-  const handleDelete = useCallback(id => {
-    alert('Pronto podras borrar :D ')
   }, [])
 
   if (isLoading) {
@@ -50,21 +46,22 @@ const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
                         goToPet={goToPet}
                         namePet={pet.name}
                         history={pet.history}
+                        gender={pet.gender}
                         category={pet.category}
                         handleEdit={handleEdit}
                         textAdress={pet.textAdress}
                         handleDelete={handleDelete}
+                        userLogin={authStore?.user}
                         activityLevel={pet.activityLevel}
-                        gender={pet.gender}
                         isAdopted={!isUserAdopt && pet.adopted}
                         image={pet.image ? pet.image.filenames[0] : ''}
                         canEdit={
-                          pet.userCreator?._id === authStore?.user?._id ||
-                          pet.userAdopter?._id === authStore?.user?._id
+                          pet.userCreator === authStore?.user?._id ||
+                          pet.userAdopter === authStore?.user?._id
                         }
                         canDelete={
-                          pet.userShelter?._id === authStore?.user?._id ||
-                          pet.userCreator?._id === authStore?.user?._id
+                          pet.userShelter === authStore?.user?._id ||
+                          pet.userCreator === authStore?.user?._id
                         }
                       />
                     </div>
@@ -85,12 +82,14 @@ const ContainerPetsCards = ({ pets, isUserAdopt, isLoading }) => {
 ContainerPetsCards.propTypes = {
   isLoading: PropTypes.bool,
   isUserAdopt: PropTypes.bool,
+  handleDelete: PropTypes.func,
   pets: PropTypes.arrayOf(PropTypes.object),
 }
 
 ContainerPetsCards.defaultProps = {
   pets: [],
   isLoading: false,
+  handleDelete: null,
   isUserAdopt: false,
 }
 

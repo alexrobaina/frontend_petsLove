@@ -31,6 +31,10 @@ const AdopterProfile = ({ user }) => {
     setIsImageNotFound(false)
   }
 
+  const handleDeletePet = useCallback(idPet => {
+    adopterStore.removePet(idPet)
+  }, [])
+
   const { petsList, totalPets } = adopterStore
 
   return (
@@ -74,6 +78,7 @@ const AdopterProfile = ({ user }) => {
           limit={limit}
           listPets={petsList}
           totalPets={totalPets}
+          handleDelete={handleDeletePet}
           handleChangePage={handleChangePage}
           title={totalPets > 1 ? t('common:myPets') : t('common:myPet')}
         />

@@ -61,6 +61,10 @@ const DashboardShelter = () => {
     history.push(SEARCH_VOLANTEERS)
   }, [])
 
+  const handleDeletePet = useCallback(id => {
+    shelterStore.removePet(id)
+  }, [])
+
   const { petsList, totalPets, swithPets } = shelterStore
   const { totalPetsForAdoption, totalPetsAdopted } = shelterStore.dashboardStore.dashboard
 
@@ -94,6 +98,7 @@ const DashboardShelter = () => {
         limit={limit}
         listPets={petsList}
         totalPets={totalPets}
+        handleDelete={handleDeletePet}
         handleSearch={handleSearch}
         handleChangePage={handleChangePage}
         title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}

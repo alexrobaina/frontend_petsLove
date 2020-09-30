@@ -30,7 +30,10 @@ const VolunteersProfile = ({ user }) => {
 
   const { username, image, lat, lng, phone, email, aboutUs, role, textAddress } = user
   const { petsList, totalPets } = volunteersStore
-  const { totalVolunteersPetsOwner } = volunteersStore.dashboardStore.dashboard
+  const {
+    totalVolunteersPetsOwner,
+    totalVolunteersPetsCare,
+  } = volunteersStore.dashboardStore.dashboard
 
   return (
     <>
@@ -69,8 +72,8 @@ const VolunteersProfile = ({ user }) => {
           </div>
           <div className={styles.containerDashboardCard}>
             <DashboardCard
-              titleCard={t('common:needHome')}
-              total={totalVolunteersPetsOwner.value}
+              titleCard={t('common:transitPetsTitle')}
+              total={totalVolunteersPetsCare.value}
             />
             <DashboardCard titleCard={t('common:myPets')} total={totalVolunteersPetsOwner.value} />
           </div>
@@ -85,7 +88,7 @@ const VolunteersProfile = ({ user }) => {
           limit={limit}
           listPets={petsList}
           totalPets={totalPets}
-          title={t('common:needHome')}
+          title={t('common:transitPetsTitle')}
         />
       </LayoutProfile>
     </>

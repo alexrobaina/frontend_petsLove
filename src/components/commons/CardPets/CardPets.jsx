@@ -22,6 +22,7 @@ const CardPets = ({
   goToPet,
   canEdit,
   category,
+  userLogin,
   isAdopted,
   canDelete,
   textAdress,
@@ -89,7 +90,7 @@ const CardPets = ({
         {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
         <div className={styles.line} />
         <div className={styles.containerButtos}>
-          {canEdit && (
+          {canEdit && userLogin !== null && (
             <Tooltip arrow title={t('common:editProfile')}>
               <div>
                 <Button
@@ -115,7 +116,7 @@ const CardPets = ({
               </div>
             </Tooltip>
           )}
-          {canDelete && (
+          {canDelete && userLogin !== null && (
             <Tooltip arrow title={t('common:deletePet')}>
               <div>
                 <Button
@@ -140,6 +141,7 @@ CardPets.propTypes = {
   canEdit: PropTypes.bool,
   handleEdit: PropTypes.func,
   canDelete: PropTypes.bool,
+  userLogin: PropTypes.string,
   handleDelete: PropTypes.func,
   id: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
@@ -152,6 +154,7 @@ CardPets.propTypes = {
 
 CardPets.defaultProps = {
   image: '',
+  userLogin: '',
   goToPet: null,
   canEdit: false,
   canDelete: false,
