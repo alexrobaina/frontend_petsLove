@@ -41,6 +41,10 @@ const DashboardVeterinary = () => {
     history.push(SEARCH_PROTECTIONIST)
   }, [])
 
+  const handleDeletePet = useCallback(idPet => {
+    veterinaryStore.removePet(idPet)
+  }, [])
+
   const { petsList, totalPets } = veterinaryStore
   const { totalPetsVeterinaryCared } = veterinaryStore.dashboardStore.dashboard
 
@@ -69,6 +73,7 @@ const DashboardVeterinary = () => {
         listPets={petsList}
         totalPets={totalPets}
         handleSearch={handleSearch}
+        handleDelete={handleDeletePet}
         title={t('veterinary.titlePetsList')}
         handleChangePage={handleChangePage}
       />

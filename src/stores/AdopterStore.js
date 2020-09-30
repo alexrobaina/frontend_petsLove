@@ -42,6 +42,27 @@ class AdopterStore extends AsyncApiStore {
       })
     }
   }
+
+  @action
+  async removePet(id) {
+    this.preRequest()
+
+    try {
+      await this.adopterService.deletePet(id)
+
+      runInAction(() => {
+        this.init()
+        this.clearError()
+        this.onSuccessRequest()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.onSuccessRequest()
+        this.setServerError()
+      })
+    }
+  }
 }
 
 export default AdopterStore

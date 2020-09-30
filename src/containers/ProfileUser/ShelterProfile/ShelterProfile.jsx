@@ -52,6 +52,10 @@ const ShelterProfile = ({ user }) => {
     }
   }, [])
 
+  const handleDeletePet = useCallback(id => {
+    shelterStore.removePet(id)
+  }, [])
+
   const onError = useCallback(() => {
     setIsImageNotFound(false)
   }, [])
@@ -135,6 +139,7 @@ const ShelterProfile = ({ user }) => {
           listPets={petsList}
           totalPets={totalPets}
           handleSearch={handleSearch}
+          handleDelete={handleDeletePet}
           handleChangePage={handleChangePage}
           title={swithPets ? t('common:adopted') : t('common:needHome')}
         />

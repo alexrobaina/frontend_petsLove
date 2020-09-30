@@ -50,6 +50,28 @@ class VeterinaryStore extends AsyncApiStore {
       })
     }
   }
+
+  @action
+  async removePet(id) {
+    this.preRequest()
+
+    try {
+      await this.veterinaryService.deletePet(id)
+
+      runInAction(() => {
+        this.init()
+        this.dashboardStore.init()
+        this.clearError()
+        this.onSuccessRequest()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.onSuccessRequest()
+        this.setServerError()
+      })
+    }
+  }
 }
 
 export default VeterinaryStore

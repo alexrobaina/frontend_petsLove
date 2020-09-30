@@ -72,6 +72,29 @@ class ShelterStore extends AsyncApiStore {
   }
 
   @action
+  async removePet(id) {
+    this.preRequest()
+
+    try {
+      await this.shelterService.deletePet(id)
+
+      runInAction(() => {
+        this.getPetsForAdoption(this.id, LIMIT_LIST, 1, '', false)
+        this.getPetsAdopted(this.id, LIMIT_LIST, 1, '', false)
+        this.dashboardStore.init()
+        this.clearError()
+        this.onSuccessRequest()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.onSuccessRequest()
+        this.setServerError()
+      })
+    }
+  }
+
+  @action
   setSwithPets(value) {
     this.swithPets = value
   }

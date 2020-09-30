@@ -81,6 +81,29 @@ class VolunteersStore extends AsyncApiStore {
   }
 
   @action
+  async removePet(id) {
+    this.preRequest()
+
+    try {
+      await this.volunteersService.deletePet(id)
+
+      runInAction(() => {
+        this.init()
+        this.dashboardStore.init()
+        this.loadPetsVolunteersOwner(this.id, LIMIT_LIST, 1, '')
+        this.clearError()
+        this.onSuccessRequest()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.onSuccessRequest()
+        this.setServerError()
+      })
+    }
+  }
+
+  @action
   setSwithPets(value) {
     this.swithPets = value
   }

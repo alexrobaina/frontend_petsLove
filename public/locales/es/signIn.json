@@ -38,7 +38,7 @@
     "login": "Iniciar sesión",
     "email": "Correo",
     "password": "Contraseña",
-    "forgotPassword": "Olvidé mi contraseá",
+    "forgotPassword": "Olvidé mi contraseñá",
     "errorLogin": "Verifica tu contraseña o correo, Algo anda mal."
   }
 }

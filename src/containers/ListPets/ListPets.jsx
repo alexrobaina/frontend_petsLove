@@ -15,6 +15,7 @@ const ListPets = ({
   listPets,
   isLoading,
   totalPets,
+  handleDelete,
   handleSearch,
   handleChangePage,
 }) => {
@@ -31,7 +32,7 @@ const ListPets = ({
           placeholder={t('common:filterForName')}
         />
       )}
-      <ContainerPetsCards isLoading={isLoading} pets={listPets} />
+      <ContainerPetsCards handleDelete={handleDelete} isLoading={isLoading} pets={listPets} />
       {totalPets !== 0 && (
         <PaginationList
           page={page}
@@ -46,6 +47,7 @@ const ListPets = ({
 
 ListPets.prototype = {
   handleSearch: PropTypes.func,
+  handleDelete: PropTypes.func,
   id: PropTypes.string.isRequired,
   handleChangePage: PropTypes.func,
   page: PropTypes.number.isRequired,
@@ -58,6 +60,7 @@ ListPets.prototype = {
 
 ListPets.defaultProps = {
   handleSearch: null,
+  handleDelete: null,
   handleChangePage: null,
 }
 

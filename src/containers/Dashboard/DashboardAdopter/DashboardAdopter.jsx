@@ -42,6 +42,10 @@ const DashboardAdopter = () => {
     history.push(SEARCH_PROTECTIONIST)
   }, [])
 
+  const handleDeletePet = useCallback(id => {
+    adopterStore.removePet(id)
+  }, [])
+
   const { petsList, totalPets } = adopterStore
 
   return (
@@ -70,6 +74,7 @@ const DashboardAdopter = () => {
         limit={limit}
         listPets={petsList}
         totalPets={totalPets}
+        handleDelete={handleDeletePet}
         handleChangePage={handleChangePage}
         title={totalPets > 1 ? t('common:myPets') : t('common:myPet')}
       />
