@@ -17,7 +17,7 @@ import Pet from 'models/Pet'
 import TextCardInformation from 'components/commons/TextCardInformation'
 import styles from './informationPet.scss'
 
-const InformationPet = ({ pet, title }) => {
+const InformationPet = ({ pet }) => {
   const { t } = useTranslation('profilePets')
 
   const {
@@ -93,12 +93,7 @@ const InformationPet = ({ pet, title }) => {
 }
 
 InformationPet.propTypes = {
-  title: PropTypes.string,
   pet: PropTypes.instanceOf(Pet).isRequired,
-}
-
-InformationPet.defaultProps = {
-  title: '',
 }
 
 export default InformationPet
