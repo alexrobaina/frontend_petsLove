@@ -1,14 +1,13 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import AlertToast from 'components/commons/AlertToast/AlertToast'
 import InformationPet from 'components/InformationPet'
 import MedicalInformationDog from 'components/MedicalInformationDog'
 import MedicalInformationCat from 'components/MedicalInformationCat'
 import styles from './tabViewInformationPet.scss'
 
-const TabViewInformationPet = ({ phone, pet, history }) => {
+const TabViewInformationPet = ({ pet, history }) => {
   const [step, setStep] = useState(1)
   const { t } = useTranslation('profileUser')
 
@@ -68,12 +67,10 @@ const TabViewInformationPet = ({ phone, pet, history }) => {
 }
 
 TabViewInformationPet.propTypes = {
-  phone: PropTypes.string,
   history: PropTypes.string,
 }
 
 TabViewInformationPet.defaultProps = {
-  phone: '',
   history: '',
 }
 

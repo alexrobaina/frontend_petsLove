@@ -52,8 +52,8 @@ const ShelterProfile = ({ user }) => {
     }
   }, [])
 
-  const handleDeletePet = useCallback(id => {
-    shelterStore.removePet(id)
+  const handleDeletePet = useCallback(idPet => {
+    shelterStore.removePet(idPet)
   }, [])
 
   const onError = useCallback(() => {
