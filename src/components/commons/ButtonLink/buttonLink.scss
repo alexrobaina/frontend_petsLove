@@ -1,9 +1,9 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
 .textLink {
   cursor: pointer;
   padding: 24px;
-  @include site-font('text', 500);
+  @include site-font("text", 500);
   font-size: 12px;
   letter-spacing: 1px;
   text-align: center;
@@ -16,6 +16,5 @@
   @include media-breakpoint-only(xs) {
     font-size: 10px;
     padding: 10px 0 10px 20px;
-    width: 50px;
   }
 }

@@ -77,6 +77,7 @@ const FormRegister = ({ registerStore }) => {
       history.push('/dashboard')
     }
   }, [authStore.isLogin])
+
   return (
     <>
       <AlertToast
@@ -194,8 +195,12 @@ const FormRegister = ({ registerStore }) => {
                       country="ar"
                       onChange={phone => handleChangePhone(phone)}
                       inputStyle={{
+                        outline: '0',
                         width: '100%',
                         height: '40px',
+                        borderRadius: '4px',
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
                         borderColor: registerStore.registerUser.phone.error ? '#f44336' : '#5e92f3',
                       }}
                     />
