@@ -54,15 +54,15 @@ const MedicalInformationCat = ({ pet }) => {
       <TextCardInformation
         value={felineFluVaccine}
         text={t('felineFluVaccine')}
-        icon={<GiLoveInjection size={25} />}
+        icon={<GiLoveInjection size={20} />}
       />
       <TextCardInformation
         value={felineLeukemiaVaccine}
         text={t('felineLeukemiaVaccine')}
-        icon={<GiLoveInjection size={25} />}
+        icon={<GiLoveInjection size={20} />}
       />
       <TextCardInformation
-        icon={<GiLoveInjection size={25} />}
+        icon={<GiLoveInjection size={20} />}
         value={felineInfectiousPeritonitisVaccine}
         text={t('felineInfectiousPeritonitisVaccine')}
       />
