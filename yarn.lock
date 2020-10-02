@@ -4448,6 +4448,11 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
+country-flag-icons@^1.0.2:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.2.5.tgz#784185503f3589e650b30402c93ef7cc2a3225a9"
+  integrity sha512-5V7GEpGLG+uyLUf0qs35Ub80/Nnjtymfax7wwv7DMJFeA9PZWVYIck7OAuBP2FSL8Xxaqm0qMNmpufVyHGEHlw==
+
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.4.tgz#d6e7f4bffa66736085a0762fd3a632684dabcc4e"
@@ -7260,6 +7265,13 @@ inline-style-prefixer@^3.0.8:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
+input-format@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/input-format/-/input-format-0.3.0.tgz#f662b1667b6d067769f44c717bcfcc92554bee75"
+  integrity sha512-7ipaXJ5Hnd2o62IxLRTCMcl7AOPzxU2PTfDunPDIaaAjq+Q8DcjI4/nmPo3fXJUvdTCX97BlW8d+7ArUhVTxAA==
+  dependencies:
+    prop-types "^15.7.2"
+
 inquirer@7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
@@ -8963,6 +8975,14 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+libphonenumber-js@^1.8.1:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.8.2.tgz#fa0a2ec8181f7494d0832c3ceed90919e01f1a40"
+  integrity sha512-JPE96E3fHg/Jz6purZF1JKV9wgLzHWup06bwMK4XiIgqw6HL0yVh4crn6w7ztRt56ivHdFi5vlUScRJ1n9TsBg==
+  dependencies:
+    minimist "^1.2.5"
+    xml2js "^0.4.17"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -11834,6 +11854,17 @@ react-phone-input-2@^2.13.8:
     lodash.startswith "^4.2.1"
     prop-types "^15.7.2"
 
+react-phone-number-input@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.1.0.tgz#55e153945d8a3c3294c3469e3c58dfdfc2984961"
+  integrity sha512-xJQXmpRtpVmwOM59JNUj8iOOBCRTM6VvV+5PAek+H/R6D+TTKO2QSelu9WMK+C18h17RznHe77QXlBx1Q3S6NA==
+  dependencies:
+    classnames "^2.2.5"
+    country-flag-icons "^1.0.2"
+    input-format "^0.3.0"
+    libphonenumber-js "^1.8.1"
+    prop-types "^15.7.2"
+
 react-places-autocomplete@^7.2.1:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.3.0.tgz#81a2345ae4a6fc35d7a712ccd4850d497553ba1b"
@@ -12720,7 +12751,7 @@ sass-loader@8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
-sax@^1.2.4, sax@~1.2.4:
+sax@>=0.6.0, sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -15020,6 +15051,19 @@ xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
+
+xml2js@^0.4.17:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.23.tgz#a0c69516752421eb2ac758ee4d4ccf58843eac66"
+  integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~11.0.0"
+
+xmlbuilder@~11.0.0:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
+  integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
 xmlchars@^2.1.1:
   version "2.2.0"

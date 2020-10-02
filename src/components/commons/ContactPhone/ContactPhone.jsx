@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import PhoneInput from 'react-phone-input-2'
 import styles from './contactPhone.scss'
 
-const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
+const ContactPhone = ({ phone, isWithBase, email, disabled, error }) => {
   const { t } = useTranslation('whatsappMessage')
   return (
     <div className={styles.containerInput}>
@@ -12,8 +12,17 @@ const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
         {phone !== '' ? (
           <PhoneInput
             country="ar"
+            renderStringAsFlag="ar"
             disabled={disabled}
-            inputStyle={isWithBase ? { width: '260px' } : { width: '100% !important' }}
+            inputStyle={{
+              outline: '0',
+              width: '100%',
+              height: '40px',
+              borderRadius: '4px',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: error ? '#f44336' : '#5e92f3',
+            }}
           />
         ) : (
           <div className={styles.containerEmail}>
@@ -27,13 +36,14 @@ const ContactPhone = ({ phone, isWithBase, email, disabled }) => {
 }
 
 ContactPhone.propTypes = {
+  error: PropTypes.bool,
+  email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   isWithBase: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool,
-  email: PropTypes.string.isRequired,
 }
 
 ContactPhone.defaultProps = {
+  error: false,
   disabled: false,
 }
 

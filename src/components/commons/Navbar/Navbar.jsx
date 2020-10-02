@@ -50,7 +50,6 @@ const Navbar = ({ children }) => {
   }
 
   /* Language is comment, please not delete. Thanks */
-
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -63,7 +62,7 @@ const Navbar = ({ children }) => {
               handleToggle={setToggleNavegationUser}
             />
           )}
-          {/* This is button its for go to search protectionist with google maps */}
+          {/* This is button for go to search protectionist with google maps */}
           <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
           <div onClick={goToHome} className={styles.logo}>
             {t('home')}
@@ -96,9 +95,13 @@ const Navbar = ({ children }) => {
           </>
         ) : (
           // if user is logout view buttons Login and Sing In
-          <div className={styles.containerButtonslog}>
-            <ButtonLink onclick={goToLogin} text={t('login')} />
-            <ButtonLink onclick={goToRegister} text={t('singIn')} />
+          <div className={styles.containerButtonslogin}>
+            <div className={styles.navbarLink}>
+              <ButtonLink onclick={goToLogin} text={t('login')} />
+            </div>
+            <div className={styles.navbarLink}>
+              <ButtonLink onclick={goToRegister} text={t('singIn')} />
+            </div>
             {/* <div className={styles.containerLanguage}>
               <ChangeLanguage />
             </div> */}

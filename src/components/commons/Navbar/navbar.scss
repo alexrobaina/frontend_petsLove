@@ -17,14 +17,17 @@
   position: relative;
 }
 
-.containerButtonslog {
-  display: grid;
+.containerButtonslogin {
+  display: flex;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+}
+
+.navbarLink {
+  width: 130px;
 
   @include media-breakpoint-only(xs) {
-    grid-gap: 15px;
+    width: 130px;
   }
 }
 
