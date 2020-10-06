@@ -7,6 +7,16 @@
 
 .containerDate {
   width: 100%;
+  position: relative;
+}
+
+.styleIconInputDate {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  width: 30px;
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 input:focus {
