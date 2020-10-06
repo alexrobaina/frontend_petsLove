@@ -5,9 +5,10 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Label from 'components/commons/Label'
+import { BiCalendarHeart } from 'react-icons/bi'
 import styles from './inputDate.scss'
 
-const InputDate = ({ label, handleDateChange, value }) => {
+const InputDate = ({ label, handleDateChange, value, size }) => {
   const [selectedDate, handleDate] = useState(new Date())
 
   const CustomInput = React.forwardRef((props, ref) => (
@@ -22,7 +23,10 @@ const InputDate = ({ label, handleDateChange, value }) => {
   return (
     <>
       {label && <Label text={label} />}
-      <div className={c(styles.containerDate, styles.myDatePickerWrapper)}>
+      <div
+        className={c(styles.containerDate, styles.myDatePickerWrapper)}
+        style={{ width: size ? `${size} px` : '100%' }}
+      >
         <DatePicker
           value={value}
           showYearDropdown
@@ -31,6 +35,7 @@ const InputDate = ({ label, handleDateChange, value }) => {
           customInput={React.cloneElement(<CustomInput />)}
           onChange={date => handleDate(date)}
         />
+        <BiCalendarHeart size={20} className={c(styles.styleIconInputDate)} />
       </div>
     </>
   )
@@ -38,11 +43,13 @@ const InputDate = ({ label, handleDateChange, value }) => {
 
 InputDate.propTypes = {
   label: PropTypes.string,
+  size: PropTypes.number,
   handleDateChange: PropTypes.func.isRequired,
 }
 
 InputDate.defaultProps = {
   label: '',
+  size: 0,
 }
 
 export default observer(InputDate)
