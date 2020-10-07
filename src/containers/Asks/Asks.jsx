@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import Footer from 'components/commons/Footer/index'
-import Chips from 'components/commons/Chips/Chips'
+import ButtonUp from 'components/commons/ScrollUp/index'
 import styles from './asks.scss'
 import QuestionAndAnswer from './QuestionAndAnswer/index'
 import data from '../../services/AsksService/data.json'
@@ -19,7 +19,7 @@ const Asks = () => {
                       );
             })}
         </div>
-        <Chips />
+        <ButtonUp />
         <Footer />
       </div>
     )
