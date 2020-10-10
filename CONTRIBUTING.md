@@ -1,34 +1,26 @@
-# **🐶 🐱 🦊 Contribuir con pets love 🐭 🐹 🐰**
+**🐶 🐱 🦊 Contribute to Pets Love 🐭 🐹 🐰**
 
-Si estas acá es porque amas a los animales o algo por el estilo 🐶 🐱 🦊<br>
-Así que maravilloso y desde ya gracias por colaborar
+If you're reading this, you probably really love animals 🐶 🐱 🦊
+That's excellent, thank you for collaborating!
 
-## ¿Cómo contribuir?
+## How to contribute?
 
-1. Estamos abiertos a todo tipo de contribución. Puedes proponer cambios con PR o creando una issue<br>
+1. We're open to contributions of all kinds. You can propose changes with pull requests (PR) or creating an issue.
+1. Reporting bugs. 🐛
+1. Improving the user experience design.
+1. Improving translations.
 
-2. Reportando bugs 🐛
+**Running the project🚀
 
-3. Mejorar el diseño de expericiea de usuario.
+1. Install nodejs v14.7.0 https://nodejs.org/
+1. Making a fork of the project and clone it.
+1. Execute `yarn` for installing dependencies (node-modules).
+1. Execute `yarn start`
 
-4. Mejorar las traducciones.
+With the developer mode open localhost:3000 http://localhost:3000
 
-# **Correr el proyecto 🚀**
+# Pets Love API
 
-1. Instalar nodejs v14.7.0<br>
-   https://nodejs.org/es/
-
-2. Hacer un fork y clonar el proyecto
-
-3. Ejecutar `yarn` para instalar las dependencias (node_modules)
-
-4. Ejectur `yarn start`
-
-La app en modo de desarrollo abre en el puerto 3000: <br> [http://localhost:3000](http://localhost:3000)
-
-# La Api de pets love
-
-Si quieres crear el ambiente local del backend te sugiero que visites el repositorio
-del back-end
+If you want to set local back-end I suggest you go to the back-end repository
 
 https://github.com/alexrobaina/api-pets-love
