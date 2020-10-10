@@ -39,8 +39,10 @@ También existe la posiblidad de que los refugios asignen mascotas a los adoptan
 
 ## **😻 ¿Cómo colaborar? 🐶**
 
-Si te gusta pets love y eres desarrollador o diseñador UX puedes crear issues para proponer ideas o mejoras.
+Si te gusta pets love y eres desarrollador o diseñador UX puedes crear issues para proponer ideas o mejoras.<br>
+
 Acá te explicamos como levantar el proyecto en tu local
+[Quiero contribuir](https://github.com/alexrobaina/frontend_petsLove/blob/create-readme.md/CONTRIBUTING.md)
 
 Tambien puedes aportar con cafecitos que seran destinados para el desarrollo y crecimiento de pets love.
 
