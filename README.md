@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **🐶 🐱 🦊 Pets Love 🐭 🐹 🐰**
 
-## Available Scripts
+Es una aplicación creada con la intención de ayudar a los refugios,veterinarios, voluntarios y todo aquel que quiera adoptar una mascota.
 
-In the project directory, you can run:
+Al momento de adoptar una mascota el proteccionista y el adoptante podrán hacer de forma más precisa el seguimiento de los principales cuidados de la mascota. Construimos un flujo de información más exacta con los datos veterinarios de la salud de nuestro amigo y fotografías que nos permitirán ver un historial que busca garantizar la seguridad y salud del mismo.
 
-### `yarn start`
+#
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **🐶 🐱 🦊 Los refugios 🐭 🐹 🐰**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+La idea es que los refugios puedan administrar y llevar un control minusioso de la entrada y salida de mascotas, generando información valiosa como un historial medico, la ubicación donde fueron encontradas y registrar quien es el adoptante.
 
-### `yarn test`
+A su vez un adoptante podra subir fotos y actualizar el perfil de la mascota sin poder borrarla.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El fin es fomentar la adopción responsable.
 
-### `yarn build`
+#
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **👩‍⚕️ Los veterinarios 👨‍⚕️**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Como veterinario podrás crear un perfil médico para las mascotas de una forma rápida y organizada. A su vez también tendrás la facilidad de generar información relevante como vacunas, notas sobre enfermedades, última visita al consultorio para poder compartir con tus clientes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Y no te preocupes, las mascotas de tus clientes o las mascotas creadas por usuarios veterinarios no aparecen en las busquedas de mascotas en adipción
 
-### `yarn eject`
+#
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## **👩‍⚕️ Los voluntarios/transito 👨‍⚕️**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Al regístrate como voluntario los refugios podrán contactarte. Como usuario que hace transito de mascotas vas a tener un registro de las mascotas que cuidaste y compartir información precisa de la evolución de las mascotas mientras estuvo a tu cuidado. El trabajo de todos es importante, a veces transitar es dar el amor necesario para recuperar la felicidad de nuestro amigo!
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## **😻 Los Adoptantes 🐶**
 
-## Learn More
+Adoptantes son todas aquellas personas que tienen una mascota. Cualquier persona que
+tenga una mascota bajo su cuidado podra crear un perfil para cada mascota y generar información creando la historia de vida de cada animalito.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+También existe la posiblidad de que los refugios asignen mascotas a los adoptantes para generar un vinculo inseparable entre mascotas, adoptantes y refugios.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **😻 ¿Cómo colaborar? 🐶**
 
-### Code Splitting
+Si te gusta pets love y eres desarrollador o diseñador UX puedes crear issues para proponer ideas o mejoras.
+Acá te explicamos como levantar el proyecto en tu local
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Tambien puedes aportar con cafecitos que seran destinados para el desarrollo y crecimiento de pets love.
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/petslove)
