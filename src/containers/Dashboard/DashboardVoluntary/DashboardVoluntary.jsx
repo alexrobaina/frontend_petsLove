@@ -73,11 +73,11 @@ const DashboardVoluntary = () => {
 
   return (
     <LayoutContainer>
-      <Title mBottom="30px" title={t('common:dashboard')} />
+      <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
           handleClick={handlePetsCare}
-          titleCard={t('volunteers.petsCare')}
+          titleCard={t('common:petsCare')}
           total={totalVolunteersPetsCare.value}
         />
         <DashboardCard
@@ -88,12 +88,12 @@ const DashboardVoluntary = () => {
         <DashboardCard
           handleClick={handleSearchVolanteers}
           icon={<AiFillFileAdd size={25} />}
-          titleCard={t('volunteers.searchVolanteers')}
+          titleCard={t('searchVolanteers')}
         />
         <DashboardCard
           handleClick={handleSearchShelters}
           icon={<FaPeopleCarry size={22} />}
-          titleCard={t('volunteers.searchShelters')}
+          titleCard={t('searchShelters')}
         />
       </div>
       <ListPets
@@ -104,7 +104,7 @@ const DashboardVoluntary = () => {
         handleSearch={handleSearch}
         handleDelete={handleDeletePet}
         handleChangePage={handleChangePage}
-        title={swithPets ? t('common:myPets') : t('volunteers.needHome')}
+        title={swithPets ? t('common:myPets') : t('common:needHome')}
       />
     </LayoutContainer>
   )

@@ -14,13 +14,13 @@ class Pet {
     this._id = id
     this.name = new InputStore()
     this.city = new InputStore()
+    this.notes = new InputStore()
     this.gender = new InputStore()
-    this.history = new InputStore()
-    this.birthday = new InputStore()
     this.history = new InputStore()
     this.image = new InputStore([])
     this.country = new InputStore()
     this.userVet = new InputStore()
+    this.birthday = new InputStore()
     this.textarea = new InputStore()
     this.category = new InputStore()
     this.location = new InputStore()
@@ -66,6 +66,7 @@ class Pet {
     this.adopted = pet.adopted
     this.city.setValue(pet.city)
     this.name.setValue(pet.name)
+    this.notes.setValue(pet.notes)
     this.image.setValue(pet.image)
     this.gender.setValue(pet.gender)
     this.country.setValue(pet.country)
@@ -133,6 +134,7 @@ class Pet {
       name: this.name.value,
       city: this.city.value,
       adopted: this.adopted,
+      notes: this.notes.value,
       gender: this.gender.value,
       country: this.country.value,
       history: this.history.value,
@@ -282,11 +284,14 @@ class Pet {
   }
 
   setNotes(value) {
-    if (this.category === 'cat') {
+    if (this.category.value === 'cat') {
       this.medicalInformationCat.setNotes(value)
     }
-    if (this.category === 'dog') {
+    if (this.category.value === 'dog') {
       this.medicalInformationDog.setNotes(value)
+    }
+    if (this.category.value === 'exotic') {
+      this.notes.setValue(value)
     }
   }
 
@@ -335,6 +340,10 @@ class Pet {
 
   get getLost() {
     return this.lost
+  }
+
+  get getNotes() {
+    return this.notes.value
   }
 
   get getUrgent() {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import InformationPet from 'components/InformationPet'
@@ -9,8 +10,8 @@ import styles from './tabViewInformationPet.scss'
 
 const TabViewInformationPet = ({ pet, history }) => {
   const [step, setStep] = useState(1)
-  const { t } = useTranslation('profileUser')
-
+  const { t } = useTranslation()
+  console.log(pet.getNotes)
   return (
     <div className={styles.containerCard}>
       <div className={styles.contactInformation}>
@@ -56,6 +57,13 @@ const TabViewInformationPet = ({ pet, history }) => {
                 <MedicalInformationCat title={t('medicalInformation')} pet={pet} />
               </>
             )}
+            {pet.category.value === 'exotic' && (
+              <div
+                className={c(styles.information, styles.history, step === 2 && styles.selectedStep)}
+              >
+                {pet.getNotes}
+              </div>
+            )}
           </div>
           <div className={c(styles.information, styles.history, step === 3 && styles.selectedStep)}>
             {history}
@@ -74,4 +82,4 @@ TabViewInformationPet.defaultProps = {
   history: '',
 }
 
-export default TabViewInformationPet
+export default observer(TabViewInformationPet)

@@ -41,7 +41,7 @@ const LandingPage = () => {
         text={t('textVolunteers')}
         title={t('titleVolunteers')}
       />
-      <ExplicationModule title={t('vetTitle')} text={t('vetText')} image={vet} />
+      <ExplicationModule title={t('veterinaryTitle')} text={t('veterinaryText')} image={vet} />
       <Footer />
     </>
   )

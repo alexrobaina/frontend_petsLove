@@ -1,11 +1,6 @@
 {
   "title": "Find a pet for adoption",
-  "subTitle": "Please, do not buy a breed pet, adopt a homeless one",
-  "gender": "Sex",
-  "category": "Category",
-  "city": "City",
-  "country": "Country",
-  "search": "Search",
   "labelGoogleAutocomplete": "What is your location?",
-  "placeholderGoogleAutocomplete": "Search pets in your location..."
+  "placeholderGoogleAutocomplete": "Search pets in your location...",
+  "searchAllCategory": "All categories"
 }

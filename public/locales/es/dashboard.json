@@ -1,33 +1,17 @@
 {
-  "adopterUser": {
-    "rol": "Yo adopto",
-    "historyPets": "Todas las mascotas",
-    "myPets": "Mis mascotas",
-    "addPet": "Agregar mascota",
-    "searchPets": "Buscar mascotas",
-    "searchShelters": "Buscar Refugios"
-  },
-  "shelter": {
-    "petsAdopt": "En Adopción",
-    "petsAdopted": "Adoptadas",
-    "adopted": "Adoptadas",
-    "needHome": "Necesitan hogar",
-    "addPet": "Crear Mascota",
-    "searchPets": "Buscar mascotas",
-    "searchVolanteers": "Buscar Voluntarios"
-  },
+  "dashboard": "Panel de control",
+  "petsAdopt": "En Adopción",
+  "petsAdopted": "Adoptadas",
+  "addPet": "Crear Mascota",
+  "searchVolanteers": "Buscar Voluntarios",
+  "adopted": "Adoptadas",
+  "searchShelters": "Buscar Refugios",
+
   "volunteers": {
-    "titleCard": "Necesitan hogar",
-    "petsCare": "Mascotas Cuidadas",
-    "titlePetsList": "Lista de mascotas cuidadas",
-    "searchShelters": "Buscar Refugios",
-    "searchVolanteers": "Buscar Voluntarios",
-    "needHome": "Necesitan hogar"
+    "titlePetsList": "Lista de mascotas cuidadas"
   },
   "veterinary": {
     "totalPets": "Mascotas Atendidas",
-    "titlePetsList": "Lista de mascotas atendidas",
-    "searchShelters": "Buscar Refugios",
-    "addPet": "Crear Mascota"
+    "titlePetsList": "Lista de mascotas atendidas"
   }
 }

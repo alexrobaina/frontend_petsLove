@@ -1,13 +1,6 @@
 {
   "title": "Busca mascotas en adopción",
-  "subTitle": "No combres mascotas, adopta una sin hogar",
-  "labelGooglee": "Tu dirección",
-  "placeholderGoogle": "Busca tu ubicación",
-  "gender": "Genero",
-  "category": "Categoria",
-  "city": "Ciudad",
   "labelGoogleAutocomplete": "¿Cual es tu dirección?",
   "placeholderGoogleAutocomplete": "Busca mascotas cerca de tu ubicación...",
-  "country": "País",
-  "search": "Buscar"
+  "searchAllCategory": "Todas las categorias"
 }

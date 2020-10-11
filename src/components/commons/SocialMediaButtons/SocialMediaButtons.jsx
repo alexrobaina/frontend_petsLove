@@ -8,8 +8,12 @@ function SocialMediaButtons() {
   const { t } = useTranslation('socialMediaButtons')
   return (
     <div className={styles.container}>
-      <a href="https://github.com/alexrobaina" rel="noopener noreferrer" target="_blank">
-        <Tooltip title={t('creatorPetsLove')}>
+      <a
+        href="https://github.com/alexrobaina/frontend_petsLove"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Tooltip title={t('repositoryPetsLove')}>
           <div className={styles.icon}>
             <FaGithub size={25} />
           </div>
@@ -23,7 +27,7 @@ function SocialMediaButtons() {
         </Tooltip>
       </a>
       <a href="https://www.instagram.com/petslove.app" rel="noopener noreferrer" target="_blank">
-        <Tooltip title="PetsLove Instagram">
+        <Tooltip title="Instagram">
           <div className={styles.icon}>
             <FaInstagram size={25} />
           </div>
@@ -34,7 +38,7 @@ function SocialMediaButtons() {
         rel="noopener noreferrer"
         href="https://www.facebook.com/Pets-love-316657072374034"
       >
-        <Tooltip title="PetsLove Facebook">
+        <Tooltip title="Facebook">
           <div className={styles.icon}>
             <FaFacebookSquare size={25} />
           </div>

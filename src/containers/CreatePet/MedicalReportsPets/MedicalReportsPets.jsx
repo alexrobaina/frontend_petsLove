@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import CreatePetStore from 'stores/CreatePetStore'
 import FormCatsMedicalReportsPets from '../FormCatsMedicalReportsPets'
 import FormDogsMedicalReportsPets from '../FormDogsMedicalReportsPets'
+import FormExoticMedicalReportsPets from '../FormExoticMedicalReportsPets'
 
 const MedicalReportsPets = ({ createPetStore }) => {
   useEffect(() => {
@@ -13,8 +14,11 @@ const MedicalReportsPets = ({ createPetStore }) => {
   if (createPetStore.pet.category.value === 'cat') {
     return <FormCatsMedicalReportsPets createPetStore={createPetStore} />
   }
+  if (createPetStore.pet.category.value === 'cat') {
+    return <FormDogsMedicalReportsPets createPetStore={createPetStore} />
+  }
 
-  return <FormDogsMedicalReportsPets createPetStore={createPetStore} />
+  return <FormExoticMedicalReportsPets createPetStore={createPetStore} />
 }
 
 MedicalReportsPets.propTypes = {

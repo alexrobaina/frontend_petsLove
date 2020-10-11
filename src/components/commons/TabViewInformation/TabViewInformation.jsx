@@ -10,7 +10,7 @@ import styles from './tabViewInformation.scss'
 const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt }) => {
   const [toggleToast, setToggleToast] = useState(false)
   const [step, setStep] = useState(1)
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation()
 
   const handleWhatsapp = useCallback(() => {
     if (phone) {
@@ -39,7 +39,7 @@ const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt 
   return (
     <div className={styles.containerCard}>
       <AlertToast
-        text={t('common:callUser')}
+        text={t('callUser')}
         toggleToast={toggleToast}
         handleToggleToast={handleToggleToast}
       />
@@ -50,7 +50,7 @@ const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt 
               onClick={() => setStep(1)}
               className={c(styles.actionButton, step === 1 && styles.actionButtonSelected)}
             >
-              {isPet ? t('common:history') : t('common:aboutUs')}
+              {isPet ? t('history') : t('aboutUs')}
             </div>
           )}
           {requirementsToAdopt && (
@@ -58,14 +58,14 @@ const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt 
               onClick={() => setStep(2)}
               className={c(styles.actionButton, step === 2 && styles.actionButtonSelected)}
             >
-              {t('common:requirementsToAdopt')}
+              {t('requirementsToAdopt')}
             </div>
           )}
           <div
             onClick={() => setStep(3)}
             className={c(styles.actionButton, step === 3 && styles.actionButtonSelected)}
           >
-            {t('common:contact')}
+            {t('contact')}
           </div>
         </div>
         <div className={styles.containerInformation}>
@@ -82,11 +82,11 @@ const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt 
           <div className={c(styles.information, step === 3 && styles.contactData)}>
             {phone && (
               <div className={styles.contactButton}>
-                <Button bigButton handleClick={handleWhatsapp} text="Contactar por whatsapp" />
+                <Button bigButton handleClick={handleWhatsapp} text={t('whatssapButton')} />
               </div>
             )}
             <div className={styles.contact}>
-              {t('common:email')}:<span className={styles.email}>{email}</span>
+              {t('email')}:<span className={styles.email}>{email}</span>
             </div>
           </div>
         </div>

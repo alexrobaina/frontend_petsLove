@@ -1,33 +1,17 @@
 {
-  "adopterUser": {
-    "rol": "I'm Adopter",
-    "historyPets": "All pets",
-    "myPets": "My pets",
-    "addPet": "Add pet",
-    "searchPets": "Search Pets",
-    "searchShelters": "Search Shelters"
-  },
-  "shelter": {
-    "petsAdopt": "For adoption",
-    "petsAdopted": "Adopted",
-    "adopted": "Adopted",
-    "needHome": "Need a home",
-    "addPet": "Add pet",
-    "searchPets": "Search Pets",
-    "searchVolanteers": "Search Volanteers"
-  },
+  "dashboard": "Dashboard",
+  "petsAdopt": "For adoption",
+  "petsAdopted": "Adopted",
+  "addPet": "Add pet",
+  "adopted": "Adopted",
+  "searchVolanteers": "Search Volanteers",
+  "searchShelters": "Search Shelters",
+
   "volunteers": {
-    "titleCard": "Need home",
-    "titlePetsList": "List of pets care",
-    "petsCare": "Pets Care",
-    "searchShelters": "Search Shelters",
-    "searchVolanteers": "Search Volanteers",
-    "needHome": "Need home"
+    "titlePetsList": "List of pets care"
   },
   "veterinary": {
     "totalPets": "Pets Nurse",
-    "titlePetsList": "list of pets cared",
-    "addPet": "Add pet",
-    "searchShelters": "Search Shelters"
+    "titlePetsList": "list of pets cared"
   }
 }

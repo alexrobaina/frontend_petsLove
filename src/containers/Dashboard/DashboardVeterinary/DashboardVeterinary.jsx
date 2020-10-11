@@ -50,7 +50,7 @@ const DashboardVeterinary = () => {
 
   return (
     <LayoutContainer>
-      <Title mBottom="30px" title={t('common:dashboard')} />
+      <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
           titleCard={t('veterinary.totalPets')}
@@ -58,12 +58,12 @@ const DashboardVeterinary = () => {
         />
         <DashboardCard
           handleClick={handleCreatePet}
-          titleCard={t('veterinary.addPet')}
+          titleCard={t('addPet')}
           icon={<AiFillFileAdd size={25} />}
         />
         <DashboardCard
           icon={<FaPeopleCarry size={22} />}
-          titleCard={t('veterinary.searchShelters')}
+          titleCard={t('searchShelters')}
           handleClick={handleSearchProtecctionist}
         />
       </div>
