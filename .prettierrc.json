@@ -13,16 +13,16 @@
       }
     },
     {
-      "files": "./**/*.js",
+      "files": "./**/*.{js,jsx}",
       "options": {
-        "parser": "babylon",
+        "parser": "babel",
         "singleQuote": false
       }
     },
     {
       "files": "src/**/*.{scss,css}",
       "options": {
-        "parser": "postcss",
+        "parser": "scss",
         "singleQuote": false,
         "semi": true
       }
