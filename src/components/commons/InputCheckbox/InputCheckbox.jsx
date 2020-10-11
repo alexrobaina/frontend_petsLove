@@ -58,7 +58,7 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
           {value ? (
             <div className={styles.valueAndLabel}>
               <label className={styles.label}>{text}</label>
-              <div className={styles.value}>Yes</div>
+              <div className={styles.value}>{t('yes')}</div>
             </div>
           ) : (
             <div className={styles.valueAndLabel}>
@@ -66,7 +66,7 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
                 <label className={styles.label}>{text}</label>
               </div>
               <div>
-                <div className={styles.value}>No</div>
+                <div className={styles.value}>{t('no')}</div>
               </div>
               <div className={styles.lineLabel} />
             </div>
