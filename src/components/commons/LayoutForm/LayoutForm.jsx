@@ -4,14 +4,7 @@ import { Animated } from 'react-animated-css'
 import ButtonBack from 'components/commons/ButtonBack'
 import styles from './layoutForm.scss'
 
-const LayoutForm = ({
-  title,
-  information,
-  children,
-  handleBack,
-  viewButtonBack,
-  textButton,
-}) => {
+const LayoutForm = ({ title, information, children, handleBack, viewButtonBack, textButton }) => {
   return (
     <Animated
       animationIn="fadeIn"

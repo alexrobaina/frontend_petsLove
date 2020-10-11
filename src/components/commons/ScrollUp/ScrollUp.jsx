@@ -3,9 +3,9 @@ import { FaArrowCircleUp } from 'react-icons/fa'
 import styles from './scrollUp.scss'
 
 const ButtonBack = () => {
-  const scrollTop = () =>{
-    window.scrollTo({top: 0, behavior: 'smooth'});
- };
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
   return (
     <div onClick={scrollTop} className={styles.containerButton}>
       <div className={styles.up}>
