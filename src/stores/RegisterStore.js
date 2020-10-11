@@ -3,7 +3,7 @@ import RegisterService from 'services/RegisterService'
 import RegisterUser from 'models/RegisterUser'
 import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import InputStore from './InputStore'
-
+import { useTranslation } from 'react-i18next';
 const REQUIRED = 'common:isRequired'
 const USERNAME_EXIST = 'common:usernameExist'
 const USER_EXIST = 'common:userExist'
@@ -25,6 +25,7 @@ class RegisterStore {
   constructor() {
     this.registerService = new RegisterService()
     this.registerUser = new RegisterUser()
+    const { t } = useTranslation();
 
     this.init()
   }
