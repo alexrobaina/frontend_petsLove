@@ -159,8 +159,8 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
           value={getGender}
           inputStore={gender}
           options={genderOptions}
-          label={t('common:gender')}
-          placeholder={t('common:gender')}
+          label={t('common:sex')}
+          placeholder={t('common:sex')}
           handleChange={handleChangeGender}
         />
       </div>

@@ -73,7 +73,7 @@ const InformationPet = ({ pet }) => {
         />
         <TextCardInformation
           value={t(getGender)}
-          text={t('common:gender')}
+          text={t('common:sex')}
           icon={<FaTransgender size={20} />}
         />
         <TextCardInformation

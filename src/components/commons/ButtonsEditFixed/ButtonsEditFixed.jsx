@@ -7,7 +7,7 @@ import Button from 'components/commons/Button'
 import styles from './buttonsEditFixed.scss'
 
 const ButtonsEditFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit, isLoading }) => {
-  const { t } = useTranslation('buttons')
+  const { t } = useTranslation()
 
   return (
     <div className={styles.buttonsContainer}>
