@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
 import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import InputStore from 'stores/InputStore'
 import Label from 'components/commons/Label'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './textarea.scss'
 
 const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputStore, label }) => {
+  const { t } = useTranslation();
   return (
     <>
       {label && isEdit && <Label text={label} />}
@@ -23,7 +25,7 @@ const Textarea = ({ isEdit, value, handleChange, placeholder, rows, cols, inputS
       ) : (
         <ViewValue placeholder={placeholder} value={value} />
       )}
-      {inputStore && <div className={styles.errorMessage}>{inputStore.errorMessage}</div>}
+      {inputStore && <div className={styles.errorMessage}>{t(inputStore.errorMessage)}</div>}
     </>
   )
 }

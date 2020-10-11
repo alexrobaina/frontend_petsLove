@@ -36,7 +36,6 @@ const FormLogin = () => {
   const { isLoading, isErrorLogin, email, password } = rootStore.authStore
 
   const keyPressedHandler = (event) =>  {
-    console.log( email, password, event.key);
     if(event.key === "Enter"){
       login()
     }
