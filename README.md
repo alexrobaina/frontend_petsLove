@@ -20,7 +20,7 @@ El fin es fomentar la adopción responsable.
 
 Como veterinario podrás crear un perfil médico para las mascotas de una forma rápida y organizada. A su vez también tendrás la facilidad de generar información relevante como vacunas, notas sobre enfermedades, última visita al consultorio para poder compartir con tus clientes.
 
-Y no te preocupes, las mascotas de tus clientes o las mascotas creadas por usuarios veterinarios no aparecen en las busquedas de mascotas en adipción
+Y no te preocupes, las mascotas de tus clientes o las mascotas creadas por usuarios veterinarios no aparecen en las busquedas de mascotas en adopción
 
 #
 
@@ -35,7 +35,7 @@ Al regístrate como voluntario los refugios podrán contactarte. Como usuario qu
 Adoptantes son todas aquellas personas que tienen una mascota. Cualquier persona que
 tenga una mascota bajo su cuidado podra crear un perfil para cada mascota y generar información creando la historia de vida de cada animalito.
 
-También existe la posiblidad de que los refugios asignen mascotas a los adoptantes para generar un vinculo inseparable entre mascotas, adoptantes y refugios.
+También existe la posiblidad de que los refugios asignen mascotas a los adoptantes para generar un vínculo inseparable entre mascotas, adoptantes y refugios.
 
 ## **😻 ¿Cómo colaborar? 🐶**
 
@@ -44,6 +44,6 @@ Si te gusta pets love y eres desarrollador o diseñador UX puedes crear issues p
 Acá te explicamos como levantar el proyecto en tu local
 [Quiero contribuir](https://github.com/alexrobaina/frontend_petsLove/blob/create-readme.md/CONTRIBUTING.md)
 
-Tambien puedes aportar con cafecitos que seran destinados para el desarrollo y crecimiento de pets love.
+También puedes aportar con cafecitos que seran destinados para el desarrollo y crecimiento de pets love.
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/petslove)
