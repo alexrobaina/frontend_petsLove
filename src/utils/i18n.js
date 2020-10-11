@@ -23,7 +23,7 @@ const options = {
 
   // optional expire and domain for set cookie
   cookieMinutes: 10,
-  cookieDomain: 'myDomain',
+  cookieDomain: 'pets-love',
 
   // optional htmlTag with lang attribute, the default is:
   htmlTag: document.documentElement,

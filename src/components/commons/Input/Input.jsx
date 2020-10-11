@@ -16,6 +16,7 @@ const Input = ({
   title,
   value,
   label,
+  onKeyPress,
   onBlur,
   isEdit,
   required,
@@ -51,6 +52,7 @@ const Input = ({
             required={required}
             disabled={disabled}
             defaultValue={value}
+            onKeyPress={onKeyPress}
             onChange={handleChange}
             placeholder={placeholder}
             type={type === 'password' ? viewPassword : type}
@@ -86,6 +88,7 @@ Input.propTypes = {
   isEdit: PropTypes.bool,
   label: PropTypes.string,
   value: PropTypes.string,
+  onKeyPress: PropTypes.func,
   onBlur: PropTypes.string,
   multiple: PropTypes.bool,
   isErrorEmail: PropTypes.bool,
@@ -104,6 +107,7 @@ Input.defaultProps = {
   multiple: false,
   inputStore: null,
   handleChange: null,
+  onKeyPress: null,
   isErrorEmail: false,
 }
 
