@@ -100,7 +100,7 @@ const Navbar = ({ children }) => {
               <ButtonLink onclick={goToLogin} text={t('login')} />
             </div>
             <div className={styles.navbarLink}>
-              <ButtonLink onclick={goToRegister} text={t('singIn')} />
+              <ButtonLink onclick={goToRegister} text={t('common:singIn')} />
             </div>
             <div className={styles.containerLanguage}>
               <ChangeLanguage />
