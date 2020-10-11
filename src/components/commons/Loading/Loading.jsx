@@ -21,11 +21,7 @@ const Loading = ({ small, loadingRing }) => {
   const classes = useStyles()
 
   return (
-    <Animated
-      animationIn="fadeIn"
-      animationOut="fadeInUp"
-      animationInDuration={100}
-    >
+    <Animated animationIn="fadeIn" animationOut="fadeInUp" animationInDuration={100}>
       {loadingRing ? (
         <div className={classes.root}>
           <CircularProgress color="secondary" />

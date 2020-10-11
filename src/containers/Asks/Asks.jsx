@@ -8,23 +8,23 @@ import imageAsks from './shelter.jpg'
 import styles from './asks.scss'
 
 const Asks = () => {
-    return( 
-      <>
-        <LayoutContainer>
-          <div className={styles. asksPage}>
-            <img className={styles.imagePNF} src={imageAsks} alt="Not Found" />
-            <div className={styles.mainTitle} />
-            <div className={styles.container}>
-              {data.map(qAndA => {
-                return <QuestionAndAnswer question={qAndA.question} answer={qAndA.answer} />
-              })}
-            </div>
-            <ButtonUp />
+  return (
+    <>
+      <LayoutContainer>
+        <div className={styles.asksPage}>
+          <img className={styles.imagePNF} src={imageAsks} alt="Not Found" />
+          <div className={styles.mainTitle} />
+          <div className={styles.container}>
+            {data.map(qAndA => {
+              return <QuestionAndAnswer question={qAndA.question} answer={qAndA.answer} />
+            })}
           </div>
-        </LayoutContainer>
-        <Footer />
-      </>
-    )
+          <ButtonUp />
+        </div>
+      </LayoutContainer>
+      <Footer />
+    </>
+  )
 }
 
 export default Asks
