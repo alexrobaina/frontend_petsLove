@@ -2,11 +2,13 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
+import { useTranslation } from 'react-i18next'
 import Switch from 'react-input-switch'
 import useMediaQuery from 'utils/Hooks'
 import styles from './inputCheckbox.scss'
 
 const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
+  const { t } = useTranslation()
   const mediaQuery = useMediaQuery('(max-width: 500px)')
 
   return (
@@ -46,7 +48,7 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
               />
             </div>
             <div className={styles.containerAnswer}>
-              <div className={c(styles.answer, value && styles.isYes)}>{value ? 'yes' : 'no'}</div>
+              <div className={c(styles.answer, value && styles.isYes)}>{value ? t('yes') : t('no')}</div>
             </div>
           </div>
         </div>

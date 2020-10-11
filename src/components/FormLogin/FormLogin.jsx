@@ -35,6 +35,13 @@ const FormLogin = () => {
 
   const { isLoading, isErrorLogin, email, password } = rootStore.authStore
 
+  const keyPressedHandler = (event) =>  {
+    console.log( email, password, event.key);
+    if(event.key === "Enter"){
+      login()
+    }
+  }
+
   return (
     <div className={styles.login}>
       {isLoading ? (
@@ -50,6 +57,7 @@ const FormLogin = () => {
               value={email.value}
               handleChange={handleEmail}
               placeholder={t('login.email')}
+              onKeyPress={(event) => keyPressedHandler(event)}
             />
           </div>
           <div className={styles.inputForm}>
@@ -59,6 +67,7 @@ const FormLogin = () => {
               value={password.value}
               handleChange={handlePassword}
               placeholder={t('login.password')}
+              onKeyPress={keyPressedHandler}
             />
           </div>
           <div className={styles.buttonLogin}>
