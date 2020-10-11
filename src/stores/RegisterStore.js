@@ -3,6 +3,7 @@ import RegisterService from 'services/RegisterService'
 import RegisterUser from 'models/RegisterUser'
 import { validationPassword, validationPasswordMatch } from 'utils/validationPassword'
 import InputStore from './InputStore'
+
 const REQUIRED = 'common:isRequired'
 const USERNAME_EXIST = 'common:usernameExist'
 const USER_EXIST = 'common:userExist'
