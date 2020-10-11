@@ -19,7 +19,7 @@ const AdopterProfile = ({ user }) => {
   const [limit] = useState(LIMIT_LIST)
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const adopterStore = useLocalStore(() => new AdopterStore(id))
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation()
   const { email, image, lat, lng, aboutUs, _id, phone, role, username } = user
 
   const handleChangePage = useCallback((e, newPage) => {
@@ -60,12 +60,12 @@ const AdopterProfile = ({ user }) => {
             <Title title={username.value.split('-').join(' ')} />
             {role && (
               <div className={styles.containerAddress}>
-                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+                <div className={styles.role}>{t(`${role.value}`)}</div>
               </div>
             )}
           </div>
           <div className={styles.containerDashboardCard}>
-            <DashboardCard titleCard={t('common:myPets')} total={totalPets} />
+            <DashboardCard titleCard={t('myPets')} total={totalPets} />
           </div>
         </div>
         <div className={styles.containerCardInformation}>
@@ -80,7 +80,7 @@ const AdopterProfile = ({ user }) => {
           totalPets={totalPets}
           handleDelete={handleDeletePet}
           handleChangePage={handleChangePage}
-          title={totalPets > 1 ? t('common:myPets') : t('common:myPet')}
+          title={totalPets > 1 ? t('myPets') : t('myPet')}
         />
       </LayoutProfile>
     </>

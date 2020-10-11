@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import c from 'classnames'
-import { MdLanguage } from 'react-icons/md'
+import { FaLanguage } from 'react-icons/fa'
 import styles from './changeLanguage.scss'
 
 const ChangeLanguage = () => {
@@ -24,7 +24,7 @@ const ChangeLanguage = () => {
   return (
     <>
       <div onClick={() => setToggleMenu(!toggleMenu)} className={styles.buttonMenu}>
-        <MdLanguage size={24} />
+        <FaLanguage size={38} />
       </div>
       <div
         onMouseLeave={() => setToggleMenu(true)}

@@ -22,7 +22,7 @@ const ShelterProfile = ({ user }) => {
   const { id } = useParams()
   const shelterStore = useLocalStore(() => new ShelterStore(id))
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation()
 
   const handleForAdoption = useCallback(() => {
     shelterStore.setSwithPets(false)
@@ -106,13 +106,13 @@ const ShelterProfile = ({ user }) => {
             )}
             {role && (
               <div className={styles.containerAddress}>
-                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+                <div className={styles.role}>{t(`${role.value}`)}</div>
               </div>
             )}
           </div>
           <div className={styles.containerDashboardCard}>
-            <DashboardCard titleCard={t('common:needHome')} total={totalPetsForAdoption.value} />
-            <DashboardCard titleCard={t('common:adopted')} total={totalPetsAdopted.value} />
+            <DashboardCard titleCard={t('needHome')} total={totalPetsForAdoption.value} />
+            <DashboardCard titleCard={t('adopted')} total={totalPetsAdopted.value} />
           </div>
         </div>
         <div className={styles.containerCardInformation}>
@@ -127,10 +127,10 @@ const ShelterProfile = ({ user }) => {
         </div>
         <div className={styles.containerPets}>
           <div className={styles.buttonsSwich}>
-            <Button bigButton handleClick={handleForAdoption} text={t('common:needHome')} />
+            <Button bigButton handleClick={handleForAdoption} text={t('needHome')} />
           </div>
           <div className={styles.buttonsSwich}>
-            <Button bigButton handleClick={handleAdopted} text={t('common:adopted')} />
+            <Button bigButton handleClick={handleAdopted} text={t('adopted')} />
           </div>
         </div>
         <ListPets
@@ -141,7 +141,7 @@ const ShelterProfile = ({ user }) => {
           handleSearch={handleSearch}
           handleDelete={handleDeletePet}
           handleChangePage={handleChangePage}
-          title={swithPets ? t('common:adopted') : t('common:needHome')}
+          title={swithPets ? t('adopted') : t('needHome')}
         />
       </LayoutProfile>
     </>

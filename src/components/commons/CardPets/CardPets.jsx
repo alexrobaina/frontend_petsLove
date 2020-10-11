@@ -30,7 +30,7 @@ const CardPets = ({
   handleDelete,
   activityLevel,
 }) => {
-  const { t } = useTranslation('petsCard')
+  const { t } = useTranslation()
   const [isImageNotFound, setIsImageNotFound] = useState(true)
   const utils = new Utils()
 
@@ -60,9 +60,9 @@ const CardPets = ({
         </div>
         <div className={styles.tableInfo}>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>{t('common:type')}</div>
+            <div className={styles.titleItem}>{t('type')}</div>
             <div className={styles.infoItem}>
-              {t(`common:${category}`)}
+              {t(`${category}`)}
               {!category && (
                 <span role="img" aria-labelledby="emoji" className={styles.emoji}>
                   🤷‍♀️
@@ -72,9 +72,9 @@ const CardPets = ({
           </div>
           <div className={styles.containerItem}>
             <div className={styles.titleItem}>
-              <div className={styles.titleItem}>{t('common:activityLevel')}</div>
+              <div className={styles.titleItem}>{t('activityLevel')}</div>
               {activityLevel ? (
-                <div className={styles.infoItem}>{t(`common:${activityLevel}`)}</div>
+                <div className={styles.infoItem}>{t(`${activityLevel}`)}</div>
               ) : (
                 <span role="img" aria-labelledby="emoji" className={styles.emoji}>
                   🤷‍♀️
@@ -83,20 +83,20 @@ const CardPets = ({
             </div>
           </div>
           <div className={styles.containerItem}>
-            <div className={styles.titleItem}>{t(`common:gender`)}</div>
-            <div className={styles.infoItem}>{t(`common:${gender}`)}</div>
+            <div className={styles.titleItem}>{t(`sex`)}</div>
+            <div className={styles.infoItem}>{t(`${gender}`)}</div>
           </div>
         </div>
         {isAdopted && <Chips text={t('adopted')} isAdopted={isAdopted} />}
         <div className={styles.line} />
         <div className={styles.containerButtos}>
           {canEdit && userLogin !== null && (
-            <Tooltip arrow title={t('common:editProfile')}>
+            <Tooltip arrow title={t('editProfile')}>
               <div>
                 <Button
                   circle
                   bigButton
-                  text={t('common:edit')}
+                  text={t('edit')}
                   icon={<GrEdit size={20} />}
                   handleClick={() => handleEdit(id)}
                 />
@@ -104,25 +104,25 @@ const CardPets = ({
             </Tooltip>
           )}
           {goToPet && (
-            <Tooltip arrow title={t('common:goToProfile')}>
+            <Tooltip arrow title={t('goToProfile')}>
               <div>
                 <Button
                   circle
                   bigButton
                   icon={<AiOutlineFolderView size={24} />}
-                  text={t('common:goToProfile')}
+                  text={t('goToProfile')}
                   handleClick={() => goToPet(id)}
                 />
               </div>
             </Tooltip>
           )}
           {canDelete && userLogin !== null && (
-            <Tooltip arrow title={t('common:deletePet')}>
+            <Tooltip arrow title={t('deletePet')}>
               <div>
                 <Button
                   circle
                   bigButton
-                  text={t('common:delete')}
+                  text={t('delete')}
                   handleClick={() => handleDelete(id)}
                   icon={<RiDeleteBin2Line size={24} />}
                 />

@@ -23,6 +23,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
   const categoryOptions = [
     { value: 'dog', label: t('common:dog') },
     { value: 'cat', label: t('common:cat') },
+    { value: 'exotic', label: t('common:exotic') },
   ]
 
   const genderOptions = [

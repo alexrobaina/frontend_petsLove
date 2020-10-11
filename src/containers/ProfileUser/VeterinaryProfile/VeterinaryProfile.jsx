@@ -17,7 +17,7 @@ const VeterinaryProfile = ({ user }) => {
   const [page, setPage] = useState(1)
   const [limit] = useState(LIMIT_LIST)
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation()
   const veterinaryStore = useLocalStore(() => new VeterinaryStore(user._id))
 
   const handleChangePage = useCallback((e, newPage) => {
@@ -71,12 +71,12 @@ const VeterinaryProfile = ({ user }) => {
             )}
             {role && (
               <div className={styles.containerAddress}>
-                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+                <div className={styles.role}>{t(`${role.value}`)}</div>
               </div>
             )}
           </div>
           <div className={styles.containerDashboardCard}>
-            <DashboardCard titleCard={t('veterinary.petsCared')} total={totalPets} />
+            <DashboardCard titleCard={t('petsCared')} total={totalPets} />
           </div>
         </div>
         <div className={styles.containerCardInformation}>
@@ -91,7 +91,7 @@ const VeterinaryProfile = ({ user }) => {
           totalPets={totalPets}
           handleSearch={handleSearch}
           handleDelete={handleDeletePet}
-          title={t('veterinary.petsCared')}
+          title={t('petsCared')}
           handleChangePage={handleChangePage}
         />
       </LayoutProfile>

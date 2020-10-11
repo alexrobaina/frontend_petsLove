@@ -10,7 +10,8 @@ import DashboardVoluntary from './DashboardVoluntary'
 const Dashboard = () => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
-
+  // Dashboard can state in one component because for
+  // repete code. >_<
   if (authStore.user.role === SHELTER) {
     return <DashboardShelter />
   }

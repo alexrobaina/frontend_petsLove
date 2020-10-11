@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
 import { MdSearch } from 'react-icons/md'
 import { SEARCH_PETS, LOGIN, REGISTER, LANDING_PAGE } from 'routing/routes'
-// import ChangeLanguage from 'components/ChangeLanguage'
+import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
 import ButtonLink from 'components/commons/ButtonLink'
 import MenuProfile from 'components/commons/MenuProfile'
@@ -72,9 +72,9 @@ const Navbar = ({ children }) => {
           <>
             {/* This container id Image user login and change language */}
             <div className={styles.containerProfile}>
-              {/* <div className={styles.containerLanguage}>
+              <div className={styles.containerLanguage}>
                 <ChangeLanguage />
-              </div> */}
+              </div>
               <div className={styles.contectImageUser}>
                 <ImageUserLog
                   handleToggleMenu={handleToggleMenu}
@@ -102,9 +102,9 @@ const Navbar = ({ children }) => {
             <div className={styles.navbarLink}>
               <ButtonLink onclick={goToRegister} text={t('singIn')} />
             </div>
-            {/* <div className={styles.containerLanguage}>
+            <div className={styles.containerLanguage}>
               <ChangeLanguage />
-            </div> */}
+            </div>
           </div>
         )}
       </div>

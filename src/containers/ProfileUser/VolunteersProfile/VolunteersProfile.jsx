@@ -21,7 +21,7 @@ const VolunteersProfile = ({ user }) => {
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const [isImageNotFound, setIsImageNotFound] = useState(true)
-  const { t } = useTranslation('profileUser')
+  const { t } = useTranslation()
   const volunteersStore = useLocalStore(() => new VolunteersStore(authStore.user._id))
 
   const onError = useCallback(() => {
@@ -66,16 +66,16 @@ const VolunteersProfile = ({ user }) => {
             )}
             {role && (
               <div className={styles.containerAddress}>
-                <div className={styles.role}>{t(`common:${role.value}`)}</div>
+                <div className={styles.role}>{t(`${role.value}`)}</div>
               </div>
             )}
           </div>
           <div className={styles.containerDashboardCard}>
             <DashboardCard
-              titleCard={t('common:transitPetsTitle')}
+              titleCard={t('transitPetsTitle')}
               total={totalVolunteersPetsCare.value}
             />
-            <DashboardCard titleCard={t('common:myPets')} total={totalVolunteersPetsOwner.value} />
+            <DashboardCard titleCard={t('myPets')} total={totalVolunteersPetsOwner.value} />
           </div>
         </div>
         <div className={styles.containerCardInformation}>
@@ -88,7 +88,7 @@ const VolunteersProfile = ({ user }) => {
           limit={limit}
           listPets={petsList}
           totalPets={totalPets}
-          title={t('common:transitPetsTitle')}
+          title={t('transitPetsTitle')}
         />
       </LayoutProfile>
     </>

@@ -70,27 +70,27 @@ const DashboardShelter = () => {
 
   return (
     <LayoutContainer>
-      <Title mBottom="30px" title={t('common:dashboard')} />
+      <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
           handleClick={handleForAdoption}
-          titleCard={t('shelter.petsAdopt')}
+          titleCard={t('petsAdopt')}
           total={totalPetsForAdoption.value}
         />
         <DashboardCard
           handleClick={handleAdopted}
           total={totalPetsAdopted.value}
-          titleCard={t('shelter.petsAdopted')}
+          titleCard={t('petsAdopted')}
         />
         <DashboardCard
           handleClick={handleCreatePet}
           icon={<AiFillFileAdd size={25} />}
-          titleCard={t('shelter.addPet')}
+          titleCard={t('addPet')}
         />
         <DashboardCard
           handleClick={handleSearchVolanteers}
           icon={<FaHandHoldingHeart size={22} />}
-          titleCard={t('shelter.searchVolanteers')}
+          titleCard={t('searchVolanteers')}
         />
       </div>
       <ListPets
@@ -98,10 +98,10 @@ const DashboardShelter = () => {
         limit={limit}
         listPets={petsList}
         totalPets={totalPets}
-        handleDelete={handleDeletePet}
         handleSearch={handleSearch}
+        handleDelete={handleDeletePet}
         handleChangePage={handleChangePage}
-        title={swithPets ? t('shelter.adopted') : t('shelter.needHome')}
+        title={swithPets ? t('adopted') : t('common:needHome')}
       />
     </LayoutContainer>
   )

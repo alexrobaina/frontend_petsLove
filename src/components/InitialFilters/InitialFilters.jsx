@@ -11,7 +11,6 @@ import styles from './initialFilters.scss'
 
 const InitialFilters = () => {
   const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
-
   const { t } = useTranslation('home')
 
   const handleChanceCategory = useCallback(selectedValue => {
@@ -55,12 +54,14 @@ const InitialFilters = () => {
             isEdit
             inputStore={category}
             value={category.value}
+            label={t('common:typeOfPet')}
             placeholder={t('category')}
             handleChange={handleChanceCategory}
             options={[
-              { value: '', label: t('common:searchAllCategory') },
+              { value: '', label: t('searchAllCategory') },
               { value: 'dog', label: t('common:dogs') },
               { value: 'cat', label: t('common:cats') },
+              { value: 'exotic', label: t('common:exotic') },
             ]}
           />
         </div>
@@ -69,10 +70,11 @@ const InitialFilters = () => {
             isEdit
             inputStore={gender}
             value={gender.value}
-            placeholder={t('gender')}
+            label={t('common:sex')}
+            placeholder={t('common:sex')}
             handleChange={handleChanceGender}
             options={[
-              { value: '', label: t('common:searchAllGender') },
+              { value: '', label: t('searchAllCategory') },
               { value: 'female', label: t('common:female') },
               { value: 'male', label: t('common:male') },
             ]}
@@ -81,8 +83,8 @@ const InitialFilters = () => {
         <div className={styles.btnSearch}>
           <Button
             type="button"
-            text={t('search')}
             styleButton="primary"
+            text={t('common:search')}
             handleClick={handleSearch}
             icon={<MdSearch size={18} />}
           />

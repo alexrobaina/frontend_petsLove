@@ -87,7 +87,7 @@ const FirstSection = () => {
 
             <div className={styles.textInformation}>{t('textFindAPet')}</div>
             <div className={styles.containerButtonRegister}>
-              <Button handleClick={gotToRegister} bigButton text={t('wantRegister')} />
+              <Button handleClick={gotToRegister} bigButton text={t('common:singIn')} />
             </div>
           </motion.div>
         </div>

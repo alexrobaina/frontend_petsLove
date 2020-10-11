@@ -126,6 +126,7 @@
 .infoItem {
   @include site-font("text", 600);
   font-size: 18px;
+  text-transform: capitalize;
   color: $title;
 }
 
