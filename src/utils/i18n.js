@@ -3,12 +3,23 @@ import Backend from 'i18next-xhr-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
+const languageDetector = new LanguageDetector()
+
 const fallbackLng = ['es']
 const availableLanguages = ['es', 'en']
 
 const options = {
   // order and from where user language should be detected
-  order: ['navigator', 'htmlTag', 'path', 'subdomain'],
+  order: [
+    'querystring',
+    'cookie',
+    'localStorage',
+    'sessionStorage',
+    'navigator',
+    'htmlTag',
+    'path',
+    'subdomain',
+  ],
 
   // keys or params to lookup language from
   lookupQuerystring: 'lng',
@@ -34,7 +45,7 @@ const options = {
 
 i18n
   .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
-  .use(LanguageDetector) // detect user language
+  .use(languageDetector) // detect user language
   .use(initReactI18next) // pass the i18n instance to react-i18next.
   .init({
     defaultNS: 'common',

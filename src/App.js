@@ -42,7 +42,6 @@ import Asks from 'containers/Asks'
 import Navbar from 'components/commons/Navbar'
 import axiosInterceptors from './utils/axiosInterceptors'
 import historyBrowser from './history'
-
 import 'aos/dist/aos.css'
 import './App.scss'
 

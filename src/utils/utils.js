@@ -18,6 +18,18 @@ class Utils {
 
     return result
   }
+
+  setLanguageStorage = () => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log(position)
+      },
+      error => {
+        console.error(`Error Code = ${error.code} - ${error.message}`)
+      }
+    )
+    return true
+  }
 }
 
 export default Utils
