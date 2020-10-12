@@ -1,8 +1,8 @@
 {
-  "iWantAdopte": "Hello, Please can you send me more information for pets adoption",
-  "contactProtectionist": "Contact to protectionist",
-  "contactAction": "Send message for whatsapp",
+  "iWantAdopte": "Hello, I am interested in adopting a pet. Could you send me more information?",
+  "contactProtectionist": "Contact the protectionist",
+  "contactAction": "Send a WhatsApp message to the protectionist",
   "contact": "Contact",
-  "notPhone": "This protectionist have not whatsapp",
-  "descriptionModal": "Send him a message on WhatsApp"
+  "notPhone": "This protectionist has not added a phone number",
+  "descriptionModal": "Send them a message on WhatsApp"
 }
