@@ -2,7 +2,7 @@
   "myProfile": "My profile",
   "aboutUs": "About us",
   "helpUserName": "Important for you profile. Example: pets-love.app/username",
-  "requirementsToAdopt": "Requirements To Adopt",
+  "requirementsToAdopt": "Adoption requirements",
   "address": "Your location",
   "myDescription": "My Description",
   "titleChangePassword": "Change password",
@@ -10,6 +10,6 @@
   "availableTransit": "Available to receive pets",
   "password": "Password",
   "repeatPassword": "Repeat password",
-  "successPassword": "Good! Password its match",
-  "errorPassword": "The password not match"
+  "successPassword": "Good! Passwords match",
+  "errorPassword": "The passwords do not match"
 }

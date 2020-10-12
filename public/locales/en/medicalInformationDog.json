@@ -1,11 +1,11 @@
 {
-  "lastVisitVet": "last visit vet",
-  "distemperVaccine": "Distemper Vaccine",
-  "rabiesVaccine": "Rabies Vaccine",
-  "isCastrated": "Is Castrated",
-  "hepatitisVaccine": "Hepatitis Vaccine",
-  "parvovirusVaccine": "Parvovirus Vaccine",
-  "leptospirosisVaccine": "Leptospirosis Vaccine",
-  "parainfluenzaVaccine": "Parainfluenza Vaccine",
-  "bordetellaBronchisepticVaccine": "Bordetella Bronchiseptic Vaccine"
+  "lastVisitVet": "Last visit to the vet",
+  "distemperVaccine": "Distemper vaccine",
+  "rabiesVaccine": "Rabies vaccine",
+  "isCastrated": "Is it neutered?",
+  "hepatitisVaccine": "Hepatitis vaccine",
+  "parvovirusVaccine": "Parvovirus vaccine",
+  "leptospirosisVaccine": "Leptospirosis vaccine",
+  "parainfluenzaVaccine": "Parainfluenza vaccine",
+  "bordetellaBronchisepticVaccine": "Bordetella bronchiseptic vaccine"
 }

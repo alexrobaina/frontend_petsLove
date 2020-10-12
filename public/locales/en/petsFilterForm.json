@@ -1,7 +1,7 @@
 {
     "country": "Country",
     "city": "City",
-    "category": "Category pets",
+    "category": "Pet type",
     "gender": "Gender",
     "search": "Search",
     "age": "Age",
@@ -9,6 +9,6 @@
     "urgent": "Urgent",
     "lost": "Lost pet",
     "dewormed": "Dewormed",
-    "vaccianated": "Vaccianated",
-    "sterilized": "Sterilized"
+    "vaccianated": "Vaccinated",
+    "sterilized": "Neutered"
 }

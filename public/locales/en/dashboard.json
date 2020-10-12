@@ -4,14 +4,14 @@
   "petsAdopted": "Adopted",
   "addPet": "Add pet",
   "adopted": "Adopted",
-  "searchVolanteers": "Search Volanteers",
+  "searchVolanteers": "Search Volunteers",
   "searchShelters": "Search Shelters",
 
   "volunteers": {
-    "titlePetsList": "List of pets care"
+    "titlePetsList": "List of cared pets"
   },
   "veterinary": {
-    "totalPets": "Pets Nurse",
+    "totalPets": "Cared pets",
     "titlePetsList": "list of pets cared"
   }
 }
