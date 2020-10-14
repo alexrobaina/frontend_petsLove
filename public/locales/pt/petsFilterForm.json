@@ -1,0 +1,14 @@
+{
+    "country": "País",
+    "city": "Ciudad",
+    "category": "Tipo de mascota",
+    "gender": "Genero",
+    "search": "Buscar",
+    "age": "Edad",
+    "activity": "Actividad",
+    "urgent": "Urgente",
+    "lost": "Mascota perdida",
+    "dewormed": "Desparasitado",
+    "vaccianated": "Vacunado",
+    "sterilized": "Esterilizado"
+}

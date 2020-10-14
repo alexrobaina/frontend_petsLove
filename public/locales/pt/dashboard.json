@@ -1,0 +1,17 @@
+{
+  "dashboard": "painel de controle",
+  "petsAdopt": "Em Adaptação",
+  "petsAdopted": "Adotados",
+  "addPet": "Criar mascote",
+  "searchVolanteers": "Busca Voluntário",
+  "adopted": "Adotadas",
+  "searchShelters": "Busca Refúgios",
+
+  "volunteers": {
+    "titlePetsList": "Catálogo do mascotes cuidadas"
+  },
+  "veterinary": {
+    "totalPets": "Mascotes Assistido",
+    "titlePetsList": "Catálogo do mascotes Assistidos"
+  }
+}

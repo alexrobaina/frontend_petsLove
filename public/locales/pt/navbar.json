@@ -1,0 +1,18 @@
+{
+  "login": "Iniciar sesión",
+  "singIn": "Registrate",
+  "home": "Inicio",
+  "searchPets": "Buscar Mascotas",
+  "editProfile": "Editar Perfil",
+  "logout": "Salir",
+  "SearchShelters": "Buscar refugios",
+  "profile": "Perfil",
+  "myProfile": "Mi perfil",
+  "dashboard": "Panel De control",
+  "transitUser": "Voluntarios",
+  "searchVolanteers": "Buscar voluntarios",
+  "createPet": "Crear Mascota",
+  "petsAdopted": "Adoptadas",
+  "myPets": "Mis mascotas",
+  "forAdoption": "En Adopción"
+}
