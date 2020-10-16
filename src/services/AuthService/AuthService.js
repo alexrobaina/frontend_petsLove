@@ -25,7 +25,7 @@ class AuthService {
   resetPassword = (data, token) => {
     const axiosConfig = {
       headers: {
-        token,
+        Authorization: `Bearer ${token}`,
       },
     }
     return axios
