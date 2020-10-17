@@ -33,10 +33,10 @@ const DashboardCard = ({ icon, titleCard, total, handleClick, isSelected }) => {
 }
 
 DashboardCard.propTypes = {
-  handleClick: PropTypes.func,
-  titleCard: PropTypes.string,
-  total: PropTypes.number,
   icon: PropTypes.node,
+  titleCard: PropTypes.string,
+  handleClick: PropTypes.func,
+  total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 DashboardCard.defaultProps = {

@@ -141,15 +141,15 @@ CardPets.propTypes = {
   canEdit: PropTypes.bool,
   handleEdit: PropTypes.func,
   canDelete: PropTypes.bool,
-  userLogin: PropTypes.string,
   handleDelete: PropTypes.func,
   id: PropTypes.string.isRequired,
+  activityLevel: PropTypes.string,
   gender: PropTypes.string.isRequired,
   history: PropTypes.string.isRequired,
   namePet: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  activityLevel: PropTypes.string,
-  image: PropTypes.oneOfType(PropTypes.string, PropTypes.array),
+  userLogin: PropTypes.oneOfType([PropTypes.object]),
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 }
 
 CardPets.defaultProps = {

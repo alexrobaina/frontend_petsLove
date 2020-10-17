@@ -112,8 +112,8 @@ GoogleMapsLocation.propTypes = {
   showAddress: PropTypes.bool,
   isProfilePet: PropTypes.bool,
   isLocationPet: PropTypes.bool,
-  location: PropTypes.oneOfType(PropTypes.object, PropTypes.string),
-  users: PropTypes.arrayOf(PropTypes.number, PropTypes.string, PropTypes.bool),
+  location: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  users: PropTypes.arrayOf([PropTypes.number, PropTypes.string, PropTypes.bool]),
 }
 
 GoogleMapsLocation.defaultProps = {

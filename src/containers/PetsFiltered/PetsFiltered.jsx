@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import ListPets from 'containers/ListPets'
 import FilterSearchPetsStore from 'stores/FilterSearchPetsStore'
-import PaginationList from 'components/commons/PaginationList'
 import Loading from 'components/commons/Loading'
 import { LIMIT_LIST } from 'services/config'
 
