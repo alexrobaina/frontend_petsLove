@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import { observer, useLocalStore } from 'mobx-react'
 import { FaHandHoldingHeart } from 'react-icons/fa'
@@ -28,27 +28,28 @@ const DashboardShelter = () => {
   const { _id } = authStore.user
 
   const handleForAdoption = useCallback(() => {
+    setPage(1)
     setIsSelectedForAdoption(true)
     setIsSelectedAdopted(false)
-    shelterStore.setSwithPets(false)
+    shelterStore.setSwithPets(true)
     shelterStore.getPetsForAdoption(_id, LIMIT_LIST, 1, '', false)
   })
 
   const handleAdopted = useCallback(() => {
+    setPage(1)
     setIsSelectedForAdoption(false)
     setIsSelectedAdopted(true)
-    shelterStore.setSwithPets(true)
+    shelterStore.setSwithPets(false)
     shelterStore.getPetsAdopted(_id, LIMIT_LIST, 1, '', true)
   })
 
   const handleChangePage = useCallback((e, newPage) => {
     if (shelterStore.swithPets) {
-      shelterStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
       setPage(newPage)
-    } else {
-      shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
-      setPage(newPage)
+      return shelterStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
     }
+    setPage(newPage)
+    shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
   }, [])
 
   const handleSearch = useCallback(e => {
@@ -71,7 +72,11 @@ const DashboardShelter = () => {
     shelterStore.removePet(id)
   }, [])
 
-  const { petsList, totalPets, swithPets } = shelterStore
+  useEffect(() => {
+    shelterStore.setSwithPets(true)
+  }, [])
+
+  const { petsList, totalPets, swithPets, isLoading } = shelterStore
   const { totalPetsForAdoption, totalPetsAdopted } = shelterStore.dashboardStore.dashboard
 
   return (
@@ -105,11 +110,12 @@ const DashboardShelter = () => {
         page={page}
         limit={limit}
         listPets={petsList}
+        isLoading={isLoading}
         totalPets={totalPets}
         handleSearch={handleSearch}
         handleDelete={handleDeletePet}
         handleChangePage={handleChangePage}
-        title={swithPets ? t('adopted') : t('common:needHome')}
+        title={swithPets ? t('common:needHome') : t('adopted')}
       />
     </LayoutContainer>
   )
