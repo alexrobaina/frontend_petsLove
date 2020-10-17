@@ -29,6 +29,8 @@ const GoogleAutocomplete = observer(
     }, [])
 
     const configAddress = async addressSelected => {
+      setAddress(addressSelected);
+
       if (handleChangeTextAddress) {
         handleChangeTextAddress(addressSelected)
       }
@@ -52,20 +54,20 @@ const GoogleAutocomplete = observer(
                 {isEdit === false ? (
                   <ViewValue placeholder={placeholder} value={value} />
                 ) : (
-                  <>
-                    {label && <Label text={label} />}
-                    <input
-                      name={name}
-                      className={c(
-                        styles.input,
-                        inputStoreError ? inputStoreError.error && styles.isError : ''
-                      )}
-                      {...getInputProps({
-                        placeholder,
-                      })}
-                    />
-                  </>
-                )}
+                    <>
+                      {label && <Label text={label} />}
+                      <input
+                        name={name}
+                        className={c(
+                          styles.input,
+                          inputStoreError ? inputStoreError.error && styles.isError : ''
+                        )}
+                        {...getInputProps({
+                          placeholder,
+                        })}
+                      />
+                    </>
+                  )}
                 <div className={styles.dropdown}>
                   {loading && <div className={styles.text}>{t('common:loading')}</div>}
                   {suggestions.map(suggestion => {
@@ -75,17 +77,18 @@ const GoogleAutocomplete = observer(
                     // inline style for demonstration purpose
                     const style = suggestion.active
                       ? {
-                          backgroundColor: 'rgba(146, 154, 230, 0.30)',
-                          cursor: 'pointer',
-                          padding: '10px',
-                        }
+                        backgroundColor: 'rgba(146, 154, 230, 0.30)',
+                        cursor: 'pointer',
+                        padding: '10px',
+                      }
                       : {
-                          backgroundColor: 'rgb(255, 255, 255)',
-                          cursor: 'pointer',
-                          padding: '10px',
-                        }
+                        backgroundColor: 'rgb(255, 255, 255)',
+                        cursor: 'pointer',
+                        padding: '10px',
+                      }
                     return (
                       <div
+                        key={suggestion.id}
                         {...getSuggestionItemProps(suggestion, {
                           className,
                           style,
