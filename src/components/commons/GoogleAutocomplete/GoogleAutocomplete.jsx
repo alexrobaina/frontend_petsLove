@@ -54,19 +54,19 @@ const GoogleAutocomplete = observer(
                 {isEdit === false ? (
                   <ViewValue placeholder={placeholder} value={value} />
                 ) : (
-                    <>
-                      {label && <Label text={label} />}
-                      <input
-                        name={name}
-                        className={c(
+                  <>
+                    {label && <Label text={label} />}
+                    <input
+                      name={name}
+                      className={c(
                           styles.input,
                           inputStoreError ? inputStoreError.error && styles.isError : ''
                         )}
-                        {...getInputProps({
+                      {...getInputProps({
                           placeholder,
                         })}
-                      />
-                    </>
+                    />
+                  </>
                   )}
                 <div className={styles.dropdown}>
                   {loading && <div className={styles.text}>{t('common:loading')}</div>}
