@@ -1,14 +1,7 @@
 @import "styles/variable";
 
 .containerPagination {
-  position: relative;
   display: flex;
-  margin-top: 30px;
   justify-content: center;
-}
-
-.pagination {
-  position: absolute;
-  margin-bottom: 15px;
-  bottom: -80px;
+  margin-top: 30px;
 }

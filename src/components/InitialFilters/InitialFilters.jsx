@@ -11,7 +11,7 @@ import styles from './initialFilters.scss'
 
 const InitialFilters = () => {
   const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
-  const { t } = useTranslation('home')
+  const { t } = useTranslation('search')
 
   const handleChanceCategory = useCallback(selectedValue => {
     filterSearchPetsStore.setCategory(selectedValue.value)

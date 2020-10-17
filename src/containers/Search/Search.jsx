@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 import LayoutContainer from 'components/commons/LayoutContainer'
 import InitialFilters from 'components/InitialFilters/InitialFilters'
 import LayoutTrantitions from 'components/commons/LayoutTrantitions'
-import styles from './home.scss'
+import styles from './search.scss'
 
-const Home = () => {
-  const { t } = useTranslation('home')
+const Search = () => {
+  const { t } = useTranslation('search')
 
   return (
     <LayoutContainer>
@@ -19,4 +19,4 @@ const Home = () => {
   )
 }
 
-export default observer(Home)
+export default observer(Search)

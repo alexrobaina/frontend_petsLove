@@ -3,35 +3,33 @@
 .container {
   display: grid;
   flex-wrap: wrap;
-  grid-template-columns: 49% 49%;
-  gap: 2%;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 20px;
+  padding-bottom: 50px;
+  margin-top: 20px;
 
   @include media-breakpoint-only(xxl) {
-    margin-top: 20px;
     grid-template-columns: 32% 32% 32%;
-    gap: 3%;
   }
 
   @include media-breakpoint-only(xl) {
-    margin-top: 20px;
-    grid-template-columns: 49% 49%;
-    gap: 2%;
+    grid-template-columns: 32% 32% 32%;
   }
 
   @include media-breakpoint-only(lg) {
-    margin-top: 20px;
-    grid-template-columns: 49% 49%;
-    gap: 2%;
+    grid-template-columns: 32% 32% 32%;
   }
 
   @include media-breakpoint-only(md) {
-    margin-top: 20px;
     grid-template-columns: 49% 49%;
-    gap: 2%;
   }
 
-  @include media-breakpoint-down(sm) {
-    margin-top: 20px;
+  @include media-breakpoint-only(sm) {
+    grid-template-columns: 49% 49%;
+  }
+
+  @include media-breakpoint-only(xs) {
+    display: grid;
     grid-template-columns: 100%;
   }
 }
@@ -39,4 +37,8 @@
 .center {
   display: flex;
   justify-content: center;
+}
+
+.containerPaginationList {
+  position: relative;
 }

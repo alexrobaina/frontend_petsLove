@@ -19,6 +19,8 @@ const DashboardVoluntary = () => {
   const [limit] = useState(LIMIT_LIST)
   const { t } = useTranslation('dashboard')
   const history = useHistory()
+  const [isSelectedMyPets, setIsSelectedMyPets] = useState(false)
+  const [isSelectedPetsCare, setIsSelectedPetsCare] = useState(true)
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
   const volunteersStore = useLocalStore(() => new VolunteersStore(authStore.user._id))
@@ -27,11 +29,15 @@ const DashboardVoluntary = () => {
 
   const handlePetsCare = useCallback(() => {
     volunteersStore.setSwithPets(false)
+    setIsSelectedMyPets(false)
+    setIsSelectedPetsCare(true)
     volunteersStore.loadPetsAssignedVolunteer(_id, LIMIT_LIST, 1, '', false)
   })
 
   const handleMyPets = useCallback(() => {
     volunteersStore.setSwithPets(true)
+    setIsSelectedMyPets(true)
+    setIsSelectedPetsCare(false)
     volunteersStore.loadPetsVolunteersOwner(_id, LIMIT_LIST, 1, '', false)
   })
 
@@ -77,11 +83,13 @@ const DashboardVoluntary = () => {
       <div className={styles.container}>
         <DashboardCard
           handleClick={handlePetsCare}
+          isSelected={isSelectedPetsCare}
           titleCard={t('common:petsCare')}
           total={totalVolunteersPetsCare.value}
         />
         <DashboardCard
           handleClick={handleMyPets}
+          isSelected={isSelectedMyPets}
           titleCard={t('common:myPets')}
           total={totalVolunteersPetsOwner.value}
         />
