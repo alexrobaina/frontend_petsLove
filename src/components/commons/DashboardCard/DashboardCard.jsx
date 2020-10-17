@@ -3,9 +3,16 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import styles from './dashboardCard.scss'
 
-const DashboardCard = ({ icon, titleCard, total, handleClick }) => {
+const DashboardCard = ({ icon, titleCard, total, handleClick, isSelected }) => {
   return (
-    <div onClick={handleClick} className={c(styles.cardContainar, !handleClick && styles.noButton)}>
+    <div
+      onClick={handleClick}
+      className={c(
+        styles.cardContainar,
+        !handleClick && styles.noButton,
+        isSelected && styles.isSelected
+      )}
+    >
       <div className={styles.card}>
         <div className={styles.containerText}>
           {icon ? (
@@ -15,8 +22,8 @@ const DashboardCard = ({ icon, titleCard, total, handleClick }) => {
             </>
           ) : (
             <>
-              <div className={styles.title}>{titleCard}</div>
-              <div className={styles.number}>{total}</div>
+              <div className={c(styles.title, isSelected && styles.isSelected)}>{titleCard}</div>
+              <div className={c(styles.number, isSelected && styles.isSelected)}>{total}</div>
             </>
           )}
         </div>

@@ -9,7 +9,7 @@ class AdopterService {
   }
 
   deletePet = id => {
-    return axios.delete(`${SERVER}/api/pet/remove/?_id=${id}`).then(response => response.data[0])
+    return axios.delete(`${SERVER}/api/pet/delete/?_id=${id}`).then(response => response.data[0])
   }
 }
 

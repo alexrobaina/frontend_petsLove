@@ -53,8 +53,8 @@ const DashboardAdopter = () => {
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
-          handleClick={handleCreatePet}
           titleCard={t('addPet')}
+          handleClick={handleCreatePet}
           icon={<AiFillFileAdd size={25} />}
         />
         <DashboardCard titleCard={t('common:myPets')} total={totalPets} />
@@ -64,9 +64,9 @@ const DashboardAdopter = () => {
           titleCard={t('common:searchPets')}
         />
         <DashboardCard
-          handleClick={handleSearchProtecctionist}
-          icon={<FaPeopleCarry size={22} />}
           titleCard={t('searchShelters')}
+          icon={<FaPeopleCarry size={22} />}
+          handleClick={handleSearchProtecctionist}
         />
       </div>
       <ListPets

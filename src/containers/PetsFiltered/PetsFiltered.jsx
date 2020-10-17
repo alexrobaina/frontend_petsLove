@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import PaginationList from 'components/commons/PaginationList'
+import ListPets from 'containers/ListPets'
 import FilterSearchPetsStore from 'stores/FilterSearchPetsStore'
-import ContainerPetsCards from 'components/ContainerPetsCards'
+import PaginationList from 'components/commons/PaginationList'
 import Loading from 'components/commons/Loading'
 import { LIMIT_LIST } from 'services/config'
 
@@ -26,13 +26,13 @@ const PetsFiltered = ({ store }) => {
         <Loading loadingRing />
       ) : (
         <>
-          <ContainerPetsCards isLoading={store.isLoading} pets={store.petsFiltered} />
           {store.totalPetsFiltered !== 0 && (
-            <PaginationList
+            <ListPets
               page={page}
               limit={limit}
-              handleChange={handleChangePage}
-              total={store.totalPetsFiltered}
+              listPets={store.petsFiltered}
+              totalPets={store.totalPetsFiltered}
+              handleChangePage={handleChangePage}
             />
           )}
         </>

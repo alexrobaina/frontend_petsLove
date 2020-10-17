@@ -38,9 +38,10 @@ There's also the possibility that the shelter could asign a pet to the adopters,
 
 ## **😻 How to help? 🐶**
 
-If you like *Pets Love* and you are a developer or UX designer, you can create issues to suggest ideas or improvements.
+If you like _Pets Love_ and you are a developer or UX designer, you can create issues to suggest ideas or improvements.
 
 [Here]() we explain how to clone the project.
 
-You can also "buy me cofee" and it all be used to the development and grow of *Pets Love*. 
+You can also "buy me cofee" and it all be used to the development and grow of _Pets Love_.<br>
 
+[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/petslove)

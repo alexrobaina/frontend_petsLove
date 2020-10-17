@@ -17,6 +17,8 @@ import styles from './dashboardShelter.scss'
 const DashboardShelter = () => {
   const [page, setPage] = useState(1)
   const [limit] = useState(LIMIT_LIST)
+  const [isSelectedForAdoption, setIsSelectedForAdoption] = useState(true)
+  const [isSelectedAdopted, setIsSelectedAdopted] = useState(false)
   const history = useHistory()
   const rootStore = useContext(UserContext)
   const { authStore } = rootStore
@@ -26,11 +28,15 @@ const DashboardShelter = () => {
   const { _id } = authStore.user
 
   const handleForAdoption = useCallback(() => {
+    setIsSelectedForAdoption(true)
+    setIsSelectedAdopted(false)
     shelterStore.setSwithPets(false)
     shelterStore.getPetsForAdoption(_id, LIMIT_LIST, 1, '', false)
   })
 
   const handleAdopted = useCallback(() => {
+    setIsSelectedForAdoption(false)
+    setIsSelectedAdopted(true)
     shelterStore.setSwithPets(true)
     shelterStore.getPetsAdopted(_id, LIMIT_LIST, 1, '', true)
   })
@@ -73,24 +79,26 @@ const DashboardShelter = () => {
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
-          handleClick={handleForAdoption}
           titleCard={t('petsAdopt')}
+          handleClick={handleForAdoption}
+          isSelected={isSelectedForAdoption}
           total={totalPetsForAdoption.value}
         />
         <DashboardCard
           handleClick={handleAdopted}
-          total={totalPetsAdopted.value}
           titleCard={t('petsAdopted')}
+          total={totalPetsAdopted.value}
+          isSelected={isSelectedAdopted}
         />
         <DashboardCard
+          titleCard={t('addPet')}
           handleClick={handleCreatePet}
           icon={<AiFillFileAdd size={25} />}
-          titleCard={t('addPet')}
         />
         <DashboardCard
+          titleCard={t('searchVolanteers')}
           handleClick={handleSearchVolanteers}
           icon={<FaHandHoldingHeart size={22} />}
-          titleCard={t('searchVolanteers')}
         />
       </div>
       <ListPets

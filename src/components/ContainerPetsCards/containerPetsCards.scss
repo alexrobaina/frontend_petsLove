@@ -3,40 +3,51 @@
 .container {
   display: grid;
   flex-wrap: wrap;
-  grid-template-columns: 49% 49%;
+  grid-template-columns: 32% 32% 32%;
   gap: 2%;
+  padding-bottom: 50px;
 
   @include media-breakpoint-only(xxl) {
     margin-top: 20px;
     grid-template-columns: 32% 32% 32%;
-    gap: 3%;
+    gap: 2%;
   }
 
   @include media-breakpoint-only(xl) {
     margin-top: 20px;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 32% 32% 32%;
     gap: 2%;
   }
 
   @include media-breakpoint-only(lg) {
     margin-top: 20px;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 32% 32% 32%;
     gap: 2%;
   }
 
   @include media-breakpoint-only(md) {
     margin-top: 20px;
     grid-template-columns: 49% 49%;
-    gap: 2%;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-only(sm) {
     margin-top: 20px;
+    grid-template-columns: 49% 49%;
+  }
+
+  @include media-breakpoint-only(xs) {
+    display: grid;
+    justify-content: center;
     grid-template-columns: 100%;
+    gap: 0;
   }
 }
 
 .center {
   display: flex;
   justify-content: center;
+}
+
+.containerPaginationList {
+  position: relative;
 }
