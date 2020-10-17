@@ -49,7 +49,7 @@ const DashboardShelter = () => {
       return shelterStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
     }
     setPage(newPage)
-    shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
+    return shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
   }, [])
 
   const handleSearch = useCallback(e => {
