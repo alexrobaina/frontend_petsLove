@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import InputSelect from 'components/commons/InputSelect'
@@ -8,7 +8,41 @@ import PetsFiltered from 'containers/PetsFiltered'
 import styles from './initialFilters.scss'
 
 const InitialFilters = () => {
-  const inputRef = useRef()
+  const [keyPressed, setKeyPressed] = useState(false)
+
+  const useKeyPress = targetKey => {
+    // State for keeping track of whether key is pressed
+
+    // If pressed key is our target key then set to true
+    function downHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(true)
+      }
+    }
+
+    // If released key is our target key then set to false
+    const upHandler = ({ key }) => {
+      if (key === targetKey) {
+        setKeyPressed(false)
+      }
+    }
+
+    // Add event listeners
+    useEffect(() => {
+      window.addEventListener('keydown', downHandler)
+      window.addEventListener('keyup', upHandler)
+      // Remove event listeners on cleanup
+      return () => {
+        window.removeEventListener('keydown', downHandler)
+        window.removeEventListener('keyup', upHandler)
+      }
+    }, []) // Empty array ensures that effect is only run on mount and unmount
+
+    return keyPressed
+  }
+
+  const keyPress = useKeyPress('Enter')
+
   const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
   const { t } = useTranslation('search')
 
@@ -22,6 +56,11 @@ const InitialFilters = () => {
 
   const handleChangeTextAddress = useCallback(address => {
     filterSearchPetsStore.setTextAddress(address)
+
+    if (address === '') {
+      filterSearchPetsStore.city.setValue('')
+      filterSearchPetsStore.country.setValue('')
+    }
   })
 
   const handleChangeAddressComponents = useCallback(addressComponent => {
@@ -32,15 +71,11 @@ const InitialFilters = () => {
     filterSearchPetsStore.searchPets(10, 1)
   }
 
-  const search = () => {
-    handleSearch()
-  }
-
-  const keyPressedHandle = event => {
-    if (event.key === 'Enter') {
+  useEffect(() => {
+    if (keyPress) {
       handleSearch()
     }
-  }
+  }, [keyPress])
 
   const { textAddress, category, gender } = filterSearchPetsStore
 
@@ -50,8 +85,8 @@ const InitialFilters = () => {
         <div className={styles.googleAutocomplete}>
           <GoogleAutocomplete
             isEdit
-            ref={inputRef}
-            search={search}
+            focusActive
+            handleSearch={handleSearch}
             value={textAddress.value}
             inputStoreError={textAddress}
             label={t('labelGoogleAutocomplete')}
@@ -67,10 +102,10 @@ const InitialFilters = () => {
             isEdit
             inputStore={category}
             value={category.value}
+            handleAction={handleSearch}
             placeholder={t('category')}
             label={t('common:typeOfPet')}
             handleChange={handleChanceCategory}
-            handleKeyPressed={keyPressedHandle}
             options={[
               { value: '', label: t('searchAllCategory') },
               { value: 'dog', label: t('common:dogs') },
@@ -87,7 +122,6 @@ const InitialFilters = () => {
             label={t('common:sex')}
             placeholder={t('common:sex')}
             handleChange={handleChanceGender}
-            handleKeyPressed={event => keyPressedHandle(event)}
             options={[
               { value: '', label: t('searchAllCategory') },
               { value: 'female', label: t('common:female') },

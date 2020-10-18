@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import c from 'classnames'
@@ -15,13 +15,15 @@ const GoogleAutocomplete = observer(
     label,
     value,
     isEdit,
-    search,
     placeholder,
+    focusActive,
+    handleSearch,
     inputStoreError,
     handleChangeAddress,
     handleChangeTextAddress,
     handleChangeAddressComponents,
   }) => {
+    const googleInputRef = useRef(null)
     const { t } = useTranslation()
     const [address, setAddress] = useState('')
     // eslint-disable-next-line no-shadow
@@ -43,9 +45,17 @@ const GoogleAutocomplete = observer(
       }
       if (handleChangeAddressComponents) {
         handleChangeAddressComponents(results[0])
-        search()
+        if (handleSearch) {
+          handleSearch()
+        }
       }
     }
+
+    useEffect(() => {
+      if (focusActive) {
+        googleInputRef.current.focus()
+      }
+    }, [])
 
     return (
       <>
@@ -59,8 +69,8 @@ const GoogleAutocomplete = observer(
                   <>
                     {label && <Label text={label} />}
                     <input
+                      ref={googleInputRef}
                       name={name}
-                      // ref={input => input && input.focus()}
                       className={c(
                         styles.input,
                         inputStoreError ? inputStoreError.error && styles.isError : ''
@@ -117,8 +127,10 @@ const GoogleAutocomplete = observer(
 GoogleAutocomplete.propTypes = {
   isEdit: PropTypes.bool,
   value: PropTypes.string,
+  handleSearch: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
+  enterKeyPress: PropTypes.func,
   handleChangeAddress: PropTypes.func,
   handleChangeTextAddress: PropTypes.func,
   handleChangeAddressComponents: PropTypes.func,
@@ -128,8 +140,10 @@ GoogleAutocomplete.propTypes = {
 GoogleAutocomplete.defaultProps = {
   label: '',
   value: '',
+  handleSearch: null,
   isEdit: false,
   placeholder: '',
+  enterKeyPress: null,
   inputStoreError: null,
   handleChangeAddress: null,
   handleChangeTextAddress: null,

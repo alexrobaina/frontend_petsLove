@@ -38,6 +38,7 @@ const LocationFormPet = ({ createPetStore }) => {
       <div className={styles.colMap}>
         <GoogleAutocomplete
           isEdit
+          focusActive
           value={getFoundLocation}
           inputStoreError={textAddress}
           label={t('labelWhereFoundPet')}
