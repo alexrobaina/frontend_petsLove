@@ -1,49 +1,47 @@
 # **🐶 🐱 🦊 Pets Love 🐭 🐹 🐰**
 
-Es una aplicación creada con la intención de ayudar a los refugios,veterinarios, voluntarios y todo aquel que quiera adoptar una mascota.
+Pets Love is an app created with the goal of helping animal shelters, veterinarians, volunteers and all of those that wish to adopt a pet.
 
-Al momento de adoptar una mascota el proteccionista y el adoptante podrán hacer de forma más precisa el seguimiento de los principales cuidados de la mascota. Construimos un flujo de información más exacta con los datos veterinarios de la salud de nuestro amigo y fotografías que nos permitirán ver un historial que busca garantizar la seguridad y salud del mismo.
-
-#
-
-## **🐶 🐱 🦊 Los refugios 🐭 🐹 🐰**
-
-La idea es que los refugios puedan administrar y llevar un control minusioso de la entrada y salida de mascotas, generando información valiosa como un historial medico, la ubicación donde fueron encontradas y registrar quien es el adoptante.
-
-A su vez un adoptante podra subir fotos y actualizar el perfil de la mascota sin poder borrarla.
-
-El fin es fomentar la adopción responsable.
+This app will help maintain a continuity of care for the animal after its adoption. The app will achieve this by providing a continuous flow of information from the professionals at the animal shelter. The information will include exact medical data and pictures of our animal friend. This will help keep a medical history of the animal and ensure its health and security.
 
 #
 
-## **👩‍⚕️ Los veterinarios 👨‍⚕️**
+## **🐶 🐱 🦊 The Shelters 🐭 🐹 🐰**
 
-Como veterinario podrás crear un perfil médico para las mascotas de una forma rápida y organizada. A su vez también tendrás la facilidad de generar información relevante como vacunas, notas sobre enfermedades, última visita al consultorio para poder compartir con tus clientes.
+The idea is for the animal shelters to have the capacity of keeping a rigourus registry of the animals, this will help produce valuable information (such as who is the person to adopt the animal or where the animal was found) and also will help produce an accurate medical history.
 
-Y no te preocupes, las mascotas de tus clientes o las mascotas creadas por usuarios veterinarios no aparecen en las busquedas de mascotas en adopción
+At the same time, the person who adopts the animal will be able to upload pictures of the animal to the animal's profile without the ability to delete it.
 
-#
-
-## **👩‍⚕️ Los voluntarios/transito 👨‍⚕️**
-
-Al regístrate como voluntario los refugios podrán contactarte. Como usuario que hace transito de mascotas vas a tener un registro de las mascotas que cuidaste y compartir información precisa de la evolución de las mascotas mientras estuvo a tu cuidado. El trabajo de todos es importante, a veces transitar es dar el amor necesario para recuperar la felicidad de nuestro amigo!
+The end goal is to promote the responsible adoption of animals.
 
 #
 
-## **😻 Los Adoptantes 🐶**
+## **👩‍⚕️ The Veterinarians 👨‍⚕️**
 
-Adoptantes son todas aquellas personas que tienen una mascota. Cualquier persona que
-tenga una mascota bajo su cuidado podra crear un perfil para cada mascota y generar información creando la historia de vida de cada animalito.
+As a veterinarian you will be able to create a medical profile for the pets in a quick and organized way. You will also be able to generate relevant information like vacccines, notes about ailments or the animal's last visit. This is information that will be available to your clients.
 
-También existe la posiblidad de que los refugios asignen mascotas a los adoptantes para generar un vínculo inseparable entre mascotas, adoptantes y refugios.
+And don't worry, the profiles of your client's pets or the ones a veterinarian has created won't be listed in pets for adoption.
 
-## **😻 ¿Cómo colaborar? 🐶**
+#
 
-Si te gusta pets love y eres desarrollador o diseñador UX puedes crear issues para proponer ideas o mejoras.<br>
+## **👩‍⚕️ The Volunteers 👨‍⚕️**
 
-Acá te explicamos como levantar el proyecto en tu local
-[Quiero contribuir](https://github.com/alexrobaina/frontend_petsLove/blob/master/CONTRIBUTING.md)
+Registering as a volunteer, the shelters will be able to contact you. As volunteer you will be able to foster temporarily an animal and share the information about the evolution of its condition. Everybody's help is important, sometimes fostering an animal is to give it the love our friend needs to recover its happiness!
 
-También puedes aportar con cafecitos que seran destinados para el desarrollo y crecimiento de pets love.
+#
+
+## **😻 The Adopters 🐶**
+
+Adopters are all those that have a pet. Any person that has a pet under its care will be able to create a profile for each pet and generate information. This way creating a life history of each little animal.
+
+There's also the possibility that the shelter could asign a pet to the adopters, creating this way an unbreakable link between pets, adopters and shelters.
+
+## **😻 How to help? 🐶**
+
+If you like _Pets Love_ and you are a developer or UX designer, you can create issues to suggest ideas or improvements.
+
+[Here]() we explain how to clone the project.
+
+You can also "buy me cofee" and it all be used to the development and grow of _Pets Love_.<br>
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/petslove)
