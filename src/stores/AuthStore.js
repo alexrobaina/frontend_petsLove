@@ -25,6 +25,7 @@ class AuthStore {
   @observable password = new InputStore()
   @observable isLogin = false
   @observable isLoading = false
+  @observable tokenExpired = false
   @observable isErrorLogin = false
   @observable tokenLocalStorage = ''
 
@@ -97,6 +98,10 @@ class AuthStore {
 
   setToken = token => {
     localStorage.setItem('token', token)
+  }
+
+  setTokenExpired = value => {
+    this.tokenExpired = value
   }
 
   setUser = user => {

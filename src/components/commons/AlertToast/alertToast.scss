@@ -22,13 +22,16 @@
     width: 280px;
     height: 60px;
   }
-  
+
   &.toast {
     transform: translateX(-400px);
 
     @include media-breakpoint-down(sm) {
-
     }
+  }
+
+  &.warning {
+    background-color: $secundary;
   }
 }
 
@@ -39,5 +42,5 @@
 }
 
 .text {
- color: $ligth;
+  color: $ligth;
 }
