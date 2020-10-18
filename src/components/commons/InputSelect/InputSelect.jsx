@@ -21,6 +21,7 @@ const InputSelect = ({
   placeholder,
   isClearable,
   handleChange,
+  handleKeyPressed,
 }) => {
   const { t } = useTranslation()
   const customStyles = {
@@ -46,6 +47,7 @@ const InputSelect = ({
             options={options}
             styles={customStyles}
             isLoading={isLoading}
+            onKeyPress={handleKeyPressed}
             onChange={handleChange}
             placeholder={placeholder}
             isClearable={isClearable}

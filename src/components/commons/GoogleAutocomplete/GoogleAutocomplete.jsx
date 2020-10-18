@@ -12,9 +12,10 @@ import styles from './googleAutocomplete.scss'
 const GoogleAutocomplete = observer(
   ({
     name,
+    label,
     value,
     isEdit,
-    label,
+    search,
     placeholder,
     inputStoreError,
     handleChangeAddress,
@@ -42,6 +43,7 @@ const GoogleAutocomplete = observer(
       }
       if (handleChangeAddressComponents) {
         handleChangeAddressComponents(results[0])
+        search()
       }
     }
 
@@ -58,6 +60,7 @@ const GoogleAutocomplete = observer(
                     {label && <Label text={label} />}
                     <input
                       name={name}
+                      // ref={input => input && input.focus()}
                       className={c(
                         styles.input,
                         inputStoreError ? inputStoreError.error && styles.isError : ''
