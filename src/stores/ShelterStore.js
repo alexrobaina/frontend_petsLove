@@ -18,7 +18,6 @@ class ShelterStore extends AsyncApiStore {
   @observable images = []
   @observable petsList = []
   @observable totalPets = 0
-  @observable isLoading = 0
   @observable swithPets = false
   @observable shelter = new User()
 
@@ -29,6 +28,8 @@ class ShelterStore extends AsyncApiStore {
 
   @action
   async getPetsForAdoption(userId, limit, page, search, isAdopted = false) {
+    this.resetPetsList()
+    this.resetTotalPets()
     this.preRequest()
 
     try {
@@ -51,6 +52,8 @@ class ShelterStore extends AsyncApiStore {
 
   @action
   async getPetsAdopted(userId, limit, page, search, isAdopted = true) {
+    this.resetPetsList()
+    this.resetTotalPets()
     this.preRequest()
 
     try {
@@ -97,6 +100,16 @@ class ShelterStore extends AsyncApiStore {
   @action
   setSwithPets(value) {
     this.swithPets = value
+  }
+
+  @action
+  resetPetsList = () => {
+    this.petsList = []
+  }
+
+  @action
+  resetTotalPets = () => {
+    this.totalPets = 0
   }
 }
 

@@ -9,6 +9,7 @@ class FilterSearchPetsStore {
   @observable petsFiltered = []
   @observable isLoading = false
   @observable optionsCities = []
+  @observable totalPetsFiltered = 0
   @observable city = new InputStore()
   @observable gender = new InputStore()
   @observable country = new InputStore()

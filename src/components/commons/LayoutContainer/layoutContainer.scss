@@ -1,7 +1,8 @@
-@import 'styles/mixings.scss';
+@import "styles/mixings.scss";
 
 .containerLayout {
-  padding: 100px;
+  padding-top: 100px;
+  padding-bottom: 20px;
 
   @include media-breakpoint-only(xs) {
     padding-top: 90px;
@@ -42,7 +43,7 @@
 
 .title {
   color: $title;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-size: 32px;
   font-weight: 700;
 
@@ -51,12 +52,11 @@
   }
 }
 
-
 .name {
   margin-left: 11px;
   color: $title;
   text-transform: capitalize;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-size: 32px;
   font-weight: 700;
 
@@ -68,7 +68,7 @@
 .subTitle {
   color: $colorLight;
   font-size: 32px;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   font-weight: 700;
   margin-top: 0;
 
@@ -81,4 +81,3 @@
   margin-top: 15px;
   color: $primary;
 }
-

@@ -29,6 +29,8 @@ const GoogleAutocomplete = observer(
     }, [])
 
     const configAddress = async addressSelected => {
+      setAddress(addressSelected)
+
       if (handleChangeTextAddress) {
         handleChangeTextAddress(addressSelected)
       }
@@ -48,7 +50,7 @@ const GoogleAutocomplete = observer(
         <PlacesAutocomplete value={address} onChange={handleChange} onSelect={configAddress}>
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
             return (
-              <div>
+              <>
                 {isEdit === false ? (
                   <ViewValue placeholder={placeholder} value={value} />
                 ) : (
@@ -86,6 +88,7 @@ const GoogleAutocomplete = observer(
                         }
                     return (
                       <div
+                        key={suggestion.id}
                         {...getSuggestionItemProps(suggestion, {
                           className,
                           style,
@@ -96,7 +99,7 @@ const GoogleAutocomplete = observer(
                     )
                   })}
                 </div>
-              </div>
+              </>
             )
           }}
         </PlacesAutocomplete>

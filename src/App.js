@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
 import {
@@ -32,7 +32,7 @@ import EditUser from 'containers/EditUser/EditUser'
 import CreatePet from 'containers/CreatePet'
 import Register from 'containers/Register'
 import Login from 'containers/Login'
-import Home from 'containers/Home'
+import Search from 'containers/Search'
 import ProfileUser from 'containers/ProfileUser'
 import EditPet from 'containers/EditPet'
 import LandingPage from 'containers/LandingPage'
@@ -61,7 +61,7 @@ function App() {
             <Route exact path={RESET_PASSWORD} component={ResetPassword} />
             <Route exact path={LOGIN} component={Login} />
             <Route exact path={FORGOT_PASSWORD} component={ForgotPassword} />
-            <Route exact path={SEARCH_PETS} component={Home} />
+            <Route exact path={SEARCH_PETS} component={Search} />
             <Route exact path={LANDING_PAGE} component={LandingPage} />
             <Route exact path={`${PROFILE_PET}/:id`} component={ProfilePets} />
             <Route exact path={`${PROFILE_USER}/:id`} component={ProfileUser} />

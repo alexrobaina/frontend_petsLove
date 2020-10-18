@@ -94,7 +94,7 @@ const Navbar = ({ children }) => {
             </div>
           </>
         ) : (
-          // if user is logout view buttons Login and Sign In
+          // if user is logout view buttons Login and Sing In
           <div className={styles.containerButtonslogin}>
             <div className={styles.navbarLink}>
               <ButtonLink onclick={goToLogin} text={t('login')} />

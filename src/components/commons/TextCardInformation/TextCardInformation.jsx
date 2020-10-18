@@ -25,7 +25,7 @@ const TextCardInformation = ({ text, value, icon }) => {
 TextCardInformation.propTypes = {
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 }
 
 TextCardInformation.defaultProps = {

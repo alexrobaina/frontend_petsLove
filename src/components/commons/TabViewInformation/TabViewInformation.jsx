@@ -97,7 +97,7 @@ const TabViewInformation = ({ isPet, phone, email, aboutUs, requirementsToAdopt 
 
 TabViewInformation.propTypes = {
   email: PropTypes.string,
-  phone: PropTypes.string,
+  phone: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   aboutUs: PropTypes.string,
   requirementsToAdopt: PropTypes.string,
 }

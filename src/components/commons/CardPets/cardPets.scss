@@ -1,22 +1,17 @@
 @import "styles/mixings.scss";
 
 .containerInfo {
-  padding: 24px 0 10px 30px;
+  margin-top: 30px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   border-radius: 100px;
-
-  @include media-breakpoint-down(lg) {
-    margin-top: 20px;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 25px 0 10px 0;
-  }
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 20px 10px 30px;
 }
 
 .borderImage {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +40,7 @@
   letter-spacing: 0.85px;
   text-align: justify;
 
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-down(xxl) {
     margin-left: 0;
     margin-top: 20px;
     justify-content: center;
@@ -54,8 +49,6 @@
 
 .textHistory {
   margin-top: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
   font-size: 14px;
   color: rgba(0, 27, 97, 0.74);
   letter-spacing: 0.37px;
@@ -107,12 +100,16 @@
 }
 
 .tableInfo {
-  padding: 10px 20px 10px 50px;
+  padding: 10px 20px 10px 30px;
   display: grid;
   grid-template-columns: auto auto auto;
 
+  @include media-breakpoint-only(md) {
+    padding: 10px 10px 10px 30px;
+  }
+
   @include media-breakpoint-down(xs) {
-    padding: 10px 20px 10px 20px;
+    padding: 10px 10px 10px 20px;
   }
 }
 
