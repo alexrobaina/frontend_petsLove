@@ -46,14 +46,15 @@ const DashboardShelter = () => {
   const handleChangePage = useCallback((e, newPage) => {
     if (shelterStore.swithPets) {
       setPage(newPage)
-      return shelterStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
+      shelterStore.getPetsForAdoption(_id, LIMIT_LIST, newPage, '', false)
+    } else {
+      setPage(newPage)
+      shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
     }
-    setPage(newPage)
-    return shelterStore.getPetsAdopted(_id, LIMIT_LIST, newPage, '', true)
   }, [])
 
   const handleSearch = useCallback(e => {
-    if (shelterStore.swithPets) {
+    if (!shelterStore.swithPets) {
       shelterStore.getPetsAdopted(_id, LIMIT_LIST, page, e.target.value, true)
     } else {
       shelterStore.getPetsForAdoption(_id, LIMIT_LIST, page, e.target.value, false)
