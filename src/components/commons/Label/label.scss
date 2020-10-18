@@ -2,8 +2,8 @@
 
 .label {
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   @include site-font("text", 600);
-  color: $secundaryTitle;
+  color: $title;
   padding-bottom: 5px;
 }
