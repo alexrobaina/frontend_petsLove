@@ -31,13 +31,6 @@ class FilterSearchPetsStore {
       category: this.category.value,
     }
 
-    const searchPets = {
-      country: this.country.value,
-      city: this.city.value,
-    }
-
-    localStorage.setItem('searchPets', JSON.stringify(searchPets))
-
     try {
       const response = await this.petsService.getPets(data, limit, page)
 
