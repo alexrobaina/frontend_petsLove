@@ -94,13 +94,13 @@ const Navbar = ({ children }) => {
             </div>
           </>
         ) : (
-          // if user is logout view buttons Login and Sing In
+          // if user is logout view buttons Login and Sign In
           <div className={styles.containerButtonslogin}>
             <div className={styles.navbarLink}>
               <ButtonLink onclick={goToLogin} text={t('login')} />
             </div>
             <div className={styles.navbarLink}>
-              <ButtonLink onclick={goToRegister} text={t('common:singIn')} />
+              <ButtonLink onclick={goToRegister} text={t('common:signIn')} />
             </div>
             <div className={styles.containerLanguage}>
               <ChangeLanguage />

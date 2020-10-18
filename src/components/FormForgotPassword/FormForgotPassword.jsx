@@ -54,7 +54,7 @@ const FormForgotPassword = () => {
         <Button handleClick={sendEmail} bigButton text={t('changePassword')} />
       </div>
       <div className={styles.forgotPassword}>
-        <Link to="login" className={styles.textSingIn}>
+        <Link to="login" className={styles.textSignIn}>
           {t('login')}
         </Link>
       </div>
