@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { observer } from 'mobx-react'
+import { useTranslation } from 'react-i18next'
 import { Router, Switch, Route } from 'react-router-dom'
 import ScrollMemory from 'react-router-scroll-memory'
 import PrivateRoute from 'routing/PrivateRoute'
@@ -36,6 +37,7 @@ import Search from 'containers/Search'
 import ProfileUser from 'containers/ProfileUser'
 import EditPet from 'containers/EditPet'
 import LandingPage from 'containers/LandingPage'
+import AlertToast from 'components/commons/AlertToast'
 import ResetPassword from 'containers/ResetPassword'
 import SearchProtectionist from 'containers/SearchProtectionist/SearchProtectionist'
 import Asks from 'containers/Asks'
@@ -50,9 +52,20 @@ const rootStore = new RootStore()
 
 axiosInterceptors(rootStore)
 
-function App() {
+const App = () => {
+  const { t } = useTranslation()
+  const handleToggleToast = useCallback(() => {
+    rootStore.authStore.setTokenExpired()
+  }, [])
+
   return (
     <UserContext.Provider value={rootStore}>
+      <AlertToast
+        warning
+        text={t('tokenExpired')}
+        handleToggleToast={handleToggleToast}
+        toggleToast={rootStore.authStore.tokenExpired}
+      />
       <Router history={historyBrowser}>
         <ScrollMemory />
         <Navbar>
