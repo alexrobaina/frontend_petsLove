@@ -11,7 +11,7 @@
   "adopted": "Was the pet adopted?",
   "statusPet": "Status of the pet",
   "LabelAdopted": "Who adopted it?",
-  "mascotStory": "Pet's Story",
+  "mascotStory": "Pet's story",
   "categoryPets": "Type of pet",
   "urgentLabel": "Does it need urgent help?",
   "birthdate": "Birthday",
@@ -51,7 +51,7 @@
   "RequiredToAdoption": "Requirements for adoption",
   "quiet": "Quiet",
   "active": "Active",
-  "activity": "Activity",
+  "activity": "Activity level",
   "labelWhoAdopted": "Who adopted {{ name }}?",
   "placeHolderSearchAdopter": "Select the adopter's email...",
   "superEnergetic": "Super energetic",
@@ -69,20 +69,18 @@
   "isCastrated": "Is it neutered?",
   "vaccinatedRabies": "Is it vaccinated against rabies?",
   "dog": {
-    "dogVaccinationForm": "Dog vaccination form",
     "isVaccinatedLeptospirosis": "Is it vaccinated against leptospirosis?",
     "isVaccinatedHepatitis": "Is it vaccinated against hepatitis?",
-    "dogVaccinationForm": "Form of vaccinations",
     "isVaccinatedParvovirusis": "Is it vaccinated against parvovirus?",
     "canineDistemper": "Is vaccinated against canine distemper?",
     "isVaccinatedBronchiseptic": "Is vaccinated against bronchiseptic?",
     "isVaccinatedParainfluenza": "Is vaccinated against parainfluenza?"
   },
   "cat": {
-    "catVaccinationForm": "Cat vaccination form",
     "felineFluVaccine": "Is it vaccinated against feline flu (Rinotraqueitis)?",
     "felineLeukemia": "Is it vaccinated against feline leukemia?",
     "felineInfectiousPeritonitis": "Is it vaccinated against Feline infectious Peritonitis?"
   },
+  "vaccinationForm": "Form of vaccinations",
   "last": "last"
 }

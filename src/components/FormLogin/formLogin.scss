@@ -1,4 +1,4 @@
-@import 'styles/mixings.scss';
+@import "styles/mixings.scss";
 
 .login {
   display: flex;
@@ -15,7 +15,7 @@
 
 .title {
   color: $title;
-  @include site-font('text', 600);
+  @include site-font("text", 600);
   font-size: 32px;
   font-weight: 700;
   text-align: center;
@@ -55,9 +55,9 @@
 }
 
 .textForgot,
-.textSingIn {
+.textSignIn {
   cursor: pointer;
-  @include site-font('text', 600);
+  @include site-font("text", 600);
   font-size: 14px;
   font-weight: 400;
 }

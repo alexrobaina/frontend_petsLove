@@ -11,7 +11,7 @@ import styles from './tabViewInformationPet.scss'
 const TabViewInformationPet = ({ pet, history }) => {
   const [step, setStep] = useState(1)
   const { t } = useTranslation()
-  console.log(pet.getNotes)
+
   return (
     <div className={styles.containerCard}>
       <div className={styles.contactInformation}>
@@ -20,20 +20,19 @@ const TabViewInformationPet = ({ pet, history }) => {
             onClick={() => setStep(1)}
             className={c(styles.actionButton, step === 1 && styles.actionButtonSelected)}
           >
-            Info basica
+            {t('profilePets:basicInformation')}
           </div>
           <div
             onClick={() => setStep(2)}
             className={c(styles.actionButton, step === 2 && styles.actionButtonSelected)}
           >
-            Ficha médica
+            {t('profilePets:medicalRecords')}
           </div>
-
           <div
             onClick={() => setStep(3)}
             className={c(styles.actionButton, step === 3 && styles.actionButtonSelected)}
           >
-            Historia
+            {t('profilePets:history')}
           </div>
         </div>
         <div className={styles.containerInformation}>

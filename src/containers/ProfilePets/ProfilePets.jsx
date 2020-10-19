@@ -83,7 +83,7 @@ const ProfilePets = () => {
               }
             />
             <div className={styles.containerName}>
-              <Title title={`Mi nombre es ${getName}`} />
+              <Title title={t('title', { name: getName })} />
               <div onClick={handleGoToProfile} className={styles.goToProfile}>
                 <div className={styles.iconGoToprofile}>
                   <MdKeyboardBackspace size={15} />

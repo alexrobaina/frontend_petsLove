@@ -77,7 +77,7 @@ const ResetPasswordForm = () => {
         <Button handleClick={SubmitResetPassword} bigButton text={t('change')} />
       </div>
       <div className={styles.forgotPassword}>
-        <div onClick={goToLogin} className={styles.textSingIn}>
+        <div onClick={goToLogin} className={styles.textSignIn}>
           {t('login')}
         </div>
       </div>
