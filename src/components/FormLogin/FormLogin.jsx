@@ -80,7 +80,7 @@ const FormLogin = () => {
             <Link to="forgot-password" className={styles.textForgot}>
               {t('login.forgotPassword')}
             </Link>
-            <Link to="register" className={styles.textSingIn}>
+            <Link to="register" className={styles.textSignIn}>
               {t('login.signUp')}
             </Link>
           </div>

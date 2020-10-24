@@ -1,14 +1,14 @@
 {
-    "country": "Country",
-    "city": "City",
-    "category": "Pet type",
-    "gender": "Gender",
-    "search": "Search",
-    "age": "Age",
-    "activity": "Activity",
-    "urgent": "Urgent",
-    "lost": "Lost pet",
-    "dewormed": "Dewormed",
-    "vaccianated": "Vaccinated",
-    "sterilized": "Neutered"
+  "country": "Country",
+  "city": "City",
+  "category": "Pet type",
+  "gender": "Gender",
+  "search": "Search",
+  "age": "Age",
+  "activity": "Activity level",
+  "urgent": "Urgent",
+  "lost": "Lost pet",
+  "dewormed": "Dewormed",
+  "vaccianated": "Vaccinated",
+  "sterilized": "Neutered"
 }

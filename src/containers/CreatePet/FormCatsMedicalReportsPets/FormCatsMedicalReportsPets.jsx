@@ -94,7 +94,7 @@ const FormCatsMedicalReportsPets = ({ createPetStore }) => {
         />
       </div>
       <div className={styles.colums}>
-        <div className={styles.subtitle}>{t('cat.catVaccinationForm')}</div>
+        <div className={styles.subtitle}>{t('vaccinationForm')}</div>
       </div>
       <div className={styles.colums}>
         <InputCheckbox

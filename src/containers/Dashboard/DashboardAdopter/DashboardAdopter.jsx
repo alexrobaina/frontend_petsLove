@@ -61,7 +61,7 @@ const DashboardAdopter = () => {
         <DashboardCard
           handleClick={handleSearch}
           icon={<MdSearch size={25} />}
-          titleCard={t('common:searchPets')}
+          titleCard={t('navbar:searchPets')}
         />
         <DashboardCard
           titleCard={t('searchShelters')}
