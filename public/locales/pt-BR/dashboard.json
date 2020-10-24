@@ -1,0 +1,17 @@
+{
+  "dashboard": "Painel de controle",
+  "petsAdopt": "Em adoção",
+  "petsAdopted": "Adotados",
+  "addPet": "Adicionar animal",
+  "searchVolanteers": "Buscar Voluntários",
+  "adopted": "Adotados",
+  "searchShelters": "Buscar Abrigos",
+
+  "volunteers": {
+    "titlePetsList": "Lista de animais cuidados"
+  },
+  "veterinary": {
+    "totalPets": "Animais Atendidos",
+    "titlePetsList": "Lista de animais atendidos"
+  }
+}

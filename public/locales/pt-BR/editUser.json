@@ -1,0 +1,15 @@
+{
+  "myProfile": "Meu perfil",
+  "availableTransit": "Disponível para receber animais",
+  "aboutUs": "Sobre mim/nós",
+  "myDescription": "Minha descrição",
+  "helpUserName": "Importante para seu perfil. Exemplo: pets-love.app/nomeDeUsuario",
+  "requirementsToAdopt": "Requisitos para adoção",
+  "saveSuccess": "Usuário gravado com sucesso",
+  "address": "Endereço",
+  "titleChangePassword": "Alterar senha",
+  "password": "Senha",
+  "repeatPassword": "Repetir senha",
+  "successPassword": "Ótimo! As senhas coincidem",
+  "errorPassword": "As senhas não coincidem"
+}
