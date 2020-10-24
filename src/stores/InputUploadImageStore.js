@@ -21,7 +21,8 @@ class InputUploadImageStore {
     const imagePreview = this.previewImage.filter(preview => {
       return preview !== image
     })
-
+    
+    this.imageService.deleteImage(image)
     this.previewImage = imagePreview
   }
 

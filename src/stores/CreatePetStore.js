@@ -76,7 +76,7 @@ class CreatePetStore extends AsyncApiStore {
     this.preRequest()
 
     try {
-      const response = await this.imageService.addImage(images)
+      const response = await this.imageService.addImagePet(images)
 
       runInAction(() => {
         this.onSuccessRequest()
@@ -144,10 +144,29 @@ class CreatePetStore extends AsyncApiStore {
     this.preRequest()
 
     try {
-      await this.imageService.uploadImage(images, this.pet.getImageId)
+      await this.imageService.uploadImagePet(images, this.pet.getImageId)
 
       runInAction(() => {
         this.updatePet()
+        this.onSuccessRequest()
+      })
+    } catch (e) {
+      runInAction(() => {
+        console.log(e)
+        this.clearError()
+        this.onSuccessRequest()
+      })
+    }
+  }
+
+  @action
+  async uploadImageFromPreview(images) {
+    this.preRequest()
+
+    try {
+      await this.imageService.uploadImagePet(images, this.pet.getImageId)
+
+      runInAction(() => {
         this.onSuccessRequest()
       })
     } catch (e) {

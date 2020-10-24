@@ -2,7 +2,7 @@ import React, { useContext, useState, useCallback } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import c from 'classnames'
-import { AWS_STORAGE } from 'services/config'
+import { AWS_STORAGE, USER_BUCKET } from 'services/config'
 import UserContext from 'Context/UserContext'
 import noImage from './noimg.png'
 import styles from './imageUserLog.scss'
@@ -39,7 +39,11 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
               alt="user"
               onError={onError}
               className={c(isProfile ? styles.imageProfile : styles.userImage)}
-              src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames}` : noImage}
+              src={
+                image && isImageNotFound
+                  ? `${AWS_STORAGE}/${USER_BUCKET}/${image.filenames}`
+                  : noImage
+              }
             />
           )}
         </>
@@ -49,15 +53,15 @@ const ImageUserLog = ({ handleToggleMenu, isUserLogin, isProfile, imagePreview }
 }
 
 ImageUserLog.propTypes = {
-  isUserLogin: PropTypes.bool,
   isProfile: PropTypes.bool,
+  isUserLogin: PropTypes.bool,
   imagePreview: PropTypes.arrayOf(PropTypes.string),
 }
 
 ImageUserLog.defaultProps = {
-  isUserLogin: false,
   isProfile: false,
   imagePreview: [],
+  isUserLogin: false,
 }
 
 export default observer(ImageUserLog)
