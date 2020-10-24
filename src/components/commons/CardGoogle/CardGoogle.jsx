@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { HOST, AWS_STORAGE } from 'services/config'
 import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
+import { PROFILE_USER } from 'routing/routes'
 
 const CardGoogle = ({ image, name, email, textButton, id }) => {
   return (
@@ -19,7 +20,7 @@ const CardGoogle = ({ image, name, email, textButton, id }) => {
         <div className={styles.title}>{name}</div>
         <div className={styles.text}>{email}</div>
         <div className={styles.button}>
-          <a className={styles.buttonLink} href={`${HOST}/profile-user/${id}`}>
+          <a className={styles.buttonLink} href={`${HOST}/${PROFILE_USER}/${id}`}>
             {textButton}
           </a>
         </div>

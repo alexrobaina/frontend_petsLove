@@ -1,11 +1,12 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useContext } from 'react'
 import { RiMouseLine } from 'react-icons/ri'
 import { useInView } from 'react-intersection-observer' // 1.9K gzipped
 import { motion, useAnimation } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
-import { REGISTER } from 'routing/routes'
+import { PROFILE_USER, REGISTER } from 'routing/routes'
 import Button from 'components/commons/Button'
+import UserContext from 'Context/UserContext'
 import LayoutLandingPage from 'components/LayoutLandingPage'
 import boyAndDog from '../boyAndDog.jpg'
 import styles from './firstSection.scss'
@@ -17,10 +18,13 @@ const FirstSection = () => {
   const animationImage = useAnimation()
   const animationButtonDown = useAnimation()
   const [ref] = useInView({ threshold: 0.1 })
+  const { authStore } = useContext(UserContext);
 
   const gotToRegister = useCallback(() => {
     history.push(REGISTER)
   }, [])
+
+  const goToProfile = useCallback(() => history.push(`${PROFILE_USER}/${authStore.user._id}`), [])
 
   const variants = {
     visible: {
@@ -86,9 +90,14 @@ const FirstSection = () => {
             </div>
 
             <div className={styles.textInformation}>{t('textFindAPet')}</div>
-            <div className={styles.containerButtonRegister}>
-              <Button handleClick={gotToRegister} bigButton text={t('common:signIn')} />
-            </div>
+            {authStore.isLogin ?
+              <div className={styles.containerButtonRegister}>
+                <Button handleClick={goToProfile} bigButton text={t('navbar:myProfile')} />
+              </div>
+              :
+              <div className={styles.containerButtonRegister}>
+                <Button handleClick={gotToRegister} bigButton text={t('common:signIn')} />
+              </div>}
           </motion.div>
         </div>
         <motion.div
