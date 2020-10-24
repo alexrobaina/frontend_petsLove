@@ -1,4 +1,4 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
 .containerImagePreview {
   margin-top: 30px;
@@ -45,9 +45,9 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
-  background-color: $colorLight;
+  background-color: $opasityDelete;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 5px;
 
   &:hover {
     opacity: 1;
@@ -101,12 +101,12 @@
     cursor: pointer;
 
     .icon:before {
-      content: '\f093';
+      content: "\f093";
     }
     &.hasFile {
       margin-left: 20px;
       .icon:before {
-        content: '\f00c';
+        content: "\f00c";
         color: #5aac7b;
       }
     }

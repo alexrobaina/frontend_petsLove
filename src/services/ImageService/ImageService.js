@@ -3,8 +3,10 @@ import FormData from 'form-data'
 import { SERVER } from '../config'
 
 class ImageService {
-  addImage = data => {
+  addImagePet = data => {
     const formData = new FormData()
+
+    formData.append('bucket', 'pet')
 
     if (data.imageResized) {
       Object.values(data.imageResized).forEach(value => {
@@ -20,8 +22,10 @@ class ImageService {
     return axios.post(`${SERVER}/api/pet/images`, formData).then(response => response.data)
   }
 
-  uploadImage = (data, idImage) => {
+  uploadImagePet = (data, idImage) => {
     const formData = new FormData()
+
+    formData.append('bucket', 'pet')
 
     if (data.imageResized) {
       Object.values(data.imageResized).forEach(value => {
@@ -42,6 +46,8 @@ class ImageService {
   addImageUser = data => {
     const formData = new FormData()
 
+
+    formData.append('bucket', 'user')
     formData.append('image', data)
 
     return axios.post(`${SERVER}/api/user/addUserImages`, formData).then(response => response.data)
@@ -49,6 +55,8 @@ class ImageService {
 
   updateImageUser = (imageId, data) => {
     const formData = new FormData()
+
+    formData.append('bucket', 'user')
 
     if (data) {
       formData.append('image', data)
@@ -59,6 +67,14 @@ class ImageService {
     return axios
       .post(`${SERVER}/api/user/updateUserImages`, formData)
       .then(response => response.data)
+  }
+
+  deleteImage = (image) => {
+    return axios.delete(`${SERVER}/api/deleteImage?image=${image}`).then(response => response.data)
+  }
+
+  deleteUserImage = (image) => {
+    return axios.delete(`${SERVER}/api/deleteUserImage?image=${image}`).then(response => response.data)
   }
 }
 

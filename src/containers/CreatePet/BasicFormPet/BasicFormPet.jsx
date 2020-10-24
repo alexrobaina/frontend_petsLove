@@ -114,6 +114,7 @@ const BasicFormPet = ({ createPetStore, inputUploadImageStore }) => {
       <InputUploadImage
         isEdit
         oldImage={getImagePreviews}
+        createPetStore={createPetStore}
         inputUploadImageStore={inputUploadImageStore}
       />
       <div className={styles.colums}>

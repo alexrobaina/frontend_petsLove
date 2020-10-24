@@ -5,7 +5,7 @@ import { AiOutlineFolderView } from 'react-icons/ai'
 import { RiDeleteBin2Line } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
 import Tooltip from '@material-ui/core/Tooltip'
-import { AWS_STORAGE } from 'services/config'
+import { AWS_STORAGE, PET_BUCKET } from 'services/config'
 import Utils from 'utils'
 import LayoutCards from 'components/commons/LayoutCards'
 import Chips from 'components/commons/Chips'
@@ -47,7 +47,7 @@ const CardPets = ({
               onError={onError}
               alt="photos-pets"
               className={styles.imgCard}
-              src={image && isImageNotFound ? `${AWS_STORAGE}/${image}` : noImage}
+              src={image && isImageNotFound ? `${AWS_STORAGE}/${PET_BUCKET}/${image}` : noImage}
             />
           </div>
           <div className={styles.containerNameText}>

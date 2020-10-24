@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import c from 'classnames'
 import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
-import InputUploadImageStore from 'stores/InputUploadImageStore'
+import Tooltip from '@material-ui/core/Tooltip'
 import { MdCancel, MdUpdate } from 'react-icons/md'
-import { AWS_STORAGE } from 'services/config'
+import CreatePetStore from 'stores/CreatePetStore'
+import InputUploadImageStore from 'stores/InputUploadImageStore'
+import { AWS_STORAGE, PET_BUCKET } from 'services/config'
 import noImage from 'components/commons/GaleryImages/noImage.svg'
 import styles from './inputUploadImage.scss'
 
-const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
+const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore, createPetStore }) => {
   const { t } = useTranslation('createPet')
   const fileUpload = useRef()
 
@@ -29,6 +31,7 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
 
   const removePreviewImage = useCallback(image => {
     inputUploadImageStore.removePreviosImage(image)
+    createPetStore.uploadImageFromPreview(inputUploadImageStore.getImage)
   }, [])
 
   const removeNewPreviewImage = useCallback(image => {
@@ -55,13 +58,15 @@ const InputUploadImage = ({ oldImage, isEdit, inputUploadImageStore }) => {
                 <img
                   alt="pets"
                   className={styles.imagePreview}
-                  src={image ? `${AWS_STORAGE}/${image}` : noImage}
+                  src={image ? `${AWS_STORAGE}/${PET_BUCKET}/${image}` : noImage}
                 />
-                <div className={styles.middle}>
-                  <div onClick={() => removePreviewImage(image)} className={styles.containerIcon}>
-                    <MdCancel className={styles.iconImage} size={20} />
+                <Tooltip title={t('deleteImage')}>
+                  <div className={styles.middle}>
+                    <div onClick={() => removePreviewImage(image)} className={styles.containerIcon}>
+                      <MdCancel className={styles.iconImage} size={20} />
+                    </div>
                   </div>
-                </div>
+                </Tooltip>
               </div>
             )
           })}
@@ -106,6 +111,7 @@ InputUploadImage.propTypes = {
   isEdit: PropTypes.bool,
   oldImage: PropTypes.arrayOf(PropTypes.string),
   inputUploadImageStore: PropTypes.instanceOf(InputUploadImageStore).isRequired,
+  createPetStore: PropTypes.instanceOf(CreatePetStore).isRequired,
 }
 
 InputUploadImage.defaultProps = {

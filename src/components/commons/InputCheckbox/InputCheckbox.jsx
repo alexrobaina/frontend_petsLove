@@ -48,7 +48,9 @@ const InputCheckbox = ({ isEdit, text, handleChange, value }) => {
               />
             </div>
             <div className={styles.containerAnswer}>
-              <div className={c(styles.answer, value && styles.isYes)}>{value ? t('yes') : t('no')}</div>
+              <div className={c(styles.answer, value && styles.isYes)}>
+                {value ? t('yes') : t('no')}
+              </div>
             </div>
           </div>
         </div>

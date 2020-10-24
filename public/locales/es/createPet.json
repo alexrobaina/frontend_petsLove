@@ -12,6 +12,7 @@
   "placeholderName": "Nombre de la mascota",
   "adopted": "¿La mascota fué adoptada?",
   "statusPet": "Estatus de la mascota",
+  "deleteImage": "Borrar imagen",
   "labelWhoAdopted": "¿Quien Adoptó a {{ name }}?",
   "placeHolderSearchAdopter": "Selecciona el email del adoptante...",
   "categoryPets": "Tipo de mascota",

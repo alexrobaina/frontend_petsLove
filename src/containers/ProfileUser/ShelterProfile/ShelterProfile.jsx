@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer, useLocalStore } from 'mobx-react'
 import { useParams } from 'react-router'
-import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
+import { AWS_STORAGE, LIMIT_LIST, USER_BUCKET } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import LayoutProfile from 'components/commons/LayoutProfile'
 import Button from 'components/commons/Button'
@@ -93,7 +93,11 @@ const ShelterProfile = ({ user }) => {
               onError={onError}
               alt="photos-users"
               className={styles.userImage}
-              src={image && isImageNotFound ? `${AWS_STORAGE}/${image.filenames[0]}` : noImage}
+              src={
+                image && isImageNotFound
+                  ? `${AWS_STORAGE}/${USER_BUCKET}/${image.filenames[0]}`
+                  : noImage
+              }
             />
             <Title title={username.value.split('-').join(' ')} />
             {textAddress.value && (

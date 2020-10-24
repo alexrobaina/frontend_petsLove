@@ -4,7 +4,7 @@ import { useLocalStore, observer } from 'mobx-react'
 import { MdKeyboardBackspace, MdLocationOn } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
 import PetIdStore from 'stores/PetIdStore'
-import { AWS_STORAGE } from 'services/config'
+import { AWS_STORAGE, PET_BUCKET } from 'services/config'
 import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import Title from 'components/commons/Title'
 import LayoutProfile from 'components/commons/LayoutProfile'
@@ -78,7 +78,7 @@ const ProfilePets = () => {
               className={styles.userImage}
               src={
                 isImageNotFound && getImagePreviews
-                  ? `${AWS_STORAGE}/${getImagePreviews[0]}`
+                  ? `${AWS_STORAGE}/${PET_BUCKET}/${getImagePreviews[0]}`
                   : noImage
               }
             />
