@@ -323,7 +323,6 @@ const EditUser = () => {
           </div>
         </div>
         <ButtonsEditFixed
-          handleEdit={handleEdit}
           handleSave={handleSave}
           isEdit={userStore.isEdit}
           isLoading={userStore.isLoading}

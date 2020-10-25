@@ -6,7 +6,14 @@ import { MdEdit, MdSave } from 'react-icons/md'
 import Button from 'components/commons/Button'
 import styles from './buttonsEditFixed.scss'
 
-const ButtonsEditFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit, isLoading }) => {
+const ButtonsEditFixed = ({
+  isEdit,
+  onlySave,
+  isLoading,
+  handleSave,
+  handleEdit,
+  handleCancelEdit,
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -18,9 +25,15 @@ const ButtonsEditFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit, is
       )}
       {isEdit && (
         <>
-          <div className={styles.button}>
-            <Button handleClick={handleCancelEdit} text={t('cancel')} icon={<MdEdit size={20} />} />
-          </div>
+          {onlySave && (
+            <div className={styles.button}>
+              <Button
+                handleClick={handleCancelEdit}
+                text={t('cancel')}
+                icon={<MdEdit size={20} />}
+              />
+            </div>
+          )}
           <div className={styles.button}>
             <Button
               text={t('save')}
@@ -37,11 +50,13 @@ const ButtonsEditFixed = ({ handleSave, isEdit, handleCancelEdit, handleEdit, is
 
 ButtonsEditFixed.propTypes = {
   isEdit: PropTypes.bool,
+  onlySave: PropTypes.bool,
   isLoading: PropTypes.bool,
 }
 
 ButtonsEditFixed.defaultProps = {
   isEdit: false,
+  onlySave: false,
   isLoading: false,
 }
 
