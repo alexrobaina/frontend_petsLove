@@ -94,7 +94,9 @@ class UserStore extends AsyncApiStore {
     this.isUpdated = false
 
     try {
-      await this.imageService.deleteUserImage(this.user.image.filenames[0])
+      if (this.user?.image?.filenames[0]) {
+        await this.imageService.deleteUserImage(this.user.image.filenames[0])
+      }
       if (this.user.getImageId()) {
         await this.imageService.updateImageUser(
           this.user.getImageId(),

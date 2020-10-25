@@ -90,10 +90,6 @@ const EditUser = () => {
     userStore.cancelEdit()
   }, [])
 
-  const handleEdit = useCallback(() => {
-    userStore.setIsEdit()
-  }, [])
-
   const handleSave = useCallback(() => {
     userStore.save()
   }, [])
@@ -323,6 +319,7 @@ const EditUser = () => {
           </div>
         </div>
         <ButtonsEditFixed
+          onlySave
           handleSave={handleSave}
           isEdit={userStore.isEdit}
           isLoading={userStore.isLoading}

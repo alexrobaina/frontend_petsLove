@@ -25,7 +25,7 @@ const ButtonsEditFixed = ({
       )}
       {isEdit && (
         <>
-          {onlySave && (
+          {!onlySave && (
             <div className={styles.button}>
               <Button
                 handleClick={handleCancelEdit}
