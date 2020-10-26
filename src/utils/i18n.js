@@ -6,7 +6,7 @@ import { initReactI18next } from 'react-i18next'
 const languageDetector = new LanguageDetector()
 
 const fallbackLng = ['es']
-const availableLanguages = ['es', 'en']
+const availableLanguages = ['es', 'en', 'pt-BR']
 
 const options = {
   // order and from where user language should be detected

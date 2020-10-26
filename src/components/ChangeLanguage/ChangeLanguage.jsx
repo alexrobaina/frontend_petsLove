@@ -21,6 +21,12 @@ const ChangeLanguage = () => {
     setToggleMenu(true)
   }, [])
 
+  const handleBrazillianPortuguese = useCallback(() => {
+    i18n.changeLanguage('pt-BR')
+    moment.locale('pt-br')
+    setToggleMenu(true)
+  }, [])
+
   return (
     <>
       <div onClick={() => setToggleMenu(!toggleMenu)} className={styles.buttonMenu}>
@@ -36,6 +42,9 @@ const ChangeLanguage = () => {
           </div>
           <div onClick={handleSpanish} className={styles.buttons}>
             <div className={styles.text}>Spanish</div>
+          </div>
+          <div onClick={handleBrazillianPortuguese} className={styles.buttons}>
+            <div className={styles.text}>Portuguese(BR)</div>
           </div>
         </div>
       </div>
