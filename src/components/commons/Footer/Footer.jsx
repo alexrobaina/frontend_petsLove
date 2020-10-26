@@ -1,18 +1,27 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
-import { REGISTER } from 'routing/routes'
+import { PROFILE_USER, REGISTER } from 'routing/routes'
 import SocialMediaButtons from 'components/commons/SocialMediaButtons'
 import Button from 'components/commons/Button'
+import UserContext from 'Context/UserContext'
 import styles from './footer.scss'
 
 const Footer = () => {
   const history = useHistory()
   const { t } = useTranslation('landingPage')
+  const { authStore } = useContext(UserContext);
 
-  const handleGoToRegister = useCallback(() => {
-    history.push(REGISTER)
-  }, [])
+  const goTo = useCallback(() => {
+    if (authStore.isLogin) return history.push(`${PROFILE_USER}/${authStore.user._id}`)
+    return history.push(REGISTER)
+  }, [authStore.isLogin])
+
+  const formatText = useCallback(() => {
+    if (authStore.isLogin) return t('navbar:myProfile')
+    return t('common:signUp')
+  }, [authStore.isLogin])
+
   return (
     <>
       <div className={styles.containerFooter}>
@@ -21,7 +30,7 @@ const Footer = () => {
             <div className={styles.logo}>Pets Love</div>
             <div className={styles.text}>{t('helpToPetMessage')}</div>
             <div className={styles.containerButtonSignUp}>
-              <Button handleClick={handleGoToRegister} bigButton text={t('common:signUp')} />
+              <Button handleClick={goTo} bigButton text={formatText()} />
             </div>
           </div>
           <div className={styles.cafecito}>

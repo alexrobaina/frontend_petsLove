@@ -13,6 +13,7 @@ import GaleryImages from 'components/commons/GaleryImages'
 import AlertToast from 'components/commons/AlertToast'
 import TabViewInformationPet from 'components/commons/TabViewInformationPet'
 import Footer from 'components/commons/Footer/index'
+import { PROFILE_USER } from 'routing/routes'
 import noImage from './noImage.svg'
 import styles from './profilePets.scss'
 
@@ -31,7 +32,7 @@ const ProfilePets = () => {
 
   const handleGoToProfile = useCallback(() => {
     history.push(
-      `/profile-user/${petIdStore.pet.userCreator.value && petIdStore.pet.getUserCreatorId}`
+      `${PROFILE_USER}/${petIdStore.pet.userCreator.value && petIdStore.pet.getUserCreatorId}`
     )
   }, [])
 

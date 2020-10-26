@@ -12,6 +12,8 @@ const PaginationList = ({ handleChange, page, total, limit }) => {
     setNumberPage(Math.ceil(result, 1))
   }, [total])
 
+  if (numberPage === 1) return null;
+
   return (
     <div className={styles.containerPagination}>
       <div className={styles.pagination}>
