@@ -20,11 +20,15 @@ const FirstSection = () => {
   const [ref] = useInView({ threshold: 0.1 })
   const { authStore } = useContext(UserContext);
 
-  const gotToRegister = useCallback(() => {
-    history.push(REGISTER)
-  }, [])
+  const goTo = useCallback(() => {
+    if (authStore.isLogin) return history.push(`${PROFILE_USER}/${authStore.user._id}`)
+    return history.push(REGISTER)
+  }, [authStore.isLogin])
 
-  const goToProfile = useCallback(() => history.push(`${PROFILE_USER}/${authStore.user._id}`), [])
+  const formatText = useCallback(() => {
+    if (authStore.isLogin) return t('navbar:myProfile')
+    return t('common:signUp')
+  }, [authStore.isLogin])
 
   const variants = {
     visible: {
@@ -90,14 +94,9 @@ const FirstSection = () => {
             </div>
 
             <div className={styles.textInformation}>{t('textFindAPet')}</div>
-            {authStore.isLogin ?
-              <div className={styles.containerButtonRegister}>
-                <Button handleClick={goToProfile} bigButton text={t('navbar:myProfile')} />
-              </div>
-              :
-              <div className={styles.containerButtonRegister}>
-                <Button handleClick={gotToRegister} bigButton text={t('common:signIn')} />
-              </div>}
+            <div className={styles.containerButtonSignUp}>
+              <Button handleClick={goTo} bigButton text={formatText()} />
+            </div>
           </motion.div>
         </div>
         <motion.div

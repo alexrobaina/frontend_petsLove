@@ -2,9 +2,9 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { HOST, AWS_STORAGE } from 'services/config'
+import { PROFILE_USER } from 'routing/routes'
 import noImage from './noimg.png'
 import styles from './cardGoogle.scss'
-import { PROFILE_USER } from 'routing/routes'
 
 const CardGoogle = ({ image, name, email, textButton, id }) => {
   return (

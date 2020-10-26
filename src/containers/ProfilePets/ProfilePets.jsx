@@ -13,9 +13,9 @@ import GaleryImages from 'components/commons/GaleryImages'
 import AlertToast from 'components/commons/AlertToast'
 import TabViewInformationPet from 'components/commons/TabViewInformationPet'
 import Footer from 'components/commons/Footer/index'
+import { PROFILE_USER } from 'routing/routes'
 import noImage from './noImage.svg'
 import styles from './profilePets.scss'
-import { PROFILE_USER } from 'routing/routes'
 
 const ProfilePets = () => {
   const [toggleToast, setToggleToast] = useState(false)
