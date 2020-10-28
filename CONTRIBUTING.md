@@ -22,9 +22,10 @@ With the developer mode open localhost:3000 [http://localhost:3000](http://local
 ## Running the project using Docker 🐳
 
 1. Install Docker
-2. Making a fork of the project and clone it
-3. Build image `docker build -t frontend_petslove:local .`
-4. Create and run container `docker run -it --rm -v $(pwd):/app -v /app/node_modules -p 3000:3000 frontend_petslove:local yarn start`
+2. Install docker-compose
+3. Making a fork of the project and clone it
+4. Build image `docker-compose build`
+5. Create and run container `docker-compose --service-ports run frontend`
 
 ## Pets Love API
 
