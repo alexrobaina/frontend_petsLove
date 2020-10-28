@@ -46,7 +46,6 @@ class ImageService {
   addImageUser = data => {
     const formData = new FormData()
 
-
     formData.append('bucket', 'user')
     formData.append('image', data)
 
@@ -69,12 +68,14 @@ class ImageService {
       .then(response => response.data)
   }
 
-  deleteImage = (image) => {
-    return axios.delete(`${SERVER}/api/deleteImage?image=${image}`).then(response => response.data)
+  deleteImage = image => {
+    return axios.delete(`${SERVER}/api/deleteImage?image=${image}`).then(response => response?.data)
   }
 
-  deleteUserImage = (image) => {
-    return axios.delete(`${SERVER}/api/deleteUserImage?image=${image}`).then(response => response.data)
+  deleteUserImage = image => {
+    return axios
+      .delete(`${SERVER}/api/deleteUserImage?image=${image}`)
+      .then(response => response?.data)
   }
 }
 

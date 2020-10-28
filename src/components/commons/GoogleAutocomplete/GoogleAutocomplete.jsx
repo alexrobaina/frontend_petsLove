@@ -127,8 +127,8 @@ const GoogleAutocomplete = observer(
 GoogleAutocomplete.propTypes = {
   isEdit: PropTypes.bool,
   value: PropTypes.string,
-  handleSearch: PropTypes.func,
   label: PropTypes.string,
+  handleSearch: PropTypes.func,
   placeholder: PropTypes.string,
   enterKeyPress: PropTypes.func,
   handleChangeAddress: PropTypes.func,
@@ -140,9 +140,9 @@ GoogleAutocomplete.propTypes = {
 GoogleAutocomplete.defaultProps = {
   label: '',
   value: '',
-  handleSearch: null,
   isEdit: false,
   placeholder: '',
+  handleSearch: null,
   enterKeyPress: null,
   inputStoreError: null,
   handleChangeAddress: null,

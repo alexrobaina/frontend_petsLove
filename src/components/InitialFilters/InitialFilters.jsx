@@ -9,6 +9,8 @@ import styles from './initialFilters.scss'
 
 const InitialFilters = () => {
   const [keyPressed, setKeyPressed] = useState(false)
+  const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
+  const { t } = useTranslation('search')
 
   const useKeyPress = targetKey => {
     // State for keeping track of whether key is pressed
@@ -43,33 +45,31 @@ const InitialFilters = () => {
 
   const keyPress = useKeyPress('Enter')
 
-  const filterSearchPetsStore = useLocalStore(() => new FilterSearchPetsStore())
-  const { t } = useTranslation('search')
+  const handleSearch = () => {
+    filterSearchPetsStore.searchPets(10, 1)
+  }
 
   const handleChanceCategory = useCallback(selectedValue => {
     filterSearchPetsStore.setCategory(selectedValue.value)
+    handleSearch()
   })
 
   const handleChanceGender = useCallback(selectedValue => {
     filterSearchPetsStore.setGender(selectedValue.value)
+    handleSearch()
   })
 
   const handleChangeTextAddress = useCallback(address => {
     filterSearchPetsStore.setTextAddress(address)
-
-    if (address === '') {
-      filterSearchPetsStore.city.setValue('')
-      filterSearchPetsStore.country.setValue('')
-    }
+    filterSearchPetsStore.city.setValue('')
+    filterSearchPetsStore.country.setValue('')
   })
+
+  const { textAddress, category, gender } = filterSearchPetsStore
 
   const handleChangeAddressComponents = useCallback(addressComponent => {
     filterSearchPetsStore.setAddressComponents(addressComponent)
-  })
-
-  const handleSearch = () => {
-    filterSearchPetsStore.searchPets(10, 1)
-  }
+  }, [])
 
   useEffect(() => {
     if (keyPress) {
@@ -77,17 +77,15 @@ const InitialFilters = () => {
     }
   }, [keyPress])
 
-  const { textAddress, category, gender } = filterSearchPetsStore
-
   return (
-    <div>
+    <>
       <div className={styles.containerGoogleAutocomplete}>
         <div className={styles.googleAutocomplete}>
           <GoogleAutocomplete
             isEdit
             focusActive
-            handleSearch={handleSearch}
             value={textAddress.value}
+            handleSearch={handleSearch}
             inputStoreError={textAddress}
             label={t('labelGoogleAutocomplete')}
             placeholder={t('placeholderGoogleAutocomplete')}
@@ -102,7 +100,6 @@ const InitialFilters = () => {
             isEdit
             inputStore={category}
             value={category.value}
-            handleAction={handleSearch}
             placeholder={t('category')}
             label={t('common:typeOfPet')}
             handleChange={handleChanceCategory}
@@ -131,7 +128,7 @@ const InitialFilters = () => {
         </div>
       </div>
       <PetsFiltered store={filterSearchPetsStore} />
-    </div>
+    </>
   )
 }
 

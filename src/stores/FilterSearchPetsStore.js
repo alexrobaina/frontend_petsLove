@@ -2,8 +2,6 @@ import { observable, action, runInAction } from 'mobx'
 import PetsService from 'services/PetsService'
 import InputStore from './InputStore'
 
-const REQUIRED = 'Is required for search pets'
-
 class FilterSearchPetsStore {
   @observable isError = false
   @observable petsFiltered = []
@@ -92,22 +90,13 @@ class FilterSearchPetsStore {
   }
 
   @action
-  validate() {
-    this.cleanError()
-    let isValid = true
-
-    if (!this.textAddress.value) {
-      this.textAddress.setError(true, REQUIRED)
-
-      isValid = false
-    }
-
-    return isValid
+  setCountry(value) {
+    this.country.setValue(value)
   }
 
   @action
-  cleanError() {
-    this.textAddress.setError(false, '')
+  setCity(value) {
+    this.city.setValue(value)
   }
 }
 
