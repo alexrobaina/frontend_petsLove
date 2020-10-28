@@ -6,7 +6,6 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import { observer } from 'mobx-react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Label from 'components/commons/Label'
-import UseKeyPress from 'utils/UseKeyPress'
 import ViewValue from 'components/commons/ViewValue'
 import styles from './googleAutocomplete.scss'
 
@@ -60,7 +59,6 @@ const GoogleAutocomplete = observer(
 
     return (
       <>
-        <UseKeyPress />
         <PlacesAutocomplete value={address} onChange={handleChange} onSelect={configAddress}>
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
             return (
