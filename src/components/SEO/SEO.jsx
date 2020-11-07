@@ -13,7 +13,7 @@ const SEO = ({ pageTitle, description, componentName, image }) => {
       {pageTitle && <title>{`${pageTitle} | Pets Love`}</title>}
       {description && <meta name={description} content={componentName} />}
       {/* {description && <meta name={description} content={componentName} />} */}
-      <meta name="og:image" content={image || defaultImage} />
+      <meta property="og:image" content={image || defaultImage} />
       {/* <html lang="en" amp /> */}
     </Helmet>
   )
