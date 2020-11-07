@@ -1,9 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
-import defaultImage from '../../../public/imageShare.jpg'
 
 const SEO = ({ pageTitle, description, componentName, image }) => {
+  const defaultImage = 'https://elasticbeanstalk-us-west-1-867379966079.s3-us-west-1.amazonaws.com/imageShare/imageShare.jpg'
 
   return (
     <Helmet defaultTitle="Pets Love">
