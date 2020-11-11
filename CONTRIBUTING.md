@@ -25,7 +25,7 @@ With the developer mode open localhost:3000 [http://localhost:3000](http://local
 2. Install docker-compose
 3. Making a fork of the project and clone it
 4. Build image `docker-compose build`
-5. Create and run container `docker-compose --service-ports run frontend`
+5. Create and run container `docker-compose run --service-ports frontend`
 
 ## Pets Love API
 
