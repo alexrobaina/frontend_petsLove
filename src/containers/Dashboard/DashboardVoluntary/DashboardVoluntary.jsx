@@ -11,6 +11,7 @@ import Title from 'components/commons/Title/Title'
 import VolunteersStore from 'stores/VolunteersStore'
 import UserContext from 'Context/UserContext'
 import LayoutContainer from 'components/commons/LayoutContainer'
+import SEO from 'components/SEO'
 import ListPets from 'containers/ListPets'
 import styles from './dashboardVoluntary.scss'
 
@@ -79,6 +80,7 @@ const DashboardVoluntary = () => {
 
   return (
     <LayoutContainer>
+      <SEO pageTitle={t('dashboard')} />
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard

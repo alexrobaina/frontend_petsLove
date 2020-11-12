@@ -21,6 +21,7 @@ import InputCheckbox from 'components/commons/InputCheckbox'
 import ViewValue from 'components/commons/ViewValue'
 import AlertToast from 'components/commons/AlertToast'
 import Label from 'components/commons/Label'
+import SEO from 'components/SEO'
 import LayoutForm from 'components/commons/LayoutForm'
 import styles from './editUser.scss'
 
@@ -133,6 +134,7 @@ const EditUser = () => {
 
   return (
     <LayoutContainer title={t('myProfile')}>
+      <SEO pageTitle={t('myProfile')} />
       <AlertToast
         text={t('saveSuccess')}
         toggleToast={userStore.toggleToast}

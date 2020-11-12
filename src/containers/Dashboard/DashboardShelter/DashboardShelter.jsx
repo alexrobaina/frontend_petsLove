@@ -8,6 +8,7 @@ import UserContext from 'Context/UserContext'
 import ShelterStore from 'stores/ShelterStore'
 import { LIMIT_LIST } from 'services/config'
 import DashboardCard from 'components/commons/DashboardCard'
+import SEO from 'components/SEO'
 import { CREATE_PET, SEARCH_VOLANTEERS } from 'routing/routes'
 import Title from 'components/commons/Title'
 import ListPets from 'containers/ListPets'
@@ -82,6 +83,7 @@ const DashboardShelter = () => {
 
   return (
     <LayoutContainer>
+      <SEO pageTitle={t('dashboard')} />
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard
