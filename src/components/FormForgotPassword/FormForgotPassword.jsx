@@ -6,6 +6,7 @@ import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import Loading from 'components/commons/Loading'
 import Input from 'components/commons/Input'
 import Button from 'components/commons/Button'
+import SEO from 'components/SEO'
 import SuccessMessage from 'components/commons/SuccessMessage'
 import styles from './formForgotPassword.scss'
 
@@ -36,6 +37,7 @@ const FormForgotPassword = () => {
 
   return (
     <div className={styles.centerForgotPassword}>
+      <SEO pageTitle={t('title')} />
       <div className={styles.title}>{t('title')}</div>
       <div className={styles.inputForm}>
         {sendSuccess && <div className={styles.successEmail}>{t('goToEmail')}</div>}

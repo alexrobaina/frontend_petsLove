@@ -1,11 +1,14 @@
 import React, { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
+import Tooltip from '@material-ui/core/Tooltip'
 import c from 'classnames'
 import { FaLanguage } from 'react-icons/fa'
 import styles from './changeLanguage.scss'
 
 const ChangeLanguage = () => {
+  const { t } = useTranslation('navbar')
+
   const [toggleMenu, setToggleMenu] = useState(true)
   const { i18n } = useTranslation()
 
@@ -30,7 +33,16 @@ const ChangeLanguage = () => {
   return (
     <>
       <div onClick={() => setToggleMenu(!toggleMenu)} className={styles.buttonMenu}>
-        <FaLanguage size={38} />
+        <Tooltip
+          arrow
+          placement="bottom"
+          title={t('changeLanguage')}
+          aria-label={t('changeLanguage')}
+        >
+          <div>
+            <FaLanguage size={38} />
+          </div>
+        </Tooltip>
       </div>
       <div
         onMouseLeave={() => setToggleMenu(true)}

@@ -13,6 +13,7 @@ import LayoutTrantitions from 'components/commons/LayoutTrantitions'
 import ImageInformationLeft from 'components/commons/ImageInformationLeft'
 import LayoutLogin from 'components/commons/LayoutLogin'
 import UserContext from 'Context/UserContext'
+import SEO from 'components/SEO'
 import { ADOPTER, SHELTER, TRANSIT_USER, VET } from 'config/roles'
 import RegisterStore from 'stores/RegisterStore'
 import AlertToast from 'components/commons/AlertToast'
@@ -81,6 +82,7 @@ const FormRegister = ({ registerStore }) => {
 
   return (
     <>
+      <SEO pageTitle={t('register.signUp')} />
       <AlertToast
         handleToggleToast={handleToggleToast}
         toggleToast={registerStore.toggleToast}

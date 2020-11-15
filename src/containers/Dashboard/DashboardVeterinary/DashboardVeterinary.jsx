@@ -11,6 +11,7 @@ import ListPets from 'containers/ListPets'
 import VeterinaryStore from 'stores/VeterinaryStore'
 import UserContext from 'Context/UserContext'
 import { LIMIT_LIST } from 'services/config'
+import SEO from 'components/SEO'
 import { CREATE_PET, SEARCH_PROTECTIONIST } from 'routing/routes'
 import styles from './dashboardVeterinary.scss'
 
@@ -50,6 +51,7 @@ const DashboardVeterinary = () => {
 
   return (
     <LayoutContainer>
+      <SEO pageTitle={t('dashboard')} />
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard

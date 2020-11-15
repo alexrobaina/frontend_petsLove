@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
 import { useHistory } from 'react-router'
+import Tooltip from '@material-ui/core/Tooltip'
 import { MdSearch } from 'react-icons/md'
+import { AiFillHome } from 'react-icons/ai'
 import { SEARCH_PETS, LOGIN, REGISTER, LANDING_PAGE } from 'routing/routes'
 import ChangeLanguage from 'components/ChangeLanguage'
 import UserContext from 'Context/UserContext'
@@ -63,10 +65,16 @@ const Navbar = ({ children }) => {
             />
           )}
           {/* This is button for go to search protectionist with google maps */}
-          <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
-          <div onClick={goToHome} className={styles.logo}>
-            {t('home')}
-          </div>
+          <Tooltip arrow title={t('home')} aria-label={t('home')} placement="bottom">
+            <div>
+              <ButtonIcon onclick={goToHome} icon={<AiFillHome size={22} />} />
+            </div>
+          </Tooltip>
+          <Tooltip arrow title={t('searchPets')} aria-label={t('searchPets')} placement="bottom">
+            <div>
+              <ButtonIcon onclick={goToSeach} icon={<MdSearch size={25} />} />
+            </div>
+          </Tooltip>
         </div>
         {rootStore.authStore.isLogin ? (
           <>

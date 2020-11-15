@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
+import SEO from 'components/SEO'
 import Footer from 'components/commons/Footer'
 import shelter from './shelter.jpg'
 import dev from './dev.jpg'
@@ -19,6 +20,7 @@ const LandingPage = () => {
 
   return (
     <>
+      <SEO pageTitle={t('title')} description={t('textFindAPet')} image={shelter} />
       <FirstSection />
       <ImageCenter image={shelter} />
       <ContainerAction />

@@ -12,6 +12,7 @@ import { LIMIT_LIST } from 'services/config'
 import AdopterStore from 'stores/AdopterStore'
 import Title from 'components/commons/Title/Title'
 import ListPets from 'containers/ListPets'
+import SEO from 'components/SEO'
 import UserContext from 'Context/UserContext'
 import styles from './dashboardAdopter.scss'
 
@@ -50,6 +51,7 @@ const DashboardAdopter = () => {
 
   return (
     <LayoutContainer>
+      <SEO pageTitle={t('dashboard')} />
       <Title mBottom="30px" title={t('dashboard')} />
       <div className={styles.container}>
         <DashboardCard

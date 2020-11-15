@@ -3,6 +3,7 @@ import React, { useCallback, useContext } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import ForgotPasswordStore from 'stores/ForgotPasswordStore'
 import { useTranslation } from 'react-i18next'
+import SEO from 'components/SEO'
 import Input from 'components/commons/Input'
 import UserContext from 'Context/UserContext'
 import Button from 'components/commons/Button'
@@ -41,6 +42,7 @@ const ResetPasswordForm = () => {
 
   return (
     <div className={styles.centerForgotPassword}>
+      <SEO pageTitle={t('resetPassword')} />
       <div className={styles.title}>{t('resetPassword')}</div>
       <div className={styles.inputForm}>
         {forgotPasswordStore.isReset && (

@@ -14,6 +14,7 @@ import Button from 'components/commons/Button'
 import CreatePetStore from 'stores/CreatePetStore'
 import InputUploadImageStore from 'stores/InputUploadImageStore'
 import Loading from 'components/commons/Loading'
+import SEO from 'components/SEO'
 import BasicFormPet from './BasicFormPet/BasicFormPet'
 import LocationFormPet from './LocationFormPet/LocationFormPet'
 import MedicalReportsPets from './MedicalReportsPets/MedicalReportsPets'
@@ -99,7 +100,8 @@ const CreatePet = ({ isEdit }) => {
   const { name } = createPetStore.pet
 
   return (
-    <LayoutContainer title={c(isEdit ? t('editTo', { name: name.value }) : t('createPetTitle'))}>
+    <LayoutContainer title={isEdit ? t('editTo', { name: name.value }) : t('createPetTitle')}>
+      <SEO pageTitle={isEdit ? t('editTo', { name: name.value }) : t('createPetTitle')} />
       <LayoutForm>
         <div className={styles.containerSteps}>
           <Tooltip title={t('basicInformation')}>
