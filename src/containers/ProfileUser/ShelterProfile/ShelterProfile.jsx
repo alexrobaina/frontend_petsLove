@@ -12,6 +12,7 @@ import ShelterStore from 'stores/ShelterStore'
 import ListPets from 'containers/ListPets'
 import DashboardCard from 'components/commons/DashboardCard'
 import Title from 'components/commons/Title'
+import SEO from 'components/SEO'
 import TabViewInformation from 'components/commons/TabViewInformation/TabViewInformation'
 import noImage from '../noImage.svg'
 import styles from './shelterProfile.scss'
@@ -77,6 +78,7 @@ const ShelterProfile = ({ user }) => {
 
   return (
     <>
+      <SEO pageTitle={t('userProfile')} />
       <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet

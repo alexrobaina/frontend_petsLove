@@ -133,8 +133,8 @@ const EditUser = () => {
   }
 
   return (
-    <LayoutContainer title={t('myProfile')}>
-      <SEO pageTitle={t('myProfile')} />
+    <LayoutContainer title={t('editProfile')}>
+      <SEO pageTitle={t('editProfile')} />
       <AlertToast
         text={t('saveSuccess')}
         toggleToast={userStore.toggleToast}

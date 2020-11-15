@@ -8,7 +8,6 @@ const SEO = ({ pageTitle, description, componentName, image }) => {
 
   return (
     <Helmet defaultTitle="Pets Love">
-      <base target="_blank" href="https://pets-love.app" />
       <meta charSet="utf-8" />
       <meta name="twitter:site" content="@robainaAlex" />
       {pageTitle && <title>{`${pageTitle} | Pets Love`}</title>}

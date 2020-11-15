@@ -1,6 +1,7 @@
 {
   "login": "Login",
   "home": "Home",
+  "changeLanguage": "Change language",
   "searchPets": "Search Pets",
   "editProfile": "Edit profile",
   "logout": "Logout",

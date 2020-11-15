@@ -13,7 +13,7 @@ const Asks = () => {
   const { t } = useTranslation('faq')
   return (
     <>
-      <SEO pageTitle={t('faq')} />
+      <SEO pageTitle={t('frequentlyAskedQuestions')} />
       <LayoutContainer>
         <div className={styles.asksPage}>
           <img className={styles.imagePNF} src={imageAsks} alt="Not Found" />

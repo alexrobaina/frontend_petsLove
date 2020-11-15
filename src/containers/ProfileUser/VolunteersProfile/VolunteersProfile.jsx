@@ -10,6 +10,7 @@ import TabViewInformation from 'components/commons/TabViewInformation'
 import VolunteersStore from 'stores/VolunteersStore'
 import LayoutProfile from 'components/commons/LayoutProfile'
 import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
+import SEO from 'components/SEO'
 import Title from 'components/commons/Title'
 import ListPets from 'containers/ListPets'
 import noImage from '../noImage.svg'
@@ -37,6 +38,7 @@ const VolunteersProfile = ({ user }) => {
 
   return (
     <>
+      <SEO pageTitle={t('userProfile')} />
       <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet

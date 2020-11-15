@@ -8,6 +8,7 @@ import GoogleMapsLocation from 'components/commons/GoogleMapsLocation'
 import DashboardCard from 'components/commons/DashboardCard'
 import TabViewInformation from 'components/commons/TabViewInformation'
 import Title from 'components/commons/Title'
+import SEO from 'components/SEO'
 import LayoutProfile from 'components/commons/LayoutProfile'
 import ListPets from 'containers/ListPets'
 import noImage from '../noImage.svg'
@@ -39,6 +40,7 @@ const AdopterProfile = ({ user }) => {
 
   return (
     <>
+      <SEO pageTitle={t('userProfile')} />
       <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet

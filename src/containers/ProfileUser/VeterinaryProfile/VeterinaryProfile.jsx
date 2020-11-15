@@ -6,6 +6,7 @@ import LayoutProfile from 'components/commons/LayoutProfile'
 import DashboardCard from 'components/commons/DashboardCard'
 import TabViewInformation from 'components/commons/TabViewInformation'
 import { MdLocationOn } from 'react-icons/md'
+import SEO from 'components/SEO'
 import VeterinaryStore from 'stores/VeterinaryStore'
 import ListPets from 'containers/ListPets'
 import { AWS_STORAGE, LIMIT_LIST } from 'services/config'
@@ -42,6 +43,7 @@ const VeterinaryProfile = ({ user }) => {
 
   return (
     <>
+      <SEO pageTitle={t('userProfile')} />
       <div className={styles.containerMap}>
         <GoogleMapsLocation
           isProfilePet
