@@ -11,7 +11,7 @@
   "private": true,
   "engines": {
     "node": "12.x",
-    "yarn": "1.22.5"
+    "yarn": "1.22.4"
   },
   "dependencies": {
     "@babel/core": "7.9.6",
