@@ -1,0 +1,6 @@
+.github/*
+coverage/*
+documentation/*
+node_modules/*
+docs/*
+dist/*

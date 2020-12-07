@@ -1,20 +1,22 @@
 import Navbar from 'components/Navbar';
-import Head from 'next/head';
-import styles from 'styles/home.module.scss';
+import Seo from 'utils/Seo';
+import Title from 'components/common/Title';
+import Layout from 'components/common/Layout';
+import styles from 'styles/index.module.scss';
 
 const Home = () => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="../public/favicon.ico" />
-      </Head>
+    <Layout>
+      <Seo titlePage="Search" myApp="Pets Love" />
       <Navbar />
+      <Title
+        text="Mejora la vida de algun
+peludito y salva vidas."
+      />
       <main className={styles.main}>
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
         </h1>
-
         <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
@@ -51,7 +53,7 @@ const Home = () => {
         </div> */}
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -59,8 +61,8 @@ const Home = () => {
         >
           Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
-      </footer>
-    </div>
+      </footer> */}
+    </Layout>
   );
 };
 

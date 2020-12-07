@@ -1,32 +1,9 @@
 {
-  "printWidth": 100,
-  "semi": false,
-  "trailingComma": "es5",
+  "printWidth": 90,
+  "semi": true,
+  "trailingComma": "all",
   "singleQuote": true,
-  "arrowParens": "avoid",
   "overrides": [
-    {
-      "files": "src/**/*.ts",
-      "options": {
-        "parser": "typescript",
-        "tabWidth": 4
-      }
-    },
-    {
-      "files": "./**/*.{js,jsx}",
-      "options": {
-        "parser": "babel",
-        "singleQuote": false
-      }
-    },
-    {
-      "files": "src/**/*.{scss,css}",
-      "options": {
-        "parser": "scss",
-        "singleQuote": false,
-        "semi": true
-      }
-    },
     {
       "files": "./**/*.json",
       "options": {
