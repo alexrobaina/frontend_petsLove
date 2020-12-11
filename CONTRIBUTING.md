@@ -12,10 +12,10 @@ That's excellent, thank you for collaborating!
 
 **Running the project🚀**
 
-1. Install nodejs v14.7.0 [https://nodejs.org/](https://nodejs.org/)
+1. Install nodejs v14.14.0 [https://nodejs.org/](https://nodejs.org/)
 2. Making a fork of the project and clone it.
 3. Execute `yarn` for installing dependencies (node-modules).
-4. Execute `yarn start`
+4. Execute `yarn run dev`
 
 With the developer mode open localhost:3000 [http://localhost:3000](http://localhost:3000)
 
