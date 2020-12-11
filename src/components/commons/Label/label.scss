@@ -1,9 +1,0 @@
-@import "styles/mixings";
-
-.label {
-  text-align: left;
-  font-size: 14px;
-  @include site-font("text", 600);
-  color: $title;
-  padding-bottom: 5px;
-}

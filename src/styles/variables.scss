@@ -1,0 +1,28 @@
+:root {
+  // Fonts
+  --text-font: "Lato", sans-serif;
+  --title-font: "Rubik", sans-serif;
+
+  // colors
+  --primary-color: #001b61;
+  --secundary-color: #ed6193;
+
+  --background-body: var(--background-primary);
+  --background-primary: #ededed;
+  --background-secundary: #dee0f8;
+
+  --title: var(--primary-color);
+
+  //navbar
+  --navbar: var(--background-secundary);
+
+  // Buttons
+  --button-transparent: var(--transparent);
+  --color-icon-and-text: var(--primary-color);
+  --color-icon-and-text-hover: var(--background-primary);
+  --background-button-primary: var(--background-secundary);
+  --background-button-secundary: var(--secundary-color);
+
+  //
+  --transparent: #ffffff00;
+}
