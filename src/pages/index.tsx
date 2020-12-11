@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Navbar from 'components/Navbar';
 import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
@@ -5,14 +6,13 @@ import Layout from 'components/common/Layout';
 import styles from 'styles/index.module.scss';
 
 const Home = () => {
+  const { t } = useTranslation('home');
+
   return (
     <Layout>
       <Seo titlePage="Search" myApp="Pets Love" />
       <Navbar />
-      <Title
-        text="Mejora la vida de algun
-peludito y salva vidas."
-      />
+      <Title text={t('title')} />
       <main className={styles.main}>
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
