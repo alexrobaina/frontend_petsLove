@@ -30,6 +30,7 @@
     "husky": "^4.3.0",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-fetch-backend": "^3.0.0",
     "i18next-xhr-backend": "^3.2.2",
     "lint-staged": "^10.5.3",
     "mobx": "^6.0.3",
