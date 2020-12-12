@@ -1,11 +1,7 @@
 import i18n from 'i18next';
-import Backend from 'i18next-xhr-backend';
+import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-
-if (!('XMLHttpRequest' in global)) {
-  global.XMLHttpRequest = require('xhr2');
-}
 
 const languageDetector = new LanguageDetector();
 
@@ -60,7 +56,6 @@ if (typeof window !== 'undefined') {
       interpolation: {
         escapeValue: false,
       },
-      sideEffects: ['./src/services/app/i18n.js'],
       react: {
         useSuspense: false,
         wait: true,
