@@ -43,6 +43,7 @@
     "react-i18next": "^11.8.3",
     "react-icons": "^4.1.0",
     "sass": "^1.29.0",
+    "xhr2": "^0.2.0",
     "xmlhttprequest": "^1.8.0"
   },
   "browser": {
