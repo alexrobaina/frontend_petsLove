@@ -13,6 +13,7 @@ const Home = () => {
       <Seo title={t('title')} myApp="Pets Love" baseUrl="https://pets-love.app" />
       <Navbar />
       <Title text={t('title')} />
+
       <main className={styles.main}>
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
