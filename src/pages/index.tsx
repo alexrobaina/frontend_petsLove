@@ -10,7 +10,12 @@ const Home = () => {
 
   return (
     <Layout>
-      <Seo titlePage="Search" myApp="Pets Love" />
+      <Seo
+        myApp="Pets Love"
+        title={t('title')}
+        description={t('description')}
+        baseUrl="https://pets-love.app"
+      />
       <Navbar />
       <Title text={t('title')} />
       <main className={styles.main}>

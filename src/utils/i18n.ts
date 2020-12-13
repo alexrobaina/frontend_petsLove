@@ -1,5 +1,4 @@
 import i18n from 'i18next';
-import axios from 'axios';
 import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -43,25 +42,26 @@ const options = {
   checkWhitelist: true,
 };
 
-i18n
-  .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
-  .use(languageDetector) // detect user language
-  .use(initReactI18next) // pass the i18n instance to react-i18next.
-  .init({
-    defaultNS: 'common',
-    fallbackLng, // if user computer language is not on the list of available languages, than we will be using the fallback language specified earlier
-    debug: false,
-    whitelist: availableLanguages,
-    detection: options,
-    backend: axios,
-    interpolation: {
-      escapeValue: false,
-    },
-    react: {
-      useSuspense: false,
-      wait: true,
-      bindI18n: 'languageChanged loaded',
-    },
-  });
+if (typeof window !== 'undefined') {
+  i18n
+    .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
+    .use(languageDetector) // detect user language
+    .use(initReactI18next) // pass the i18n instance to react-i18next.
+    .init({
+      defaultNS: 'common',
+      fallbackLng, // if user computer language is not on the list of available languages, than we will be using the fallback language specified earlier
+      debug: false,
+      whitelist: availableLanguages,
+      detection: options,
+      interpolation: {
+        escapeValue: false,
+      },
+      react: {
+        useSuspense: false,
+        wait: true,
+        bindI18n: 'languageChanged loaded',
+      },
+    });
+}
 
 export default i18n;
