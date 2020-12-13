@@ -10,10 +10,14 @@ const Home = () => {
 
   return (
     <Layout>
-      <Seo title={t('title')} myApp="Pets Love" baseUrl="https://pets-love.app" />
+      <Seo
+        myApp="Pets Love"
+        title={t('title')}
+        description={t('description')}
+        baseUrl="https://pets-love.app"
+      />
       <Navbar />
       <Title text={t('title')} />
-
       <main className={styles.main}>
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
