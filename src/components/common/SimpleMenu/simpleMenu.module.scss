@@ -1,0 +1,16 @@
+.containerMenu {
+    display: none;
+
+    &.isVisible {
+        border-radius: 5px;
+        left: -40px;
+        top: 10px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-width: 100px;
+        background-color: white;
+        box-shadow: 0px 3px 35px 9px rgba(107, 107, 107, 0.28);
+    }
+}

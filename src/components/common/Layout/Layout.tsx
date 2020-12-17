@@ -12,9 +12,10 @@ const Layout = ({ children }) => {
       initial="hidden"
       animate="visible"
       variants={variants}
+      className={styles.layout}
       transition={{ ease: 'easeOut', delay: 0.5 }}
     >
-      <div className={styles.layout}>{children}</div>
+      {children}
     </motion.div>
   );
 };

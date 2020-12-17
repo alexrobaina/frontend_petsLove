@@ -3,10 +3,16 @@ import Navbar from 'components/Navbar';
 import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
 import Layout from 'components/common/Layout';
+import Search from 'components/Search';
 import styles from 'styles/index.module.scss';
+import { useCallback } from 'react';
 
 const Home = () => {
   const { t } = useTranslation('home');
+
+  const handleSearch = useCallback(() => {
+    console.log('hola');
+  }, []);
 
   return (
     <Layout>
@@ -17,8 +23,9 @@ const Home = () => {
         baseUrl="https://pets-love.app"
       />
       <Navbar />
-      <Title text={t('title')} />
       <main className={styles.main}>
+        <Title text={t('title')} />
+        <Search handleSearch={handleSearch} />
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
         </h1>
