@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from 'components/Navbar';
 import Seo from 'utils/Seo';
@@ -10,8 +11,8 @@ import { useCallback } from 'react';
 const Home = () => {
   const { t } = useTranslation('home');
 
-  const handleSearch = useCallback(() => {
-    console.log('hola');
+  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
   }, []);
 
   return (

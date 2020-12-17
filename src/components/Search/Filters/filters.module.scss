@@ -1,4 +1,12 @@
-.button {
+.containerFilters {
+  margin-bottom: 15px;
+  display: flex;
+  margin-top: 40px;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.buttonFilter {
   border: none;
   background-color: var(--background-button-primary);
   display: flex;
@@ -6,8 +14,9 @@
   align-items: center;
   color: var(--color-icon-and-text);
 
-  border-radius: 20px;
-  height: 45px;
+  border-radius: 18px;
+  width: 55px;
+  height: 40px;
 
   cursor: pointer;
   transition: 0.3s;
@@ -22,7 +31,7 @@
     }
   }
 
-  &:disabled {
+  &.disabled {
     background: #dddddd;
     color: var(--icon-and-text-selected);
   }

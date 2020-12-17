@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BiHomeHeart } from 'react-icons/bi';
-import { AiFillHeart } from 'react-icons/ai';
 import { FaLanguage } from 'react-icons/fa';
 import Button from 'components/common/Button';
 import styles from './changeLanguage.module.scss';
@@ -21,7 +19,7 @@ const ChangeLanguage = () => {
         <Button
           circle
           transparent
-          onClick={() => setIsVisible(1)}
+          onClick={() => setIsVisible(true)}
           icon={<FaLanguage size={35} />}
         />
         <SimpleMenu isVisible={isVisible} setIsVisible={setIsVisible}>

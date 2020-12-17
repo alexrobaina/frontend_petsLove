@@ -1,5 +1,4 @@
-import { useState, FC, ReactChild } from 'react';
-import PropTypes from 'prop-types';
+import { useState, FC, ReactChild, useEffect, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import c from 'classnames';
@@ -7,20 +6,22 @@ import c from 'classnames';
 import styles from './input.module.scss';
 
 interface Props {
+  value?: any;
   name: string;
-  type: string;
-  icon: ReactChild;
-  title: string;
-  value: any;
-  label: string;
-  onBlur: Function;
-  required: boolean;
-  multiple: boolean;
-  disabled: boolean;
-  onKeyPress: Function;
-  inputStore: object;
-  placeholder: string;
-  handleChange: Function;
+  type?: string;
+  title?: string;
+  inputRef?: any;
+  label?: string;
+  icon?: ReactChild;
+  required?: boolean;
+  multiple?: boolean;
+  disabled?: boolean;
+  inputStore?: object;
+  placeholder?: string;
+  errorMessage?: string;
+  onBlur?(value: string): void;
+  onKeyPress?(value: string): void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: FC<Props> = ({
@@ -31,16 +32,17 @@ const Input: FC<Props> = ({
   value = '',
   label = '',
   onBlur = null,
+  onChange = null,
+  inputRef = null,
   required = false,
   multiple = false,
   disabled = false,
   placeholder = '',
   inputStore = null,
+  errorMessage = '',
   onKeyPress = null,
-  handleChange = null,
 }) => {
-  const { t } = useTranslation('createPet');
-  const [viewPassword, setViewPassword] = useState('password');
+  const [viewPassword, setViewPassword] = useState<string>('password');
 
   const handleViewPassword = () => {
     if (viewPassword === 'password') {
@@ -51,21 +53,28 @@ const Input: FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.containerInput}>
         <label>{label}</label>
         <input
+          ref={inputRef}
           name={name}
           title={title}
-          onBlur={onBlur}
           multiple={multiple}
           required={required}
           disabled={disabled}
+          onChange={onChange}
           defaultValue={value}
-          onKeyPress={onKeyPress}
-          onChange={handleChange}
+          onBlur={() => onBlur}
           placeholder={placeholder}
+          onKeyPress={() => onKeyPress}
           type={type === 'password' ? viewPassword : type}
           className={c(
             styles.input,
@@ -87,20 +96,6 @@ const Input: FC<Props> = ({
       </div>
     </>
   );
-};
-
-Input.defaultProps = {
-  icon: '',
-  value: '',
-  label: '',
-  type: 'text',
-  onBlur: null,
-  isEdit: false,
-  multiple: false,
-  inputStore: null,
-  onKeyPress: null,
-  handleChange: null,
-  isErrorEmail: false,
 };
 
 export default Input;
