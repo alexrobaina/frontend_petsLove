@@ -4,15 +4,16 @@
   margin-top: 40px;
   gap: 10px;
   justify-content: space-between;
+  color: var(--color-icon-and-text);
 }
 
 .buttonFilter {
   border: none;
-  background-color: var(--background-button-primary);
+  // background: #dddddd;
+  color: var(--icon-and-text-selected);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--color-icon-and-text);
 
   border-radius: 18px;
   width: 55px;
@@ -23,17 +24,28 @@
 
   &:hover {
     transform: translateY(-2px);
+    background-color: #ffffff;
+    color: var(--secundary-color);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
-
-    &.circle {
-      background-color: var(--button-selected);
-      color: var(--background-button-secundary);
-    }
   }
 
   &.disabled {
     background: #dddddd;
     color: var(--icon-and-text-selected);
+
+    &:hover {
+      transform: translateY(-2px);
+      background-color: var(--background-secundary);
+      color: var(--secundary-color);
+      box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &.active {
+    transform: translateY(-2px);
+    background-color: var(--background-secundary);
+    color: var(--secundary-color);
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:focus {

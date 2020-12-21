@@ -1,0 +1,59 @@
+.containerInput {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border-input-input);
+  box-shadow: none;
+  padding: 10px 0 10px 18px;
+  border-radius: 4px;
+  font-family: 'Noto Sans HK', sans-serif;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: 0;
+    border-radius: 4px;
+    border: 1px solid var(--border-input-input);
+  }
+
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid var(--border-input-hover);
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    font-family: 'Noto Sans HK', sans-serif;
+  }
+
+  &.icon {
+    padding: 10px 0 10px 15px;
+  }
+}
+
+.isError {
+  border: 1px solid;
+}
+
+.errorMessage {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--errors);
+}
+
+.viewPassword {
+  color: grey;
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.containerIcon {
+  cursor: pointer;
+  top: 10px;
+  right: 15px;
+  position: absolute;
+}

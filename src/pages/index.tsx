@@ -1,19 +1,17 @@
-import { ChangeEvent } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import Navbar from 'components/Navbar';
 import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
 import Layout from 'components/common/Layout';
 import Search from 'components/Search';
 import styles from 'styles/index.module.scss';
-import { useCallback } from 'react';
+import SearchPetStore from 'stores/SearchPetStore';
 
 const Home = () => {
+  const searchPetStore = useLocalObservable(() => new SearchPetStore());
   const { t } = useTranslation('home');
-
-  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
-  }, []);
 
   return (
     <Layout>
@@ -26,7 +24,16 @@ const Home = () => {
       <Navbar />
       <main className={styles.main}>
         <Title text={t('title')} />
-        <Search handleSearch={handleSearch} />
+        <Search searchPetStore={searchPetStore} />
+        {searchPetStore.pets.length === 0 ? (
+          <div>no hay mascotas</div>
+        ) : (
+          <>
+            {searchPetStore.pets.map((pet) => {
+              return <div>{pet.name}</div>;
+            })}
+          </>
+        )}
         {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Alex.js!</a>
         </h1>
@@ -79,4 +86,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default observer(Home);

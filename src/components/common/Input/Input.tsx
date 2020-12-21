@@ -26,11 +26,11 @@ interface Props {
 
 const Input: FC<Props> = ({
   name = '',
-  type = 'text',
-  icon = null,
   title = '',
   value = '',
   label = '',
+  icon = null,
+  type = 'text',
   onBlur = null,
   onChange = null,
   inputRef = null,

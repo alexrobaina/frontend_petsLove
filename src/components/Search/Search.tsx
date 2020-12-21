@@ -1,25 +1,35 @@
-import { FC, useRef, ChangeEvent } from 'react';
-import c from 'classnames';
+import { FC, useCallback, useRef } from 'react';
 import { FcSearch } from 'react-icons/fc';
-import Input from 'components/common/Input';
+import GoogleAutocomplete from 'components/common/GoogleAutocomplete';
+import SearchPetStore from 'stores/SearchPetStore';
 import Filters from './Filters';
-import styles from './button.module.scss';
 
 interface Props {
-  handleSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
+  searchPetStore: SearchPetStore;
 }
 
-const Search: FC<Props> = ({ handleSearch }) => {
-  const searchInputRef = useRef<HTMLElement | null>(null);
+const Search: FC<Props> = ({ searchPetStore }) => {
+  const googleRef = useRef(null);
+
+  const handleChangeAddressComponents = useCallback((address: any) => {
+    searchPetStore.setAddressComponents(address);
+  }, []);
+
+  const handleSearch = useCallback(() => {
+    searchPetStore.searchPets();
+  }, []);
 
   return (
     <div>
-      <Filters />
-      <Input
-        name="search"
-        onChange={handleSearch}
-        inputRef={searchInputRef}
+      <Filters searchPetStore={searchPetStore} />
+      <GoogleAutocomplete
+        // @ts-ignore
+        inputRef={googleRef}
+        name="google-autocomplete"
+        handleSearch={handleSearch}
         icon={<FcSearch size={25} />}
+        placeholder="Buenos Aires, Argentina..."
+        handleChangeAddressComponents={handleChangeAddressComponents}
       />
     </div>
   );
