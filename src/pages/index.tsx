@@ -30,7 +30,7 @@ const Home = () => {
         ) : (
           <>
             {searchPetStore.pets.map((pet) => {
-              return <div>{pet.name}</div>;
+              return <div key={pet._id}>{pet.name}</div>;
             })}
           </>
         )}
