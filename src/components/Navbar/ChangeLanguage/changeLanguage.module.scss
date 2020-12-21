@@ -1,0 +1,32 @@
+.containerButton {
+    position: relative;
+    padding: 10px 30px 10px 10px;
+}
+
+.menu {
+    border-radius: 5px;
+    width: 50px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buttonLanguage {
+    font-family: var(--text-font);
+    border-radius: 5px;
+    display: flex;
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-card-menu);
+    color: var(--color-text);
+    cursor: pointer;
+
+    &:hover {
+        transition: all 3ms ease-out;
+        background-color: var(--background-button-primary);
+        color: var(--secundary-color);
+    }
+}

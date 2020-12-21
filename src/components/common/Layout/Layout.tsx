@@ -1,7 +1,12 @@
+import { ReactNode, FC } from 'react';
 import { motion } from 'framer-motion';
 import styles from './layout.module.scss';
 
-const Layout = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const Layout: FC<Props> = ({ children }) => {
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -12,9 +17,10 @@ const Layout = ({ children }) => {
       initial="hidden"
       animate="visible"
       variants={variants}
+      className={styles.layout}
       transition={{ ease: 'easeOut', delay: 0.5 }}
     >
-      <div className={styles.layout}>{children}</div>
+      {children}
     </motion.div>
   );
 };

@@ -4,9 +4,10 @@ import styles from './title.module.scss';
 
 interface Props {
   text: string;
+  typeTag?: string;
 }
 
-const Title: FC<Props> = ({ text }) => {
+const Title: FC<Props> = ({ text, typeTag = 'h1' }) => {
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -19,7 +20,11 @@ const Title: FC<Props> = ({ text }) => {
       variants={variants}
       transition={{ ease: 'easeOut', delay: 0.8 }}
     >
-      <div className={styles.title}>{text}</div>
+      {typeTag === 'h1' ? (
+        <h1 className={styles.title}>{text}</h1>
+      ) : (
+        <h2 className={styles.title}>{text}</h2>
+      )}
     </motion.div>
   );
 };

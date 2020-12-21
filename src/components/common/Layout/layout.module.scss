@@ -1,10 +1,22 @@
-.layout {
-    padding-top: 100px;
-    padding-left: 150px;
-    padding-right: 150px;
+@import 'styles/mixings.scss';
 
-    // @include media-breakpoint-only(xs) {
-    //     padding-left: 10px;
-    //     padding-right: 10px;
-    // }
+.layout {
+  padding-top: 100px;
+  padding-left: 450px;
+  padding-right: 450px;
+
+  @include media-breakpoint-only(md) {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
+
+  @include media-breakpoint-only(sm) {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }

@@ -4,6 +4,8 @@
 /.pnp
 .pnp.js
 .next
+.env
+.env.local
 
 # misc
 .DS_Store
