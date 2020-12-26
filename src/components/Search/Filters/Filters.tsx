@@ -13,45 +13,45 @@ interface Props {
 }
 
 const Filters: FC<Props> = ({ searchPetStore }) => {
+  const { male, dogs, cats, female, exotics } = searchPetStore;
+
   const handleSelectCats = () => {
-    searchPetStore.handleCats(true);
+    searchPetStore.handleCats(!cats);
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(false);
-    searchPetStore.handleCategory('cat');
+    searchPetStore.handleCategory(cats ? '' : 'cat');
     searchPetStore.searchPets();
   };
 
   const handleSelectDogs = () => {
     searchPetStore.handleCats(false);
-    searchPetStore.handleDogs(true);
+    searchPetStore.handleDogs(!dogs);
     searchPetStore.handleExotic(false);
-    searchPetStore.handleCategory('dog');
+    searchPetStore.handleCategory(dogs ? '' : 'dog');
     searchPetStore.searchPets();
   };
 
   const handleSelectExotics = () => {
     searchPetStore.handleCats(false);
     searchPetStore.handleDogs(false);
-    searchPetStore.handleExotic(true);
-    searchPetStore.handleCategory('exotic');
+    searchPetStore.handleExotic(!exotics);
+    searchPetStore.handleCategory(exotics ? '' : 'exotic');
     searchPetStore.searchPets();
   };
 
   const handleSelectFemale = () => {
-    searchPetStore.handleFemale(true);
+    searchPetStore.handleFemale(!female);
     searchPetStore.handleMale(false);
-    searchPetStore.handleGender('female');
+    searchPetStore.handleGender(female ? '' : 'female');
     searchPetStore.searchPets();
   };
 
   const handleSelectMale = () => {
-    searchPetStore.handleMale(true);
+    searchPetStore.handleMale(!male);
     searchPetStore.handleFemale(false);
-    searchPetStore.handleGender('male');
+    searchPetStore.handleGender(male ? '' : 'male');
     searchPetStore.searchPets();
   };
-
-  const { male, dogs, cats, female, exotics } = searchPetStore;
 
   return (
     <div className={styles.containerFilters}>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import Navbar from 'components/Navbar';
@@ -6,12 +5,18 @@ import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
 import Layout from 'components/common/Layout';
 import Search from 'components/Search';
-import styles from 'styles/index.module.scss';
+import PaginationList from 'components/common/PaginationList';
 import SearchPetStore from 'stores/SearchPetStore';
+import ErrorMessage from 'components/common/ErrorMessage';
+import PetsList from 'components/PetsList/PetsList';
+import styles from 'styles/index.module.scss';
 
 const Home = () => {
   const searchPetStore = useLocalObservable(() => new SearchPetStore());
   const { t } = useTranslation('home');
+
+  const paginate = (pageNumber) => console.log(pageNumber);
+  const handlePage = (pageNumber) => console.log(pageNumber);
 
   return (
     <Layout>
@@ -26,51 +31,19 @@ const Home = () => {
         <Title text={t('title')} />
         <Search searchPetStore={searchPetStore} />
         {searchPetStore.pets.length === 0 ? (
-          <div>no hay mascotas</div>
+          <ErrorMessage text="No hay mascotas" typeMessage="warning" />
         ) : (
           <>
-            {searchPetStore.pets.map((pet) => {
-              return <div key={pet._id}>{pet.name}</div>;
-            })}
+            <PetsList searchPetStore={searchPetStore} />
+            <PaginationList
+              page={1}
+              total={30}
+              limit={10}
+              paginate={paginate}
+              handleChange={handlePage}
+            />
           </>
         )}
-        {/* <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Alex.js!</a>
-        </h1>
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
       </main>
 
       {/* <footer className={styles.footer}>
