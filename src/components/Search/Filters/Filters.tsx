@@ -5,6 +5,7 @@ import { GoSquirrel } from 'react-icons/go';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
 import { observer } from 'mobx-react-lite';
 import c from 'classnames';
+import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
 import styles from './filters.module.scss';
 
@@ -20,7 +21,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(false);
     searchPetStore.handleCategory(cats ? '' : 'cat');
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectDogs = () => {
@@ -28,7 +29,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.handleDogs(!dogs);
     searchPetStore.handleExotic(false);
     searchPetStore.handleCategory(dogs ? '' : 'dog');
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectExotics = () => {
@@ -36,21 +37,21 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(!exotics);
     searchPetStore.handleCategory(exotics ? '' : 'exotic');
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectFemale = () => {
     searchPetStore.handleFemale(!female);
     searchPetStore.handleMale(false);
     searchPetStore.handleGender(female ? '' : 'female');
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectMale = () => {
     searchPetStore.handleMale(!male);
     searchPetStore.handleFemale(false);
     searchPetStore.handleGender(male ? '' : 'male');
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   return (

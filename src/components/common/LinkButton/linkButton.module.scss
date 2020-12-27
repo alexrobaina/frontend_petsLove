@@ -1,45 +1,30 @@
-.containerFilters {
-  margin-bottom: 15px;
-  display: flex;
-  margin-top: 40px;
-  gap: 10px;
-  justify-content: space-between;
-  color: var(--color-icon-and-text);
-}
-
-.buttonFilter {
+.button {
   border: none;
-  color: var(--icon-and-text-selected);
+  background-color: var(--background-button-primary);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 18px;
-  width: 55px;
-  height: 40px;
+  color: var(--color-icon-and-text);
+  border-radius: 20px;
+  height: 45px;
   cursor: pointer;
   transition: 0.3s;
 
   &:hover {
-    background-color: var(--color-text-light);
-    color: var(--secundary-color);
+    transform: translateY(-2px);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
-  }
+    background-color: var(--color-text-light);
+    color: var(--background-button-secundary);
 
-  &.disabled {
-    background: #dddddd;
-    color: var(--icon-and-text-selected);
-
-    &:hover {
-      background-color: var(--background-secundary);
-      color: var(--secundary-color);
-      box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+    &.circle {
+      background-color: var(--color-text-light);
+      color: var(--background-button-secundary);
     }
   }
 
-  &.active {
-    background-color: var(--background-secundary);
-    color: var(--secundary-color);
-    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  &:disabled {
+    background: #dddddd;
+    color: var(--icon-and-text-selected);
   }
 
   &:focus {

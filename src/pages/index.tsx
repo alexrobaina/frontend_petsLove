@@ -1,22 +1,27 @@
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import Navbar from 'components/Navbar';
 import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
 import Layout from 'components/common/Layout';
 import Search from 'components/Search';
 import PaginationList from 'components/common/PaginationList';
 import SearchPetStore from 'stores/SearchPetStore';
+import { LIMIT_SEARCH } from 'services/config';
 import ErrorMessage from 'components/common/ErrorMessage';
 import PetsList from 'components/PetsList/PetsList';
 import styles from 'styles/index.module.scss';
 
 const Home = () => {
+  const [page, setPage] = useState(1);
   const searchPetStore = useLocalObservable(() => new SearchPetStore());
   const { t } = useTranslation('home');
 
-  const paginate = (pageNumber) => console.log(pageNumber);
-  const handlePage = (pageNumber) => console.log(pageNumber);
+  const handleChangePage = useCallback((e, newPage) => {
+    console.log(e);
+    searchPetStore.searchPets(LIMIT_SEARCH, newPage);
+    setPage(newPage);
+  }, []);
 
   return (
     <Layout>
@@ -26,7 +31,6 @@ const Home = () => {
         description={t('description')}
         baseUrl="https://pets-love.app"
       />
-      <Navbar />
       <main className={styles.main}>
         <Title text={t('title')} />
         <Search searchPetStore={searchPetStore} />
@@ -36,11 +40,10 @@ const Home = () => {
           <>
             <PetsList searchPetStore={searchPetStore} />
             <PaginationList
-              page={1}
-              total={30}
-              limit={10}
-              paginate={paginate}
-              handleChange={handlePage}
+              page={page}
+              limit={LIMIT_SEARCH}
+              handleChange={handleChangePage}
+              total={searchPetStore.totalPets}
             />
           </>
         )}

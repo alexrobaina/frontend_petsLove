@@ -1,6 +1,7 @@
 import { FC, useCallback, useRef } from 'react';
 import { FcSearch } from 'react-icons/fc';
 import GoogleAutocomplete from 'components/common/GoogleAutocomplete';
+import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
 import Filters from './Filters';
 
@@ -16,7 +17,7 @@ const Search: FC<Props> = ({ searchPetStore }) => {
   }, []);
 
   const handleSearch = useCallback(() => {
-    searchPetStore.searchPets();
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   }, []);
 
   return (

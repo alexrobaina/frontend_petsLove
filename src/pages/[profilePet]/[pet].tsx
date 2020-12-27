@@ -10,7 +10,7 @@ import Layout from 'components/common/Layout';
 const Pet = () => {
   const router = useRouter();
   // const searchPetStore = useLocalObservable(() => new SearchPetStore());
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('profilePets');
 
   return (
     <Layout>

@@ -1,3 +1,3 @@
-import Layout from './Layout';
+import PetsList from './PetsList';
 
-export default Layout;
+export default PetsList;

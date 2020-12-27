@@ -50,7 +50,8 @@ class SearchPetStore implements ISearchPet {
     this.petsService = new PetsService();
   }
 
-  async searchPets(limit = 10, page = 1) {
+  async searchPets(limit, page) {
+    this.pets = [];
     this.isLoading = true;
 
     const data = {
