@@ -1,0 +1,14 @@
+@import 'styles/mixings.scss';
+
+.cardLayout {
+  margin-top: 25px;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+
+  @include media-breakpoint-only(xs) {
+    grid-gap: 15px;
+    grid-template-columns: 47% 47%;
+  }
+}

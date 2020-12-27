@@ -5,6 +5,7 @@ import { GoSquirrel } from 'react-icons/go';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
 import { observer } from 'mobx-react-lite';
 import c from 'classnames';
+import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
 import styles from './filters.module.scss';
 
@@ -13,45 +14,45 @@ interface Props {
 }
 
 const Filters: FC<Props> = ({ searchPetStore }) => {
+  const { male, dogs, cats, female, exotics } = searchPetStore;
+
   const handleSelectCats = () => {
-    searchPetStore.handleCats(true);
+    searchPetStore.handleCats(!cats);
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(false);
-    searchPetStore.handleCategory('cat');
-    searchPetStore.searchPets();
+    searchPetStore.handleCategory(cats ? '' : 'cat');
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectDogs = () => {
     searchPetStore.handleCats(false);
-    searchPetStore.handleDogs(true);
+    searchPetStore.handleDogs(!dogs);
     searchPetStore.handleExotic(false);
-    searchPetStore.handleCategory('dog');
-    searchPetStore.searchPets();
+    searchPetStore.handleCategory(dogs ? '' : 'dog');
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectExotics = () => {
     searchPetStore.handleCats(false);
     searchPetStore.handleDogs(false);
-    searchPetStore.handleExotic(true);
-    searchPetStore.handleCategory('exotic');
-    searchPetStore.searchPets();
+    searchPetStore.handleExotic(!exotics);
+    searchPetStore.handleCategory(exotics ? '' : 'exotic');
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectFemale = () => {
-    searchPetStore.handleFemale(true);
+    searchPetStore.handleFemale(!female);
     searchPetStore.handleMale(false);
-    searchPetStore.handleGender('female');
-    searchPetStore.searchPets();
+    searchPetStore.handleGender(female ? '' : 'female');
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
 
   const handleSelectMale = () => {
-    searchPetStore.handleMale(true);
+    searchPetStore.handleMale(!male);
     searchPetStore.handleFemale(false);
-    searchPetStore.handleGender('male');
-    searchPetStore.searchPets();
+    searchPetStore.handleGender(male ? '' : 'male');
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
-
-  const { male, dogs, cats, female, exotics } = searchPetStore;
 
   return (
     <div className={styles.containerFilters}>

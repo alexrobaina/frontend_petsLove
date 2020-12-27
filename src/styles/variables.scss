@@ -1,7 +1,7 @@
 :root {
   // Fonts
-  --text-font: "Lato", sans-serif;
-  --title-font: "Rubik", sans-serif;
+  --text-font: 'Lato', sans-serif;
+  --title-font: 'Noto Sans KR', sans-serif;
 
   // Body
   --Background-body: #ffffff;
@@ -13,6 +13,7 @@
   // colors
   --primary-color: #001b61;
   --secundary-color: #ed6193;
+  --third-color: #f3f3f3;
 
   --background-body: var(--background-primary);
   --background-primary: #f3f3f3;
@@ -21,9 +22,13 @@
   //text
   --title: var(--primary-color);
   --color-text: var(--primary-color);
+  --color-text-light: #ffffff;
 
   // error
   --errors: rgb(206, 0, 0);
+
+  // warning
+  --warning: #fdd835;
 
   //navbar
   --navbar: var(--background-secundary);
