@@ -1,0 +1,13 @@
+@import 'styles/mixings.scss';
+
+.paragraph {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.text {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-family: var(--text-font);
+}
