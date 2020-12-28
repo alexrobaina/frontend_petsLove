@@ -15,7 +15,11 @@ const Card: FC<Props> = ({ name = '', image = '', petId = '' }) => {
         {image ? (
           <img alt="image pet" className={styles.image} src={image} />
         ) : (
-          <img alt="image not found" className={styles.image} src="/imageNotFound.jpg" />
+          <img
+            alt="image not found"
+            className={styles.image}
+            src="/assets/images/imageNotFound.jpg"
+          />
         )}
         <div className={styles.name}>{name}</div>
       </div>

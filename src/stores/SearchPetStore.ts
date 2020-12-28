@@ -77,6 +77,10 @@ class SearchPetStore implements ISearchPet {
     }
   }
 
+  resetPets() {
+    this.pets = [];
+  }
+
   handleCity(city) {
     this.city.setValue(city);
   }

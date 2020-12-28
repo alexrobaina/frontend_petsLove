@@ -34,8 +34,14 @@ dd {
   margin: 0;
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 /* Set core body defaults */
 body {
+  overflow-x: hidden;
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;

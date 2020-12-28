@@ -1,0 +1,12 @@
+.paragraph {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+.text {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-family: var(--text-font);
+}

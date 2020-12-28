@@ -23,6 +23,7 @@ interface Props {
 const GoogleAutocomplete: FC<Props> = ({
   name = '',
   label = '',
+  icon = null,
   inputRef = null,
   placeholder = '',
   handleSearch = null,
@@ -74,15 +75,18 @@ const GoogleAutocomplete: FC<Props> = ({
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
           return (
             <>
-              {label && <div>{label}</div>}
-              <input
-                ref={inputRef}
-                name={name}
-                className={styles.input}
-                {...getInputProps({
-                  placeholder,
-                })}
-              />
+              <div className={styles.containerInput}>
+                {label && <div>{label}</div>}
+                <input
+                  ref={inputRef}
+                  name={name}
+                  className={styles.input}
+                  {...getInputProps({
+                    placeholder,
+                  })}
+                />
+                {icon && <div className={styles.icon}>{icon}</div>}
+              </div>
               <div className={styles.dropdown}>
                 {loading && <div className={styles.text}>{t('common:loading')}</div>}
                 {suggestions.map((suggestion, i) => {
@@ -118,9 +122,6 @@ const GoogleAutocomplete: FC<Props> = ({
           );
         }}
       </PlacesAutocomplete>
-      {/* {inputStoreError && (
-          <div className={styles.errorMessage}>{inputStoreError.errorMessage}</div>
-        )} */}
     </>
   );
 };

@@ -41,7 +41,7 @@ const Button: FC<Props> = ({ icon, text, circle, transparent, onClick, secundary
         >
           <div className={styles.content}>
             {icon && <div className={c(styles.icon)}>{icon}</div>}
-            {icon && <div className={styles.text}>{text}</div>}
+            {text && <div className={styles.text}>{text}</div>}
           </div>
         </div>
       )}

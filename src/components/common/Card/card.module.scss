@@ -5,6 +5,7 @@
   border-radius: 10px;
   box-shadow: 0px 0px 12px 10px rgba(211, 211, 211, 0.075);
   transition: 0.2s ease;
+  background-color: var(--background-white);
 
   &:hover {
     box-shadow: 0px 0px 12px 10px rgba(70, 70, 70, 0.11);
@@ -27,9 +28,9 @@
 .name {
   margin-left: 15px;
   margin-top: -50px;
-  text-transform: capitalize;
   color: white;
   font-weight: 500;
+  text-transform: capitalize;
   font-size: 30px;
   text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.41);
   font-family: var(--title-font);

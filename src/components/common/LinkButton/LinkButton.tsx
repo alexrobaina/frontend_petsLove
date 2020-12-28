@@ -1,10 +1,10 @@
-import { FC, ReactChild, useCallback } from 'react';
+import { FC, ReactChild } from 'react';
 import Link from 'next/link';
 import c from 'classnames';
 import styles from './linkButton.module.scss';
 
 interface Props {
-  url?: string;
+  url: string;
   text?: string;
   circle?: boolean;
   icon?: ReactChild;
@@ -39,7 +39,7 @@ const LinkButton: FC<Props> = ({ icon, text, circle, transparent, secundary, url
           >
             <div className={styles.content}>
               {icon && <div className={c(styles.icon)}>{icon}</div>}
-              {icon && <div className={styles.text}>{text}</div>}
+              {text && <div className={styles.text}>{text}</div>}
             </div>
           </div>
         </Link>
