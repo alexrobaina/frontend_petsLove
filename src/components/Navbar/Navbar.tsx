@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiHomeHeart } from 'react-icons/bi';
-import Button from 'components/common/Button';
+import { FcSearch } from 'react-icons/fc';
 import LinkButton from 'components/common/LinkButton';
 import ChangeLanguage from './ChangeLanguage';
 import styles from './navbar.module.scss';
@@ -23,6 +23,9 @@ const Navbar = () => {
       <div className={styles.col}>
         <div className={styles.containerButton}>
           <LinkButton url="/" icon={<BiHomeHeart size={25} />} />
+        </div>
+        <div className={styles.containerButton}>
+          <LinkButton url="/search" icon={<FcSearch size={25} />} />
         </div>
         <div className={styles.menuLanguage}>
           <ChangeLanguage />

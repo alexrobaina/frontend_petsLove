@@ -1,0 +1,80 @@
+@import 'styles/mixings';
+
+.containerFooter {
+  display: flex;
+  margin-top: 30px;
+  position: relative;
+  justify-content: center;
+  background-color: var(--background-secundary);
+  height: 300px;
+  width: 100%;
+}
+
+.logo {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  font-family: var(--title-font);
+  color: var(--title);
+}
+
+.text {
+  font-size: 14px;
+  margin-top: 20px;
+  color: var(--title);
+  font-family: var(--text-font);
+}
+
+.row {
+  text-align: center;
+  width: 310px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.containerButtonSignUp {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.containerRow {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
+
+  @include media-breakpoint-only(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.socialMedia {
+  position: absolute;
+  bottom: 20px;
+  animation-name: animationText;
+  animation-duration: 1s;
+  animation-delay: 3s;
+  font-size: 12px;
+  color: var(--title);
+}
+
+.cafecito {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+@keyframes animationText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.icon {
+  margin-left: 5px;
+  color: red;
+}

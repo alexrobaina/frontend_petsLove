@@ -1,20 +1,19 @@
 @import 'styles/mixings';
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  margin-bottom: 50px;
 }
 
-.containerCard {
+.card {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.13);
   border-radius: 10px;
-  height: 300px;
-  width: 100%;
+  padding: 0 20px;
+  height: 210px;
+  width: 220px;
   transition: 0.2s;
   background-color: var(--noDe);
   cursor: pointer;
@@ -27,17 +26,18 @@
 .buttonAction {
   text-decoration: none;
   border: none;
+  outline: none;
   background: none;
 }
 
 .image {
   margin-top: -15px;
-  max-width: 100%;
+  max-width: 150px;
 }
 
-.subTitle {
-  margin-top: -10px;
-  font-size: 20px;
+.action {
+  font-size: 18px;
+  font-weight: 800;
   color: var(--title);
   text-transform: capitalize;
   font-family: var(--text-font);
