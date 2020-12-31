@@ -13,6 +13,7 @@ interface ISearchPet {
   exotics: boolean;
   totalPets: number;
   isLoading: boolean;
+  searchingPet: boolean;
   petsService: PetsService;
 }
 
@@ -30,6 +31,7 @@ class SearchPetStore implements ISearchPet {
   isLoading;
   totalPets;
   petsService;
+  searchingPet;
 
   constructor() {
     this.pets = [];
@@ -40,6 +42,7 @@ class SearchPetStore implements ISearchPet {
     this.female = false;
     this.exotics = false;
     this.isLoading = false;
+    this.searchingPet = false;
     this.city = new InputStore();
     this.gender = new InputStore();
     this.country = new InputStore();
@@ -53,6 +56,7 @@ class SearchPetStore implements ISearchPet {
   async searchPets(limit, page) {
     this.pets = [];
     this.isLoading = true;
+    this.searchingPet = true;
 
     const data = {
       city: this.city.value,
@@ -79,6 +83,7 @@ class SearchPetStore implements ISearchPet {
 
   resetPets() {
     this.pets = [];
+    this.searchingPet = false;
   }
 
   handleCity(city) {

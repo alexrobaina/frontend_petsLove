@@ -1,22 +1,24 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useContext, useEffect, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 import Seo from 'utils/Seo';
 import Title from 'components/common/Title';
 import LandingPage from 'components/LandingPage';
 import Layout from 'components/common/Layout';
 import Search from 'components/Search';
 import PaginationList from 'components/common/PaginationList';
-import SearchPetStore from 'stores/SearchPetStore';
 import { LIMIT_SEARCH } from 'services/config';
 import Loading from 'components/common/Loading';
 import PetsList from 'components/PetsList';
 import ScrollUp from 'components/common/ScrollUp';
+import PetContext from 'Context/PetContext';
 import styles from 'styles/index.module.scss';
 
 const Home = () => {
+  const rootStore = useContext(PetContext);
+  const { searchPetStore } = rootStore;
   const [page, setPage] = useState(1);
-  const searchPetStore = useLocalObservable(() => new SearchPetStore());
+
   const { t } = useTranslation('home');
 
   const handleChangePage = useCallback((e, newPage) => {
@@ -35,12 +37,13 @@ const Home = () => {
         title={t('searchPet')}
         description={t('description')}
         baseUrl="https://pets-love.app"
+        image="/assets/images/landingPage/friendAndDog.jpg"
       />
       <main className={styles.main}>
         <Title text={t('searchPet')} />
         <Search searchPetStore={searchPetStore} />
         {searchPetStore.isLoading && <Loading />}
-        {searchPetStore.pets.length === 0 ? (
+        {searchPetStore.pets.length === 0 && searchPetStore.searchingPet === false ? (
           <>
             <LandingPage />
             <ScrollUp />

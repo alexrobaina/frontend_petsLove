@@ -1,31 +1,28 @@
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useCallback, useContext } from 'react';
 import { BiHomeHeart } from 'react-icons/bi';
 import { FcSearch } from 'react-icons/fc';
+import PetContext from 'Context/PetContext';
 import LinkButton from 'components/common/LinkButton';
 import ChangeLanguage from './ChangeLanguage';
 import styles from './navbar.module.scss';
 
 const Navbar = () => {
-  const { i18n } = useTranslation();
-  let languageStorage;
+  const rootStore = useContext(PetContext);
+  const { searchPetStore } = rootStore;
 
-  useEffect(() => {
-    languageStorage = localStorage.getItem('i18nextLng');
+  const handleResetPetsList = useCallback(() => {
+    searchPetStore.resetPets();
   }, []);
-
-  const changeLanguage = (languageSelected) => {
-    i18n.changeLanguage(languageSelected);
-  };
 
   return (
     <div className={styles.navbar}>
       <div className={styles.col}>
         <div className={styles.containerButton}>
-          <LinkButton url="/" icon={<BiHomeHeart size={25} />} />
-        </div>
-        <div className={styles.containerButton}>
-          <LinkButton url="/search" icon={<FcSearch size={25} />} />
+          <LinkButton
+            url="/"
+            icon={<BiHomeHeart size={25} />}
+            onClick={handleResetPetsList}
+          />
         </div>
         <div className={styles.menuLanguage}>
           <ChangeLanguage />

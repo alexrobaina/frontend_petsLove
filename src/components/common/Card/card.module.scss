@@ -20,7 +20,7 @@
   height: 320px;
   transition: 0.2s ease;
 
-  @include media-breakpoint-only(xs) {
+  @include media-breakpoint-up(xs) {
     height: 250px;
   }
 }

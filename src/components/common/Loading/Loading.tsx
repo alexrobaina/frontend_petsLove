@@ -1,7 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import c from 'classnames';
-import styles from './loading.module.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,26 +12,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  small: boolean;
-  loadingRing: boolean;
-}
-
-const Loading = ({ small = false, loadingRing = false }) => {
+const Loading = () => {
   const classes = useStyles();
 
   return (
-    <>
-      {loadingRing ? (
-        <div className={classes.root}>
-          <CircularProgress color="secondary" />
-        </div>
-      ) : (
-        <div className={c(styles.heart, small && styles.small)}>
-          <div />
-        </div>
-      )}
-    </>
+    <div className={classes.root}>
+      <CircularProgress color="secondary" />
+    </div>
   );
 };
 

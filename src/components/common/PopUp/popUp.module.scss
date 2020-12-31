@@ -1,0 +1,21 @@
+@import 'styles/mixings.scss';
+
+.modalContainer {
+  width: 320px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--title-font);
+  color: var(--title);
+  font-size: 25px;
+}
+
+.close {
+  margin-top: 10px;
+  cursor: pointer;
+}

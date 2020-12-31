@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import { FcSearch } from 'react-icons/fc';
 import GoogleAutocomplete from 'components/common/GoogleAutocomplete';
 import { LIMIT_SEARCH } from 'services/config';
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const Search: FC<Props> = ({ searchPetStore }) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const googleRef = useRef(null);
 
@@ -30,7 +32,7 @@ const Search: FC<Props> = ({ searchPetStore }) => {
   }, []);
 
   return (
-    <div>
+    <>
       <Filters searchPetStore={searchPetStore} />
       <GoogleAutocomplete
         // @ts-ignore
@@ -41,7 +43,7 @@ const Search: FC<Props> = ({ searchPetStore }) => {
         placeholder="Buenos Aires, Argentina..."
         handleChangeAddressComponents={handleChangeAddressComponents}
       />
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,13 @@
 @import 'styles/mixings';
 
 .container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 50px;
 }
 
 .card {
+  margin: 15px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -12,7 +15,7 @@
   box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.13);
   border-radius: 10px;
   padding: 0 20px;
-  height: 210px;
+  height: 220px;
   width: 220px;
   transition: 0.2s;
   background-color: var(--noDe);
@@ -39,7 +42,6 @@
   font-size: 18px;
   font-weight: 800;
   color: var(--title);
-  text-transform: capitalize;
   font-family: var(--text-font);
 
   @include media-breakpoint-only(xs) {
