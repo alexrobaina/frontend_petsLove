@@ -37,9 +37,9 @@ const PopUp: FC<Props> = ({ title, children, closeModal, modalIsOpen }) => {
     <>
       <Modal
         isOpen={modalIsOpen}
+        style={customStyles}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
-        style={customStyles}
       >
         <motion.div
           initial="hidden"

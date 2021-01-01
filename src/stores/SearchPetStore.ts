@@ -31,6 +31,7 @@ class SearchPetStore implements ISearchPet {
   isLoading;
   totalPets;
   petsService;
+  textAddress;
   searchingPet;
 
   constructor() {
@@ -47,6 +48,7 @@ class SearchPetStore implements ISearchPet {
     this.gender = new InputStore();
     this.country = new InputStore();
     this.category = new InputStore();
+    this.textAddress = new InputStore();
 
     makeAutoObservable(this);
 
@@ -84,6 +86,10 @@ class SearchPetStore implements ISearchPet {
   resetPets() {
     this.pets = [];
     this.searchingPet = false;
+  }
+
+  handleTextAddress(textAddress) {
+    this.textAddress.setValue(textAddress);
   }
 
   handleCity(city) {

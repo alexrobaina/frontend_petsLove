@@ -24,6 +24,10 @@ const Search: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
   }, []);
 
+  const handleChangeTextAddress = useCallback((textAddress) => {
+    searchPetStore.handleTextAddress(textAddress);
+  }, []);
+
   useEffect(() => {
     if (router.pathname === '/search') {
       searchPetStore.resetPets();
@@ -40,7 +44,8 @@ const Search: FC<Props> = ({ searchPetStore }) => {
         name="google-autocomplete"
         handleSearch={handleSearch}
         icon={<FcSearch size={25} />}
-        placeholder="Buenos Aires, Argentina..."
+        placeholder={t('SearchYourArea')}
+        handleChangeTextAddress={handleChangeTextAddress}
         handleChangeAddressComponents={handleChangeAddressComponents}
       />
     </>

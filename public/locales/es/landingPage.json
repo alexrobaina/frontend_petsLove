@@ -1,13 +1,16 @@
 {
-    "whatIsPetsLove": "Pets love ayuda que proteccionistas puedan dar en adopción responsable a todas las mascotas que tanto amamos para que su calidad de vida mejore siempre, tambien que aquellos adoptantes que deseen un nuevo amigo en su vida puedan visitarlos primero de forma virtual.",
-    "weHelpYouFindAPet":"Te ayudamos a encontrar mascotas en adopción y salvar dos vidas.",
+    "weHelpYouFindAPet":"Ayudamos a proteccionistas y refugios a difundir las mascotas en adopción.",
+    "whatIsPetsLove": "Esta app sirve para publicar perfiles de mascotas en adopción y mejorar la vida de nuestros amados peludos. Al mismo tiempo es una gran herramienta que ayuda a los refugios a gestionar los mismos creando perfiles con toda la historia de nuestros peludos plasmando el historial médico y su historia de vida.",
     "helpToPetMessage": "Hagamos que millones de mascotas puedan conseguir un hogar.",
     "whatWouldYouLike": "¿Que te gustaría hacer?",
-    "philosophy": "Filosofía",
-    "adopt": "Adoptar",
-    "animalProtector": "Protector de animales",
-    "volunteer": "Voluntario",
-    "responsibleAdoption": "Adopción responsable",
+    "adopt": "Quiero adoptar",
+    "adoptInformation": "Para encontrar una mascota es tan simple como usar nuestro buscador colocando tu dirección o ciudad. Podras ingresar a los perfiles de las diferentes mascotas y vistar los de cada refugio en busca de la mascota ideal para ti ",
+    "searchPet": "Buscar mascotas",
+    "putUpAdoption": "Dar en adopción",
+    "putUpAdoptionTextP1": "Sabemos que tener un refugio no es tarea facil. Entrá a la app y emppieza a re escribir la historia del refugio y de cada mascota que ingresa ",
+    "responsibleAdoption": "Adopción responsalble",
     "responsibleAdoptionText": "Al momento de adoptar una mascota el proteccionista y el adoptante podrán hacer de forma más precisa el seguimiento de los principales cuidados de la mascota. Construimos un flujo de información más exacta con los datos veterinarios de la salud de nuestro amigo y fotografías que nos permitirán ver un historial que busca garantizar la seguridad y salud del mismo.",
-    "philosophyText": "Pets love nace de la idea de que todos podemos ser felices si tenemos los recursos necesarios. Las mascotas necesitan de nosotros para poder tener una vida llena de momentos agradables y la tecnología nos brinda la posibilidad de construir esa realidad."
+    "download": "Descargar",
+    "philosophy": "Filosofía",
+    "philosophyText": "Nuestra filosofía nace de la idea de que todos podemos ser felices si tenemos los recursos necesarios. Las mascotas necesitan de nosotros para poder tener una vida llena de momentos agradables y la tecnología nos brinda la posibilidad de construir esa realidad."
 }

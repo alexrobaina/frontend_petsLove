@@ -11,6 +11,11 @@ const Navbar = () => {
   const { searchPetStore } = rootStore;
 
   const handleResetPetsList = useCallback(() => {
+    searchPetStore.handleCats(false);
+    searchPetStore.handleDogs(false);
+    searchPetStore.handleMale(false);
+    searchPetStore.handleExotic(false);
+    searchPetStore.handleFemale(false);
     searchPetStore.resetPets();
   }, []);
 

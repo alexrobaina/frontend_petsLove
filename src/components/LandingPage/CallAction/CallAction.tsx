@@ -1,13 +1,17 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { GrApple, GrAndroid } from 'react-icons/gr';
 import styles from './callAction.module.scss';
+import { LIMIT_SEARCH } from 'services/config';
+import PetContext from 'Context/PetContext';
 import PopUp from 'components/common/PopUp';
 import Paragraph from 'components/common/Paragraph';
-import ImageCenter from 'components/common/ImageCenter';
+import Button from 'components/common/Button';
+import Title from 'components/common/Title';
 
 const CallAction = () => {
+  const rootStore = useContext(PetContext);
+  const { searchPetStore } = rootStore;
   const { t } = useTranslation('landingPage');
   const [adopterInformation, setAdopterInformation] = useState(false);
   const [shelterInformation, setShelterInformation] = useState(false);
@@ -31,6 +35,7 @@ const CallAction = () => {
   const goToSearch = useCallback(() => {
     closeModalAdopter();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
   }, []);
 
   return (
@@ -49,24 +54,42 @@ const CallAction = () => {
           className={styles.image}
           src="/assets/images/landingPage/actions/dev.png"
         />
-        <div className={styles.action}>{t('Dar en adopción')}</div>
+        <div className={styles.action}>{t('putUpAdoption')}</div>
       </div>
       <PopUp
-        title={t('How to adopter?')}
+        title={t('adopt')}
         closeModal={closeModalAdopter}
         modalIsOpen={adopterInformation}
       >
-        <Paragraph text={t('adopt:adoptInformation')} />
-        <button onClick={goToSearch}>Buscar mascotas</button>
-        <div className={styles.emoji}>😻</div>
+        <div className={styles.contentAdopterModal}>
+          <Paragraph text={t('adoptInformation')} />
+          <div className={styles.emoji}>😻</div>
+          <div className={styles.containerbutton}>
+            <Button onClick={goToSearch} text={t('searchPet')} />
+          </div>
+        </div>
       </PopUp>
       <PopUp
-        title={t('Dar en adopción')}
+        title={t('putUpAdoption')}
         closeModal={closeModalShelter}
         modalIsOpen={shelterInformation}
       >
-        <Paragraph text={t('Dar en adopción')} />
-        <div className={styles.emoji}>😻</div>
+        <div className={styles.contentAdopterModal}>
+          <Paragraph text={t('putUpAdoptionTextP1')} />
+          <Title text={t('download')} />
+          <div className={styles.containerButton}>
+            <Button
+              onClick={goToSearch}
+              text={t('Iphone')}
+              icon={<GrApple size={20} />}
+            />
+            <Button
+              onClick={goToSearch}
+              text={t('Android')}
+              icon={<GrAndroid size={20} />}
+            />
+          </div>
+        </div>
       </PopUp>
     </div>
   );
