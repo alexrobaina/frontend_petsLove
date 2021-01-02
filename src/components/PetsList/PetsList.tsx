@@ -1,7 +1,9 @@
-import { useState, FC } from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
 import SearchPetStore from 'stores/SearchPetStore';
 import Card from 'components/common/Card';
+import Loading from 'components/common/Loading';
+import ErrorMessage from 'components/common/ErrorMessage';
 import styles from './layout.module.scss';
 
 interface Props {
@@ -14,25 +16,34 @@ const PetsList: FC<Props> = ({ searchPetStore }) => {
     visible: { opacity: 1 },
   };
 
+  if (searchPetStore.isLoading) {
+    <Loading />;
+  }
+
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={variants}
-      className={styles.cardLayout}
-      transition={{ ease: 'easeOut', delay: 0.5 }}
-    >
-      {searchPetStore.pets.map((pet) => {
-        return (
-          <Card
-            key={pet._id}
-            petId={pet._id}
-            name={pet.name}
-            image={pet.image.filenames[0]}
-          />
-        );
-      })}
-    </motion.div>
+    <>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        className={styles.cardLayout}
+        transition={{ ease: 'easeOut', delay: 0.5 }}
+      >
+        {searchPetStore.pets.map((pet) => {
+          return (
+            <Card
+              key={pet._id}
+              petId={pet._id}
+              name={pet.name}
+              image={pet.image.filenames[0]}
+            />
+          );
+        })}
+      </motion.div>
+      {searchPetStore.pets.length === 0 && (
+        <ErrorMessage text="No encontramos mascotas" typeMessage="warning" />
+      )}
+    </>
   );
 };
 

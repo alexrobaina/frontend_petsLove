@@ -18,7 +18,7 @@ const Title: FC<Props> = ({ text, typeTag = 'h1' }) => {
       initial="hidden"
       animate="visible"
       variants={variants}
-      transition={{ ease: 'easeOut', delay: 0.8 }}
+      transition={{ ease: 'easeOut' }}
     >
       {typeTag === 'h1' ? (
         <h1 className={styles.title}>{text}</h1>

@@ -11,7 +11,7 @@ const LandingPage = () => {
       <ImageCenter image="/assets/images/landingPage/friendAndDog.jpg" />
       <Title typeTag="h2" text={t('weHelpYouFindAPet')} />
       <Paragraph text={t('whatIsPetsLove')} />
-      <Title typeTag="h2" text={t('¿Que te gustaría hacer?')} />
+      <Title typeTag="h2" text={t('whatWouldYouLike')} />
       <CallAction />
       <Title typeTag="h2" text={t('philosophy')} />
       <Paragraph text={t('philosophyText')} />

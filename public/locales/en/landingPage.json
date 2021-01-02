@@ -1,13 +1,17 @@
 {
-    "whatIsPetsLove": "Pets love helps that protectionists can give responsible adoption to all the pets that we love so much so that their quality of life always improves, also that those adopters who want a new friend in their life can visit them first virtually.",
-    "weHelpYouFindAPet":"We help you find pets for adoption and save lives.",
+    "weHelpYouFindAPet":"We help protectionists and shelters spread the word about pets for adoption.",
+    "whatIsPetsLove": "This app is used to publish profiles of pets for adoption and improve the lives of our furry loved ones. At the same time, it is a great tool that helps shelters manage them by creating profiles with all the history of our furry animals, capturing the medical history and their life history.",
     "helpToPetMessage": "Let's make millions of pets a home.",
     "whatWouldYouLike": "What would you like to do?",
+    "adopt": "I want to Adopt",
+    "adoptInformation": "Para encontrar una mascota es tan simple como usar nuestro buscador colocando tu dirección o ciudad. Podras ingresar a los perfiles de las diferentes mascotas y vistar los de cada refugio en busca de la mascota ideal para ti ",
+    "searchPet": "Search pets",
+    "putUpAdoption": "Put up for adoption",
+    "putUpAdoptionTextP1": "To give pets for adoption, download the app for shelters and start creating the profile of each pet.",
+    "putUpAdoptionTextP2": "Creating each profile is starting to write a new story for each pet.",
+    "responsibleAdoption": "Responsible adoption",
+    "responsibleAdoptionText": "When adopting a pet, the protectionist and the adopter will be able to more precisely monitor the main care of the pet. We build a more accurate flow of information with the veterinary data of our friend's health and photographs that will allow us to see a history that seeks to guarantee the safety and health of the same.",
+    "download": "Download",
     "philosophy": "Philosophy",
-    "adopt": "Adopt",
-    "animalProtector": "Animal protector",
-    "responsibleAdoption": "Responsible Adoption",
-    "volunteer": "Volunteer",
-    "responsibleAdoptionText": "When adopting a pet, the protectionist and the adopter will be able to more precisely monitor the main care of the pet. We build a more accurate flow of information with the veterinary data of our friend's health and photographs that will allow us to see a history that seeks to guarantee the safety and health of the same",    
-    "philosophyText": "Pets love was born from the idea that we can all be happy if we have the necessary resources. Pets need us to be able to have a life full of pleasant moments and technology gives us the possibility of building that reality."
+    "philosophyText": "Our philosophy is born from the idea that we can all be happy if we have the necessary resources. Pets need us to be able to have a life full of pleasant moments and technology gives us the possibility of building that reality."
 }

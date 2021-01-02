@@ -1,55 +1,97 @@
+import { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { GrApple, GrAndroid } from 'react-icons/gr';
 import styles from './callAction.module.scss';
+import { LIMIT_SEARCH } from 'services/config';
+import PetContext from 'Context/PetContext';
+import PopUp from 'components/common/PopUp';
+import Paragraph from 'components/common/Paragraph';
+import Button from 'components/common/Button';
+import Title from 'components/common/Title';
 
 const CallAction = () => {
+  const rootStore = useContext(PetContext);
+  const { searchPetStore } = rootStore;
   const { t } = useTranslation('landingPage');
+  const [adopterInformation, setAdopterInformation] = useState(false);
+  const [shelterInformation, setShelterInformation] = useState(false);
+
+  const closeModalAdopter = useCallback(() => {
+    setAdopterInformation(false);
+  }, []);
+
+  const openModalAdopter = useCallback(() => {
+    setAdopterInformation(true);
+  }, []);
+
+  const closeModalShelter = useCallback(() => {
+    setShelterInformation(false);
+  }, []);
+
+  const openModalShelter = useCallback(() => {
+    setShelterInformation(true);
+  }, []);
+
+  const goToSearch = useCallback(() => {
+    closeModalAdopter();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    searchPetStore.searchPets(LIMIT_SEARCH, 1);
+  }, []);
 
   return (
-    <motion.div
-      drag="x"
-      style={{ width: 1500 }}
-      className={styles.container}
-      dragConstraints={{ left: -300, right: 300 }}
-    >
-      <motion.button className={styles.buttonAction}>
-        <Link href="/adoptInformation">
-          <div className={styles.card}>
-            <img
-              alt="adopter"
-              className={styles.image}
-              src="/assets/images/landingPage/actions/adopter.png"
-            />
-            <div className={styles.action}>{t('adopt')}</div>
+    <div className={styles.container}>
+      <div role="button" onClick={openModalAdopter} className={styles.card}>
+        <img
+          alt="adopter"
+          className={styles.image}
+          src="/assets/images/landingPage/actions/adopter.png"
+        />
+        <div className={styles.action}>{t('adopt')}</div>
+      </div>
+      <div role="button" onClick={openModalShelter} className={styles.card}>
+        <img
+          alt="animalProtector"
+          className={styles.image}
+          src="/assets/images/landingPage/actions/dev.png"
+        />
+        <div className={styles.action}>{t('putUpAdoption')}</div>
+      </div>
+      <PopUp
+        title={t('adopt')}
+        closeModal={closeModalAdopter}
+        modalIsOpen={adopterInformation}
+      >
+        <div className={styles.contentAdopterModal}>
+          <Paragraph text={t('adoptInformation')} />
+          <div className={styles.containerbutton}>
+            <Button onClick={goToSearch} text={t('searchPet')} />
           </div>
-        </Link>
-      </motion.button>
-      <motion.button className={styles.buttonAction}>
-        <Link href="/volanteerInformation">
-          <div className={styles.card}>
-            <img
-              alt="transit"
-              className={styles.image}
-              src="/assets/images/landingPage/actions/transit.png"
+        </div>
+      </PopUp>
+      <PopUp
+        title={t('putUpAdoption')}
+        closeModal={closeModalShelter}
+        modalIsOpen={shelterInformation}
+      >
+        <div className={styles.contentAdopterModal}>
+          <Paragraph text={t('putUpAdoptionTextP1')} />
+          <Paragraph text={t('putUpAdoptionTextP2')} />
+          <Title text={t('download')} />
+          <div className={styles.containerButton}>
+            <Button
+              onClick={goToSearch}
+              text={t('Iphone')}
+              icon={<GrApple size={20} />}
             />
-            <div className={styles.action}>{t('volunteer')}</div>
-          </div>
-        </Link>
-      </motion.button>
-      <motion.button className={styles.buttonAction}>
-        <Link href="/shelterInformation">
-          <div className={styles.card}>
-            <img
-              alt="animalProtector"
-              className={styles.image}
-              src="/assets/images/landingPage/actions/dev.png"
+            <Button
+              onClick={goToSearch}
+              text={t('Android')}
+              icon={<GrAndroid size={20} />}
             />
-            <div className={styles.action}>{t('animalProtector')}</div>
           </div>
-        </Link>
-      </motion.button>
-    </motion.div>
+        </div>
+      </PopUp>
+    </div>
   );
 };
 

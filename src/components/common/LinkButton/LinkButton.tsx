@@ -8,16 +8,27 @@ interface Props {
   text?: string;
   circle?: boolean;
   icon?: ReactChild;
+  onClick?: () => void;
   secundary?: boolean;
   transparent?: boolean;
 }
 
-const LinkButton: FC<Props> = ({ icon, text, circle, transparent, secundary, url }) => {
+const LinkButton: FC<Props> = ({
+  icon,
+  text,
+  circle,
+  transparent,
+  secundary,
+  url,
+  onClick,
+}) => {
   return (
     <>
       {circle ? (
         <Link href={url}>
           <div
+            role="button"
+            onClick={onClick}
             className={c(
               styles.button,
               circle && styles.circle,
@@ -31,6 +42,8 @@ const LinkButton: FC<Props> = ({ icon, text, circle, transparent, secundary, url
       ) : (
         <Link href={url}>
           <div
+            role="button"
+            onClick={onClick}
             className={c(
               styles.button,
               secundary && styles.secundary,
