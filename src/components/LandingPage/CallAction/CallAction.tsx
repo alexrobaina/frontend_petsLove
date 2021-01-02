@@ -63,7 +63,6 @@ const CallAction = () => {
       >
         <div className={styles.contentAdopterModal}>
           <Paragraph text={t('adoptInformation')} />
-          <div className={styles.emoji}>😻</div>
           <div className={styles.containerbutton}>
             <Button onClick={goToSearch} text={t('searchPet')} />
           </div>
@@ -76,6 +75,7 @@ const CallAction = () => {
       >
         <div className={styles.contentAdopterModal}>
           <Paragraph text={t('putUpAdoptionTextP1')} />
+          <Paragraph text={t('putUpAdoptionTextP2')} />
           <Title text={t('download')} />
           <div className={styles.containerButton}>
             <Button

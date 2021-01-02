@@ -5,6 +5,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+
+  @include media-breakpoint-only(xs) {
+    flex-direction: column;
+  }
 }
 
 .card {
@@ -17,7 +21,6 @@
   border-radius: 10px;
   padding: 0 20px;
   height: 220px;
-  width: 220px;
   transition: 0.2s;
   background-color: var(--noDe);
   cursor: pointer;
@@ -44,10 +47,6 @@
   font-weight: 800;
   color: var(--title);
   font-family: var(--text-font);
-
-  @include media-breakpoint-only(xs) {
-    font-size: 14px;
-  }
 }
 
 .contentAdopterModal {
@@ -60,16 +59,8 @@
   gap: 10px;
 }
 
-.emoji {
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
 .containerbutton {
-  position: fixed;
+  margin-top: 20px;
   bottom: 0;
   width: 320px;
-  padding-bottom: 30px;
 }
