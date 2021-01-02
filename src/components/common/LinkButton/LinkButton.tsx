@@ -8,7 +8,7 @@ interface Props {
   text?: string;
   circle?: boolean;
   icon?: ReactChild;
-  onClick?: Function;
+  onClick?: () => void;
   secundary?: boolean;
   transparent?: boolean;
 }
