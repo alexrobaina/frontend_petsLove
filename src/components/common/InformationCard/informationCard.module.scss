@@ -1,0 +1,57 @@
+@import 'styles/mixings.scss';
+
+.containerCard {
+  margin-top: 30px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px 10px rgba(129, 129, 129, 0.103);
+  transition: 0.2s ease;
+  background-color: var(--background-white);
+  height: 500px;
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0px 0px 12px 10px rgba(70, 70, 70, 0.11);
+  }
+}
+
+.image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  animation: 3ms;
+  height: 320px;
+  transition: 0.2s ease;
+
+  @include media-breakpoint-up(xs) {
+    height: 250px;
+  }
+}
+
+.name {
+  position: absolute;
+  margin-left: 15px;
+  margin-top: -50px;
+  color: white;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 30px;
+  text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.41);
+  font-family: var(--title-font);
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 130px;
+
+  @include media-breakpoint-only(xs) {
+    font-size: 18px;
+    margin-top: -40px;
+    margin-left: 8px;
+  }
+}
+
+.isError {
+  border: 1px solid;
+}

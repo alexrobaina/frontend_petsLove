@@ -7,6 +7,7 @@ import Seo from 'utils/Seo';
 import { ImProfile, ImWhatsapp } from 'react-icons/im';
 import Layout from 'components/common/Layout';
 import ProfilePetStore from 'stores/ProfilePetStore';
+import InformationCard from 'components/common/InformationCard';
 import Link from 'next/link';
 import Title from 'components/common/Title';
 import { LANDING_PAGE } from 'pages/routes/routes';
@@ -15,7 +16,7 @@ import styles from './pet.module.scss';
 
 const Pet = () => {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation('profile-pet');
   const profilePetStore = useLocalObservable(() => new ProfilePetStore());
 
   useEffect(() => {
@@ -24,25 +25,30 @@ const Pet = () => {
     }
   }, [router.query.pet]);
 
+  const metaTags = {
+    goToSearch: t('goToSearch'),
+    description: profilePetStore.pet?.history || '',
+  };
+
   return (
     <Layout>
       <Seo
         myApp="Pets Love"
-        title={t('Mascota en adopción')}
-        // description={t('description')}
+        title={metaTags.goToSearch}
+        description={metaTags.description}
         baseUrl="https://pets-love.app"
       />
       <div className={styles.containerImageProfile}>
         {profilePetStore.pet ? (
           <img
+            alt="pet"
             className={styles.imageProfile}
-            alt="dog and friend"
             src={profilePetStore.pet.image?.filenames[0]}
           />
         ) : (
           <img
             className={styles.imageProfile}
-            alt="dog and friend"
+            alt="image-not-found"
             src="/assets/images/imageNotFound.jpg"
           />
         )}
@@ -50,7 +56,7 @@ const Pet = () => {
       <Link href={LANDING_PAGE}>
         <div className={styles.goToSearch}>
           <BiSearchAlt size={18} />
-          <div className={styles.buttonSearch}>Ir al buscador</div>
+          <div className={styles.buttonSearch}>{t('goToSearch')}</div>
         </div>
       </Link>
       <Title text={`My name is ${profilePetStore.pet?.name}`} />
@@ -58,6 +64,7 @@ const Pet = () => {
         <Button icon={<ImProfile size={20} />} text="Peril del refugio" />
         <Button icon={<ImWhatsapp size={20} />} text="Contactar" />
       </div>
+      <InformationCard title={t('title')} />
     </Layout>
   );
 };

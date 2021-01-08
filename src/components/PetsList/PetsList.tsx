@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import SearchPetStore from 'stores/SearchPetStore';
-import Card from 'components/common/Card';
+import PetCard from 'components/common/PetCard';
 import Loading from 'components/common/Loading';
 import ErrorMessage from 'components/common/ErrorMessage';
 import styles from './layout.module.scss';
@@ -31,7 +31,7 @@ const PetsList: FC<Props> = ({ searchPetStore }) => {
       >
         {searchPetStore.pets.map((pet) => {
           return (
-            <Card
+            <PetCard
               key={pet._id}
               petId={pet._id}
               name={pet.name}
