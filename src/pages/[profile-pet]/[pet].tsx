@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
+import { ImLocation2 } from 'react-icons/im';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import Seo from 'utils/Seo';
 import { ImProfile, ImWhatsapp } from 'react-icons/im';
+import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
 import Layout from 'components/common/Layout';
 import ProfilePetStore from 'stores/ProfilePetStore';
 import InformationCard from 'components/common/InformationCard';
@@ -18,6 +20,14 @@ const Pet = () => {
   const router = useRouter();
   const { t } = useTranslation('profile-pet');
   const profilePetStore = useLocalObservable(() => new ProfilePetStore());
+
+  const handleOpenMap = useCallback(() => {
+    profilePetStore.setOpenMapCard();
+  }, []);
+
+  const handleOpenHistory = useCallback(() => {
+    profilePetStore.setOpenHistory();
+  }, []);
 
   useEffect(() => {
     if (router.query.pet) {
@@ -64,7 +74,19 @@ const Pet = () => {
         <Button icon={<ImProfile size={20} />} text="Peril del refugio" />
         <Button icon={<ImWhatsapp size={20} />} text="Contactar" />
       </div>
-      <InformationCard title={t('title')} />
+      <InformationCard
+        handleOpen={handleOpenMap}
+        map={<GoogleMapsLocation />}
+        open={profilePetStore.openMapCard}
+        icon={<ImLocation2 size={20} />}
+        title={profilePetStore.pet?.textAddress}
+      />
+      <InformationCard
+        title={t('history')}
+        handleOpen={handleOpenHistory}
+        text="xa.slhf ñasuifh añoausf añs"
+        open={profilePetStore.openHistory}
+      />
     </Layout>
   );
 };

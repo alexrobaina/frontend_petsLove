@@ -11,12 +11,16 @@ class ProfilePetStore implements IProfilePet {
   pet;
   petId;
   isLoading;
+  openMapCard;
   petsService;
+  openHistory;
 
   constructor() {
     this.pet = null;
     this.petId = '';
     this.isLoading = false;
+    this.openHistory = false;
+    this.openMapCard = false;
 
     makeAutoObservable(this);
 
@@ -39,6 +43,14 @@ class ProfilePetStore implements IProfilePet {
         console.log(e);
       });
     }
+  }
+
+  setOpenMapCard() {
+    this.openMapCard = !this.openMapCard;
+  }
+
+  setOpenHistory() {
+    this.openHistory = !this.openHistory;
   }
 
   resetPets() {
