@@ -1,0 +1,43 @@
+@import 'styles/mixings';
+
+.containerImageProfile {
+  display: flex;
+  justify-content: center;
+  margin-top: -50px;
+  height: 350px;
+}
+
+.imageProfile {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.goToSearch {
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--title);
+}
+
+.buttonSearch {
+  font-family: var(--text-font);
+  margin-left: 5px;
+  font-size: 16px;
+  color: var(--title);
+  text-decoration: none;
+  text-transform: none;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @include media-breakpoint-only(xs) {
+    grid-template-columns: 1fr;
+  }
+}

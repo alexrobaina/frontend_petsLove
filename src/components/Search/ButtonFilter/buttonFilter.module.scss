@@ -1,30 +1,37 @@
-@import 'styles/mixings';
-
-.button {
+.buttonFilter {
   border: none;
-  background-color: var(--background-button-primary);
+  color: var(--icon-and-text-selected);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--color-icon-and-text);
-  border-radius: 20px;
-  height: 45px;
+  border-radius: 18px;
+  width: 55px;
+  height: 40px;
   cursor: pointer;
   transition: 0.3s;
+  background-color: var(--background-secundary);
 
   &:hover {
-    transform: translateY(-2px);
+    background-color: var(--color-text-light);
+    color: var(--secundary-color);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
 
-    &.circle {
-      background-color: var(--color-text-light);
-      color: var(--background-button-secundary);
+  &.disabled {
+    background: #dddddd;
+    color: var(--icon-and-text-selected);
+
+    &:hover {
+      background-color: var(--background-secundary);
+      color: var(--secundary-color);
+      box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
     }
   }
 
-  &:disabled {
-    background: #dddddd;
-    color: var(--icon-and-text-selected);
+  &.active {
+    background-color: var(--secundary-color);
+    color: #ffffff;
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:focus {
@@ -56,6 +63,7 @@
   text-overflow: ellipsis;
   font-size: 18px;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 1px;
   font-family: var(--title-font);
 }
