@@ -1,10 +1,17 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { IoMdClose } from 'react-icons/io';
 import c from 'classnames';
 import styles from './alertToast.module.scss';
+import PropTypes from 'prop-types';
 
-const AlertToast = ({ toggleToast, handleToggleToast, text, warning }) => {
+interface Props {
+  text: string;
+  warning?: boolean;
+  toggleToast: boolean;
+  handleToggleToast: () => void;
+}
+
+const AlertToast = ({ toggleToast, handleToggleToast, text, warning = false }) => {
   useEffect(() => {
     if (toggleToast) {
       setTimeout(() => {
@@ -28,17 +35,6 @@ const AlertToast = ({ toggleToast, handleToggleToast, text, warning }) => {
       <div className={styles.text}>{text}</div>
     </div>
   );
-};
-
-AlertToast.proptype = {
-  handleToggleToast: PropTypes.func.isRequired,
-  toggleToast: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  warning: PropTypes.bool,
-};
-
-AlertToast.defaultProps = {
-  warning: false,
 };
 
 export default AlertToast;
