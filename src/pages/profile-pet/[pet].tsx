@@ -110,10 +110,10 @@ const Pet = () => {
       </Link>
       <Title text={t('myNameIs', { name: formatName(profilePetStore.pet?.name) })} />
       <div className={styles.containerViewInfo}>
-        <ViewPetInfo label={'age'} value={profilePetStore.pet?.age} />
-        <ViewPetInfo label={'height'} value={profilePetStore.pet?.height} />
-        <ViewPetInfo label={'color'} value={profilePetStore.pet?.color} />
-        <ViewPetInfo label={'sex'} value={t(profilePetStore.pet?.gender)} />
+        <ViewPetInfo label={t('age')} value={profilePetStore.pet?.age} />
+        <ViewPetInfo label={t('height')} value={profilePetStore.pet?.height} />
+        <ViewPetInfo label={t('color')} value={profilePetStore.pet?.color} />
+        <ViewPetInfo label={t('sex')} value={t(profilePetStore.pet?.gender)} />
       </div>
       {profilePetStore.pet?.history && (
         <InformationCard
