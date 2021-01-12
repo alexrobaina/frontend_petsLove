@@ -1,4 +1,4 @@
-@import 'styles/mixings';
+@import "styles/mixings";
 
 .container {
   z-index: 1000;
@@ -12,8 +12,8 @@
   border-radius: 10px;
   width: 300px;
   height: 70px;
-  background-color: var(--secundary-color);
-  color: var(--color-text-light);
+  background-color: $filters;
+  color: $ligth;
   transition: transform 0.5s ease;
   transform: translateX(-50px);
 
@@ -25,10 +25,13 @@
 
   &.toast {
     transform: translateX(-400px);
+
+    @include media-breakpoint-down(sm) {
+    }
   }
 
   &.warning {
-    background-color: var(--secundary-color);
+    background-color: $secundary;
   }
 }
 
@@ -39,6 +42,5 @@
 }
 
 .text {
-  font-family: var(--text-font);
-  color: var(--color-text-light);
+  color: $ligth;
 }

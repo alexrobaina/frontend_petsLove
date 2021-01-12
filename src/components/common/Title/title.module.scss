@@ -1,21 +1,7 @@
-@import 'styles/mixings.scss';
-
 .title {
   font-family: var(--title-font);
   font-size: 30px;
   font-weight: 700;
   color: var(--title);
   margin-bottom: 40px;
-
-  @include media-breakpoint-only(md) {
-    font-size: 28px;
-  }
-
-  @include media-breakpoint-only(sm) {
-    font-size: 25px;
-  }
-
-  @include media-breakpoint-only(xs) {
-    font-size: 22px;
-  }
 }

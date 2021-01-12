@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { IoMdClose } from 'react-icons/io';
 import c from 'classnames';
-import styles from './alertToast.module.scss';
+import styles from './alertToast.scss';
 
 const AlertToast = ({ toggleToast, handleToggleToast, text, warning }) => {
   useEffect(() => {

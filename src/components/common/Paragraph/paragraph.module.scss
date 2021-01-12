@@ -1,5 +1,3 @@
-@import 'styles/mixings.scss';
-
 .paragraph {
   display: flex;
   justify-content: flex-start;
@@ -11,16 +9,4 @@
   letter-spacing: 1px;
   font-weight: 600;
   font-family: var(--text-font);
-
-  @include media-breakpoint-only(md) {
-    font-size: 16px;
-  }
-
-  @include media-breakpoint-only(sm) {
-    font-size: 16px;
-  }
-
-  @include media-breakpoint-only(xs) {
-    font-size: 14px;
-  }
 }

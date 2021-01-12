@@ -12,7 +12,7 @@ class PetsService {
       .then((response) => response.data);
   };
 
-  getPet = (id) => {
+  loadPetId = (id) => {
     return axios
       .get(`${SERVER}/api/pet/pet/?_id=${id}`)
       .then((response) => response.data[0]);

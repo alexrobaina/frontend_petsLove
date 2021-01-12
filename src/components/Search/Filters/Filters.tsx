@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 import c from 'classnames';
 import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
-import ButtonFilter from '../ButtonFilter';
 import styles from './filters.module.scss';
 
 interface Props {
@@ -57,31 +56,37 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
 
   return (
     <div className={styles.containerFilters}>
-      <ButtonFilter
-        isSelected={cats}
-        icon={<GiCat size={26} />}
-        handleSelected={handleSelectCats}
-      />
-      <ButtonFilter
-        isSelected={dogs}
-        icon={<FaDog size={26} />}
-        handleSelected={handleSelectDogs}
-      />
-      <ButtonFilter
-        isSelected={exotics}
-        icon={<GoSquirrel size={26} />}
-        handleSelected={handleSelectExotics}
-      />
-      <ButtonFilter
-        isSelected={female}
-        icon={<IoMdFemale size={26} />}
-        handleSelected={handleSelectFemale}
-      />
-      <ButtonFilter
-        isSelected={male}
-        icon={<IoMdMale size={26} />}
-        handleSelected={handleSelectMale}
-      />
+      <div
+        onClick={handleSelectCats}
+        className={c(styles.buttonFilter, cats && styles.active)}
+      >
+        <GiCat size={26} />
+      </div>
+      <div
+        onClick={handleSelectDogs}
+        className={c(styles.buttonFilter, dogs && styles.active)}
+      >
+        <FaDog size={26} />
+      </div>
+      <div
+        onClick={handleSelectExotics}
+        className={c(styles.buttonFilter, exotics && styles.active)}
+      >
+        <GoSquirrel size={26} />
+      </div>
+      <div
+        role="button"
+        onClick={handleSelectFemale}
+        className={c(styles.buttonFilter, female && styles.active)}
+      >
+        <IoMdFemale size={26} />
+      </div>
+      <div
+        onClick={handleSelectMale}
+        className={c(styles.buttonFilter, male && styles.active)}
+      >
+        <IoMdMale size={26} />
+      </div>
     </div>
   );
 };
