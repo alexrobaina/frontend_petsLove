@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PROFILE_PET } from 'pages/routes/routes';
+import { PROFILE_PET } from 'routes/routes';
 import Link from 'next/link';
 import styles from './petCard.module.scss';
 

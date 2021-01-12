@@ -3,9 +3,7 @@ import c from 'classnames';
 import { BsCaretDownFill } from 'react-icons/bs';
 import { BiCalendarHeart } from 'react-icons/bi';
 import { FaHeartbeat } from 'react-icons/fa';
-import Dog from './Dog';
 import MedicalItemsContainer from './MedicalItemsContainer';
-import Cat from './Cat';
 import styles from './medicalHistory.module.scss';
 import { log } from 'util';
 import Vaccune from './Vaccune';
@@ -17,8 +15,9 @@ interface Props {
   map?: ReactNode;
   icon?: ReactNode;
   typePet: string;
-  medicalItems: Array<string>;
+  medicalItems: Array<any>;
   handleOpen: (e) => void;
+
   distemperVaccine?: string;
 }
 

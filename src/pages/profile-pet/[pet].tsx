@@ -7,7 +7,7 @@ import { ImWhatsapp, ImLocation2 } from 'react-icons/im';
 import { RiFileHistoryLine, RiUserHeartFill } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import { PROFILE_SHELTER, LANDING_PAGE } from 'pages/routes/routes';
+import { PROFILE_SHELTER, LANDING_PAGE } from 'routes/routes';
 import Seo from 'utils/Seo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

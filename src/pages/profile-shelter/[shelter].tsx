@@ -12,7 +12,7 @@ import ProfileShelterStore from 'stores/ProfileShelterStore';
 import InformationCard from 'components/common/InformationCard';
 import Link from 'next/link';
 import Title from 'components/common/Title';
-import { LANDING_PAGE } from 'pages/routes/routes';
+import { LANDING_PAGE } from 'routes/routes';
 import Button from 'components/common/Button';
 import styles from './shelter.module.scss';
 
