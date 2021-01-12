@@ -1,3 +1,13 @@
 {
-    "goToSearch": "Ir al buscador"
+  "goToSearch": "Ir al buscador",
+  "history": "Historia",
+  "medicalCard": "Ficha medica",
+  "myNameIs": "Mi nombre es {{ name }}",
+  "contact": "Contactar",
+  "profileShelter": "Profile shelter",
+  "phoneNotFound": "Phone not found!",
+  "age": "Edad",
+  "height": "Peso",
+  "color": "Color",
+  "sex": "Sexo"
 }

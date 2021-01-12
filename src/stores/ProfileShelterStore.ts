@@ -1,38 +1,33 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import PetsService from 'services/PetsService';
 
-interface IProfilePet {
+interface IProfileShelter {
   pet: object;
   petId: string;
   petsService: PetsService;
 }
-class ProfilePetStore implements IProfilePet {
+
+class ProfileShelterStore implements IProfileShelter {
   pet;
   petId;
   isLoading;
   openMapCard;
   petsService;
   openHistory;
-  openMedicalCard;
-  catMedicalHistory;
-  dogMedicalHistory;
 
   constructor() {
     this.pet = null;
     this.petId = '';
     this.isLoading = false;
-    this.openHistory = true;
-    this.openMapCard = true;
-    this.openMedicalCard = true;
-    this.catMedicalHistory = null;
-    this.dogMedicalHistory = null;
+    this.openHistory = false;
+    this.openMapCard = false;
 
     makeAutoObservable(this);
 
     this.petsService = new PetsService();
   }
 
-  async searchPet(id): Promise<void> {
+  async searchPet(id) {
     this.isLoading = true;
 
     try {
@@ -50,18 +45,8 @@ class ProfilePetStore implements IProfilePet {
     }
   }
 
-  setMedicalFormat(pet) {
-    console.log(pet);
-
-    return {};
-  }
-
   setOpenMapCard() {
     this.openMapCard = !this.openMapCard;
-  }
-
-  setOpenMedicalCard() {
-    this.openMedicalCard = !this.openMedicalCard;
   }
 
   setOpenHistory() {
@@ -73,4 +58,4 @@ class ProfilePetStore implements IProfilePet {
   }
 }
 
-export default ProfilePetStore;
+export default ProfileShelterStore;

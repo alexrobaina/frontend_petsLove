@@ -77,7 +77,7 @@ const CallAction = () => {
           <Paragraph text={t('putUpAdoptionTextP1')} />
           <Paragraph text={t('putUpAdoptionTextP2')} />
           <Title text={t('download')} />
-          <div className={styles.containerButton}>
+          <div className={styles.buttonsDownload}>
             <Button
               onClick={goToSearch}
               text={t('Iphone')}

@@ -31,7 +31,7 @@ const InformationCard: FC<Props> = ({
       <div onClick={handleOpen} className={c(styles.header, open && styles.open)}>
         <div className={styles.titleContainer}>
           {icon && <div className={styles.icon}>{icon}</div>}
-          <div className={styles.title}>{title}</div>
+          <div className={c(styles.title, open && styles.open)}>{title}</div>
         </div>
         <div className={c(styles.icon, open && styles.open)}>
           <BsCaretDownFill size={20} />

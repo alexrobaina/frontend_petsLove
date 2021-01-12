@@ -8,52 +8,52 @@ import Seo from 'utils/Seo';
 import { ImProfile, ImWhatsapp } from 'react-icons/im';
 import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
 import Layout from 'components/common/Layout';
-import ProfilePetStore from 'stores/ProfilePetStore';
+import ProfileShelterStore from 'stores/ProfileShelterStore';
 import InformationCard from 'components/common/InformationCard';
 import Link from 'next/link';
 import Title from 'components/common/Title';
 import { LANDING_PAGE } from 'pages/routes/routes';
 import Button from 'components/common/Button';
-import styles from './pet.module.scss';
+import styles from './shelter.module.scss';
 
-const Pet = () => {
+const Shelter = () => {
   const router = useRouter();
   const { t } = useTranslation('profile-pet');
-  const profilePetStore = useLocalObservable(() => new ProfilePetStore());
+  const profileShelterStore = useLocalObservable(() => new ProfileShelterStore());
 
   const handleOpenMap = useCallback(() => {
-    profilePetStore.setOpenMapCard();
+    profileShelterStore.setOpenMapCard();
   }, []);
 
   const handleOpenHistory = useCallback(() => {
-    profilePetStore.setOpenHistory();
+    profileShelterStore.setOpenHistory();
   }, []);
 
-  useEffect(() => {
-    if (router.query.pet) {
-      profilePetStore.searchPet(router.query.pet);
-    }
-  }, [router.query.pet]);
+  // useEffect(() => {
+  //   if (router.query.pet) {
+  //     profileShelterStore.searchShelter(router.query.pet);
+  //   }
+  // }, [router.query.pet]);
 
   const metaTags = {
     goToSearch: t('goToSearch'),
-    description: profilePetStore.pet?.history || '',
+    description: profileShelterStore.pet?.history || '',
   };
 
   return (
     <Layout>
       <Seo
-        myApp="Pets Love"
+        myApp="Shelters Love"
         title={metaTags.goToSearch}
         description={metaTags.description}
         baseUrl="https://pets-love.app"
       />
       <div className={styles.containerImageProfile}>
-        {profilePetStore.pet ? (
+        {profileShelterStore.pet ? (
           <img
             alt="pet"
             className={styles.imageProfile}
-            src={profilePetStore.pet.image?.filenames[0]}
+            src={profileShelterStore.pet.image?.filenames[0]}
           />
         ) : (
           <img
@@ -69,7 +69,7 @@ const Pet = () => {
           <div className={styles.buttonSearch}>{t('goToSearch')}</div>
         </div>
       </Link>
-      <Title text={`My name is ${profilePetStore.pet?.name}`} />
+      <Title text={`My name is ${profileShelterStore.pet?.name}`} />
       <div className={styles.actions}>
         <Button icon={<ImProfile size={20} />} text="Peril del refugio" />
         <Button icon={<ImWhatsapp size={20} />} text="Contactar" />
@@ -77,18 +77,18 @@ const Pet = () => {
       <InformationCard
         handleOpen={handleOpenMap}
         map={<GoogleMapsLocation />}
-        open={profilePetStore.openMapCard}
+        open={profileShelterStore.openMapCard}
         icon={<ImLocation2 size={20} />}
-        title={profilePetStore.pet?.textAddress}
+        title={profileShelterStore.pet?.textAddress}
       />
       <InformationCard
         title={t('history')}
         handleOpen={handleOpenHistory}
         text="xa.slhf ñasuifh añoausf añs"
-        open={profilePetStore.openHistory}
+        open={profileShelterStore.openHistory}
       />
     </Layout>
   );
 };
 
-export default observer(Pet);
+export default observer(Shelter);
