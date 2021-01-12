@@ -63,7 +63,7 @@ const CallAction = () => {
       >
         <div className={styles.contentAdopterModal}>
           <Paragraph text={t('adoptInformation')} />
-          <div className={styles.containerbutton}>
+          <div className={styles.containerButton}>
             <Button onClick={goToSearch} text={t('searchPet')} />
           </div>
         </div>
@@ -77,16 +77,16 @@ const CallAction = () => {
           <Paragraph text={t('putUpAdoptionTextP1')} />
           <Paragraph text={t('putUpAdoptionTextP2')} />
           <Title text={t('download')} />
-          <div className={styles.containerButton}>
+          <div className={styles.buttonsDownload}>
             <Button
               onClick={goToSearch}
               text={t('Iphone')}
-              icon={<GrApple size={20} />}
+              icon={<GrApple size={18} />}
             />
             <Button
               onClick={goToSearch}
               text={t('Android')}
-              icon={<GrAndroid size={20} />}
+              icon={<GrAndroid size={18} />}
             />
           </div>
         </div>

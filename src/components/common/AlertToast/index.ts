@@ -1,3 +1,3 @@
-import AlertToast from './AlertToast'
+import AlertToast from './AlertToast';
 
-export default AlertToast
+export default AlertToast;

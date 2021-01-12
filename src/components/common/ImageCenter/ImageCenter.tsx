@@ -8,7 +8,15 @@ interface Props {
 const ImageCenter: FC<Props> = ({ image }) => {
   return (
     <div className={styles.containerImage}>
-      <img alt="dog and friend" src={image} />
+      {image ? (
+        <img className={styles.imageProfile} alt="dog and friend" src={image} />
+      ) : (
+        <img
+          className={styles.imageProfile}
+          alt="dog and friend"
+          src="/assets/images/imageNotFound.jpg"
+        />
+      )}
     </div>
   );
 };

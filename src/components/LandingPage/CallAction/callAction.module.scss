@@ -55,12 +55,12 @@
 
 .containerButton {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
-.containerbutton {
-  margin-top: 20px;
-  bottom: 0;
-  width: 320px;
+.buttonsDownload {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }

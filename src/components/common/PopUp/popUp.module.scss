@@ -2,6 +2,10 @@
 
 .modalContainer {
   width: 320px;
+
+  @include media-breakpoint-only(xs) {
+    width: 260px;
+  }
 }
 
 .header {

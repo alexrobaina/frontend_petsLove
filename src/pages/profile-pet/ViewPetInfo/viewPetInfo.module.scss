@@ -1,0 +1,39 @@
+@import 'styles/mixings';
+
+.containerInformation {
+  margin-top: -20px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--grey-light);
+  width: 78px;
+  height: 60px;
+  padding: 40px 30px 40px 30px;
+  
+  @include media-breakpoint-only(xs) {
+    width: 70px;
+    height: 60px;  
+  }
+}
+
+
+
+.label {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: var(--secundary-color);
+  font-family: var(--text-font);
+}
+
+.value {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  font-size: 14px;
+  color: var(--primary-color);
+  font-family: var(--text-font);
+}

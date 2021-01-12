@@ -1,0 +1,16 @@
+.containerMap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+}
+
+.map {
+  position: absolute;
+}
+
+.imageMap {
+  width: 100%;
+  object-fit: cover;
+  height: 500px;
+}

@@ -1,6 +1,7 @@
 import { FC } from 'react';
+import { PROFILE_PET } from 'routes/routes';
 import Link from 'next/link';
-import styles from './card.module.scss';
+import styles from './petCard.module.scss';
 
 interface Props {
   name: string;
@@ -8,9 +9,9 @@ interface Props {
   image?: string;
 }
 
-const Card: FC<Props> = ({ name = '', image = '', petId = '' }) => {
+const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
   return (
-    <Link as={`/profilePet/${petId}`} href={`/profilePet/[pet]`}>
+    <Link as={`${PROFILE_PET}/${petId}`} href={`${PROFILE_PET}/[pet]`}>
       <div className={styles.card}>
         {image ? (
           <img alt="image pet" className={styles.image} src={image} />
@@ -27,4 +28,4 @@ const Card: FC<Props> = ({ name = '', image = '', petId = '' }) => {
   );
 };
 
-export default Card;
+export default PetCard;
