@@ -36,6 +36,11 @@ const GoogleAutocomplete: FC<Props> = ({
   const [address, setAddress] = useState('');
   // eslint-disable-next-line no-shadow
   const handleChange = useCallback((address) => {
+    if (address === '') {
+      if (handleChangeTextAddress) {
+        handleChangeAddressComponents([]);
+      }
+    }
     setAddress(address);
   }, []);
 
@@ -51,8 +56,10 @@ const GoogleAutocomplete: FC<Props> = ({
     if (handleChangeAddress) {
       handleChangeAddress(latLng);
     }
+
     if (handleChangeAddressComponents) {
       handleChangeAddressComponents(results[0]);
+
       if (handleSearch) {
         handleSearch();
       }
@@ -78,8 +85,8 @@ const GoogleAutocomplete: FC<Props> = ({
               <div className={styles.containerInput}>
                 {label && <div>{label}</div>}
                 <input
-                  ref={inputRef}
                   name={name}
+                  ref={inputRef}
                   className={styles.input}
                   {...getInputProps({
                     placeholder,
@@ -113,7 +120,9 @@ const GoogleAutocomplete: FC<Props> = ({
                         style,
                       })}
                     >
-                      <span>{suggestion.description}</span>
+                      <span className={styles.descriptionAddress}>
+                        {suggestion.description}
+                      </span>
                     </div>
                   );
                 })}

@@ -5,13 +5,22 @@ import styles from './button.module.scss';
 interface Props {
   text?: string;
   circle?: boolean;
+  tooltips?: string;
   icon?: ReactChild;
   onClick?: Function;
   secundary?: boolean;
   transparent?: boolean;
 }
 
-const Button: FC<Props> = ({ icon, text, circle, transparent, onClick, secundary }) => {
+const Button: FC<Props> = ({
+  icon,
+  text,
+  circle,
+  onClick,
+  tooltips,
+  secundary,
+  transparent,
+}) => {
   const click = useCallback(() => {
     onClick();
   }, []);
@@ -40,7 +49,7 @@ const Button: FC<Props> = ({ icon, text, circle, transparent, onClick, secundary
           )}
         >
           <div className={styles.content}>
-            {icon && <div className={c(styles.icon)}>{icon}</div>}
+            {icon && <div className={styles.icon}>{icon}</div>}
             {text && <div className={styles.text}>{text}</div>}
           </div>
         </div>

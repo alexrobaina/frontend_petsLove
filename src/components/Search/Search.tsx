@@ -29,8 +29,9 @@ const Search: FC<Props> = ({ searchPetStore }) => {
   }, []);
 
   useEffect(() => {
-    if (router.pathname === '/search') {
-      searchPetStore.resetPets();
+    const { city, gender, category, country } = searchPetStore;
+
+    if (city.value || gender.value || category.value || country.value) {
       searchPetStore.searchPets(LIMIT_SEARCH, 1);
     }
   }, []);

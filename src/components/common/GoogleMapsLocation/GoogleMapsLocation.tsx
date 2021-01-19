@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useCallback, useState } from 'react';
+import React, {
+  FC,
+  useState,
+  ReactNode,
+  useEffect,
+  useCallback,
+  ReactChildren,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import c from 'classnames';
@@ -10,19 +17,14 @@ const POSITION_DEFAULT = {
   lng: -58.381592,
 };
 
-interface GoogleMapsLication {
-  google?: ReactNode;
-  location?: {
-    lat: Number;
-    lng: Number;
-  };
+interface IGoogleMapsLocation {
+  location?: any;
+  google: ReactNode;
   isProfilePet?: Boolean;
-  users: Object;
-  GoogleMapsLocation: ReactNode;
 }
 
-const GoogleMapsLocation: FC<GoogleMapsLication> = observer(
-  ({ google, location, isProfilePet, users }) => {
+const GoogleMapsLocation: FC<IGoogleMapsLocation> = observer(
+  ({ google, location = POSITION_DEFAULT, isProfilePet = false }) => {
     const [isImageNotFound, setIsImageNotFound] = useState(true);
     const [isLoading, setLoading] = useState(true);
     const { t } = useTranslation('googleMapCard');
@@ -41,13 +43,10 @@ const GoogleMapsLocation: FC<GoogleMapsLication> = observer(
           // zoom={15}
           google={google}
           // className={styles.map}
-          initialCenter={location.lat ? location : POSITION_DEFAULT}
-          center={{
-            lat: location.lat,
-            lng: location.lng,
-          }}
+          initialCenter={location}
+          center={location}
         >
-          {/* <Marker position={location} /> */}
+          <Marker />
           {/* {users &&
             users.map((user) => {
               return (
@@ -69,14 +68,6 @@ const GoogleMapsLocation: FC<GoogleMapsLication> = observer(
     );
   },
 );
-
-GoogleMapsLocation.defaultProps = {
-  location: {
-    lat: -34.603722,
-    lng: -58.381592,
-  },
-  users: null,
-};
 
 export default GoogleApiWrapper(() => ({
   apiKey: process.env.REACT_APP_KEY_GOOGLE_MAP,

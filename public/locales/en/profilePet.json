@@ -2,12 +2,15 @@
   "goToSearch": "Go to search",
   "history": "History",
   "medicalCard": "Medical record",
+  "birthdayYear": "{{ years }}y {{ months }}m",
+  "birthdayMonth": "{{ months }}m {{ days }}d",
   "myNameIs": "My name is {{ name }}",
   "contact": "Contact",
   "profileShelter": "Perfil del refugio",
-  "phoneNotFound": "¡Teléfono no encontrado!",
   "age": "Age",
   "height": "Height",
   "color": "Color",
-  "sex": "Sex"
+  "sex": "Sex",
+  "vaccine": "Vacunas",
+  "notes": "Notes"
 }

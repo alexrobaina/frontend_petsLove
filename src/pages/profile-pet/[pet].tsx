@@ -20,14 +20,17 @@ import Title from 'components/common/Title';
 import Gallery from 'components/common/Gallery';
 import Button from 'components/common/Button';
 import ImageProfile from 'components/common/ImageProfile';
-import AlertToast from 'components/common/AlertToast/AlertToast';
+import { IoIosArrowRoundBack } from 'react-icons/io';
+import AlertToast from 'components/common/AlertToast';
+import ActionsProfile from 'components/common/ActionsProfile';
 import ViewPetInfo from './ViewPetInfo';
+import Back from 'components/common/Back';
 import styles from './pet.module.scss';
 
 const Pet = () => {
   const router = useRouter();
   const [toggleToast, setToggleToast] = useState(false);
-  const { t } = useTranslation('profile-pet');
+  const { t } = useTranslation('profilePet');
   const profilePetStore = useLocalObservable(() => new ProfilePetStore());
 
   const handleToggleToast = useCallback((value) => {
@@ -47,16 +50,20 @@ const Pet = () => {
   }, []);
 
   const handleGoToProfile = useCallback(() => {
-    router.push(`${PROFILE_SHELTER}/petIdStore.pet.getUserCreatorId}`);
+    router.push(`${PROFILE_SHELTER}/${profilePetStore.pet?.getUserCreatorId}`);
   }, []);
 
-  const formatName = useCallback((name) => {
-    if (typeof name !== 'string') return '';
-    return name.charAt(0).toUpperCase() + name.slice(1);
+  const capitalizeFormat = useCallback((name) => {
+    if (name) {
+      if (typeof name !== 'string') return '';
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    } else {
+      return '';
+    }
   }, []);
 
   const handleWhatsapp = useCallback(() => {
-    if (false) {
+    if (profilePetStore.pet?.userCreator?.phone) {
       window.open(
         `https://api.whatsapp.com/send?phone=${profilePetStore.pet?.userCreator?.phone}`,
       );
@@ -86,31 +93,38 @@ const Pet = () => {
       />
       <AlertToast
         toggleToast={toggleToast}
-        text={t('phoneNotFound')}
+        text={t('common:phoneNotFound')}
         handleToggleToast={handleToggleToast}
       />
       <ImageProfile image={profilePetStore.pet?.image?.filenames[0] || null} />
-      <div className={styles.containerActions}>
-        <div className={styles.action}>
-          <Button
-            circle
-            onClick={handleGoToProfile}
-            icon={<RiUserHeartFill size={20} />}
-          />
-        </div>
-        <div className={styles.action}>
-          <Button circle onClick={handleWhatsapp} icon={<ImWhatsapp size={20} />} />
-        </div>
-      </div>
-      <Link href={LANDING_PAGE}>
-        <div className={styles.goToSearch}>
-          <BiSearchAlt size={18} />
-          <div className={styles.buttonSearch}>{t('goToSearch')}</div>
-        </div>
-      </Link>
-      <Title text={t('myNameIs', { name: formatName(profilePetStore.pet?.name) })} />
+      <ActionsProfile
+        handleWhatsapp={handleWhatsapp}
+        handleGoToProfile={handleGoToProfile}
+      />
+      <Back
+        route={LANDING_PAGE}
+        text={t('goToSearch')}
+        icon={<BiSearchAlt size={18} />}
+      />
+      <Title
+        text={t('myNameIs', { name: capitalizeFormat(profilePetStore?.pet?.name) })}
+      />
       <div className={styles.containerViewInfo}>
-        <ViewPetInfo label={t('age')} value={profilePetStore.pet?.age} />
+        <ViewPetInfo
+          label={t('age')}
+          capitalizeDisabled
+          value={
+            profilePetStore.pet?.birthday?.years !== 0
+              ? t('birthdayYear', {
+                  years: profilePetStore.pet?.birthday?.years,
+                  months: profilePetStore.pet?.birthday?.months,
+                })
+              : t('birthdayMonth', {
+                  months: profilePetStore.pet?.birthday?.months,
+                  days: profilePetStore.pet?.birthday?.days,
+                })
+          }
+        />
         <ViewPetInfo label={t('height')} value={profilePetStore.pet?.height} />
         <ViewPetInfo label={t('color')} value={profilePetStore.pet?.color} />
         <ViewPetInfo label={t('sex')} value={t(profilePetStore.pet?.gender)} />
@@ -124,32 +138,21 @@ const Pet = () => {
           icon={<RiFileHistoryLine size={20} />}
         />
       )}
-      <MedicalHistory
-        title={t('medicalCard')}
-        notes={profilePetStore.pet?.notes}
-        handleOpen={handleOpenMedicalCard}
-        icon={<FaNotesMedical size={20} />}
-        open={profilePetStore.openMedicalCard}
-        typePet={profilePetStore.pet?.category}
-        medicalItems={[
-          {
-            vaccine: 'Bordetella bronchiseptic vaccine',
-            date: '12/08/2020',
-          },
-          {
-            vaccine: 'Bordetella bronchiseptic vaccine',
-            date: '12/08/2020',
-          },
-          {
-            vaccine: 'Bordetella bronchiseptic vaccine',
-            date: '12/08/2020',
-          },
-        ]}
-      />
+      {profilePetStore.pet?.notes ||
+        (profilePetStore?.pet?.medicalItems && (
+          <MedicalHistory
+            title={t('medicalCard')}
+            notes={profilePetStore.pet?.notes}
+            handleOpen={handleOpenMedicalCard}
+            icon={<FaNotesMedical size={20} />}
+            open={profilePetStore.openMedicalCard}
+            medicalItems={profilePetStore?.pet?.medicalItems}
+          />
+        ))}
       {profilePetStore.pet?.textAddress && (
         <InformationCard
           handleOpen={handleOpenMap}
-          map={<GoogleMapsLocation />}
+          map={<GoogleMapsLocation location={profilePetStore?.pet?.location} />}
           icon={<ImLocation2 size={20} />}
           open={profilePetStore.openMapCard}
           title={profilePetStore.pet?.textAddress}

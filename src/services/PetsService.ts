@@ -2,12 +2,20 @@ import axios from 'axios';
 import { SERVER } from 'services/config';
 
 class PetsService {
-  getPets = (data, limit, page) => {
+  searchFilterPet = (data, limit, page) => {
     const { country, city, category, gender } = data;
 
     return axios
       .get(
         `${SERVER}/api/pet/searchFilterPet/?country=${country}&city=${city}&category=${category}&gender=${gender}&limit=${limit}&page=${page}`,
+      )
+      .then((response) => response.data);
+  };
+
+  getFilterPet = (type, userCreatorId, limit, page) => {
+    return axios
+      .get(
+        `${SERVER}/api/pet/filterTypePet/?userCreatorId=${userCreatorId}&category=${type}&limit=${limit}&page=${page}`,
       )
       .then((response) => response.data);
   };

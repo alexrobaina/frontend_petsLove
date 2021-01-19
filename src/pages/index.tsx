@@ -32,10 +32,6 @@ const Home = () => {
     setPage(newPage);
   }, []);
 
-  useEffect(() => {
-    searchPetStore.resetPets();
-  }, []);
-
   return (
     <Layout>
       <Seo
@@ -56,13 +52,15 @@ const Home = () => {
           </>
         ) : (
           <>
-            <PetsList searchPetStore={searchPetStore} />
-            <PaginationList
-              page={page}
-              limit={LIMIT_SEARCH}
-              handleChange={handleChangePage}
-              total={searchPetStore.totalPets}
-            />
+            <PetsList store={searchPetStore} />
+            {searchPetStore.pets.length > 0 && (
+              <PaginationList
+                page={page}
+                limit={LIMIT_SEARCH}
+                handleChange={handleChangePage}
+                total={searchPetStore.totalPets}
+              />
+            )}
           </>
         )}
       </main>

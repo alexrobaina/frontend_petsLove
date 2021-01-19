@@ -11,6 +11,7 @@
   letter-spacing: 1px;
   font-weight: 600;
   font-family: var(--text-font);
+  color: var(--color-text);
 
   @include media-breakpoint-only(md) {
     font-size: 16px;

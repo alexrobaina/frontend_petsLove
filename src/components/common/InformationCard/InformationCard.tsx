@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import c from 'classnames';
 import { BsCaretDownFill } from 'react-icons/bs';
+import Paragraph from 'components/common/Paragraph';
 import styles from './informationCard.module.scss';
 
 interface Props {
@@ -45,7 +46,9 @@ const InformationCard: FC<Props> = ({
           className={styles.layout}
           transition={{ ease: 'easeOut' }}
         >
-          <div className={c(styles.text, open && styles.open)}>{text}</div>
+          <div className={c(styles.text, open && styles.open)}>
+            <Paragraph text={text} />
+          </div>
         </motion.div>
       )}
       {map && open && (

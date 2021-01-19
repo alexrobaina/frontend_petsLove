@@ -1,0 +1,17 @@
+{
+  "goToSearch": "Ir al buscador",
+  "history": "Historia",
+  "medicalCard": "Ficha medica",
+  "myNameIs": "Mi nombre es {{ name }}",
+  "contact": "Contactar",
+  "birthdayYear": "{{ years }}a {{ months }}m",
+  "birthdayMonth": "{{ months }}m {{ days }}d",
+  "birthdayDay": "{{ days }}d",
+  "profileShelter": "Perfil del refugio",
+  "age": "Edad",
+  "height": "Peso",
+  "color": "Color",
+  "sex": "Sexo",
+  "vaccine": "Vaccine",
+  "notes": "Notas"
+}
