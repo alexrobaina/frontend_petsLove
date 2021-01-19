@@ -1,0 +1,3 @@
+[] Traducir textos de home en español, aleman, ingles
+[] Probar ver que funcione peaso y color de la mascota en el perfil (falta el back y la app mobile de esto)
+[] Correcciones generales de textos

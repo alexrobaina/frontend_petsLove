@@ -1,3 +1,7 @@
 {
-    "SearchYourArea": "Search your area...",
+  "SearchYourArea": "Search your area...",
+  "phoneNotFound": "Phone not found!",
+  "cats": "Cats",
+  "dogs": "Dogs",
+  "exotics": "Exotics"
 }

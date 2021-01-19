@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
+import { LIMIT_SEARCH } from 'services/config';
 import InputStore from './InputStore';
 import PetsService from 'services/PetsService';
 
@@ -56,7 +57,7 @@ class SearchPetStore implements ISearchPet {
   }
 
   async searchPets(limit, page) {
-    this.pets = [];
+    this.resetPets();
     this.isLoading = true;
     this.searchingPet = true;
 
@@ -68,7 +69,7 @@ class SearchPetStore implements ISearchPet {
     };
 
     try {
-      const response = await this.petsService.getPets(data, limit, page);
+      const response = await this.petsService.searchFilterPet(data, limit, page);
 
       runInAction(() => {
         this.isLoading = false;
@@ -129,16 +130,22 @@ class SearchPetStore implements ISearchPet {
   }
 
   setAddressComponents(address) {
-    address.address_components.forEach((components) => {
-      components.types.forEach((type) => {
-        if (type === 'country') {
-          this.handleCountry(components.long_name);
-        }
-        if (type === 'administrative_area_level_1') {
-          this.handleCity(components.long_name);
-        }
+    if (address?.address_components) {
+      address.address_components.forEach((components) => {
+        components.types.forEach((type) => {
+          if (type === 'country') {
+            this.handleCountry(components.long_name);
+          }
+          if (type === 'administrative_area_level_1') {
+            this.handleCity(components.long_name);
+          }
+        });
       });
-    });
+    } else {
+      this.handleCity('');
+      this.handleCountry('');
+      this.searchPets(LIMIT_SEARCH, 1);
+    }
   }
 }
 

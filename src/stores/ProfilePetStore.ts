@@ -1,11 +1,17 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import PetsService from 'services/PetsService';
+import Pet from 'models/Pet';
 
 interface IProfilePet {
   pet: object;
   petId: string;
+  isLoading: boolean;
+  openMapCard: boolean;
+  openHistory: boolean;
   petsService: PetsService;
+  openMedicalCard: boolean;
 }
+
 class ProfilePetStore implements IProfilePet {
   pet;
   petId;
@@ -18,14 +24,12 @@ class ProfilePetStore implements IProfilePet {
   dogMedicalHistory;
 
   constructor() {
-    this.pet = null;
     this.petId = '';
+    this.pet = new Pet();
     this.isLoading = false;
     this.openHistory = true;
     this.openMapCard = true;
     this.openMedicalCard = true;
-    this.catMedicalHistory = null;
-    this.dogMedicalHistory = null;
 
     makeAutoObservable(this);
 
@@ -40,7 +44,7 @@ class ProfilePetStore implements IProfilePet {
 
       runInAction(() => {
         this.isLoading = false;
-        this.pet = toJS(response);
+        this.pet.fillJson(response);
       });
     } catch (e) {
       runInAction(() => {
@@ -48,12 +52,6 @@ class ProfilePetStore implements IProfilePet {
         console.log(e);
       });
     }
-  }
-
-  setMedicalFormat(pet) {
-    console.log(pet);
-
-    return {};
   }
 
   setOpenMapCard() {

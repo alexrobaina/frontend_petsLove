@@ -22,7 +22,9 @@ const Gallery: FC<Props> = ({ images = [] }) => {
       transition={{ ease: 'easeOut', delay: 0.5 }}
     >
       {images.map((image) => {
-        return <img src={image} className={styles.galleryContent} alt="pet" />;
+        return (
+          <img key={image} src={image} className={styles.galleryContent} alt="pet" />
+        );
       })}
     </motion.div>
   );
