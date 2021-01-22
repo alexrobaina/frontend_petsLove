@@ -6,7 +6,7 @@
 .next
 .env
 .env.local
-documentation.txt
+documentation
 
 # misc
 .DS_Store
