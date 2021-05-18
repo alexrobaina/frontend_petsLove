@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVER } from 'services/config';
+import { SERVER } from './config';
 
 class PetsService {
   searchFilterPet = (data, limit, page) => {
