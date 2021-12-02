@@ -139,7 +139,9 @@ const Shelter = () => {
           icon={<ImLocation2 size={20} />}
           open={profileShelterStore.openMapCard}
           title={profileShelterStore.shelter?.textAddress}
-          map={<GoogleMapsLocation location={profileShelterStore?.shelter?.location} />}
+          childrens={
+            <GoogleMapsLocation location={profileShelterStore?.shelter?.location} />
+          }
         />
       )}
       <AnimalNavegator selected={typePetSelected} handleFilterPets={handleFilterPets} />

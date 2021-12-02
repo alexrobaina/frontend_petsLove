@@ -1,6 +1,5 @@
-import { useCallback, useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { BiHomeHeart } from 'react-icons/bi';
-import { FcSearch } from 'react-icons/fc';
 import PetContext from 'Context/PetContext';
 import LinkButton from 'components/common/LinkButton';
 import ChangeLanguage from './ChangeLanguage';

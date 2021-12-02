@@ -5,3 +5,28 @@
   display: flex;
   justify-content: space-between;
 }
+
+.notesContainer {
+  padding: 25px;
+}
+
+.titleNotes {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-family: var(--title-font);
+  color: var(--secundary-color);
+
+  @include media-breakpoint-only(xs) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 180px;
+  }
+}
+
+.textNotes {
+  color: var(--primary-color);
+  font-weight: 400;
+  font-family: var(--text-font);
+}

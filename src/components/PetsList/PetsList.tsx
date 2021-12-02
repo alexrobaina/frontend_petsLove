@@ -34,7 +34,7 @@ const PetsList: FC<Props> = ({ store }) => {
               key={pet._id}
               petId={pet._id}
               name={pet.name}
-              image={pet.image?.filenames[0]}
+              image={pet.images[0]}
             />
           );
         })}

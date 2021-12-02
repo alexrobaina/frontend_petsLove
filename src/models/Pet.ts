@@ -3,106 +3,82 @@ import moment from 'moment';
 
 interface IPet {
   id: string;
-  image: any;
+  age: string;
   name: string;
+  city: string;
   notes: string;
-  lost: boolean;
-  state: boolean;
-  birthday: Date;
+  color: string;
+  height: string;
   gender: string;
-  history: string;
+  country: string;
   category: string;
   location: object;
   adopted: boolean;
+  createdDate: Date;
+  description: string;
   userCreator: object;
   textAdderss?: string;
-  activityLevel: string;
-  userCreatorId: string;
+  images: Array<string>;
 }
 
 class Pet implements IPet {
   id;
-  lost;
+  age;
   name;
-  state;
+  city;
   notes;
+  height;
   gender;
-  image;
-  history;
+  images;
+  country;
+  adopted;
   category;
   location;
-  birthday;
-  adopted;
-  textAddress;
+  createdDate;
+  description;
   userCreator;
-  activityLevel;
-  userCreatorId;
+  textAddress;
 
   constructor() {
     this.id = '';
+    this.age = '';
     this.name = '';
-    this.notes = '';
+    this.city = '';
+    this.notes = [];
+    this.height = 0;
+    this.images = [];
     this.gender = '';
-    this.history = '';
-    this.lost = false;
+    this.color = '';
+    this.country = '';
     this.category = '';
-    this.state = false;
     this.location = {};
-    this.birthday = '';
+    this.description = '';
     this.adopted = false;
     this.userCreator = {};
     this.textAddress = '';
     this.userCreator = {};
-    this.activityLevel = '';
-    this.userCreatorId = '';
 
     makeAutoObservable(this);
   }
 
   fillJson(pet) {
     this.id = pet._id;
+    this.age = pet.age;
     this.name = pet.name;
-    this.state = pet.state;
-    this.image = pet.image;
+    this.city = pet.city;
     this.notes = pet.notes;
+    this.color = pet.color;
+    this.height = pet.height;
     this.gender = pet.gender;
+    this.images = pet.images;
     this.adopted = pet.adopted;
-    this.history = pet.history;
+    this.country = pet.country;
     this.category = pet.category;
-    this.location = pet.foundLocation;
+    this.location = pet.location;
+    this.description = pet.description;
+    this.userCreator = pet.userCreator;
     this.textAddress = pet.textAddress;
     this.userCreator = pet.userCreator;
-    this.activityLevel = pet.activityLevel;
-    this.userCreatorId = pet.userCreator._id;
-    this.birthday = this.getBirthday(pet.birthday);
-  }
-
-  getBirthday(birthday) {
-    let today = new Date();
-
-    //define moments for the startdate and enddate
-    let startdateMoment = moment(birthday);
-    let enddateMoment = moment(today);
-
-    if (startdateMoment.isValid() === true && enddateMoment.isValid() === true) {
-      //getting the difference in years
-      let years = enddateMoment.diff(startdateMoment, 'years');
-
-      //moment returns the total months between the two dates, subtracting the years
-      let months = enddateMoment.diff(startdateMoment, 'months') - years * 12;
-
-      //to calculate the days, first get the previous month and then subtract it
-      startdateMoment.add(years, 'years').add(months, 'months');
-      let days = enddateMoment.diff(startdateMoment, 'days');
-
-      return {
-        years: years,
-        months: months,
-        days: days,
-      };
-    } else {
-      return undefined;
-    }
   }
 
   // ============================================
@@ -110,7 +86,7 @@ class Pet implements IPet {
   // ============================================
 
   get getUserCreatorId() {
-    return this.userCreatorId;
+    return this.userCreator._id;
   }
 }
 

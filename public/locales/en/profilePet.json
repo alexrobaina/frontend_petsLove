@@ -1,6 +1,6 @@
 {
   "goToSearch": "Go to search",
-  "history": "History",
+  "description": "Description",
   "medicalCard": "Medical record",
   "birthdayYear": "{{ years }}y {{ months }}m",
   "birthdayMonth": "{{ months }}m {{ days }}d",
@@ -12,5 +12,6 @@
   "color": "Color",
   "sex": "Sex",
   "vaccine": "Vacunas",
+  "descriptionNotFound": "Don't have description.",
   "notes": "Notes"
 }

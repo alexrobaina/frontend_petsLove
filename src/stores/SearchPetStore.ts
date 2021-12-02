@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import { LIMIT_SEARCH } from 'services/config';
-import InputStore from './InputStore';
 import PetsService from 'services/PetsService';
+import InputStore from './InputStore';
 
 interface ISearchPet {
   city: string;
@@ -73,8 +73,9 @@ class SearchPetStore implements ISearchPet {
 
       runInAction(() => {
         this.isLoading = false;
-        this.totalPets = response.totalPets;
-        this.pets = toJS(response.pets);
+        this.totalPets = response.total;
+        this.pets = toJS(response.petsDB);
+        console.log(response);
       });
     } catch (e) {
       runInAction(() => {

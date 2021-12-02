@@ -9,18 +9,18 @@ interface Props {
   text?: string;
   title: string;
   open: boolean;
-  map?: ReactNode;
   icon?: ReactNode;
-  handleOpen: (e) => void;
+  handleOpen?: (e: any) => void;
+  childrens?: ReactNode;
 }
 
 const InformationCard: FC<Props> = ({
   text = '',
-  handleOpen,
   title = '',
-  map = null,
   icon = null,
   open = false,
+  childrens = null,
+  handleOpen = null,
 }) => {
   const variants = {
     hidden: { opacity: 0 },
@@ -34,9 +34,11 @@ const InformationCard: FC<Props> = ({
           {icon && <div className={styles.icon}>{icon}</div>}
           <div className={c(styles.title, open && styles.open)}>{title}</div>
         </div>
-        <div className={c(styles.icon, open && styles.open)}>
-          <BsCaretDownFill size={20} />
-        </div>
+        {handleOpen && (
+          <div className={c(styles.icon, open && styles.open)}>
+            <BsCaretDownFill size={20} />
+          </div>
+        )}
       </div>
       {text && open && (
         <motion.div
@@ -51,7 +53,7 @@ const InformationCard: FC<Props> = ({
           </div>
         </motion.div>
       )}
-      {map && open && (
+      {childrens && open && (
         <motion.div
           initial="hidden"
           animate="visible"
@@ -59,7 +61,7 @@ const InformationCard: FC<Props> = ({
           className={styles.layout}
           transition={{ ease: 'easeOut' }}
         >
-          <div className={styles.map}>{map}</div>
+          <div className={styles.childrens}>{childrens}</div>
         </motion.div>
       )}
     </div>

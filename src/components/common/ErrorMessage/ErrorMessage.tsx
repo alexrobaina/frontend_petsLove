@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import c from 'classnames';
 import styles from './errorMessage.module.scss';
 
@@ -15,11 +13,6 @@ const ErrorMessage = ({ text, typeMessage }) => {
       <div className={styles.text}>{text}</div>
     </div>
   );
-};
-
-ErrorMessage.propTypes = {
-  text: PropTypes.string.isRequired,
-  typeMessage: PropTypes.string.isRequired,
 };
 
 export default ErrorMessage;

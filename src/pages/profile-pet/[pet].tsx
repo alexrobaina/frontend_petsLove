@@ -1,26 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { BiSearchAlt } from 'react-icons/bi';
-import { FaNotesMedical } from 'react-icons/fa';
-import { ImWhatsapp, ImLocation2 } from 'react-icons/im';
-import { RiFileHistoryLine, RiUserHeartFill } from 'react-icons/ri';
+import { ImLocation2 } from 'react-icons/im';
+import { GrNotes } from 'react-icons/gr';
+import { RiFileHistoryLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { PROFILE_SHELTER, LANDING_PAGE } from 'routes/routes';
 import Seo from 'utils/Seo';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
 import Layout from 'components/common/Layout';
 import ProfilePetStore from 'stores/ProfilePetStore';
 import InformationCard from 'components/common/InformationCard';
-import MedicalHistory from 'components/MedicalHistory';
 import Title from 'components/common/Title';
 import Gallery from 'components/common/Gallery';
-import Button from 'components/common/Button';
 import ImageProfile from 'components/common/ImageProfile';
-import { IoIosArrowRoundBack } from 'react-icons/io';
 import AlertToast from 'components/common/AlertToast';
 import ActionsProfile from 'components/common/ActionsProfile';
 import ViewPetInfo from './ViewPetInfo';
@@ -41,12 +36,8 @@ const Pet = () => {
     profilePetStore.setOpenMapCard();
   }, []);
 
-  const handleOpenMedicalCard = useCallback(() => {
-    profilePetStore.setOpenMedicalCard();
-  }, []);
-
-  const handleOpenHistory = useCallback(() => {
-    profilePetStore.setOpenHistory();
+  const handleOpenDescription = useCallback(() => {
+    profilePetStore.setOpenDescription();
   }, []);
 
   const handleGoToProfile = useCallback(() => {
@@ -96,7 +87,9 @@ const Pet = () => {
         text={t('common:phoneNotFound')}
         handleToggleToast={handleToggleToast}
       />
-      <ImageProfile image={profilePetStore.pet?.image?.filenames[0] || null} />
+      {profilePetStore.pet.images && (
+        <ImageProfile image={profilePetStore.pet?.images[0]} />
+      )}
       <ActionsProfile
         handleWhatsapp={handleWhatsapp}
         handleGoToProfile={handleGoToProfile}
@@ -113,49 +106,42 @@ const Pet = () => {
         <ViewPetInfo
           label={t('age')}
           capitalizeDisabled
-          value={
-            profilePetStore.pet?.birthday?.years !== 0
-              ? t('birthdayYear', {
-                  years: profilePetStore.pet?.birthday?.years,
-                  months: profilePetStore.pet?.birthday?.months,
-                })
-              : t('birthdayMonth', {
-                  months: profilePetStore.pet?.birthday?.months,
-                  days: profilePetStore.pet?.birthday?.days,
-                })
-          }
+          value={profilePetStore.pet?.age || 0}
         />
         <ViewPetInfo label={t('height')} value={profilePetStore.pet?.height} />
         <ViewPetInfo label={t('color')} value={profilePetStore.pet?.color} />
         <ViewPetInfo label={t('sex')} value={t(profilePetStore.pet?.gender)} />
       </div>
-      {profilePetStore.pet?.history && (
+      {profilePetStore.pet?.description && (
         <InformationCard
-          title={t('history')}
-          handleOpen={handleOpenHistory}
-          open={profilePetStore.openHistory}
-          text={profilePetStore.pet?.history}
+          title={t('description')}
+          handleOpen={handleOpenDescription}
+          open={profilePetStore.openDescription}
+          text={profilePetStore.pet?.description}
           icon={<RiFileHistoryLine size={20} />}
         />
       )}
-      {profilePetStore.pet?.notes ||
-        (profilePetStore?.pet?.medicalItems && (
-          <MedicalHistory
-            title={t('medicalCard')}
-            notes={profilePetStore.pet?.notes}
-            handleOpen={handleOpenMedicalCard}
-            icon={<FaNotesMedical size={20} />}
-            open={profilePetStore.openMedicalCard}
-            medicalItems={profilePetStore?.pet?.medicalItems}
-          />
-        ))}
       {profilePetStore.pet?.textAddress && (
         <InformationCard
           handleOpen={handleOpenMap}
-          map={<GoogleMapsLocation location={profilePetStore?.pet?.location} />}
           icon={<ImLocation2 size={20} />}
           open={profilePetStore.openMapCard}
           title={profilePetStore.pet?.textAddress}
+          childrens={<GoogleMapsLocation />}
+        />
+      )}
+      {profilePetStore.pet?.notes && (
+        <InformationCard
+          open
+          title={t('notes')}
+          icon={<GrNotes size={20} />}
+          childrens={
+            <div className={styles.notesContainer}>
+              <div className={styles.titleNotes}>Vacuna de la parviovirosis</div>
+              <div className={styles.textNotes}>20/30/2021</div>
+              <div className={styles.textNotes}>le colocamos la vacina de la bla bla</div>
+            </div>
+          }
         />
       )}
       <Gallery images={profilePetStore.pet?.image?.filenames} />
