@@ -1,7 +1,4 @@
 import { FC } from 'react';
-import c from 'classnames';
-import { FaHeartbeat } from 'react-icons/fa';
-import { BiCalendarHeart } from 'react-icons/bi';
 import styles from './imageProfile.module.scss';
 
 interface Props {

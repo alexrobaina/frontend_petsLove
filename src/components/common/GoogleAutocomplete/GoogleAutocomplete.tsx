@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, ReactChild, useCallback, useEffect } from 'react';
+import { FC, useState, ReactChild, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GoogleApiWrapper } from 'google-maps-react';
 import PlacesAutocomplete, {
@@ -15,9 +15,9 @@ interface Props {
   placeholder?: string;
   handleSearch?: Function;
   inputStoreError?: boolean;
-  handleChangeAddress?: CallableFunction;
-  handleChangeTextAddress?: CallableFunction;
-  handleChangeAddressComponents?: CallableFunction;
+  handleChangeAddress?: Function;
+  handleChangeTextAddress?: Function;
+  handleChangeAddressComponents?: Function;
 }
 
 const GoogleAutocomplete: FC<Props> = ({
@@ -31,7 +31,6 @@ const GoogleAutocomplete: FC<Props> = ({
   handleChangeTextAddress = null,
   handleChangeAddressComponents = null,
 }) => {
-  const googleInputRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
   const [address, setAddress] = useState('');
   // eslint-disable-next-line no-shadow

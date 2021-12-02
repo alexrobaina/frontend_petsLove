@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import c from 'classnames';
 import { motion } from 'framer-motion';
 import styles from './simpleMenu.module.scss';
 
 interface Props {
   isVisible: boolean;
-  children: JSX.Element;
+  children: ReactElement;
   setIsVisible: Function;
 }
 const SimpleMenu: FC<Props> = ({ setIsVisible, children, isVisible }) => {

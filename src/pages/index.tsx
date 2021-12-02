@@ -32,6 +32,8 @@ const Home = () => {
     setPage(newPage);
   }, []);
 
+  console.log(searchPetStore);
+
   return (
     <Layout>
       <Seo

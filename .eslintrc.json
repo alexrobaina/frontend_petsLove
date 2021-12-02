@@ -14,15 +14,23 @@
     "es6": true
   },
   "rules": {
-    "requireForBlockBody":  "off",
+    "requireForBlockBody": "off",
     "space-before-function-paren": "off",
     "react/prefer-stateless-function": "warn",
-    "react/jsx-filename-extension": [
-      1,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
       {
-        "extensions": [".js", ".jsx"]
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
       }
     ],
+    "import/no-unresolved": "off",
     "linebreak-style": "off",
     "global-require": "off",
     "semi": "off",

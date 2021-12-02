@@ -7,7 +7,7 @@ interface IProfilePet {
   petId: string;
   isLoading: boolean;
   openMapCard: boolean;
-  openHistory: boolean;
+  openDescription: boolean;
   petsService: PetsService;
   openMedicalCard: boolean;
 }
@@ -18,7 +18,7 @@ class ProfilePetStore implements IProfilePet {
   isLoading;
   openMapCard;
   petsService;
-  openHistory;
+  openDescription;
   openMedicalCard;
   catMedicalHistory;
   dogMedicalHistory;
@@ -27,7 +27,7 @@ class ProfilePetStore implements IProfilePet {
     this.petId = '';
     this.pet = new Pet();
     this.isLoading = false;
-    this.openHistory = true;
+    this.openDescription = true;
     this.openMapCard = true;
     this.openMedicalCard = true;
 
@@ -41,10 +41,11 @@ class ProfilePetStore implements IProfilePet {
 
     try {
       const response = await this.petsService.getPet(id);
+      console.log('response', response.petDB);
 
       runInAction(() => {
         this.isLoading = false;
-        this.pet.fillJson(response);
+        this.pet.fillJson(response.petDB);
       });
     } catch (e) {
       runInAction(() => {
@@ -58,12 +59,8 @@ class ProfilePetStore implements IProfilePet {
     this.openMapCard = !this.openMapCard;
   }
 
-  setOpenMedicalCard() {
-    this.openMedicalCard = !this.openMedicalCard;
-  }
-
-  setOpenHistory() {
-    this.openHistory = !this.openHistory;
+  setOpenDescription() {
+    this.openDescription = !this.openDescription;
   }
 
   resetPets() {

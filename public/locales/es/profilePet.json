@@ -1,6 +1,6 @@
 {
   "goToSearch": "Ir al buscador",
-  "history": "Historia",
+  "description": "Descripción",
   "medicalCard": "Ficha medica",
   "myNameIs": "Mi nombre es {{ name }}",
   "contact": "Contactar",
@@ -13,5 +13,6 @@
   "color": "Color",
   "sex": "Sexo",
   "vaccine": "Vaccine",
+  "descriptionNotFound": "No tiene descripción.",
   "notes": "Notas"
 }
