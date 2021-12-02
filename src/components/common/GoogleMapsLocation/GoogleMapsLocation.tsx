@@ -13,7 +13,7 @@ const GoogleMapsLocation: FC = observer(() => {
     console.log('marker', marker);
   };
   return (
-    <LoadScript googleMapsApiKey="AIzaSyCSu_v2WqQJjf_Km_srRzxqoN-ELXwlEY0">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API}>
       <GoogleMap
         zoom={10}
         center={POSITION_DEFAULT}

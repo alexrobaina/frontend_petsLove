@@ -135,6 +135,6 @@ const GoogleAutocomplete: FC<Props> = ({
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCSu_v2WqQJjf_Km_srRzxqoN-ELXwlEY0',
+  apiKey: process.env.REACT_APP_GOOGLE_MAP_API,
   // @ts-ignore
 })(GoogleAutocomplete);
