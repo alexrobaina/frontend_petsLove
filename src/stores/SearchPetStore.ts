@@ -75,7 +75,6 @@ class SearchPetStore implements ISearchPet {
         this.isLoading = false;
         this.totalPets = response.total;
         this.pets = toJS(response.petsDB);
-        console.log(response);
       });
     } catch (e) {
       runInAction(() => {

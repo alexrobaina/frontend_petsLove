@@ -5,6 +5,7 @@ import GoogleAutocomplete from 'components/common/GoogleAutocomplete';
 import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
 import Filters from './Filters';
+import styles from './search.module.scss';
 
 interface Props {
   searchPetStore: SearchPetStore;
@@ -47,6 +48,7 @@ const Search: FC<Props> = ({ searchPetStore }) => {
         handleChangeTextAddress={handleChangeTextAddress}
         handleChangeAddressComponents={handleChangeAddressComponents}
       />
+      <div className={styles.address}>{searchPetStore.textAddress.value}</div>
     </>
   );
 };

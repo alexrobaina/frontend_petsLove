@@ -12,7 +12,8 @@
   "height": "Peso",
   "color": "Color",
   "sex": "Sexo",
+  "female": "Hembra",
   "vaccine": "Vaccine",
   "descriptionNotFound": "No tiene descripción.",
-  "notes": "Notas"
+  "medicalNotes": "Notas medicas"
 }

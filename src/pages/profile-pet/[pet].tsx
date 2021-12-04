@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
 import { ImLocation2 } from 'react-icons/im';
@@ -18,8 +19,9 @@ import Gallery from 'components/common/Gallery';
 import ImageProfile from 'components/common/ImageProfile';
 import AlertToast from 'components/common/AlertToast';
 import ActionsProfile from 'components/common/ActionsProfile';
-import ViewPetInfo from './ViewPetInfo';
 import Back from 'components/common/Back';
+import Notes from './components/Notes';
+import ViewPetInfo from './components/ViewPetInfo';
 import styles from './pet.module.scss';
 
 const Pet = () => {
@@ -48,9 +50,8 @@ const Pet = () => {
     if (name) {
       if (typeof name !== 'string') return '';
       return name.charAt(0).toUpperCase() + name.slice(1);
-    } else {
-      return '';
     }
+    return '';
   }, []);
 
   const handleWhatsapp = useCallback(() => {
@@ -87,8 +88,8 @@ const Pet = () => {
         text={t('common:phoneNotFound')}
         handleToggleToast={handleToggleToast}
       />
-      {profilePetStore.pet.images && (
-        <ImageProfile image={profilePetStore.pet?.images[0]} />
+      {profilePetStore.pet?.images && (
+        <ImageProfile image={profilePetStore.pet.images[0]} />
       )}
       <ActionsProfile
         handleWhatsapp={handleWhatsapp}
@@ -117,7 +118,7 @@ const Pet = () => {
           title={t('description')}
           handleOpen={handleOpenDescription}
           open={profilePetStore.openDescription}
-          text={profilePetStore.pet?.description}
+          text={profilePetStore.pet.description}
           icon={<RiFileHistoryLine size={20} />}
         />
       )}
@@ -126,22 +127,23 @@ const Pet = () => {
           handleOpen={handleOpenMap}
           icon={<ImLocation2 size={20} />}
           open={profilePetStore.openMapCard}
-          title={profilePetStore.pet?.textAddress}
-          childrens={<GoogleMapsLocation />}
+          title={profilePetStore.pet.textAddress}
+          childrens={<GoogleMapsLocation position={profilePetStore.pet.location} />}
         />
       )}
       {profilePetStore.pet?.notes && (
         <InformationCard
           open
-          title={t('notes')}
+          title={t('medicalNotes')}
           icon={<GrNotes size={20} />}
-          childrens={
-            <div className={styles.notesContainer}>
-              <div className={styles.titleNotes}>Vacuna de la parviovirosis</div>
-              <div className={styles.textNotes}>20/30/2021</div>
-              <div className={styles.textNotes}>le colocamos la vacina de la bla bla</div>
-            </div>
-          }
+          childrens={profilePetStore.pet.notes.map((note) => (
+            <Notes
+              key={note.title}
+              title={note.title}
+              description={note.description}
+              date={moment(note.date).format('MM/DD/YYYY')}
+            />
+          ))}
         />
       )}
       <Gallery images={profilePetStore.pet?.image?.filenames} />

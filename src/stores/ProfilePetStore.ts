@@ -41,7 +41,6 @@ class ProfilePetStore implements IProfilePet {
 
     try {
       const response = await this.petsService.getPet(id);
-      console.log('response', response.petDB);
 
       runInAction(() => {
         this.isLoading = false;

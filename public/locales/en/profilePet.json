@@ -11,7 +11,8 @@
   "height": "Height",
   "color": "Color",
   "sex": "Sex",
+  "female": "Female",
   "vaccine": "Vacunas",
   "descriptionNotFound": "Don't have description.",
-  "notes": "Notes"
+  "medicalNotes": "Medical notes"
 }

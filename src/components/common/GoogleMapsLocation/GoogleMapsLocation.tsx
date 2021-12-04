@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { observer } from 'mobx-react-lite';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import styles from './googleMapsLocation.module.scss';
 
 const POSITION_DEFAULT = {
@@ -8,20 +8,32 @@ const POSITION_DEFAULT = {
   lng: -58.381592,
 };
 
-const GoogleMapsLocation: FC = observer(() => {
-  const onLoad = (marker: any) => {
-    console.log('marker', marker);
+interface Props {
+  position: {
+    lat: number;
+    lng: number;
   };
+}
+
+const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyAx0zeBO9pApgmCAXxGmQ26YTmQuETzdYs',
+  });
+
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API}>
-      <GoogleMap
-        zoom={10}
-        center={POSITION_DEFAULT}
-        mapContainerClassName={styles.imageMap}
-      >
-        <Marker onLoad={onLoad} position={POSITION_DEFAULT} />
-      </GoogleMap>
-    </LoadScript>
+    <>
+      {isLoaded && (
+        <GoogleMap
+          zoom={10}
+          center={position || POSITION_DEFAULT}
+          mapContainerClassName={styles.imageMap}
+        >
+          <Marker position={POSITION_DEFAULT} />
+          <div>sad</div>
+        </GoogleMap>
+      )}
+    </>
   );
 });
 

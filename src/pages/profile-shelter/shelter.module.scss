@@ -41,3 +41,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+.emailText {
+  color: var(--secundary-color);
+  font-family: var(--text-font);
+  font-size: 18px;
+  font-weight: 600;
+}

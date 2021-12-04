@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction, toJS } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import Shelter from 'models/Shelter';
 import ShelterService from 'services/ShelterService';
 import PetsService from 'services/PetsService';
@@ -48,10 +48,11 @@ class ProfileShelterStore implements IProfileShelter {
 
     try {
       const response = await this.shelterService.getShelter(id);
+      console.log(response);
 
       runInAction(() => {
         this.isLoading = false;
-        this.shelter.fillJson(response);
+        this.shelter.fillJson(response.userDB);
       });
     } catch (e) {
       runInAction(() => {

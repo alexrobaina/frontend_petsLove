@@ -49,6 +49,13 @@ const GoogleAutocomplete: FC<Props> = ({
     if (handleChangeTextAddress) {
       handleChangeTextAddress(addressSelected);
     }
+
+    if (handleSearch) {
+      handleSearch();
+    }
+    if (handleChangeTextAddress) {
+      handleChangeTextAddress(addressSelected);
+    }
     const results = await geocodeByAddress(addressSelected);
     const latLng = await getLatLng(results[0]);
 
@@ -135,6 +142,7 @@ const GoogleAutocomplete: FC<Props> = ({
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+  apiKey: 'AIzaSyAx0zeBO9pApgmCAXxGmQ26YTmQuETzdYs',
+  language: 'es',
   // @ts-ignore
 })(GoogleAutocomplete);

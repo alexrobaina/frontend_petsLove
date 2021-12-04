@@ -10,6 +10,7 @@ interface IShelter {
   username: string;
   location: object;
   textAddress: string;
+  image: Array<string>;
   requirementsToAdopt: string;
 }
 
@@ -19,6 +20,7 @@ class Shelter implements IShelter {
   role;
   phone;
   email;
+  image;
   aboutUs;
   username;
   location;
@@ -30,6 +32,7 @@ class Shelter implements IShelter {
     this.name = '';
     this.role = '';
     this.phone = '';
+    this.image = [];
     this.email = '';
     this.aboutUs = '';
     this.username = '';
@@ -47,6 +50,7 @@ class Shelter implements IShelter {
     this.phone = shelter.phone;
     this.email = shelter.email;
     this.aboutUs = shelter.aboutUs;
+    this.image = shelter.image || [];
     this.location = shelter.location;
     this.username = shelter.username;
     this.textAddress = shelter.textAddress;

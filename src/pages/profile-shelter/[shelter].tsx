@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ImLocation2 } from 'react-icons/im';
 import { MdPersonPin } from 'react-icons/md';
-import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import Seo from 'utils/Seo';
@@ -11,13 +10,10 @@ import Layout from 'components/common/Layout';
 import ProfileShelterStore from 'stores/ProfileShelterStore';
 import InformationCard from 'components/common/InformationCard';
 import Title from 'components/common/Title';
-import { LANDING_PAGE } from 'routes/routes';
-import Button from 'components/common/Button';
 import AnimalNavegator from 'components/AnimalNavegator';
 import ActionsProfile from 'components/common/ActionsProfile';
 import AlertToast from 'components/common/AlertToast';
 import ImageProfile from 'components/common/ImageProfile';
-import Back from 'components/common/Back';
 import { LIMIT_SEARCH } from 'services/config';
 import PetsList from 'components/PetsList';
 import PaginationList from 'components/common/PaginationList';
@@ -78,9 +74,9 @@ const Shelter = () => {
   }, []);
 
   const handleWhatsapp = useCallback(() => {
-    if (profileShelterStore.shelter?.userCreator?.phone) {
+    if (profileShelterStore.shelter?.phone) {
       window.open(
-        `https://api.whatsapp.com/send?phone=${profileShelterStore?.shelter?.userCreator?.phone}`,
+        `https://api.whatsapp.com/send?phone=${profileShelterStore.shelter.phone}`,
       );
     } else {
       setToggleToast(true);
@@ -112,9 +108,10 @@ const Shelter = () => {
         toggleToast={toggleToast}
         handleToggleToast={handleToggleToast}
       />
-      <ImageProfile image={profileShelterStore?.shelter?.image?.filenames[0] || null} />
+      <ImageProfile image={profileShelterStore?.shelter?.image[0] || null} />
       <ActionsProfile handleWhatsapp={handleWhatsapp} />
       <Title text={capitalizeFormat(profileShelterStore?.shelter?.name)} />
+      <div className={styles.emailText}>{profileShelterStore.shelter.email}</div>
       {profileShelterStore.shelter?.aboutUs && (
         <InformationCard
           title={t('aboutUs')}
@@ -133,14 +130,14 @@ const Shelter = () => {
           text={profileShelterStore.shelter?.requirementsToAdopt}
         />
       )}
-      {profileShelterStore.shelter?.textAddress && (
+      {profileShelterStore.shelter?.location && (
         <InformationCard
           handleOpen={handleOpenMap}
           icon={<ImLocation2 size={20} />}
           open={profileShelterStore.openMapCard}
           title={profileShelterStore.shelter?.textAddress}
           childrens={
-            <GoogleMapsLocation location={profileShelterStore?.shelter?.location} />
+            <GoogleMapsLocation position={profileShelterStore.shelter.location} />
           }
         />
       )}
