@@ -1,10 +1,9 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { GiCat } from 'react-icons/gi';
 import { FaDog } from 'react-icons/fa';
 import { GoSquirrel } from 'react-icons/go';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
 import { observer } from 'mobx-react-lite';
-import c from 'classnames';
 import { LIMIT_SEARCH } from 'services/config';
 import SearchPetStore from 'stores/SearchPetStore';
 import ButtonFilter from '../ButtonFilter';
@@ -15,7 +14,7 @@ interface Props {
 }
 
 const Filters: FC<Props> = ({ searchPetStore }) => {
-  const { male, dogs, cats, female, exotics } = searchPetStore;
+  const { male, dogs, cats, female, exotics, gender, category } = searchPetStore;
 
   const handleSelectCats = () => {
     searchPetStore.handleCats(!cats);
@@ -54,6 +53,14 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.handleGender(male ? '' : 'male');
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
+
+  useEffect(() => {
+    if (category.value === 'cat') searchPetStore.handleCats(true);
+    if (category.value === 'dog') searchPetStore.handleDogs(true);
+    if (category.value === 'exotic') searchPetStore.handleExotic(true);
+    if (gender.value === 'female') searchPetStore.handleFemale(true);
+    if (gender.value === 'male') searchPetStore.handleMale(true);
+  });
 
   return (
     <div className={styles.containerFilters}>

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import c from 'classnames';
 import { motion } from 'framer-motion';
 import styles from './simpleMenu.module.scss';

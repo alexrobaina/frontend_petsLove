@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import moment from 'moment';
 
 interface IPet {
   id: string;

@@ -2,11 +2,11 @@
 
 .containerFooter {
   display: flex;
-  margin-top: 30px;
+  margin-top: 50px;
   position: relative;
   justify-content: center;
   background-color: var(--background-secundary);
-  height: 300px;
+  min-height: 300px;
   width: 100%;
 }
 
