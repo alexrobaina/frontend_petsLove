@@ -21,9 +21,8 @@ import styles from './shelter.module.scss';
 
 const Shelter = () => {
   const router = useRouter();
-  const [page, setPage] = useState(1);
+  const shelterId = router.query.shelter;
   const [toggleToast, setToggleToast] = useState(false);
-  const [typePetSelected, setTypePetSelected] = useState('');
   const { t } = useTranslation('profileShelter');
   const profileShelterStore = useLocalObservable(() => new ProfileShelterStore());
 
@@ -45,27 +44,38 @@ const Shelter = () => {
 
   const handleFilterPets = useCallback(
     (typePet) => {
-      setTypePetSelected(typePet);
-      profileShelterStore.filterPets(typePet, router.query.shelter, LIMIT_SEARCH, 1);
+      profileShelterStore.setPage(1);
+      profileShelterStore.setCategory(typePet);
+      profileShelterStore.getCategoryUserFilterPet(
+        typePet,
+        shelterId,
+        LIMIT_SEARCH,
+        profileShelterStore.page,
+      );
     },
     [router.query.shelter],
   );
 
   const handleChangePage = useCallback(
     (e, newPage) => {
-      setPage(newPage);
-      if (typePetSelected) {
-        profileShelterStore.filterPets(
-          typePetSelected,
+      profileShelterStore.setPage(newPage);
+      if (profileShelterStore.categorySelected) {
+        profileShelterStore.getCategoryUserFilterPet(
+          profileShelterStore.categorySelected,
+          router.query.shelter,
+          LIMIT_SEARCH,
+          profileShelterStore.page,
+        );
+      } else {
+        profileShelterStore.getCategoryUserFilterPet(
+          '',
           router.query.shelter,
           LIMIT_SEARCH,
           newPage,
         );
-      } else {
-        profileShelterStore.filterPets('', router.query.shelter, LIMIT_SEARCH, newPage);
       }
     },
-    [router.query.shelter, typePetSelected],
+    [router.query.shelter, profileShelterStore.categorySelected],
   );
 
   const capitalizeFormat = useCallback((name) => {
@@ -86,7 +96,12 @@ const Shelter = () => {
   useEffect(() => {
     if (router.query.shelter) {
       profileShelterStore.searchShelter(router.query.shelter);
-      profileShelterStore.filterPets('', router.query.shelter, LIMIT_SEARCH, 1);
+      profileShelterStore.getCategoryUserFilterPet(
+        profileShelterStore.categorySelected,
+        router.query.shelter,
+        LIMIT_SEARCH,
+        1,
+      );
     }
   }, [router.query.shelter]);
 
@@ -141,12 +156,15 @@ const Shelter = () => {
           }
         />
       )}
-      <AnimalNavegator selected={typePetSelected} handleFilterPets={handleFilterPets} />
+      <AnimalNavegator
+        selected={profileShelterStore.categorySelected}
+        handleFilterPets={handleFilterPets}
+      />
       <PetsList store={profileShelterStore} />
       {profileShelterStore.pets.length > 0 && (
         <PaginationList
-          page={page}
           limit={LIMIT_SEARCH}
+          page={profileShelterStore.page}
           handleChange={handleChangePage}
           total={profileShelterStore.totalPets}
         />

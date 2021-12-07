@@ -1,10 +1,11 @@
-import { makeAutoObservable, runInAction, toJS } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { LIMIT_SEARCH } from 'services/config';
 import PetsService from 'services/PetsService';
 import InputStore from './InputStore';
 
 interface ISearchPet {
   city: string;
+  page: number;
   male: boolean;
   dogs: boolean;
   cats: boolean;
@@ -21,6 +22,7 @@ interface ISearchPet {
 class SearchPetStore implements ISearchPet {
   city;
   male;
+  page;
   dogs;
   cats;
   pets;
@@ -37,6 +39,7 @@ class SearchPetStore implements ISearchPet {
 
   constructor() {
     this.pets = [];
+    this.page = 1;
     this.male = false;
     this.cats = false;
     this.dogs = false;
@@ -74,7 +77,7 @@ class SearchPetStore implements ISearchPet {
       runInAction(() => {
         this.isLoading = false;
         this.totalPets = response.total;
-        this.pets = toJS(response.petsDB);
+        this.pets = response.pets;
       });
     } catch (e) {
       runInAction(() => {
@@ -95,6 +98,10 @@ class SearchPetStore implements ISearchPet {
 
   handleCity(city) {
     this.city.setValue(city);
+  }
+
+  setPage(page) {
+    this.page = page;
   }
 
   handleFemale(female) {

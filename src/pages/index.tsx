@@ -1,4 +1,4 @@
-import { useContext, useCallback, useState } from 'react';
+import { useContext, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import Seo from 'utils/Seo';
@@ -18,12 +18,11 @@ import META_TAGS from './profile-shelter/constants';
 const Home = () => {
   const rootStore = useContext(PetContext);
   const { searchPetStore } = rootStore;
-  const [page, setPage] = useState(1);
   const { t } = useTranslation('home');
 
   const handleChangePage = useCallback((e, newPage) => {
     searchPetStore.searchPets(LIMIT_SEARCH, newPage);
-    setPage(newPage);
+    searchPetStore.setPage(newPage);
   }, []);
 
   return (
@@ -39,7 +38,7 @@ const Home = () => {
         <Title text={t('searchPet')} />
         <Search searchPetStore={searchPetStore} />
         {searchPetStore.isLoading && <Loading />}
-        {searchPetStore.pets.length === 0 && searchPetStore.searchingPet === false ? (
+        {searchPetStore.pets?.length === 0 && searchPetStore.searchingPet === false ? (
           <>
             <LandingPage />
             <ScrollUp />
@@ -47,10 +46,10 @@ const Home = () => {
         ) : (
           <>
             <PetsList store={searchPetStore} />
-            {searchPetStore.pets.length > 0 && (
+            {searchPetStore.pets?.length > 0 && (
               <PaginationList
-                page={page}
                 limit={LIMIT_SEARCH}
+                page={searchPetStore.page}
                 handleChange={handleChangePage}
                 total={searchPetStore.totalPets}
               />

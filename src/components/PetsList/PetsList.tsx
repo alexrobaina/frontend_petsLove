@@ -39,7 +39,7 @@ const PetsList: FC<Props> = ({ store }) => {
           );
         })}
       </motion.div>
-      {store.pets.length === 0 && (
+      {store.pets?.length === 0 && (
         <ErrorMessage text="No encontramos mascotas" typeMessage="warning" />
       )}
     </>

@@ -20,6 +20,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
     searchPetStore.handleCats(!cats);
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(false);
+    searchPetStore.setPage(1);
     searchPetStore.handleCategory(cats ? '' : 'cat');
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };
@@ -27,6 +28,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
   const handleSelectDogs = () => {
     searchPetStore.handleCats(false);
     searchPetStore.handleDogs(!dogs);
+    searchPetStore.setPage(1);
     searchPetStore.handleExotic(false);
     searchPetStore.handleCategory(dogs ? '' : 'dog');
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
@@ -34,6 +36,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
 
   const handleSelectExotics = () => {
     searchPetStore.handleCats(false);
+    searchPetStore.setPage(1);
     searchPetStore.handleDogs(false);
     searchPetStore.handleExotic(!exotics);
     searchPetStore.handleCategory(exotics ? '' : 'exotic');
@@ -42,6 +45,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
 
   const handleSelectFemale = () => {
     searchPetStore.handleFemale(!female);
+    searchPetStore.setPage(1);
     searchPetStore.handleMale(false);
     searchPetStore.handleGender(female ? '' : 'female');
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
@@ -50,6 +54,7 @@ const Filters: FC<Props> = ({ searchPetStore }) => {
   const handleSelectMale = () => {
     searchPetStore.handleMale(!male);
     searchPetStore.handleFemale(false);
+    searchPetStore.setPage(1);
     searchPetStore.handleGender(male ? '' : 'male');
     searchPetStore.searchPets(LIMIT_SEARCH, 1);
   };

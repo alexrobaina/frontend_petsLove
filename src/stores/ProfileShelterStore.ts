@@ -5,6 +5,7 @@ import PetsService from 'services/PetsService';
 
 interface IProfileShelter {
   pets: any;
+  page: number;
   shelter: object;
   totalPets: number;
   isLoading: boolean;
@@ -12,11 +13,13 @@ interface IProfileShelter {
   openMapCard: () => void;
   petsService: PetsService;
   openRequirements: boolean;
+  categorySelected: string;
   shelterService: ShelterService;
 }
 
 class ProfileShelterStore implements IProfileShelter {
   pets;
+  page;
   shelter;
   isLoading;
   totalPets;
@@ -25,15 +28,18 @@ class ProfileShelterStore implements IProfileShelter {
   openMapCard;
   requirements;
   shelterService;
+  categorySelected;
   openRequirements;
 
   constructor() {
+    this.page = 1;
     this.pets = [];
     this.totalPets = 0;
     this.isLoading = false;
     this.openMapCard = false;
     this.openAboutUs = false;
     this.requirements = false;
+    this.categorySelected = 'cat';
     this.openRequirements = false;
 
     makeAutoObservable(this);
@@ -48,7 +54,6 @@ class ProfileShelterStore implements IProfileShelter {
 
     try {
       const response = await this.shelterService.getShelter(id);
-      console.log(response);
 
       runInAction(() => {
         this.isLoading = false;
@@ -62,13 +67,13 @@ class ProfileShelterStore implements IProfileShelter {
     }
   }
 
-  async filterPets(typePet, userCreatorId, limit, page) {
+  async getCategoryUserFilterPet(typePet, userCreatorId, limit, page) {
     this.resetPets();
-    // this function need userCreatorId for filter pets created form this user.
+
     this.isLoading = true;
 
     try {
-      const response = await this.petsService.getFilterPet(
+      const response = await this.petsService.getCategoryUserFilterPet(
         typePet,
         userCreatorId,
         limit,
@@ -78,7 +83,7 @@ class ProfileShelterStore implements IProfileShelter {
       runInAction(() => {
         this.isLoading = false;
         this.pets = response.pets;
-        this.totalPets = response.totalPets;
+        this.totalPets = response.total;
       });
     } catch (e) {
       runInAction(() => {
@@ -88,8 +93,16 @@ class ProfileShelterStore implements IProfileShelter {
     }
   }
 
+  setCategory(category) {
+    this.categorySelected = category;
+  }
+
   setOpenAboutUs() {
     this.openAboutUs = !this.openAboutUs;
+  }
+
+  setPage(page) {
+    this.page = page;
   }
 
   setOpenMapCard() {
