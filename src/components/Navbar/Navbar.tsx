@@ -18,6 +18,10 @@ const Navbar = () => {
     searchPetStore.resetPets();
   }, []);
 
+  const gotToLogin = () => {
+    window.location.replace(`${process.env.REACT_APP_PETS_LOVE_WEB_APP}/login`);
+  };
+
   return (
     <div className={styles.navbar}>
       <div className={styles.col}>
@@ -28,8 +32,11 @@ const Navbar = () => {
             onClick={handleResetPetsList}
           />
         </div>
-        <div className={styles.menuLanguage}>
+        <div className={styles.navegation}>
           <ChangeLanguage />
+          <div onClick={() => gotToLogin()} className={styles.login}>
+            Login
+          </div>
         </div>
       </div>
     </div>

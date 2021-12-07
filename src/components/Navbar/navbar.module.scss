@@ -16,3 +16,18 @@
 .containerButton {
   padding: 10px 10px 10px 10px;
 }
+
+.navegation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.login {
+  padding: 10px;
+  font-family: var(--title-font);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}

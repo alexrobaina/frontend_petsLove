@@ -30,7 +30,6 @@ const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
           mapContainerClassName={styles.imageMap}
         >
           <Marker position={POSITION_DEFAULT} />
-          <div>sad</div>
         </GoogleMap>
       )}
     </>
