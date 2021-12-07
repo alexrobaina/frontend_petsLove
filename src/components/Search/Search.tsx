@@ -28,10 +28,10 @@ const Search: FC<Props> = ({ searchPetStore }) => {
   }, []);
 
   useEffect(() => {
-    const { city, gender, category, country } = searchPetStore;
+    const { city, gender, category, country, page } = searchPetStore;
 
     if (city.value || gender.value || category.value || country.value) {
-      searchPetStore.searchPets(LIMIT_SEARCH, 1);
+      searchPetStore.searchPets(LIMIT_SEARCH, page);
     }
   }, []);
 

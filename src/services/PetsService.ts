@@ -10,6 +10,14 @@ class PetsService {
       .then((response) => response.data);
   };
 
+  getCategoryUserFilterPet = (typePet, userId, limit, page) => {
+    return axios
+      .get(
+        `${SERVER}/api/v1/pets/petsUser?_id=${userId}&category=${typePet}&limit=${limit}&page=${page}`,
+      )
+      .then((response) => response.data);
+  };
+
   getPet = (id) => {
     return axios.get(`${SERVER}/api/v1/pet/?_id=${id}`).then((response) => response.data);
   };
