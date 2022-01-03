@@ -10,7 +10,7 @@ import Layout from 'components/common/Layout';
 import ProfileShelterStore from 'stores/ProfileShelterStore';
 import InformationCard from 'components/common/InformationCard';
 import Title from 'components/common/Title';
-import AnimalNavegator from 'components/AnimalNavegator';
+import AnimalNavigator from 'components/AnimalNavigator';
 import ActionsProfile from 'components/common/ActionsProfile';
 import AlertToast from 'components/common/AlertToast';
 import ImageProfile from 'components/common/ImageProfile';
@@ -115,6 +115,7 @@ const Shelter = () => {
       <Seo
         myApp="Pets love"
         title={metaTags.title}
+        // This URL Don't exist
         baseUrl="https://pets-love.app"
         description={metaTags.description}
       />
@@ -156,7 +157,7 @@ const Shelter = () => {
           }
         />
       )}
-      <AnimalNavegator
+      <AnimalNavigator
         selected={profileShelterStore.categorySelected}
         handleFilterPets={handleFilterPets}
       />

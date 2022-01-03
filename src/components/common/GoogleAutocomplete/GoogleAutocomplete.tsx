@@ -102,11 +102,10 @@ const GoogleAutocomplete: FC<Props> = ({
               </div>
               <div className={styles.dropdown}>
                 {loading && <div className={styles.text}>{t('common:loading')}</div>}
-                {suggestions.map((suggestion, i) => {
+                {suggestions.map((suggestion) => {
                   const className = suggestion.active
                     ? 'suggestion-item--active'
                     : 'suggestion-item';
-                  // inline style for demonstration purpose
                   const style = suggestion.active
                     ? {
                         backgroundColor: 'rgba(146, 154, 230, 0.30)',
@@ -120,7 +119,7 @@ const GoogleAutocomplete: FC<Props> = ({
                       };
                   return (
                     <div
-                      key={i}
+                      key={suggestion.description}
                       {...getSuggestionItemProps(suggestion, {
                         className,
                         style,

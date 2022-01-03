@@ -9,7 +9,7 @@ const POSITION_DEFAULT = {
 };
 
 interface Props {
-  position: {
+  position?: {
     lat: number;
     lng: number;
   };

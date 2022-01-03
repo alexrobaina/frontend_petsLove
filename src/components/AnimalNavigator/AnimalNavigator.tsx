@@ -1,7 +1,7 @@
 import { FC, ReactChild, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import c from 'classnames';
-import styles from './animalNavegator.module.scss';
+import styles from './AnimalNavigator.module.scss';
 
 const CAT = 'cat';
 const DOG = 'dog';
@@ -12,7 +12,7 @@ interface Props {
   handleFilterPets(typePet: string): any;
 }
 
-const AnimalNavegator: FC<Props> = ({ handleFilterPets, selected }) => {
+const AnimalNavigator: FC<Props> = ({ handleFilterPets, selected }) => {
   const [cats, setCats] = useState(false);
   const [dogs, setDogs] = useState(false);
   const [exotics, setExotics] = useState(false);
@@ -60,4 +60,4 @@ const AnimalNavegator: FC<Props> = ({ handleFilterPets, selected }) => {
   );
 };
 
-export default AnimalNavegator;
+export default AnimalNavigator;

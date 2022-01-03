@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, FC } from 'react';
 import Link from 'next/link';
 import styles from './back.module.scss';
 
@@ -8,7 +8,7 @@ interface Props {
   icon: ReactElement;
 }
 
-const Back = ({ text, icon, route }) => {
+const Back: FC<Props> = ({ text, icon, route }) => {
   return (
     <Link href={route}>
       <div className={styles.goTo}>

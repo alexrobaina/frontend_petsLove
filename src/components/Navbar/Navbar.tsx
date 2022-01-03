@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { BiHomeHeart } from 'react-icons/bi';
+import { CgProfile } from 'react-icons/cg';
 import PetContext from 'Context/PetContext';
 import LinkButton from 'components/common/LinkButton';
 import ChangeLanguage from './ChangeLanguage';
@@ -18,10 +19,6 @@ const Navbar = () => {
     searchPetStore.resetPets();
   }, []);
 
-  const gotToLogin = () => {
-    window.location.replace(`${process.env.REACT_APP_PETS_LOVE_WEB_APP}/login`);
-  };
-
   return (
     <div className={styles.navbar}>
       <div className={styles.col}>
@@ -34,9 +31,12 @@ const Navbar = () => {
         </div>
         <div className={styles.navegation}>
           <ChangeLanguage />
-          <div onClick={() => gotToLogin()} className={styles.login}>
-            Login
-          </div>
+          <a
+            href={`${process.env.REACT_APP_PETS_LOVE_WEB_APP}/`}
+            className={styles.login}
+          >
+            <CgProfile size={25} />
+          </a>
         </div>
       </div>
     </div>
