@@ -14,7 +14,11 @@ const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
     <Link as={`${PROFILE_PET}/${petId}`} href={`${PROFILE_PET}/[pet]`}>
       <div className={styles.card}>
         {image ? (
-          <img alt="image pet" className={styles.image} src={image} />
+          <img
+            alt="image pet"
+            className={styles.image}
+            src={`${process.env.PET_BUCKET}${image}`}
+          />
         ) : (
           <img
             alt="image not found"

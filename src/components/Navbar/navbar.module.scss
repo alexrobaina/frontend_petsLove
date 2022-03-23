@@ -1,3 +1,5 @@
+@import 'styles/mixings.scss';
+
 .navbar {
   z-index: 10;
   position: fixed;
@@ -14,7 +16,36 @@
 }
 
 .containerButton {
+  display: flex;
+  align-items: center;
   padding: 10px 10px 10px 10px;
+}
+
+.logoText {
+  font-family: var(--title-font);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--title);
+
+  @include media-breakpoint-only(md) {
+    font-size: 16px;
+  }
+
+  @include media-breakpoint-only(sm) {
+    font-size: 25px;
+  }
+
+  @include media-breakpoint-only(xs) {
+    font-size: 22px;
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-right: 20px;
 }
 
 .navegation {

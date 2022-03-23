@@ -89,7 +89,9 @@ const Pet = () => {
         handleToggleToast={handleToggleToast}
       />
       {profilePetStore.pet?.images && (
-        <ImageProfile image={profilePetStore.pet.images[0]} />
+        <ImageProfile
+          image={`${process.env.PET_BUCKET}${profilePetStore.pet.images[0]}`}
+        />
       )}
       <ActionsProfile
         handleWhatsapp={handleWhatsapp}
