@@ -2,6 +2,8 @@
 
 .containerViewInfo {
   margin-top: 35px;
-  display: flex;
+  display: grid;
   justify-content: space-between;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }

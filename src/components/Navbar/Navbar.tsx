@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { BiHomeHeart } from 'react-icons/bi';
+import { AiFillHeart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import PetContext from 'Context/PetContext';
 import LinkButton from 'components/common/LinkButton';
@@ -23,6 +24,10 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.col}>
         <div className={styles.containerButton}>
+          <div className={styles.logo}>
+            <div className={styles.logoText}>Pets</div>
+            <AiFillHeart color="#001b61" size={22} />
+          </div>
           <LinkButton
             url="/"
             icon={<BiHomeHeart size={25} />}
