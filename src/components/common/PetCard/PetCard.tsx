@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { PROFILE_PET } from 'routes/routes';
 import Link from 'next/link';
 import styles from './petCard.module.scss';
@@ -10,18 +10,31 @@ interface Props {
 }
 
 const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
+  const [imageValidate, setImageValidate] = useState(
+    `https://petslove-bucket-2.s3.amazonaws.com/pets/${image}`,
+  );
+
+  const errorImage = useCallback((event) => {
+    if (event.isTrusted) {
+      setImageValidate('/assets/images/imageNotFound.jpg');
+    } else {
+      setImageValidate(`https://petslove-bucket-2.s3.amazonaws.com/pets/${image}`);
+    }
+  }, []);
+
   return (
     <Link as={`${PROFILE_PET}/${petId}`} href={`${PROFILE_PET}/[pet]`}>
       <div className={styles.card}>
         {image ? (
           <img
-            alt="image pet"
+            alt="pet"
+            src={imageValidate}
+            onError={errorImage}
             className={styles.image}
-            src={`${process.env.PET_BUCKET}${image}`}
           />
         ) : (
           <img
-            alt="image not found"
+            alt="not-found"
             className={styles.image}
             src="/assets/images/imageNotFound.jpg"
           />

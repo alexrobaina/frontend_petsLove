@@ -18,18 +18,18 @@ interface Props {
 const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+    googleMapsApiKey: 'AIzaSyC5Us7moIVRtXdBs_dYvoOPUjoKossP0IQ',
   });
 
   return (
     <>
       {isLoaded && (
         <GoogleMap
-          zoom={10}
+          zoom={14}
           center={position || POSITION_DEFAULT}
           mapContainerClassName={styles.imageMap}
         >
-          <Marker position={POSITION_DEFAULT} />
+          <Marker position={position || POSITION_DEFAULT} />
         </GoogleMap>
       )}
     </>

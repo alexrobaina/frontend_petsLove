@@ -23,7 +23,12 @@ const Gallery: FC<Props> = ({ images = [] }) => {
     >
       {images.map((image) => {
         return (
-          <img key={image} src={image} className={styles.galleryContent} alt="pet" />
+          <img
+            alt="pet"
+            key={`${image}`}
+            className={styles.galleryContent}
+            src={`${process.env.NEXT_PUBLIC_PET_BUCKET}${image}`}
+          />
         );
       })}
     </motion.div>

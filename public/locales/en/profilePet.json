@@ -1,17 +1,18 @@
 {
   "goToSearch": "Go to search",
   "description": "Description",
-  "medicalCard": "Medical record",
+  "medicalCard": "Medical history", w
   "birthdayYear": "{{ years }}y {{ months }}m",
   "birthdayMonth": "{{ months }}m {{ days }}d",
   "myNameIs": "My name is {{ name }}",
   "contact": "Contact",
   "profileShelter": "Perfil del refugio",
   "age": "Age",
-  "height": "Height",
   "color": "Color",
+  "weight": "Weight",
   "sex": "Sex",
   "female": "Female",
+  "male": "Male",
   "vaccine": "Vacunas",
   "descriptionNotFound": "Don't have description.",
   "medicalNotes": "Medical notes"
