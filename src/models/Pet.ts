@@ -25,10 +25,10 @@ class Pet implements IPet {
   age;
   name;
   city;
-  notes;
   height;
   gender;
   images;
+  weight;
   country;
   adopted;
   category;
@@ -37,14 +37,14 @@ class Pet implements IPet {
   description;
   userCreator;
   textAddress;
+  medicalNotes;
 
   constructor() {
     this.id = '';
     this.age = '';
     this.name = '';
     this.city = '';
-    this.notes = [];
-    this.height = 0;
+    this.weight = 0;
     this.images = [];
     this.gender = '';
     this.color = '';
@@ -56,6 +56,7 @@ class Pet implements IPet {
     this.userCreator = {};
     this.textAddress = '';
     this.userCreator = {};
+    this.medicalNotes = [];
 
     makeAutoObservable(this);
   }
@@ -65,15 +66,16 @@ class Pet implements IPet {
     this.age = pet.age;
     this.name = pet.name;
     this.city = pet.city;
-    this.notes = pet.notes;
     this.color = pet.color;
-    this.height = pet.height;
     this.gender = pet.gender;
     this.images = pet.images;
+    this.weight = pet.weight;
     this.adopted = pet.adopted;
     this.country = pet.country;
     this.category = pet.category;
     this.location = pet.location;
+    this.medicalNotes = pet.medicalNotes;
+
     this.description = pet.description;
     this.userCreator = pet.userCreator;
     this.textAddress = pet.textAddress;

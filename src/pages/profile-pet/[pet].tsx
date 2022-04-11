@@ -90,7 +90,7 @@ const Pet = () => {
       />
       {profilePetStore.pet?.images && (
         <ImageProfile
-          image={`${process.env.PET_BUCKET}${profilePetStore.pet.images[0]}`}
+          image={`https://petslove-bucket-2.s3.amazonaws.com/pets/${profilePetStore.pet.images[0]}`}
         />
       )}
       <ActionsProfile
@@ -111,7 +111,7 @@ const Pet = () => {
           capitalizeDisabled
           value={profilePetStore.pet?.age || 0}
         />
-        <ViewPetInfo label={t('height')} value={profilePetStore.pet?.height} />
+        <ViewPetInfo label={t('weight')} value={profilePetStore.pet?.weight} />
         <ViewPetInfo label={t('color')} value={profilePetStore.pet?.color} />
         <ViewPetInfo label={t('sex')} value={t(profilePetStore.pet?.gender)} />
       </div>
@@ -133,12 +133,12 @@ const Pet = () => {
           childrens={<GoogleMapsLocation position={profilePetStore.pet.location} />}
         />
       )}
-      {profilePetStore.pet?.notes && (
+      {profilePetStore.pet?.medicalNotes && (
         <InformationCard
           open
           title={t('medicalNotes')}
           icon={<GrNotes size={20} />}
-          childrens={profilePetStore.pet.notes.map((note) => (
+          childrens={profilePetStore.pet.medicalNotes.map((note) => (
             <Notes
               key={note.title}
               title={note.title}
@@ -148,7 +148,7 @@ const Pet = () => {
           ))}
         />
       )}
-      <Gallery images={profilePetStore.pet?.image?.filenames} />
+      <Gallery images={profilePetStore.pet?.images} />
     </Layout>
   );
 };
