@@ -21,7 +21,7 @@ import styles from './shelter.module.scss';
 
 const Shelter = () => {
   const router = useRouter();
-  const shelterId = router.query.shelter;
+  const userId = router.query.user;
   const [toggleToast, setToggleToast] = useState(false);
   const { t } = useTranslation('profileShelter');
   const profileShelterStore = useLocalObservable(() => new ProfileShelterStore());
@@ -48,7 +48,7 @@ const Shelter = () => {
       profileShelterStore.setCategory(typePet);
       profileShelterStore.getCategoryUserFilterPet(
         typePet,
-        shelterId,
+        userId,
         LIMIT_SEARCH,
         profileShelterStore.page,
       );
@@ -94,16 +94,16 @@ const Shelter = () => {
   }, []);
 
   useEffect(() => {
-    if (router.query.shelter) {
-      profileShelterStore.searchShelter(router.query.shelter);
+    if (router.query.user) {
+      profileShelterStore.searchShelter(router.query.user);
       profileShelterStore.getCategoryUserFilterPet(
         profileShelterStore.categorySelected,
-        router.query.shelter,
+        router.query.user,
         LIMIT_SEARCH,
         1,
       );
     }
-  }, [router.query.shelter]);
+  }, [router.query.user]);
 
   const metaTags = {
     title: t('shelter'),
@@ -124,7 +124,12 @@ const Shelter = () => {
         toggleToast={toggleToast}
         handleToggleToast={handleToggleToast}
       />
-      <ImageProfile image={profileShelterStore?.shelter?.image[0] || null} />
+      <ImageProfile
+        image={
+          `${process.env.NEXT_PUBLIC_USER_BUCKET}${profileShelterStore?.shelter?.image[0]}` ||
+          null
+        }
+      />
       <ActionsProfile handleWhatsapp={handleWhatsapp} />
       <Title text={capitalizeFormat(profileShelterStore?.shelter?.name)} />
       <div className={styles.emailText}>{profileShelterStore.shelter.email}</div>

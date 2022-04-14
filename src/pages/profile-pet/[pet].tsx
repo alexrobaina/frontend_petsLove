@@ -7,7 +7,7 @@ import { GrNotes } from 'react-icons/gr';
 import { RiFileHistoryLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import { PROFILE_SHELTER, LANDING_PAGE } from 'routes/routes';
+import { PROFILE_USER, LANDING_PAGE } from 'routes/routes';
 import Seo from 'utils/Seo';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
@@ -43,7 +43,7 @@ const Pet = () => {
   }, []);
 
   const handleGoToProfile = useCallback(() => {
-    router.push(`${PROFILE_SHELTER}/${profilePetStore.pet?.getUserCreatorId}`);
+    router.push(`${PROFILE_USER}/${profilePetStore.pet?.getUserCreatorId}`);
   }, []);
 
   const capitalizeFormat = useCallback((name) => {
