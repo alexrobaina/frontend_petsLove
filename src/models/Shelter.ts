@@ -6,9 +6,9 @@ interface IShelter {
   role: string;
   phone: string;
   email: string;
+  location: any;
   aboutUs: string;
   username: string;
-  location: object;
   textAddress: string;
   image: Array<string>;
   requirementsToAdopt: string;

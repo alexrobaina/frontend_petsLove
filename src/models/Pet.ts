@@ -39,6 +39,9 @@ class Pet implements IPet {
   textAddress;
   medicalNotes;
 
+  notes: string;
+  color: string;
+
   constructor() {
     this.id = '';
     this.age = '';
@@ -60,9 +63,6 @@ class Pet implements IPet {
 
     makeAutoObservable(this);
   }
-  notes: string;
-  color: string;
-  textAdderss?: string;
 
   fillJson(pet) {
     this.id = pet._id;

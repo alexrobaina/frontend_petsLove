@@ -14,7 +14,7 @@ import ScrollUp from 'components/common/ScrollUp';
 import PetContext from 'Context/PetContext';
 import styles from 'styles/index.module.scss';
 
-import META_TAGS from './profile-user/constants';
+import META_TAGS from 'pages/profile-user/constants';
 
 const Home = () => {
   const rootStore = useContext(PetContext);
