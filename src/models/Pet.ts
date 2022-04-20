@@ -7,15 +7,15 @@ interface IPet {
   city: string;
   notes: string;
   color: string;
+  location: any;
   height: string;
   gender: string;
   country: string;
+  userCreator: any;
   category: string;
-  location: object;
   adopted: boolean;
   createdDate: Date;
   description: string;
-  userCreator: object;
   textAdderss?: string;
   images: Array<string>;
 }
@@ -60,6 +60,9 @@ class Pet implements IPet {
 
     makeAutoObservable(this);
   }
+  notes: string;
+  color: string;
+  textAdderss?: string;
 
   fillJson(pet) {
     this.id = pet._id;
