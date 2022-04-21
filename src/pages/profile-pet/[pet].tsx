@@ -90,7 +90,7 @@ const Pet = () => {
       />
       {profilePetStore.pet?.images && (
         <ImageProfile
-          image={`https://petslove-bucket-2.s3.amazonaws.com/pets/${profilePetStore.pet.images[0]}`}
+          image={`${process.env.NEXT_PUBLIC_PET_BUCKET}${profilePetStore.pet.images[0]}`}
         />
       )}
       <ActionsProfile
