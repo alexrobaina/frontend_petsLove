@@ -1,6 +1,5 @@
-import { ReactNode, FC } from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { findDimensionValueType } from 'framer-motion/types/render/dom/utils/value-types';
 import styles from './gallery.module.scss';
 
 interface Props {
