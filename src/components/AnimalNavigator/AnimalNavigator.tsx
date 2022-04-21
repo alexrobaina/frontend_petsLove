@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import c from 'classnames';
-import styles from './AnimalNavigator.module.css';
+import styles from './AnimalNavigator.module.scss';
 
 const CAT = 'cat';
 const DOG = 'dog';

@@ -36,6 +36,7 @@
     "semi": "off",
     "arrow-body-style": "off",
     "prettier/prettier": "off",
+    "import/prefer-default-export": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-curly-newline": "off",
     "react/static-property-placement": "off",
@@ -59,7 +60,9 @@
   "plugins": ["prettier"],
   "settings": {
     "import/resolver": {
-      "node": { "paths": ["./src"] }
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
 }

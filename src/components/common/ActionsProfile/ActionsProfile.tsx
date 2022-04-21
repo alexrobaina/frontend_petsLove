@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import { IoMdClose } from 'react-icons/io';
+import { FC } from 'react';
 import { RiUserHeartFill } from 'react-icons/ri';
 import { ImWhatsapp } from 'react-icons/im';
-import c from 'classnames';
 import Button from 'components/common/Button';
 import styles from './actionsProfile.module.scss';
 
@@ -11,7 +9,10 @@ interface Props {
   handleWhatsapp?: () => void;
 }
 
-const ActionsProfile = ({ handleGoToProfile = null, handleWhatsapp = null }) => {
+const ActionsProfile: FC<Props> = ({
+  handleGoToProfile = null,
+  handleWhatsapp = null,
+}) => {
   return (
     <div className={styles.containerActions}>
       {handleGoToProfile && (
@@ -19,7 +20,7 @@ const ActionsProfile = ({ handleGoToProfile = null, handleWhatsapp = null }) => 
           <Button
             circle
             onClick={handleGoToProfile}
-            tooltips={'Shelter profile'}
+            tooltips="Shelter profile"
             icon={<RiUserHeartFill size={20} />}
           />
         </div>
