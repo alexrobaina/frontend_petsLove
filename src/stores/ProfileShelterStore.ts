@@ -5,8 +5,8 @@ import PetsService from 'services/PetsService';
 
 interface IProfileShelter {
   pets: any;
+  shelter: {};
   page: number;
-  shelter: object;
   totalPets: number;
   isLoading: boolean;
   openAboutUs: boolean;
@@ -36,11 +36,11 @@ class ProfileShelterStore implements IProfileShelter {
     this.pets = [];
     this.totalPets = 0;
     this.isLoading = false;
-    this.openMapCard = false;
-    this.openAboutUs = false;
+    this.openMapCard = true;
+    this.openAboutUs = true;
     this.requirements = false;
     this.categorySelected = 'cat';
-    this.openRequirements = false;
+    this.openRequirements = true;
 
     makeAutoObservable(this);
 

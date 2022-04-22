@@ -53,7 +53,7 @@ const Shelter = () => {
         profileShelterStore.page,
       );
     },
-    [router.query.shelter],
+    [router.query.user],
   );
 
   const handleChangePage = useCallback(
@@ -62,20 +62,15 @@ const Shelter = () => {
       if (profileShelterStore.categorySelected) {
         profileShelterStore.getCategoryUserFilterPet(
           profileShelterStore.categorySelected,
-          router.query.shelter,
+          userId,
           LIMIT_SEARCH,
           profileShelterStore.page,
         );
       } else {
-        profileShelterStore.getCategoryUserFilterPet(
-          '',
-          router.query.shelter,
-          LIMIT_SEARCH,
-          newPage,
-        );
+        profileShelterStore.getCategoryUserFilterPet('', userId, LIMIT_SEARCH, newPage);
       }
     },
-    [router.query.shelter, profileShelterStore.categorySelected],
+    [router.query.user, profileShelterStore.categorySelected],
   );
 
   const capitalizeFormat = useCallback((name) => {
@@ -98,7 +93,7 @@ const Shelter = () => {
       profileShelterStore.searchShelter(router.query.user);
       profileShelterStore.getCategoryUserFilterPet(
         profileShelterStore.categorySelected,
-        router.query.user,
+        userId,
         LIMIT_SEARCH,
         1,
       );
