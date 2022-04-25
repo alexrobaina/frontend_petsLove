@@ -18,7 +18,7 @@ interface Props {
 const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
   });
 
   return (
