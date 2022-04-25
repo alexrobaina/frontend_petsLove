@@ -141,7 +141,7 @@ const GoogleAutocomplete: FC<Props> = ({
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+  apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
   language: 'es',
   // @ts-ignore
 })(GoogleAutocomplete);
