@@ -1,55 +1,90 @@
-import { FC, useCallback, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FcSearch } from 'react-icons/fc';
-import GoogleAutocomplete from 'components/common/GoogleAutocomplete';
-import { LIMIT_SEARCH } from 'services/config';
-import SearchPetStore from 'stores/SearchPetStore';
-import Filters from './Filters';
-import styles from './search.module.scss';
+import { FC, useCallback, useEffect, useRef } from "react";
+import { FcSearch } from "react-icons/fc";
+import GoogleAutocomplete from "components/common/GoogleAutocomplete";
+import Filters from "./Filters";
+
+import styles from "./search.module.scss";
 
 interface Props {
-  searchPetStore: SearchPetStore;
+  sex: string;
+  address: string;
+  category: string;
+  setSex: (sex: string) => void;
+  setCity: (city: string) => void;
+  setCountry: (country: string) => void;
+  setCategory: (category: string) => void;
+  setTextAddress: (textAddress: string) => void;
 }
 
-const Search: FC<Props> = ({ searchPetStore }) => {
-  const { t } = useTranslation();
+const Search: FC<Props> = ({
+  sex,
+  setSex,
+  setCity,
+  address,
+  category,
+  setCountry,
+  setCategory,
+  setTextAddress,
+}) => {
   const googleRef = useRef(null);
 
-  const handleChangeAddressComponents = useCallback((address: any) => {
-    searchPetStore.setAddressComponents(address);
-  }, []);
+  const handleChangeAddressComponents = (address: any) => {
+    if (address?.address_components) {
+      address.address_components.forEach(
+        (components: { types: [any]; long_name: string }) => {
+          components.types.forEach((type: string) => {
+            if (type === "country") {
+              setCountry(components.long_name);
+            }
+            if (type === "administrative_area_level_1") {
+              setCity(components.long_name);
+            }
+          });
+        }
+      );
+    } else {
+      setCountry("");
+      setCity("");
+    }
+  };
 
-  const handleSearch = useCallback(() => {
-    searchPetStore.searchPets(LIMIT_SEARCH, 1);
-  }, []);
+  const handleSelectSex = (sex: string) => {
+    setSex(sex);
+  };
 
-  const handleChangeTextAddress = useCallback((textAddress) => {
-    searchPetStore.handleTextAddress(textAddress);
+  const handleSelectCategory = (category: string) => {
+    setCategory(category);
+  };
+
+  const handleChangeTextAddress = useCallback((textAddress: string) => {
+    setTextAddress(textAddress);
   }, []);
 
   useEffect(() => {
-    const { city, gender, category, country, page } = searchPetStore;
-
-    if (city.value || gender.value || category.value || country.value) {
-      searchPetStore.searchPets(LIMIT_SEARCH, page);
+    if (address === "") {
+      setTextAddress("");
     }
-  }, []);
+  }, [address]);
 
   return (
-    <>
-      <Filters searchPetStore={searchPetStore} />
+    <div className={styles.containerSearch}>
+      <Filters
+        sex={sex}
+        category={category}
+        handleSelectSex={handleSelectSex}
+        handleSelectCategory={handleSelectCategory}
+      />
       <GoogleAutocomplete
         // @ts-ignore
         inputRef={googleRef}
         name="google-autocomplete"
-        handleSearch={handleSearch}
         icon={<FcSearch size={25} />}
-        placeholder={t('SearchYourArea')}
+        placeholder="Busca mascotas cerca de ti"
         handleChangeTextAddress={handleChangeTextAddress}
         handleChangeAddressComponents={handleChangeAddressComponents}
       />
-      <div className={styles.address}>{searchPetStore.textAddress.value}</div>
-    </>
+      <div className={styles.address}>{address}</div>
+    </div>
   );
 };
 

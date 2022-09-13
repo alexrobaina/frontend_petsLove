@@ -1,7 +1,5 @@
-.address {
-  font-family: var(--text-font);
-  margin-top: 40px;
-  color: var(--secundary-color);
-  font-size: 18px;
-  font-weight: 600;
+.containerSearch {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

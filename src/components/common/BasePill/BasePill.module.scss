@@ -1,0 +1,12 @@
+.pill {
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 2px;
+  font-family: var(--main-font);
+  color: var(--ligth);
+  text-align: center;
+  padding: 7px 15px 7px 15px;
+  border-radius: 8px;
+  display: inline-block;
+  width: max-content;
+}

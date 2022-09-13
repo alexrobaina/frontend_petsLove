@@ -1,18 +1,23 @@
-import { FC, useState, ReactChild, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { GoogleApiWrapper } from 'google-maps-react';
+import { FC, useState, ReactChild, useCallback, useEffect } from "react";
+import { GoogleApiWrapper } from "google-maps-react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from 'react-places-autocomplete';
-import styles from './googleAutocomplete.module.scss';
+} from "react-places-autocomplete";
+import BaseLabel from "../BaseLabel";
+
+import styles from "./googleAutocomplete.module.scss";
+import { useGetVariableColor } from "hooks/useGetVariableColor";
+import BaseErrorMessage from "../BaseErrorMessage";
 
 interface Props {
   name?: string;
   label?: string;
+  error?: string;
   inputRef?: any;
   icon?: ReactChild;
   placeholder?: string;
+  marginTop?: string;
   handleSearch?: Function;
   inputStoreError?: boolean;
   handleChangeAddress?: Function;
@@ -21,29 +26,34 @@ interface Props {
 }
 
 const GoogleAutocomplete: FC<Props> = ({
-  name = '',
-  label = '',
+  name = "",
+  label = "",
   icon = null,
+  error,
+  marginTop = "10px",
   inputRef = null,
-  placeholder = '',
+  placeholder = "",
   handleSearch = null,
   handleChangeAddress = null,
   handleChangeTextAddress = null,
   handleChangeAddressComponents = null,
 }) => {
-  const { t } = useTranslation();
-  const [address, setAddress] = useState('');
+  const backgroundColorAddresList = useGetVariableColor(
+    "--background-color-address-list"
+  );
+  const [address, setAddress] = useState("");
   // eslint-disable-next-line no-shadow
-  const handleChange = useCallback((address) => {
-    if (address === '') {
+  const handleChange = useCallback((address: string) => {
+    if (address === "") {
       if (handleChangeTextAddress) {
-        handleChangeAddressComponents([]);
+        handleChangeAddressComponents && handleChangeAddressComponents([]);
       }
     }
+
     setAddress(address);
   }, []);
 
-  const configAddress = async (addressSelected) => {
+  const configAddress = async (addressSelected: string) => {
     setAddress(addressSelected);
 
     if (handleChangeTextAddress) {
@@ -88,8 +98,8 @@ const GoogleAutocomplete: FC<Props> = ({
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
           return (
             <>
-              <div className={styles.containerInput}>
-                {label && <div>{label}</div>}
+              <div style={{ marginTop }} className={styles.containerInput}>
+                {label && <BaseLabel bold text={label} />}
                 <input
                   name={name}
                   ref={inputRef}
@@ -99,23 +109,24 @@ const GoogleAutocomplete: FC<Props> = ({
                   })}
                 />
                 {icon && <div className={styles.icon}>{icon}</div>}
+                {error && <BaseErrorMessage text={error} />}
               </div>
               <div className={styles.dropdown}>
-                {loading && <div className={styles.text}>{t('common:loading')}</div>}
+                {loading && <div className={styles.text}>Cargando</div>}
                 {suggestions.map((suggestion) => {
                   const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item';
+                    ? "suggestion-item--active"
+                    : "suggestion-item";
                   const style = suggestion.active
                     ? {
-                        backgroundColor: 'rgba(146, 154, 230, 0.30)',
-                        cursor: 'pointer',
-                        padding: '10px',
+                        backgroundColor: "rgba(146, 154, 230, 0.30)",
+                        cursor: "pointer",
+                        padding: "10px",
                       }
                     : {
-                        backgroundColor: 'rgb(255, 255, 255)',
-                        cursor: 'pointer',
-                        padding: '10px',
+                        backgroundColor: backgroundColorAddresList,
+                        cursor: "pointer",
+                        padding: "10px",
                       };
                   return (
                     <div
@@ -141,7 +152,7 @@ const GoogleAutocomplete: FC<Props> = ({
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
-  language: 'es',
+  apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API || "",
+  language: "es",
   // @ts-ignore
 })(GoogleAutocomplete);

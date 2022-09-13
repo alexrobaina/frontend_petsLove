@@ -1,0 +1,22 @@
+@import "../../styles/mixings.scss";
+
+.countInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  align-items: center;
+}
+
+.containerCardInformation {
+  display: flex;
+  margin-top: 50px;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+}

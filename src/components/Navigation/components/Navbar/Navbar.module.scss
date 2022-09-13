@@ -1,0 +1,204 @@
+@import "../../../../styles/mixings.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  height: 70px;
+  padding: 10px 10px;
+  align-items: center;
+  z-index: 20;
+  position: fixed;
+  background-color: var(--background);
+
+  transition-duration: alls;
+  transition-timing-function: linear;
+
+  border-bottom: solid 1px;
+  border-color: rgb(225, 225, 225);
+
+  @include media-breakpoint-up(xs) {
+    padding: 10px 65px;
+  }
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.containerActions {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 40px;
+
+  @include media-breakpoint-between(xs, sm) {
+    gap: 20px;
+  }
+}
+
+.avatarGradient {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: linear-gradient(
+    171deg,
+    rgba(70, 143, 122, 1) 7%,
+    rgba(48, 83, 73, 1) 54%,
+    rgba(25, 31, 41, 1) 95%
+  );
+}
+
+.navigationContainer {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.linkNavigation {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-navigation);
+  transition-property: width;
+  transition-duration: 4s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+  padding: 8px 18px 8px 18px;
+
+  &:hover {
+    background-color: #1b222b19;
+    border-radius: 10px;
+  }
+}
+
+.toggleContent {
+  padding: 10px;
+}
+
+.containarMenu {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonMenu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-navigation);
+  transition-property: width;
+  transition-duration: 4s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+  padding: 8px;
+  width: 180px;
+
+  &:hover {
+    background-color: #1f80ff19;
+    border-radius: 10px;
+  }
+}
+
+.activeLink {
+  background-color: var(--button-background);
+  border-radius: 10px;
+}
+
+.avatar {
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.containerToggle {
+  position: relative;
+}
+
+//
+
+.container {
+  width: 60px;
+  border-right: 1px solid;
+  border-right-color: rgb(225, 225, 225);
+  background-color: var(--background);
+  padding: 5px;
+  transition: all;
+  white-space: pre;
+
+  &.menuIsCollapse {
+    width: 250px;
+  }
+}
+
+.containerActionOpenMenu {
+  display: flex;
+  width: 100%;
+  margin-left: 17px;
+  justify-content: flex-end;
+  transition: all;
+}
+
+.title {
+  height: 25px;
+}
+
+.actionCollapseMenu {
+  margin-top: 100px;
+  display: flex;
+  background-color: var(--collapse-button-background);
+  color: var(--collapse-button-icon);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  transition: all;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.23);
+  }
+
+  &.invertIcon {
+    transform: rotate(-180deg);
+  }
+}
+
+.navigationLinks {
+  margin-top: 20px;
+  gap: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonMenu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-navigation);
+  transition-property: width;
+  transition-duration: 4s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: var(--button-background-hover);
+    border-radius: 10px;
+  }
+}
+
+.activeLink {
+  background-color: var(--button-background);
+  border-radius: 10px;
+}

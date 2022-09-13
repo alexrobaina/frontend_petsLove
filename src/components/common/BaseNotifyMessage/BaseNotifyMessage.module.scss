@@ -1,0 +1,27 @@
+.container {
+  border-radius: 4px;
+  margin-top: 20px;
+  background-color: var(--error-background-color);
+  padding: 18px 21px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+
+  &.isOpen {
+    display: none;
+  }
+}
+
+.message {
+  width: 100%;
+  padding: 0 13px 0 13px;
+}
+
+.close {
+  color: var(--error-icon-color);
+  display: flex;
+  align-items: center;
+}

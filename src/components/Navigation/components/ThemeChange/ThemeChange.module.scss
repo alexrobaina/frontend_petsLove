@@ -1,0 +1,15 @@
+.themeButton {
+  color: var(--base-text-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  display: flex;
+}
+
+.iconOn {
+  color: rgb(255, 0, 234);
+  display: flex;
+}

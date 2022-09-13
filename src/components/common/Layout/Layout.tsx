@@ -1,24 +1,22 @@
-import { ReactNode, FC } from 'react';
-import { motion } from 'framer-motion';
-import styles from './layout.module.scss';
+import { FC, ReactElement } from "react";
+import { motion } from "framer-motion";
+import { VARIANTS_OPACITY } from "../../../constants/animation";
+import styles from "./Layout.module.scss";
 
 interface Props {
-  children: ReactNode;
+  children?: ReactElement;
+  paddingLeft?: string;
 }
 
-const Layout: FC<Props> = ({ children }) => {
-  const variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
+const Layout: FC<Props> = ({ children, paddingLeft }) => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      variants={variants}
+      style={{ paddingLeft }}
       className={styles.layout}
-      transition={{ ease: 'easeOut', delay: 0.5 }}
+      variants={VARIANTS_OPACITY}
+      transition={{ ease: "easeOut", delay: 0.2 }}
     >
       {children}
     </motion.div>

@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+
+  &.pointer {
+    cursor: pointer;
+  }
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.circle {
+  border-radius: 100%;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+}

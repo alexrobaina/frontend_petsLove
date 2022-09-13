@@ -1,0 +1,44 @@
+$offset: 187;
+$duration: 0.8s;
+
+.container {
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100px;
+
+  &.isLoading {
+    width: 50px;
+  }
+
+  &.center {
+    width: 100%;
+  }
+}
+
+.spinner {
+  animation: rotator $duration linear infinite;
+  color: var(--loading-ring);
+
+  &.isLoadingButton {
+    color: white;
+  }
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash $duration ease-in-out infinite,
+    colors ($duration * 4) ease-in-out infinite;
+}

@@ -4,27 +4,30 @@
 
 .input {
   width: 100%;
-  border: 1px solid var(--border-input-input);
+  border: 1px solid var(--input-border);
   box-shadow: none;
-  padding: 10px 0 10px 18px;
+  padding: 10px 0 10px 14px;
   border-radius: 4px;
-  font-family: 'Noto Sans HK', sans-serif;
+  font-family: "Noto Sans HK", sans-serif;
   box-sizing: border-box;
+  background-color: var(--input-backgound);
 
   &:focus {
     outline: 0;
     border-radius: 4px;
-    border: 1px solid var(--border-input-input);
+    border: 1px solid var(--input-focus);
   }
 
   &:hover {
     border-radius: 4px;
-    border: 1px solid var(--border-input-hover);
+    border: 1px solid var(--input-hover);
   }
 
   &::placeholder {
-    font-size: 14px;
-    font-family: 'Noto Sans HK', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--input-placeholder);
+    font-family: var(--main-font);
   }
 
   &.icon {

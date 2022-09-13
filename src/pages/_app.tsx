@@ -1,23 +1,43 @@
-import 'utils/i18n';
-import 'styles/globals.scss';
-import PetContext from 'Context/PetContext';
-import RootStore from 'stores/RootStore';
-import Navbar from 'components/Navbar';
-import Footer from 'components/common/Footer';
-import styles from './app.module.scss';
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "next-themes";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Navigation from "components/Navigation";
+import "react-toastify/dist/ReactToastify.css";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import "../styles/calendar.scss";
+import "../styles/globals.scss";
+import LoginPage from "pages";
 
-const rootStore = new RootStore();
+const queryClient = new QueryClient();
 
-const PetsLove = ({ Component, pageProps }) => {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <PetContext.Provider value={rootStore}>
-      <div className={styles.containerApp}>
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
-      </div>
-    </PetContext.Provider>
+    <SessionProvider session={pageProps.session}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <ToastContainer
+            draggable
+            rtl={false}
+            closeOnClick
+            pauseOnHover
+            autoClose={5000}
+            pauseOnFocusLoss
+            newestOnTop={false}
+            position="top-right"
+            hideProgressBar={false}
+          />
+          <Navigation>
+            <Component {...pageProps} />
+          </Navigation>
+        </ThemeProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </SessionProvider>
   );
-};
+}
 
-export default PetsLove;
+export default MyApp;

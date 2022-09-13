@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Rubik:wght@300;400;500;600;700&display=swap');
-@import './variables.scss';
-@import './mixings.scss';
+@import "./variables.scss";
+@import "./mixings.scss";
 
 /* Box sizing rules */
 *,
@@ -37,6 +35,8 @@ dd {
 html {
   width: 100vw;
   overflow-x: hidden;
+  font-family: var(--main-font);
+  background: var(--background);
 }
 
 /* Set core body defaults */
@@ -57,6 +57,15 @@ ol[class] {
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+div,
+h1 {
+  letter-spacing: 1px !important;
 }
 
 /* Make images easier to work with */

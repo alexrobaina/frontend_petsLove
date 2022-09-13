@@ -1,55 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
 :root {
-  // Fonts
-  --text-font: 'Lato', sans-serif;
-  --title-font: 'Noto Sans KR', sans-serif;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 
-  // Body
-  --Background-body: #ffffff;
+  //fonts
+  --main-font: "Poppins", sans-serif;
 
-  // input
-  --border-input-input: #5e92f3;
-  --border-input-hover: #ed6193;
+  --base-text-color: var(--foreground);
+  --ligth: #fff;
+  --dark: #1b222b;
+}
 
-  // colors
-  --primary-color: #001b61;
-  --secundary-color: #ed6193;
-  --third-color: #f3f3f3;
-  --grey-light: #F6F6F6;
+[data-theme="light"] {
+  --background: #faf7fe;
+  --foreground: #6a00ff;
 
-  --background-body: var(--background-primary);
-  --background-primary: #f3f3f3;
-  --background-white: #ffffff;
-  --background-secundary: #dee0f8;
-  
+  --primary-color: #5144e6;
+  --secundary-color: #5144e6;
 
-  //text
-  --title: var(--primary-color);
-  --color-text: var(--primary-color);
-  --color-text-light: #ffffff;
+  --disabled-text: rgb(203, 203, 203);
+  --text-primary: #fafcff;
 
-  // error
-  --errors: rgb(206, 0, 0);
+  --modal-background: #fff;
 
-  // warning
-  --warning: #fdd835;
+  // Card colors
+  --category-text: #c40eca;
+  --description-text: #1b222b;
+  --price-text: #5144e6;
+  --name-text: #2d1aff;
 
-  //navbar
-  --navbar: var(--background-secundary);
+  // navbar colors
+  --text-navigation: #c40eca;
 
-  // Buttons
-  --button-selected: rgba(233, 233, 233, 0.123);
-  --button-transparent: var(--transparent);
-  --color-icon-and-text: var(--primary-color);
-  --color-icon-and-text-hover: var(--background-primary);
-  --background-button-primary: var(--background-secundary);
-  --background-button-secundary: var(--secundary-color);
+  // input colors
+  --input-border: #5e92f3;
+  --input-backgound: rgb(255, 255, 255);
+  --input-focus: #ed6193;
+  --input-hover: #f51c69;
+  --input-placeholder: #949eac;
+  --input-error: #be0d0d;
+  --input-icon-eye-password: #5e92f3;
 
-  // Menu simple
-  --background-card-menu: var(--Background-body);
+  // google input
+  --background-color-address-list: #f7f6ff;
 
-  //
-  --transparent: #ffffff00;
+  // Button
+  --button-border: #5e92f3;
+  --button-backgound: rgb(255, 255, 255);
+  --button-focus: #ed6193;
+  --button-hover: #ed6193;
+  --button-error: #be0d0d;
+  --button-selected: #ed6193;
+  --button-disabled: #d8d8d8;
 
-  // shadows
-  --shadow-cards: ;
+  --button-background-hover-navigation: #ed619216;
+  --button-icon-navigation: #5e92f3;
+  --button-navigation-selected: #e9e1fc;
+
+  // Collapce navigation button
+  --collapse-button-background: #5e92f3;
+  --collapse-button-icon: #5144eed61936;
+
+  // pill
+  --pill-background-text: #447ac2;
+  --pill-background-icon: #d06df7;
+
+  // card
+  --brackground-card: #d06df7;
+
+  // table
+  --brackground-card: #f2f2f2;
+  --nth-chiled-table-background: #c5c5c5;
+  --nth-chiled-table-text: #353535;
+  --table-background: #8f8f8f;
+
+  --nth-chiled-table: #d0d6dead;
+
+  --icon-checkbox: #29323c;
+
+  // alerts and errors
+  --warning: rgb(255, 233, 92);
+  --error: #be0d0d;
+
+  --hover-filters: #425671;
+
+  // pagination
+  --pagination--background-number-selected: #c40eca;
 }

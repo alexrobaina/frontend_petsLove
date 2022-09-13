@@ -1,0 +1,48 @@
+@import "../styles/mixings.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.filtersHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.collectionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include media-breakpoint-down(xs) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.containerToggle {
+  display: flex;
+  position: relative;
+}
+
+.socialMediaLogin {
+  display: flex;
+  gap: 20;
+  flex-direction: column;
+}

@@ -1,46 +1,50 @@
-import { FC } from 'react';
-import { motion } from 'framer-motion';
-import PetCard from 'components/common/PetCard';
-import Loading from 'components/common/Loading';
-import ErrorMessage from 'components/common/ErrorMessage';
-import styles from './layout.module.scss';
+import { FC } from "react";
+import { motion } from "framer-motion";
+import BaseErrorMessage from "components/common/BaseErrorMessage";
+import BaseLoading from "components/common/BaseLoading";
+import PetCard from "components/PetCard";
+
+import styles from "./PetsList.module.scss";
 
 interface Props {
-  store: any;
+  pets: any;
+  isLoading: boolean;
 }
 
-const PetsList: FC<Props> = ({ store }) => {
+const PetsList: FC<Props> = ({ pets, isLoading }) => {
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
 
-  if (store.isLoading) {
-    <Loading />;
-  }
-
   return (
     <>
+      {isLoading && (
+        <div className={styles.loading}>
+          <BaseLoading />
+        </div>
+      )}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={variants}
         className={styles.cardLayout}
-        transition={{ ease: 'easeOut', delay: 0.5 }}
+        transition={{ ease: "easeOut", delay: 0.5 }}
       >
-        {store.pets.map((pet) => {
-          return (
-            <PetCard
-              key={pet._id}
-              petId={pet._id}
-              name={pet.name}
-              image={pet.images[0]}
-            />
-          );
-        })}
+        {pets &&
+          pets.map((pet: any) => {
+            return (
+              <PetCard
+                key={pet.id}
+                petId={pet.id}
+                name={pet.name}
+                image={pet.images}
+              />
+            );
+          })}
       </motion.div>
-      {store.pets?.length === 0 && (
-        <ErrorMessage text="No encontramos mascotas" typeMessage="warning" />
+      {pets?.length === 0 && (
+        <BaseErrorMessage text="No encontramos mascotas" />
       )}
     </>
   );

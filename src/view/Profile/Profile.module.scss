@@ -1,0 +1,51 @@
+@import "../../styles/mixings.scss";
+
+.avatar {
+  border-radius: 100px;
+  display: flex;
+}
+
+.containerAvatar {
+  margin-top: -60px;
+  display: flex;
+  justify-content: center;
+}
+
+.networkContainer {
+  gap: 30px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cover {
+  margin-top: -82px;
+  height: 400px;
+  width: 99%;
+  background: linear-gradient(
+    171deg,
+    rgba(70, 143, 122, 1) 7%,
+    rgba(111, 15, 125, 1) 95%
+  );
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
+}
+
+.containerCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  display: flex;
+  gap: 10px;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.address {
+  margin-top: 20px;
+}

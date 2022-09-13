@@ -1,0 +1,50 @@
+@import "../../styles/mixings.scss";
+
+.containerImage {
+  margin-top: -120px;
+  margin-left: -130px;
+  width: 85vh;
+  @include media-breakpoint-between(xs, md) {
+    display: none;
+  }
+}
+
+.containerAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: "100vh";
+  margin: 0;
+}
+
+.containerAccount {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.containerForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include media-breakpoint-between(xs, md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.socialMediaLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionSetRole {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  gap: 20px;
+
+  @include media-breakpoint-between(xs, md) {
+    padding: 0;
+  }
+}

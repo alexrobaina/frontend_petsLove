@@ -1,0 +1,13 @@
+@import "../../styles/mixings.scss";
+
+.container {
+  height: 100vh;
+}
+
+.actions {
+  justify-content: flex-end;
+  display: flex;
+  height: 80px;
+  text-align: right;
+  width: 100%;
+}

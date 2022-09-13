@@ -1,12 +1,11 @@
-import { FC, ReactNode } from 'react';
-import { observer } from 'mobx-react-lite';
-import c from 'classnames';
-import styles from './buttonFilter.module.scss';
+import { FC, ReactNode } from "react";
+import c from "classnames";
+import styles from "./buttonFilter.module.scss";
 
 interface Props {
-  handleSelected: (e) => void;
+  handleSelected: (e: any) => void;
   icon: ReactNode;
-  isSelected: boolean;
+  isSelected?: boolean;
 }
 
 const ButtonFilter: FC<Props> = ({ handleSelected, icon, isSelected }) => {
@@ -20,4 +19,4 @@ const ButtonFilter: FC<Props> = ({ handleSelected, icon, isSelected }) => {
   );
 };
 
-export default observer(ButtonFilter);
+export default ButtonFilter;
