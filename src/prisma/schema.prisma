@@ -23,10 +23,7 @@ model User {
   updatedAt      DateTime? @updatedAt
   name           String
   image          String?
-  lat            String?
-  lng            String?
-  city           String?
-  textAddress    String?
+  location       Json?
   description    String?
   phone          String?
   socialNetworks Json? // Github, linkedIn, instagram, facebook
