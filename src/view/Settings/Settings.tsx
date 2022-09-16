@@ -90,8 +90,6 @@ const Settings: NextPage = () => {
   const { values, handleChange, setFieldValue, handleSubmit, errors }: any = formik;
 
   const setUserValues = useCallback(() => {
-    console.log(user);
-
     setFieldValue('name', user?.name || '');
     setFieldValue('location.country', user?.location.country);
     setFieldValue('location.city', user?.location.city);

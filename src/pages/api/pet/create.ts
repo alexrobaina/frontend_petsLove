@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../prisma/prisma";
-import nc from "next-connect";
-import { getSession } from "next-auth/react";
-import upload from "services/file-upload";
-import { Role } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '../../../prisma/prisma';
+import nc from 'next-connect';
+import { getSession } from 'next-auth/react';
+import upload from 'services/file-upload';
+import { Role } from '@prisma/client';
 
-const uploadFiles = upload.array("newImages");
+const uploadFiles = upload.array('newImages');
 
 const handler = nc()
   .use(uploadFiles)
@@ -13,7 +13,7 @@ const handler = nc()
     const session: any = await getSession({ req });
 
     if (!session) {
-      res.status(400).json({ statusCode: 400, message: "Invalid session." });
+      res.status(400).json({ statusCode: 400, message: 'Invalid session.' });
       return;
     }
 
@@ -26,23 +26,28 @@ const handler = nc()
       });
     }
 
-    const data = {
+    const data: any = {
       userId: session.user.id,
-      lat: `${req.body.lat}`,
-      lng: `${req.body.lng}`,
       birthday: new Date(req.body.birthday),
       name: req.body.name.toLowerCase(),
-      city: req.body.city,
       images: imagesUrls,
       sex: req.body.sex,
       adopted: false,
-      country: req.body.country,
-      adopterUserEmail: "",
+      adopterUserEmail: '',
+      location: {},
       category: req.body.category,
-      textAddress: req.body.textAddress,
       description: req.body.description,
       medicalNote: req.body.medicalNotes,
     };
+
+    if (req.body?.location) {
+      const jsonLocation: any = JSON.parse(req.body.location);
+      data.location.textAddress = jsonLocation.textAddress;
+      data.location.lat = jsonLocation.lat;
+      data.location.lng = jsonLocation.lng;
+      data.location.country = jsonLocation.country;
+      data.location.city = jsonLocation.city;
+    }
 
     if (session.user.role === Role.ADOPTER) {
       data.adopterUserEmail = session.user.email;
@@ -50,6 +55,7 @@ const handler = nc()
     }
 
     try {
+      console.log(1, data);
       const pet = await prisma.pet.create({
         data,
       });

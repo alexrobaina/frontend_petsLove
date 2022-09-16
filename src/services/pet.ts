@@ -1,17 +1,18 @@
-import axios from "axios";
-import { BASE_URL } from "./config";
+import axios from 'axios';
+import { BASE_URL } from './config';
 
 export const createPet = async (data: any) => {
   const formData = new FormData();
 
   Object.entries(data).forEach(([key, value]: any) => {
     const conditionsType = [
-      "newImages",
-      "images",
-      "medicalNotes",
-      "adopted",
-      "titleMedicalNotes",
-      "detailMedicalNotes",
+      'newImages',
+      'images',
+      'medicalNotes',
+      'location',
+      'adopted',
+      'titleMedicalNotes',
+      'detailMedicalNotes',
     ];
 
     if (!conditionsType.includes(key)) {
@@ -21,20 +22,21 @@ export const createPet = async (data: any) => {
 
   if (data.medicalNotes) {
     data.medicalNotes.forEach((note: any) => {
-      formData.append("medicalNotes", JSON.stringify(note));
+      formData.append('medicalNotes', JSON.stringify(note));
     });
+  }
+
+  if (data.location?.lat) {
+    formData.append('location', JSON.stringify(data.location));
   }
 
   if (data.newImages.length > 0) {
     Object.entries(data.newImages).forEach(([key, value]: any) => {
-      formData.append("newImages", value);
+      formData.append('newImages', value);
     });
   }
 
-  const { data: response } = await axios.post(
-    `${BASE_URL}/api/pet/create`,
-    formData
-  );
+  const { data: response } = await axios.post(`${BASE_URL}/api/pet/create`, formData);
   return response.data;
 };
 
@@ -63,7 +65,7 @@ export const getFilterPets = async ({
   adopted,
 }: GetFilterPets) => {
   const { data: response } = await axios.get(
-    `${BASE_URL}/api/pet/filterPets?sex=${sex}&city=${city}&country=${country}&category=${category}&page=${page}&adopted=${adopted}&name=${name}`
+    `${BASE_URL}/api/pet/filterPets?sex=${sex}&city=${city}&country=${country}&category=${category}&page=${page}&adopted=${adopted}&name=${name}`,
   );
   return response;
 };
@@ -77,7 +79,7 @@ export const getUserFiltersPets = async ({
   adopted,
 }: GetFilterPets) => {
   const { data: response } = await axios.get(
-    `${BASE_URL}/api/pet/filterUserPets?sex=${sex}&city=${city}&country=${country}&category=${category}&page=${page}&adopted=${adopted}&name=${name}`
+    `${BASE_URL}/api/pet/filterUserPets?sex=${sex}&city=${city}&country=${country}&category=${category}&page=${page}&adopted=${adopted}&name=${name}`,
   );
   return response;
 };

@@ -40,7 +40,6 @@ const CreatePet: FC = () => {
     initialValues: FORM_STATE,
     validationSchema: validationCreatePet,
     onSubmit: (values: TValues) => {
-      console.log(values);
       mutateCreate(values);
     },
   });
@@ -53,9 +52,9 @@ const CreatePet: FC = () => {
     }
   }, [values.adopterUser]);
 
-  if (isLoadingCreate) {
-    return <BaseLoading center />;
-  }
+  // if (isLoadingCreate) {
+  //   return <BaseLoading center />;
+  // }
 
   return (
     <CreatePetForm
