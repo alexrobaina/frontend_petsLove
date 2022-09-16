@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.6.4",
     "@next-auth/prisma-adapter": "^1.0.3",
     "@prisma/client": "^3.15.1",
+    "@react-google-maps/api": "^2.12.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/multer": "^1.4.7",

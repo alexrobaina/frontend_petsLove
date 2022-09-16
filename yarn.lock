@@ -2058,6 +2058,21 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@googlemaps/js-api-loader@1.14.3":
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.14.3.tgz#d7a161cd547be04ad46a1cb176e6c2647f6d74a7"
+  integrity sha512-6iIb+qpGgQpgIHmIFO44WhE1rDUxPVHuezNFL30wRJnkvhwFm94tD291UvNg9L05hLDSoL16jd0lbqqmdy4C5g==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+
+"@googlemaps/markerclusterer@2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@googlemaps/markerclusterer/-/markerclusterer-2.0.10.tgz#3ffd88180f491ad6bc3a1014b11edbd19cb8f1bc"
+  integrity sha512-3UdPE2XH+DkFRTWIxEOcKdTqb3O9dMMxBn5jlhSae//uBGPqv9iHv9dz4l6/0Mwt7YcYmkwSpQZMc61WvZI/Qg==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    supercluster "^7.1.3"
+
 "@headlessui/react@^1.6.4":
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.6.6.tgz#3073c066b85535c9d28783da0a4d9288b5354d0c"
@@ -2504,6 +2519,28 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e.tgz#f691893df506b93e3cb1ccc15ec6e5ac64e8e570"
   integrity sha512-NHlojO1DFTsSi3FtEleL9QWXeSF/UjhCW0fgpi7bumnNZ4wj/eQ+BJJ5n2pgoOliTOGv9nX2qXvmHap7rJMNmg==
 
+"@react-google-maps/api@^2.12.2":
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/api/-/api-2.12.2.tgz#284e4149bdf4a28077adaea162f23a7c504e1b05"
+  integrity sha512-o1WDdhaGta9c/pNpqydDrncxz4XcKJ4uT6aDXCCkfy5h7i71v8fYNkpxPye3l8S3ErQgkW5SPcFj8A6/AU9mdA==
+  dependencies:
+    "@googlemaps/js-api-loader" "1.14.3"
+    "@googlemaps/markerclusterer" "2.0.10"
+    "@react-google-maps/infobox" "2.11.8"
+    "@react-google-maps/marker-clusterer" "2.11.8"
+    "@types/google.maps" "3.49.2"
+    invariant "2.2.4"
+
+"@react-google-maps/infobox@2.11.8":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/infobox/-/infobox-2.11.8.tgz#8f1f6c4373ab4b1c5b69747c5f3bc1ea21d7045f"
+  integrity sha512-15y3dniys1Op5HREyLwiJI2pAdeeHRJT5b4WPrS+vyL5KF6iXK1P3y/9bXtnxHiKe2v6iPreaEhR3VgvfRA50Q==
+
+"@react-google-maps/marker-clusterer@2.11.8":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-2.11.8.tgz#9b830b405cc203b305ac6f771da2e307ad30515e"
+  integrity sha512-OEcdbTXEgPwdpGvVuSrhIhjcZPhlzPz2TvaKCBLraf1PKiDyLOPhlTVRlbIziLiu0xN89pJcill1w9UVIVFF+Q==
+
 "@rushstack/eslint-patch@^1.1.0", "@rushstack/eslint-patch@^1.1.3":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
@@ -2645,7 +2682,7 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/google.maps@*":
+"@types/google.maps@*", "@types/google.maps@3.49.2":
   version "3.49.2"
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.49.2.tgz#9640491ec3aa96c9de1466894117ce81c02588df"
   integrity sha512-ZO1qWciukqED9qcUNW7OaPXWnTlT+tO3WcYkmudZyQW2BqD7TlMFRrdqSCoqfwKhERCwBA5A/YZt/g5A3BqgLQ==
@@ -4694,6 +4731,13 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
+invariant@2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
+  integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
+  dependencies:
+    loose-envify "^1.0.0"
+
 is-arguments@^1.0.4:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/is-arguments/-/is-arguments-1.1.1.tgz#15b3f88fda01f2a97fec84ca761a560f123efa9b"
@@ -5340,6 +5384,11 @@ json5@^2.2.1:
   dependencies:
     array-includes "^3.1.5"
     object.assign "^4.1.2"
+
+kdbush@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-3.0.0.tgz#f8484794d47004cc2d85ed3a79353dbe0abc2bf0"
+  integrity sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==
 
 kleur@^3.0.3:
   version "3.0.3"
@@ -6659,6 +6708,13 @@ stylis@4.0.13:
   version "4.0.13"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.13.tgz#f5db332e376d13cc84ecfe5dace9a2a51d954c91"
   integrity sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==
+
+supercluster@^7.1.3:
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/supercluster/-/supercluster-7.1.5.tgz#65a6ce4a037a972767740614c19051b64b8be5a3"
+  integrity sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg==
+  dependencies:
+    kdbush "^3.0.0"
 
 supports-color@^5.3.0:
   version "5.5.0"

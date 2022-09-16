@@ -21,9 +21,13 @@ let FORM_STATE = {
   email: '',
   github: '',
   phone: '',
-  country: '',
   twitter: '',
-  location: null,
+  location: {
+    city: '',
+    lat: 0,
+    lng: 0,
+    textAddress: '',
+  },
   facebook: '',
   instagram: '',
   description: '',
@@ -65,8 +69,9 @@ const Settings: NextPage = () => {
         description: values.description,
         location: {
           city: values.city,
-          lat: `"${values.lat}"`,
-          lng: `"${values.lng}"`,
+          country: values.country,
+          lat: values.lat,
+          lng: values.lng,
           textAddress: values.textAddress,
         },
         phone: values.phone,
@@ -85,16 +90,20 @@ const Settings: NextPage = () => {
   const { values, handleChange, setFieldValue, handleSubmit, errors }: any = formik;
 
   const setUserValues = useCallback(() => {
-    values.name = setFieldValue('name', user?.name || '');
-    values.lat = setFieldValue('lat', user?.lat || '');
-    values.lng = setFieldValue('lng', user?.lng || '');
-    values.description = setFieldValue('description', user?.description || '');
-    values.textAddress = setFieldValue('textAddress', user?.textAddress || '');
-    values.phone = setFieldValue('phone', user?.phone || '');
-    values.facebook = setFieldValue('facebook', user.socialNetworks?.facebook || '');
-    values.instagram = setFieldValue('instagram', user.socialNetworks?.instagram || '');
-    values.github = setFieldValue('github', user.socialNetworks?.github || '');
-    values.twitter = setFieldValue('twitter', user.socialNetworks?.twitter || '');
+    console.log(user);
+
+    setFieldValue('name', user?.name || '');
+    setFieldValue('location.country', user?.location.country);
+    setFieldValue('location.city', user?.location.city);
+    setFieldValue('location.textAddress', user?.location.textAddress);
+    setFieldValue('location.lat', user?.location.lat);
+    setFieldValue('location.lng', user?.location.lng);
+    setFieldValue('description', user?.description || '');
+    setFieldValue('phone', user?.phone || '');
+    setFieldValue('facebook', user.socialNetworks?.facebook || '');
+    setFieldValue('instagram', user.socialNetworks?.instagram || '');
+    setFieldValue('github', user.socialNetworks?.github || '');
+    setFieldValue('twitter', user.socialNetworks?.twitter || '');
   }, [user]);
 
   useEffect(() => {
@@ -128,15 +137,21 @@ const Settings: NextPage = () => {
       <GoogleAutocomplete
         // @ts-ignore
         name="google"
-        error={errors.textAddress}
-        value={values.textAddress}
+        error={errors.location?.textAddress}
+        value={values.location.textAddress}
         label="Ubicación del refugio"
         handleChangeAddress={handleChangeAddress}
         placeholder="Agrega la ubicación del refufio"
         handleChangeTextAddress={handleChangeTextAddress}
         handleChangeAddressComponents={handleChangeAddressComponents}
       />
-      {values.textAddress && <BaseText size={14} text={values.textAddress} />}
+      {values.location?.textAddress && (
+        <BaseText
+          marginTop={10}
+          size={14}
+          text={`Ubicación actual: ${values.location.textAddress}`}
+        />
+      )}
       <BaseTextarea
         marginTop={10}
         label="Descripcion"
@@ -190,7 +205,7 @@ const Settings: NextPage = () => {
         placeholder="Ingrese el link de su perfil de github"
       />
       <div className={styles.actions}>
-        <BaseButton marginTop={20} type="submit" text="Save" />
+        <BaseButton marginTop={20} type="submit" text="Guardar" />
       </div>
     </LayoutForm>
   );

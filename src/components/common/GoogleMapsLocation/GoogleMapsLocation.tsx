@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { observer } from 'mobx-react-lite';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import styles from './googleMapsLocation.module.scss';
 
@@ -15,9 +14,10 @@ interface Props {
   };
 }
 
-const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
+const GoogleMapsLocation: FC<Props> = ({ position }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
+    // @ts-ignore
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
   });
 
@@ -34,6 +34,6 @@ const GoogleMapsLocation: FC<Props> = observer(({ position }) => {
       )}
     </>
   );
-});
+};
 
 export default GoogleMapsLocation;

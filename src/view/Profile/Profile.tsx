@@ -1,43 +1,33 @@
-import { useUser } from "hooks/queries/user/useUser";
-import BaseLoading from "components/common/BaseLoading";
+import { useUser } from 'hooks/queries/user/useUser';
+import BaseLoading from 'components/common/BaseLoading';
 
-import styles from "./Profile.module.scss";
-import Image from "next/image";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitch,
-  FaTwitter,
-  FaWhatsapp,
-} from "react-icons/fa";
-import BaseText from "components/common/BaseText";
+import styles from './Profile.module.scss';
+import Image from 'next/image';
+import { FaFacebook, FaInstagram, FaTwitch, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import BaseText from 'components/common/BaseText';
+import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
 
 const Profile = () => {
   const { data: user, isLoading } = useUser();
 
-  const getSocialMediaValue = (
-    socialMedia: Array<any>,
-    network: string
-  ): string => {
-    let link = "";
+  const getSocialMediaValue = (socialMedia: Array<any>, network: string): string => {
+    let link = '';
     socialMedia.forEach((socialLink: string) => {
-      if (network === "instagram") {
-        socialLink.includes("instagram") && (link = socialLink);
+      if (network === 'instagram') {
+        socialLink.includes('instagram') && (link = socialLink);
       }
-      if (network === "twitter") {
-        socialLink.includes("twitter") && (link = socialLink);
+      if (network === 'twitter') {
+        socialLink.includes('twitter') && (link = socialLink);
       }
-      if (network === "github") {
-        socialLink.includes("github") && (link = socialLink);
+      if (network === 'github') {
+        socialLink.includes('github') && (link = socialLink);
       }
-      if (network === "facebook") {
-        socialLink.includes("facebook") && (link = socialLink);
+      if (network === 'facebook') {
+        socialLink.includes('facebook') && (link = socialLink);
       }
     });
     return link;
   };
-
-  console.log(user);
 
   if (isLoading) {
     return <BaseLoading center />;
@@ -49,12 +39,7 @@ const Profile = () => {
         <div className={styles.cover} />
       </div>
       <div className={styles.containerAvatar}>
-        <Image
-          width={150}
-          height={150}
-          src={user.image}
-          className={styles.avatar}
-        />
+        <Image width={150} height={150} src={user.image} className={styles.avatar} />
       </div>
       <div className={styles.networkContainer}>
         {user.socialNetworks?.instagram && (
@@ -87,7 +72,22 @@ const Profile = () => {
         <BaseText text="Descripción" />
         <BaseText text={user.description} />
       </div>
-      <div className={styles.address}>{user.textAddress}</div>
+      {user.location && (
+        <div>
+          <BaseText
+            marginTop={20}
+            marginBottom={10}
+            size={20}
+            text={user.location?.textAddress}
+          />
+          <GoogleMapsLocation
+            position={{
+              lat: user.location?.lat,
+              lng: user.location?.lng,
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import c from "classnames";
-import styles from "./BaseText.module.scss";
+import { FC } from 'react';
+import c from 'classnames';
+import styles from './BaseText.module.scss';
 
 interface Props {
   style?: any;
@@ -23,19 +23,19 @@ interface Props {
 const BaseText: FC<Props> = ({
   size,
   style,
-  text = 16,
+  text = '',
   marginTop,
   marginLeft,
   marginRight,
   thin = false,
   marginBottom,
-  color = "",
+  color = '',
   bold = false,
   onClick = null,
   medium = false,
   center = false,
   regular = false,
-  cursor = "",
+  cursor = '',
 }) => {
   return (
     <div
@@ -47,7 +47,7 @@ const BaseText: FC<Props> = ({
         marginRight,
         marginBottom,
         fontSize: size,
-        cursor: cursor && "pointer",
+        cursor: cursor && 'pointer',
       }}
       className={c(
         style,
@@ -56,7 +56,7 @@ const BaseText: FC<Props> = ({
         thin && styles.thin,
         center && styles.center,
         medium && styles.medium,
-        regular && styles.regular
+        regular && styles.regular,
       )}
     >
       {text}

@@ -1,15 +1,14 @@
-import { FC, useEffect } from "react";
-import c from "classnames";
-import BaseLabel from "../BaseLabel";
-import BaseErrorMessage from "../BaseErrorMessage";
-import styles from "./BaseTextarea.module.scss";
+import { FC, useEffect } from 'react';
+import c from 'classnames';
+import BaseLabel from '../BaseLabel';
+import BaseErrorMessage from '../BaseErrorMessage';
+import styles from './BaseTextarea.module.scss';
 
 interface Props {
   value?: any;
   title?: string;
   inputRef?: any;
   label?: string;
-  testId?: string;
   inputName: string;
   marginTop?: number;
   maxLength?: number;
@@ -27,20 +26,19 @@ interface Props {
 
 const BaseTextarea: FC<Props> = ({
   inputName,
-  title = "",
-  value = "",
-  label = "",
-  testId = "",
+  title = '',
+  value = '',
+  label = '',
   handleChange,
   onBlur = null,
   marginTop = 0,
   inputRef = null,
-  maxLength = 100,
+  maxLength = 1500,
   required = false,
   disabled = false,
   marginBottom = 0,
-  placeholder = "",
-  errorMessage = "",
+  placeholder = '',
+  errorMessage = '',
   onKeyPress = null,
   onPaste = () => {},
 }) => {
@@ -51,19 +49,19 @@ const BaseTextarea: FC<Props> = ({
   }, [inputRef]);
 
   const hasError = () => {
-    return errorMessage !== "";
+    return errorMessage !== '';
   };
 
   return (
     <div
       className={styles.containerInput}
-      data-testid={`baseInput-${testId}-${inputName}-container`}
+      data-testid={`baseInput-${inputName}`}
       style={{ marginTop, marginBottom }}
     >
       {label && <BaseLabel bold text={label} />}
       <textarea
         rows={5}
-        cols={50}
+        cols={100}
         title={title}
         ref={inputRef}
         name={inputName}
@@ -76,12 +74,7 @@ const BaseTextarea: FC<Props> = ({
         onChange={handleChange}
         placeholder={placeholder}
         onKeyPress={() => onKeyPress}
-        data-testid={`baseInput-${testId}-${inputName}-input`}
-        className={c(
-          styles.textarea,
-          styles.input,
-          hasError() && styles.isError
-        )}
+        className={c(styles.textarea, styles.input, hasError() && styles.isError)}
       />
       {errorMessage && <BaseErrorMessage text={errorMessage} />}
     </div>

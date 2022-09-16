@@ -1,13 +1,13 @@
-import { Role } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import prisma from "../../../prisma/prisma";
+import { Role } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import prisma from '../../../prisma/prisma';
 
 module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
   const session: any = await getSession({ req });
 
   if (!session) {
-    res.status(400).json({ statusCode: 400, message: "Invalid session." });
+    res.status(400).json({ statusCode: 400, message: 'Invalid session.' });
     return;
   }
 
@@ -18,13 +18,14 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const filters = Object.fromEntries(
       Object.entries(req.query).filter(([key, value]) => {
-        if (key !== "page") {
+        if (key !== 'page') {
           return value;
         }
-      })
+      }),
     );
+
     // @ts-ignore
-    filters.adopted = filters.adopted == "true" ? true : false;
+    filters.adopted = filters.adopted == 'true' ? true : false;
     filters.userId = session.user.id;
 
     if (session.user.role === Role.SHELTER) {
@@ -33,7 +34,7 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
         skip: startIndex,
         take: 10,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       });
 
@@ -48,7 +49,7 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
         skip: startIndex,
         take: 10,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       });
 

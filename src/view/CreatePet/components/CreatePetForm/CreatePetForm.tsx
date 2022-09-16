@@ -1,21 +1,21 @@
-import { FC, useState, useCallback, useEffect, ChangeEvent } from "react";
-import BaseInput from "../../../../components/common/BaseInput";
-import BaseButton from "../../../../components/common/BaseButton";
-import BaseTitle from "../../../../components/common/BaseTitle";
-import GoogleAutocomplete from "../../../../components/common/GoogleAutocomplete";
-import MedicalNotesItem from "../MedicalNotesItems";
-import { ICreatePetFormProps } from "../../types";
-import InputUploadImage from "components/common/InputUploadImage";
-import BaseTextarea from "components/common/BaseTextarea";
-import ReactModal from "components/common/ReactModal";
-import BaseText from "components/common/BaseText";
-import BaseSelectInput from "components/common/BaseSelectInput";
-import BaseRadioButton from "components/common/BaseRadioButton";
-import { useSession } from "next-auth/react";
-import { Role } from "@prisma/client";
-import LayoutForm from "components/common/LayoutForm";
+import { FC, useState, useCallback, useEffect, ChangeEvent } from 'react';
+import BaseInput from '../../../../components/common/BaseInput';
+import BaseButton from '../../../../components/common/BaseButton';
+import BaseTitle from '../../../../components/common/BaseTitle';
+import GoogleAutocomplete from '../../../../components/common/GoogleAutocomplete';
+import MedicalNotesItem from '../MedicalNotesItems';
+import { ICreatePetFormProps } from '../../types';
+import InputUploadImage from 'components/common/InputUploadImage';
+import BaseTextarea from 'components/common/BaseTextarea';
+import ReactModal from 'components/common/ReactModal';
+import BaseText from 'components/common/BaseText';
+import BaseSelectInput from 'components/common/BaseSelectInput';
+import BaseRadioButton from 'components/common/BaseRadioButton';
+import { useSession } from 'next-auth/react';
+import { Role } from '@prisma/client';
+import LayoutForm from 'components/common/LayoutForm';
 
-import styles from "./CreatePetForm.module.scss";
+import styles from './CreatePetForm.module.scss';
 
 const CreatePetForm: FC<ICreatePetFormProps> = ({
   testId,
@@ -33,7 +33,7 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
   const [canAddMedicalNote, setCanAddMedicalNote] = useState(true);
 
   const validateMedicalNote = useCallback(() => {
-    return values.detailMedicalNote === "" || values.titleMedicalNote === "";
+    return values.detailMedicalNote === '' || values.titleMedicalNote === '';
   }, [values]);
 
   const closeModalMedicalNote = () => {
@@ -48,24 +48,22 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
       title: values.titleMedicalNote,
       date: new Date(),
     });
-    setFieldValue("medicalNotes", medicalNotesCopy);
+    setFieldValue('medicalNotes', medicalNotesCopy);
   };
 
-  const handleChangeMedicalDetail = (
-    e: ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleChangeMedicalDetail = (e: ChangeEvent<HTMLInputElement>): void => {
     setCanAddMedicalNote(validateMedicalNote());
-    setFieldValue("detailMedicalNote", e.target.value);
+    setFieldValue('detailMedicalNote', e.target.value);
   };
 
   const handleChangeMedicalTitle = (e: ChangeEvent<HTMLInputElement>): void => {
     setCanAddMedicalNote(validateMedicalNote());
-    setFieldValue("titleMedicalNote", e.target.value);
+    setFieldValue('titleMedicalNote', e.target.value);
   };
 
   const handleChangeAddress = (location: any) => {
-    setFieldValue("lat", location.lat);
-    setFieldValue("lng", location.lng);
+    setFieldValue('location.lat', location.lat);
+    setFieldValue('location.lng', location.lng);
   };
 
   const handleDelete = useCallback(
@@ -73,25 +71,25 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
       const medicalNotesCopy = Array.from(values.medicalNotes);
       if (medicalNotesCopy) {
         medicalNotesCopy.splice(indexNote, 1);
-        setFieldValue("medicalNotes", medicalNotesCopy);
+        setFieldValue('medicalNotes', medicalNotesCopy);
       }
     },
-    [values?.medicalNotes]
+    [values?.medicalNotes],
   );
 
   const handleChangeTextAddress = useCallback((address: any) => {
-    setFieldValue("textAddress", address);
+    setFieldValue('location.textAddress', address);
   }, []);
 
   const handleChangeAddressComponents = useCallback((addressComponent: any) => {
     if (addressComponent?.address_components) {
       addressComponent.address_components.forEach((components: any) => {
         components.types.forEach((type: string) => {
-          if (type === "country") {
-            setFieldValue("country", components.long_name);
+          if (type === 'country') {
+            setFieldValue('location.country', components.long_name);
           }
-          if (type === "administrative_area_level_1") {
-            setFieldValue("city", components.long_name);
+          if (type === 'administrative_area_level_1') {
+            setFieldValue('location.city', components.long_name);
           }
         });
       });
@@ -112,7 +110,7 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
           oldImages={oldImages}
           setFieldValue={setFieldValue}
           handleDeleteImages={handleDeleteImages}
-          bucketUrl={process.env.REACT_APP_AWS_IMAGE_PETS_URL_BASE || ""}
+          bucketUrl={process.env.REACT_APP_AWS_IMAGE_PETS_URL_BASE || ''}
         />
         {session?.user.role === Role.SHELTER && (
           <BaseRadioButton
@@ -152,8 +150,8 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
           setFieldValue={setFieldValue}
           placeholder="Type of sex"
           options={[
-            { label: "Macho", value: "male" },
-            { label: "Hembra", value: "female" },
+            { label: 'Macho', value: 'male' },
+            { label: 'Hembra', value: 'female' },
           ]}
           errorMessage={errors.sex}
         />
@@ -165,38 +163,39 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
           setFieldValue={setFieldValue}
           placeholder="Type of sex"
           options={[
-            { label: "Perro", value: "dog" },
-            { label: "Gato", value: "cat" },
-            { label: "Exotico", value: "exotic" },
+            { label: 'Perro', value: 'dog' },
+            { label: 'Gato', value: 'cat' },
+            { label: 'Exotico', value: 'exotic' },
           ]}
           errorMessage={errors.category}
         />
         <GoogleAutocomplete
           // @ts-ignore
           name="google"
-          error={errors.textAddress}
-          value={values.textAddress}
           label="Ubicación de la mascota"
+          value={values.location.textAddress}
+          error={errors?.location?.textAddress}
           handleChangeAddress={handleChangeAddress}
           handleChangeTextAddress={handleChangeTextAddress}
           placeholder="Agrega la ubicación actual de la mascota"
           handleChangeAddressComponents={handleChangeAddressComponents}
         />
-        {values.textAddress && <BaseText size={14} text={values.textAddress} />}
-        {usersAdoptedEmailOptions !== [] &&
-          session?.user.role === Role.SHELTER && (
-            <BaseSelectInput
-              isClearable
-              marginTop={10}
-              inputName="adopterUserEmail"
-              label="Email del adoptante"
-              setFieldValue={setFieldValue}
-              value={values.adopterUserEmail}
-              options={usersAdoptedEmailOptions}
-              errorMessage={errors.adopterUserEmail}
-              placeholder="Selecciona al usuario adoptante."
-            />
-          )}
+        {values.location.textAddress && (
+          <BaseText size={14} text={values.location.textAddress} />
+        )}
+        {usersAdoptedEmailOptions !== [] && session?.user.role === Role.SHELTER && (
+          <BaseSelectInput
+            isClearable
+            marginTop={10}
+            inputName="adopterUserEmail"
+            label="Email del adoptante"
+            setFieldValue={setFieldValue}
+            value={values.adopterUserEmail}
+            options={usersAdoptedEmailOptions}
+            errorMessage={errors.adopterUserEmail}
+            placeholder="Selecciona al usuario adoptante."
+          />
+        )}
         <BaseTextarea
           marginTop={10}
           label="Descripcion"
@@ -207,11 +206,7 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
           placeholder="Descripcion y datos importantes"
         />
         <BaseTitle marginTop={20} title="Notas medicas" />
-        <BaseButton
-          marginTop={15}
-          text="Crear Nota"
-          onClick={() => setModal(true)}
-        />
+        <BaseButton marginTop={15} text="Crear Nota" onClick={() => setModal(true)} />
         {values.medicalNotes.map(
           (note: { title: string; description: string }, index: number) => (
             <MedicalNotesItem
@@ -221,7 +216,7 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
               handleDelete={() => handleDelete(index)}
               testId={`medical-notes-item-${note.title}`}
             />
-          )
+          ),
         )}
         <ReactModal
           isOpen={modalIsOpen}
@@ -262,12 +257,7 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
           </>
         </ReactModal>
         <div className={styles.containerActions}>
-          <BaseButton
-            keyPress="Enter"
-            marginTop={50}
-            text="Crear"
-            type="submit"
-          />
+          <BaseButton keyPress="Enter" marginTop={50} text="Crear" type="submit" />
         </div>
       </LayoutForm>
     </div>

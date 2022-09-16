@@ -40,15 +40,11 @@ model Pet {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime? @updatedAt
   userId           String
-  lat              String?
-  lng              String?
   category         String
-  textAddress      String
   images           String[]
-  city             String?
   adopted          Boolean?
+  location         Json?
   birthday         DateTime?
-  country          String?
   adopterUserEmail String?
   sex              String
   description      String
