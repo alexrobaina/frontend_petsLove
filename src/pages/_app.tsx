@@ -1,22 +1,27 @@
-import { SessionProvider } from "next-auth/react";
-import type { AppProps } from "next/app";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "next-themes";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Navigation from "components/Navigation";
-import "react-toastify/dist/ReactToastify.css";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import "../styles/calendar.scss";
-import "../styles/globals.scss";
-import LoginPage from "pages";
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
+import { ToastContainer } from 'react-toastify';
+import { ThemeProvider } from 'next-themes';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Navigation from 'components/Navigation';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import '../styles/calendar.scss';
+import '../styles/globals.scss';
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps,
+}: {
+  Component: any;
+  pageProps: { session: any };
+}) {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps?.session}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <ToastContainer
