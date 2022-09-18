@@ -1,14 +1,14 @@
-import { FC, useState, ReactChild, useCallback, useEffect } from "react";
-import { GoogleApiWrapper } from "google-maps-react";
+import { FC, useState, ReactChild, useCallback, useEffect } from 'react';
+import { GoogleApiWrapper } from 'google-maps-react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from "react-places-autocomplete";
-import BaseLabel from "../BaseLabel";
+} from 'react-places-autocomplete';
+import BaseLabel from '../BaseLabel';
+import { useGetVariableColor } from 'hooks/useGetVariableColor';
+import BaseErrorMessage from '../BaseErrorMessage';
 
-import styles from "./googleAutocomplete.module.scss";
-import { useGetVariableColor } from "hooks/useGetVariableColor";
-import BaseErrorMessage from "../BaseErrorMessage";
+import styles from './googleAutocomplete.module.scss';
 
 interface Props {
   name?: string;
@@ -26,25 +26,25 @@ interface Props {
 }
 
 const GoogleAutocomplete: FC<Props> = ({
-  name = "",
-  label = "",
+  name = '',
+  label = '',
   icon = null,
   error,
-  marginTop = "10px",
+  marginTop = '10px',
   inputRef = null,
-  placeholder = "",
+  placeholder = '',
   handleSearch = null,
   handleChangeAddress = null,
   handleChangeTextAddress = null,
   handleChangeAddressComponents = null,
 }) => {
   const backgroundColorAddresList = useGetVariableColor(
-    "--background-color-address-list"
+    '--background-color-address-list',
   );
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
   // eslint-disable-next-line no-shadow
   const handleChange = useCallback((address: string) => {
-    if (address === "") {
+    if (address === '') {
       if (handleChangeTextAddress) {
         handleChangeAddressComponents && handleChangeAddressComponents([]);
       }
@@ -115,18 +115,18 @@ const GoogleAutocomplete: FC<Props> = ({
                 {loading && <div className={styles.text}>Cargando</div>}
                 {suggestions.map((suggestion) => {
                   const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
+                    ? 'suggestion-item--active'
+                    : 'suggestion-item';
                   const style = suggestion.active
                     ? {
-                        backgroundColor: "rgba(146, 154, 230, 0.30)",
-                        cursor: "pointer",
-                        padding: "10px",
+                        backgroundColor: 'rgba(146, 154, 230, 0.30)',
+                        cursor: 'pointer',
+                        padding: '10px',
                       }
                     : {
                         backgroundColor: backgroundColorAddresList,
-                        cursor: "pointer",
-                        padding: "10px",
+                        cursor: 'pointer',
+                        padding: '10px',
                       };
                   return (
                     <div
@@ -152,7 +152,7 @@ const GoogleAutocomplete: FC<Props> = ({
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API || "",
-  language: "es",
+  apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API || '',
+  language: 'es',
   // @ts-ignore
 })(GoogleAutocomplete);

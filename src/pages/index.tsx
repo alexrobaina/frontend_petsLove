@@ -1,22 +1,23 @@
-import BaseButton from "components/common/BaseButton";
-import BaseTitle from "components/common/BaseTitle";
-import Pagination from "components/common/Pagination";
-import SEOData from "components/common/SEOData";
-import PetsList from "components/PetsList";
-import Search from "components/Search";
-import { META_TAGS } from "constants/metadataTags";
-import { usePetsFiltered } from "hooks/queries/pet/usePetsFiltered";
-import type { NextPage } from "next";
-import { useState } from "react";
-import styles from "../styles/Home.module.scss";
+import BaseButton from 'components/common/BaseButton';
+import BaseTitle from 'components/common/BaseTitle';
+import Pagination from 'components/common/Pagination';
+import SEOData from 'components/common/SEOData';
+import PetsList from 'components/PetsList';
+import Search from 'components/Search';
+import { META_TAGS } from 'constants/metadataTags';
+import { usePetsFiltered } from 'hooks/queries/pet/usePetsFiltered';
+import type { NextPage } from 'next';
+import { useState } from 'react';
+
+import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
   const [page, setPage] = useState(1);
-  const [sex, setSex] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [category, setCategory] = useState("");
-  const [address, setTextAddress] = useState("");
+  const [sex, setSex] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [category, setCategory] = useState('');
+  const [address, setTextAddress] = useState('');
   const { data: pets, isLoading: isLoadingPet } = usePetsFiltered({
     sex,
     city,
@@ -31,11 +32,11 @@ const Home: NextPage = () => {
   };
 
   const clearFilters = () => {
-    setSex("");
-    setCity("");
-    setCountry("");
-    setCategory("");
-    setTextAddress("");
+    setSex('');
+    setCity('');
+    setCountry('');
+    setCategory('');
+    setTextAddress('');
   };
 
   return (

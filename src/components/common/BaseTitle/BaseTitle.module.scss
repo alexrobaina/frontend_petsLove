@@ -1,11 +1,11 @@
-@import "../../../styles/mixings.scss";
+@import '../../../styles/mixings.scss';
 
 .title {
   font-size: 35px;
   line-height: 32px;
   font-family: var(--main-font);
   font-weight: 600;
-  color: var(--base-text-color);
+  color: var(--primary-900);
   letter-spacing: 1.5px;
 
   &.pointer {

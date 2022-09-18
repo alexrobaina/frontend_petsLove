@@ -23,7 +23,7 @@ export type TValues = {
   detailMedicalNote: string;
 };
 
-export type TCreatePetSlice = {
+export type TUpdatePetSlice = {
   _id: string;
   images: any;
   birthday: string;
@@ -49,7 +49,7 @@ export type TCreatePetSlice = {
   };
 };
 
-export interface ICreatePetFormProps {
+export interface IUpdatePetFormProps {
   testId: string;
   adopterId: string;
   submitForm: any;
@@ -68,6 +68,6 @@ export interface ICreatePetFormProps {
   canBeChangeAdoptedStatus: () => boolean;
 }
 
-export interface ICreatePet {
+export interface IUpdatePet {
   petId?: string;
 }

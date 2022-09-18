@@ -4,13 +4,13 @@
 
 .input {
   width: 100%;
-  border: 1px solid var(--input-border);
+  border: 1px solid var(--primary-900);
   box-shadow: none;
   padding: 10px 0 10px 14px;
   border-radius: 4px;
-  font-family: "Noto Sans HK", sans-serif;
+  font-family: 'Noto Sans HK', sans-serif;
   box-sizing: border-box;
-  background-color: var(--input-backgound);
+  background-color: var(--neutral-50);
 
   &:focus {
     outline: 0;

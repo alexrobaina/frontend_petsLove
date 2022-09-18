@@ -91,11 +91,13 @@ const Settings: NextPage = () => {
 
   const setUserValues = useCallback(() => {
     setFieldValue('name', user?.name || '');
-    setFieldValue('location.country', user?.location.country);
-    setFieldValue('location.city', user?.location.city);
-    setFieldValue('location.textAddress', user?.location.textAddress);
-    setFieldValue('location.lat', user?.location.lat);
-    setFieldValue('location.lng', user?.location.lng);
+    if (user?.location?.country) {
+      setFieldValue('location.country', user?.location?.country);
+      setFieldValue('location.city', user?.location.city);
+      setFieldValue('location.textAddress', user?.location.textAddress);
+      setFieldValue('location.lat', user?.location.lat);
+      setFieldValue('location.lng', user?.location.lng);
+    }
     setFieldValue('description', user?.description || '');
     setFieldValue('phone', user?.phone || '');
     setFieldValue('facebook', user.socialNetworks?.facebook || '');

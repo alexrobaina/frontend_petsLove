@@ -8,25 +8,22 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const filters: any = Object.fromEntries(
       Object.entries(req.query).filter(([key, value]) => {
-        if (key !== 'page' && key !== 'name' && key !== 'country' && key !== 'city') {
+        if (key !== 'page' && key !== 'name') {
           return value;
         }
       }),
     );
 
-    if (req.query?.city) {
-      filters.location = { city: req.query.city, country: req.query.city };
-    }
-
     // @ts-ignore
     filters.adopted = filters.adopted == 'true' ? true : false;
-
-    console.log(filters);
 
     const name: any = req?.query?.name;
 
     const pets = await prisma.pet.findMany({
-      where: { ...filters, name: { contains: name } },
+      where: {
+        ...filters,
+        OR: [{ name: { contains: name } }],
+      },
       skip: startIndex,
       take: 10,
       orderBy: {
@@ -38,6 +35,8 @@ module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json({ pets, total });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({ error });
   }
 };

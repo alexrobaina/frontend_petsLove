@@ -37,16 +37,16 @@ const handler = nc()
       location: {},
       category: req.body.category,
       description: req.body.description,
+      city: req.body.city,
+      country: req.body.country,
+      textAddress: req.body.textAddress,
       medicalNote: req.body.medicalNotes,
     };
 
     if (req.body?.location) {
       const jsonLocation: any = JSON.parse(req.body.location);
-      data.location.textAddress = jsonLocation.textAddress;
       data.location.lat = jsonLocation.lat;
       data.location.lng = jsonLocation.lng;
-      data.location.country = jsonLocation.country;
-      data.location.city = jsonLocation.city;
     }
 
     if (session.user.role === Role.ADOPTER) {
@@ -55,7 +55,6 @@ const handler = nc()
     }
 
     try {
-      console.log(1, data);
       const pet = await prisma.pet.create({
         data,
       });
@@ -66,9 +65,7 @@ const handler = nc()
       return res.status(500).json({ error });
     }
   })
-  .patch(async (req, res) => {
-    console.log(req);
-  });
+  .patch(async (req, res) => {});
 export default handler;
 
 //set bodyparser

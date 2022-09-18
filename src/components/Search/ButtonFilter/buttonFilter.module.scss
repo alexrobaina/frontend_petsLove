@@ -1,6 +1,6 @@
 .buttonFilter {
   border: none;
-  color: var(--icon-and-text-selected);
+  color: var(--primary-50);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,33 +9,22 @@
   height: 40px;
   cursor: pointer;
   transition: 0.3s;
-  background-color: var(--background-secundary);
+  background-color: var(--primary-900);
 
   &:hover {
-    background-color: var(--color-text-light);
-    color: var(--secundary-color);
+    background-color: var(--primary-300);
+    color: var(--neutral-50);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
-  &.disabled {
-    background: #dddddd;
-    color: var(--icon-and-text-selected);
-
-    &:hover {
-      background-color: var(--background-secundary);
-      color: var(--secundary-color);
-      box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
-    }
-  }
-
   &.active {
-    background-color: var(--secundary-color);
+    background-color: var(--primary-500);
     color: #ffffff;
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }
 
   &:focus {
-    background-color: var(--icon-and-text-selected);
+    background-color: var(--primary-700);
     transform: translateY(-0.25em);
     box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
   }

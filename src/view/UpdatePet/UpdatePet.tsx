@@ -1,17 +1,17 @@
 import { FC, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import CreatePetForm from './components/CreatePetForm';
+import UpdatePetForm from './components/UpdatePetForm';
 import { TValues } from './types';
 import { FORM_STATE } from './contants';
 import { useMutationPetCreate } from 'hooks/mutations/pet/useMutationPetCreate';
-import { validationCreatePet } from './helpers/validationInputSchema';
+import { validationUpdatePet } from './helpers/validationInputSchema';
 import { useUserSession } from 'hooks/queries/user/useUserSession';
 import { useRouter } from 'next/router';
 import BaseLoading from 'components/common/BaseLoading';
 import { useUserRole } from 'hooks/queries/user/useUserRole';
 import { Role } from '@prisma/client';
 
-const CreatePet: FC = () => {
+const UpdatePet: FC = () => {
   const { session } = useUserSession('/login');
   const [emailsOptionsAdopters, setEmailsOptionsAdopters]: any = useState([]);
   const { data: userRole } = useUserRole('ADOPTER');
@@ -38,7 +38,7 @@ const CreatePet: FC = () => {
 
   const formik = useFormik({
     initialValues: FORM_STATE,
-    validationSchema: validationCreatePet,
+    validationSchema: validationUpdatePet,
     onSubmit: (values: TValues) => {
       mutateCreate(values);
     },
@@ -52,12 +52,12 @@ const CreatePet: FC = () => {
     }
   }, [values.adopterUser]);
 
-  if (isLoadingCreate) {
-    return <BaseLoading center />;
-  }
+  // if (isLoadingCreate) {
+  //   return <BaseLoading center />;
+  // }
 
   return (
-    <CreatePetForm
+    <UpdatePetForm
       values={values}
       errors={errors}
       isLoading={isLoadingCreate}
@@ -74,4 +74,4 @@ const CreatePet: FC = () => {
   );
 };
 
-export default CreatePet;
+export default UpdatePet;

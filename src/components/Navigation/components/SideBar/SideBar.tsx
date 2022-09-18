@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { FC, ReactElement, useEffect } from "react";
-import c from "classnames";
-import BaseText from "components/common/BaseText";
-import { useRouter } from "next/router";
-import { navigationRoutes } from "components/Navigation/contants";
-import { useUserSession } from "hooks/queries/user/useUserSession";
-import { HiArrowLeft } from "react-icons/hi";
+import Link from 'next/link';
+import { FC, ReactElement, useEffect } from 'react';
+import c from 'classnames';
+import BaseText from 'components/common/BaseText';
+import { useRouter } from 'next/router';
+import { navigationRoutes } from 'components/Navigation/contants';
+import { useUserSession } from 'hooks/queries/user/useUserSession';
+import { HiArrowLeft } from 'react-icons/hi';
 
-import styles from "./SideBar.module.scss";
+import styles from './SideBar.module.scss';
 
 interface Props {
   children: ReactElement;
@@ -15,14 +15,10 @@ interface Props {
   setMenuIsCollapsed: Function;
 }
 
-const SideBar: FC<Props> = ({
-  children,
-  menuIsCollapsed,
-  setMenuIsCollapsed,
-}) => {
+const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollapsed }) => {
   const { session } = useUserSession();
   const router = useRouter();
-  const hasWindow = typeof window !== "undefined";
+  const hasWindow = typeof window !== 'undefined';
   const width = hasWindow ? window.innerWidth : null;
   const activeLink = (href: string) => router.asPath === href;
 
@@ -31,7 +27,6 @@ const SideBar: FC<Props> = ({
       setMenuIsCollapsed(true);
     }
   }, [width]);
-  console.log(session?.user.role);
 
   return (
     <>
@@ -39,7 +34,7 @@ const SideBar: FC<Props> = ({
         <div className={styles.containerSidebar}>
           <div
             className={styles.container}
-            style={{ minWidth: menuIsCollapsed ? "60px" : "250px" }}
+            style={{ minWidth: menuIsCollapsed ? '60px' : '250px' }}
           >
             <div className={styles.containerActionOpenMenu}>
               <div
@@ -47,7 +42,7 @@ const SideBar: FC<Props> = ({
                 className={c(
                   styles.actionCollapseMenu,
                   menuIsCollapsed && styles.invertIcon,
-                  styles.menuIsCollapse
+                  styles.menuIsCollapse,
                 )}
               >
                 <HiArrowLeft size={20} />
@@ -60,7 +55,7 @@ const SideBar: FC<Props> = ({
                     <div
                       className={c(
                         activeLink(route.href) && styles.activeLink,
-                        styles.buttonMenu
+                        styles.buttonMenu,
                       )}
                     >
                       <div className={styles.icon}>{route.icon}</div>

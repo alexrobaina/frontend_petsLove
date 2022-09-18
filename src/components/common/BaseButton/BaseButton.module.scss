@@ -1,4 +1,4 @@
-@import "../../../styles/mixings.scss";
+@import '../../../styles/mixings.scss';
 
 .button {
   border: none;
@@ -11,17 +11,17 @@
   transition: 0.3s;
   padding: 8px 14px 8px 14px;
   font-family: var(--main-font);
-  background: var(--primary-color);
-  color: var(--text-primary);
+  background-color: var(--primary-900);
+  color: var(--primary-50);
   font-size: 14px;
 
   &:hover {
-    background-color: var(--button-hover);
+    background-color: var(--primary-500);
   }
 
   &.buttonStateDisabled {
-    color: var(--white-color);
-    background-color: var(--button-disabled);
+    color: var(--neutral-900);
+    background-color: var(--neutral-400);
     opacity: 0.5;
   }
 
@@ -32,12 +32,12 @@
   }
 
   &.isSelected {
-    background-color: var(--button-selected);
+    background-color: var(--primary-600);
   }
 }
 
 .isButtonLink {
-  color: var(--secundary-color);
+  color: var(--primary-900);
   font-size: 16px;
   line-height: 24px;
   text-decoration: underline;
@@ -65,8 +65,9 @@
 }
 
 .buttonStateSuccess {
-  color: #fff;
-  background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+  color: var(--neutral-50);
+  background: var(--green-700) linear-gradient(var(--green-400), var(--green-200))
+    repeat-x;
 }
 
 .small {

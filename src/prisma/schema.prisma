@@ -44,6 +44,9 @@ model Pet {
   images           String[]
   adopted          Boolean?
   location         Json?
+  country          String?
+  city             String?
+  textAddress      String?
   birthday         DateTime?
   adopterUserEmail String?
   sex              String

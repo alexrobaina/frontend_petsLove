@@ -4,7 +4,7 @@ import BaseButton from '../../../../components/common/BaseButton';
 import BaseTitle from '../../../../components/common/BaseTitle';
 import GoogleAutocomplete from '../../../../components/common/GoogleAutocomplete';
 import MedicalNotesItem from '../MedicalNotesItems';
-import { ICreatePetFormProps } from '../../types';
+import { IUpdatePetFormProps } from '../../types';
 import InputUploadImage from 'components/common/InputUploadImage';
 import BaseTextarea from 'components/common/BaseTextarea';
 import ReactModal from 'components/common/ReactModal';
@@ -15,9 +15,9 @@ import { useSession } from 'next-auth/react';
 import { Role } from '@prisma/client';
 import LayoutForm from 'components/common/LayoutForm';
 
-import styles from './CreatePetForm.module.scss';
+import styles from './UpdatePetForm.module.scss';
 
-const CreatePetForm: FC<ICreatePetFormProps> = ({
+const UpdatePetForm: FC<IUpdatePetFormProps> = ({
   testId,
   values,
   errors,
@@ -235,7 +235,6 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
             />
             <BaseTextarea
               marginTop={10}
-              testId={testId}
               inputName="detailMedicalNote"
               value={values.detailMedicalNote}
               handleChange={handleChangeMedicalDetail}
@@ -262,4 +261,4 @@ const CreatePetForm: FC<ICreatePetFormProps> = ({
   );
 };
 
-export default CreatePetForm;
+export default UpdatePetForm;

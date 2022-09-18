@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { motion } from "framer-motion";
-import BaseErrorMessage from "components/common/BaseErrorMessage";
-import BaseLoading from "components/common/BaseLoading";
-import PetCard from "components/PetCard";
+import { FC } from 'react';
+import { motion } from 'framer-motion';
+import BaseErrorMessage from 'components/common/BaseErrorMessage';
+import BaseLoading from 'components/common/BaseLoading';
+import PetCard from 'components/PetCard';
 
-import styles from "./PetsList.module.scss";
+import styles from './PetsList.module.scss';
 
 interface Props {
   pets: any;
@@ -29,23 +29,16 @@ const PetsList: FC<Props> = ({ pets, isLoading }) => {
         animate="visible"
         variants={variants}
         className={styles.cardLayout}
-        transition={{ ease: "easeOut", delay: 0.5 }}
+        transition={{ ease: 'easeOut', delay: 0.5 }}
       >
         {pets &&
           pets.map((pet: any) => {
             return (
-              <PetCard
-                key={pet.id}
-                petId={pet.id}
-                name={pet.name}
-                image={pet.images}
-              />
+              <PetCard key={pet.id} petId={pet.id} name={pet.name} image={pet.images} />
             );
           })}
       </motion.div>
-      {pets?.length === 0 && (
-        <BaseErrorMessage text="No encontramos mascotas" />
-      )}
+      {pets?.length === 0 && <BaseErrorMessage text="No encontramos mascotas" />}
     </>
   );
 };

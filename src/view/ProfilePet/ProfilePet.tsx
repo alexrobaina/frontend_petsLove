@@ -1,13 +1,14 @@
 import { useUser } from 'hooks/queries/user/useUser';
 import BaseLoading from 'components/common/BaseLoading';
-
-import styles from './Profile.module.scss';
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
-import { FaFacebook, FaInstagram, FaTwitch, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import BaseText from 'components/common/BaseText';
 import GoogleMapsLocation from 'components/common/GoogleMapsLocation';
 
-const Profile = () => {
+import styles from './ProfilePet.module.scss';
+import { neutral500 } from 'styles/colors';
+
+const ProfilePet = () => {
   const { data: user, isLoading } = useUser();
 
   const getSocialMediaValue = (socialMedia: Array<any>, network: string): string => {
@@ -65,11 +66,11 @@ const Profile = () => {
         )}
       </div>
       <div className={styles.name}>
-        <BaseText size={30} medium text="Refugio" />
+        <BaseText color={neutral500} size={30} medium text="Perfil de:" />
         <BaseText size={30} medium text={user.name} />
       </div>
       <div className={styles.description}>
-        <BaseText text="Descripción" />
+        <BaseText color={neutral500} text="Descripción:" />
         <BaseText text={user.description} />
       </div>
       {user.location && (
@@ -92,4 +93,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePet;

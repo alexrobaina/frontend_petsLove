@@ -1,4 +1,4 @@
-@import "../../../../styles/mixings.scss";
+@import '../../../../styles/mixings.scss';
 
 .containerSidebar {
   display: flex;
@@ -87,5 +87,5 @@
 
 .icon {
   display: flex;
-  color: var(--button-icon-navigation) !important;
+  color: var(--primary-900) !important;
 }
