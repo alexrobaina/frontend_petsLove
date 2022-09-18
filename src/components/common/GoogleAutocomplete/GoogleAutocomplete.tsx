@@ -130,7 +130,6 @@ const GoogleAutocomplete: FC<Props> = ({
                       };
                   return (
                     <div
-                      key={suggestion.description}
                       {...getSuggestionItemProps(suggestion, {
                         className,
                         style,
