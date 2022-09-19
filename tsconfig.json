@@ -20,6 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.scss",
     "src/components/common/SEOData"
   ],
   "exclude": ["node_modules"]
