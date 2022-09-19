@@ -1,5 +1,4 @@
 import { SessionProvider } from 'next-auth/react';
-import type { AppProps } from 'next/app';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'next-themes';
 import { ReactQueryDevtools } from 'react-query/devtools';
