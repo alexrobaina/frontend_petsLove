@@ -50,24 +50,20 @@ export type TUpdatePetSlice = {
 };
 
 export interface IUpdatePetFormProps {
-  testId: string;
-  adopterId: string;
+  // adopterId: string;
   submitForm: any;
   isLoading: boolean;
   values: TValues;
-  oldImages: any[];
-  handleUploadPhoto: any;
-  titlePage: string;
+  // oldImages?: any[];
+  // titlePage: string;
   setFieldValue: any;
-  usersVetEmailList: any[];
-  goToDashboard: () => void;
+  // usersVetEmailList?: any[];
+  // goToDashboard: () => void;
   usersAdoptedEmailOptions: any[];
   errors: FormikErrors<TValues>;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleDeleteImages: (image: string, oldImages: any) => void;
-  canBeChangeAdoptedStatus: () => boolean;
+  // handleDeleteImages: (image: string, oldImages: any) => void;
 }
-
 export interface IUpdatePet {
   petId?: string;
 }

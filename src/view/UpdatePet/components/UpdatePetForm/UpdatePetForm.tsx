@@ -18,14 +18,13 @@ import LayoutForm from 'components/common/LayoutForm';
 import styles from './UpdatePetForm.module.scss';
 
 const UpdatePetForm: FC<IUpdatePetFormProps> = ({
-  testId,
   values,
   errors,
-  oldImages,
+  // oldImages,
   submitForm,
   handleChange,
   setFieldValue,
-  handleDeleteImages,
+  // handleDeleteImages,
   usersAdoptedEmailOptions,
 }) => {
   const { data: session }: any = useSession();
@@ -107,9 +106,9 @@ const UpdatePetForm: FC<IUpdatePetFormProps> = ({
         <InputUploadImage
           marginBottom={20}
           inputName="images"
-          oldImages={oldImages}
+          // oldImages={oldImages}
           setFieldValue={setFieldValue}
-          handleDeleteImages={handleDeleteImages}
+          // handleDeleteImages={handleDeleteImages}
           bucketUrl={process.env.REACT_APP_AWS_IMAGE_PETS_URL_BASE || ''}
         />
         {session?.user.role === Role.SHELTER && (
@@ -124,7 +123,6 @@ const UpdatePetForm: FC<IUpdatePetFormProps> = ({
           type="text"
           marginTop={10}
           label="Nombre"
-          testId={testId}
           inputName="name"
           value={values.name}
           errorMessage={errors.name}
@@ -134,7 +132,6 @@ const UpdatePetForm: FC<IUpdatePetFormProps> = ({
         <BaseInput
           type="date"
           marginTop={10}
-          testId={testId}
           inputName="birthday"
           value={values.birthday}
           label="Fecha de nacimiento"
@@ -225,7 +222,6 @@ const UpdatePetForm: FC<IUpdatePetFormProps> = ({
             <BaseInput
               type="text"
               marginTop={10}
-              testId={testId}
               label="Titulo"
               inputName="titleMedicalNote"
               value={values.titleMedicalNote}

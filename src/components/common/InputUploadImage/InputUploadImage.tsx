@@ -1,11 +1,11 @@
-import { useCallback, useRef, useEffect, useState, FC } from "react";
-import { AiOutlineCloudUpload } from "react-icons/ai";
-import { MdCancel } from "react-icons/md";
-import styles from "./inputUploadImage.module.scss";
-import BaseButton from "../BaseButton";
+import { useCallback, useRef, useEffect, useState, FC } from 'react';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { MdCancel } from 'react-icons/md';
+import styles from './inputUploadImage.module.scss';
+import BaseButton from '../BaseButton';
 
 interface Props {
-  oldImages: any;
+  // oldImages: any;
   bucketUrl: string;
   marginTop?: number;
   inputName?: string;
@@ -19,13 +19,13 @@ const InputUploadImage: FC<Props> = ({
   bucketUrl,
   marginTop,
   inputName,
-  oldImages,
+  // oldImages,
   marginBottom,
   setFieldValue,
   handleChange,
   handleDeleteImages = null,
 }) => {
-  const [previewImage, setPreviewImage] = useState<any>(oldImages);
+  // const [previewImage, setPreviewImage] = useState<any>(oldImages);
   const [newPreviewsImage, setNewPreviewsImage] = useState<any>([]);
   const fileUpload: any = useRef();
 
@@ -40,7 +40,7 @@ const InputUploadImage: FC<Props> = ({
     }));
     setNewPreviewsImage(mappedFiles);
 
-    setFieldValue && setFieldValue("newImages", e.target.files);
+    setFieldValue && setFieldValue('newImages', e.target.files);
     handleChange && handleChange(e);
   }, []);
 
@@ -51,34 +51,34 @@ const InputUploadImage: FC<Props> = ({
       });
       setNewPreviewsImage(imagePreview);
     },
-    [newPreviewsImage]
+    [newPreviewsImage],
   );
 
-  const removeOldImage = useCallback(
-    (image: string) => {
-      return (
-        handleDeleteImages !== null && handleDeleteImages(image, oldImages)
-      );
-    },
-    [oldImages]
-  );
+  // const removeOldImage = useCallback(
+  //   (image: string) => {
+  //     return (
+  //       handleDeleteImages !== null && handleDeleteImages(image, oldImages)
+  //     );
+  //   },
+  //   [oldImages]
+  // );
 
   const onClickFileUpload = useCallback(() => {
     fileUpload.current.click();
   }, []);
 
-  useEffect(() => {
-    if (oldImages) {
-      if (oldImages.length > 0 && previewImage.length === 0) {
-        setPreviewImage(oldImages);
-      }
-    }
-  }, [oldImages]);
+  // useEffect(() => {
+  //   if (oldImages) {
+  //     if (oldImages.length > 0 && previewImage.length === 0) {
+  //       setPreviewImage(oldImages);
+  //     }
+  //   }
+  // }, [oldImages]);
 
   return (
     <div>
       <div className={styles.containerImagePreview}>
-        {oldImages &&
+        {/* {oldImages &&
           oldImages.map((image: any) => {
             return (
               <div key={image} className={styles.containerImage}>
@@ -99,7 +99,7 @@ const InputUploadImage: FC<Props> = ({
                 )}
               </div>
             );
-          })}
+          })} */}
         {newPreviewsImage &&
           newPreviewsImage.map((image: any) => {
             return (
@@ -122,7 +122,7 @@ const InputUploadImage: FC<Props> = ({
           })}
       </div>
       <div
-        style={{ marginTop, marginBottom, width: "100%" }}
+        style={{ marginTop, marginBottom, width: '100%' }}
         className={styles.colInputImage}
       >
         <input
