@@ -26,14 +26,14 @@ const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
       <div className={styles.card}>
         {image ? (
           <img
-            alt="pet"
+            alt={`${name ? name : 'Pet'}`}
             src={imageValidate}
             onError={errorImage}
             className={styles.image}
           />
         ) : (
           <img
-            alt="not-found"
+            alt="Not Found"
             className={styles.image}
             src="/public/assets/images/imageNotFound.jpg"
           />
