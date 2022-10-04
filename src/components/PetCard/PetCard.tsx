@@ -9,6 +9,7 @@ interface Props {
   name: string;
   petId: string;
   image?: string;
+  description: string;
 }
 
 const PetCard: FC<Props> = ({ name = '', image = '', petId = '', description = '' }) => {
@@ -45,13 +46,7 @@ const PetCard: FC<Props> = ({ name = '', image = '', petId = '', description = '
           <div className={styles.name}>{name}</div>
         </div>
       </Link>
-      <BaseText
-        marginTop={5}
-        medium
-        text={
-          'aafskl f aslkjgh a,skjhgaf kaj sakjhhsg akjshgb askjhga ;jas.kajs bkavsj b.ksajb  a.ksjf has.kj as.jkl as a.skjfha s.kufhas '
-        }
-      />
+      <BaseText marginTop={5} medium text={description} />
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
         <BaseButton marginTop={10} text="Editar mascota" />
         <BaseButton backgroundColor={red300} marginTop={10} text="Borrar" />
