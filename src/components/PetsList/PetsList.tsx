@@ -34,7 +34,13 @@ const PetsList: FC<Props> = ({ pets, isLoading }) => {
         {pets &&
           pets.map((pet: any) => {
             return (
-              <PetCard key={pet.id} petId={pet.id} name={pet.name} image={pet.images} />
+              <PetCard
+                key={pet.id}
+                petId={pet.id}
+                name={pet.name}
+                image={pet.images}
+                description={pet.description}
+              />
             );
           })}
       </motion.div>

@@ -1,6 +1,6 @@
-import { FC, ReactElement } from "react";
-import c from "classnames";
-import styles from "./BaseButton.module.scss";
+import { FC, ReactElement } from 'react';
+import c from 'classnames';
+import styles from './BaseButton.module.scss';
 
 interface Props {
   text?: string;
@@ -24,18 +24,20 @@ interface Props {
   marginBottom?: number;
   transparent?: boolean;
   isButtonLink?: boolean;
+  backgroundColor?: string;
 }
 
 const BaseButton: FC<Props> = ({
-  text = "",
-  type = "",
-  testId = "",
+  text = '',
+  type = '',
+  testId = '',
   icon = null,
-  linkURL = "",
+  linkURL = '',
   fontSize = 16,
   small = false,
-  keyPress = "",
-  marginRightIcon = "",
+  keyPress = '',
+  backgroundColor = '',
+  marginRightIcon = '',
   large = false,
   marginTop = 0,
   medium = false,
@@ -73,7 +75,7 @@ const BaseButton: FC<Props> = ({
           small && styles.small,
           large && styles.large,
           medium && styles.medium,
-          icon && styles.iconContainer
+          icon && styles.iconContainer,
         )}
         style={{ marginTop, marginBottom, fontSize, marginRight }}
       >
@@ -98,10 +100,10 @@ const BaseButton: FC<Props> = ({
         medium && styles.medium,
         isSelected && styles.isSelected,
         success && styles.buttonStateSuccess,
-        disabled && styles.buttonStateDisabled
+        disabled && styles.buttonStateDisabled,
       )}
-      style={{ marginTop, marginBottom }}
-      type={type === "submit" ? "submit" : "button"}
+      style={{ marginTop, marginBottom, backgroundColor }}
+      type={type === 'submit' ? 'submit' : 'button'}
     >
       {icon && (
         <div style={{ marginRight: marginRightIcon }} className={styles.icon}>

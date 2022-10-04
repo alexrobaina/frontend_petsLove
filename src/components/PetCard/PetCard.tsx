@@ -1,6 +1,9 @@
 import { FC, useCallback, useState } from 'react';
 import Link from 'next/link';
 import styles from './petCard.module.scss';
+import BaseButton from 'components/common/BaseButton';
+import { red300 } from 'styles/colors';
+import BaseText from 'components/common/BaseText';
 
 interface Props {
   name: string;
@@ -8,7 +11,7 @@ interface Props {
   image?: string;
 }
 
-const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
+const PetCard: FC<Props> = ({ name = '', image = '', petId = '', description = '' }) => {
   const [imageValidate, setImageValidate] = useState(
     `https://petslove-bucket-2.s3.amazonaws.com/${image}`,
   );
@@ -22,25 +25,38 @@ const PetCard: FC<Props> = ({ name = '', image = '', petId = '' }) => {
   }, []);
 
   return (
-    <Link as={`profilePet/${petId}`} href={`profilePet/[pet]`}>
-      <div className={styles.card}>
-        {image ? (
-          <img
-            alt={`${name ? name : 'Pet'}`}
-            src={imageValidate}
-            onError={errorImage}
-            className={styles.image}
-          />
-        ) : (
-          <img
-            alt="Not Found"
-            className={styles.image}
-            src="/public/assets/images/imageNotFound.jpg"
-          />
-        )}
-        <div className={styles.name}>{name}</div>
+    <div>
+      <Link as={`profilePet/${petId}`} href={`profilePet/[pet]`}>
+        <div className={styles.card}>
+          {image ? (
+            <img
+              alt={`${name ? name : 'Pet'}`}
+              src={imageValidate}
+              onError={errorImage}
+              className={styles.image}
+            />
+          ) : (
+            <img
+              alt="Not Found"
+              className={styles.image}
+              src="/public/assets/images/imageNotFound.jpg"
+            />
+          )}
+          <div className={styles.name}>{name}</div>
+        </div>
+      </Link>
+      <BaseText
+        marginTop={5}
+        medium
+        text={
+          'aafskl f aslkjgh a,skjhgaf kaj sakjhhsg akjshgb askjhga ;jas.kajs bkavsj b.ksajb  a.ksjf has.kj as.jkl as a.skjfha s.kufhas '
+        }
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+        <BaseButton marginTop={10} text="Editar mascota" />
+        <BaseButton backgroundColor={red300} marginTop={10} text="Borrar" />
       </div>
-    </Link>
+    </div>
   );
 };
 
