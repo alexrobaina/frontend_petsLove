@@ -1,0 +1,22 @@
+@import '../../../styles/mixings.scss';
+
+.title {
+  font-size: 35px;
+  line-height: 32px;
+  font-family: var(--main-font);
+  font-weight: 600;
+  color: var(--primary-900);
+  letter-spacing: 1.5px;
+
+  &.pointer {
+    cursor: pointer;
+  }
+
+  @include media-breakpoint-between(xs, sm) {
+    font-size: 25px !important;
+  }
+}
+
+.center {
+  text-align: center;
+}

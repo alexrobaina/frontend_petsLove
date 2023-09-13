@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+:root {
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+
+  //fonts
+  --main-font: 'Poppins', sans-serif;
+
+  --base-text-color: var(--foreground);
+  --ligth: #fff;
+  --dark: #1b222b;
+}
+
+[data-theme='light'] {
+  --primary-900: #006064;
+  --primary-800: #00838f;
+  --primary-700: #0097a7;
+  --primary-600: #00acc1;
+  --primary-500: #00bcd4;
+  --primary-400: #26c6da;
+  --primary-300: #4dd0e1;
+  --primary-200: #80deea;
+  --primary-100: #b2ebf2;
+  --primary-50: #e0f7fa;
+
+  --yellow-900: #f57f17;
+  --yellow-800: #f9a825;
+  --yellow-700: #fbc02d;
+  --yellow-600: #fdd835;
+  --yellow-500: #ffeb3b;
+  --yellow-400: #ffee58;
+  --yellow-300: #fff176;
+  --yellow-200: #fff59d;
+  --yellow-100: #fff9c4;
+  --yellow-50: #fffde7;
+
+  --green-900: #014807;
+  --green-800: #07600e;
+  --green-700: #0e7817;
+  --green-600: #0f8613;
+  --green-500: #18981d;
+  --green-400: #31b237;
+  --green-300: #51ca58;
+  --green-200: #91e697;
+  --green-100: #c1f2c7;
+  --green-0: #e3f9e5;
+
+  --neutral-1100: #1e1e20;
+  --neutral-1000: #1e1e20;
+  --neutral-900: #323234;
+  --neutral-800: #626262;
+  --neutral-700: #7e7e7e;
+  --neutral-600: #9e9e9e;
+  --neutral-500: #b1b1b1;
+  --neutral-400: #cfcfcf;
+  --neutral-300: #e1e1e1;
+  --neutral-200: #f7f7f7;
+  --neutral-50: #ffffff;
+
+  --red-900: #610316;
+  --red-800: #8a041a;
+  --red-700: #ab091e;
+  --red-600: #cf1124;
+  --red-500: #cf1124;
+  --red-400: #ef4e4e;
+  --red-300: #f86a6a;
+  --red-200: #ff9b9b;
+  --red-100: #ffbdbd;
+  --red-0: #ffbdbd;
+
+  --background: #faf7fe;
+  --foreground: #6a00ff;
+
+  --primary-color: #5144e6;
+  --secundary-color: #5144e6;
+
+  --disabled-text: rgb(203, 203, 203);
+  --text-primary: #fafcff;
+
+  --modal-background: #fff;
+
+  // Card colors
+  --category-text: #c40eca;
+  --description-text: #1b222b;
+  --price-text: #5144e6;
+  --name-text: #2d1aff;
+
+  // navbar colors
+  --text-navigation: #c40eca;
+
+  // input colors
+  --input-border: #5e92f3;
+  --input-backgound: rgb(255, 255, 255);
+  --input-focus: #ed6193;
+  --input-hover: #f51c69;
+  --input-placeholder: #949eac;
+  --input-error: #be0d0d;
+  --input-icon-eye-password: #5e92f3;
+
+  // google input
+  --background-color-address-list: #f7f6ff;
+
+  // Button
+  --button-border: #5e92f3;
+  --button-backgound: rgb(255, 255, 255);
+  --button-focus: #ed6193;
+  --button-hover: #ed6193;
+  --button-error: #be0d0d;
+  --button-selected: #ed6193;
+  --button-disabled: #d8d8d8;
+
+  --button-background-hover-navigation: #ed619216;
+  --button-icon-navigation: #5e92f3;
+  --button-navigation-selected: #e9e1fc;
+
+  // Collapce navigation button
+  --collapse-button-background: #5e92f3;
+  --collapse-button-icon: #5144eed61936;
+
+  // pill
+  --pill-background-text: #447ac2;
+  --pill-background-icon: #d06df7;
+
+  // card
+  --brackground-card: #d06df7;
+
+  // table
+  --brackground-card: #f2f2f2;
+  --nth-chiled-table-background: #c5c5c5;
+  --nth-chiled-table-text: #353535;
+  --table-background: #8f8f8f;
+
+  --nth-chiled-table: #d0d6dead;
+
+  --icon-checkbox: #29323c;
+
+  // alerts and errors
+  --warning: rgb(255, 233, 92);
+  --error: #be0d0d;
+
+  --hover-filters: #425671;
+
+  // pagination
+  --pagination--background-number-selected: #c40eca;
+}

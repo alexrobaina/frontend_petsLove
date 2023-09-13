@@ -1,0 +1,91 @@
+@import '../../../../styles/mixings.scss';
+
+.containerSidebar {
+  display: flex;
+}
+
+.container {
+  width: 60px;
+  z-index: 10;
+  position: fixed;
+  background-color: rgb(242, 240, 247);
+  padding: 5px;
+  height: 100%;
+  transition: all;
+  white-space: pre;
+
+  &.menuIsCollapse {
+    width: 250px;
+  }
+}
+
+.containerActionOpenMenu {
+  display: flex;
+  width: 100%;
+  margin-right: 10px;
+  transition: all;
+  justify-content: center;
+
+  &.menuIsCollapse {
+    justify-content: flex-end;
+  }
+}
+
+.title {
+  height: 25px;
+}
+
+.actionCollapseMenu {
+  margin-top: 88px;
+  color: var(--collapse-button-icon);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  transition: all;
+  justify-content: flex-end;
+  align-items: center;
+
+  &.invertIcon {
+    transform: rotate(-180deg);
+  }
+}
+
+.navigationLinks {
+  margin-top: 20px;
+  gap: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonMenu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-navigation);
+  transition-property: width;
+  transition-duration: 4s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+  padding: 12px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: var(--button-background-hover-navigation);
+    border-radius: 10px;
+  }
+}
+
+.activeLink {
+  background-color: var(--button-navigation-selected);
+  border-radius: 5px;
+}
+
+.icon {
+  display: flex;
+  color: var(--primary-900) !important;
+}

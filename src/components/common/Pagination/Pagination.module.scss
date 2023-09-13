@@ -1,0 +1,60 @@
+// pagination
+.pagination {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.numberPage {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  z-index: 0;
+  height: 40px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.selected {
+  color: #fff;
+  background-color: var(--primary-900);
+}
+
+.next {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.back {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.camouflage {
+  opacity: 30%;
+}
+
+.hide {
+  display: none;
+}
+
+.pagesContainer {
+  display: flex;
+}

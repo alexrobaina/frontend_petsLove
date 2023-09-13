@@ -1,0 +1,21 @@
+export const FORM_STATE = {
+  location: {
+    lat: 0,
+    lng: 0,
+  },
+  city: '',
+  country: '',
+  textAddress: '',
+  birthday: '',
+  name: '',
+  sex: '',
+  newImages: [],
+  images: [],
+  category: '',
+  adopterUserEmail: '',
+  adopted: false,
+  description: '',
+  medicalNotes: [],
+  titleMedicalNote: '',
+  detailMedicalNote: '',
+};

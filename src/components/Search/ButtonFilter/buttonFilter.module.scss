@@ -1,0 +1,69 @@
+.buttonFilter {
+  border: none;
+  color: var(--primary-50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  width: 55px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: var(--primary-900);
+
+  &:hover {
+    background-color: var(--primary-300);
+    color: var(--neutral-50);
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
+
+  &.active {
+    background-color: var(--primary-500);
+    color: #ffffff;
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus {
+    background-color: var(--primary-700);
+    transform: translateY(-0.25em);
+    box-shadow: 0 7px 22px -2px rgba(0, 0, 0, 0.25);
+  }
+
+  &.circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  &.transparent {
+    background-color: var(--button-transparent);
+  }
+
+  &.secundary {
+    &:hover {
+      background-color: var(--color-icon-and-text-hover);
+      color: var(--color-icon-and-text);
+    }
+  }
+}
+
+.text {
+  width: 100%;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--title-font);
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  margin-top: 5px;
+  padding: 10px;
+}

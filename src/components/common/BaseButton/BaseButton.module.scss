@@ -1,0 +1,104 @@
+@import '../../../styles/mixings.scss';
+
+.button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  height: 38px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 8px 14px 8px 14px;
+  font-family: var(--main-font);
+  background-color: var(--primary-900);
+  color: var(--primary-50);
+  font-size: 14px;
+
+  &:hover {
+    background-color: var(--primary-500);
+  }
+
+  &.buttonStateDisabled {
+    color: var(--neutral-900);
+    background-color: var(--neutral-400);
+    opacity: 0.5;
+  }
+
+  &.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.isSelected {
+    background-color: var(--primary-600);
+  }
+}
+
+.isButtonLink {
+  color: var(--primary-900);
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: underline;
+  height: 25px;
+  cursor: pointer;
+  font-family: var(--main-font);
+  background: none;
+  border: none;
+
+  &.iconContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkText {
+  margin-right: 10px;
+}
+
+.buttonStateSuccess {
+  color: var(--neutral-50);
+  background: var(--green-700) linear-gradient(var(--green-400), var(--green-200))
+    repeat-x;
+}
+
+.small {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.medium {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.large {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.containerLoading {
+  transition: 0.3s;
+  margin-left: -25px;
+  margin-right: 10px;
+}
+
+.text {
+  transition: 0.3s;
+}
+
+.iconPrimary {
+  display: flex;
+  margin-left: 10px;
+}

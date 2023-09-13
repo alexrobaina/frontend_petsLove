@@ -1,0 +1,82 @@
+@import '../../../styles/mixings.scss';
+
+.containerInput {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  margin-top: 2px;
+  border: 1px solid var(--primary-800);
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 4px;
+  font-family: var(--main-font);
+  box-sizing: border-box;
+  height: 48px;
+  background-color: var(--neutral-50);
+
+  &:focus {
+    outline: 0;
+    border-radius: 4px;
+    border: 1px solid var(--primary-400);
+  }
+
+  &:disabled {
+    background-color: var(--primary-300);
+  }
+
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid var(--primary-400);
+  }
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--neutral-400);
+    font-family: var(--main-font);
+  }
+
+  &.isError {
+    border: 1px solid var(--red-500);
+  }
+
+  .viewPassword {
+    color: var(--neutral-1100);
+    position: absolute;
+    right: 12px;
+    top: 42px;
+    cursor: pointer;
+  }
+
+  .containerIcon {
+    cursor: pointer;
+    top: 10px;
+    right: 15px;
+    position: absolute;
+  }
+
+  input[type='date'] {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  input[type='date']::-webkit-clear-button {
+    font-size: 16px;
+  }
+
+  input[type='date']::-webkit-inner-spin-button {
+    height: 30px;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    font-size: 18px;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator:hover {
+    color: var(--primary-500);
+    cursor: pointer;
+  }
+}
