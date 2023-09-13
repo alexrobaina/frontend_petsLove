@@ -1,3 +1,32 @@
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
 # 🐶 🐱 🦊 Pets Love 🐭 🐹 🐰
 
 ## 🐶 🐱 🦊 Pets Love Your Digital Companion for Animal Welfare 🐶 🐱 🦊
@@ -34,19 +63,3 @@ Visit our [![website]](https://www.petslove.app/) for more information and dive 
 If you are a developer or UX designer who appreciates Pets Love, you can contribute by suggesting ideas or improvements through issue submissions.
 
 For more information on how to contribute, please refer to the CONTRIBUTING.md file.
-
-You can also support the development and growth of Pets Love by "buying me a coffee" using the following link:
-
-[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/petslove)
-
-This project uses [Next.js](https://nextjs.org/) and was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-To run the development server, execute the following command:
-
-```bash
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
