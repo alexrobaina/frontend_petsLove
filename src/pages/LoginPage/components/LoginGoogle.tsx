@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { IconGoogle } from '../../../assets/icons'
-// import { IconGoogle } from '../../../assets/icons';
+import axios from 'axios'
 
 export const LoginGoogle: FC = () => {
-  const signInWithGoogle = () => {
-    alert('Not implemented yet')
-    // location.href = '/api/auth/callback/oauth';
+  const signInWithGoogle = async () => {
+    const { data } = await axios.get('/api/auth/google/')
+    location.href = data.location
   }
 
   return (

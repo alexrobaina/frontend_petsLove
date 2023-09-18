@@ -1,19 +1,29 @@
 import * as React from 'react';
 
-export interface AppContextProps {
-  session: { token: string };
-  user: any;
+export interface User {
+  address: string | null
+createdAt: Date
+email: string
+id:string
+image: string | null
+phone: null | null
+role: null| null
+socialMedia: null| null
+updatedAt: string
+username: string| null
 }
 
-// This object implements AppContextProps, but it throws
-// an error instead of returning requested props. This mechanism helps
-// to detect forbidden context access outside of provider tree.
+export interface AppContextProps {
+  session: { token: string } | null;
+  user: User | null;
+}
+
 const warning: AppContextProps = {
   get session(): { token: string } {
     console.warn('Accessed context.session without context provider.');
     throw new Error('Accessed context.session without context provider.');
   },
-  get user(): any {
+  get user(): User {
     console.warn('Accessed context.user without context provider.');
     throw new Error('Accessed context.user without context provider.');
   },
