@@ -1,28 +1,19 @@
-import { FC, ReactElement, useEffect, useState } from 'react';
-import SideBar from './components/SideBar';
-import Navbar from './components/Navbar';
-import Layout from '../../components/common/Layout';
+import { FC, useState } from 'react'
+import Layout from '../Layout/Layout'
+import { SideBar } from './components/SideBar'
+import { Outlet } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
-interface Props {
-  children: ReactElement;
-}
-
-const Navigation: FC<Props> = ({ children }) => {
-  const [menuIsCollapsed, setMenuIsCollapsed] = useState(true);
-  const [paddingLayoutLeft, setPaddingLayoutLetf] = useState('');
-
-  useEffect(() => {
-    menuIsCollapsed ? setPaddingLayoutLetf('80px') : setPaddingLayoutLetf('300px');
-  }, [menuIsCollapsed]);
+const Navigation: FC = observer(() => {
+  const [menuIsCollapsed, setMenuIsCollapsed] = useState(true)
 
   return (
-    <>
-      <Navbar />
-      <SideBar menuIsCollapsed={menuIsCollapsed} setMenuIsCollapsed={setMenuIsCollapsed}>
-        <Layout paddingLeft={paddingLayoutLeft}>{children}</Layout>
-      </SideBar>
-    </>
-  );
-};
+    <SideBar menuIsCollapsed={menuIsCollapsed} setMenuIsCollapsed={setMenuIsCollapsed}>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </SideBar>
+  )
+})
 
-export default Navigation;
+export default Navigation
