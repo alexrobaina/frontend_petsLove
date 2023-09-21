@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { createContext } from 'react'
 
 export interface User {
   address: string | null
@@ -29,4 +29,4 @@ const warning: AppContextProps = {
   },
 }
 
-export const AppContext = React.createContext<AppContextProps>(warning)
+export const AppContext = createContext<AppContextProps>(warning)
