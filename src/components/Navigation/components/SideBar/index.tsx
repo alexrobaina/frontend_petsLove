@@ -1,5 +1,6 @@
 import { FC, ReactElement, MouseEvent, useContext } from 'react'
-import { deleteCookie } from '../../../../utils/deleteCookie'
+import { useNavigate } from 'react-router-dom'
+
 import {
   IconHomeInfinity,
   IconListDetails,
@@ -7,9 +8,9 @@ import {
   IconSearch,
   IconSettings,
 } from '../../../../assets/icons'
-import { useNavigate } from 'react-router-dom'
-import { ButtonNavigate } from '../ButtonNavigate'
 import { AppContext } from '../../../../services/AppContext'
+import { deleteCookie } from '../../../../utils/deleteCookie'
+import { ButtonNavigate } from '../ButtonNavigate'
 
 interface Props {
   children: ReactElement
@@ -17,7 +18,11 @@ interface Props {
   setMenuIsCollapsed: (isCollapsed: boolean) => void
 }
 
-export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollapsed }) => {
+export const SideBar: FC<Props> = ({
+  children,
+  menuIsCollapsed,
+  setMenuIsCollapsed,
+}) => {
   const navigation = useNavigate()
   const context = useContext(AppContext)
 
@@ -26,7 +31,6 @@ export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollaps
     deleteCookie('token')
     window.location.reload()
   }
-  console.log(context?.user?.image)
 
   const handleMenuIsCollapsed = () => {
     setMenuIsCollapsed(!menuIsCollapsed)
@@ -43,9 +47,9 @@ export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollaps
   ]
 
   return (
-    <div className='flex relative overflow-hidden'>
+    <div className="flex relative overflow-hidden">
       {/* Fixed Sidebar */}
-      <div className='fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md'>
+      <div className="fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
         <div
           onClick={handleMenuIsCollapsed}
           className={`${
@@ -53,7 +57,7 @@ export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollaps
           }  bg-primary-300 h-full cursor-pointer
            rounded-md flex flex-col justify-between items-center p-2`}
         >
-          <div className='w-full flex flex-col gap-2'>
+          <div className="w-full flex flex-col gap-2">
             {TOP_NAVIGATION.map((item, index) => (
               <ButtonNavigate
                 key={index}
@@ -67,26 +71,28 @@ export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollaps
               />
             ))}
           </div>
-          <div className='w-full flex flex-col gap-2'>
+          <div className="w-full flex flex-col gap-2">
             <button
               onClick={(e: MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation()
                 navigation('/userProfile')
               }}
-              className='flex items-center justify-between gap-1 rounded-md hover:bg-primary-100 p-1'
+              className="flex items-center justify-between gap-1 rounded-md hover:bg-primary-100 p-1"
             >
               <img
-                alt='profile'
+                alt="profile"
                 src={
                   context?.user?.image ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
-                className='w-[42px] h-[42px] rounded-full'
+                className="w-[42px] h-[42px] rounded-full"
               />
               {!menuIsCollapsed && (
-                <div className='flex flex-col gap-0 truncate'>
-                  <p className='text-sm text-left'>{context?.user?.username}</p>
-                  <p className='text-xs text-ellipsis'>{context?.user?.email}</p>
+                <div className="flex flex-col gap-0 truncate">
+                  <p className="text-sm text-left">{context?.user?.username}</p>
+                  <p className="text-xs text-ellipsis">
+                    {context?.user?.email}
+                  </p>
                 </div>
               )}
             </button>
@@ -103,7 +109,6 @@ export const SideBar: FC<Props> = ({ children, menuIsCollapsed, setMenuIsCollaps
               />
             ))}
             <button
-              html-helper
               onClick={handleLogout}
               className={`${
                 menuIsCollapsed ? 'justify-center' : 'justify-start'

@@ -1,17 +1,18 @@
-import { FC } from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import styles from './googleMapsLocation.module.scss';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
+import { FC } from 'react'
+
+import styles from './googleMapsLocation.module.scss'
 
 const POSITION_DEFAULT = {
   lat: -34.603722,
   lng: -58.381592,
-};
+}
 
 interface Props {
   position?: {
-    lat: number;
-    lng: number;
-  };
+    lat: number
+    lng: number
+  }
 }
 
 const GoogleMapsLocation: FC<Props> = ({ position }) => {
@@ -19,7 +20,7 @@ const GoogleMapsLocation: FC<Props> = ({ position }) => {
     id: 'google-map-script',
     // @ts-ignore
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
-  });
+  })
 
   return (
     <>
@@ -33,7 +34,7 @@ const GoogleMapsLocation: FC<Props> = ({ position }) => {
         </GoogleMap>
       )}
     </>
-  );
-};
+  )
+}
 
-export default GoogleMapsLocation;
+export default GoogleMapsLocation

@@ -1,12 +1,17 @@
+import { observer } from 'mobx-react'
 import { FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { observer } from 'mobx-react'
 import { ToastContainer } from 'react-toastify'
-import { AppContext, AppContextProps } from './services/AppContext'
-import { ComponentsUiPage } from './pages/ComponentsUiPage'
+
 import Navigation from './components/Navigation/Navigation'
+import { AdoptionPetPage } from './pages/AdoptionPetPage'
+import { CommunityPage } from './pages/CommunityPage'
+import { ComponentsUiPage } from './pages/ComponentsUiPage'
 import { DashboardPage } from './pages/DashboardPage'
-import { SearchPetsPage } from './pages/SearchPetsPage'
+import { ProfilePetPage } from './pages/ProfilePetPage'
+import { SettingsPage } from './pages/SettingsPage'
+import { UserProfilePage } from './pages/UserProfilePage'
+import { AppContext, AppContextProps } from './services/AppContext'
 
 interface Props {
   appContext: AppContextProps
@@ -18,36 +23,32 @@ const router = createBrowserRouter([
     element: <Navigation />,
     children: [
       {
-        path: 'topo/',
-        element: (
-          <div className='w-full h-full bg-red-400 z-30'>
-            <h1 className='text-black'>topo</h1>,
-          </div>
-        ),
-      },
-      {
-        path: '/userProfile',
-        element: <div>User</div>,
+        path: '/user/:id',
+        element: <UserProfilePage />,
       },
       {
         path: '/dashboard',
         element: <DashboardPage />,
       },
       {
-        path: '/community',
-        element: <div>community</div>,
+        path: '/pet/:id',
+        element: <ProfilePetPage />,
       },
       {
-        path: '/search',
-        element: <SearchPetsPage />,
+        path: '/community',
+        element: <CommunityPage />,
       },
       {
         path: '/settings',
-        element: <div>settings</div>,
+        element: <SettingsPage />,
       },
       {
         path: 'ui',
         element: <ComponentsUiPage />,
+      },
+      {
+        path: '/search',
+        element: <AdoptionPetPage />,
       },
       {
         path: '*',
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
   },
 ])
 
-const App: FC<Props> = observer(props => {
+const App: FC<Props> = observer((props) => {
   return (
     <AppContext.Provider value={props.appContext}>
       <ToastContainer
@@ -69,7 +70,7 @@ const App: FC<Props> = observer(props => {
         pauseOnFocusLoss
         closeButton={false}
         newestOnTop={false}
-        position='bottom-right'
+        position="bottom-right"
       />
       <RouterProvider router={router} />
     </AppContext.Provider>

@@ -1,9 +1,11 @@
 import { FC, MouseEventHandler, ReactElement } from 'react'
+
 import { Loader } from '../Loader'
+
 import { setSize, setType } from './utils'
 
 interface Props {
-  text: string
+  text?: string
   wFull?: boolean
   className?: string
   icon?: ReactElement
@@ -23,20 +25,31 @@ export const BaseButton: FC<Props> = ({
   size = 'small',
   backgroundColor,
   type = 'primary',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {},
-}) => (
-  <button
-    onClick={onClick}
-    style={{ backgroundColor }}
-    className={` ${wFull && 'w-full'}  ${
-      className && 'className'
-    } py-2 px-4 rounded ${setType(type)} ${setSize(
-      size,
-    )} flex gap-3 items-center justify-center`}
-  >
-    {isLoading && <Loader />}
-    {icon && icon}
-    {text && text}
-  </button>
-)
+}) => {
+  // if only icon is passed, then the button will be a circle
+  const shouldDisplayOnlyIcon = (
+    text: string | null | undefined,
+    icon: ReactElement | null | undefined,
+  ): boolean => {
+    return (!text || text.trim() === '') && !!icon
+  }
+  return (
+    <button
+      onClick={onClick}
+      style={{ backgroundColor }}
+      className={` ${wFull && 'w-full'}  ${
+        className && 'className'
+      } py-2 px-4 rounded ${setType(type)} ${setSize(
+        size,
+      )} flex gap-3 items-center justify-center  ${
+        shouldDisplayOnlyIcon(text, icon) &&
+        'w-[30px] h-[30px] md:w-[36px] md:h-[36px] py-0 px-0'
+      }`}
+    >
+      {isLoading && <Loader />}
+      {icon && <div>{icon}</div>}
+      {text && text}
+    </button>
+  )
+}

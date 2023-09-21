@@ -1,80 +1,32 @@
-import { FC } from 'react'
-import { BaseButton } from '../../components/BaseButton'
-import { Loader } from '../../components/Loader'
+import { FC, useState } from 'react'
+
+import { BaseButtonGroups } from '../../components/BaseButtonGroups'
+import { Header } from '../../components/Header'
+
+import { Buttons } from './components/Buttons'
+import { Loadings } from './components/Loadings'
 
 export const ComponentsUiPage: FC = () => {
+  const [viewComponents, setViewComponents] = useState('buttons')
+  const buttonGroupList = [
+    { name: 'Buttons', path: 'buttons' },
+    { name: 'Loadings', path: 'loadings' },
+    { name: 'Badgets', path: 'badgets' },
+    { name: 'Inputs', path: 'inputs' },
+  ]
+
   return (
-    <div className='flex flex-col gap-5 flex-wrap'>
-      <h1 className='text-3xl'>Componets UI</h1>
-      <div className='flex flex-col gap-2 mt-5 flex-wrap'>
-        <h1>Loadings</h1>
-        <div className='flex gap-5'>
-          <Loader />
-          <Loader big />
-        </div>
+    <>
+      <div className="flex justify-between">
+        <Header title="Components UI" />
+        <BaseButtonGroups
+          group={buttonGroupList}
+          buttonSelected={viewComponents}
+          handleSelectButtonGroup={setViewComponents}
+        />
       </div>
-      <div className='mt-8 gap-5'>
-        <h1>Big button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap '>
-          <BaseButton size='large' text='hola' type='primary' />
-          <BaseButton size='large' text='hola' type='secondary' />
-          <BaseButton size='large' text='hola' type='tertiary' />
-          <BaseButton isLoading size='large' text='hola' type='primary' />
-        </div>
-      </div>
-      <div className='mt-8 gap-5'>
-        <h1>Medium button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap'>
-          <BaseButton size='medium' text='hola' type='primary' />
-          <BaseButton size='medium' text='hola' type='secondary' />
-          <BaseButton size='medium' text='hola' type='tertiary' />
-          <BaseButton isLoading size='medium' text='hola' type='primary' />
-        </div>
-      </div>
-      <div className='mt-8 gap-5'>
-        <h1>Small button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap'>
-          <BaseButton size='small' text='hola' type='primary' />
-          <BaseButton size='small' text='hola' type='secondary' />
-          <BaseButton size='small' text='hola' type='tertiary' />
-          <BaseButton isLoading size='small' text='hola' type='primary' />
-        </div>
-      </div>
-      <h1 className='text-3xl'>Componets UI</h1>
-      <div className='flex flex-col gap-2 mt-5 flex-wrap'>
-        <h1>Loadings</h1>
-        <div className='flex gap-5'>
-          <Loader />
-          <Loader big />
-        </div>
-      </div>
-      <div className='mt-8 gap-5'>
-        <h1>Big button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap '>
-          <BaseButton size='large' text='hola' type='primary' />
-          <BaseButton size='large' text='hola' type='secondary' />
-          <BaseButton size='large' text='hola' type='tertiary' />
-          <BaseButton isLoading size='large' text='hola' type='primary' />
-        </div>
-      </div>
-      <div className='mt-8 gap-5'>
-        <h1>Medium button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap'>
-          <BaseButton size='medium' text='hola' type='primary' />
-          <BaseButton size='medium' text='hola' type='secondary' />
-          <BaseButton size='medium' text='hola' type='tertiary' />
-          <BaseButton isLoading size='medium' text='hola' type='primary' />
-        </div>
-      </div>
-      <div className='mt-8 gap-5'>
-        <h1>Small button</h1>
-        <div className='flex gap-2 mt-3 flex-wrap'>
-          <BaseButton size='small' text='hola' type='primary' />
-          <BaseButton size='small' text='hola' type='secondary' />
-          <BaseButton size='small' text='hola' type='tertiary' />
-          <BaseButton isLoading size='small' text='hola' type='primary' />
-        </div>
-      </div>
-    </div>
+      {viewComponents === 'buttons' && <Buttons />}
+      {viewComponents === 'loadings' && <Loadings />}
+    </>
   )
 }
