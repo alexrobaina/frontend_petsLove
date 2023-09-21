@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { BaseHeader } from '../../components/BaseHeader'
+
+import { Header } from '../../components/Header'
 
 export const DashboardPage: FC = () => {
   return (
-    <div>
-      <BaseHeader title='Dashboard' />
-    </div>
+    <header>
+      <Header title="Dashboard" canBack />
+    </header>
   )
 }

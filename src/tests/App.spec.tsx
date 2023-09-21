@@ -1,15 +1,17 @@
-import { render, screen } from './test-utils'
 import App from '../App'
+import { AppContextProps } from '../services/AppContext'
 
-const appContext = {
+import { render, screen } from './test-utils'
+
+const appContext: AppContextProps = {
   session: { token: 'sessions.data.resources[0].token' },
-  user: 'sessions.data.resources[0].user',
+  user: null,
 }
 
 test('App component display header', () => {
   render(<App appContext={appContext} />)
 
-  const text = screen.getByText('Vite + React + pets love')
+  const text = screen.getByText('Google')
 
   expect(text)
 })
