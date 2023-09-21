@@ -11,6 +11,7 @@ import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
 import { LoginPage } from './pages/LoginPage'
 import { AppContextProps } from './services/AppContext.ts'
 import { getCookie } from './utils/getCookie.ts'
+
 import './index.css'
 import './services/axiosInstance'
 import 'react-toastify/dist/ReactToastify.css'
