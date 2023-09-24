@@ -33,7 +33,7 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
             name={pet.name}
             images={pet.images}
             gender={pet.gender}
-            city={pet.location.city}
+            city={pet?.location?.city}
             goToProfile={goToProfilePet}
           />
         ))}

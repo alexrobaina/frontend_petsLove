@@ -29,6 +29,7 @@ export const SideBar: FC<Props> = ({
   const handleLogout = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     deleteCookie('token')
+    navigation('/')
     window.location.reload()
   }
 
@@ -75,7 +76,7 @@ export const SideBar: FC<Props> = ({
             <button
               onClick={(e: MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation()
-                navigation('/userProfile')
+                navigation(`/user/${context?.user?.id}`)
               }}
               className="flex items-center justify-between gap-1 rounded-md hover:bg-primary-100 p-1"
             >

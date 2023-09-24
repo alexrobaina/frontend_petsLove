@@ -3,7 +3,6 @@ import { FC, useState } from 'react'
 import { IconFacebook, IconInstagram, IconWhatsapp } from '../../assets/icons'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
-import { Header } from '../../components/Header'
 import { Loader } from '../../components/Loader'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
 import { CustomPlaceResult } from '../../constants/interfaces'
@@ -41,9 +40,11 @@ export const CommunityPage: FC = () => {
 
   return (
     <>
-      <header className="flex justify-between">
-        <Header title="Community" />
-      </header>
+      <div className="flex justify-between">
+        <h1 className="text-xl md:text-xl lg:text-3xl font-semibold">
+          Community
+        </h1>
+      </div>
       <div className="shadow-lg rounded-md mt-16 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
@@ -103,56 +104,54 @@ export const CommunityPage: FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  <tr>
-                    {data?.users.map((user: User) => (
-                      <>
-                        <td
-                          key={user.username}
-                          className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"
-                        >
-                          <div className="flex items-center">
-                            <div className="h-11 w-11 flex-shrink-0">
-                              <img
-                                className="h-11 w-11 rounded-full"
-                                src={user.image}
-                                alt=""
-                              />
+                  {data?.users.map((user: User) => (
+                    <tr>
+                      <td
+                        key={user.username}
+                        className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"
+                      >
+                        <div className="flex items-center">
+                          <div className="h-11 w-11 flex-shrink-0">
+                            <img
+                              className="h-11 w-11 rounded-full"
+                              src={user.image}
+                              alt=""
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-medium text-gray-900">
+                              {user.username}
                             </div>
-                            <div className="ml-4">
-                              <div className="font-medium text-gray-900">
-                                {user.username}
-                              </div>
-                              <div className="mt-1 text-gray-500">
-                                {user.email}
-                              </div>
+                            <div className="mt-1 text-gray-500">
+                              {user.email}
                             </div>
                           </div>
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                            Active
-                          </span>
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {user.role}
-                        </td>
-                        <td>
-                          <div className="px-3 py-5 flex gap-2  items-center h-full">
-                            <a className="cursor:pointer" href="">
-                              <IconInstagram />
-                            </a>
-                            <a className="cursor:pointer" href="">
-                              <IconFacebook />
-                            </a>
-                            <a className="cursor:pointer" href="">
-                              <IconWhatsapp />
-                            </a>
-                          </div>
-                          {user.socialMedia?.facebook}
-                        </td>
-                      </>
-                    ))}
-                  </tr>
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                          Active
+                        </span>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                        {user.role}
+                      </td>
+                      <td>
+                        <div className="px-3 py-5 flex gap-2  items-center h-full">
+                          <a className="cursor:pointer" href="">
+                            <IconInstagram />
+                          </a>
+                          <a className="cursor:pointer" href="">
+                            <IconFacebook />
+                          </a>
+                          <a className="cursor:pointer" href="">
+                            <IconWhatsapp />
+                          </a>
+                        </div>
+                        {user.socialMedia?.facebook}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
               {isLoading && (
