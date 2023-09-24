@@ -18,8 +18,7 @@ interface Props {
 const GoogleMapsLocation: FC<Props> = ({ position }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    // @ts-ignore
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API,
+    googleMapsApiKey: process.env.VITE_GOOGLE_MAPS_API_KEY || '',
   })
 
   return (
