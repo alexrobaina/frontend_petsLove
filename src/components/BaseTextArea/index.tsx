@@ -2,7 +2,6 @@ interface props {
   Value?: string
   className?: string
   height?: string | number
-  width?: string | number
   textHelper?: string
   textError?: string
   handleChange: (value: string) => void
@@ -16,9 +15,10 @@ export default function BaseTextArea(Props: props) {
     <>
       <textarea
         onChange={(e) => Props.handleChange(e.target.value)}
-        className={`${Props.className} h-[${Props.height}px] ${styles} ${
-          Props.textError ? 'ring-red-500' : ''
-        }`}
+        className={`${Props.className} 
+            h-[${Props.height}px] 
+            ${styles} 
+            ${Props.textError ? 'ring-red-500' : ''}`}
       >
         {Props.Value}
       </textarea>
