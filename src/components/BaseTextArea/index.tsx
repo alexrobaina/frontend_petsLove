@@ -15,13 +15,12 @@ export default function BaseTextArea(Props: props) {
     <>
       <textarea
         onChange={(e) => Props.handleChange(e.target.value)}
+        value={Props.Value}
         className={`${Props.className} 
             h-[${Props.height}px] 
             ${styles} 
             ${Props.textError ? 'ring-red-500' : ''}`}
-      >
-        {Props.Value}
-      </textarea>
+      ></textarea>
       {Props.textHelper && !Props.textError && (
         <p className="pl-3 pt-3">* {Props.textHelper}</p>
       )}
