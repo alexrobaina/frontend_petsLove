@@ -58,7 +58,7 @@ export const LoginGoogle: FC = () => {
                   />
                 </div>
                 <div className="mt-6">
-                  <BaseButton wFull type="primary" text="Magic link" />
+                  <BaseButton wFull style="primary" text="Magic link" />
                 </div>
               </div>
             </form>

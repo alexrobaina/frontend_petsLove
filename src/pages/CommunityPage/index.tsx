@@ -5,10 +5,10 @@ import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Loader } from '../../components/Loader'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
-import { CustomPlaceResult } from '../../constants/interfaces'
 import useUserList from '../../hooks/useUserList'
 
 interface User {
+  id: string
   username: string
   email: string
   image: string
@@ -28,7 +28,20 @@ export const CommunityPage: FC = () => {
     return <div>Error</div>
   }
 
-  const handleChangeLocation = (result: CustomPlaceResult) => {
+  const handleChangeLocation = (result: {
+    results: {
+      formatted_address: string
+      address_components: {
+        long_name: string
+        short_name: string
+        types: string[]
+      }[]
+    }[]
+    latLng: {
+      lat: number
+      lng: number
+    }
+  }) => {
     const data = {
       address: result.results[0].formatted_address,
       country: result.results[0].address_components[3].long_name,
@@ -105,7 +118,7 @@ export const CommunityPage: FC = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data?.users.map((user: User) => (
-                    <tr>
+                    <tr key={user.id}>
                       <td
                         key={user.username}
                         className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"

@@ -13,7 +13,8 @@ interface Props {
   backgroundColor?: string
   size?: 'small' | 'medium' | 'large'
   onClick?: MouseEventHandler<HTMLButtonElement>
-  type?: 'primary' | 'secondary' | 'tertiary' | 'delete'
+  type?: 'button' | 'submit' | 'reset' | undefined
+  style?: 'primary' | 'secondary' | 'tertiary' | 'delete'
 }
 
 export const BaseButton: FC<Props> = ({
@@ -24,7 +25,8 @@ export const BaseButton: FC<Props> = ({
   className,
   size = 'small',
   backgroundColor,
-  type = 'primary',
+  type = 'button',
+  style = 'primary',
   onClick = () => {},
 }) => {
   // if only icon is passed, then the button will be a circle
@@ -36,11 +38,12 @@ export const BaseButton: FC<Props> = ({
   }
   return (
     <button
+      type={type}
       onClick={onClick}
       style={{ backgroundColor }}
       className={` ${wFull && 'w-full'}  ${
         className && 'className'
-      } py-2 px-4 rounded ${setType(type)} ${setSize(
+      } py-2 px-4 rounded ${setType(style)} ${setSize(
         size,
       )} flex gap-3 items-center justify-center  ${
         shouldDisplayOnlyIcon(text, icon) &&

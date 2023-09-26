@@ -59,8 +59,12 @@ export const Save: FC<Props> = ({
               </div>
             </div>
             <div className="gap-2 flex px-4 py-3 sm:flex  sm:px-6 justify-end">
-              <BaseButton type="secondary" onClick={closeModal} text="Cancel" />
-              <BaseButton text="Save" type="primary" onClick={saveDocument} />
+              <BaseButton
+                style="secondary"
+                onClick={closeModal}
+                text="Cancel"
+              />
+              <BaseButton text="Save" style="primary" onClick={saveDocument} />
             </div>
           </div>
         </div>

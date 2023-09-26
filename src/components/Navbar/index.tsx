@@ -50,8 +50,8 @@ export const Navbar: FC<Props> = () => {
                   aria-hidden="true"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
@@ -64,8 +64,8 @@ export const Navbar: FC<Props> = () => {
                   aria-hidden="true"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
@@ -76,7 +76,7 @@ export const Navbar: FC<Props> = () => {
                 <div className="flex space-x-4">
                   <BaseButton
                     text="Login"
-                    type="primary"
+                    style="primary"
                     onClick={() => navigate('/')}
                   />
                 </div>
@@ -89,13 +89,13 @@ export const Navbar: FC<Props> = () => {
             <div className="flex flex-col space-x-4">
               <BaseButton
                 wFull
-                type="secondary"
+                style="secondary"
                 text="Adopt pets"
                 onClick={() => navigate('/adopt')}
               />
             </div>
             <div className="flex flex-col mt-10">
-              <BaseButton wFull type="primary" text="Login" />
+              <BaseButton wFull style="primary" text="Login" />
             </div>
           </div>
         </div>

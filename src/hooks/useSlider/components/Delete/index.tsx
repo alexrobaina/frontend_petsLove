@@ -63,10 +63,14 @@ export const Delete: FC<Props> = ({ closeModal, isOpen, onSubmit }) => {
             <div className="flexbg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <BaseButton
                 text="Delete"
-                type="delete"
+                style="delete"
                 onClick={deleteDocument}
               />
-              <BaseButton type="secondary" onClick={closeModal} text="Cancel" />
+              <BaseButton
+                style="secondary"
+                onClick={closeModal}
+                text="Cancel"
+              />
             </div>
           </div>
         </div>
