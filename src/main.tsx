@@ -1,14 +1,15 @@
 import axios from 'axios'
-import { configure, observable } from 'mobx'
+import { observable } from 'mobx'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import App from './App.tsx'
-import Layout from './components/Layout/Layout.tsx'
+import { Navbar } from './components/Navbar/index.tsx'
 import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
 import { LoginPage } from './pages/LoginPage'
+import { ProfilePetPage } from './pages/ProfilePetPage/index.tsx'
 import { AppContextProps } from './services/AppContext.ts'
 import { getCookie } from './utils/getCookie.ts'
 
@@ -19,10 +20,6 @@ import 'react-toastify/dist/ReactToastify.css'
 const queryClient = new QueryClient()
 
 async function main() {
-  if (import.meta.env.DEV) {
-    configure({ enforceActions: 'observed' })
-  }
-
   let appContext: AppContextProps = observable({
     session: { token: '' },
     user: null,
@@ -30,12 +27,26 @@ async function main() {
 
   const router = createBrowserRouter([
     {
-      path: '/adopt',
-      element: <AdoptionPetPage />,
-    },
-    {
       path: '/',
-      element: <LoginPage />,
+      element: <Navbar />,
+      children: [
+        {
+          path: '/adopt',
+          element: <AdoptionPetPage />,
+        },
+        {
+          path: '/pet/:id',
+          element: <ProfilePetPage />,
+        },
+        {
+          path: '/',
+          element: <LoginPage />,
+        },
+        {
+          path: '*',
+          element: <div>redirect</div>,
+        },
+      ],
     },
   ])
 
@@ -62,9 +73,7 @@ async function main() {
     ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-          <Layout>
-            <RouterProvider router={router} />
-          </Layout>
+          <RouterProvider router={router} />
         </QueryClientProvider>
       </React.StrictMode>,
     )

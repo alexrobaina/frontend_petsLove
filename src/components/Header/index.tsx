@@ -13,7 +13,7 @@ export const Header: FC<Props> = ({ canBack, title }) => {
   const navigate = useNavigate()
 
   const goToBack = () => {
-    navigate('back')
+    navigate(-1)
   }
   return (
     <div className="flex gap-5">

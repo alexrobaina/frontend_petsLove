@@ -4,6 +4,7 @@ interface Props {
   type?: string
   error?: string
   label?: string
+  isdisabled?: boolean
   placeholder: string
   value: string | number
   iconLeft?: ReactElement
@@ -18,6 +19,7 @@ export const BaseInput: FC<Props> = (
     error,
     iconLeft,
     iconRigth,
+    isdisabled,
     placeholder,
     handleChange,
     type = 'text',
@@ -37,6 +39,7 @@ export const BaseInput: FC<Props> = (
         type={type}
         name="email"
         value={value}
+        disabled={isdisabled}
         onChange={handleChange}
         placeholder={placeholder}
         className={`${

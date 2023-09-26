@@ -1,4 +1,5 @@
 import IconBack from './iconBack.svg'
+import IconClose from './iconClose.svg'
 import IconFacebook from './iconFacebook.svg'
 import IconGoogle from './iconGoogle.svg'
 import IconHomeInfinity from './iconHomeInfinity.svg'
@@ -12,6 +13,7 @@ import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
 
 export {
+  IconClose,
   IconInstagram,
   IconFacebook,
   IconWhatsapp,

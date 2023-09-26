@@ -12,8 +12,8 @@ interface Props {
   isLoading?: boolean
   backgroundColor?: string
   size?: 'small' | 'medium' | 'large'
-  type?: 'primary' | 'secondary' | 'tertiary'
   onClick?: MouseEventHandler<HTMLButtonElement>
+  type?: 'primary' | 'secondary' | 'tertiary' | 'delete'
 }
 
 export const BaseButton: FC<Props> = ({
