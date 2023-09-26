@@ -16,7 +16,6 @@ interface Props {
   isMulti?: boolean | false
   setFieldValue: (field: string, value: string) => void
 }
-
 export const BaseSelect: FC<Props> = ({
   name,
   error,
@@ -45,7 +44,6 @@ export const BaseSelect: FC<Props> = ({
 
   const setValues = (options: Option[], value: string) =>
     options.find((option: Option) => option.value === value)
-
   return (
     <div className="items-center ">
       {label && (
