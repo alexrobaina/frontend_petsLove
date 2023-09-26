@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react'
 import { FC } from 'react'
-import Select, { StylesConfig, ActionMeta } from 'react-select'
+import Select, { StylesConfig } from 'react-select'
 
 interface Option {
   value: string
@@ -8,31 +8,21 @@ interface Option {
 }
 
 interface Props {
-  error?: boolean
-  options: Option[]
-  value: Option | null
-  onChange: (option: Option | null, actionMeta: ActionMeta<Option>) => void
-}
-
-interface Option {
+  name: string
   value: string
-  label: string
-}
-
-interface Props {
   label?: string
-  error?: boolean
+  error?: string
   options: Option[]
-  value: Option | null
-  onChange: (option: Option | null, actionMeta: ActionMeta<Option>) => void
+  isMulti?: boolean | false
+  setFieldValue: (field: string, value: string) => void
 }
-
 export const BaseSelect: FC<Props> = ({
-  options,
-  onChange,
-  value,
+  name,
   error,
+  value,
   label,
+  options,
+  setFieldValue,
 }) => {
   const customStyles: StylesConfig<Option, false> = {
     control: (provided: CSSObject) => ({
@@ -52,6 +42,8 @@ export const BaseSelect: FC<Props> = ({
     }),
   }
 
+  const setValues = (options: Option[], value: string) =>
+    options.find((option: Option) => option.value === value)
   return (
     <div className="items-center ">
       {label && (
@@ -61,11 +53,14 @@ export const BaseSelect: FC<Props> = ({
       )}
       <Select
         isSearchable
-        value={value}
         options={options}
-        onChange={onChange}
         styles={customStyles}
+        value={setValues(options, value)}
+        onChange={(option) =>
+          option && option.value && setFieldValue(name, option.value)
+        }
       />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   )
 }

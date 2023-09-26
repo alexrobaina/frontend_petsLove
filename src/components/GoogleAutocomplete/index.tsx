@@ -28,11 +28,19 @@ interface Props {
   label?: string
   placeholder?: string
   showAddress?: boolean
-  google?: typeof google | undefined
   setLocation: (result: CustomPlaceResult) => void
 }
 
-const GoogleAutocomplete: FC<Props> = ({
+export type GoogleAPI = typeof google
+
+export interface IProvidedProps {
+  google?: GoogleAPI
+  loaded?: boolean
+}
+
+interface ExtendedProps extends Props, IProvidedProps {}
+
+const GoogleAutocomplete: FC<ExtendedProps> = ({
   label,
   setLocation,
   showAddress,
@@ -106,4 +114,4 @@ const GoogleAutocomplete: FC<Props> = ({
 export default GoogleApiWrapper({
   apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
   language: 'es',
-})(GoogleAutocomplete) as React.ComponentType<Props>
+})(GoogleAutocomplete) as React.ComponentType<ExtendedProps>

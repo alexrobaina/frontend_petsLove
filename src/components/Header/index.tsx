@@ -18,7 +18,7 @@ export const Header: FC<Props> = ({ canBack, title }) => {
   return (
     <div className="flex gap-5">
       {canBack && (
-        <BaseButton onClick={goToBack} type="secondary" icon={<IconBack />} />
+        <BaseButton onClick={goToBack} style="secondary" icon={<IconBack />} />
       )}
       <h1 className="text-xl md:text-xl lg:text-3xl font-semibold">{title}</h1>
     </div>

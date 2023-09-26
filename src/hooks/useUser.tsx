@@ -4,7 +4,7 @@ import { getUser } from '../api/user'
 
 export const useUser = (id: string | undefined) => {
   const { data, error, isLoading } = useQuery(
-    ['users', id],
+    ['user', id],
     () => id && getUser(id),
   )
 

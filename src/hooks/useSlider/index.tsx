@@ -66,10 +66,10 @@ export const useSlider = () => {
             <div className="fixed p-4 gap-4  bottom-0 rigth-0 flex justify-end w-full transparent px-4 py-3 sm:flex sm:px-6">
               <BaseButton
                 text="Cancel"
-                type="secondary"
+                style="secondary"
                 onClick={closeSlider}
               />
-              <BaseButton text="save" type="primary" onClick={closeSlider} />
+              <BaseButton text="save" style="primary" onClick={closeSlider} />
             </div>
           </div>
         )}

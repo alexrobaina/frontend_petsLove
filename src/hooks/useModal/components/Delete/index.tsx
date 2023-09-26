@@ -69,11 +69,15 @@ export const Delete: FC<Props> = ({
             </div>
             <div className="gap-2 flex bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <BaseButton
-                type="delete"
+                style="delete"
                 text="Delete"
                 onClick={deleteDocument}
               />
-              <BaseButton text="Cancel" type="secondary" onClick={closeModal} />
+              <BaseButton
+                text="Cancel"
+                style="secondary"
+                onClick={closeModal}
+              />
             </div>
           </div>
         </div>
