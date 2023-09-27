@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr';
-import react from '@vitejs/plugin-react-swc';
-import path from 'path';
-const projectRoot = path.resolve(__dirname);
+import path from 'path'
+
+import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
+const projectRoot = path.resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,4 +33,4 @@ export default defineConfig({
       contracts: path.resolve(projectRoot, 'src/contracts/'),
     },
   },
-});
+})

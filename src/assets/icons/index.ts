@@ -9,10 +9,12 @@ import IconLogout from './iconLogout.svg'
 import IconMap from './iconMap.svg'
 import IconSearch from './iconSearch.svg'
 import IconSettings from './iconSettings.svg'
+import IconTelegram from './iconTelegram.svg'
 import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
 
 export {
+  IconTelegram,
   IconClose,
   IconInstagram,
   IconFacebook,

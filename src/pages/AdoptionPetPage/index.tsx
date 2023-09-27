@@ -4,7 +4,6 @@ import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Header } from '../../components/Header'
 import { PetList } from '../../components/PetList/Index'
-import { CustomPlaceResult } from '../../constants/interfaces'
 import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
 import { useGetPets } from '../../hooks/useGetPets'
 
@@ -20,7 +19,8 @@ export const AdoptionPetPage: FC = () => {
   const [typePet, setTypePet] = useState('')
   const [gender, setGender] = useState('')
 
-  const handleChangeLocation = (result: CustomPlaceResult) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChangeLocation = (result: any) => {
     setFilters({
       ...filters,
       address: result.results[0].formatted_address,

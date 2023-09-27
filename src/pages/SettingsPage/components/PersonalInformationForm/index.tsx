@@ -5,6 +5,7 @@ import { BaseButton } from '../../../../components/BaseButton'
 import { BaseInput } from '../../../../components/BaseInput'
 import { BaseSelect } from '../../../../components/BaseSelect'
 import GoogleAutocomplete from '../../../../components/GoogleAutocomplete'
+import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { ROLES } from '../../../../constants/community'
 import { User } from '../../constants'
 
@@ -87,7 +88,11 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full flex items-center gap-x-8">
               <img
                 alt="user image"
-                src={previewURL ? previewURL : user?.image}
+                src={
+                  previewURL
+                    ? previewURL
+                    : `${BUCKET_AVATAR_USER}${user?.image}`
+                }
                 className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
               />
               <div>

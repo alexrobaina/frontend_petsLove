@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { action } from 'mobx'
-import { FC, useContext, useEffect } from 'react'
+import { FC, useContext, useEffect, useState } from 'react'
 
 import FadeIn from '../../components/FadeIn'
 import { Header } from '../../components/Header'
@@ -17,6 +17,13 @@ export const SettingsPage: FC = () => {
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
   const { data, isLoading } = useUser(context?.user?.id)
+  const [deleteFiles, setDeleteFiles] = useState(data?.user[0].image)
+
+  useEffect(() => {
+    if (data?.user[0].image) {
+      setDeleteFiles(data?.user[0].image)
+    }
+  }, [data])
 
   const setUser = action((context: AppContextProps, user: User) => {
     if (!user) {
@@ -28,6 +35,10 @@ export const SettingsPage: FC = () => {
   const formik = useFormik({
     initialValues: INITIAL_STATE,
     onSubmit: (values) => {
+      if (values.image) {
+        values.deleteFiles = deleteFiles
+      }
+
       mutate({
         ...values,
         id: context?.user?.id || '',
