@@ -28,6 +28,8 @@ export const INITIAL_STATE = {
   firstName: '',
   lastName: '',
   username: '',
+  image: '',
+  deleteFiles: '',
   role: '',
   location: {
     country: '',

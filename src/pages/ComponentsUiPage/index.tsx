@@ -5,8 +5,8 @@ import { Header } from '../../components/Header'
 
 import { Buttons } from './components/Buttons'
 import { Loadings } from './components/Loadings'
-import { Selects } from './components/Loadings copy'
 import { Modals } from './components/Modals'
+import { Selects } from './components/Selects'
 
 export const ComponentsUiPage: FC = () => {
   const [viewComponents, setViewComponents] = useState('buttons')

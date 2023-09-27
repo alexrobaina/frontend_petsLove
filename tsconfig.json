@@ -6,7 +6,12 @@
     "module": "ESNext",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["cypress", "jest", "@testing-library/jest-dom"],
+    "types": [
+      "cypress",
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/react"
+    ],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

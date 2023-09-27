@@ -8,7 +8,7 @@ interface Option {
 }
 
 export const Selects: FC = () => {
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null)
+  const [selectedOption, setSelectedOption] = useState<string>('chocolate')
 
   const options: Option[] = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -19,9 +19,10 @@ export const Selects: FC = () => {
   return (
     <div className="mt-10">
       <BaseSelect
+        name="select"
         options={options}
         value={selectedOption}
-        onChange={setSelectedOption}
+        setFieldValue={setSelectedOption}
       />
     </div>
   )

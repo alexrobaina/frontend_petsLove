@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GoogleApiWrapper } from 'google-maps-react'
 import { FC, useState } from 'react'
 import PlacesAutocomplete, {
@@ -114,4 +115,4 @@ const GoogleAutocomplete: FC<ExtendedProps> = ({
 export default GoogleApiWrapper({
   apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
   language: 'es',
-})(GoogleAutocomplete) as React.ComponentType<ExtendedProps>
+})(GoogleAutocomplete as any) as React.ComponentType<ExtendedProps>

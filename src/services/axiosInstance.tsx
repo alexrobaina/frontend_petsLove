@@ -11,7 +11,7 @@ const axiosInstance: AxiosInstance = axios.create({
 })
 
 // Add a request interceptor to add the token in headers
-axiosInstance.interceptors.request.use(
+axios.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getCookie('token')
 
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
 )
 
 // Add a response interceptor if you need to
-axiosInstance.interceptors.response.use(
+axios.interceptors.response.use(
   (response: AxiosResponse) => {
     return response
   },

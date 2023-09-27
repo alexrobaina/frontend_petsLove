@@ -1,9 +1,15 @@
 import { FC, useState } from 'react'
 
-import { IconFacebook, IconInstagram, IconWhatsapp } from '../../assets/icons'
+import {
+  IconFacebook,
+  IconInstagram,
+  IconTelegram,
+  IconWhatsapp,
+} from '../../assets/icons'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Loader } from '../../components/Loader'
+import { BUCKET_AVATAR_USER } from '../../constants/buketsImage'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
 import useUserList from '../../hooks/useUserList'
 
@@ -16,6 +22,7 @@ interface User {
   socialMedia: {
     facebook: string
     instagram: string
+    telegram: string
     whatsapp: string
   }
 }
@@ -126,9 +133,9 @@ export const CommunityPage: FC = () => {
                         <div className="flex items-center">
                           <div className="h-11 w-11 flex-shrink-0">
                             <img
+                              alt="user"
+                              src={`${BUCKET_AVATAR_USER}${user?.image}`}
                               className="h-11 w-11 rounded-full"
-                              src={user.image}
-                              alt=""
                             />
                           </div>
                           <div className="ml-4">
@@ -151,17 +158,43 @@ export const CommunityPage: FC = () => {
                       </td>
                       <td>
                         <div className="px-3 py-5 flex gap-2  items-center h-full">
-                          <a className="cursor:pointer" href="">
-                            <IconInstagram />
-                          </a>
-                          <a className="cursor:pointer" href="">
-                            <IconFacebook />
-                          </a>
-                          <a className="cursor:pointer" href="">
-                            <IconWhatsapp />
-                          </a>
+                          {user.socialMedia?.instagram && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://www.instagram.com/${user.socialMedia?.instagram}`}
+                            >
+                              <IconInstagram />
+                            </a>
+                          )}
+                          {user.socialMedia?.facebook && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://www.facebook.com/${user.socialMedia?.facebook}`}
+                            >
+                              <IconFacebook />
+                            </a>
+                          )}
+                          {user.socialMedia?.whatsapp && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://wa.me/${user.socialMedia?.whatsapp}`}
+                            >
+                              <IconWhatsapp />
+                            </a>
+                          )}
+                          {user.socialMedia?.telegram && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://telegram.me/${user.socialMedia?.telegram}`}
+                            >
+                              <IconTelegram />
+                            </a>
+                          )}
                         </div>
-                        {user.socialMedia?.facebook}
                       </td>
                     </tr>
                   ))}
