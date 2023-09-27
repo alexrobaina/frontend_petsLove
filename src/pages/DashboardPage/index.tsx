@@ -19,7 +19,7 @@ export const DashboardPage: FC = () => {
       </header>
       <div>
         <BaseButton
-          type="primary"
+          style="primary"
           text="Open Modal"
           onClick={() =>
             openModal({
@@ -31,7 +31,7 @@ export const DashboardPage: FC = () => {
           }
         />
         <BaseButton
-          type="primary"
+          style="primary"
           text="Open Slider"
           onClick={() =>
             openSlider({
