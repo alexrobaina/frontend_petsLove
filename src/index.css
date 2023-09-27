@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.swiper-button-prev::after {
+  width: 10px !important;
+    left: 30;
+    color: rgb(244, 242, 242);
+  }
+
+  .swiper-button-next::after {
+    right: 30;
+    color: rgb(244, 242, 242);
+  }
+
+/*
+  .swiper-slide {
+    cursor: pointer;
+    border: 1px solid #dddbdb;
+
+    &-thumb-active {
+      border-color: #ff02f2;
+    }
+  } */

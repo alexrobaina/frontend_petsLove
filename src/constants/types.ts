@@ -19,3 +19,19 @@ export type PetCardType = {
   images: string[]
   goToProfile: (id: string) => void
 }
+
+export type PetDetail = {
+  id: string
+  age: string
+  name: string
+  type: string
+  breed: string
+  size: string
+  weight: boolean
+  location: {
+    city: string
+  }
+  gender: string
+  description: string
+  images: string[]
+}
