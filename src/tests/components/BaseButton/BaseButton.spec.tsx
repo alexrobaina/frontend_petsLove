@@ -1,5 +1,6 @@
 import { BaseButton } from '../../../components/BaseButton'
 import { render, screen, fireEvent } from '../../test-utils'
+import { expect, vi } from 'vitest'
 
 describe('BaseButton Component', () => {
   test('renders with default props', () => {
@@ -23,7 +24,7 @@ describe('BaseButton Component', () => {
   })
 
   test('fires onClick event', () => {
-    const handleClick = jest.fn()
+    const handleClick = vi.fn()
     render(<BaseButton text="Click me" onClick={handleClick} />)
     fireEvent.click(screen.getByText('Click me'))
     expect(handleClick).toHaveBeenCalledTimes(1)
