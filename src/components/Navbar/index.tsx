@@ -14,16 +14,15 @@ export const Navbar: FC<Props> = () => {
         <div className="md:pl-20 md:pr-20">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex items-center px-2 lg:px-0">
-              <div className="flex-shrink-0 text-primary-950">Pet's Love</div>
             </div>
             <div className="lg:ml-4 lg:block px-2">
               <div className="flex gap-4 items-center">
-                <div className="flex space-x-4">
                   <BaseButton
                     style="primary"
                     text="Adopt pets"
                     onClick={() => navigate('/adopt')}
                   />
+                <div className="flex space-x-4">
                 </div>
                 <div className="flex  space-x-4">
                   <BaseButton

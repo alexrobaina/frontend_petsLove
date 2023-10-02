@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Header } from '../../components/Header'
+import { Pagination } from '../../components/Pagination'
 import { PetList } from '../../components/PetList/Index'
 import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
 import { useGetPets } from '../../hooks/useGetPets'
@@ -50,6 +51,7 @@ export const AdoptionPetPage: FC = () => {
         <GoogleAutocomplete setLocation={handleChangeLocation} />
       </div>
       <PetList pets={data?.pets} isLoading={isLoading} />
+      <Pagination />
     </div>
   )
 }

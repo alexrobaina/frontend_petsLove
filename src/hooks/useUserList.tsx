@@ -2,9 +2,9 @@ import { useQuery } from 'react-query'
 
 import { getUsers } from '../api/user'
 
-const useUserList = (filterParams: { role?: string }) => {
-  const { data, error, isLoading } = useQuery(['users', filterParams], () =>
-    getUsers(filterParams),
+const useUserList = (filters: { role?: string , country?: string, city?: string, skip?: number, take?: number  }) => {
+  const { data, error, isLoading } = useQuery(['users', filters], () =>
+    getUsers(filters),
   )
 
   return { data, error, isLoading }
