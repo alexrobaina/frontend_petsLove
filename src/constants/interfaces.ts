@@ -12,3 +12,27 @@ export interface CustomPlaceResult {
     }[]
   }[]
 }
+
+export interface IAddressComponent {
+  long_name: string
+  short_name: string
+  types: string[]
+}
+
+export interface User {
+  id: string
+  username: string
+  email: string
+  image: string
+  location: {
+    country: string
+    city: string
+  }
+  role: string
+  socialMedia: {
+    facebook: string
+    instagram: string
+    telegram: string
+    whatsapp: string
+  }
+}
