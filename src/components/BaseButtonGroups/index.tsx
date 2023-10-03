@@ -11,8 +11,8 @@ interface Props {
 
 export const BaseButtonGroups: FC<Props> = ({
   group,
-  handleSelectButtonGroup,
   buttonSelected,
+  handleSelectButtonGroup,
 }) => {
   return (
     <span className="isolate inline-flex rounded-md shadow-sm">
@@ -21,14 +21,15 @@ export const BaseButtonGroups: FC<Props> = ({
         const isSelected = buttonSelected === item.path
         let classNames = `${
           isSelected
-            ? 'bg-primary-300 ring-primary-400 text-primary-900'
+            ? 'bg-primary-200 ring-primary-400 text-primary-900'
             : 'transparent'
-        }  relative inline-flex items-center px-3 py-2 text-sm font-semibold text-primary-900 ring-1 ring-inset ring-primary-400 hover:bg-primary-200 focus:z-10`
+        }  relative inline-flex items-center px-3 py-2 text-sm font-semibold text-primary-950 ring-1 ring-inset ring-primary-400 hover:bg-primary-200 focus:z-10`
 
         // Modify class names based on position within array
         if (index === 0) {
           classNames += ' rounded-l-md'
-        } else if (index === group.length - 1) {
+        }
+        if (index === group.length - 1) {
           classNames += ' -ml-px rounded-r-md'
         } else {
           classNames += ' -ml-px'

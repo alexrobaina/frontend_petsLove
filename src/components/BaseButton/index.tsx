@@ -10,6 +10,7 @@ interface Props {
   className?: string
   icon?: ReactElement
   isLoading?: boolean
+  isDisabled?: boolean
   backgroundColor?: string
   size?: 'small' | 'medium' | 'large'
   onClick?: MouseEventHandler<HTMLButtonElement>
@@ -23,6 +24,7 @@ export const BaseButton: FC<Props> = ({
   wFull,
   isLoading,
   className,
+  isDisabled,
   size = 'small',
   backgroundColor,
   type = 'button',
@@ -40,6 +42,7 @@ export const BaseButton: FC<Props> = ({
     <button
       type={type}
       onClick={onClick}
+      disabled={isDisabled}
       style={{ backgroundColor }}
       className={` ${wFull && 'w-full'}  ${
         className && 'className'
@@ -48,7 +51,12 @@ export const BaseButton: FC<Props> = ({
       )} flex gap-3 items-center justify-center  ${
         shouldDisplayOnlyIcon(text, icon) &&
         'w-[30px] h-[30px] md:w-[36px] md:h-[36px] py-0 px-0'
-      }`}
+      }
+      ${
+        isDisabled && 
+        'bg-gray-300 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
+      }
+      `}
     >
       {isLoading && <Loader />}
       {icon && <div>{icon}</div>}

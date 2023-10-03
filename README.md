@@ -1,6 +1,6 @@
 # Pet's Love API
 
-- [Pet's love API - Backend](https://github.com/alexrobaina/api-pets-love)
+- [API - Backend](https://github.com/alexrobaina/api-pets-love)
 
 # React + TypeScript + Vite
 

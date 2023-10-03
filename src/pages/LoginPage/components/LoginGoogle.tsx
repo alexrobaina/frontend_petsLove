@@ -34,7 +34,7 @@ export const LoginGoogle: FC = () => {
       />
       <div className="z-10 flex min-h-full flex-col justify-center py-8 sm:px-6 lg:px-8">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[480px]">
-          <div className="bg-primary-100 shadow-2xl sm:rounded-lg p-8 sm:px-12 w-[400px]">
+          <div className="bg-primary-300 shadow-2xl sm:rounded-lg p-8 sm:px-12 w-[400px]">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
               <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-primary-900">
                 Pet's Love
@@ -63,7 +63,7 @@ export const LoginGoogle: FC = () => {
                     handleChange={handleChangeEmail}
                   />
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 w-full">
                   <BaseButton wFull style="primary" text="Magic link" />
                 </div>
               </div>

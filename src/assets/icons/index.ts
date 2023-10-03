@@ -1,4 +1,6 @@
 import IconBack from './iconBack.svg'
+import IconChevronLeft from './iconChevronLeft.svg'
+import IconChevronRight from './iconChevronRight.svg'
 import IconClose from './iconClose.svg'
 import IconFacebook from './iconFacebook.svg'
 import IconGoogle from './iconGoogle.svg'
@@ -14,6 +16,8 @@ import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
 
 export {
+  IconChevronLeft,
+  IconChevronRight,
   IconTelegram,
   IconClose,
   IconInstagram,

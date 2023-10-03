@@ -2,10 +2,11 @@ import axios from 'axios'
 
 import { User } from '../pages/SettingsPage/constants'
 
-export const getUsers = async (filterParams: { role?: string }) => {
-  const response = await axios.get(`/api/v1/users?role=${filterParams.role}`, {
+export const getUsers = async (filter: { role?: string , country?: string, city?: string, skip?: number, take?: number  }) => {
+  const response = await axios.get(`/api/v1/users?role=${filter.role}&country=${filter.country}&city=${filter.city}&skip=${filter.skip}&take=${filter.take}`, {
     withCredentials: true,
   })
+  
   return response.data
 }
 
