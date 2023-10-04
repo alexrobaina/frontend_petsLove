@@ -60,7 +60,7 @@ describe('Card Component', () => {
     expect(document.querySelector('svg')).not.toBeInTheDocument()
   })
 
-  test('renders IconUser if image not provided', async () => {
+  test('renders IconUser if image not provided', () => {
     render(
       <ContactCard
         name="Jane"
@@ -79,7 +79,7 @@ describe('Card Component', () => {
     )
   })
 
-  test('renders IconUser if image is empty string', async () => {
+  test('renders IconUser if image is empty string', () => {
     render(
       <ContactCard
         name="Jane"
