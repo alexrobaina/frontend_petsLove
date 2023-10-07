@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import {
   IconFacebook,
   IconInstagram,
@@ -7,7 +5,7 @@ import {
   IconWhatsapp,
 } from '../../../../assets/icons'
 import midDog from '../../../../assets/images/mid-dog.png'
-import { Loader } from '../../../../components/Loader'
+import { BaseLoading } from '../../../../components/BaseLoading'
 import { Pagination } from '../../../../components/Pagination'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { User } from '../../../SettingsPage/constants'
@@ -26,7 +24,7 @@ interface Props {
   goToUserProfile: (id: string) => void
 }
 
-export const CommunityTable: FC<Props> = ({
+export const CommunityTable: React.FC<Props> = ({
   data,
   skip,
   take,
@@ -40,7 +38,10 @@ export const CommunityTable: FC<Props> = ({
     target.src = midDog
   }
 
-  const goToLink = (e, link: string) => {
+  const goToLink = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    link: string,
+  ) => {
     e.stopPropagation()
     window.open(link, '_blank')
   }
@@ -123,7 +124,12 @@ export const CommunityTable: FC<Props> = ({
                         {user.socialMedia?.instagram && (
                           <button
                             className="cursor:pointer"
-                            onClick={(e) =>
+                            onClick={(
+                              e: React.MouseEvent<
+                                HTMLButtonElement,
+                                MouseEvent
+                              >,
+                            ) =>
                               goToLink(
                                 e,
                                 `https://www.instagram.com/${user.socialMedia?.instagram}`,
@@ -136,7 +142,12 @@ export const CommunityTable: FC<Props> = ({
                         {user.socialMedia?.facebook && (
                           <button
                             className="cursor:pointer"
-                            onClick={(e) =>
+                            onClick={(
+                              e: React.MouseEvent<
+                                HTMLButtonElement,
+                                MouseEvent
+                              >,
+                            ) =>
                               goToLink(
                                 e,
                                 `https://www.facebook.com/${user.socialMedia?.facebook}`,
@@ -148,7 +159,12 @@ export const CommunityTable: FC<Props> = ({
                         )}
                         {user.socialMedia?.whatsapp && (
                           <button
-                            onClick={(e) =>
+                            onClick={(
+                              e: React.MouseEvent<
+                                HTMLButtonElement,
+                                MouseEvent
+                              >,
+                            ) =>
                               goToLink(
                                 e,
                                 `https://wa.me/${user.socialMedia?.whatsapp}`,
@@ -180,7 +196,7 @@ export const CommunityTable: FC<Props> = ({
             </table>
             {isLoading && (
               <div className="flex items-center  w-full justify-center p-8">
-                <Loader big />
+                <BaseLoading large />
               </div>
             )}
           </div>

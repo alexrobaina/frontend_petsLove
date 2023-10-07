@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
 interface Props {
-  big?: boolean
+  large?: boolean
 }
 
-export const Loader: FC<Props> = ({ big }) => {
-  const size = big ? 'w-8 h-8' : 'w-4 h-4'
+export const BaseLoading: FC<Props> = ({ large }) => {
+  const size = large ? 'w-8 h-8' : 'w-4 h-4'
 
   return (
     <div data-testid="loader" className="text-center flex justify-center">

@@ -61,7 +61,9 @@ export const useModal = () => {
         <Delete
           isOpen={isOpen}
           closeModal={closeModal}
+          title={modalProps.title}
           onSubmit={modalProps.onSubmit}
+          description={modalProps.description}
         />
       )
     }

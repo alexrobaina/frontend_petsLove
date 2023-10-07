@@ -1,6 +1,6 @@
 import { FC, MouseEventHandler, ReactElement } from 'react'
 
-import { Loader } from '../Loader'
+import { BaseLoading } from '../BaseLoading'
 
 import { setSize, setType } from './utils'
 
@@ -53,12 +53,12 @@ export const BaseButton: FC<Props> = ({
         'w-[30px] h-[30px] md:w-[36px] md:h-[36px] py-0 px-0'
       }
       ${
-        isDisabled && 
+        isDisabled &&
         'bg-gray-300 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
       }
       `}
     >
-      {isLoading && <Loader />}
+      {isLoading && <BaseLoading />}
       {icon && <div>{icon}</div>}
       {text && text}
     </button>

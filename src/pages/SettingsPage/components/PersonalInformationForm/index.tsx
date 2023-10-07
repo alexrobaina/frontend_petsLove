@@ -39,7 +39,8 @@ export const PersonalInformationForm: FC<Props> = ({
   }
 
   const handleChangeLocation = (result: LocationResult) => {
-    const addressComponents: IAddressComponent[] = result.results[0].address_components;
+    const addressComponents: IAddressComponent[] =
+      result.results[0].address_components
 
     addressComponents.forEach((component: IAddressComponent) => {
       if (component.types.includes('locality')) {
@@ -49,7 +50,10 @@ export const PersonalInformationForm: FC<Props> = ({
         setFieldValue('location.country', component.long_name || '')
       }
 
-      setFieldValue('location.address', result?.results[0]?.formatted_address || '')
+      setFieldValue(
+        'location.address',
+        result?.results[0]?.formatted_address || '',
+      )
       setFieldValue('location.lng', result?.latLng?.lat)
       setFieldValue('location.lat', result?.latLng?.lng)
     })
@@ -71,6 +75,13 @@ export const PersonalInformationForm: FC<Props> = ({
     { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
   ]
 
+  const isGoogleAvatar =
+    user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
+
+  const showIamge = isGoogleAvatar
+    ? user?.image
+    : `${BUCKET_AVATAR_USER}${user?.image}`
+
   return (
     <div className="divide-y mt-20 divide-white/5">
       <div className="flex pr-5 md:pr-12 gap-10">
@@ -87,11 +98,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full flex items-center gap-x-8">
               <img
                 alt="user image"
-                src={
-                  previewURL
-                    ? previewURL
-                    : `${BUCKET_AVATAR_USER}${user?.image}`
-                }
+                src={previewURL ? previewURL : showIamge}
                 className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
               />
               <div>

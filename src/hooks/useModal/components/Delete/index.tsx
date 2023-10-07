@@ -56,13 +56,15 @@ export const Delete: FC<Props> = ({
                 )}
                 <div className="mt-3 sm:ml-4 sm:mt-0 sm:text-left">
                   <h3
-                    className="text-base font-semibold leading-6 text-gray-900"
+                    className="text-base font-semibold mt-2 leading-6 text-gray-900"
                     id="modal-title"
                   >
                     {title}
                   </h3>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">{description}</p>
+                    <p className="text-sm text-gray-500 pt-4 pb-2">
+                      {description}
+                    </p>
                   </div>
                 </div>
               </div>

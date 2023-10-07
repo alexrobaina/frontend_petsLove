@@ -15,7 +15,7 @@ export const BaseButtonGroups: FC<Props> = ({
   handleSelectButtonGroup,
 }) => {
   return (
-    <span className="isolate inline-flex rounded-md shadow-sm">
+    <span className="isolate inline-flex rounded-md">
       {group.map((item, index) => {
         // Initialize class names common to all buttons
         const isSelected = buttonSelected === item.path

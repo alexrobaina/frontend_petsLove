@@ -14,11 +14,11 @@ export const AdoptionPetPage: FC = () => {
     gender: '',
     country: '',
     address: '',
-    typePet: '',
+    category: '',
   })
-  const { data, isLoading } = useGetPets()
-  const [typePet, setTypePet] = useState('')
+  const [category, setCategory] = useState('')
   const [gender, setGender] = useState('')
+  const { data, isLoading } = useGetPets()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChangeLocation = (result: any) => {
@@ -37,8 +37,8 @@ export const AdoptionPetPage: FC = () => {
         <div className="flex items-center gap-4">
           <BaseButtonGroups
             group={TYPE_OF_PETS}
-            buttonSelected={typePet}
-            handleSelectButtonGroup={setTypePet}
+            buttonSelected={category}
+            handleSelectButtonGroup={setCategory}
           />
           <BaseButtonGroups
             group={GENDER}
