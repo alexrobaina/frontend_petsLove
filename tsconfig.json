@@ -4,11 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "types": [
       "cypress",
-      "jest",
+      "vitest/globals",
       "@testing-library/jest-dom",
       "@svgx/vite-plugin-react",
       "@testing-library/react",
@@ -29,13 +28,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src",
-    "tests",
-    "jest.config.ts",
-    "jest.setup.ts",
-    "cypress.config.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src", "tests", "cypress.config.ts", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

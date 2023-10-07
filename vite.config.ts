@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import path from 'path'
 
 import react from '@vitejs/plugin-react-swc'
@@ -7,12 +10,13 @@ const projectRoot = path.resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    svgr({
-      exportAsDefault: true,
-    }),
-  ],
+  plugins: [react(), svgr({ exportAsDefault: true })],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: [path.resolve(projectRoot, 'src/tests/setup.ts')],
+    css: true,
+  },
   define: {
     global: 'window',
   },
