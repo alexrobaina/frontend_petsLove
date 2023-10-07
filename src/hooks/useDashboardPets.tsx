@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 
-import { getPets } from '../api/pet'
+import { getDashboardPets } from '../api/pet'
 
-export const useGetPets = ({
+export const useDashboardPets = ({
   page,
   gender,
   adopted,
@@ -17,7 +17,7 @@ export const useGetPets = ({
 }) => {
   const { data, error, isLoading } = useQuery(
     ['pets', category, gender, adopted, searchByName, page],
-    () => getPets({ category, gender, adopted, searchByName, page }),
+    () => getDashboardPets({ category, gender, adopted, searchByName, page }),
   )
 
   return { data, error, isLoading }

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
@@ -9,6 +9,21 @@ import { IAddressComponent } from '../../constants/interfaces'
 import useUserList from '../../hooks/useUserList'
 
 import { CommunityTable } from './components/CommunityTable'
+
+interface IResults {
+  results: {
+    formatted_address: string
+    address_components: {
+      long_name: string
+      short_name: string
+      types: string[]
+    }[]
+  }[]
+  latLng: {
+    lat: number
+    lng: number
+  }
+}
 
 export const CommunityPage: FC = () => {
   const navigation = useNavigate()
@@ -29,20 +44,7 @@ export const CommunityPage: FC = () => {
     navigation(`/user/${id}`)
   }
 
-  const handleChangeLocation = (result: {
-    results: {
-      formatted_address: string
-      address_components: {
-        long_name: string
-        short_name: string
-        types: string[]
-      }[]
-    }[]
-    latLng: {
-      lat: number
-      lng: number
-    }
-  }) => {
+  const handleChangeLocation = (result: IResults) => {
     const addressComponents: IAddressComponent[] =
       result.results[0].address_components
 
@@ -55,6 +57,10 @@ export const CommunityPage: FC = () => {
       }
     })
   }
+
+  useEffect(() => {
+    setSkip(1)
+  }, [role, country, city])
 
   if (error) {
     return <div>Error</div>

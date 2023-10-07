@@ -10,7 +10,9 @@
       "cypress",
       "jest",
       "@testing-library/jest-dom",
-      "@testing-library/react"
+      "@svgx/vite-plugin-react",
+      "@testing-library/react",
+      "vite/client"
     ],
 
     /* Bundler mode */

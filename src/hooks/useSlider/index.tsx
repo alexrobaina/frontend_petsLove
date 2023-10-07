@@ -1,6 +1,9 @@
+import { motion } from 'framer-motion'
 import { useState, ReactNode, useEffect } from 'react'
 
 import { BaseButton } from '../../components/BaseButton'
+import FadeIn from '../../components/FadeIn'
+import { SLIDER_VARIANTS } from '../../constants/animations'
 
 export interface ModalProps {
   title?: string
@@ -47,17 +50,25 @@ export const useSlider = () => {
   const Slider = () => {
     return (
       <>
-        <div
-          onClick={closeSlider}
-          className={`${
-            isOpen
-              ? 'fixed bg-black opacity-40 top-0 left-0 w-screen h-screen transition-opacity duration-1'
-              : ''
-          }`}
-        />
-        {isOpen && (
+        <FadeIn>
           <div
-            className={`fixed right-0 w-[60%] bg-primary-50 h-full top-0 transform transition-transform duration-500`}
+            onClick={closeSlider}
+            className={`${
+              isOpen
+                ? 'fixed bg-black opacity-40 top-0 left-0 w-screen h-screen transition-opacity duration-1'
+                : ''
+            }`}
+          />
+        </FadeIn>
+        {isOpen && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            className={`fixed right-0 w-[60%] bg-primary-50 h-full top-0 transform ${
+              isOpen ? 'translate-x-0' : 'translate-x-full'
+            } t`}
+            variants={SLIDER_VARIANTS}
+            transition={{ ease: 'easeOut', delay: 0.1 }}
           >
             <div className="p-5">
               <h1 className="text-xl font-semibold ">{modalProps.title}</h1>
@@ -71,7 +82,7 @@ export const useSlider = () => {
               />
               <BaseButton text="save" style="primary" onClick={closeSlider} />
             </div>
-          </div>
+          </motion.div>
         )}
       </>
     )

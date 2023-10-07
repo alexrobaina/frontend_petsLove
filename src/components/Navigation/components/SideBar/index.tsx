@@ -48,6 +48,14 @@ export const SideBar: FC<Props> = ({
     { to: '/settings', text: 'Settings', icon: <IconSettings /> },
   ]
 
+  const isGoogleAvatar =
+    context?.user?.image &&
+    context?.user?.image.includes('googleusercontent' || 'ggpht')
+
+  const showIamge = isGoogleAvatar
+    ? context?.user?.image
+    : `${BUCKET_AVATAR_USER}${context?.user?.image}`
+
   return (
     <div className="flex relative overflow-hidden">
       {/* Fixed Sidebar */}
@@ -84,7 +92,7 @@ export const SideBar: FC<Props> = ({
               <img
                 alt="profile"
                 src={
-                  `${BUCKET_AVATAR_USER}${context?.user?.image}` ||
+                  showIamge ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
                 className="w-[42px] h-[42px] rounded-full"

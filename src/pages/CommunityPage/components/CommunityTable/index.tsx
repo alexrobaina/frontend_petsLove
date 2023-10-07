@@ -5,7 +5,7 @@ import {
   IconWhatsapp,
 } from '../../../../assets/icons'
 import midDog from '../../../../assets/images/mid-dog.png'
-import { Loader } from '../../../../components/Loader'
+import { BaseLoading } from '../../../../components/BaseLoading'
 import { Pagination } from '../../../../components/Pagination'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { User } from '../../../SettingsPage/constants'
@@ -196,7 +196,7 @@ export const CommunityTable: React.FC<Props> = ({
             </table>
             {isLoading && (
               <div className="flex items-center  w-full justify-center p-8">
-                <Loader big />
+                <BaseLoading large />
               </div>
             )}
           </div>

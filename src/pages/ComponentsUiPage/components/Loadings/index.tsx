@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Loader } from '../../../../components/Loader'
+import { BaseLoading } from '../../../../components/BaseLoading'
 
 export const Loadings: FC = () => (
   <>
@@ -8,8 +8,8 @@ export const Loadings: FC = () => (
     <div className="flex flex-col gap-2 mt-5 flex-wrap">
       <h1>Loadings</h1>
       <div className="flex gap-5">
-        <Loader />
-        <Loader big />
+        <BaseLoading />
+        <BaseLoading large />
       </div>
     </div>
   </>

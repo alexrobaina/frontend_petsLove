@@ -7,7 +7,12 @@ const projectRoot = path.resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr({ exportAsDefault: true })],
+  plugins: [
+    react(),
+    svgr({
+      exportAsDefault: true,
+    }),
+  ],
   define: {
     global: 'window',
   },
