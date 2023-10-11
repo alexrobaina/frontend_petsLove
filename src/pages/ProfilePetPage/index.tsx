@@ -1,14 +1,16 @@
 import { FC } from 'react'
-import { Header } from '../../components/Header'
 import { useParams } from 'react-router-dom'
-import { useGetPet } from '../../hooks/useGetPet'
-import { PetDetail } from '../../constants/types'
+
+import { IconLocation } from '../../assets/icons'
+import { BaseLoading } from '../../components/BaseLoading'
+import { Header } from '../../components/Header'
 import SwiperGallery from '../../components/SwiperGallery'
-import { Loader } from '../../components/Loader'
+import { PetDetail } from '../../constants/types'
+import { useGetPet } from '../../hooks/useGetPet'
+
+import { petDetailMockup } from './components/PetDetailmockup'
 import { PetDetailData } from './components/PetdDetailData'
 import { Vaccines } from './components/Vaccines'
-import { IconLocation } from '../../assets/icons'
-import { petDetailMockup } from './components/PetDetailmockup'
 
 export const ProfilePetPage: FC = () => {
   const { id } = useParams()
@@ -71,7 +73,7 @@ export const ProfilePetPage: FC = () => {
 
             {isLoading && (
               <div className="flex items-center w-full justify-center p-8">
-                <Loader big />
+                <BaseLoading large />
               </div>
             )}
           </section>
