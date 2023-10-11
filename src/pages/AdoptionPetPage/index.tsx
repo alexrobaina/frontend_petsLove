@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 
+import { BaseButton } from '../../components/BaseButton'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Header } from '../../components/Header'
@@ -16,9 +17,20 @@ export const AdoptionPetPage: FC = () => {
     address: '',
     category: '',
   })
-  const [category, setCategory] = useState('')
+  const [page, setPage] = useState(1)
   const [gender, setGender] = useState('')
-  const { data, isLoading } = useGetPets()
+  const [category, setCategory] = useState('')
+  const { data, isLoading } = useGetPets({
+    page,
+    gender,
+    category,
+    adopted: false,
+  })
+
+  const handeResetFilters = () => {
+    setGender('')
+    setCategory('')
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChangeLocation = (result: any) => {
@@ -35,6 +47,11 @@ export const AdoptionPetPage: FC = () => {
       <header className="flex justify-between flex-col md:flex-row gap-6">
         <Header title="Search pet for Adoption" />
         <div className="flex items-center gap-4">
+          <BaseButton
+            style="secondary"
+            text="Reset filters"
+            onClick={handeResetFilters}
+          />
           <BaseButtonGroups
             group={TYPE_OF_PETS}
             buttonSelected={category}
@@ -51,7 +68,7 @@ export const AdoptionPetPage: FC = () => {
         <GoogleAutocomplete setLocation={handleChangeLocation} />
       </div>
       <PetList pets={data?.pets} isLoading={isLoading} />
-      <Pagination />
+      <Pagination page={page} setPage={setPage} take={10} total={data?.total} />
     </div>
   )
 }

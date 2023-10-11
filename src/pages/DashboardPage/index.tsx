@@ -1,12 +1,14 @@
-import { FC, useState } from 'react'
+import { useFormik } from 'formik'
+import { FC, useCallback, useState } from 'react'
 
 import { BaseButton } from '../../components/BaseButton'
 import { BaseLoading } from '../../components/BaseLoading'
+import { SliderModal } from '../../components/SliderModal'
 import { useDashboardPets } from '../../hooks/useDashboardPets'
 import { useDeletePet } from '../../hooks/useDeletePet'
 import { useModal } from '../../hooks/useModal'
-import { useSlider } from '../../hooks/useSlider'
 
+import { CreatePetForm } from './components/CreatePetForm'
 import { DashboardHeader } from './components/DashboardHeader'
 import { DashboardTable } from './components/DashboardTable/DashboardTable'
 
@@ -18,6 +20,9 @@ export const DashboardPage: FC = () => {
   const [searchByName, setSearchByName] = useState('')
   const { handleDeletePet, isLoading: deletePetLoading } = useDeletePet()
 
+  const { openModal, Modal } = useModal()
+  const [isOpenModalCreation, setOpenModalCreation] = useState(false)
+
   const { data, isLoading } = useDashboardPets({
     page,
     gender,
@@ -25,6 +30,28 @@ export const DashboardPage: FC = () => {
     searchByName,
     adopted: isAdopted === 'adopted' ? true : false,
   })
+
+  const formik = useFormik({
+    initialValues: {
+      age: '',
+      name: '',
+      units: '',
+      gender: '',
+      weight: '',
+      size: '',
+      breed: '',
+      description: '',
+      veterinaryId: '',
+      shelterId: '',
+      adopterId: '',
+      category: '',
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2))
+    },
+  })
+
+  const { values, handleChange, setFieldValue, errors, submitForm } = formik
 
   const resetFilters = () => {
     setIsAdopted('')
@@ -37,9 +64,6 @@ export const DashboardPage: FC = () => {
     setSearchByName(e.target.value)
   }
 
-  const { openModal, Modal } = useModal()
-  const { openSlider, Slider } = useSlider()
-
   const handleEdit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string,
@@ -47,12 +71,25 @@ export const DashboardPage: FC = () => {
     e.stopPropagation()
     console.log('edit', id)
 
-    openSlider({
-      styles: '',
-      title: 'Edit Pet',
-      onSubmit: () => alert(1),
-      children: <div>Slider Content</div>,
-    })
+    // openSlider({
+    //   styles: '',
+    //   title: 'Edit Pet',
+    //   onSubmit: onSubmit,
+    //   // children: <CreatePetForm />,
+    // })
+  }
+
+  const handleCreatePet = useCallback(async () => {
+    console.log('create')
+    setOpenModalCreation(true)
+    // openSlider({
+    //   styles: '',
+    //   title: 'Edit Pet',
+    //   onSubmit: onSubmit,
+    // })
+  }, [])
+  const closeSlider = () => {
+    setOpenModalCreation(false)
   }
 
   const handleDelete = async (
@@ -67,15 +104,6 @@ export const DashboardPage: FC = () => {
       title: 'Delete Pet',
       onSubmit: () => handleDeletePet(petId, userRole),
       description: 'Are you sure you want to delete this pet?',
-    })
-  }
-
-  const handleCreatePet = async () => {
-    openSlider({
-      styles: '',
-      title: 'Modal Slider',
-      onSubmit: () => alert(1),
-      children: <div>Slider Content</div>,
     })
   }
 
@@ -125,7 +153,18 @@ export const DashboardPage: FC = () => {
         </div>
       )}
       <Modal />
-      <Slider />
+      <SliderModal
+        onSubmit={submitForm}
+        closeSlider={closeSlider}
+        isOpen={isOpenModalCreation}
+      >
+        <CreatePetForm
+          values={values}
+          errors={errors}
+          handleChange={handleChange}
+          setFieldValue={setFieldValue}
+        />
+      </SliderModal>
     </>
   )
 }

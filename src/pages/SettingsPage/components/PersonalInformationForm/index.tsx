@@ -166,7 +166,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full">
               <BaseInput
                 isdisabled
-                value={user.email}
+                value={user?.email}
                 label="Email address"
                 placeholder="Email address"
               />

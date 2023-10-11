@@ -18,7 +18,7 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
   }
 
   return (
-    <div className="flex mt-10 flex-wrap w-full justify-between gap-5">
+    <div className="flex mt-10 flex-wrap gap-5 justify-center w-full">
       {isLoading && (
         <div className="flex items-center justify-center w-full mt-32">
           <BaseLoading large />
