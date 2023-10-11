@@ -33,6 +33,7 @@ export type PetDetail = {
   size: string
   location: {
     city: string
+    country: string
   }
   age: string
   createdAt: Date
@@ -40,8 +41,8 @@ export type PetDetail = {
   adoptedBy: string
   Adopter: string
   Shelter: string
-  vaccines: {
-    id: String
+  PetVaccine: {
+    id: string
     name: string
     description: string
     vaccinesStatus: boolean
@@ -52,20 +53,20 @@ export type PetDetail = {
 
   PetsCaredByVolunteer: string
   MedicalRecord: {
-    id: String
-    petId: String
-    Pet: String
+    id: string
+    petId: string
+    Pet: string
     date: Date
-    description: String
-    diagnosis: String
-    treatment: String
-    medications: String[]
-    followUpRequired: Boolean
+    description: string
+    diagnosis: string
+    treatment: string
+    medications: string[]
+    followUpRequired: boolean
     followUpDate: Date
-    veterinarian: String
-    clinicName: String
-    notes: String
-    attachments: String[]
+    veterinarian: string
+    clinicName: string
+    notes: string
+    attachments: string[]
     createdAt: Date
     updatedAt: Date
   }
