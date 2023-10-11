@@ -2,9 +2,9 @@ import { useFormik } from 'formik'
 import { action } from 'mobx'
 import { FC, useContext, useEffect, useState } from 'react'
 
+import { BaseLoading } from '../../components/BaseLoading'
 import FadeIn from '../../components/FadeIn'
 import { Header } from '../../components/Header'
-import { Loader } from '../../components/Loader'
 import { useUser } from '../../hooks/useUser'
 import { useUserUpdate } from '../../hooks/useUserUpdate'
 import { AppContext, AppContextProps, User } from '../../services/AppContext'
@@ -65,7 +65,7 @@ export const SettingsPage: FC = () => {
   if (isLoading || isLoadingUpdate) {
     return (
       <div className="mt-[20%]">
-        <Loader big />
+        <BaseLoading large />
       </div>
     )
   }

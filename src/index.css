@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .swiper-button-prev::after {
   left: 30;
   color: #d6f1e9;
@@ -37,3 +35,8 @@
       border-color: #ff02f2;
     }
   } */
+=======
+html body {
+  height: 100vh;
+}
+

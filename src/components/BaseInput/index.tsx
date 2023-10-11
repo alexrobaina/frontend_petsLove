@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, ReactElement } from 'react'
 
+import './baseInput.css'
 interface Props {
   name?: string
   type?: string
@@ -36,7 +37,6 @@ export const BaseInput: FC<Props> = (
         </label>
       )}
       <input
-        id="email"
         {...props}
         type={type}
         name={name}
@@ -47,17 +47,19 @@ export const BaseInput: FC<Props> = (
         className={`${
           error && 'ring-red-500'
         } block w-full rounded-md border-0 py-1.5 text-primary-900 shadow-sm ring-1 ring-inset ring-primary-400 outline-none
-                 placeholder:text-neutral-400 focus:ring-primary-300 sm:text-sm sm:leading-6 pl-4`}
+               ${
+                 iconLeft && 'pl-9'
+               }  placeholder:text-neutral-400 focus:ring-primary-300 sm:text-sm sm:leading-6 pl-4`}
       />
-      {iconLeft && <div>{iconLeft}</div>}
-      {iconRigth && <div>{iconRigth}</div>}
+      {iconLeft && <div className="icon absolute -mt-7 ml-2.5">{iconLeft}</div>}
+      {iconRigth && <div className="icon absolute">{iconRigth}</div>}
       {error && (
         <div className="pointer-events-none absolute right-0 top-8 flex items-center pr-3">
           <svg
-            className="h-5 w-5 text-red-500"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
+            className="h-5 w-5 text-red-500"
           >
             <path
               fill-rule="evenodd"

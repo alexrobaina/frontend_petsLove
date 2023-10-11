@@ -7,6 +7,7 @@ import { BaseSelect } from '../../../../components/BaseSelect'
 import GoogleAutocomplete from '../../../../components/GoogleAutocomplete'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { ROLES } from '../../../../constants/community'
+import { IAddressComponent } from '../../../../constants/interfaces'
 import { User } from '../../constants'
 
 interface Props {
@@ -26,34 +27,36 @@ export const PersonalInformationForm: FC<Props> = ({
 }) => {
   const [previewURL, setPreviewURL] = useState('')
 
-  const handleChangeLocation = (result: {
+  interface LocationResult {
     results: {
       formatted_address: string
-      address_components: {
-        long_name: string
-        short_name: string
-        types: string[]
-      }[]
+      address_components: IAddressComponent[]
     }[]
     latLng: {
       lat: number
       lng: number
     }
-  }) => {
-    setFieldValue(
-      'location.address',
-      result?.results[0]?.formatted_address || '',
-    )
-    setFieldValue(
-      'location.country',
-      result?.results[0]?.address_components[3].long_name || '',
-    )
-    setFieldValue(
-      'location.city',
-      result?.results[0]?.address_components[1].long_name || '',
-    )
-    setFieldValue('location.lng', result?.latLng?.lat)
-    setFieldValue('location.lat', result?.latLng?.lng)
+  }
+
+  const handleChangeLocation = (result: LocationResult) => {
+    const addressComponents: IAddressComponent[] =
+      result.results[0].address_components
+
+    addressComponents.forEach((component: IAddressComponent) => {
+      if (component.types.includes('locality')) {
+        setFieldValue('location.city', component.long_name || '')
+      }
+      if (component.types.includes('country')) {
+        setFieldValue('location.country', component.long_name || '')
+      }
+
+      setFieldValue(
+        'location.address',
+        result?.results[0]?.formatted_address || '',
+      )
+      setFieldValue('location.lng', result?.latLng?.lat)
+      setFieldValue('location.lat', result?.latLng?.lng)
+    })
   }
 
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,6 +75,13 @@ export const PersonalInformationForm: FC<Props> = ({
     { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
   ]
 
+  const isGoogleAvatar =
+    user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
+
+  const showIamge = isGoogleAvatar
+    ? user?.image
+    : `${BUCKET_AVATAR_USER}${user?.image}`
+
   return (
     <div className="divide-y mt-20 divide-white/5">
       <div className="flex pr-5 md:pr-12 gap-10">
@@ -88,11 +98,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full flex items-center gap-x-8">
               <img
                 alt="user image"
-                src={
-                  previewURL
-                    ? previewURL
-                    : `${BUCKET_AVATAR_USER}${user?.image}`
-                }
+                src={previewURL ? previewURL : showIamge}
                 className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
               />
               <div>
@@ -149,6 +155,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="sm:col-span-3">
               <BaseSelect
                 name="role"
+                isDisabled
                 label="Role"
                 options={options}
                 error={errors?.role}
@@ -159,7 +166,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full">
               <BaseInput
                 isdisabled
-                value={user.email}
+                value={user?.email}
                 label="Email address"
                 placeholder="Email address"
               />

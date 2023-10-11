@@ -13,6 +13,7 @@ interface Props {
   label?: string
   error?: string
   options: Option[]
+  isDisabled?: boolean
   isMulti?: boolean | false
   setFieldValue: (field: string, value: string) => void
 }
@@ -22,9 +23,16 @@ export const BaseSelect: FC<Props> = ({
   value,
   label,
   options,
+  isDisabled,
   setFieldValue,
 }) => {
   const customStyles: StylesConfig<Option, false> = {
+    menu: (provided: CSSObject) => ({
+      ...provided,
+      position: 'absolute',
+      backgroundColor: 'white',
+      zIndex: 1000, // also ensuring z-index here as a safety
+    }),
     control: (provided: CSSObject) => ({
       ...provided,
       boxShadow: 'none',
@@ -44,8 +52,9 @@ export const BaseSelect: FC<Props> = ({
 
   const setValues = (options: Option[], value: string) =>
     options.find((option: Option) => option.value === value)
+
   return (
-    <div className="items-center ">
+    <div className="items-center">
       {label && (
         <label className="block text-sm font-medium leading-6 text-primary-950">
           {label}
@@ -54,6 +63,7 @@ export const BaseSelect: FC<Props> = ({
       <Select
         isSearchable
         options={options}
+        isDisabled={isDisabled}
         styles={customStyles}
         value={setValues(options, value)}
         onChange={(option) =>

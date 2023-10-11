@@ -12,10 +12,12 @@ const MODAL_TYPE = {
 export interface ModalProps {
   title?: string
   styles?: string
+  isDisabled?: boolean
   description?: string
   children?: ReactNode
   onClose?: () => void
   onSubmit: () => void
+  canClose?: boolean // default true
   type?: 'delete' | 'save' | 'alert'
 }
 
@@ -59,7 +61,9 @@ export const useModal = () => {
         <Delete
           isOpen={isOpen}
           closeModal={closeModal}
+          title={modalProps.title}
           onSubmit={modalProps.onSubmit}
+          description={modalProps.description}
         />
       )
     }
@@ -72,6 +76,8 @@ export const useModal = () => {
         children={modalProps.children}
         onSubmit={modalProps.onSubmit}
         description={modalProps.description}
+        canClose={modalProps.canClose}
+        isDisabled={modalProps.isDisabled || false}
       />
     )
   }

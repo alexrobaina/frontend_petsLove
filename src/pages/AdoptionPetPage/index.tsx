@@ -1,8 +1,10 @@
 import { FC, useState } from 'react'
 
+import { BaseButton } from '../../components/BaseButton'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
 import { Header } from '../../components/Header'
+import { Pagination } from '../../components/Pagination'
 import { PetList } from '../../components/PetList/Index'
 import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
 import { useGetPets } from '../../hooks/useGetPets'
@@ -13,11 +15,22 @@ export const AdoptionPetPage: FC = () => {
     gender: '',
     country: '',
     address: '',
-    typePet: '',
+    category: '',
   })
-  const { data, isLoading } = useGetPets()
-  const [typePet, setTypePet] = useState('')
+  const [page, setPage] = useState(1)
   const [gender, setGender] = useState('')
+  const [category, setCategory] = useState('')
+  const { data, isLoading } = useGetPets({
+    page,
+    gender,
+    category,
+    adopted: false,
+  })
+
+  const handeResetFilters = () => {
+    setGender('')
+    setCategory('')
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChangeLocation = (result: any) => {
@@ -34,10 +47,15 @@ export const AdoptionPetPage: FC = () => {
       <header className="flex justify-between flex-col md:flex-row gap-6">
         <Header title="Search pet for Adoption" />
         <div className="flex items-center gap-4">
+          <BaseButton
+            style="secondary"
+            text="Reset filters"
+            onClick={handeResetFilters}
+          />
           <BaseButtonGroups
             group={TYPE_OF_PETS}
-            buttonSelected={typePet}
-            handleSelectButtonGroup={setTypePet}
+            buttonSelected={category}
+            handleSelectButtonGroup={setCategory}
           />
           <BaseButtonGroups
             group={GENDER}
@@ -50,6 +68,7 @@ export const AdoptionPetPage: FC = () => {
         <GoogleAutocomplete setLocation={handleChangeLocation} />
       </div>
       <PetList pets={data?.pets} isLoading={isLoading} />
+      <Pagination page={page} setPage={setPage} take={10} total={data?.total} />
     </div>
   )
 }
