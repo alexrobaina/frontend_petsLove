@@ -37,10 +37,11 @@ export const getDashboardPets = async ({
 }
 
 export const getPet = async (id: string) => {
-  const response = await axios.get(`/api/v1/pets?id=${id}`, {
+  const response = await axios.get(`/api/v1/pet?id=${id}`, {
     withCredentials: true,
   })
-  return response.data.pets
+
+  return response.data
 }
 
 export const deletePet = async (petId: string, userRole: string) => {
