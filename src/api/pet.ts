@@ -5,16 +5,14 @@ export const getPets = async ({
   gender,
   adopted,
   category,
-  searchByName,
 }: {
   page?: number
   gender?: string
   category?: string
   adopted?: boolean
-  searchByName?: string
 }) => {
   const response = await axios.get(
-    `/api/v1/pets?category=${category}&adopted=${adopted}&gender=${gender}&searchByName=${searchByName}&page=${page}`,
+    `/api/v1/pets?category=${category}&adopted=${adopted}&gender=${gender}&page=${page}`,
   )
   return response.data
 }

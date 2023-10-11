@@ -1,5 +1,6 @@
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './src/**/*.html'],
+  mode: 'jit',
   theme: {
     extend: {
       backgroundImage: {
@@ -24,4 +25,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

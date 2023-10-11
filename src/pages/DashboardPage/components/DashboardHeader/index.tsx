@@ -30,13 +30,15 @@ export const DashboardHeader: React.FC<Props> = ({
     <header className="flex md:flex-row md:justify-between flex-col gap-5">
       <Header title="Dashboard" />
       <div className="flex gap-5 flex-col md:flex-row">
-        <BaseButton
-          size="small"
-          type="button"
-          style="secondary"
-          text="Reset filters"
-          onClick={resetFilters}
-        />
+        <div className="z-10">
+          <BaseButton
+            size="small"
+            type="button"
+            style="secondary"
+            text="Reset filters"
+            onClick={resetFilters}
+          />
+        </div>
         <BaseButtonGroups
           buttonSelected={category}
           group={PET_CATEGORY_OPTIONS}

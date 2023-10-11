@@ -9,14 +9,14 @@ export const setType = (type: string) => {
     case 'delete':
       return 'inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
     default:
-      return 'bg-blue-500 hover:bg-blue-700 text-white'
+      return 'sm:w-auto w-full block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
   }
 }
 
 export const setSize = (size: string) => {
   switch (size) {
     case 'small':
-      return 'py-1 px-2 text-sm whitespace-nowrap truncate'
+      return 'py-2 px-4 text-base w-1/2 '
     case 'medium':
       return 'py-2 px-4 text-base'
     case 'large':

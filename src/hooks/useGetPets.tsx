@@ -7,17 +7,15 @@ export const useGetPets = ({
   gender,
   adopted,
   category,
-  searchByName,
 }: {
   page?: number
   gender?: string
   adopted?: boolean
   category?: string
-  searchByName?: string
 }) => {
   const { data, error, isLoading } = useQuery(
-    ['pets', category, gender, adopted, searchByName, page],
-    () => getPets({ category, gender, adopted, searchByName, page }),
+    ['pets', category, gender, adopted, page],
+    () => getPets({ category, gender, adopted, page }),
   )
 
   return { data, error, isLoading }
