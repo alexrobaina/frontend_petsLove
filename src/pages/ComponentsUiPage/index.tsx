@@ -5,6 +5,8 @@ import { Header } from '../../components/Header'
 
 import { Buttons } from './components/Buttons'
 import { Loadings } from './components/Loadings'
+import { Modals } from './components/Modals'
+import { Selects } from './components/Selects'
 
 export const ComponentsUiPage: FC = () => {
   const [viewComponents, setViewComponents] = useState('buttons')
@@ -13,11 +15,13 @@ export const ComponentsUiPage: FC = () => {
     { name: 'Loadings', path: 'loadings' },
     { name: 'Badgets', path: 'badgets' },
     { name: 'Inputs', path: 'inputs' },
+    { name: 'Modals', path: 'modals' },
+    { name: 'Selects', path: 'selects' },
   ]
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex md:flex-row md:justify-between flex-col gap-5">
         <Header title="Components UI" />
         <BaseButtonGroups
           group={buttonGroupList}
@@ -26,7 +30,9 @@ export const ComponentsUiPage: FC = () => {
         />
       </div>
       {viewComponents === 'buttons' && <Buttons />}
+      {viewComponents === 'modals' && <Modals />}
       {viewComponents === 'loadings' && <Loadings />}
+      {viewComponents === 'selects' && <Selects />}
     </>
   )
 }

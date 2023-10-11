@@ -1,15 +1,20 @@
 import { FC, useState } from 'react'
 
-import { IconFacebook, IconInstagram, IconWhatsapp } from '../../assets/icons'
+import {
+  IconFacebook,
+  IconInstagram,
+  IconTelegram,
+  IconWhatsapp,
+} from '../../assets/icons'
 import { BaseButtonGroups } from '../../components/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/GoogleAutocomplete'
-import { Header } from '../../components/Header'
 import { Loader } from '../../components/Loader'
+import { BUCKET_AVATAR_USER } from '../../constants/buketsImage'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
-import { CustomPlaceResult } from '../../constants/interfaces'
 import useUserList from '../../hooks/useUserList'
 
 interface User {
+  id: string
   username: string
   email: string
   image: string
@@ -17,6 +22,7 @@ interface User {
   socialMedia: {
     facebook: string
     instagram: string
+    telegram: string
     whatsapp: string
   }
 }
@@ -29,7 +35,20 @@ export const CommunityPage: FC = () => {
     return <div>Error</div>
   }
 
-  const handleChangeLocation = (result: CustomPlaceResult) => {
+  const handleChangeLocation = (result: {
+    results: {
+      formatted_address: string
+      address_components: {
+        long_name: string
+        short_name: string
+        types: string[]
+      }[]
+    }[]
+    latLng: {
+      lat: number
+      lng: number
+    }
+  }) => {
     const data = {
       address: result.results[0].formatted_address,
       country: result.results[0].address_components[3].long_name,
@@ -41,9 +60,11 @@ export const CommunityPage: FC = () => {
 
   return (
     <>
-      <header className="flex justify-between">
-        <Header title="Community" />
-      </header>
+      <div className="flex justify-between">
+        <h1 className="text-xl md:text-xl lg:text-3xl font-semibold">
+          Community
+        </h1>
+      </div>
       <div className="shadow-lg rounded-md mt-16 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
@@ -103,56 +124,80 @@ export const CommunityPage: FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  <tr>
-                    {data?.users.map((user: User) => (
-                      <>
-                        <td
-                          key={user.username}
-                          className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"
-                        >
-                          <div className="flex items-center">
-                            <div className="h-11 w-11 flex-shrink-0">
-                              <img
-                                className="h-11 w-11 rounded-full"
-                                src={user.image}
-                                alt=""
-                              />
+                  {data?.users.map((user: User) => (
+                    <tr key={user.id}>
+                      <td
+                        key={user.username}
+                        className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"
+                      >
+                        <div className="flex items-center">
+                          <div className="h-11 w-11 flex-shrink-0">
+                            <img
+                              alt="user"
+                              src={`${BUCKET_AVATAR_USER}${user?.image}`}
+                              className="h-11 w-11 rounded-full"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-medium text-gray-900">
+                              {user.username}
                             </div>
-                            <div className="ml-4">
-                              <div className="font-medium text-gray-900">
-                                {user.username}
-                              </div>
-                              <div className="mt-1 text-gray-500">
-                                {user.email}
-                              </div>
+                            <div className="mt-1 text-gray-500">
+                              {user.email}
                             </div>
                           </div>
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                            Active
-                          </span>
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {user.role}
-                        </td>
-                        <td>
-                          <div className="px-3 py-5 flex gap-2  items-center h-full">
-                            <a className="cursor:pointer" href="">
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                          Active
+                        </span>
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                        {user.role}
+                      </td>
+                      <td>
+                        <div className="px-3 py-5 flex gap-2  items-center h-full">
+                          {user.socialMedia?.instagram && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://www.instagram.com/${user.socialMedia?.instagram}`}
+                            >
                               <IconInstagram />
                             </a>
-                            <a className="cursor:pointer" href="">
+                          )}
+                          {user.socialMedia?.facebook && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://www.facebook.com/${user.socialMedia?.facebook}`}
+                            >
                               <IconFacebook />
                             </a>
-                            <a className="cursor:pointer" href="">
+                          )}
+                          {user.socialMedia?.whatsapp && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://wa.me/${user.socialMedia?.whatsapp}`}
+                            >
                               <IconWhatsapp />
                             </a>
-                          </div>
-                          {user.socialMedia?.facebook}
-                        </td>
-                      </>
-                    ))}
-                  </tr>
+                          )}
+                          {user.socialMedia?.telegram && (
+                            <a
+                              target="_blank"
+                              className="cursor:pointer"
+                              href={`https://telegram.me/${user.socialMedia?.telegram}`}
+                            >
+                              <IconTelegram />
+                            </a>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
               {isLoading && (

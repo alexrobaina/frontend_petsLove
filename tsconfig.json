@@ -4,8 +4,14 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["cypress", "jest", "@testing-library/jest-dom"],
+    "types": [
+      "cypress",
+      "jest",
+      "@testing-library/jest-dom",
+      "@testing-library/react"
+    ],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -21,6 +27,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "tests", "jest.config.js", "cypress.config.ts", "vite.config.ts"],
+  "include": [
+    "src",
+    "tests",
+    "jest.config.ts",
+    "jest.setup.ts",
+    "cypress.config.ts",
+    "vite.config.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

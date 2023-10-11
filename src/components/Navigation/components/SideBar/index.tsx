@@ -8,6 +8,7 @@ import {
   IconSearch,
   IconSettings,
 } from '../../../../assets/icons'
+import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { AppContext } from '../../../../services/AppContext'
 import { deleteCookie } from '../../../../utils/deleteCookie'
 import { ButtonNavigate } from '../ButtonNavigate'
@@ -29,6 +30,7 @@ export const SideBar: FC<Props> = ({
   const handleLogout = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     deleteCookie('token')
+    navigation('/')
     window.location.reload()
   }
 
@@ -75,14 +77,14 @@ export const SideBar: FC<Props> = ({
             <button
               onClick={(e: MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation()
-                navigation('/userProfile')
+                navigation(`/user/${context?.user?.id}`)
               }}
               className="flex items-center justify-between gap-1 rounded-md hover:bg-primary-100 p-1"
             >
               <img
                 alt="profile"
                 src={
-                  context?.user?.image ||
+                  `${BUCKET_AVATAR_USER}${context?.user?.image}` ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
                 className="w-[42px] h-[42px] rounded-full"

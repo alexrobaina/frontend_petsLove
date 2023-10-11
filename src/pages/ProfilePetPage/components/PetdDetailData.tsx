@@ -1,8 +1,10 @@
 import { FC } from 'react'
+import { PetDetail } from '../../../constants/types'
+
 
 type PetInfo = {
   title: string
-  description: string
+  description:PetDetail|any
 }
 
 export const PetDetailData: FC<PetInfo> = ({ title, description }) => {

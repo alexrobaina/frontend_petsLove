@@ -1,4 +1,5 @@
 import IconBack from './iconBack.svg'
+import IconClose from './iconClose.svg'
 import IconFacebook from './iconFacebook.svg'
 import IconGoogle from './iconGoogle.svg'
 import IconHomeInfinity from './iconHomeInfinity.svg'
@@ -8,10 +9,14 @@ import IconLogout from './iconLogout.svg'
 import IconMap from './iconMap.svg'
 import IconSearch from './iconSearch.svg'
 import IconSettings from './iconSettings.svg'
+import IconTelegram from './iconTelegram.svg'
 import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
+import IconLocation from './iconLocation.svg'
 
 export {
+  IconTelegram,
+  IconClose,
   IconInstagram,
   IconFacebook,
   IconWhatsapp,
@@ -24,4 +29,5 @@ export {
   IconSettings,
   IconListDetails,
   IconLogout,
+  IconLocation,
 }

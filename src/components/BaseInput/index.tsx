@@ -1,23 +1,27 @@
 import { ChangeEvent, FC, ReactElement } from 'react'
 
 interface Props {
+  name?: string
   type?: string
   error?: string
   label?: string
+  isdisabled?: boolean
   placeholder: string
-  value: string | number
+  value?: string | number
   iconLeft?: ReactElement
   iconRigth?: ReactElement
-  handleChange: (value: ChangeEvent<HTMLInputElement>) => void
+  handleChange?: (value: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const BaseInput: FC<Props> = (
   {
+    name,
     value,
     label,
     error,
     iconLeft,
     iconRigth,
+    isdisabled,
     placeholder,
     handleChange,
     type = 'text',
@@ -35,8 +39,9 @@ export const BaseInput: FC<Props> = (
         id="email"
         {...props}
         type={type}
-        name="email"
+        name={name}
         value={value}
+        disabled={isdisabled}
         onChange={handleChange}
         placeholder={placeholder}
         className={`${
