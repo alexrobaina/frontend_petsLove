@@ -16,6 +16,7 @@ import IconTelegram from './iconTelegram.svg'
 import IconTrash from './iconTrash.svg'
 import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
+import IconLocation from './iconLocation.svg'
 
 export {
   IconEdit,
@@ -36,4 +37,5 @@ export {
   IconSettings,
   IconListDetails,
   IconLogout,
+  IconLocation,
 }
