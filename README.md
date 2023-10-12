@@ -1,12 +1,12 @@
-# Pet's Love API 🐰
+## Pet's Love API 🐰
 
 - [API - Backend](https://github.com/alexrobaina/api-pets-love)
 
-# Pet's Love Contributing 🦊
+## Pet's Love Contributing 🦊
 
 - Please take a look at the CONTRIBUTING.md file.
 
-# React + TypeScript + Vite + Tailwind + Vitest + React-testing-library
+## React + TypeScript + Vite + Tailwind + Vitest + React-testing-library
 
 # 🐶 🐱 🦊 Pets Love 🐭 🐹 🐰
 
