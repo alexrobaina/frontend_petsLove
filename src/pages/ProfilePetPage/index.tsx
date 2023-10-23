@@ -10,6 +10,7 @@ import { useGetPet } from '../../hooks/useGetPet'
 
 import { DetailCard } from './components/DetailCard'
 import { VaccinesTable } from './components/VaccinesTable'
+import { MedicalRecord } from './components/MedicalRecord'
 
 export const ProfilePetPage: FC = () => {
   const { id } = useParams()
@@ -29,7 +30,25 @@ export const ProfilePetPage: FC = () => {
     },
   )
 
-  console.log(petVaccines)
+  const medicalRecord = data?.pet?.MedicalRecord?.map(
+    (medicalRecord: {
+      id: string
+      name: string
+      description: string
+      diagnosis: string
+      treatment: string
+      medications: string[]
+      followUpRequired: boolean
+      followUpDate: Date
+      clinicName: string
+      notes: string
+      attachments: string[]
+    }) => {
+      return {
+        medicalRecord: medicalRecord,
+      }
+    },
+  )
 
   return (
     <div>
@@ -75,6 +94,8 @@ export const ProfilePetPage: FC = () => {
                   <BaseLoading large />
                 </div>
               )}
+
+              <MedicalRecord record={medicalRecord} />
             </section>
           )
         })}
