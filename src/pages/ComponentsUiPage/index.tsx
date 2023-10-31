@@ -5,7 +5,6 @@ import { Header } from '../../components/Header'
 
 import { Buttons } from './components/Buttons'
 import { Loadings } from './components/Loadings'
-import { Modals } from './components/Modals'
 import { Selects } from './components/Selects'
 import { LinkedIconText } from '../../components/LinkedIconText'
 import { IconLocation } from '../../assets/icons'
@@ -33,7 +32,6 @@ export const ComponentsUiPage: FC = () => {
         />
       </div>
       {viewComponents === 'buttons' && <Buttons />}
-      {viewComponents === 'modals' && <Modals />}
       {viewComponents === 'loadings' && <Loadings />}
       {viewComponents === 'selects' && <Selects />}
       {viewComponents === 'linkedIconText' && (

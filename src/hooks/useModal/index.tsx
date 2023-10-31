@@ -23,7 +23,7 @@ export interface ModalProps {
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [modalProps, setModalProps] = useState<ModalProps>({
+  const [modalProps, setModalProps]: any = useState<ModalProps>({
     children: null,
     onSubmit: () => {},
   })
@@ -35,10 +35,10 @@ export const useModal = () => {
 
   const closeModal = () => {
     setIsOpen(false)
-    setModalProps({
-      children: null,
-      onSubmit: () => {},
-    })
+    // setModalProps({
+    //   children: null,
+    //   onSubmit: () => {},
+    // })
   }
 
   useEffect(() => {
@@ -55,36 +55,41 @@ export const useModal = () => {
     }
   }, [])
 
-  const Modal = () => {
-    if (modalProps.type === MODAL_TYPE.DELETE) {
-      return (
-        <Delete
-          isOpen={isOpen}
-          closeModal={closeModal}
-          title={modalProps.title}
-          onSubmit={modalProps.onSubmit}
-          description={modalProps.description}
-        />
-      )
-    }
+  return {
+    openModal,
+    closeModal,
+    modalProps,
+    isOpen,
+  }
+}
 
+export const Modal = (props) => {
+  console.log('props', props)
+
+  if (!props.isOpen) return null
+
+  if (props.type === MODAL_TYPE.DELETE) {
     return (
-      <Save
-        isOpen={isOpen}
-        closeModal={closeModal}
-        title={modalProps.title}
-        children={modalProps.children}
-        onSubmit={modalProps.onSubmit}
-        description={modalProps.description}
-        canClose={modalProps.canClose}
-        isDisabled={modalProps.isDisabled || false}
+      <Delete
+        isOpen={props.isOpen}
+        closeModal={props.closeModal}
+        title={props.title}
+        onSubmit={props.onSubmit}
+        description={props.description}
       />
     )
   }
 
-  return {
-    Modal,
-    openModal,
-    closeModal,
-  }
+  return (
+    <Save
+      isOpen={props.isOpen}
+      closeModal={props.closeModal}
+      title={props.title}
+      children={props.children}
+      onSubmit={props.onSubmit}
+      description={props.description}
+      canClose={props.canClose}
+      isDisabled={props.isDisabled || false}
+    />
+  )
 }

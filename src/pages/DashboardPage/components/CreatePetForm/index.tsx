@@ -1,30 +1,23 @@
 import { FormikErrors } from 'formik'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useContext } from 'react'
+import { MultiValue } from 'react-select'
 
-import { BaseButton } from '../../../../components/BaseButton'
 import { BaseInput } from '../../../../components/BaseInput'
 import { BaseSelect } from '../../../../components/BaseSelect'
 import { BaseTextArea } from '../../../../components/BaseTextArea'
 import useUserList from '../../../../hooks/useUserList'
-import { useGetVaccine } from '../../../../hooks/useVaccine'
-import { AGE_PETS, CATEGORY_PET, GENDER_PET, SIZE_PETS } from '../../constants'
-import { VaccinesTable } from '../VaccinesTable'
+import { AppContext } from '../../../../services/AppContext'
+import {
+  AGE_PETS,
+  CATEGORY_PET,
+  GENDER_PET,
+  ICreatePetForm,
+  MASS_UNIT,
+  SIZE_PETS,
+} from '../../constants'
 
 interface Props {
-  values: {
-    age: string
-    name: string
-    units: string
-    gender: string
-    weight: string
-    size: string
-    breed: string
-    description: string
-    veterinaryId: string
-    shelterId: string
-    adopterId: string
-    category: string
-  }
+  values: ICreatePetForm
   errors: FormikErrors<{
     age: string
     name: string
@@ -34,13 +27,17 @@ interface Props {
     size: string
     breed: string
     description: string
-    veterinaryId: string
     shelterId: string
-    adopterId: string
+    adoptedBy: string
     category: string
   }>
   handleChange: (e: ChangeEvent<Element>) => void
-  setFieldValue: (field: string, value: string) => void
+  setFieldValue: (
+    field: string,
+    value: string | number | File | null | MultiValue<unknown>,
+  ) => void
+  urlImagesPreview: string[]
+  handleImagesChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const CreatePetForm: React.FC<Props> = ({
@@ -48,54 +45,102 @@ export const CreatePetForm: React.FC<Props> = ({
   errors,
   handleChange,
   setFieldValue,
+  urlImagesPreview,
+  handleImagesChange,
 }) => {
-  const { data: vaccinesList } = useGetVaccine({ category: values?.category })
-  const { data: userListVeterinary } = useUserList({ role: 'VET' })
+  const context = useContext(AppContext)
   const { data: userListShelter } = useUserList({ role: 'SHELTER' })
   const { data: userListAdopter } = useUserList({ role: 'ADOPTER' })
 
+  const shouldGuardiansSelect = ({
+    userRole,
+    role,
+  }: {
+    userRole: string | null | undefined
+    role: string
+  }) => {
+    if (userRole === 'ADOPTER') return false
+    if (userRole === 'VET') return true
+    if (userRole === role) return false
+
+    return true
+  }
+
   return (
     <form>
-      <div className="grid sm:grid-cols-2 w-full">
-        <h1 className="text-2xl font-medium col-span-full">Pet details</h1>
-        <div className="mt-6 col-span-full flex items-center gap-x-8">
-          <div className="sm:col-span-2 w-full">
-            <BaseInput
-              name="name"
-              label="Name"
-              value={values?.name}
-              placeholder="Name of pet"
-              handleChange={handleChange}
-              // error={errors?.firstName}
-              // handleChange={handleChange}
-              // value={values?.firstName || user?.firstName}
-            />
+      <h1 className="text-2xl font-medium col-span-full">Pet details</h1>
+      <div className="grid grid-cols-1 md:grid-cols-1  gap-8 w-full mt-5">
+        <div className="col-span-1/2 flex flex-col gap-3">
+          <div className="flex gap-2 md:gap-2 overflow-x-auto w-full">
+            {urlImagesPreview.map((url: string) => (
+              <img
+                src={url}
+                alt="user image"
+                className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover"
+              />
+            ))}
           </div>
-          <div className="sm:col-span-2 w-full">
-            <BaseSelect
-              name="category"
-              label="Category"
-              options={CATEGORY_PET}
-              value={values?.category}
-              setFieldValue={setFieldValue}
-            />
-          </div>
-          <div className="sm:col-span-2 w-full">
-            <BaseSelect
-              name="gender"
-              label="Gender"
-              options={GENDER_PET}
-              value={values.gender}
-              setFieldValue={setFieldValue}
-            />
+          <div>
+            <div className="flex w-full">
+              <label
+                htmlFor="file"
+                className="w-full rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
+              >
+                Select a file
+              </label>
+              <input
+                multiple
+                id="file"
+                type="file"
+                name="images"
+                className="hidden"
+                onChange={handleImagesChange}
+              />
+            </div>
+            <p className="mt-2 text-xs leading-5 text-gray-400">
+              JPG, GIF or PNG. 1.5MB max.
+            </p>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 w-full mt-5">
+      <div className="grid mt-4 md:mt-10 grid-cols-1 sm:grid-cols-3 w-full gap-4">
+        <div className="sm:col-span-1 w-full">
+          <BaseInput
+            name="name"
+            label="Name"
+            error={errors?.name}
+            value={values?.name}
+            placeholder="Name of pet"
+            handleChange={handleChange}
+          />
+        </div>
+        <div className="sm:col-span-1 w-full">
+          <BaseSelect
+            name="category"
+            label="Category"
+            options={CATEGORY_PET}
+            error={errors.category}
+            value={values?.category}
+            setFieldValue={setFieldValue}
+          />
+        </div>
+        <div className="sm:col-span-1 w-full">
+          <BaseSelect
+            name="gender"
+            label="Gender"
+            options={GENDER_PET}
+            error={errors.gender}
+            value={values.gender}
+            setFieldValue={setFieldValue}
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2 md:gap-8 w-full mt-5">
         <div className="col-span-1/2">
           <BaseSelect
             name="age"
             label="Age"
+            error={errors.age}
             options={AGE_PETS}
             value={values.age}
             setFieldValue={setFieldValue}
@@ -112,7 +157,7 @@ export const CreatePetForm: React.FC<Props> = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 w-full mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 w-full mt-5">
         <div className="col-span-1/2">
           <BaseInput
             name="breed"
@@ -124,7 +169,7 @@ export const CreatePetForm: React.FC<Props> = ({
           />
         </div>
         <div className="col-span-1/2">
-          <div className="flex gap-5 w-full">
+          <div className="flex gap-2 md:gap-5 justify-between">
             <BaseInput
               name="weight"
               label="Weight"
@@ -133,49 +178,39 @@ export const CreatePetForm: React.FC<Props> = ({
               value={values?.weight}
               handleChange={handleChange}
             />
-            <BaseInput
-              name="units"
-              label="Units"
-              placeholder="kg"
-              error={errors?.units}
-              handleChange={handleChange}
-              value={values?.units}
-            />
+            <div className="w-[150px]">
+              <BaseSelect
+                name="units"
+                label="Mass units"
+                options={MASS_UNIT}
+                value={values?.units}
+                error={errors?.units}
+                setFieldValue={setFieldValue}
+              />
+            </div>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-8 w-full mt-5">
+      <div className="grid grid-cols-1 gap-2 md:gap-8 w-full mt-5">
         <BaseTextArea
           height={100}
           name="description"
           label="Description"
-          placeholder="Description of pet"
+          error={errors.description}
           handleChange={handleChange}
+          placeholder="Description of pet"
         />
       </div>
       <div className="mt-6 flex flex-col ">
-        <h1 className="text-xl font-medium col-span-full">Cares</h1>
-        <div className="grid grid-cols-3 gap-8 w-full mt-5">
-          <div className="sm:col-span-1/3 w-full">
-            {userListVeterinary && (
+        <h1 className="text-xl font-medium col-span-full">Pet Guardians</h1>
+        <div className="grid grid-cols-1 md:grid-cols-1 w-full mt-5">
+          <div className="w-full">
+            {shouldGuardiansSelect({
+              userRole: context.user?.role,
+              role: 'SHELTER',
+            }) && (
               <BaseSelect
-                name="veterinary"
-                label="Veterinary"
-                setFieldValue={setFieldValue}
-                value={values?.veterinaryId}
-                options={userListVeterinary?.users.map(
-                  (user: { email: string; id: string }) => ({
-                    value: user.id,
-                    label: `${user.email} `,
-                  }),
-                )}
-              />
-            )}
-          </div>
-          <div className="sm:col-span-1/3 w-full">
-            {userListShelter && (
-              <BaseSelect
-                name="shelter"
+                name="shelterId"
                 label="Shelter"
                 value={values?.shelterId}
                 setFieldValue={setFieldValue}
@@ -188,10 +223,13 @@ export const CreatePetForm: React.FC<Props> = ({
               />
             )}
           </div>
-          <div className="sm:col-span-1/3 w-full">
-            {userListAdopter && (
+          <div className="w-full">
+            {shouldGuardiansSelect({
+              userRole: context.user?.role,
+              role: 'ADOPTER',
+            }) && (
               <BaseSelect
-                name="adopter"
+                name="adoptedBy"
                 label="Adopter"
                 value={values?.adopterId}
                 setFieldValue={setFieldValue}
@@ -204,28 +242,6 @@ export const CreatePetForm: React.FC<Props> = ({
               />
             )}
           </div>
-        </div>
-        <div className="mt-6 flex flex-col gap-4 ">
-          <h1 className="text-xl font-medium col-span-full">Medical records</h1>
-          <div className="flex justify-start w-full">
-            <BaseButton
-              type="button"
-              className="w-[100px]"
-              text="Add Medical Recordas"
-            />
-          </div>
-        </div>
-        <div className="mt-5 flex flex-col gap-4 ">
-          <h1 className="text-xl font-medium col-span-full">Vaccines</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            {`A list of vaccunes that your pet has received or needs to receive.
-            You can add a new vaccine by clicking the button below.
-            `}
-          </p>
-        </div>
-        <VaccinesTable vaccines={vaccinesList?.vaccines} />
-        <div className="mt-8 flex justify-start w-full">
-          <BaseButton type="button" className="w-[100px]" text="Add Vaccine" />
         </div>
       </div>
     </form>

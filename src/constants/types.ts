@@ -23,6 +23,7 @@ export type PetCardType = {
 export type PetDetail = {
   id: string
   name: string
+  qrCode: string
   category: string
   weight: string
   breed: string
@@ -39,8 +40,22 @@ export type PetDetail = {
   createdAt: Date
   updatedAt: Date
   adoptedBy: string
-  Adopter: string
-  Shelter: string
+  Adopter: {
+    email: string
+    firstName: string
+    id: string
+    image: string
+    username: string
+    description: string
+  }
+  Shelter: {
+    id: string
+    firstName: string
+    email: string
+    image: string
+    username: string
+    description: string
+  }
   PetVaccine: {
     id: string
     name: string
@@ -50,8 +65,6 @@ export type PetDetail = {
     updatedAt: Date
     PetVaccines: string[]
   }
-
-  PetsCaredByVolunteer: string
   MedicalRecord: {
     id: string
     petId: string

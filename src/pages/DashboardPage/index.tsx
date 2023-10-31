@@ -1,26 +1,37 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFormik } from 'formik'
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useContext, useState } from 'react'
 
-import { BaseButton } from '../../components/BaseButton'
 import { BaseLoading } from '../../components/BaseLoading'
 import { SliderModal } from '../../components/SliderModal'
+import { useCreatePet } from '../../hooks/useCreatePet'
 import { useDashboardPets } from '../../hooks/useDashboardPets'
 import { useDeletePet } from '../../hooks/useDeletePet'
-import { useModal } from '../../hooks/useModal'
+import { AppContext } from '../../services/AppContext'
 
 import { CreatePetForm } from './components/CreatePetForm'
 import { DashboardHeader } from './components/DashboardHeader'
 import { DashboardTable } from './components/DashboardTable/DashboardTable'
+import { INITIAL_STATE, petSchema } from './constants'
 
 export const DashboardPage: FC = () => {
+  const context:
+    | {
+        user: {
+          role: string
+          id: string
+        }
+      }
+    | any = useContext(AppContext)
   const [page, setPage] = useState(1)
   const [isAdopted, setIsAdopted] = useState('inAdoption')
   const [gender, setGender] = useState('')
   const [category, setCategory] = useState('')
   const [searchByName, setSearchByName] = useState('')
+  const { mutate } = useCreatePet()
   const { handleDeletePet, isLoading: deletePetLoading } = useDeletePet()
+  const [urlImagesPreview, setUrlImagesPreview] = useState<string[]>([])
 
-  const { openModal, Modal } = useModal()
   const [isOpenModalCreation, setOpenModalCreation] = useState(false)
 
   const { data, isLoading } = useDashboardPets({
@@ -31,27 +42,27 @@ export const DashboardPage: FC = () => {
     adopted: isAdopted === 'adopted' ? true : false,
   })
 
+  const closePetCreationSlider = () => {
+    setOpenModalCreation(false)
+  }
+
   const formik = useFormik({
-    initialValues: {
-      age: '',
-      name: '',
-      units: '',
-      gender: '',
-      weight: '',
-      size: '',
-      breed: '',
-      description: '',
-      veterinaryId: '',
-      shelterId: '',
-      adopterId: '',
-      category: '',
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
+    initialValues: INITIAL_STATE,
+    validationSchema: petSchema,
+    onSubmit: async (values) => {
+      values.weight = `${values.weight} ${values.units}`
+      values.units = ''
+
+      if (context.user?.role === 'SHELTER') values.shelterId = context?.user?.id
+
+      mutate(values)
+
+      formik.resetForm()
+      closePetCreationSlider()
     },
   })
 
-  const { values, handleChange, setFieldValue, errors, submitForm } = formik
+  const { values, handleChange, setFieldValue, errors, handleSubmit } = formik
 
   const resetFilters = () => {
     setIsAdopted('')
@@ -64,47 +75,34 @@ export const DashboardPage: FC = () => {
     setSearchByName(e.target.value)
   }
 
+  const handleImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files)
+      setFieldValue('images', filesArray)
+
+      const urls = filesArray.map((file) => URL.createObjectURL(file))
+      setUrlImagesPreview(urls)
+    }
+  }
+
   const handleEdit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string,
   ) => {
     e.stopPropagation()
     console.log('edit', id)
-
-    // openSlider({
-    //   styles: '',
-    //   title: 'Edit Pet',
-    //   onSubmit: onSubmit,
-    //   // children: <CreatePetForm />,
-    // })
   }
 
   const handleCreatePet = useCallback(async () => {
-    console.log('create')
     setOpenModalCreation(true)
-    // openSlider({
-    //   styles: '',
-    //   title: 'Edit Pet',
-    //   onSubmit: onSubmit,
-    // })
   }, [])
-  const closeSlider = () => {
-    setOpenModalCreation(false)
-  }
 
   const handleDelete = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     petId: string,
-    userRole: string,
   ) => {
     e.stopPropagation()
-
-    openModal({
-      type: 'delete',
-      title: 'Delete Pet',
-      onSubmit: () => handleDeletePet(petId, userRole),
-      description: 'Are you sure you want to delete this pet?',
-    })
+    await handleDeletePet(petId)
   }
 
   if (isLoading || deletePetLoading)
@@ -123,46 +121,30 @@ export const DashboardPage: FC = () => {
         setIsAdopted={setIsAdopted}
         resetFilters={resetFilters}
       />
-      {data?.pets?.length === 0 && (
-        <div className="h-screen w-full -mt-20 flex flex-col gap-5 justify-center items-center">
-          <h1 className="text-3xl font-semibold">Pets not Found</h1>
-          <h1>
-            You don&apos;t have any pets yet. Click the button below to create
-            your first pet.
-          </h1>
-          <BaseButton
-            size="small"
-            type="button"
-            text="Create Pet"
-            onClick={handleCreatePet}
-          />
-        </div>
-      )}
-      {data?.pets?.length !== 0 && (
-        <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-16">
-          <DashboardTable
-            page={page}
-            data={data}
-            setPage={setPage}
-            handleEdit={handleEdit}
-            searchByName={searchByName}
-            handleSearch={handleSearch}
-            handleDelete={handleDelete}
-            handleCreatePet={handleCreatePet}
-          />
-        </div>
-      )}
-      <Modal />
+      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-16">
+        <DashboardTable
+          page={page}
+          data={data}
+          setPage={setPage}
+          handleEdit={handleEdit}
+          searchByName={searchByName}
+          handleSearch={handleSearch}
+          handleDelete={handleDelete}
+          handleCreatePet={handleCreatePet}
+        />
+      </div>
       <SliderModal
-        onSubmit={submitForm}
-        closeSlider={closeSlider}
+        closeSlider={closePetCreationSlider}
+        handleSubmit={handleSubmit}
         isOpen={isOpenModalCreation}
       >
         <CreatePetForm
-          values={values}
           errors={errors}
+          values={values}
           handleChange={handleChange}
           setFieldValue={setFieldValue}
+          urlImagesPreview={urlImagesPreview}
+          handleImagesChange={handleImagesChange}
         />
       </SliderModal>
     </>

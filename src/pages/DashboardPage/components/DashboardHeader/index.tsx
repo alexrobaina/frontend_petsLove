@@ -27,9 +27,9 @@ export const DashboardHeader: React.FC<Props> = ({
   resetFilters,
 }) => {
   return (
-    <header className="flex md:flex-row md:justify-between flex-col gap-5">
+    <header className="flex lg:flex-row md:justify-between flex-col gap-5">
       <Header title="Dashboard" />
-      <div className="flex gap-5 flex-col md:flex-row">
+      <div className="flex gap-5 flex-col md:flex-row md:justify-between md:items-center">
         <div className="z-10">
           <BaseButton
             size="small"

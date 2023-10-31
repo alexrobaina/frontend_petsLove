@@ -30,7 +30,7 @@ export const BaseInput: FC<Props> = (
   props,
 ) => {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {label && (
         <label className="block text-sm font-medium leading-6 text-primary-950">
           {label}
@@ -46,10 +46,10 @@ export const BaseInput: FC<Props> = (
         placeholder={placeholder}
         className={`${
           error && 'ring-red-500'
-        } block w-full rounded-md border-0 py-1.5 text-primary-900 shadow-sm ring-1 ring-inset ring-primary-400 outline-none
+        } block w-full rounded-[4px] border-0 py-1.5 text-primary-900 ring-1 ring-inset ring-primary-400 outline-none
                ${
                  iconLeft && 'pl-9'
-               }  placeholder:text-neutral-400 focus:ring-primary-300 sm:text-sm sm:leading-6 pl-4`}
+               }  placeholder:text-neutral-500 placeholder:text-sm eight: '20px', focus:ring-primary-300 sm:text-sm sm:leading-6 pl-3`}
       />
       {iconLeft && <div className="icon absolute -mt-7 ml-2.5">{iconLeft}</div>}
       {iconRigth && <div className="icon absolute">{iconRigth}</div>}
@@ -69,6 +69,7 @@ export const BaseInput: FC<Props> = (
           </svg>
         </div>
       )}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   )
 }
