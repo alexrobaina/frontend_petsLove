@@ -10,8 +10,8 @@ import { PetDetail } from '../../constants/types'
 import { useGetPet } from '../../hooks/useGetPet'
 
 import { DetailCard } from './components/DetailCard'
-import { VaccinesTable } from './components/VaccinesTable'
 import { MedicalRecord } from './components/MedicalRecord'
+import { VaccinesTable } from './components/VaccinesTable'
 
 export const ProfilePetPage: FC = () => {
   const { id } = useParams()
@@ -34,26 +34,6 @@ export const ProfilePetPage: FC = () => {
       return {
         vaccine: vaccine.Vaccine,
         status: vaccine.status,
-      }
-    },
-  )
-
-  const medicalRecord = data?.pet?.MedicalRecord?.map(
-    (medicalRecord: {
-      id: string
-      name: string
-      description: string
-      diagnosis: string
-      treatment: string
-      medications: string[]
-      followUpRequired: boolean
-      followUpDate: Date
-      clinicName: string
-      notes: string
-      attachments: string[]
-    }) => {
-      return {
-        medicalRecord: medicalRecord,
       }
     },
   )
@@ -164,6 +144,12 @@ export const ProfilePetPage: FC = () => {
                   />
                 )}
               </div>
+              <div className="mt-5 gap-6">
+                <h2 className="mt-10 text-lg font-semibold text-primary-900">
+                  Medical Record
+                </h2>
+                <MedicalRecord medicalRecord={pet.MedicalRecord} />
+              </div>
               <h2 className="mt-10 text-lg font-semibold text-primary-900">
                 Vaccines
               </h2>
@@ -174,11 +160,6 @@ export const ProfilePetPage: FC = () => {
                   handleDeleteVaccine={handleDeleteVaccine}
                 />
               )}
-              <MedicalRecord record={medicalRecord} />
-            </section>
-          )
-        })}
-
             </div>
           ))}
       </section>
