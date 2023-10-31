@@ -65,22 +65,22 @@ export type PetDetail = {
     updatedAt: Date
     PetVaccines: string[]
   }
-  MedicalRecord: {
-    id: string
-    petId: string
-    Pet: string
-    date: Date
-    description: string
-    diagnosis: string
-    treatment: string
-    medications: string[]
-    followUpRequired: boolean
-    followUpDate: Date
-    veterinarian: string
-    clinicName: string
-    notes: string
-    attachments: string[]
-    createdAt: Date
-    updatedAt: Date
-  }
+  MedicalRecord: IMedicalRecord[]
+}
+
+export interface IMedicalRecord {
+  id: string
+  title: string
+  description: string
+  diagnosis: string
+  treatment: string
+  medications: string[]
+  followUpRequired: boolean
+  followUpDate: string
+  vetId: string
+  clinicName: string
+  notes: string
+  attachments: string[]
+  createdAt: string
+  updatedAt: string
 }

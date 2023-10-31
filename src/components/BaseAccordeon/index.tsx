@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion' // Import Framer Motion components
 import { FC, ReactElement, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion' // Import Framer Motion components
-import { ACCORDEON_VARIANTS } from '../../constants/animations'
+
+import './styles.css'
 
 interface Props {
   title: string
@@ -12,7 +13,7 @@ export const BaseAccordeon: FC<Props> = ({ icon, title, children }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <div className="w-full p-2 mt-6 rounded shadow ring ring-primary-100 hover:ring-primary-200">
+    <div className="bg-primary-50 w-full p-2  mt-6 rounded shadow ring-primary-200 ring-1 hover:ring-primary-200">
       <div
         className={
           isOpen
@@ -21,25 +22,18 @@ export const BaseAccordeon: FC<Props> = ({ icon, title, children }) => {
         }
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-2 ">
-          {icon}
-          <h4
-            className={
-              isOpen
-                ? 'text-xs md:text-sm font-bold leading-6 text-primary-300'
-                : 'text-xs md:text-sm font-bold leading-6 text-primary-950'
-            }
-          >
+        <div className="flex items-center gap-2">
+          <div className="w-[50px] iconTitle">{icon}</div>
+          <h4 className="text-xs md:text-sm font-bold leading-6 text-primary-950">
             {title}
           </h4>
         </div>
         <motion.svg
-          className="w-3 h-3  shrink-0"
+          className="w-3 h-3 shrink-0 mr-4 "
           initial={false}
-          animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
+          animate={isOpen ? { rotate: 0 } : { rotate: 180 }}
           transition={{ duration: 0.3 }}
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 10 6"
         >
@@ -47,25 +41,12 @@ export const BaseAccordeon: FC<Props> = ({ icon, title, children }) => {
             stroke={isOpen ? '#369683' : '#29786a'}
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth="1"
+            strokeWidth="2"
             d="M9 5 5 1 1 5"
           />
         </motion.svg>
       </div>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={ACCORDEON_VARIANTS}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mt-4"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && <div>{children}</div>}
     </div>
   )
 }
