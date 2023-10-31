@@ -23,7 +23,8 @@ export const BaseButtonGroups: FC<Props> = ({
           isSelected
             ? 'bg-primary-200 ring-primary-400 text-primary-900'
             : 'transparent'
-        }  relative inline-flex items-center px-3 py-2 text-sm font-semibold text-primary-950 ring-1 ring-inset ring-primary-400 hover:bg-primary-200 focus:z-10`
+        } relative inline-flex items-center px-3 text-sm font-semibold h-9
+        text-primary-950 ring-1 ring-inset ring-primary-400 hover:bg-primary-200 focus:z-10`
 
         // Modify class names based on position within array
         if (index === 0) {
@@ -37,7 +38,7 @@ export const BaseButtonGroups: FC<Props> = ({
 
         return (
           <button
-            key={index} // Unique key based on index
+            key={index}
             type="button"
             className={classNames}
             onClick={() =>

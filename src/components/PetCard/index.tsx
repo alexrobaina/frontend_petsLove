@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { ImageNotFound } from '../../assets/images'
 import { IPetCardProps } from '../../constants/types'
 
 export const PetCard: FC<IPetCardProps> = ({
@@ -18,8 +19,11 @@ export const PetCard: FC<IPetCardProps> = ({
     <div>
       <img
         alt="pet"
-        src={images[0]}
+        onError={(e) => {
+          e.currentTarget.src = ImageNotFound
+        }}
         className="h-[237px] object-cover rounded-xl"
+        src={`${import.meta.env.VITE_BUCKET_NAME}${images[0]}`}
       />
       <div className="flex w-full flex-col pt-3 px-4 gap-1">
         <div className="flex w-full justify-between">

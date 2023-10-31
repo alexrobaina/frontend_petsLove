@@ -5,7 +5,7 @@ interface props {
   label?: string
   value?: string
   className?: string
-  textError?: string
+  error?: string
   textHelper?: string
   placeholder?: string
   height?: string | number
@@ -17,14 +17,13 @@ export const BaseTextArea: FC<props> = ({
   label,
   value,
   className,
-  textError,
-  textHelper,
+  error,
   placeholder,
   height = 200,
   handleChange,
 }) => {
-  const styles =
-    ' resize rounded-md border-0 py-1.5 text-primary-900 shadow-sm ring-1 ring-inset ring-primary-300 outline-none placeholder:text-neutral-400 focus:ring-primary-500 sm:text-sm sm:leading-6 pl-4'
+  const styles = `resize rounded-md border-0 py-2 text-primary-900 shadow-sm ring-1 ring-inset ring-primary-300 outline-none 
+     focus:ring-primary-500 sm:text-sm sm:leading-6 pl-3 placeholder:text-neutral-500 placeholder:text-sm`
 
   return (
     <div className="flex flex-col">
@@ -39,10 +38,9 @@ export const BaseTextArea: FC<props> = ({
         style={{ height: `${height}px` }}
         className={`${className} 
             ${styles} 
-            ${textError ? 'ring-red-500' : ''}`}
+            ${error ? 'ring-red-500' : ''}`}
       />
-      {textHelper && !textError && <p className="pl-3 pt-3">{textHelper}</p>}
-      {textError && <p className="pl-3 pt-3 text-red-500">{textError}</p>}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   )
 }

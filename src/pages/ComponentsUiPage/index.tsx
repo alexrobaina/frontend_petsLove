@@ -5,8 +5,9 @@ import { Header } from '../../components/Header'
 
 import { Buttons } from './components/Buttons'
 import { Loadings } from './components/Loadings'
-import { Modals } from './components/Modals'
 import { Selects } from './components/Selects'
+import { LinkedIconText } from '../../components/LinkedIconText'
+import { IconLocation } from '../../assets/icons'
 
 export const ComponentsUiPage: FC = () => {
   const [viewComponents, setViewComponents] = useState('buttons')
@@ -17,6 +18,7 @@ export const ComponentsUiPage: FC = () => {
     { name: 'Inputs', path: 'inputs' },
     { name: 'Modals', path: 'modals' },
     { name: 'Selects', path: 'selects' },
+    { name: 'LinkedIconText', path: 'linkedIconText' },
   ]
 
   return (
@@ -30,9 +32,15 @@ export const ComponentsUiPage: FC = () => {
         />
       </div>
       {viewComponents === 'buttons' && <Buttons />}
-      {viewComponents === 'modals' && <Modals />}
       {viewComponents === 'loadings' && <Loadings />}
       {viewComponents === 'selects' && <Selects />}
+      {viewComponents === 'linkedIconText' && (
+        <LinkedIconText
+          icon={<IconLocation />}
+          url="https://www.google.com/search?q=mendoza+godoy+cruz+av+san+martin+2023"
+          text="Mendoza, Godoy Cruz, Av San Martin 3203"
+        />
+      )}
     </>
   )
 }
