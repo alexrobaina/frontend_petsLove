@@ -10,7 +10,7 @@ export const UserProfilePage: FC = () => {
   return (
     <div className="flex justify-between">
       <header className="flex gap-5">
-        <Header title="Profile" canBack />
+        <Header title="Profile" buttonBack />
       </header>
     </div>
   )

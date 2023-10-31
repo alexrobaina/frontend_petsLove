@@ -3,6 +3,7 @@ import { FC, MouseEventHandler, ReactElement } from 'react'
 import { BaseLoading } from '../BaseLoading'
 
 import { setSize, setType } from './utils'
+import './styles.css'
 
 interface Props {
   text?: string
@@ -45,12 +46,12 @@ export const BaseButton: FC<Props> = ({
       disabled={isDisabled}
       style={{ backgroundColor }}
       className={` ${wFull && 'w-full'}  ${
-        className && 'className'
+        className && { className }
       } py-2 px-4 rounded ${setType(style)} ${setSize(
         size,
       )} flex gap-3 items-center justify-center  ${
         shouldDisplayOnlyIcon(text, icon) &&
-        'w-[30px] h-[30px] md:w-[36px] md:h-[36px] py-0 px-0'
+        'w-[36px] h-[36px] md:w-[36px] md:h-[36px] py-0 px-0'
       }
       ${
         isDisabled &&
@@ -59,7 +60,7 @@ export const BaseButton: FC<Props> = ({
       `}
     >
       {isLoading && <BaseLoading />}
-      {icon && <div>{icon}</div>}
+      {icon && <div className="icon">{icon}</div>}
       {text && text}
     </button>
   )

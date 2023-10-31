@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { ICreatePetForm } from '../pages/DashboardPage/constants'
+
 export const getPets = async ({
   page,
   gender,
@@ -31,22 +33,51 @@ export const getDashboardPets = async ({
   searchByName?: string
 }) => {
   const response = await axios.get(
-    `/api/v1/pets/dashboard?category=${category}&adopted=${adopted}&gender=${gender}&searchByName=${searchByName}&page=${page}`,
+    `/api/v1/dashboard/pets?category=${category}&adopted=${adopted}&gender=${gender}&searchByName=${searchByName}&page=${page}`,
   )
   return response.data
 }
 
 export const getPet = async (id: string) => {
-  const response = await axios.get(`/api/v1/pet?id=${id}`, {
+  const response = await axios.get(`/api/v1/pets/${id}`, {
     withCredentials: true,
   })
 
   return response.data
 }
 
-export const deletePet = async (petId: string, userRole: string) => {
-  const response = await axios.delete(
-    `/api/v1/pet/delete?petId=${petId}&userRole=${userRole}`,
-  )
+export const deletePet = async (petId: string) => {
+  const response = await axios.delete(`/api/v1/pets/${petId}`)
+  return response.data
+}
+
+export const createPet = async (data: ICreatePetForm) => {
+  const formData = new FormData()
+
+  Object.keys(data).forEach((key: string) => {
+    if (
+      typeof data[key] === 'object' &&
+      data[key] !== null &&
+      !(data[key] instanceof File)
+    ) {
+      formData.append(key, JSON.stringify(data[key]))
+    } else if (key !== 'image' && key !== 'qrCode') {
+      formData.append(key, data[key])
+    }
+  })
+
+  if (data.images && Array.isArray(data.images)) {
+    data.images.forEach((file: File) => {
+      formData.append('images', file)
+    })
+  }
+
+  const response = await axios.post(`/api/v1/pets`, formData, {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+
   return response.data
 }

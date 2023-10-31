@@ -1,6 +1,7 @@
+import { expect, vi } from 'vitest'
+
 import { BaseButton } from '../../../components/BaseButton'
 import { render, screen, fireEvent } from '../../test-utils'
-import { expect, vi } from 'vitest'
 
 describe('BaseButton Component', () => {
   test('renders with default props', () => {

@@ -1,12 +1,10 @@
 import axios from 'axios'
 import { observer } from 'mobx-react'
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import { BaseSelect } from './components/BaseSelect'
 import Navigation from './components/Navigation/Navigation'
-import { ROLES } from './constants/community'
 import { useModal } from './hooks/useModal'
 import { AdoptionPetPage } from './pages/AdoptionPetPage'
 import { CommunityPage } from './pages/CommunityPage'
@@ -63,7 +61,7 @@ const router = createBrowserRouter([
 ])
 
 const App: FC<Props> = observer((props) => {
-  const { openModal, Modal } = useModal()
+  const { openModal } = useModal()
   const [role, setRole] = useState<string>(
     !props?.appContext?.user?.role ? '' : props?.appContext?.user?.role,
   )
@@ -83,34 +81,34 @@ const App: FC<Props> = observer((props) => {
     }
   }, [role, props?.appContext?.user?.id])
 
-  useEffect(() => {
-    if (!props?.appContext?.user?.role) {
-      openModal({
-        canClose: false,
-        title: 'Select your role',
-        description: 'Select your role is required to continue',
-        onSubmit: updateUserRole,
-        isDisabled: role === '' ? true : false,
-        children: (
-          <div className="flex">
-            <div className="mt-8 w-full">
-              <BaseSelect
-                name="role"
-                value={role}
-                setFieldValue={setFieldValue}
-                options={[
-                  { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
-                  { value: ROLES.SHELTER, label: ROLES.SHELTER },
-                  { value: ROLES.VET, label: ROLES.VET },
-                  { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
-                ]}
-              />
-            </div>
-          </div>
-        ),
-      })
-    }
-  }, [role])
+  // useEffect(() => {
+  //   if (!props?.appContext?.user?.role) {
+  //     openModal({
+  //       canClose: false,
+  //       title: 'Select your role',
+  //       description: 'Select your role is required to continue',
+  //       onSubmit: updateUserRole,
+  //       isDisabled: role === '' ? true : false,
+  //       children: (
+  //         <div className="flex">
+  //           <div className="mt-8 w-full">
+  //             <BaseSelect
+  //               name="role"
+  //               value={role}
+  //               setFieldValue={setFieldValue}
+  //               options={[
+  //                 { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
+  //                 { value: ROLES.SHELTER, label: ROLES.SHELTER },
+  //                 { value: ROLES.VET, label: ROLES.VET },
+  //                 { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
+  //               ]}
+  //             />
+  //           </div>
+  //         </div>
+  //       ),
+  //     })
+  //   }
+  // }, [role])
 
   return (
     <AppContext.Provider value={props.appContext}>
@@ -126,7 +124,6 @@ const App: FC<Props> = observer((props) => {
         position="bottom-right"
       />
       <RouterProvider router={router} />
-      <Modal />
     </AppContext.Provider>
   )
 })

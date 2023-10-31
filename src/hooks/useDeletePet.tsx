@@ -5,13 +5,12 @@ import { deletePet } from '../api/pet'
 
 interface UseDeletePetProps {
   petId: string
-  userRole: string
 }
 
 export const useDeletePet = () => {
   const queryClient = useQueryClient()
   const { mutate, isLoading } = useMutation<void, unknown, UseDeletePetProps>(
-    (data) => deletePet(data.petId, data.userRole),
+    (data) => deletePet(data.petId),
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries(['pets'])
@@ -23,8 +22,8 @@ export const useDeletePet = () => {
     },
   )
 
-  const handleDeletePet = async (petId: string, userRole: string) => {
-    mutate({ petId, userRole })
+  const handleDeletePet = async (petId: string) => {
+    mutate({ petId })
   }
 
   return {

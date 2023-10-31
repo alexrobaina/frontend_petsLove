@@ -73,7 +73,7 @@ export const SettingsPage: FC = () => {
   return (
     <div className="pb-32">
       <header className="flex gap-5">
-        <Header title="Settings" canBack />
+        <Header title="Settings" buttonBack />
       </header>
       <FadeIn>
         <form onSubmit={handleSubmit}>

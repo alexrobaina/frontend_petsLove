@@ -1,5 +1,6 @@
 import { FormikErrors, FormikValues } from 'formik'
 import { ChangeEvent, FC, useState } from 'react'
+import { MultiValue } from 'react-select'
 
 import { BaseButton } from '../../../../components/BaseButton'
 import { BaseInput } from '../../../../components/BaseInput'
@@ -14,7 +15,10 @@ interface Props {
   user: User
   errors: FormikErrors<User>
   values: FormikValues
-  setFieldValue: (field: string, value: string | number | File | null) => void
+  setFieldValue: (
+    field: string,
+    value: string | number | File | null | MultiValue<unknown>,
+  ) => void
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
