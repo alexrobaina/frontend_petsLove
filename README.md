@@ -2,6 +2,10 @@
 
 - [API - Backend](https://github.com/alexrobaina/api-pets-love)
 
+- ## You can come with our discord and talk about pets and technology.
+
+- [Discord](https://discord.gg/RFZjYen5)
+
 ## Pet's Love Contributing 🦊
 
 - Please take a look at the CONTRIBUTING.md file.
