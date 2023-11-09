@@ -45,22 +45,25 @@ export const BaseButton: FC<Props> = ({
       onClick={onClick}
       disabled={isDisabled}
       style={{ backgroundColor }}
-      className={` ${wFull && 'w-full'}  ${
-        className && { className }
-      } py-2 px-4 rounded ${setType(style)} ${setSize(
-        size,
-      )} flex gap-3 items-center justify-center  ${
-        shouldDisplayOnlyIcon(text, icon) &&
-        'w-[36px] h-[36px] md:w-[36px] md:h-[36px] py-0 px-0'
-      }
-      ${
-        isDisabled &&
-        'bg-gray-300 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
-      }
-      `}
+      className={`flex items-center justify-center gap-3 ${
+        wFull ? 'w-full' : ''
+      } 
+    ${className ? className : ''} py-2 px-4 rounded 
+    ${setType(style)} ${setSize(size)} 
+    ${
+      shouldDisplayOnlyIcon(text, icon)
+        ? 'w-[36px] h-[36px] md:w-[36px] md:h-[36px] py-0 px-0'
+        : ''
+    }
+    ${
+      isDisabled
+        ? 'bg-gray-300 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
+        : ''
+    }
+  `}
     >
       {isLoading && <BaseLoading />}
-      {icon && <div className="icon">{icon}</div>}
+      {icon && <div>{icon}</div>}
       {text && text}
     </button>
   )

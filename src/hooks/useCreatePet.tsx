@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { createPet } from '../api/pet'
 
 export const useCreatePet = () => {
-  const [petCreated, setPetCreated]: any = useState({})
+  const [petCreated, setPetCreated] = useState({})
   const queryClient = useQueryClient()
 
   const { mutate, isLoading } = useMutation(createPet, {
