@@ -151,6 +151,8 @@ export const INITIAL_STATE = {
   shelterId: '',
   adoptedBy: '',
   category: '',
+  newImages: [],
+  images: {},
 }
 
 export const petSchema = Yup.object().shape({
@@ -164,3 +166,10 @@ export const petSchema = Yup.object().shape({
   description: Yup.string().required('Description is required'),
   category: Yup.string().required('Category is required'),
 })
+
+export type YourImageType = {
+  file: File
+  url: string
+  isNew: boolean
+  isDeleted?: boolean
+}

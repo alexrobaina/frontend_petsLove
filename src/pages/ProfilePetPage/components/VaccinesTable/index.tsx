@@ -67,17 +67,21 @@ export const VaccinesTable: React.FC<VaccinesTableProps> = ({
                             backgroundColor="bg-yellow-300"
                           />
                         </td>
-                        <td className="flex justify-center py-4 gap-5 pl-4 pr-3sm:pl-6 ">
-                          <BaseButton
-                            style="secondary"
-                            icon={<IconEdit />}
-                            onClick={() => handleEditVaccine(item.vaccine.id)}
-                          />
-                          <BaseButton
-                            style="secondary"
-                            icon={<IconTrash />}
-                            onClick={() => handleDeleteVaccine(item.vaccine.id)}
-                          />
+                        <td className="whitespace-nowrap px-3 py-10">
+                          <div className="flex gap-2 justify-end">
+                            <BaseButton
+                              style="tertiary"
+                              icon={<IconEdit />}
+                              onClick={() => handleEditVaccine(item.vaccine.id)}
+                            />
+                            <BaseButton
+                              style="tertiary"
+                              icon={<IconTrash />}
+                              onClick={() =>
+                                handleDeleteVaccine(item.vaccine.id)
+                              }
+                            />
+                          </div>
                         </td>
                       </tr>
                     ))}

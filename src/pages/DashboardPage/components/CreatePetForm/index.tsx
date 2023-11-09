@@ -14,6 +14,7 @@ import {
   ICreatePetForm,
   MASS_UNIT,
   SIZE_PETS,
+  YourImageType,
 } from '../../constants'
 
 interface Props {
@@ -31,22 +32,26 @@ interface Props {
     adoptedBy: string
     category: string
   }>
+  images: YourImageType[]
+  title: string
   handleChange: (e: ChangeEvent<Element>) => void
   setFieldValue: (
     field: string,
     value: string | number | File | null | MultiValue<unknown>,
   ) => void
-  urlImagesPreview: string[]
-  handleImagesChange: (e: ChangeEvent<HTMLInputElement>) => void
+  handleNewImage: (e: ChangeEvent<HTMLInputElement>) => void
+  handleImageDeletion: (image: YourImageType) => void
 }
 
 export const CreatePetForm: React.FC<Props> = ({
+  title,
   values,
   errors,
+  images,
   handleChange,
   setFieldValue,
-  urlImagesPreview,
-  handleImagesChange,
+  handleNewImage,
+  handleImageDeletion,
 }) => {
   const context = useContext(AppContext)
   const { data: userListShelter } = useUserList({ role: 'SHELTER' })
@@ -68,17 +73,35 @@ export const CreatePetForm: React.FC<Props> = ({
 
   return (
     <form>
-      <h1 className="text-2xl font-medium col-span-full">Pet details</h1>
+      <h1 className="text-2xl font-medium col-span-full">{title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-1  gap-8 w-full mt-5">
         <div className="col-span-1/2 flex flex-col gap-3">
           <div className="flex gap-2 md:gap-2 overflow-x-auto w-full">
-            {urlImagesPreview.map((url: string) => (
-              <img
-                src={url}
-                alt="user image"
-                className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover"
-              />
-            ))}
+            {images &&
+              images.map(
+                (image: YourImageType) =>
+                  !image.isNew &&
+                  !image.isDeleted && (
+                    <img
+                      key={image.url}
+                      alt="pet image"
+                      onClick={() => handleImageDeletion(image)}
+                      src={`${import.meta.env.VITE_BUCKET_NAME}${image.url}`}
+                      className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover :hover:opacity-50 cursor-pointer"
+                    />
+                  ),
+              )}
+            {images.map(
+              (image: YourImageType) =>
+                image.isNew && (
+                  <img
+                    src={image.url}
+                    alt="user image"
+                    onClick={() => handleImageDeletion(image)}
+                    className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover :hover:opacity-50 cursor-pointer"
+                  />
+                ),
+            )}
           </div>
           <div>
             <div className="flex w-full">
@@ -94,7 +117,7 @@ export const CreatePetForm: React.FC<Props> = ({
                 type="file"
                 name="images"
                 className="hidden"
-                onChange={handleImagesChange}
+                onChange={handleNewImage}
               />
             </div>
             <p className="mt-2 text-xs leading-5 text-gray-400">
@@ -197,6 +220,7 @@ export const CreatePetForm: React.FC<Props> = ({
           name="description"
           label="Description"
           error={errors.description}
+          value={values?.description}
           handleChange={handleChange}
           placeholder="Description of pet"
         />
@@ -210,8 +234,8 @@ export const CreatePetForm: React.FC<Props> = ({
               role: 'SHELTER',
             }) && (
               <BaseSelect
-                name="shelterId"
                 label="Shelter"
+                name="shelterId"
                 value={values?.shelterId}
                 setFieldValue={setFieldValue}
                 options={userListShelter?.users.map(
@@ -231,7 +255,7 @@ export const CreatePetForm: React.FC<Props> = ({
               <BaseSelect
                 name="adoptedBy"
                 label="Adopter"
-                value={values?.adopterId}
+                value={values?.adoptedBy}
                 setFieldValue={setFieldValue}
                 options={userListAdopter?.users.map(
                   (user: { email: string; id: string }) => ({

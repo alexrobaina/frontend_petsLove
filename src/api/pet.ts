@@ -61,18 +61,57 @@ export const createPet = async (data: ICreatePetForm) => {
       !(data[key] instanceof File)
     ) {
       formData.append(key, JSON.stringify(data[key]))
-    } else if (key !== 'image' && key !== 'qrCode') {
+    } else if (key !== 'newImages' && key !== 'qrCode') {
       formData.append(key, data[key])
     }
   })
 
-  if (data.images && Array.isArray(data.images)) {
-    data.images.forEach((file: File) => {
-      formData.append('images', file)
+  if (data.newImages.length > 0 && Array.isArray(data.newImages)) {
+    data.newImages.forEach((image: { file: File }) => {
+      formData.append('newImages', image.file)
     })
   }
 
   const response = await axios.post(`/api/v1/pets`, formData, {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+
+  return response.data
+}
+
+export const updatePet = async (data: ICreatePetForm) => {
+  const formData = new FormData()
+
+  Object.keys(data).forEach((key: string) => {
+    if (
+      typeof data[key] === 'object' &&
+      data[key] !== null &&
+      !(data[key] instanceof File)
+    ) {
+      formData.append(key, JSON.stringify(data[key]))
+    } else if (key !== 'id') {
+      formData.append(key, data[key])
+    }
+  })
+
+  if (data.images.length > 0 && Array.isArray(data.images)) {
+    data.images.forEach((image: { file: File; isNew: boolean }) => {
+      if (image.isNew) formData.append('newImages', image.file)
+    })
+  }
+
+  const imagesDeleted = data.images.filter(
+    (image: { isDeleted: boolean }) => image.isDeleted,
+  ) as []
+
+  if (imagesDeleted.length > 0) {
+    formData.append('deleteFiles', JSON.stringify(imagesDeleted))
+  }
+
+  const response = await axios.put(`/api/v1/pets/${data.id}`, formData, {
     withCredentials: true,
     headers: {
       'Content-Type': 'multipart/form-data',

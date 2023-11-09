@@ -203,19 +203,21 @@ export const DashboardTable: React.FC<Props> = ({
                             text={pet.adopted ? 'Adopted' : 'Available'}
                           />
                         </td>
-                        <td className="capitalize flex justify-end items-center gap-4 whitespace px-3 py-5 text-sm text-gray-500">
-                          <BaseButton
-                            style="tertiary"
-                            onClick={(e) => handleEdit(e, pet.id)}
-                            icon={<IconEdit />}
-                          />
-                          <BaseButton
-                            style="tertiary"
-                            onClick={(e) =>
-                              handleDelete(e, pet.id, user?.role || '')
-                            }
-                            icon={<IconTrash />}
-                          />
+                        <td className="whitespace-nowrap px-3 py-10">
+                          <div className="flex gap-2 justify-end">
+                            <BaseButton
+                              style="tertiary"
+                              onClick={(e) => handleEdit(e, pet.id)}
+                              icon={<IconEdit />}
+                            />
+                            <BaseButton
+                              style="tertiary"
+                              onClick={(e) =>
+                                handleDelete(e, pet.id, user?.role || '')
+                              }
+                              icon={<IconTrash />}
+                            />
+                          </div>
                         </td>
                       </tr>
                     ))}
