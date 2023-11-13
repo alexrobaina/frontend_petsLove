@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Navigation from './components/Navigation/Navigation'
-import { useModal } from './hooks/useModal'
+// import { useModal } from './hooks/useModal'
 import { AdoptionPetPage } from './pages/AdoptionPetPage'
 import { CommunityPage } from './pages/CommunityPage'
 import { ComponentsUiPage } from './pages/ComponentsUiPage'
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
 ])
 
 const App: FC<Props> = observer((props) => {
-  const { openModal } = useModal()
+  // const { openModal } = useModal()
   const [role, setRole] = useState<string>(
     !props?.appContext?.user?.role ? '' : props?.appContext?.user?.role,
   )
