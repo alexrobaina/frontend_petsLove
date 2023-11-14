@@ -34,10 +34,11 @@ export const SettingsPage: FC = () => {
 
   const formik = useFormik({
     initialValues: INITIAL_STATE,
-    onSubmit: (values) => {
+    onSubmit: (values, actions) => {
       if (values.image) {
         values.deleteFiles = deleteFiles
       }
+      actions.resetForm()
 
       mutate({
         ...values,

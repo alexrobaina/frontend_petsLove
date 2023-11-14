@@ -138,30 +138,30 @@ export const PersonalInformationForm: FC<Props> = ({
               <BaseInput
                 name="firstName"
                 label="First name"
-                placeholder="First name"
+                placeholder={user?.firstName || 'First name'}
                 error={errors?.firstName}
                 handleChange={handleChange}
-                value={values?.firstName || user?.firstName}
+                value={values?.firstName}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="lastName"
                 label="Last name"
-                placeholder="Last name"
+                placeholder={user?.lastName || 'Last name'}
                 error={errors?.lastName}
                 handleChange={handleChange}
-                value={values?.lastName || user?.lastName}
+                value={values?.lastName}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="username"
                 label="Username"
-                placeholder="janesmith"
+                placeholder={user?.username || 'Username'}
                 error={errors?.username}
                 handleChange={handleChange}
-                value={values?.username || user?.username}
+                value={values?.username}
               />
             </div>
             <div className="sm:col-span-3">
@@ -178,9 +178,9 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full">
               <BaseInput
                 isdisabled
-                value={user?.email}
+                value={values?.email}
                 label="Email address"
-                placeholder="Email address"
+                placeholder={user?.email || 'Email address'}
               />
             </div>
           </div>

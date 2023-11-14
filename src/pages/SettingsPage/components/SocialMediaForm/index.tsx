@@ -37,12 +37,10 @@ export const SocialMediaForm: FC<Props> = ({
           <div className="sm:col-span-3">
             <BaseInput
               label="Instagram"
-              placeholder="@refigyPaw"
+              placeholder={user?.socialMedia?.instagram || '@refigyPaw'}
               handleChange={handleChange}
               name="socialMedia.instagram"
-              value={
-                values?.socialMedia?.instagram || user?.socialMedia?.instagram
-              }
+              value={values?.socialMedia?.instagram}
             />
           </div>
           <div className="sm:col-span-3">
@@ -51,10 +49,11 @@ export const SocialMediaForm: FC<Props> = ({
               name="socialMedia.facebook"
               handleChange={handleChange}
               error={errors?.socialMedia?.facebook || ''}
-              placeholder="https://www.facebook.com/refigyPaw/"
-              value={
-                values?.socialMedia?.facebook || user?.socialMedia?.facebook
+              placeholder={
+                user?.socialMedia?.facebook ||
+                'https://www.facebook.com/refigyPaw/'
               }
+              value={values?.socialMedia?.facebook}
             />
           </div>
           <div className="sm:col-span-3">
@@ -62,10 +61,10 @@ export const SocialMediaForm: FC<Props> = ({
               label="Whatsapp"
               name="socialMedia.whatsapp"
               setFieldValue={setFieldValue}
-              value={
-                values?.socialMedia?.whatsapp || user?.socialMedia?.whatsapp
-              }
+              placeholder={user?.socialMedia?.whatsapp || ''}
+              value={values?.socialMedia?.whatsapp}
               error={errors?.socialMedia?.whatsapp}
+              country={'ar'}
             />
           </div>
           <div className="sm:col-span-3">
@@ -73,11 +72,9 @@ export const SocialMediaForm: FC<Props> = ({
               label="Telegram"
               name="socialMedia.telegram"
               handleChange={handleChange}
-              placeholder="Add your username"
+              placeholder={user?.socialMedia?.telegram || 'Add your username'}
               error={errors?.socialMedia?.telegram}
-              value={
-                values?.socialMedia?.telegram || user?.socialMedia?.telegram
-              }
+              value={values?.socialMedia?.telegram}
             />
           </div>
         </div>
