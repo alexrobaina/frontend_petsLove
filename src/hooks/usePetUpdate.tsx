@@ -11,8 +11,8 @@ export const usePetUpdate = () => {
       toast.success('Pet updated successfully')
       await queryClient.invalidateQueries(['pets'])
     },
-    onError: (error: unknown) => {
-      toast.error('🙈 Something is wrong!')
+    onError: (error: { response: { data: { message: string } } }) => {
+      toast.error(`🙈 ${error.response.data.message}`)
       console.log(error)
     },
   })

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { IconBack } from '../../assets/icons'
+import { IconBack } from '../../../assets/icons'
 import { BaseButton } from '../BaseButton'
 
 interface Props {

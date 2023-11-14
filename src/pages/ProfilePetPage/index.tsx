@@ -1,15 +1,40 @@
-import { FC } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { BaseLoading } from '../../components/BaseLoading'
-import { Header } from '../../components/Header'
+import { BaseLoading } from '../../components/common/BaseLoading'
+import { Header } from '../../components/common/Header'
+import { useDelecteVaccine } from '../../hooks/useDelecteVaccine'
 import { useGetPet } from '../../hooks/useGetPet'
 
+import { DeleteVaccineModal } from './components/DeleteVaccineModal'
+import { EditVaccineModal } from './components/EditVaccineModal'
 import { PetView } from './components/PetView'
-import { IVaccine } from './interfaces'
+
+export type YourImageType = {
+  file: File
+  url: string
+  isNew: boolean
+  isDeleted?: boolean
+}
+
+interface IVaccine {
+  id: string
+  Vaccine: {
+    id: string
+    name: string
+    description: string
+  }
+  status: string
+  files?: string[]
+}
 
 export const ProfilePetPage: FC = () => {
   const { id } = useParams()
+  const { mutate: deleteVaccine } = useDelecteVaccine()
+  const [isOpenDeleteVaccine, setIsOpenDeleteVaccine] = useState(false)
+
+  const [vaccine, setVaccine] = useState<IVaccine>()
+  const [isOpenEditVaccine, setIsOpenEditVaccine] = useState(false)
   const navigate = useNavigate()
   const { data, isLoading } = useGetPet(id)
 
@@ -17,19 +42,27 @@ export const ProfilePetPage: FC = () => {
     navigate(`/user/${id}`)
   }
 
-  const petVaccines = data?.pet?.PetVaccine?.map((vaccine: IVaccine) => {
-    return {
-      vaccine: vaccine.Vaccine,
-      status: vaccine.status,
-    }
-  })
-
-  const handleEditVaccine = (id: string) => {
-    console.log(id)
+  const handleEditVaccine = (data: IVaccine) => {
+    setVaccine(undefined)
+    setVaccine(data)
+    setIsOpenEditVaccine(true)
   }
 
-  const handleDeleteVaccine = (id: string) => {
-    console.log(id)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleOpenModalDeleteVaccine = (vaccine: any) => {
+    setVaccine(vaccine)
+    setIsOpenDeleteVaccine(true)
+  }
+
+  const handleDeleteVaccine = useCallback(() => {
+    vaccine?.id && deleteVaccine({ id: vaccine?.id })
+    setIsOpenDeleteVaccine(false)
+    setVaccine(undefined)
+  }, [setIsOpenDeleteVaccine, setVaccine, vaccine, deleteVaccine])
+
+  const handleCloseDeleteVaccineModal = () => {
+    setVaccine(undefined)
+    setIsOpenDeleteVaccine(false)
   }
 
   const getImagesWithUrlBucket = data?.pet?.images?.map((image: string) => {
@@ -48,10 +81,20 @@ export const ProfilePetPage: FC = () => {
       <PetView
         pet={data?.pet}
         gotToUser={gotToUser}
-        petVaccines={petVaccines}
         handleEditVaccine={handleEditVaccine}
-        handleDeleteVaccine={handleDeleteVaccine}
         getImagesWithUrlBucket={getImagesWithUrlBucket}
+        handleOpenModalDeleteVaccine={handleOpenModalDeleteVaccine}
+      />
+      <EditVaccineModal
+        vaccine={vaccine}
+        isOpenEditVaccine={isOpenEditVaccine}
+        setIsOpenEditVaccine={setIsOpenEditVaccine}
+      />
+      <DeleteVaccineModal
+        vaccine={vaccine}
+        isOpenDeleteVaccine={isOpenDeleteVaccine}
+        handleDeleteVaccine={handleDeleteVaccine}
+        handleCloseDeleteVaccineModal={handleCloseDeleteVaccineModal}
       />
     </>
   )

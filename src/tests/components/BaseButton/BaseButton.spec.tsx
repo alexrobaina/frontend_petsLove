@@ -1,6 +1,6 @@
 import { expect, vi } from 'vitest'
 
-import { BaseButton } from '../../../components/BaseButton'
+import { BaseButton } from '../../../components/common/BaseButton'
 import { render, screen, fireEvent } from '../../test-utils'
 
 describe('BaseButton Component', () => {

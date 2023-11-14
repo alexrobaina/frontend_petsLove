@@ -1,7 +1,7 @@
 import { FC, ReactElement } from 'react'
 
 import { IconMedicalReport } from '../../../../assets/icons'
-import { BaseAccordeon } from '../../../../components/BaseAccordeon'
+import { BaseAccordeon } from '../../../../components/common/BaseAccordeon'
 import { IMedicalRecord } from '../../interfaces'
 
 interface Props {

@@ -11,7 +11,7 @@ const appContext: AppContextProps = {
 test('App component display header', () => {
   render(<App appContext={appContext} />)
 
-  const text = screen.getByText('Google')
+  const text = screen.getByText('Email address')
 
   expect(text)
 })

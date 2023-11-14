@@ -8,6 +8,7 @@ import {
   IconSearch,
   IconSettings,
 } from '../../../../assets/icons'
+import { MidDog } from '../../../../assets/images'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { AppContext } from '../../../../services/AppContext'
 import { deleteCookie } from '../../../../utils/deleteCookie'
@@ -26,6 +27,12 @@ export const SideBar: FC<Props> = ({
 }) => {
   const navigation = useNavigate()
   const context = useContext(AppContext)
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement
+    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.src = MidDog
+  }
 
   const handleLogout = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
@@ -52,7 +59,7 @@ export const SideBar: FC<Props> = ({
     context?.user?.image &&
     context?.user?.image.includes('googleusercontent' || 'ggpht')
 
-  const showIamge = isGoogleAvatar
+  const showImage = isGoogleAvatar
     ? context?.user?.image
     : `${BUCKET_AVATAR_USER}${context?.user?.image}`
 
@@ -91,8 +98,9 @@ export const SideBar: FC<Props> = ({
             >
               <img
                 alt="profile"
+                onError={handleError}
                 src={
-                  showIamge ||
+                  showImage ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
                 className="w-[42px] h-[42px] rounded-full"

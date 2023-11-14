@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import App from './App.tsx'
-import { Navbar } from './components/Navbar/index.tsx'
+import { Navbar } from './components/Navbar'
 import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
 import { LoginPage } from './pages/LoginPage'
 import { ProfilePetPage } from './pages/ProfilePetPage/index.tsx'

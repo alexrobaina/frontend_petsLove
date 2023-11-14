@@ -1,12 +1,11 @@
 import { FormikErrors } from 'formik'
-import { ChangeEvent, useContext } from 'react'
+import { ChangeEvent } from 'react'
 import { MultiValue } from 'react-select'
 
-import { BaseInput } from '../../../../components/BaseInput'
-import { BaseSelect } from '../../../../components/BaseSelect'
-import { BaseTextArea } from '../../../../components/BaseTextArea'
+import { BaseInput } from '../../../../components/common/BaseInput'
+import { BaseSelect } from '../../../../components/common/BaseSelect'
+import { BaseTextArea } from '../../../../components/common/BaseTextArea'
 import useUserList from '../../../../hooks/useUserList'
-import { AppContext } from '../../../../services/AppContext'
 import {
   AGE_PETS,
   CATEGORY_PET,
@@ -31,6 +30,7 @@ interface Props {
     shelterId: string
     adoptedBy: string
     category: string
+    vetId: string
   }>
   images: YourImageType[]
   title: string
@@ -53,23 +53,9 @@ export const CreatePetForm: React.FC<Props> = ({
   handleNewImage,
   handleImageDeletion,
 }) => {
-  const context = useContext(AppContext)
   const { data: userListShelter } = useUserList({ role: 'SHELTER' })
   const { data: userListAdopter } = useUserList({ role: 'ADOPTER' })
-
-  const shouldGuardiansSelect = ({
-    userRole,
-    role,
-  }: {
-    userRole: string | null | undefined
-    role: string
-  }) => {
-    if (userRole === 'ADOPTER') return false
-    if (userRole === 'VET') return true
-    if (userRole === role) return false
-
-    return true
-  }
+  const { data: userListVet } = useUserList({ role: 'VET' })
 
   return (
     <form>
@@ -227,45 +213,49 @@ export const CreatePetForm: React.FC<Props> = ({
       </div>
       <div className="mt-6 flex flex-col ">
         <h1 className="text-xl font-medium col-span-full">Pet Guardians</h1>
-        <div className="grid grid-cols-1 md:grid-cols-1 w-full mt-5">
-          <div className="w-full">
-            {shouldGuardiansSelect({
-              userRole: context.user?.role,
-              role: 'SHELTER',
-            }) && (
-              <BaseSelect
-                label="Shelter"
-                name="shelterId"
-                value={values?.shelterId}
-                setFieldValue={setFieldValue}
-                options={userListShelter?.users.map(
-                  (user: { email: string; id: string }) => ({
-                    value: user.id,
-                    label: `${user.email} `,
-                  }),
-                )}
-              />
-            )}
+        <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
+          <div className="w-full ">
+            <BaseSelect
+              label="Shelter"
+              name="shelterId"
+              value={values?.shelterId}
+              setFieldValue={setFieldValue}
+              options={userListShelter?.users.map(
+                (user: { email: string; id: string }) => ({
+                  value: user.id,
+                  label: `${user.email} `,
+                }),
+              )}
+            />
           </div>
-          <div className="w-full">
-            {shouldGuardiansSelect({
-              userRole: context.user?.role,
-              role: 'ADOPTER',
-            }) && (
-              <BaseSelect
-                name="adoptedBy"
-                label="Adopter"
-                value={values?.adoptedBy}
-                setFieldValue={setFieldValue}
-                options={userListAdopter?.users.map(
-                  (user: { email: string; id: string }) => ({
-                    value: user.id,
-                    label: `${user.email} `,
-                  }),
-                )}
-              />
-            )}
+          <div className="w-full ">
+            <BaseSelect
+              name="adoptedBy"
+              label="Adopter"
+              value={values?.adoptedBy}
+              setFieldValue={setFieldValue}
+              options={userListAdopter?.users.map(
+                (user: { email: string; id: string }) => ({
+                  value: user.id,
+                  label: `${user.email} `,
+                }),
+              )}
+            />
           </div>
+        </div>
+        <div className="w-full mt-4">
+          <BaseSelect
+            name="vetId"
+            label="Vet"
+            value={values?.vet}
+            setFieldValue={setFieldValue}
+            options={userListVet?.users.map(
+              (user: { email: string; id: string }) => ({
+                value: user.id,
+                label: `${user.email} `,
+              }),
+            )}
+          />
         </div>
       </div>
     </form>

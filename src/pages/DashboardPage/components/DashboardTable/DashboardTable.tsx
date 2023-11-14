@@ -2,28 +2,34 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { IconEdit, IconSearch, IconTrash } from '../../../../assets/icons'
-import { BaseBadge } from '../../../../components/BaseBadge'
-import { BaseButton } from '../../../../components/BaseButton'
-import { BaseInput } from '../../../../components/BaseInput'
-import { Pagination } from '../../../../components/Pagination'
+import { BaseBadge } from '../../../../components/common/BaseBadge'
+import { BaseButton } from '../../../../components/common/BaseButton'
+import { BaseInput } from '../../../../components/common/BaseInput'
+import { BaseLoading } from '../../../../components/common/BaseLoading'
+import { Pagination } from '../../../../components/common/Pagination'
 import { AppContext } from '../../../../services/AppContext'
 
 interface Props {
   data: { pets: Pet[] | undefined; total: number | undefined }
   page: number
+  searchByName: string
+  updatePetLoading: boolean
   setPage(skip: number): void
+  handleCreatePet: () => void
   handleEdit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string,
   ): void
-  handleDelete(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    petId: string,
-    userRole: string,
-  ): void
-  searchByName: string
+  handleDelete({
+    e,
+    petId,
+    role,
+  }: {
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    petId: string
+    role: string
+  }): void
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
-  handleCreatePet: () => void
 }
 
 interface Pet {
@@ -47,6 +53,7 @@ export const DashboardTable: React.FC<Props> = ({
   searchByName,
   handleSearch,
   handleCreatePet,
+  updatePetLoading,
 }) => {
   const navigate = useNavigate()
   const { user } = useContext(AppContext)
@@ -54,6 +61,8 @@ export const DashboardTable: React.FC<Props> = ({
   const goToPet = (id: string) => {
     navigate(`/pet/${id}`)
   }
+
+  if (updatePetLoading) return <BaseLoading />
 
   return (
     <>
@@ -213,7 +222,11 @@ export const DashboardTable: React.FC<Props> = ({
                             <BaseButton
                               style="tertiary"
                               onClick={(e) =>
-                                handleDelete(e, pet.id, user?.role || '')
+                                handleDelete({
+                                  e,
+                                  petId: pet.id,
+                                  role: user?.role || '',
+                                })
                               }
                               icon={<IconTrash />}
                             />

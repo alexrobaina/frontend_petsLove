@@ -1,4 +1,4 @@
-import ErrorBoundary from '../../../../src/components/ErrorBoundary/index'
+import ErrorBoundary from '../../../../src/components/common/ErrorBoundary/index'
 import { expect } from 'vitest'
 
 import { render } from '../../test-utils'

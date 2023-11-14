@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
 
-import { BaseButton } from '../../components/BaseButton'
-import { BaseButtonGroups } from '../../components/BaseButtonGroups'
-import GoogleAutocomplete from '../../components/GoogleAutocomplete'
-import { Header } from '../../components/Header'
-import { Pagination } from '../../components/Pagination'
-import { PetList } from '../../components/PetList/Index'
+import { BaseButton } from '../../components/common/BaseButton'
+import { BaseButtonGroups } from '../../components/common/BaseButtonGroups'
+import GoogleAutocomplete from '../../components/common/GoogleAutocomplete'
+import { Header } from '../../components/common/Header'
+import { Pagination } from '../../components/common/Pagination'
+import { PetList } from '../../components/common/PetList/Index'
 import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
 import { useGetPets } from '../../hooks/useGetPets'
 

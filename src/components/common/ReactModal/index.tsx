@@ -2,28 +2,35 @@ import { motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
 import Modal from 'react-modal'
 
-import useScreenWidth from '../../hooks/useScreenWidth'
+import useScreenWidth from '../../../hooks/useScreenWidth'
 
 interface Props {
   title?: string
   isOpen: boolean
   children: ReactNode
+  description?: string
   buttonClose?: boolean
   width?: string | number
   height?: string | number
   closeModal?: () => void
 }
-
 export const ReactModal: FC<Props> = ({
   title,
   height,
-  width,
   isOpen,
   children,
   closeModal,
+  description,
   buttonClose = false,
 }) => {
   const isScreenSmall = useScreenWidth(780)
+
+  const makeDinamicWidth = () => {
+    if (isScreenSmall) {
+      return '95%'
+    }
+    return '450px'
+  }
 
   const customStyles = {
     content: {
@@ -32,10 +39,10 @@ export const ReactModal: FC<Props> = ({
       right: 'auto',
       bottom: 'auto',
       border: 'none',
+      height: height,
       marginRight: '-50%',
       borderRadius: '4px',
-      width: width || isScreenSmall ? '95%' : '50%',
-      height: height,
+      width: makeDinamicWidth(),
       backgroundColor: '#f3faf8',
       transform: 'translate(-50%, -50%)',
     },
@@ -63,10 +70,13 @@ export const ReactModal: FC<Props> = ({
         animate="visible"
         variants={variants}
         transition={{ ease: 'easeOut' }}
-        className="flex flex-col md:p-4"
+        className="flex flex-col md:p-2"
       >
         <div className="flex justify-between items-center">
-          <h2 className="text-primary-950 font-medium">{title}</h2>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-primary-950 font-medium">{title}</h2>
+            <p className="text-gray-500">{description}</p>
+          </div>
           {buttonClose && (
             <div
               className="text-primary-950"

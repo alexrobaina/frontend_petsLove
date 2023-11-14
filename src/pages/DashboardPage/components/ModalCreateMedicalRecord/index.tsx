@@ -1,9 +1,9 @@
 import { ChangeEvent } from 'react'
 import { MultiValue } from 'react-select'
 
-import { BaseInput } from '../../../../components/BaseInput'
-import { BaseSelect } from '../../../../components/BaseSelect'
-import { BaseTextArea } from '../../../../components/BaseTextArea'
+import { BaseInput } from '../../../../components/common/BaseInput'
+import { BaseSelect } from '../../../../components/common/BaseSelect'
+import { BaseTextArea } from '../../../../components/common/BaseTextArea'
 import { ICreateMedicalRecordForm } from '../../constants'
 
 interface Props {

@@ -1,6 +1,6 @@
-import { BaseButton } from '../../../../components/BaseButton'
-import { BaseButtonGroups } from '../../../../components/BaseButtonGroups'
-import { Header } from '../../../../components/Header'
+import { BaseButton } from '../../../../components/common/BaseButton'
+import { BaseButtonGroups } from '../../../../components/common/BaseButtonGroups'
+import { Header } from '../../../../components/common/Header'
 import {
   IS_ADOPTED_OPTIONS,
   PET_CATEGORY_OPTIONS,

@@ -6,7 +6,7 @@ import Layout from '../Layout/Layout'
 
 import { SideBar } from './components/SideBar'
 
-const Navigation: FC = observer(() => {
+export const Navigation: FC = observer(() => {
   const [menuIsCollapsed, setMenuIsCollapsed] = useState(true)
 
   return (

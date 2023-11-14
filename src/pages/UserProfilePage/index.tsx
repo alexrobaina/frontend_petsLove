@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Header } from '../../components/Header'
+import { Header } from '../../components/common/Header'
 
 export const UserProfilePage: FC = () => {
   const { id } = useParams()

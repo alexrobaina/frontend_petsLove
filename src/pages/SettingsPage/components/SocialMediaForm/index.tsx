@@ -1,9 +1,9 @@
 import { FormikErrors, FormikValues } from 'formik'
 import { FC } from 'react'
 
-import { BaseButton } from '../../../../components/BaseButton'
-import { BaseInput } from '../../../../components/BaseInput'
-import { BasePhoneInput } from '../../../../components/BasePhoneInput'
+import { BaseButton } from '../../../../components/common/BaseButton'
+import { BaseInput } from '../../../../components/common/BaseInput'
+import { BasePhoneInput } from '../../../../components/common/BasePhoneInput'
 import { User } from '../../constants'
 
 interface Props {

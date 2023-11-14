@@ -1,11 +1,14 @@
 import axios from 'axios'
 import { observer } from 'mobx-react'
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import Navigation from './components/Navigation/Navigation'
-import { useModal } from './hooks/useModal'
+import Navigation from './components/Navigation'
+import { BaseButton } from './components/common/BaseButton'
+import { BaseSelect } from './components/common/BaseSelect'
+import { ReactModal } from './components/common/ReactModal'
+import { ROLES } from './constants/community'
 import { AdoptionPetPage } from './pages/AdoptionPetPage'
 import { CommunityPage } from './pages/CommunityPage'
 import { ComponentsUiPage } from './pages/ComponentsUiPage'
@@ -61,13 +64,13 @@ const router = createBrowserRouter([
 ])
 
 const App: FC<Props> = observer((props) => {
-  const { openModal } = useModal()
+  const [isOpenRoleModal, setOpenRoleModal] = useState<boolean>(false)
   const [role, setRole] = useState<string>(
     !props?.appContext?.user?.role ? '' : props?.appContext?.user?.role,
   )
 
-  const setFieldValue = (_field: string, value: string) => {
-    setRole(value)
+  const setFieldValue = (_field: unknown, value: unknown) => {
+    setRole(value as string)
   }
 
   const updateUserRole = useCallback(async () => {
@@ -81,34 +84,11 @@ const App: FC<Props> = observer((props) => {
     }
   }, [role, props?.appContext?.user?.id])
 
-  // useEffect(() => {
-  //   if (!props?.appContext?.user?.role) {
-  //     openModal({
-  //       canClose: false,
-  //       title: 'Select your role',
-  //       description: 'Select your role is required to continue',
-  //       onSubmit: updateUserRole,
-  //       isDisabled: role === '' ? true : false,
-  //       children: (
-  //         <div className="flex">
-  //           <div className="mt-8 w-full">
-  //             <BaseSelect
-  //               name="role"
-  //               value={role}
-  //               setFieldValue={setFieldValue}
-  //               options={[
-  //                 { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
-  //                 { value: ROLES.SHELTER, label: ROLES.SHELTER },
-  //                 { value: ROLES.VET, label: ROLES.VET },
-  //                 { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
-  //               ]}
-  //             />
-  //           </div>
-  //         </div>
-  //       ),
-  //     })
-  //   }
-  // }, [role])
+  useEffect(() => {
+    if (!props?.appContext?.user?.role) {
+      setOpenRoleModal(true)
+    }
+  }, [props?.appContext?.user?.role])
 
   return (
     <AppContext.Provider value={props.appContext}>
@@ -124,6 +104,41 @@ const App: FC<Props> = observer((props) => {
         position="bottom-right"
       />
       <RouterProvider router={router} />
+      <ReactModal
+        title="Select your role"
+        buttonClose
+        closeModal={() => {
+          setOpenRoleModal(false)
+        }}
+        description="Select your role to continue using the platform"
+        isOpen={isOpenRoleModal}
+      >
+        <div className="flex">
+          <div className="mt-8 w-full">
+            <BaseSelect
+              name="role"
+              value={role}
+              setFieldValue={setFieldValue}
+              options={[
+                { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
+                { value: ROLES.SHELTER, label: ROLES.SHELTER },
+                { value: ROLES.VET, label: ROLES.VET },
+              ]}
+            />
+          </div>
+        </div>
+        <div className="flex gap-2 mt-5 justify-end">
+          <BaseButton
+            text="Save"
+            style="primary"
+            isDisabled={!role}
+            onClick={() => {
+              updateUserRole()
+              setOpenRoleModal(false)
+            }}
+          />
+        </div>
+      </ReactModal>
     </AppContext.Provider>
   )
 })
