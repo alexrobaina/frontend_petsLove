@@ -2,8 +2,8 @@
 import { useFormik } from 'formik'
 import { FC, useContext, useEffect, useState } from 'react'
 
-import { BaseLoading } from '../../components/BaseLoading'
-import { SliderModal } from '../../components/SliderModal'
+import { BaseLoading } from '../../components/common/BaseLoading'
+import { SliderModal } from '../../components/common/SliderModal'
 import { useCreatePet } from '../../hooks/useCreatePet'
 import { useDashboardPets } from '../../hooks/useDashboardPets'
 import { useDeletePet } from '../../hooks/useDeletePet'
@@ -31,7 +31,7 @@ export const DashboardPage: FC = () => {
   const [category, setCategory] = useState('')
   const [searchByName, setSearchByName] = useState('')
   const { mutate } = useCreatePet()
-  const { mutatePetUpdate } = usePetUpdate()
+  const { mutatePetUpdate, isLoading: updatePetLoading } = usePetUpdate()
   const [petId, setPetId] = useState('')
   const { handleDeletePet, isLoading: deletePetLoading } = useDeletePet()
   const [titleForm, setTitleForm] = useState('Crear mascota')
@@ -125,10 +125,17 @@ export const DashboardPage: FC = () => {
     setOpenModalCreation(true)
   }
 
-  const handleDelete = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    petId: string,
-  ) => {
+  const handleDelete = async ({
+    e,
+    petId,
+    role,
+  }: {
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    petId: string
+    role?: string
+  }) => {
+    console.log(role)
+
     e.stopPropagation()
     await handleDeletePet(petId)
   }
@@ -222,6 +229,7 @@ export const DashboardPage: FC = () => {
           handleSearch={handleSearch}
           handleDelete={handleDelete}
           handleCreatePet={handleCreatePet}
+          updatePetLoading={updatePetLoading}
         />
       </div>
       <SliderModal

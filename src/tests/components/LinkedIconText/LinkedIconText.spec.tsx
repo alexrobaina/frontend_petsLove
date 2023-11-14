@@ -1,8 +1,8 @@
-import { LinkedIconText } from '../../../components/LinkedIconText'
-import { IconLocation } from '../../../assets/icons'
-
-import { render, screen } from '../../test-utils'
 import { expect } from 'vitest'
+
+import { IconLocation } from '../../../assets/icons'
+import { LinkedIconText } from '../../../components/common/LinkedIconText'
+import { render, screen } from '../../test-utils'
 
 describe('LinkedIconText component', () => {
   test('renders text(Mendoz) with IconLocation as icon', () => {

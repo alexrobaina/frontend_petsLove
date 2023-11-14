@@ -1,13 +1,13 @@
 import { FC, useState } from 'react'
 
-import { BaseButtonGroups } from '../../components/BaseButtonGroups'
-import { Header } from '../../components/Header'
+import { IconLocation } from '../../assets/icons'
+import { BaseButtonGroups } from '../../components/common/BaseButtonGroups'
+import { Header } from '../../components/common/Header'
+import { LinkedIconText } from '../../components/common/LinkedIconText'
 
 import { Buttons } from './components/Buttons'
 import { Loadings } from './components/Loadings'
 import { Selects } from './components/Selects'
-import { LinkedIconText } from '../../components/LinkedIconText'
-import { IconLocation } from '../../assets/icons'
 
 export const ComponentsUiPage: FC = () => {
   const [viewComponents, setViewComponents] = useState('buttons')

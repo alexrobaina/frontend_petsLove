@@ -1,49 +1,40 @@
 export type PetDetail = {
   id: string
-  name: string
+  age: string
+  size: string
+  breed: string
+  weight: string
+  gender: string
   qrCode: string
   category: string
-  weight: string
-  breed: string
   description: string
-  gender: string
-  adopted: boolean
-  images: string[]
-  size: string
+  PetVaccine: IVaccine[]
+  MedicalRecord: []
+  Shelter: {
+    id: string
+    email: string
+    image: string
+    username: strin
+    firstName: string
+  }
+  Adopter: {
+    id: string
+    email: string
+    image: string
+    username: string
+    firstName: string
+  }
+  Vet: {
+    id: string
+    email: string
+    image: string
+    username: string
+    firstName: string
+  }
   location: {
     city: string
     country: string
   }
-  age: string
-  createdAt: Date
-  updatedAt: Date
-  adoptedBy: string
-  Adopter: {
-    email: string
-    firstName: string
-    id: string
-    image: string
-    username: string
-    description: string
-  }
-  Shelter: {
-    id: string
-    firstName: string
-    email: string
-    image: string
-    username: string
-    description: string
-  }
-  PetVaccine: {
-    id: string
-    name: string
-    description: string
-    vaccinesStatus: boolean
-    createdAt: Date
-    updatedAt: Date
-    PetVaccines: string[]
-  }
-  MedicalRecord: IMedicalRecord[]
 }
 
 export interface IMedicalRecord {
@@ -64,12 +55,15 @@ export interface IMedicalRecord {
 }
 
 export interface IVaccine {
+  id: string
+  name: string | undefined
+  description: string | undefined
   vaccine?: {
     id: string
     name: string
     description: string
   }
-  Vaccine?: {
+  Vaccine: {
     id: string
     name: string
     description: string

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { IconChevronLeft, IconChevronRight } from '../../assets/icons'
+import { IconChevronLeft, IconChevronRight } from '../../../assets/icons'
 
 interface Props {
   page: number

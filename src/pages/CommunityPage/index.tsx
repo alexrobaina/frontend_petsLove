@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { BaseButtonGroups } from '../../components/BaseButtonGroups'
-import GoogleAutocomplete from '../../components/GoogleAutocomplete'
-import { Header } from '../../components/Header'
+import { BaseButtonGroups } from '../../components/common/BaseButtonGroups'
+import GoogleAutocomplete from '../../components/common/GoogleAutocomplete'
+import { Header } from '../../components/common/Header'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
 import { IAddressComponent } from '../../constants/interfaces'
 import useUserList from '../../hooks/useUserList'
@@ -30,14 +30,14 @@ export const CommunityPage: FC = () => {
   const [role, setRole] = useState(ROLES.SHELTER)
   const [country, setCountry] = useState('')
   const [city, setCity] = useState('')
-  const [skip, setSkip] = useState(1)
   const [take] = useState(10)
+  const [page, setPage] = useState(1)
+
   const { data, error, isLoading } = useUserList({
     role,
     country,
     city,
-    skip,
-    take,
+    page,
   })
 
   const goToUserProfile = (id: string) => {
@@ -59,7 +59,7 @@ export const CommunityPage: FC = () => {
   }
 
   useEffect(() => {
-    setSkip(1)
+    setPage(1)
   }, [role, country, city])
 
   if (error) {
@@ -98,9 +98,9 @@ export const CommunityPage: FC = () => {
         </div>
         <CommunityTable
           data={data}
-          skip={skip}
+          page={page}
           take={take}
-          setSkip={setSkip}
+          setPage={setPage}
           isLoading={isLoading}
           goToUserProfile={goToUserProfile}
         />

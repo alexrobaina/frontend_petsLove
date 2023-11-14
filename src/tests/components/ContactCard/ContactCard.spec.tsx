@@ -1,7 +1,7 @@
-import { ContactCard } from '../../../components/ContactCard'
-
-import { render, screen } from '../../test-utils'
 import { expect } from 'vitest'
+
+import { ContactCard } from '../../../components/common/ContactCard'
+import { render, screen } from '../../test-utils'
 
 describe('Card Component', () => {
   test('initial render with all data', () => {

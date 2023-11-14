@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { BaseLoading } from '../../components/BaseLoading'
-import { PetCard } from '../../components/PetCard'
-import { PetCardType } from '../../constants/types'
+import { PetCardType } from '../../../constants/types'
+import { PetCard } from '../../PetCard'
+import { BaseLoading } from '../BaseLoading'
 
 interface Props {
   pets: PetCardType[]

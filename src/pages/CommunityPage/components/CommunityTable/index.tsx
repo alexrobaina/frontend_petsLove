@@ -4,9 +4,9 @@ import {
   IconTelegram,
   IconWhatsapp,
 } from '../../../../assets/icons'
-import midDog from '../../../../assets/images/mid-dog.png'
-import { BaseLoading } from '../../../../components/BaseLoading'
-import { Pagination } from '../../../../components/Pagination'
+import { MidDog } from '../../../../assets/images'
+import { BaseLoading } from '../../../../components/common/BaseLoading'
+import { Pagination } from '../../../../components/common/Pagination'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { User } from '../../../SettingsPage/constants'
 
@@ -17,25 +17,25 @@ interface Data {
 
 interface Props {
   data: Data
-  skip: number
   take: number
+  page: number
   isLoading: boolean
-  setSkip: (skip: number) => void
+  setPage: (page: number) => void
   goToUserProfile: (id: string) => void
 }
 
 export const CommunityTable: React.FC<Props> = ({
   data,
-  skip,
   take,
-  setSkip,
+  page,
+  setPage,
   isLoading,
   goToUserProfile,
 }) => {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement
     target.onerror = null // Prevents infinite loop if local image is also not found
-    target.src = midDog
+    target.src = MidDog
   }
 
   const goToLink = (
@@ -96,9 +96,9 @@ export const CommunityTable: React.FC<Props> = ({
                         <div className="h-11 w-11 flex-shrink-0">
                           <img
                             alt="user"
-                            src={`${BUCKET_AVATAR_USER}${user?.image}`}
-                            className="h-11 w-11 rounded-full"
                             onError={handleError}
+                            className="h-11 w-11 rounded-full"
+                            src={`${BUCKET_AVATAR_USER}${user?.image}`}
                           />
                         </div>
                         <div className="ml-4">
@@ -203,9 +203,9 @@ export const CommunityTable: React.FC<Props> = ({
         </div>
       </div>
       <Pagination
-        skip={skip}
         take={take}
-        setSkip={setSkip}
+        page={page}
+        setPage={setPage}
         total={data?.total}
       />
     </>

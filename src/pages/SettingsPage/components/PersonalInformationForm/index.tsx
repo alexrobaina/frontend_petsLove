@@ -2,10 +2,11 @@ import { FormikErrors, FormikValues } from 'formik'
 import { ChangeEvent, FC, useState } from 'react'
 import { MultiValue } from 'react-select'
 
-import { BaseButton } from '../../../../components/BaseButton'
-import { BaseInput } from '../../../../components/BaseInput'
-import { BaseSelect } from '../../../../components/BaseSelect'
-import GoogleAutocomplete from '../../../../components/GoogleAutocomplete'
+import MidDog from '../../../../assets/images/mid-dog.png'
+import { BaseButton } from '../../../../components/common/BaseButton'
+import { BaseInput } from '../../../../components/common/BaseInput'
+import { BaseSelect } from '../../../../components/common/BaseSelect'
+import GoogleAutocomplete from '../../../../components/common/GoogleAutocomplete'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { ROLES } from '../../../../constants/community'
 import { IAddressComponent } from '../../../../constants/interfaces'
@@ -82,9 +83,15 @@ export const PersonalInformationForm: FC<Props> = ({
   const isGoogleAvatar =
     user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
 
-  const showIamge = isGoogleAvatar
+  const showImage = isGoogleAvatar
     ? user?.image
     : `${BUCKET_AVATAR_USER}${user?.image}`
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement
+    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.src = MidDog
+  }
 
   return (
     <div className="divide-y mt-20 divide-white/5">
@@ -102,7 +109,8 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full flex items-center gap-x-8">
               <img
                 alt="user image"
-                src={previewURL ? previewURL : showIamge}
+                onError={handleError}
+                src={previewURL ? previewURL : showImage}
                 className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
               />
               <div>

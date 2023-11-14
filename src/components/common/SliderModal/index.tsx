@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
 
-import { SLIDER_VARIANTS } from '../../constants/animations'
+import { SLIDER_VARIANTS } from '../../../constants/animations'
+import FadeIn from '../../FadeIn'
 import { BaseButton } from '../BaseButton'
-import FadeIn from '../FadeIn'
 
 interface Props {
   title?: string

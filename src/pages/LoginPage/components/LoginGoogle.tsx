@@ -3,8 +3,8 @@ import { FC, ChangeEvent, useState } from 'react'
 
 import { IconGoogle } from '../../../assets/icons'
 import { BackgroundLogin } from '../../../assets/images'
-import { BaseButton } from '../../../components/BaseButton'
-import { BaseInput } from '../../../components/BaseInput'
+import { BaseButton } from '../../../components/common/BaseButton'
+import { BaseInput } from '../../../components/common/BaseInput'
 
 export const LoginGoogle: FC = () => {
   const [email, setEmail] = useState({

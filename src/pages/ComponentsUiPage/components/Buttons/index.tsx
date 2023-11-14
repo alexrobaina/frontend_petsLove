@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { BaseButton } from '../../../../components/BaseButton'
+import { BaseButton } from '../../../../components/common/BaseButton'
 
 export const Buttons: FC = () => (
   <>

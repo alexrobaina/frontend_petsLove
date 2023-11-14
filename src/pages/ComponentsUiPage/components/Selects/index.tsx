@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 
-import { BaseSelect } from '../../../../components/BaseSelect'
+import { BaseSelect } from '../../../../components/common/BaseSelect'
 
 interface Option {
   value: string

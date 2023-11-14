@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete'
 
-import { IconMap } from '../../assets/icons'
+import { IconMap } from '../../../assets/icons'
 
 interface latLng {
   lat: number

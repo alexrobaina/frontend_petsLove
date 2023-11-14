@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { BaseLoading } from '../../../../components/BaseLoading'
+import { BaseLoading } from '../../../../components/common/BaseLoading'
 
 export const Loadings: FC = () => (
   <>

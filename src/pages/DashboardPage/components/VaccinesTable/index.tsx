@@ -1,4 +1,4 @@
-import { BaseBadge } from '../../../../components/BaseBadge'
+import { BaseBadge } from '../../../../components/common/BaseBadge'
 
 interface IVaccine {
   id: string
@@ -24,7 +24,7 @@ export const VaccinesTable: React.FC<VaccinesTableProps> = ({ vaccines }) => (
                     scope="col"
                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                   >
-                    Vaccune
+                    Vaccine
                   </th>
                   <th
                     scope="col"

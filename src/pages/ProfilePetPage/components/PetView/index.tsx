@@ -1,46 +1,49 @@
-import SwiperGallery from '../../../../components/SwiperGallery'
-import { IVaccine, PetDetail } from '../../interfaces'
+import SwiperGallery from '../../../../components/common/SwiperGallery'
+import { PetDetail } from '../../interfaces'
 import { GeneralPetInfo } from '../GeneralPetInfo'
 import { Guardians } from '../Guardians'
 import { HealthData } from '../HealthData'
 import { Location } from '../Location'
+export interface IVaccine {
+  id: string
+  name: string
+  date: string
+  nextDueDate: string
+}
 
 interface Props {
   pet: PetDetail
   gotToUser(id: string): void
-  petVaccines: IVaccine[]
   getImagesWithUrlBucket: string[]
-  handleEditVaccine(id: string): void
-  handleDeleteVaccine(id: string): void
+  handleEditVaccine(data: IVaccine | unknown): void
+  handleOpenModalDeleteVaccine(vaccine: IVaccine): void
 }
 
 export const PetView: React.FC<Props> = ({
   pet,
   gotToUser,
-  petVaccines,
   handleEditVaccine,
-  handleDeleteVaccine,
   getImagesWithUrlBucket,
+  handleOpenModalDeleteVaccine,
 }) => {
   return (
     <section className="mt-10">
       {pet &&
-        [pet].map((pet: PetDetail) => (
-          <div key={pet?.id}>
-            <GeneralPetInfo pet={pet} />
+        [pet].map((items) => (
+          <div key={items?.id}>
+            <GeneralPetInfo pet={items} />
             <Location
-              city={pet?.location?.city}
-              country={pet?.location?.country}
+              city={items?.location?.city}
+              country={items?.location?.country}
             />
             <div className="mt-10">
               <SwiperGallery slides={getImagesWithUrlBucket} />
             </div>
-            <Guardians pet={pet} gotToUser={gotToUser} />
+            <Guardians pet={items} gotToUser={gotToUser} />
             <HealthData
-              pet={pet}
-              petVaccines={petVaccines}
+              pet={items}
               handleEditVaccine={handleEditVaccine}
-              handleDeleteVaccine={handleDeleteVaccine}
+              handleOpenModalDeleteVaccine={handleOpenModalDeleteVaccine}
             />
           </div>
         ))}

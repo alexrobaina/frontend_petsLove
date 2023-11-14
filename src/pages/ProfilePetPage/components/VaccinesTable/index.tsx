@@ -1,27 +1,46 @@
-import { IconEdit, IconTrash } from '../../../../assets/icons'
-import { BaseBadge } from '../../../../components/BaseBadge'
-import { BaseButton } from '../../../../components/BaseButton'
+import { useContext } from 'react'
+import { useParams } from 'react-router-dom'
 
-interface IVaccine {
-  vaccine: {
-    id: string
+import { IconEdit, IconTrash } from '../../../../assets/icons'
+import { BaseBadge } from '../../../../components/common/BaseBadge'
+import { BaseButton } from '../../../../components/common/BaseButton'
+import { useGetPet } from '../../../../hooks/useGetPet'
+import { AppContext } from '../../../../services/AppContext'
+
+export interface IVaccine {
+  status: string
+  Vaccine: {
     name: string
     description: string
   }
-  status: string
+  id: string
+  name: string
+  date: string
+  nextDueDate: string
+}
+interface Props {
+  vaccines?: IVaccine[] | undefined
+  handleEditVaccine(data: IVaccine): void
+  handleOpenModalDeleteVaccine(data: IVaccine): void
 }
 
-interface VaccinesTableProps {
-  vaccines: IVaccine[]
-  handleEditVaccine(id: string): void
-  handleDeleteVaccine(id: string): void
-}
-
-export const VaccinesTable: React.FC<VaccinesTableProps> = ({
+export const VaccinesTable: React.FC<Props> = ({
   vaccines,
   handleEditVaccine,
-  handleDeleteVaccine,
+  handleOpenModalDeleteVaccine,
 }) => {
+  const context = useContext(AppContext)
+  const { id } = useParams()
+  const { data } = useGetPet(id)
+
+  const checkIfUserIsOwner = () => {
+    if (data.pet.createdBy === context?.user?.id) return true
+    if (data.pet.shelterId === context?.user?.id) return true
+    if (data.pet.adoptedBy === context?.user?.id) return true
+
+    return false
+  }
+
   return (
     <>
       <div className="mt-8 px-4 md:px-0 flow-root">
@@ -35,7 +54,7 @@ export const VaccinesTable: React.FC<VaccinesTableProps> = ({
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                     >
-                      Vaccune
+                      Vaccine
                     </th>
                     <th
                       scope="col"
@@ -51,38 +70,47 @@ export const VaccinesTable: React.FC<VaccinesTableProps> = ({
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {vaccines &&
-                    vaccines.map((item) => (
-                      <tr key={item.vaccine.id}>
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    vaccines.map((item: IVaccine) => (
+                      <tr key={item.id}>
                         <td className="flex flex-col py-4 pl-4 pr-3sm:pl-6">
                           <div className="text-sm font-medium text-gray-900 ">
-                            {item.vaccine.name}
+                            {item?.Vaccine.name}
                           </div>
                           <div className="text-gray-400 truncate w-[350px]">
-                            {item.vaccine.description}
+                            {item?.Vaccine?.description}
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           <BaseBadge
                             text={item.status}
-                            backgroundColor="bg-yellow-300"
+                            backgroundColor={
+                              item.status === 'PENDING'
+                                ? 'bg-red-300'
+                                : item.status === 'DONE'
+                                ? 'bg-green-300'
+                                : 'bg-yellow-300'
+                            }
                           />
                         </td>
-                        <td className="whitespace-nowrap px-3 py-10">
-                          <div className="flex gap-2 justify-end">
-                            <BaseButton
-                              style="tertiary"
-                              icon={<IconEdit />}
-                              onClick={() => handleEditVaccine(item.vaccine.id)}
-                            />
-                            <BaseButton
-                              style="tertiary"
-                              icon={<IconTrash />}
-                              onClick={() =>
-                                handleDeleteVaccine(item.vaccine.id)
-                              }
-                            />
-                          </div>
-                        </td>
+                        {checkIfUserIsOwner() && (
+                          <td className="whitespace-nowrap px-3 py-10">
+                            <div className="flex gap-2 justify-end">
+                              <BaseButton
+                                style="tertiary"
+                                icon={<IconEdit />}
+                                onClick={() => handleEditVaccine(item)}
+                              />
+                              <BaseButton
+                                style="tertiary"
+                                icon={<IconTrash />}
+                                onClick={() =>
+                                  handleOpenModalDeleteVaccine(item)
+                                }
+                              />
+                            </div>
+                          </td>
+                        )}
                       </tr>
                     ))}
                 </tbody>
