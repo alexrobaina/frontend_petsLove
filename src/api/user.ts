@@ -1,6 +1,6 @@
-import axios from 'axios'
-
 import { User } from '../pages/SettingsPage/constants'
+
+import axios from './axiosInstance'
 
 export const getUsers = async ({
   role,

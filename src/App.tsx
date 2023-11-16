@@ -5,10 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Navigation from './components/Navigation'
-import { BaseButton } from './components/common/BaseButton'
-import { BaseSelect } from './components/common/BaseSelect'
-import { ReactModal } from './components/common/ReactModal'
-import { ROLES } from './constants/community'
+import { UserRoleSelectorModal } from './components/UserRoleSelectorModal'
 import { AdoptionPetPage } from './pages/AdoptionPetPage'
 import { CommunityPage } from './pages/CommunityPage'
 import { ComponentsUiPage } from './pages/ComponentsUiPage'
@@ -17,6 +14,7 @@ import { ProfilePetPage } from './pages/ProfilePetPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { UserProfilePage } from './pages/UserProfilePage'
 import { AppContext, AppContextProps } from './services/AppContext'
+import './api/axiosInstance'
 
 interface Props {
   appContext: AppContextProps
@@ -57,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <div>redirect</div>,
+        element: <DashboardPage />,
       },
     ],
   },
@@ -104,41 +102,13 @@ const App: FC<Props> = observer((props) => {
         position="bottom-right"
       />
       <RouterProvider router={router} />
-      <ReactModal
-        title="Select your role"
-        buttonClose
-        closeModal={() => {
-          setOpenRoleModal(false)
-        }}
-        description="Select your role to continue using the platform"
-        isOpen={isOpenRoleModal}
-      >
-        <div className="flex">
-          <div className="mt-8 w-full">
-            <BaseSelect
-              name="role"
-              value={role}
-              setFieldValue={setFieldValue}
-              options={[
-                { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
-                { value: ROLES.SHELTER, label: ROLES.SHELTER },
-                { value: ROLES.VET, label: ROLES.VET },
-              ]}
-            />
-          </div>
-        </div>
-        <div className="flex gap-2 mt-5 justify-end">
-          <BaseButton
-            text="Save"
-            style="primary"
-            isDisabled={!role}
-            onClick={() => {
-              updateUserRole()
-              setOpenRoleModal(false)
-            }}
-          />
-        </div>
-      </ReactModal>
+      <UserRoleSelectorModal
+        role={role}
+        setFieldValue={setFieldValue}
+        updateUserRole={updateUserRole}
+        isOpenRoleModal={isOpenRoleModal}
+        setOpenRoleModal={setOpenRoleModal}
+      />
     </AppContext.Provider>
   )
 })

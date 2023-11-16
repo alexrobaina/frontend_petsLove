@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { IconEdit, IconTrash } from '../../../../assets/icons'
+import { IconEdit } from '../../../../assets/icons'
 import { BaseBadge } from '../../../../components/common/BaseBadge'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { useGetPet } from '../../../../hooks/useGetPet'
@@ -21,13 +21,13 @@ export interface IVaccine {
 interface Props {
   vaccines?: IVaccine[] | undefined
   handleEditVaccine(data: IVaccine): void
-  handleOpenModalDeleteVaccine(data: IVaccine): void
+  // handleOpenModalDeleteVaccine(data: IVaccine): void
 }
 
 export const VaccinesTable: React.FC<Props> = ({
   vaccines,
   handleEditVaccine,
-  handleOpenModalDeleteVaccine,
+  // handleOpenModalDeleteVaccine,
 }) => {
   const context = useContext(AppContext)
   const { id } = useParams()
@@ -64,8 +64,10 @@ export const VaccinesTable: React.FC<Props> = ({
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                    />
+                      className="py-3.5 pl-4 pr-10 text-end text-sm font-semibold text-gray-900 sm:pl-6"
+                    >
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -94,20 +96,20 @@ export const VaccinesTable: React.FC<Props> = ({
                           />
                         </td>
                         {checkIfUserIsOwner() && (
-                          <td className="whitespace-nowrap px-3 py-10">
+                          <td className="whitespace-nowrap px-3 py-10 pr-14">
                             <div className="flex gap-2 justify-end">
                               <BaseButton
                                 style="tertiary"
                                 icon={<IconEdit />}
                                 onClick={() => handleEditVaccine(item)}
                               />
-                              <BaseButton
+                              {/* <BaseButton
                                 style="tertiary"
                                 icon={<IconTrash />}
                                 onClick={() =>
                                   handleOpenModalDeleteVaccine(item)
                                 }
-                              />
+                              /> */}
                             </div>
                           </td>
                         )}

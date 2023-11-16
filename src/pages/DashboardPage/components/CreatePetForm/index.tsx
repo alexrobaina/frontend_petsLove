@@ -39,6 +39,7 @@ interface Props {
     field: string,
     value: string | number | File | null | MultiValue<unknown>,
   ) => void
+  isEdit: boolean
   handleNewImage: (e: ChangeEvent<HTMLInputElement>) => void
   handleImageDeletion: (image: YourImageType) => void
 }
@@ -48,6 +49,7 @@ export const CreatePetForm: React.FC<Props> = ({
   values,
   errors,
   images,
+  isEdit,
   handleChange,
   setFieldValue,
   handleNewImage,
@@ -216,20 +218,6 @@ export const CreatePetForm: React.FC<Props> = ({
         <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
-              label="Shelter"
-              name="shelterId"
-              value={values?.shelterId}
-              setFieldValue={setFieldValue}
-              options={userListShelter?.users.map(
-                (user: { email: string; id: string }) => ({
-                  value: user.id,
-                  label: `${user.email} `,
-                }),
-              )}
-            />
-          </div>
-          <div className="w-full ">
-            <BaseSelect
               name="adoptedBy"
               label="Adopter"
               value={values?.adoptedBy}
@@ -242,21 +230,37 @@ export const CreatePetForm: React.FC<Props> = ({
               )}
             />
           </div>
+          <div className="w-full">
+            <BaseSelect
+              name="vetId"
+              label="Vet"
+              value={values?.vetId}
+              setFieldValue={setFieldValue}
+              options={userListVet?.users.map(
+                (user: { email: string; id: string }) => ({
+                  value: user.id,
+                  label: `${user.email} `,
+                }),
+              )}
+            />
+          </div>
         </div>
-        <div className="w-full mt-4">
-          <BaseSelect
-            name="vetId"
-            label="Vet"
-            value={values?.vet}
-            setFieldValue={setFieldValue}
-            options={userListVet?.users.map(
-              (user: { email: string; id: string }) => ({
-                value: user.id,
-                label: `${user.email} `,
-              }),
-            )}
-          />
-        </div>
+        {isEdit && (
+          <div className="w-full mt-4">
+            <BaseSelect
+              label="Shelter"
+              name="shelterId"
+              value={values?.shelterId}
+              setFieldValue={setFieldValue}
+              options={userListShelter?.users.map(
+                (user: { email: string; id: string }) => ({
+                  value: user.id,
+                  label: `${user.email} `,
+                }),
+              )}
+            />
+          </div>
+        )}
       </div>
     </form>
   )

@@ -37,10 +37,10 @@ export const SocialMediaForm: FC<Props> = ({
           <div className="sm:col-span-3">
             <BaseInput
               label="Instagram"
-              placeholder={user?.socialMedia?.instagram || '@refigyPaw'}
               handleChange={handleChange}
               name="socialMedia.instagram"
               value={values?.socialMedia?.instagram}
+              placeholder={user?.socialMedia?.instagram || 'Add your username'}
             />
           </div>
           <div className="sm:col-span-3">
