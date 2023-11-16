@@ -1,7 +1,8 @@
-import axios from 'axios'
 import Resizer from 'react-image-file-resizer'
 
 import { ICreatePetForm } from '../pages/DashboardPage/constants'
+
+import axios from './axiosInstance'
 
 export const getPets = async ({
   page,

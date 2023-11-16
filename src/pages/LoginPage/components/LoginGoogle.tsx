@@ -14,7 +14,7 @@ export const LoginGoogle: FC = () => {
   })
   const signInWithGoogle = async () => {
     const { data } = await axios.get('/api/auth/google/')
-    location.href = data.location
+    location.href = data?.location
   }
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {

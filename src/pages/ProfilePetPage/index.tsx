@@ -2,11 +2,11 @@ import { FC, useCallback, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
+import { DeleteModal } from '../../components/common/DeleteModal'
 import { Header } from '../../components/common/Header'
 import { useDelecteVaccine } from '../../hooks/useDelecteVaccine'
 import { useGetPet } from '../../hooks/useGetPet'
 
-import { DeleteVaccineModal } from './components/DeleteVaccineModal'
 import { EditVaccineModal } from './components/EditVaccineModal'
 import { PetView } from './components/PetView'
 
@@ -90,11 +90,11 @@ export const ProfilePetPage: FC = () => {
         isOpenEditVaccine={isOpenEditVaccine}
         setIsOpenEditVaccine={setIsOpenEditVaccine}
       />
-      <DeleteVaccineModal
-        vaccine={vaccine}
-        isOpenDeleteVaccine={isOpenDeleteVaccine}
-        handleDeleteVaccine={handleDeleteVaccine}
-        handleCloseDeleteVaccineModal={handleCloseDeleteVaccineModal}
+      <DeleteModal
+        isOpen={isOpenDeleteVaccine}
+        handleDelete={handleDeleteVaccine}
+        handleClose={handleCloseDeleteVaccineModal}
+        title={`Are you sure you want to delete ${vaccine?.Vaccine.name}?`}
       />
     </>
   )

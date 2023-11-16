@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { IconEdit, IconSearch, IconTrash } from '../../../../assets/icons'
@@ -7,7 +6,6 @@ import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
-import { AppContext } from '../../../../services/AppContext'
 
 interface Props {
   data: { pets: Pet[] | undefined; total: number | undefined }
@@ -23,11 +21,10 @@ interface Props {
   handleDelete({
     e,
     petId,
-    role,
   }: {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     petId: string
-    role: string
+    petName: string
   }): void
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -56,7 +53,6 @@ export const DashboardTable: React.FC<Props> = ({
   updatePetLoading,
 }) => {
   const navigate = useNavigate()
-  const { user } = useContext(AppContext)
 
   const goToPet = (id: string) => {
     navigate(`/pet/${id}`)
@@ -225,7 +221,7 @@ export const DashboardTable: React.FC<Props> = ({
                                 handleDelete({
                                   e,
                                   petId: pet.id,
-                                  role: user?.role || '',
+                                  petName: pet.name,
                                 })
                               }
                               icon={<IconTrash />}

@@ -14,7 +14,6 @@ import { AppContextProps } from './services/AppContext.ts'
 import { getCookie } from './utils/getCookie.ts'
 
 import './index.css'
-import './services/axiosInstance'
 import 'react-toastify/dist/ReactToastify.css'
 
 const queryClient = new QueryClient()
@@ -44,7 +43,7 @@ async function main() {
         },
         {
           path: '*',
-          element: <div>redirect</div>,
+          element: <LoginPage />,
         },
       ],
     },

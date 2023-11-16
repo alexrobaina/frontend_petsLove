@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import { FC, useContext, useEffect, useState } from 'react'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
+import { DeleteModal } from '../../components/common/DeleteModal'
 import { SliderModal } from '../../components/common/SliderModal'
 import { useCreatePet } from '../../hooks/useCreatePet'
 import { useDashboardPets } from '../../hooks/useDashboardPets'
@@ -34,8 +35,13 @@ export const DashboardPage: FC = () => {
   const { mutatePetUpdate, isLoading: updatePetLoading } = usePetUpdate()
   const [petId, setPetId] = useState('')
   const { handleDeletePet, isLoading: deletePetLoading } = useDeletePet()
-  const [titleForm, setTitleForm] = useState('Crear mascota')
+  const [titleForm, setTitleForm] = useState('Create pet')
   const [images, setImages] = useState<any[]>([])
+  const [petDelete, setPetDelete] = useState({
+    petId: '',
+    petName: '',
+  })
+  const [deleteModalPet, setDeleteModalPet] = useState(false)
 
   const [isOpenModalCreation, setOpenModalCreation] = useState(false)
 
@@ -55,7 +61,8 @@ export const DashboardPage: FC = () => {
       values.weight = `${values.weight} ${values.units}`
       values.units = ''
 
-      if (context.user?.role === 'SHELTER') values.shelterId = context?.user?.id
+      if (context?.user?.role === 'SHELTER')
+        values.shelterId = context?.user?.id
 
       if (petId) {
         mutatePetUpdate({ ...values, id: petId })
@@ -125,19 +132,18 @@ export const DashboardPage: FC = () => {
     setOpenModalCreation(true)
   }
 
-  const handleDelete = async ({
+  const handleDelete = ({
     e,
     petId,
-    role,
+    petName,
   }: {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     petId: string
-    role?: string
+    petName: string
   }) => {
-    console.log(role)
-
+    setPetDelete({ petId, petName })
+    setDeleteModalPet(true)
     e.stopPropagation()
-    await handleDeletePet(petId)
   }
 
   const handleImageDeletion = (imageToDelete: YourImageType) => {
@@ -174,6 +180,7 @@ export const DashboardPage: FC = () => {
         shelterId: petData?.pet?.shelterId || '',
         adoptedBy: petData?.pet?.adoptedBy || '',
         newImages: [],
+        vetId: petData?.pet?.vetId || '',
       }
 
       resetForm({ values: petToEdit })
@@ -238,6 +245,7 @@ export const DashboardPage: FC = () => {
         closeSlider={closePetCreationSlider}
       >
         <CreatePetForm
+          isEdit={!!petId}
           errors={errors}
           values={values}
           images={images}
@@ -248,6 +256,15 @@ export const DashboardPage: FC = () => {
           handleImageDeletion={handleImageDeletion}
         />
       </SliderModal>
+      <DeleteModal
+        isOpen={deleteModalPet}
+        handleClose={() => setDeleteModalPet(false)}
+        handleDelete={() => {
+          handleDeletePet(petDelete.petId)
+          setDeleteModalPet(false)
+        }}
+        title={`Are you sure you want to delete ${petDelete.petName}?`}
+      />
     </>
   )
 }

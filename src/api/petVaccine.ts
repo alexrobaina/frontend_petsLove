@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axiosInstance'
 
 export const updatePetVaccine = async (data: {
   id?: string

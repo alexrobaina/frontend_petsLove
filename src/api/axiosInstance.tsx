@@ -1,24 +1,17 @@
-import axios, {
-  AxiosInstance,
-  InternalAxiosRequestConfig,
-  AxiosResponse,
-} from 'axios'
+import axios from 'axios'
 
 import { getCookie } from '../utils/getCookie'
 
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: '/',
-})
+// Set up base URL and other global settings
+axios.defaults.baseURL = '/'
 
-// Add a request interceptor to add the token in headers
+// Add a request interceptor
 axios.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config) => {
     const token = getCookie('token')
-
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
     }
-
     return config
   },
   (error) => {
@@ -26,14 +19,18 @@ axios.interceptors.request.use(
   },
 )
 
-// Add a response interceptor if you need to
+// Add a response interceptor
 axios.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response) => {
     return response
   },
   (error) => {
+    if (error.response.status === 401) {
+      window.location.href = '/login'
+    }
+
     return Promise.reject(error)
   },
 )
 
-export default axiosInstance
+export default axios
