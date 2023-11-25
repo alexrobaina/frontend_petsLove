@@ -115,16 +115,6 @@ export interface ICreatePetForm {
   category: string
 }
 
-export interface ICreateMedicalRecordForm {
-  title: string
-  description: string
-  treatment: string
-  medication: []
-  notes: string
-
-  attachments: string
-  vet: string
-}
 export interface IErrorsCreatePetForm {
   age: ''
   name: ''
@@ -167,7 +157,7 @@ export const petSchema = Yup.object().shape({
   category: Yup.string().required('Category is required'),
 })
 
-export type YourImageType = {
+export type FileType = {
   file: File
   url: string
   isNew: boolean

@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useContext, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
@@ -6,11 +6,12 @@ import { DeleteModal } from '../../components/common/DeleteModal'
 import { Header } from '../../components/common/Header'
 import { useDelecteVaccine } from '../../hooks/useDelecteVaccine'
 import { useGetPet } from '../../hooks/useGetPet'
+import { AppContext } from '../../services/AppContext'
 
 import { EditVaccineModal } from './components/EditVaccineModal'
 import { PetView } from './components/PetView'
 
-export type YourImageType = {
+export type FileType = {
   file: File
   url: string
   isNew: boolean
@@ -31,6 +32,7 @@ interface IVaccine {
 export const ProfilePetPage: FC = () => {
   const { id } = useParams()
   const { mutate: deleteVaccine } = useDelecteVaccine()
+  const context = useContext(AppContext)
   const [isOpenDeleteVaccine, setIsOpenDeleteVaccine] = useState(false)
 
   const [vaccine, setVaccine] = useState<IVaccine>()
@@ -69,6 +71,14 @@ export const ProfilePetPage: FC = () => {
     return `${import.meta.env.VITE_BUCKET_NAME}${image}`
   })
 
+  const checkIfUserIsOwner = () => {
+    if (data.pet.createdBy === context?.user?.id) return true
+    if (data.pet.shelterId === context?.user?.id) return true
+    if (data.pet.adoptedBy === context?.user?.id) return true
+
+    return false
+  }
+
   if (isLoading) return <BaseLoading large />
 
   return (
@@ -82,6 +92,7 @@ export const ProfilePetPage: FC = () => {
         pet={data?.pet}
         gotToUser={gotToUser}
         handleEditVaccine={handleEditVaccine}
+        checkIfUserIsOwner={checkIfUserIsOwner}
         getImagesWithUrlBucket={getImagesWithUrlBucket}
         handleOpenModalDeleteVaccine={handleOpenModalDeleteVaccine}
       />
@@ -94,7 +105,7 @@ export const ProfilePetPage: FC = () => {
         isOpen={isOpenDeleteVaccine}
         handleDelete={handleDeleteVaccine}
         handleClose={handleCloseDeleteVaccineModal}
-        title={`Are you sure you want to delete ${vaccine?.Vaccine.name}?`}
+        title={`Are you sure you want to delete ${vaccine?.Vaccine?.name}?`}
       />
     </>
   )

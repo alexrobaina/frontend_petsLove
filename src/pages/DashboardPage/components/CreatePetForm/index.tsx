@@ -13,7 +13,7 @@ import {
   ICreatePetForm,
   MASS_UNIT,
   SIZE_PETS,
-  YourImageType,
+  FileType,
 } from '../../constants'
 
 interface Props {
@@ -32,7 +32,7 @@ interface Props {
     category: string
     vetId: string
   }>
-  images: YourImageType[]
+  images: FileType[]
   title: string
   handleChange: (e: ChangeEvent<Element>) => void
   setFieldValue: (
@@ -41,7 +41,7 @@ interface Props {
   ) => void
   isEdit: boolean
   handleNewImage: (e: ChangeEvent<HTMLInputElement>) => void
-  handleImageDeletion: (image: YourImageType) => void
+  handleImageDeletion: (image: FileType) => void
 }
 
 export const CreatePetForm: React.FC<Props> = ({
@@ -67,7 +67,7 @@ export const CreatePetForm: React.FC<Props> = ({
           <div className="flex gap-2 md:gap-2 overflow-x-auto w-full">
             {images &&
               images.map(
-                (image: YourImageType) =>
+                (image: FileType) =>
                   !image.isNew &&
                   !image.isDeleted && (
                     <img
@@ -80,7 +80,7 @@ export const CreatePetForm: React.FC<Props> = ({
                   ),
               )}
             {images.map(
-              (image: YourImageType) =>
+              (image: FileType) =>
                 image.isNew && (
                   <img
                     src={image.url}
@@ -218,8 +218,8 @@ export const CreatePetForm: React.FC<Props> = ({
         <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
-              name="adoptedBy"
               label="Adopter"
+              name="adoptedBy"
               value={values?.adoptedBy}
               setFieldValue={setFieldValue}
               options={userListAdopter?.users.map(

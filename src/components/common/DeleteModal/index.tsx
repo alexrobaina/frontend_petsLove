@@ -6,8 +6,8 @@ import { ReactModal } from '../ReactModal'
 interface Props {
   title: string
   isOpen: boolean
-  handleDelete: () => void
   handleClose: () => void
+  handleDelete: () => void
 }
 
 export const DeleteModal: FC<Props> = ({

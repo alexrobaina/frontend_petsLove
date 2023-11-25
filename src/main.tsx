@@ -66,6 +66,10 @@ async function main() {
         user: data.user,
       })
     } else {
+      appContext = observable({
+        session: { token: '' },
+        user: null,
+      })
       throw new Error('User not signed in')
     }
   } catch (_e) {

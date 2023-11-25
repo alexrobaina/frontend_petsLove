@@ -9,12 +9,12 @@ export type PetDetail = {
   category: string
   description: string
   PetVaccine: IVaccine[]
-  MedicalRecord: []
+  MedicalRecord: [IMedicalRecord]
   Shelter: {
     id: string
     email: string
     image: string
-    username: strin
+    username: string
     firstName: string
   }
   Adopter: {
@@ -38,20 +38,20 @@ export type PetDetail = {
 }
 
 export interface IMedicalRecord {
-  id: string
-  title: string
-  description: string
-  diagnosis: string
-  treatment: string
-  medications: string[]
-  followUpRequired: boolean
-  followUpDate: string
-  vetId: string
-  clinicName: string
-  notes: string
-  attachments: string[]
-  createdAt: string
-  updatedAt: string
+  id?: string
+  title?: string
+  description?: string
+  diagnosis?: string
+  treatment?: string
+  medications?: string[]
+  followUpRequired?: boolean
+  followUpDate?: string
+  vetId?: string
+  clinicName?: string
+  notes?: string
+  attachments?: string[]
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface IVaccine {
