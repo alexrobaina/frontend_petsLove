@@ -14,6 +14,7 @@ import { ProfilePetPage } from './pages/ProfilePetPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { UserProfilePage } from './pages/UserProfilePage'
 import { AppContext, AppContextProps } from './services/AppContext'
+
 import './api/axiosInstance'
 
 interface Props {
@@ -83,7 +84,10 @@ const App: FC<Props> = observer((props) => {
   }, [role, props?.appContext?.user?.id])
 
   useEffect(() => {
-    if (!props?.appContext?.user?.role) {
+    if (
+      !props?.appContext?.user?.role &&
+      props?.appContext?.session?.token !== ''
+    ) {
       setOpenRoleModal(true)
     }
   }, [props?.appContext?.user?.role])

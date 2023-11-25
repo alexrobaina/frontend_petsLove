@@ -15,7 +15,7 @@ import { AppContext } from '../../services/AppContext'
 import { CreatePetForm } from './components/CreatePetForm'
 import { DashboardHeader } from './components/DashboardHeader'
 import { DashboardTable } from './components/DashboardTable/DashboardTable'
-import { INITIAL_STATE, YourImageType, petSchema } from './constants'
+import { INITIAL_STATE, FileType, petSchema } from './constants'
 
 export const DashboardPage: FC = () => {
   const context:
@@ -146,7 +146,7 @@ export const DashboardPage: FC = () => {
     e.stopPropagation()
   }
 
-  const handleImageDeletion = (imageToDelete: YourImageType) => {
+  const handleImageDeletion = (imageToDelete: FileType) => {
     // Update the images state to filter out the image that needs to be deleted
     setImages((currentImages) =>
       currentImages

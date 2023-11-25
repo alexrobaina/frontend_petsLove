@@ -7,7 +7,7 @@ import { ReactModal } from '../../../../components/common/ReactModal'
 import { useUpdatePetVaccine } from '../../../../hooks/useUpdatePetVaccine'
 import { petVaccineSchema } from '../../validations'
 
-export type YourImageType = {
+export type FileType = {
   file: File
   url: string
   isNew: boolean
@@ -36,7 +36,7 @@ export const EditVaccineModal: FC<Props> = ({
   setIsOpenEditVaccine,
 }) => {
   const { mutate: updatePetVaccine } = useUpdatePetVaccine()
-  const [files, setFiles] = useState<YourImageType[]>([])
+  const [files, setFiles] = useState<FileType[]>([])
 
   const formik = useFormik({
     validationSchema: petVaccineSchema,
@@ -79,11 +79,11 @@ export const EditVaccineModal: FC<Props> = ({
     }
   }
 
-  const handleImageDeletion = (imageToDelete: YourImageType) => {
+  const handleImageDeletion = (imageToDelete: FileType) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setFiles((currentImages: any) =>
       currentImages
-        .map((file: YourImageType) => {
+        .map((file: FileType) => {
           if (file === imageToDelete) {
             if (file.isNew) {
               URL.revokeObjectURL(file.url) // Revoke the object URL to prevent memory leaks
@@ -144,7 +144,7 @@ export const EditVaccineModal: FC<Props> = ({
             <div className="flex gap-2 mb-3">
               {files &&
                 files.map(
-                  (file: YourImageType) =>
+                  (file: FileType) =>
                     !file.isNew &&
                     !file.isDeleted && (
                       <img
@@ -157,7 +157,7 @@ export const EditVaccineModal: FC<Props> = ({
                     ),
                 )}
               {files.map(
-                (file: YourImageType) =>
+                (file: FileType) =>
                   file.isNew && (
                     <img
                       src={file.url}

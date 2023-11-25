@@ -25,7 +25,7 @@ const warning: AppContextProps = {
   },
   get user(): User {
     console.warn('Accessed context.user without context provider.')
-    throw new Error('Accessed context.user without context provider.')
+    // throw new Error('Accessed context.user without context provider.')
   },
 }
 

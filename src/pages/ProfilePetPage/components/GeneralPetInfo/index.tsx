@@ -1,7 +1,7 @@
 import { DetailCard } from '../DetailCard'
 
 interface Props {
-  pet: {
+  data: {
     age: string
     size: string
     breed: string
@@ -13,16 +13,16 @@ interface Props {
   }
 }
 
-export const GeneralPetInfo: React.FC<Props> = ({ pet }) => {
+export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
   return (
     <>
       <div className="flex flex-wrap gap-4 lg:gap-x-0 justify-between mt-4 w-70 md:w-full lg:w-full">
-        <DetailCard title="Category:" description={pet?.category} />
-        <DetailCard title="Weight:" description={pet?.weight} />
-        <DetailCard title="Breed:" description={pet?.breed} />
-        <DetailCard title="Size:" description={pet?.size} />
-        <DetailCard title="Gender:" description={pet?.gender} />
-        <DetailCard title="Age:" description={pet?.age} />
+        <DetailCard title="Category:" description={data.category} />
+        <DetailCard title="Weight:" description={data.weight} />
+        <DetailCard title="Breed:" description={data.breed} />
+        <DetailCard title="Size:" description={data.size} />
+        <DetailCard title="Gender:" description={data.gender} />
+        <DetailCard title="Age:" description={data.age} />
       </div>
       <div className="flew-col gap-10 md:justify-between md:flex">
         <div className="mt-10 flex-col md:w-[50%]">
@@ -31,7 +31,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ pet }) => {
               Description:
             </h2>
             <p className="text-base leading-6 text-gray-500 w-full mt-4">
-              {pet?.description}
+              {data.description}
             </p>
           </div>
         </div>
@@ -42,7 +42,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ pet }) => {
           <div className="flex-row gap-4 mt-4 md:flex ">
             <img
               alt="qrCode"
-              src={`${import.meta.env.VITE_BUCKET_NAME}${pet?.qrCode}`}
+              src={`${import.meta.env.VITE_BUCKET_NAME}${data.qrCode}`}
               className="min-h-[150px] min-w-[150px] max-h-[150px] max-w-[150px]"
             />
             <p className="text-base leading-6 text-gray-500 w-full">
