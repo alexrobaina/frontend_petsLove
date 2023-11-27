@@ -234,6 +234,7 @@ export const CreatePetForm: React.FC<Props> = ({
             <BaseSelect
               name="vetId"
               label="Vet"
+              error={errors.vetId}
               value={values?.vetId}
               setFieldValue={setFieldValue}
               options={userListVet?.users.map(
