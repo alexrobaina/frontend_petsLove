@@ -3,7 +3,7 @@ export interface ICreateMedicalRecordForm {
   description: string
   diagnosis: string
   treatment: string
-  vetId: string
+  vetId: string | null
   clinicName: string
   notes: string
   attachments?: object[]

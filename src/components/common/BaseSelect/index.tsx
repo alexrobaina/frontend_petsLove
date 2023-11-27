@@ -39,7 +39,11 @@ export const BaseSelect: FC<Props> = ({
       ...provided,
       position: 'absolute',
       backgroundColor: 'white',
-      zIndex: 1000, // also ensuring z-index here as a safety
+      zIndex: 98, // also ensuring z-index here as a safety
+    }),
+    clearIndicator: (provided) => ({
+      ...provided,
+      zIndex: 99,
     }),
     control: (provided: CSSObject) => ({
       ...provided,
@@ -70,8 +74,15 @@ export const BaseSelect: FC<Props> = ({
     }),
   }
 
-  const setValues = (options: Option[], value: string | []) =>
-    options.find((option: Option) => option.value === value)
+  const setValues = (options: Option[], value: string | []) => {
+    if (Array.isArray(value)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return options.filter((option) => value.includes(option?.value))
+    } else {
+      return options.find((option) => option.value === value) || null
+    }
+  }
 
   return (
     <div className="items-center">
@@ -90,6 +101,7 @@ export const BaseSelect: FC<Props> = ({
         />
       ) : (
         <Select
+          isClearable
           isSearchable
           options={options}
           styles={customStyles}
@@ -97,7 +109,7 @@ export const BaseSelect: FC<Props> = ({
           placeholder={placeholder}
           value={options && setValues(options, value)}
           onChange={(option) =>
-            option && option.value && setFieldValue(name, option.value)
+            setFieldValue(name, option ? option.value : null)
           }
         />
       )}

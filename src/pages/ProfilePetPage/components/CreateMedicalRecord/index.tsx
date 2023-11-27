@@ -39,7 +39,7 @@ export const CreateMedicalRecord: FC<Props> = ({
       description: '',
       diagnosis: '',
       treatment: '',
-      vetId: '',
+      vetId: null,
       clinicName: '',
       notes: '',
       petId: '',
