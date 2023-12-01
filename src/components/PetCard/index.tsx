@@ -14,7 +14,7 @@ export const PetCard: FC<IPetCardProps> = ({
 }) => (
   <div
     onClick={() => goToProfile(id)}
-    className="rounded-xl h-[318px] flex bg-primary-100 shadow-md cursor-pointer"
+    className="rounded-xl h-[318px] flex bg-primary-100 shadow-md cursor-pointer w-fit"
   >
     <div>
       <img
