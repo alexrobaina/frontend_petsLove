@@ -64,6 +64,8 @@ const generateRecordChildren = (record: IMedicalRecord): ReactElement => {
         if (isIgnoredKey(key) || !isNotEmptyAttachmentOrMedication(key, value))
           return null
 
+        if (value === '' || value === null) return null
+
         if (key === 'attachments') {
           return (
             <div
