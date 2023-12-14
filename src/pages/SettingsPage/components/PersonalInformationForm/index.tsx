@@ -6,15 +6,19 @@ import MidDog from '../../../../assets/images/mid-dog.png'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
+import { BaseTextArea } from '../../../../components/common/BaseTextArea'
 import GoogleAutocomplete from '../../../../components/common/GoogleAutocomplete'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { ROLES } from '../../../../constants/community'
-import { IAddressComponent } from '../../../../constants/interfaces'
+import {
+  IAddressComponent,
+  LocationResult,
+} from '../../../../constants/interfaces'
 import { User } from '../../constants'
 
 interface Props {
   user: User
-  errors: FormikErrors<User>
+  errors?: FormikErrors<User> | undefined
   values: FormikValues
   setFieldValue: (
     field: string,
@@ -31,17 +35,6 @@ export const PersonalInformationForm: FC<Props> = ({
   setFieldValue,
 }) => {
   const [previewURL, setPreviewURL] = useState('')
-
-  interface LocationResult {
-    results: {
-      formatted_address: string
-      address_components: IAddressComponent[]
-    }[]
-    latLng: {
-      lat: number
-      lng: number
-    }
-  }
 
   const handleChangeLocation = (result: LocationResult) => {
     const addressComponents: IAddressComponent[] =
@@ -122,11 +115,11 @@ export const PersonalInformationForm: FC<Props> = ({
                     Select a file
                   </label>
                   <input
-                    onChange={handleImageChange}
-                    type="file"
                     id="file"
+                    type="file"
                     name="images"
                     className="hidden"
+                    onChange={handleImageChange}
                   />
                 </div>
                 <p className="mt-2 text-xs leading-5 text-gray-400">
@@ -138,30 +131,30 @@ export const PersonalInformationForm: FC<Props> = ({
               <BaseInput
                 name="firstName"
                 label="First name"
-                placeholder={user?.firstName || 'First name'}
                 error={errors?.firstName}
-                handleChange={handleChange}
                 value={values?.firstName}
+                handleChange={handleChange}
+                placeholder={user?.firstName || 'First name'}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="lastName"
                 label="Last name"
-                placeholder={user?.lastName || 'Last name'}
                 error={errors?.lastName}
-                handleChange={handleChange}
                 value={values?.lastName}
+                handleChange={handleChange}
+                placeholder={user?.lastName || 'Last name'}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="username"
                 label="Username"
-                placeholder={user?.username || 'Username'}
                 error={errors?.username}
-                handleChange={handleChange}
                 value={values?.username}
+                handleChange={handleChange}
+                placeholder={user?.username || 'Username'}
               />
             </div>
             <div className="sm:col-span-3">
@@ -183,6 +176,16 @@ export const PersonalInformationForm: FC<Props> = ({
                 placeholder={user?.email || 'Email address'}
               />
             </div>
+            <div className="col-span-full">
+              <BaseTextArea
+                height={100}
+                name="description"
+                value={values?.description}
+                handleChange={handleChange}
+                error={errors?.description}
+                placeholder={user?.description || 'Add a description about you'}
+              />
+            </div>
           </div>
           <div className="mt-8 flex">
             <BaseButton type="submit" text="Save" />
@@ -200,16 +203,6 @@ export const PersonalInformationForm: FC<Props> = ({
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
-          {user?.location?.address && (
-            <div className="col-span-full text-sm text-primary-700">
-              {` Selected address: ${
-                user?.location?.address
-                  ? user.location.address
-                  : 'No address selected'
-              }
-                `}
-            </div>
-          )}
           <div className="col-span-full">
             <GoogleAutocomplete
               label="Location"

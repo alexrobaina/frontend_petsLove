@@ -5,36 +5,42 @@ import { resizeImages } from './utils/resizeImages'
 
 export const getPets = async ({
   page,
+  city,
   gender,
   adopted,
+  country,
   category,
 }: {
+  city?: string
+  country?: string
   page?: number
   gender?: string
   category?: string
   adopted?: boolean
 }) => {
   const response = await axios.get(
-    `/api/v1/pets?category=${category}&adopted=${adopted}&gender=${gender}&page=${page}`,
+    `/api/v1/pets?category=${category}&adopted=${adopted}&gender=${gender}&page=${page}&country=${country}&city=${city}`,
   )
   return response.data
 }
 
-export const getDashboardPets = async ({
+export const getUserPets = async ({
+  id,
   page,
   gender,
   adopted,
   category,
   searchByName,
 }: {
+  id: string
   page?: number
   gender?: string
   category?: string
-  adopted?: boolean
   searchByName?: string
+  adopted?: boolean | string
 }) => {
   const response = await axios.get(
-    `/api/v1/dashboard/pets?category=${category}&adopted=${adopted}&gender=${gender}&searchByName=${searchByName}&page=${page}`,
+    `/api/v1/pets/user?category=${category}&adopted=${adopted}&gender=${gender}&searchByName=${searchByName}&page=${page}&userId=${id}`,
   )
   return response.data
 }

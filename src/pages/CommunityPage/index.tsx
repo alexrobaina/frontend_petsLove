@@ -33,7 +33,7 @@ export const CommunityPage: FC = () => {
   const [take] = useState(10)
   const [page, setPage] = useState(1)
 
-  const { data, error, isLoading } = useUserList({
+  const { data, error, isLoading, refetch } = useUserList({
     role,
     country,
     city,
@@ -42,6 +42,12 @@ export const CommunityPage: FC = () => {
 
   const goToUserProfile = (id: string) => {
     navigation(`/user/${id}`)
+  }
+
+  const resetLocation = () => {
+    setCountry('')
+    setCity('')
+    refetch()
   }
 
   const handleChangeLocation = (result: IResults) => {
@@ -93,6 +99,7 @@ export const CommunityPage: FC = () => {
         <div className="mt-10">
           <GoogleAutocomplete
             label="Filter by location"
+            resetLocation={resetLocation}
             setLocation={handleChangeLocation}
           />
         </div>

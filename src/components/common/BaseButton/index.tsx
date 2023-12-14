@@ -14,7 +14,7 @@ interface Props {
   isDisabled?: boolean
   backgroundColor?: string
   size?: 'small' | 'medium' | 'large'
-  onClick?: MouseEventHandler<HTMLButtonElement>
+  onClick?: () => void | MouseEventHandler<HTMLButtonElement>
   type?: 'button' | 'submit' | 'reset' | undefined
   style?: 'primary' | 'secondary' | 'tertiary' | 'delete'
 }

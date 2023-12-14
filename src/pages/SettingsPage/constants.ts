@@ -1,14 +1,15 @@
 export interface User {
   id: string
   username: string
-  firstName: string
-  lastName: string
+  firstName?: string
+  lastName?: string
   email?: string
-  role: string
+  role?: string
+  description?: string
   image?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any // For allowing other string key properties
-  locationId: string
+  locationId?: string
   location: {
     country: string
     city: string
@@ -29,6 +30,7 @@ export const INITIAL_STATE = {
   lastName: '',
   username: '',
   image: '',
+  description: '',
   deleteFiles: '',
   role: '',
   location: {

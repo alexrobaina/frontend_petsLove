@@ -6,10 +6,10 @@ import { BaseLoading } from '../../components/common/BaseLoading'
 import { DeleteModal } from '../../components/common/DeleteModal'
 import { SliderModal } from '../../components/common/SliderModal'
 import { useCreatePet } from '../../hooks/useCreatePet'
-import { useDashboardPets } from '../../hooks/useDashboardPets'
 import { useDeletePet } from '../../hooks/useDeletePet'
 import { useGetPet } from '../../hooks/useGetPet'
 import { usePetUpdate } from '../../hooks/usePetUpdate'
+import { useUserPets } from '../../hooks/useUserPets'
 import { AppContext } from '../../services/AppContext'
 
 import { CreatePetForm } from './components/CreatePetForm'
@@ -27,7 +27,7 @@ export const DashboardPage: FC = () => {
       }
     | any = useContext(AppContext)
   const [page, setPage] = useState(1)
-  const [isAdopted, setIsAdopted] = useState('inAdoption')
+  const [isAdopted, setIsAdopted] = useState('')
   const [gender, setGender] = useState('')
   const [category, setCategory] = useState('')
   const [searchByName, setSearchByName] = useState('')
@@ -42,16 +42,22 @@ export const DashboardPage: FC = () => {
     petName: '',
   })
   const [deleteModalPet, setDeleteModalPet] = useState(false)
-
   const [isOpenModalCreation, setOpenModalCreation] = useState(false)
-
   const { data: petData, isLoading: isLoadingGetPet } = useGetPet(petId)
-  const { data, isLoading } = useDashboardPets({
+
+  const getIsAdopted = () => {
+    if (isAdopted === 'adopted') return true
+    if (isAdopted === 'inAdoption') return false
+    return ''
+  }
+
+  const { data, isLoading } = useUserPets({
+    id: context.user?.id,
     page,
     gender,
     category,
     searchByName,
-    adopted: isAdopted === 'adopted' ? true : false,
+    adopted: getIsAdopted(),
   })
 
   const formik = useFormik({
@@ -100,7 +106,7 @@ export const DashboardPage: FC = () => {
   }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchByName(e.target.value)
+    setSearchByName(e.target.value.toLowerCase())
   }
 
   const handleNewImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -177,10 +183,10 @@ export const DashboardPage: FC = () => {
         breed: petData?.pet?.breed || '',
         images: images,
         description: petData?.pet?.description || '',
-        shelterId: petData?.pet?.shelterId || '',
-        adoptedBy: petData?.pet?.adoptedBy || '',
+        shelterId: petData?.pet?.shelterId || null,
+        adoptedBy: petData?.pet?.adoptedBy || null,
         newImages: [],
-        vetId: petData?.pet?.vetId || '',
+        vetId: petData?.pet?.vetId || null,
       }
 
       resetForm({ values: petToEdit })

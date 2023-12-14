@@ -1,12 +1,7 @@
-import {
-  IconFacebook,
-  IconInstagram,
-  IconTelegram,
-  IconWhatsapp,
-} from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
+import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
 import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { User } from '../../../SettingsPage/constants'
 
@@ -36,14 +31,6 @@ export const CommunityTable: React.FC<Props> = ({
     const target = e.target as HTMLImageElement
     target.onerror = null // Prevents infinite loop if local image is also not found
     target.src = MidDog
-  }
-
-  const goToLink = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    link: string,
-  ) => {
-    e.stopPropagation()
-    window.open(link, '_blank')
   }
 
   return (
@@ -120,75 +107,7 @@ export const CommunityTable: React.FC<Props> = ({
                       {user.role}
                     </td>
                     <td>
-                      <div className="px-3 py-5 flex gap-2  items-center h-full">
-                        {user.socialMedia?.instagram && (
-                          <button
-                            className="cursor:pointer"
-                            onClick={(
-                              e: React.MouseEvent<
-                                HTMLButtonElement,
-                                MouseEvent
-                              >,
-                            ) =>
-                              goToLink(
-                                e,
-                                `https://www.instagram.com/${user.socialMedia?.instagram}`,
-                              )
-                            }
-                          >
-                            <IconInstagram />
-                          </button>
-                        )}
-                        {user.socialMedia?.facebook && (
-                          <button
-                            className="cursor:pointer"
-                            onClick={(
-                              e: React.MouseEvent<
-                                HTMLButtonElement,
-                                MouseEvent
-                              >,
-                            ) =>
-                              goToLink(
-                                e,
-                                `https://www.facebook.com/${user.socialMedia?.facebook}`,
-                              )
-                            }
-                          >
-                            <IconFacebook />
-                          </button>
-                        )}
-                        {user.socialMedia?.whatsapp && (
-                          <button
-                            onClick={(
-                              e: React.MouseEvent<
-                                HTMLButtonElement,
-                                MouseEvent
-                              >,
-                            ) =>
-                              goToLink(
-                                e,
-                                `https://wa.me/${user.socialMedia?.whatsapp}`,
-                              )
-                            }
-                            className="cursor:pointer"
-                          >
-                            <IconWhatsapp />
-                          </button>
-                        )}
-                        {user.socialMedia?.telegram && (
-                          <button
-                            className="cursor:pointer"
-                            onClick={(e) =>
-                              goToLink(
-                                e,
-                                `https://telegram.me/${user.socialMedia?.telegram}`,
-                              )
-                            }
-                          >
-                            <IconTelegram />
-                          </button>
-                        )}
-                      </div>
+                      <SocialMediaContact user={user} />
                     </td>
                   </tr>
                 ))}

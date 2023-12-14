@@ -1,17 +1,13 @@
 import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Header } from '../../components/common/Header'
+import { useUser } from '../../hooks/useUser'
+
+import { UserProfile } from './components/UserProfile'
 
 export const UserProfilePage: FC = () => {
   const { id } = useParams()
-  console.log(id)
+  const { user } = useUser(id)
 
-  return (
-    <div className="flex justify-between">
-      <header className="flex gap-5">
-        <Header title="Profile" buttonBack />
-      </header>
-    </div>
-  )
+  return <UserProfile user={user || null} />
 }

@@ -24,8 +24,13 @@ export const getUsers = async ({
 }
 
 export const getUser = async (id: string) => {
-  const response = await axios.get(`/api/v1/user?id=${id}`)
-  return response.data
+  try {
+    const response = await axios.get(`/api/v1/user?id=${id}`)
+
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const updateUser = async (data: User) => {

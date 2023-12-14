@@ -13,6 +13,17 @@ export interface CustomPlaceResult {
   }[]
 }
 
+export interface LocationResult {
+  results: {
+    formatted_address: string
+    address_components: IAddressComponent[]
+  }[]
+  latLng: {
+    lat: number
+    lng: number
+  }
+}
+
 export interface IAddressComponent {
   long_name: string
   short_name: string

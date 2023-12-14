@@ -8,13 +8,13 @@ export const PetCard: FC<IPetCardProps> = ({
   age,
   name,
   city,
-  gender,
   images,
+  country,
   goToProfile,
 }) => (
   <div
     onClick={() => goToProfile(id)}
-    className="rounded-xl h-[318px] flex bg-primary-100 shadow-md cursor-pointer w-fit"
+    className="rounded-xl h-[318px] w-[236px] flex bg-primary-100 shadow-md cursor-pointer"
   >
     <div>
       <img
@@ -23,17 +23,16 @@ export const PetCard: FC<IPetCardProps> = ({
           e.currentTarget.src = ImageNotFound
         }}
         className="h-[237px] object-cover rounded-xl"
-        src={`${import.meta.env.VITE_BUCKET_NAME}${images[0]}`}
+        src={`${import.meta.env.VITE_BUCKET_NAME}${images}`}
       />
-      <div className="flex w-full flex-col pt-3 px-4 gap-1">
+      <div className="flex w-full flex-col pt-3 px-3 gap-1">
         <div className="flex w-full justify-between">
           <p className="capitalize font-bold ">{name}</p>
-          <p className="capitalize">{gender}</p>
+          <p className="capitalize">{age}</p>
         </div>
         <div>
           <div className="flex gap-2 justify-between">
-            <p className="capitalize">{age}</p>
-            <p className="capitalize">{city}</p>
+            <p className="capitalize">{`${city} ${country}`}</p>
           </div>
         </div>
       </div>
