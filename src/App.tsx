@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { observer } from 'mobx-react'
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
@@ -64,24 +63,6 @@ const router = createBrowserRouter([
 
 const App: FC<Props> = observer((props) => {
   const [isOpenRoleModal, setOpenRoleModal] = useState<boolean>(false)
-  const [role, setRole] = useState<string>(
-    !props?.appContext?.user?.role ? '' : props?.appContext?.user?.role,
-  )
-
-  const setFieldValue = (_field: unknown, value: unknown) => {
-    setRole(value as string)
-  }
-
-  const updateUserRole = useCallback(async () => {
-    try {
-      await axios.put(`/api/v1/user/role`, {
-        id: props?.appContext?.user?.id,
-        role,
-      })
-    } catch (err) {
-      console.log(err)
-    }
-  }, [role, props?.appContext?.user?.id])
 
   useEffect(() => {
     if (
@@ -107,11 +88,9 @@ const App: FC<Props> = observer((props) => {
       />
       <RouterProvider router={router} />
       <UserRoleSelectorModal
-        role={role}
-        setFieldValue={setFieldValue}
-        updateUserRole={updateUserRole}
         isOpenRoleModal={isOpenRoleModal}
         setOpenRoleModal={setOpenRoleModal}
+        user={props?.appContext?.user || null}
       />
     </AppContext.Provider>
   )

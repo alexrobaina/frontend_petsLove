@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { PetCardType } from '../../../constants/types'
 import { PetCard } from '../../PetCard'
+import { BaseAlert } from '../BaseAlert'
 import { BaseLoading } from '../BaseLoading'
 
 interface Props {
@@ -18,12 +19,13 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
   }
 
   return (
-    <div className="flex mt-10 flex-wrap gap-5 justify-center w-full">
+    <div className="flex mt-5 flex-wrap gap-5 justify-center sm:justify-between w-full">
       {isLoading && (
         <div className="flex items-center justify-center w-full mt-32">
           <BaseLoading large />
         </div>
       )}
+      {pets?.length === 0 && <BaseAlert text="There are no pets available" />}
       {pets &&
         pets.map((pet: PetCardType) => (
           <PetCard
@@ -32,9 +34,10 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
             age={pet.age}
             name={pet.name}
             images={pet.images}
-            gender={pet.gender}
+            category={pet?.category}
             city={pet?.location?.city}
             goToProfile={goToProfilePet}
+            country={pet?.location?.country}
           />
         ))}
     </div>

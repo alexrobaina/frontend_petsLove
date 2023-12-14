@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { IconEdit, IconSearch, IconTrash } from '../../../../assets/icons'
+import { MidDog } from '../../../../assets/images'
 import { BaseBadge } from '../../../../components/common/BaseBadge'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseInput } from '../../../../components/common/BaseInput'
@@ -56,6 +57,12 @@ export const DashboardTable: React.FC<Props> = ({
 
   const goToPet = (id: string) => {
     navigate(`/pet/${id}`)
+  }
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement
+    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.src = MidDog
   }
 
   if (updatePetLoading) return <BaseLoading />
@@ -170,6 +177,7 @@ export const DashboardTable: React.FC<Props> = ({
                             <div className="h-11 w-11 flex-shrink-0">
                               <img
                                 alt="pet-image"
+                                onError={handleError}
                                 src={`${import.meta.env.VITE_BUCKET_NAME}${pet
                                   ?.images[0]}`}
                                 className="h-11 w-11 rounded-full"

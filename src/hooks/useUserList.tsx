@@ -13,7 +13,7 @@ const useUserList = ({
   city?: string
   page?: number
 }) => {
-  const { data, error, isLoading } = useQuery(
+  const { data, error, isLoading, refetch } = useQuery(
     ['users', { role, country, city, page }],
     () =>
       getUsers({
@@ -24,7 +24,7 @@ const useUserList = ({
       }),
   )
 
-  return { data, error, isLoading }
+  return { data, error, isLoading, refetch }
 }
 
 export default useUserList

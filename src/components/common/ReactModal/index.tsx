@@ -47,7 +47,7 @@ export const ReactModal: FC<Props> = ({
       transform: 'translate(-50%, -50%)',
     },
     overlay: {
-      zIndex: 100,
+      zIndex: 20,
       background: 'rgba(0,0,0,0.7)',
     },
   }

@@ -75,6 +75,8 @@ export const BaseSelect: FC<Props> = ({
   }
 
   const setValues = (options: Option[], value: string | []) => {
+    console.log(options)
+
     if (Array.isArray(value)) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -108,9 +110,10 @@ export const BaseSelect: FC<Props> = ({
           isDisabled={isDisabled}
           placeholder={placeholder}
           value={options && setValues(options, value)}
-          onChange={(option) =>
+          onChange={(option) => {
+            console.log(3, option)
             setFieldValue(name, option ? option.value : null)
-          }
+          }}
         />
       )}
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}

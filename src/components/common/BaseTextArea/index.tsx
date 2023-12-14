@@ -9,15 +9,16 @@ interface props {
   textHelper?: string
   placeholder?: string
   height?: string | number
-  handleChange: (e: ChangeEvent) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleChange: (e: ChangeEvent<any>) => void
 }
 
 export const BaseTextArea: FC<props> = ({
   name,
   label,
   value,
-  className,
   error,
+  className,
   placeholder,
   height = 200,
   handleChange,

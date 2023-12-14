@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 
 import { SLIDER_VARIANTS } from '../../../constants/animations'
+import { toggleBodyScroll } from '../../../utils/toggleBodyScroll'
 import FadeIn from '../../FadeIn'
 import { BaseButton } from '../BaseButton'
 
@@ -20,6 +21,10 @@ export const SliderModal: FC<Props> = ({
   handleSubmit,
   children = null,
 }) => {
+  useEffect(() => {
+    toggleBodyScroll(isOpen)
+  }, [isOpen])
+
   return (
     <>
       {isOpen && (

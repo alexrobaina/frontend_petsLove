@@ -16,14 +16,14 @@ import { INITIAL_STATE } from './constants'
 export const SettingsPage: FC = () => {
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
-  const { data, isLoading } = useUser(context?.user?.id)
-  const [deleteFiles, setDeleteFiles] = useState(data?.user[0].image)
+  const { user, isLoading } = useUser(context?.user?.id)
+  const [deleteFiles, setDeleteFiles] = useState(user?.image)
 
   useEffect(() => {
-    if (data?.user[0].image) {
-      setDeleteFiles(data?.user[0].image)
+    if (user?.image) {
+      setDeleteFiles(user?.image)
     }
-  }, [data])
+  }, [user])
 
   const setUser = action((context: AppContextProps, user: User) => {
     if (!user) {
@@ -43,7 +43,7 @@ export const SettingsPage: FC = () => {
       mutate({
         ...values,
         id: context?.user?.id || '',
-        locationId: data?.user[0]?.locationId || '',
+        locationId: user?.locationId || '',
       })
     },
     onReset: () => {
@@ -52,10 +52,10 @@ export const SettingsPage: FC = () => {
   })
 
   useEffect(() => {
-    if (data?.user[0]) {
-      setUser(context, data?.user[0])
+    if (user) {
+      setUser(context, user)
     }
-  }, [data, context, setUser])
+  }, [user, context, setUser])
 
   const { handleChange, handleSubmit, setFieldValue, values, errors } = formik
 
@@ -79,16 +79,16 @@ export const SettingsPage: FC = () => {
       <FadeIn>
         <form onSubmit={handleSubmit}>
           <PersonalInformationForm
+            user={user}
             errors={errors}
             values={values}
-            user={data?.user[0]}
             handleChange={handleChange}
             setFieldValue={setFieldValue}
           />
           <SocialMediaForm
-            errors={errors}
+            user={user}
             values={values}
-            user={data?.user[0]}
+            errors={errors}
             handleChange={handleChange}
             setFieldValue={setFieldValue}
           />

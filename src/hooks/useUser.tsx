@@ -8,5 +8,5 @@ export const useUser = (id: string | undefined) => {
     () => id && getUser(id),
   )
 
-  return { data, error, isLoading }
+  return { user: data?.user[0], error, isLoading }
 }
