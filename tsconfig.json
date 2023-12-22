@@ -9,7 +9,6 @@
       "cypress",
       "vitest/globals",
       "@testing-library/jest-dom",
-      "@svgx/vite-plugin-react",
       "@testing-library/react",
       "vite/client"
     ],
@@ -28,6 +27,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "tests", "cypress.config.ts", "vite.config.ts"],
+  "include": ["src", "tests", "cypress.config.ts", "vite.config.ts", "vitest.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

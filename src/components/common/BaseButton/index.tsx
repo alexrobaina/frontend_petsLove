@@ -14,7 +14,8 @@ interface Props {
   isDisabled?: boolean
   backgroundColor?: string
   size?: 'small' | 'medium' | 'large'
-  onClick?: () => void | MouseEventHandler<HTMLButtonElement>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (e?: any) => void | MouseEventHandler<HTMLButtonElement>
   type?: 'button' | 'submit' | 'reset' | undefined
   style?: 'primary' | 'secondary' | 'tertiary' | 'delete'
 }

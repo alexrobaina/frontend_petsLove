@@ -8,10 +8,9 @@ describe('Card Component', () => {
     render(
       <ContactCard
         name="Jane Cooper"
-        description="Regional Paradigm Technician"
-        status="Regular User"
         image="https://example.com"
         altText="Jane Cooper's profile picture"
+        description="Regional Paradigm Technician"
       />,
     )
 
@@ -33,7 +32,6 @@ describe('Card Component', () => {
       <ContactCard
         name="Jane"
         description="Regional Paradigm Technician"
-        status="Admin"
         image="https://example.com"
       />,
     )
@@ -47,9 +45,8 @@ describe('Card Component', () => {
     render(
       <ContactCard
         name="Jane"
-        description="Regional Paradigm Technician"
-        status="Regular User"
         image="https://example.com"
+        description="Regional Paradigm Technician"
       />,
     )
 
@@ -65,7 +62,6 @@ describe('Card Component', () => {
       <ContactCard
         name="Jane"
         description="Regional Paradigm Technician"
-        status="Regular User"
       />,
     )
 
@@ -84,7 +80,6 @@ describe('Card Component', () => {
       <ContactCard
         name="Jane"
         description="Regional Paradigm Technician"
-        status="Regular User"
         image=""
       />,
     )
