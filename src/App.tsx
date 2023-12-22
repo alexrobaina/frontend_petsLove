@@ -88,9 +88,16 @@ const App: FC<Props> = observer((props) => {
       />
       <RouterProvider router={router} />
       <UserRoleSelectorModal
+        user={{
+          id: props?.appContext?.user?.id || '',
+          role: props?.appContext?.user?.role || '',
+          username: props?.appContext?.user?.username || '',
+          location: {
+            address: props?.appContext?.user?.address || '',
+          },
+        }}      
         isOpenRoleModal={isOpenRoleModal}
         setOpenRoleModal={setOpenRoleModal}
-        user={props?.appContext?.user || null}
       />
     </AppContext.Provider>
   )

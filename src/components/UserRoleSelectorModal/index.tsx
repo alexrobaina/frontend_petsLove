@@ -12,27 +12,27 @@ import GoogleAutocomplete from '../common/GoogleAutocomplete'
 import { ReactModal } from '../common/ReactModal'
 
 interface Props {
-  setOpenRoleModal: (value: boolean) => void
   isOpenRoleModal: boolean
+  setOpenRoleModal: (value: boolean) => void
   user: {
-    id: string
-    role: string
-    locationId: string
-    username: string
-    socialMedia: {
-      facebook: string
-      instagram: string
-      telegram: string
-      wattsapp: string
+    id?: string
+    role?: string
+    locationId?: string
+    username?: string
+    socialMedia?: {
+      facebook?: string
+      instagram?: string
+      telegram?: string
+      wattsapp?: string
     } | null
-    location: {
-      country: string
-      city: string
-      address: string
-      lat: number
-      lng: number
+    location?: {
+      country?: string
+      city?: string
+      address?: string
+      lat?: number
+      lng?: number
     }
-  }
+  }  
 }
 
 export const userUpdateValidation = Yup.object().shape({
@@ -58,18 +58,18 @@ export const UserRoleSelectorModal: FC<Props> = ({
       username: '',
       role: '',
       location: {
-        country: '',
-        city: '',
-        address: '',
         lat: 0,
         lng: 0,
+        city: '',
+        address: '',
+        country: '',
       },
     },
     validationSchema: userUpdateValidation,
     onSubmit: async (values) => {
       mutate({
         ...values,
-        id: user?.id,
+        id: user?.id || '',
         socialMedia: user?.socialMedia || {},
         locationId: user?.locationId || '',
       })

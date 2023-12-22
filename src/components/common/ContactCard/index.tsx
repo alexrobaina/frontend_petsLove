@@ -4,21 +4,21 @@ import { IconUser } from '../../../assets/icons/index'
 import { MidDog } from '../../../assets/images'
 
 interface Props {
-  name: string
-  description: string
+  role?: string
+  name?: string
+  email?: string
   image?: string
   altText?: string
-  role: string
-  email: string
   className?: string
+  description: string
 }
 
 export const ContactCard: FC<Props> = ({
   name,
-  description,
+  role,
   image,
   altText,
-  role,
+  description,
   className = '',
 }) => {
   const pictureClass =
