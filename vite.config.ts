@@ -10,6 +10,7 @@ const projectRoot = path.resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: path.resolve(__dirname, 'src'), 
   plugins: [react(), svgr({ exportAsDefault: true })],
   test: {
     globals: true,

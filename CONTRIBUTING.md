@@ -1,3 +1,5 @@
+# This docummentatios is in work in progress
+
 # Contributing to Pets Love
 
 Thank you for your interest in contributing to Pets Love! 🎉 This guide will help you get up and running with the development environment and provide some guidelines on contributing.
@@ -10,24 +12,124 @@ Thank you for your interest in contributing to Pets Love! 🎉 This guide will h
 ## Setting Up the Project
 
 1. Fork the repository.
-2. Clone your fork of the repository to your local machine.
+2. Create a folder to add the frontend and backend clone
+3. Clone your fork of the repository to your local machine.
    ```sh
    git clone https://github.com/<your-username>/pets-love.git
+   git clone https://github.com/<your-username>/api-pets-love.git
    ```
-3. Navigate to the project directory.
+4. Create docker-compose.yaml
    ```sh
-   cd pets-love
+version: '3.8'
+services:
+  backend:
+    build: ./api-pets-love
+    ports:
+      - '3011:3011'
+    healthcheck:
+      test: ["CMD", "nc", "-z", "", "8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=${PORT}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - BUCKET_NAME=${BUCKET_NAME}
+      - DEV=${DEV}
+    networks:
+      - pets_love_network
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend_petsLove
+    ports:
+      - '3000:80'
+    networks:
+     - pets_love_network
+    environment:
+      - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+      - VITE_BUCKET_NAME=${VITE_BUCKET_NAME}
+      - VITE_HOST=${VITE_HOST}
+      - DEV=${DEV}
+    depends_on:
+      - backend
+
+  db:
+    image: postgres
+    networks:
+      - pets_love_network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB${POSTGRES_DB}
+    ports:
+      - '5432:5432'
+  
+  # Define the Nginx service
+  nginx:
+    image: nginx:alpine
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - frontend
+    networks:
+      - pets_love_network
+
+
+volumes:
+  pgdata:
+
+networks:
+  pets_love_network:
+    driver: bridge
    ```
-4. Install the dependencies.
+4. Create .env
    ```sh
-   yarn
+# backend
+DATABASE_URL
+PORT
+HOST
+
+BUCKET_NAME 
+DEV 
+
+GMAIL 
+PASS 
+GOOGLE_CLIENT_ID 
+GOOGLE_CLIENT_SECRET 
+
+
+# Frontend
+
+VITE_GOOGLE_MAPS_API_KEY
+
+VITE_BUCKET_NAME
+VITE_HOST
+
+DEV
+
+# Database
+
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
    ```
-5. Install the dependencies.
+5. Run docker-compuse up build
    ```sh
-   yarn run dev
+   docker-compuse up build
    ```
 
-Now, you should be able to see the app running at http://localhost:3000 (or whatever port Vite is configured to use).
+
 
 <!--
 ## Coding Guidelines
