@@ -36,7 +36,7 @@ export const BasePhoneInput: FC<Props> = ({
           value={value}
           disabled={isdisabled}
           placeholder={placeholder}
-          onChange={(value) => setFieldValue(name, value)}
+          onChange={(value: string) => setFieldValue(name, value)}
           buttonClass="bg-primary-950"
           containerStyle={{ width: '100%' }}
           inputStyle={{ width: '100%', border: 'none' }}

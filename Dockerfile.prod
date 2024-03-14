@@ -1,5 +1,6 @@
+
 # Stage 1: Build the React application
-FROM node:20-buster-slim AS build
+FROM node:18-buster-slim AS build
 
 # Set the working directory
 WORKDIR /app
@@ -16,7 +17,7 @@ RUN yarn install --verbose
 COPY . .
 
 # Build the project
-RUN yarn build --verbose
+RUN yarn build
 
 # Stage 2: Serve the build with Nginx
 FROM nginx:alpine
@@ -24,3 +25,5 @@ FROM nginx:alpine
 # Copy the build from the previous stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Start Nginx when the container has provisioned
+CMD ["nginx", "-g", "daemon off;"]
