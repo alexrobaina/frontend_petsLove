@@ -143,6 +143,6 @@ const GoogleAutocomplete: FC<ExtendedProps> = ({
 }
 
 export default GoogleApiWrapper({
-  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
+  apiKey: 'AIzaSyCqFbjokkkUeyPBp2Q8521jviFfzoJmnnE',
   language: 'es',
 })(GoogleAutocomplete as any) as React.ComponentType<ExtendedProps>

@@ -72,6 +72,7 @@ export const ProfilePetPage: FC = () => {
   })
 
   const checkIfUserIsOwner = () => {
+    if (context) return false
     if (data.pet.createdBy === context?.user?.id) return true
     if (data.pet.shelterId === context?.user?.id) return true
     if (data.pet.adoptedBy === context?.user?.id) return true
