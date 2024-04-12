@@ -1,8 +1,6 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-
 import path from 'path'
-
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 import svgr from 'vite-plugin-svgr'
@@ -10,7 +8,6 @@ const projectRoot = path.resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: path.resolve(__dirname, 'src'), 
   plugins: [react(), svgr({ exportAsDefault: true })],
   test: {
     globals: true,
@@ -24,7 +21,7 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': 'http://127.0.0.1:3011',
+      '/api': 'http://backend-api:3011',
     },
   },
   preview: {

@@ -67,6 +67,8 @@ export const DashboardPage: FC = () => {
       values.weight = `${values.weight} ${values.units}`
       values.units = ''
 
+      if (context?.user?.locationId) values.locationId = context.user.locationId
+
       if (context?.user?.role === 'SHELTER')
         values.shelterId = context?.user?.id
 

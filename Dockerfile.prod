@@ -1,29 +1,20 @@
+#Frontend
+FROM node:18-buster AS build-stage
 
-# Stage 1: Build the React application
-FROM node:18-buster-slim AS build
-
-# Set the working directory
 WORKDIR /app
 
-# Copy the package.json and yarn.lock files
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
-# Install dependencies
-RUN yarn cache clean
-RUN yarn install --verbose
+RUN yarn install
 
-# Copy the rest of the code
+COPY .env ./
+
 COPY . .
 
-# Build the project
-RUN yarn build
+RUN yarn run build
 
-# Stage 2: Serve the build with Nginx
 FROM nginx:alpine
 
-# Copy the build from the previous stage
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Start Nginx when the container has provisioned
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon  off;"]
