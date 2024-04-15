@@ -23,7 +23,7 @@ export const PetCard: FC<IPetCardProps> = ({
           e.currentTarget.src = ImageNotFound
         }}
         className="h-[237px] object-cover rounded-xl"
-        src={`${import.meta.env.VITE_BUCKET_NAME}${images}`}
+        src={`${import.meta.env.VITE_BUCKET_NAME}pets/${images}`}
       />
       <div className="flex w-full flex-col pt-3 px-3 gap-1">
         <div className="flex w-full justify-between">

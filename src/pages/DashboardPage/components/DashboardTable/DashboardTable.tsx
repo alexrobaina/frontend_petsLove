@@ -164,23 +164,22 @@ export const DashboardTable: React.FC<Props> = ({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 bg-white rounded-3xl">
                   {data?.pets &&
                     data?.pets.map((pet: Pet) => (
                       <tr
                         key={pet.id}
                         onClick={() => goToPet(pet.id)}
-                        className="hover:bg-primary-200 cursor-pointer"
+                        className="hover:bg-primary-100 cursor-pointer"
                       >
-                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-2">
+                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 rounded-s-xl">
                           <div className="flex items-center">
                             <div className="h-11 w-11 flex-shrink-0">
                               <img
                                 alt="pet-image"
                                 onError={handleError}
-                                src={`${import.meta.env.VITE_BUCKET_NAME}${pet
-                                  ?.images[0]}`}
                                 className="h-11 w-11 rounded-full"
+                                src={`${import.meta.env.VITE_BUCKET_NAME}pets/${pet?.images[0]}`}
                               />
                             </div>
                             <div className="ml-4">
@@ -216,7 +215,7 @@ export const DashboardTable: React.FC<Props> = ({
                             text={pet.adopted ? 'Adopted' : 'Available'}
                           />
                         </td>
-                        <td className="whitespace-nowrap px-3 py-10">
+                        <td className="whitespace-nowrap px-6 py-4 rounded-e-xl">
                           <div className="flex gap-2 justify-end">
                             <BaseButton
                               style="tertiary"

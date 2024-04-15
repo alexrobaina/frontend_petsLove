@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 import path from 'path'
+
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 import svgr from 'vite-plugin-svgr'
@@ -21,7 +22,8 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': 'http://backend-api:3011',
+      // '/api': 'http://backend-api:3011', // backend-api is production
+      '/api': 'http://localhost:3011', // localhost is for dev 
     },
   },
   preview: {

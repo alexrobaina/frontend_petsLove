@@ -137,7 +137,7 @@ export const INITIAL_STATE = {
   gender: '',
   weight: '',
   size: '',
-  locationId: '',
+  LocationId: '',
   breed: '',
   description: '',
   shelterId: '',

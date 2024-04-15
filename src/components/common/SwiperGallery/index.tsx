@@ -48,6 +48,7 @@ const SwiperGallery: FC<Props> = ({ slides }) => {
             },
           }}
         >
+           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {pictures.map((slide: any, index) => (
             <SwiperSlide key={index}>
               <img src={slide} alt={'title'} id={slide.id} />

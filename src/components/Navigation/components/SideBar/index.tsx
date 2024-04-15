@@ -9,7 +9,6 @@ import {
   IconSettings,
 } from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
-import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { AppContext } from '../../../../services/AppContext'
 import { deleteCookie } from '../../../../utils/deleteCookie'
 import { ButtonNavigate } from '../ButtonNavigate'
@@ -61,7 +60,7 @@ export const SideBar: FC<Props> = ({
 
   const showImage = isGoogleAvatar
     ? context?.user?.image
-    : `${BUCKET_AVATAR_USER}${context?.user?.image}`
+    : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
   return (
     <div className="flex relative overflow-hidden">
@@ -128,11 +127,11 @@ export const SideBar: FC<Props> = ({
             ))}
             <button
               onClick={handleLogout}
-              className={`${
-                menuIsCollapsed ? 'justify-center' : 'justify-start'
-              } flex justify-start gap-4 p-2 w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
+              className={`flex justify-start gap-4 pl-3 w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
             >
-              <IconLogout />
+              <div className='flex justify-center w-[30px]'>
+                <IconLogout />
+              </div>
               {!menuIsCollapsed && <p>Logout</p>}
             </button>
           </div>

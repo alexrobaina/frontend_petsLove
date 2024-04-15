@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
 import Modal from 'react-modal'
 
+import { IconClose } from '../../../assets/icons'
 import useScreenWidth from '../../../hooks/useScreenWidth'
 
 interface Props {
@@ -79,10 +80,13 @@ export const ReactModal: FC<Props> = ({
           </div>
           {buttonClose && (
             <div
-              className="text-primary-950"
               role="button"
               onClick={closeModal}
-            ></div>
+              className="text-primary-950"
+            >
+
+              <IconClose />
+            </div>
           )}
         </div>
         <div className="flex flex-col h-full">{children}</div>

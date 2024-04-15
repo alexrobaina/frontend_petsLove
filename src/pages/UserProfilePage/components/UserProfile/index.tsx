@@ -10,7 +10,6 @@ import { Header } from '../../../../components/common/Header'
 import { Pagination } from '../../../../components/common/Pagination'
 import { PetList } from '../../../../components/common/PetList/Index'
 import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
-import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { useUserPets } from '../../../../hooks/useUserPets'
 
 type User = {
@@ -108,9 +107,9 @@ export const UserProfile: FC<Props> = ({ user }) => {
           </div>
           <div className="h-14 w-14 max-sm:h-[58px] max-sm:w-[58px] rounded-full">
             <img
-              className="rounded-full"
               onError={handleError}
-              src={`${BUCKET_AVATAR_USER}${user?.image}`}
+              className="rounded-full"
+              src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
             />
           </div>
         </div>

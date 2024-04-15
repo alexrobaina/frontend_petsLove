@@ -2,7 +2,6 @@ import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
 import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
-import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { User } from '../../../SettingsPage/constants'
 
 interface Data {
@@ -85,7 +84,7 @@ export const CommunityTable: React.FC<Props> = ({
                             alt="user"
                             onError={handleError}
                             className="h-11 w-11 rounded-full"
-                            src={`${BUCKET_AVATAR_USER}${user?.image}`}
+                            src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
                           />
                         </div>
                         <div className="ml-4">
