@@ -68,14 +68,14 @@ export const ProfilePetPage: FC = () => {
   }
 
   const getImagesWithUrlBucket = data?.pet?.images?.map((image: string) => {
-    return `${import.meta.env.VITE_BUCKET_NAME}${image}`
+    return `${import.meta.env.VITE_BUCKET_NAME}pets/${image}`
   })
 
   const checkIfUserIsOwner = () => {
-    if (context) return false
-    if (data.pet.createdBy === context?.user?.id) return true
-    if (data.pet.shelterId === context?.user?.id) return true
-    if (data.pet.adoptedBy === context?.user?.id) return true
+    if (!context) return false
+    if (data.pet.createdBy === context.user?.id) return true
+    if (data.pet.shelterId === context.user?.id) return true
+    if (data.pet.adoptedBy === context.user?.id) return true
 
     return false
   }

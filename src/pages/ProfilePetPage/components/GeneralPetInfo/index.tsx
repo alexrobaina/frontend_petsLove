@@ -42,7 +42,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
           <div className="flex-row gap-4 mt-4 md:flex ">
             <img
               alt="qrCode"
-              src={`${import.meta.env.VITE_BUCKET_NAME}${data.qrCode}`}
+              src={`${import.meta.env.VITE_BUCKET_NAME}qrCode/${data.qrCode}`}
               className="min-h-[150px] min-w-[150px] max-h-[150px] max-w-[150px]"
             />
             <p className="text-base leading-6 text-gray-500 w-full">

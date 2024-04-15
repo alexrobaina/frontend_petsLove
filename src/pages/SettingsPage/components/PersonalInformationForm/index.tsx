@@ -8,7 +8,6 @@ import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
 import { BaseTextArea } from '../../../../components/common/BaseTextArea'
 import GoogleAutocomplete from '../../../../components/common/GoogleAutocomplete'
-import { BUCKET_AVATAR_USER } from '../../../../constants/buketsImage'
 import { ROLES } from '../../../../constants/community'
 import {
   IAddressComponent,
@@ -78,7 +77,7 @@ export const PersonalInformationForm: FC<Props> = ({
 
   const showImage = isGoogleAvatar
     ? user?.image
-    : `${BUCKET_AVATAR_USER}${user?.image}`
+    : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement

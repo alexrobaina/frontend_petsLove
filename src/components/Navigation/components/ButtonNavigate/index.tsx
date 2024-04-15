@@ -16,11 +16,11 @@ export const ButtonNavigate: FC<Props> = ({
   return (
     <button
       onClick={handleNavigation}
-      className={`flex ${
-        menuIsCollapsed ? 'justify-center' : 'justify-start'
-      } gap-4 p-2 w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
+      className={`flex justify-start} gap-4 p-2 pl-[1px]-w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
     >
-      {icon}
+      <div className='flex justify-center w-[30px]'>
+        {icon}
+      </div>
       {!menuIsCollapsed && <p>{text}</p>}
     </button>
   )

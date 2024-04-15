@@ -39,8 +39,8 @@ export const Guardians: React.FC<Props> = ({ pet, gotToUser }) => (
             role="Shelter"
             email={pet?.Shelter?.email}
             className="cursor-pointer hover:bg-primary-100"
-            image={`${import.meta.env.VITE_BUCKET_NAME}${pet?.Shelter?.image}`}
             name={pet?.Shelter?.username || pet?.Shelter?.firstName}
+            image={`${import.meta.env.VITE_BUCKET_NAME}/users/avatar/${pet?.Shelter?.image}`}
             description="
               Shelter of this pet
               Click to see more information about this shelter
