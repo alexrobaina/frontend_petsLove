@@ -14,127 +14,78 @@ Thank you for your interest in contributing to Pets Love! 🎉 This guide will h
 1. Fork the repository.
 2. Create a folder to add the frontend and backend clone
 3. Clone your fork of the repository to your local machine.
+
+For run these projects you need use node v20 for frontend and node v18 for API
+- install nodemodele with yarn
+- Run the project with yarn run dev
+
+In the backend you need run migrations with prisma 
    ```sh
    git clone https://github.com/<your-username>/pets-love.git
    git clone https://github.com/<your-username>/api-pets-love.git
    ```
 4. Create docker-compose.yaml
-   ```sh
+
+The structure of the folder is: 
+/pets-love
+/api-pets-love
+docker-compose.dev.yaml
+
+In dev we need to create a DB with docker before to run the backend
+```yaml
 version: '3.8'
 services:
-  backend:
-    build: ./api-pets-love
-    ports:
-      - '3011:3011'
-    healthcheck:
-      test: ["CMD", "nc", "-z", "", "8080"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - PORT=${PORT}
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - BUCKET_NAME=${BUCKET_NAME}
-      - DEV=${DEV}
-    networks:
-      - pets_love_network
-    depends_on:
-      - db
-
-  frontend:
-    build: ./frontend_petsLove
-    ports:
-      - '3000:80'
-    networks:
-     - pets_love_network
-    environment:
-      - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
-      - VITE_BUCKET_NAME=${VITE_BUCKET_NAME}
-      - VITE_HOST=${VITE_HOST}
-      - DEV=${DEV}
-    depends_on:
-      - backend
-
-  db:
+  db-app:
     image: postgres
-    networks:
-      - pets_love_network
+    restart: always
+    environment:
+      POSTGRES_USER: petslove
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: petslove
+    ports:
+      - "5432:5432"  # Map port 5432 on the host to port 5432 on the container
     volumes:
       - pgdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB${POSTGRES_DB}
-    ports:
-      - '5432:5432'
-  
-  # Define the Nginx service
-  nginx:
-    image: nginx:alpine
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - frontend
-    networks:
-      - pets_love_network
-
 
 volumes:
   pgdata:
+```
 
-networks:
-  pets_love_network:
-    driver: bridge
-   ```
-4. Create .env
-   ```sh
-# backend
-DATABASE_URL
-PORT
-HOST
+Frontend env
 
-BUCKET_NAME 
-DEV 
-
-GMAIL 
-PASS 
-GOOGLE_CLIENT_ID 
-GOOGLE_CLIENT_SECRET 
-
-
+```env
 # Frontend
+VITE_GOOGLE_MAPS_API_KEY=
 
-VITE_GOOGLE_MAPS_API_KEY
+VITE_BUCKET_NAME=http://localhost:3011/uploads/
+VITE_HOST=http://localhost:3000/
+VITE_BACKEND_URL=http://localhost:3011
+DEV=true
+```
 
-VITE_BUCKET_NAME
-VITE_HOST
+Backend env
 
-DEV
+```env
+# backend
+DATABASE_URL=postgres://petslove:1234@localhost:5432/petslove
 
-# Database
+PORT=3011
+HOST=http://localhost:3000
+UPLOAD_DIR=
 
-POSTGRES_USER
-POSTGRES_PASSWORD
-POSTGRES_DB
-   ```
-5. Run docker-compuse up build
-   ```sh
-   docker-compuse up build
-   ```
+DEV=true
+
+GMAIL=
+PASS=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+```
 
 
-
-<!--
 ## Coding Guidelines
 - Please adhere to the coding conventions used throughout the project.
-- Use ESLint and Prettier to format your code. You can run the linters using: -->
+- Use ESLint and Prettier to format your code. You can run the linters using:
 
 ##Submitting Contributions
 
