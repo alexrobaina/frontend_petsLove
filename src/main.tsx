@@ -63,7 +63,7 @@ async function main() {
 
       appContext = observable({
         session: { token: token },
-        user: data?.user || null,
+        user: data.user,
       })
     } else {
       appContext = observable({
