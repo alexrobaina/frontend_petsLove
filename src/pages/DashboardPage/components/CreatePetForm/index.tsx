@@ -74,7 +74,7 @@ export const CreatePetForm: React.FC<Props> = ({
                       key={image.url}
                       alt="pet image"
                       onClick={() => handleImageDeletion(image)}
-                      src={`${import.meta.env.VITE_BUCKET_NAME}${image.url}`}
+                      src={`${import.meta.env.VITE_BUCKET_NAME}/pets/${image.url}`}
                       className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover :hover:opacity-50 cursor-pointer"
                     />
                   ),
