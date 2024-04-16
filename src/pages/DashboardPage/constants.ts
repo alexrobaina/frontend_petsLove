@@ -137,7 +137,7 @@ export const INITIAL_STATE = {
   gender: '',
   weight: '',
   size: '',
-  LocationId: '',
+  locationId: '',
   breed: '',
   description: '',
   shelterId: '',
@@ -154,7 +154,6 @@ export const petSchema = Yup.object().shape({
   gender: Yup.string().required('Gender is required'),
   weight: Yup.string().required('Weight is required'),
   size: Yup.string().required('Size is required'),
-  breed: Yup.string().required('Breed is required'),
   description: Yup.string().required('Description is required'),
   category: Yup.string().required('Category is required'),
 })

@@ -67,7 +67,7 @@ export const DashboardPage: FC = () => {
       values.weight = `${values.weight} ${values.units}`
       values.units = ''
 
-      if (context?.user?.locationId) values.LocationId = context.user.locationId
+      if (context?.user?.locationId) values.locationId = context.user.locationId
 
       if (context?.user?.role === 'SHELTER')
         values.shelterId = context?.user?.id
@@ -182,7 +182,7 @@ export const DashboardPage: FC = () => {
         gender: petData?.pet?.gender || '',
         age: petData?.pet?.age || '',
         size: petData?.pet?.size || '',
-        LocationId: petData?.pet?.LocationId   || '',
+        locationId: petData?.pet?.locationId   || '',
         breed: petData?.pet?.breed || '',
         images: images,
         description: petData?.pet?.description || '',
