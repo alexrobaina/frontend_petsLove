@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
 import { FC, useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Navigation from './components/Navigation'

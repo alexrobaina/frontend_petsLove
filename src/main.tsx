@@ -10,6 +10,7 @@ import { Navbar } from './components/Navbar/index.tsx'
 import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
 import { LoginPage } from './pages/LoginPage/index.tsx'
 import { ProfilePetPage } from './pages/ProfilePetPage/index.tsx'
+import { UserProfilePage } from './pages/UserProfilePage/index.tsx'
 import { AppContextProps } from './services/AppContext.tsx'
 import { getCookie } from './utils/getCookie.ts'
 
@@ -36,6 +37,10 @@ async function main() {
         {
           path: '/pet/:id',
           element: <ProfilePetPage />,
+        },
+        {
+          path: '/user/:id',
+          element: <UserProfilePage />,
         },
         {
           path: '/',

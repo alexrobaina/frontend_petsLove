@@ -68,13 +68,12 @@ export const DashboardPage: FC = () => {
       values.units = ''
 
       if (context?.user?.locationId) values.locationId = context.user.locationId
-
-      if (context?.user?.role === 'SHELTER')
-        values.shelterId = context?.user?.id
-
+      
       if (petId) {
         mutatePetUpdate({ ...values, id: petId })
       } else {
+        if (context?.user?.role === 'SHELTER')
+          values.shelterId = context?.user?.id
         mutate(values)
       }
 
