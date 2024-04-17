@@ -69,7 +69,6 @@ export const PersonalInformationForm: FC<Props> = ({
     { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
     { value: ROLES.SHELTER, label: ROLES.SHELTER },
     { value: ROLES.VET, label: ROLES.VET },
-    { value: ROLES.VOLUNTEER, label: ROLES.VOLUNTEER },
   ]
 
   const isGoogleAvatar =
@@ -159,7 +158,6 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="sm:col-span-3">
               <BaseSelect
                 name="role"
-                isDisabled
                 label="Role"
                 options={options}
                 error={errors?.role}
