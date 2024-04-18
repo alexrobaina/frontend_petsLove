@@ -40,7 +40,7 @@ export const LoginGoogle: FC = () => {
                 Pet's Love
               </h2>
             </div>
-            <form className="space-y-6" action="#" method="POST">
+            <div className="space-y-6">
               <div>
                 <button
                   onClick={signInWithGoogle}
@@ -67,7 +67,7 @@ export const LoginGoogle: FC = () => {
                   <BaseButton wFull style="primary" text="Magic link" />
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

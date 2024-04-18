@@ -54,6 +54,10 @@ const router = createBrowserRouter([
         element: <AdoptionPetPage />,
       },
       {
+        path: '/',
+        element: <DashboardPage />,
+      },
+      {
         path: '*',
         element: <DashboardPage />,
       },
