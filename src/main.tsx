@@ -8,9 +8,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import { Navbar } from './components/Navbar/index.tsx'
 import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
+import { CommunityPage } from './pages/CommunityPage/index.tsx'
 import { LoginPage } from './pages/LoginPage/index.tsx'
 import { ProfilePetPage } from './pages/ProfilePetPage/index.tsx'
-import { UserProfilePage } from './pages/UserProfilePage/index.tsx'
 import { AppContextProps } from './services/AppContext.tsx'
 import { getCookie } from './utils/getCookie.ts'
 
@@ -39,8 +39,8 @@ async function main() {
           element: <ProfilePetPage />,
         },
         {
-          path: '/user/:id',
-          element: <UserProfilePage />,
+          path: '/community',
+          element: <CommunityPage />,
         },
         {
           path: '/',

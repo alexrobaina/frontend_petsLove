@@ -12,20 +12,23 @@ export const Navbar: FC<Props> = () => {
     <>
       <nav className="bg-primary-200 fixed top-0 left-0 w-full z-10">
         <div className="md:pl-20 md:pr-20">
-          <div className="relative flex h-16 items-center justify-between">
-            <div className="flex items-center px-2 lg:px-0"></div>
-            <div className="lg:ml-4 lg:block px-2">
+          <div className="relative flex h-16 items-center justify-center">
+            <div className="lg:block">
               <div className="flex gap-4 items-center">
                 <BaseButton
-                  style="primary"
+                  style="secondary"
                   text="Adopt pets"
                   onClick={() => navigate('/adopt')}
                 />
-                <div className="flex space-x-4"></div>
-                <div className="flex  space-x-4">
+                <BaseButton
+                  style="secondary"
+                  text="Community"
+                  onClick={() => navigate('/community')}
+                />
+                <div className="flex space-x-4">
                   <BaseButton
                     text="Login"
-                    style="primary"
+                    style="secondary"
                     onClick={() => navigate('/')}
                   />
                 </div>
