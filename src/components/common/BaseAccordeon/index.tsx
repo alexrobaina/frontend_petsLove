@@ -34,7 +34,7 @@ export const BaseAccordeon: FC<Props> = ({
       >
         <div className="flex items-center gap-2">
           <div className="w-[50px] iconTitle">{icon}</div>
-          <h4 className="text-xs md:text-sm font-bold leading-6 text-primary-950 capitalize">
+          <h4 className="text-xs md:text-sm font-bold leading-6 text-primary-950 ">
             {title}
           </h4>
         </div>

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import { action } from 'mobx'
 import { FC, useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import FadeIn from '../../components/FadeIn'
 import { BaseLoading } from '../../components/common/BaseLoading'
@@ -14,6 +15,7 @@ import { SocialMediaForm } from './components/SocialMediaForm'
 import { INITIAL_STATE } from './constants'
 
 export const SettingsPage: FC = () => {
+  const { t } = useTranslation(['common', 'settings'])
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
   const { user, isLoading } = useUser(context?.user?.id)
@@ -74,7 +76,7 @@ export const SettingsPage: FC = () => {
   return (
     <div className="pb-32">
       <header className="flex gap-5">
-        <Header title="Settings" buttonBack />
+        <Header title={t('common:settings')} buttonBack />
       </header>
       <FadeIn>
         <form onSubmit={handleSubmit}>

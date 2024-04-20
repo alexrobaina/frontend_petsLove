@@ -1,0 +1,66 @@
+{
+    "PENDING": "PENDIENTE",
+    "DONE": "COMPLETADA",
+    "vaccine": {
+        "cat": {
+            "FVRCP": {
+                "name": "FVRCP",
+                "description": "Rinotraqueítis viral felina, Calicivirus y Panleucopenia"
+            },
+            "rabies": {
+                "name": "Rabia",
+                "description": "Vacuna contra el virus de la rabia"
+            },
+            "FeLV": {
+                "name": "Leucemia Felina (FeLV)",
+                "description": "Vacuna contra el virus de la Leucemia Felina"
+            },
+            "FIP": {
+                "name": "FIP",
+                "description": "Peritonitis Infecciosa Felina"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Vacuna contra Bordetella bronchiseptica"
+            },
+            "chlamydophilaFelis": {
+                "name": "Chlamydophila Felis",
+                "description": "Vacuna para Chlamydophila (anteriormente conocida como Clamidia)"
+            },
+            "FIV": {
+                "name": "FIV",
+                "description": "Virus de la Inmunodeficiencia Felina (no siempre recomendado)"
+            }
+        },
+        "dog": {
+            "DHPP": {
+                "name": "DHPP",
+                "description": "Distemper, Hepatitis, Parainfluenza, and Parvovirus"
+            },
+            "rabies": {
+                "name": "Rabies",
+                "description": "Vaccine for the Rabies virus"
+            },
+            "leptospirosis": {
+                "name": "Leptospirosis",
+                "description": "Vaccine for the Leptospira bacteria"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Kennel Cough or Bordetella bronchiseptica vaccine"
+            },
+            "lymeDisease": {
+                "name": "Lyme Disease",
+                "description": "Vaccine for Borrelia burgdorferi, which causes Lyme disease"
+            },
+            "canineInfluenza": {
+                "name": "Canine Influenza",
+                "description": "Vaccine for the dog flu"
+            },
+            "coronavirus": {
+                "name": "Coronavirus",
+                "description": "Vaccine for the canine coronavirus (not related to COVID-19)"
+            }
+        }
+    }
+}

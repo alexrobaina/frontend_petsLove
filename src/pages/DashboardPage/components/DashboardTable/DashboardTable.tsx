@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { IconEdit, IconSearch, IconTrash } from '../../../../assets/icons'
@@ -53,6 +54,7 @@ export const DashboardTable: React.FC<Props> = ({
   handleCreatePet,
   updatePetLoading,
 }) => {
+  const { t } = useTranslation(['common', 'dashboard'])
   const navigate = useNavigate()
 
   const goToPet = (id: string) => {
@@ -72,18 +74,18 @@ export const DashboardTable: React.FC<Props> = ({
       <div className="flex justify-between sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900">
-            Pets
+            {t('common:pets')}
           </h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the pets in your place.
+            {t('dashboard:listOfPets')}
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <BaseButton
             size="small"
             type="button"
-            text="Add pet"
             style="primary"
+            text={t('dashboard:addPet')}
             onClick={handleCreatePet}
           />
         </div>
@@ -92,24 +94,21 @@ export const DashboardTable: React.FC<Props> = ({
         <BaseInput
           type="text"
           value={searchByName}
-          placeholder="Search"
-          label="Search by name"
           iconLeft={<IconSearch />}
           handleChange={handleSearch}
+          placeholder={t('searchPets')}
+          label={t('common:searchByName')}
         />
       </div>
       {data?.total === 0 && (
         <div className="h-[550px] w-full flex flex-col gap-5 justify-center items-center">
-          <h1 className="text-3xl font-semibold">Pets not Found</h1>
-          <h1>
-            You don&apos;t have any pets yet. Click the button below to create
-            your first pet.
-          </h1>
+          <h1 className="text-3xl font-semibold">{t('dashboard:petNotFound')}</h1>
+          <h1>{t('dashboard:dontHavePets')}</h1>
           <BaseButton
             size="small"
             type="button"
-            text="Create Pet"
             onClick={handleCreatePet}
+            text={t('dashboard:addPet')}
           />
         </div>
       )}
@@ -124,43 +123,43 @@ export const DashboardTable: React.FC<Props> = ({
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-2"
                     >
-                      Name
+                      {t('common:name')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Gender
+                      {t('common:gender')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Category
+                      {t('common:category')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Age
+                      {t('common:age')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Size
+                      {t('common:size')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Status
+                      {t('common:status')}
                     </th>
                     <th
                       scope="col"
                       className="relative py-3.5 pl-3 pr-4 sm:pr-0"
                     >
-                      <span className="sr-only">Edit</span>
+                      <span className="sr-only">{t('common:edit')}</span>
                     </th>
                   </tr>
                 </thead>
@@ -193,16 +192,16 @@ export const DashboardTable: React.FC<Props> = ({
                           </div>
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {pet.gender}
+                          {`${t(`common:genderPet.${pet.gender}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {pet.category}
+                        {`${t(`common:categoryPet.${pet.category}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {pet.age}
+                          {`${t(`common:agePet.${pet.age}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {pet.size}
+                        {`${t(`common:sizePet.${pet.size}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                           <BaseBadge
@@ -212,15 +211,15 @@ export const DashboardTable: React.FC<Props> = ({
                             backgroundColor={
                               pet.adopted ? 'bg-red-500' : 'bg-green-200'
                             }
-                            text={pet.adopted ? 'Adopted' : 'Available'}
+                            text={pet.adopted ? t('common:adopted') : t('common:available')}
                           />
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 rounded-e-xl">
                           <div className="flex gap-2 justify-end">
                             <BaseButton
                               style="tertiary"
-                              onClick={(e) => handleEdit(e, pet.id)}
                               icon={<IconEdit />}
+                              onClick={(e) => handleEdit(e, pet.id)}
                             />
                             <BaseButton
                               style="tertiary"

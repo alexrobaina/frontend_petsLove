@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { FC, ChangeEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { IconGoogle } from '../../../assets/icons'
 import { BackgroundLogin } from '../../../assets/images'
@@ -7,6 +8,7 @@ import { BaseButton } from '../../../components/common/BaseButton'
 import { BaseInput } from '../../../components/common/BaseInput'
 
 export const LoginGoogle: FC = () => {
+  const { t } = useTranslation(['common', 'login'])
   const [email, setEmail] = useState({
     value: '',
     error: false,
@@ -47,24 +49,24 @@ export const LoginGoogle: FC = () => {
                   className="bg-white shadow-md flex gap-2 px-4 py-1 justify-center items-center rounded-md w-full"
                 >
                   <IconGoogle />
-                  Sign in with Google
+                  {t('login:google')}
                 </button>
                 <div className="relative flex justify-center mt-6 text-sm font-medium leading-6">
                   <span className="px-6 text-primary-900">
-                    Or continue with
+                    {t('login:or')}
                   </span>
                 </div>
                 <div className="mt-3">
                   <BaseInput
                     type="email"
                     value={email.value}
-                    label="Email address"
-                    placeholder="Add your email"
+                    label={t('common:email')}
+                    placeholder={t('login:addEmail')}
                     handleChange={handleChangeEmail}
                   />
                 </div>
                 <div className="mt-6 w-full">
-                  <BaseButton wFull style="primary" text="Magic link" />
+                  <BaseButton wFull text={t('login:magicLink')} />
                 </div>
               </div>
             </div>

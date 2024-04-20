@@ -1,0 +1,15 @@
+{
+    "addPet": "Agregar mascota",
+    "listOfPets": "Tu lista de mascotas",
+    "petNotFound": "No se encontraron mascotas",
+    "dontHavePets": "Aún no tienes mascotas. Haz clic en el botón de abajo para crear tu primera mascota.",
+    "ageIsRequired": "La edad es requerida",
+    "nameIsRequired": "El nombre es requerido",
+    "unitsIsRequired": "Las unidades son requeridas",
+    "genderIsRequired": "El genero es requerido",
+    "weightIsRequired": "El peso es requerido",
+    "sizeIsRequired": "El tamaño es requerido",
+    "descriptionIsRequired": "La descripción es requerida",
+    "categoryIsRequired": "La categoría es requerida",
+    "last": "Last"
+}

@@ -1,4 +1,5 @@
 import { type FC, useState, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { IconSearch } from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
@@ -36,6 +37,7 @@ type Props = {
 const h2Class = 'text-xl md:text-xl lg:text-3xl font-semibold'
 
 export const UserProfile: FC<Props> = ({ user }) => {
+  const { t } = useTranslation(['common'])
   const [category, setPetOption] = useState('')
   const [gender, setGenderOption] = useState('')
   const [isAdopted, setAdoptionStatus] = useState('inAdoption')
@@ -59,19 +61,21 @@ export const UserProfile: FC<Props> = ({ user }) => {
   })
 
   const petCategories = [
-    { name: 'Dogs', path: 'dog' },
-    { name: 'Cats', path: 'cat' },
-    { name: 'Exotics', path: 'exotic' },
+    { name: 'dogs', path: 'dog' },
+    { name: 'cats', path: 'cat' },
+    { name: 'birds', path: 'bird' },
+    { name: 'rabbits', path: 'rabbit' },
+    { name: 'exotics', path: 'exotic' },
   ]
 
   const genderOptions = [
-    { name: 'Male', path: 'male' },
-    { name: 'Female', path: 'female' },
+    { name: 'males', path: 'male' },
+    { name: 'females', path: 'female' },
   ]
 
   const adoptionOption = [
-    { name: 'Adopted', path: 'adopted' },
-    { name: 'In Adoption', path: 'inAdoption' },
+    { name: 'adopted', path: 'adopted' },
+    { name: 'inAdoption', path: 'inAdoption' },
   ]
 
   const resetFiler = () => {
@@ -103,7 +107,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
         </header>
         <div className="flex items-center gap-3">
           <div className="bg-green-300 px-2 text-end py-1 rounded-2xl">
-            {user?.role}
+            {t(`common:${user?.role}`)}
           </div>
           <div className="h-14 w-14 max-sm:h-[58px] max-sm:w-[58px] rounded-full">
             <img
@@ -121,19 +125,19 @@ export const UserProfile: FC<Props> = ({ user }) => {
         </div>
       )}
       <div className="my-2">
-        <h2 className={h2Class}>Contact</h2>
+        <h2 className={h2Class}>{t('common:contact')}</h2>
         <div className="flex py-5 items-center">
           <SocialMediaContact user={user} />
         </div>
       </div>
       <div className="mt-5 mb-3 flex justify-between">
-        <h2 className={h2Class}>My Pets</h2>
+        <h2 className={h2Class}>{t('common:myPets')}</h2>
         <div className="flex gap-4 h-9">
           <BaseButton
             size="small"
             type="button"
             style="secondary"
-            text="Reset filters"
+            text={t('common:resetFilters')}
             onClick={resetFiler}
           />
           <BaseButtonGroups
@@ -157,8 +161,8 @@ export const UserProfile: FC<Props> = ({ user }) => {
         <BaseInput
           type="text"
           value={searchByName}
-          placeholder="Search"
-          label="Search by name"
+          placeholder={t('common:searchByName')}
+          label={t('common:searchPets')}
           iconLeft={<IconSearch />}
           handleChange={(e) => setSearchByName(e.target.value.toLowerCase())}
         />

@@ -15,6 +15,7 @@ import { AppContextProps } from './services/AppContext.tsx'
 import { getCookie } from './utils/getCookie.ts'
 
 import './index.css'
+import './i18n.ts'
 import 'react-toastify/dist/ReactToastify.css'
 
 const queryClient = new QueryClient()

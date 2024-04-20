@@ -1,15 +1,15 @@
 export const PET_CATEGORY_OPTIONS = [
-  { name: 'Dogs', path: 'dog' },
-  { name: 'Cats', path: 'cat' },
-  { name: 'Exotics', path: 'exotic' },
+  { name: 'dogs', path: 'dog' },
+  { name: 'cats', path: 'cat' },
+  { name: 'exotics', path: 'exotic' },
 ]
 
 export const PET_GENDER_OPTIONS = [
-  { name: 'Male', path: 'male' },
-  { name: 'Female', path: 'female' },
+  { name: 'males', path: 'males' },
+  { name: 'females', path: 'females' },
 ]
 
 export const IS_ADOPTED_OPTIONS = [
-  { name: 'Adopted', path: 'adopted' },
-  { name: 'In adoption', path: 'inAdoption' },
+  { name: 'adopted', path: 'adopted' },
+  { name: 'inAdoption', path: 'inAdoption' },
 ]

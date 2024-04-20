@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { ImageNotFound } from '../../assets/images'
 import { IPetCardProps } from '../../constants/types'
@@ -11,7 +12,9 @@ export const PetCard: FC<IPetCardProps> = ({
   images,
   country,
   goToProfile,
-}) => (
+}) => {
+  const { t } = useTranslation(['common'])
+  return (
   <div
     onClick={() => goToProfile(id)}
     className="rounded-xl h-[318px] w-[236px] flex bg-primary-100 shadow-md cursor-pointer"
@@ -28,7 +31,7 @@ export const PetCard: FC<IPetCardProps> = ({
       <div className="flex w-full flex-col pt-3 px-3 gap-1">
         <div className="flex w-full justify-between">
           <p className="capitalize font-bold ">{name}</p>
-          <p className="capitalize">{age}</p>
+          <p className="capitalize">{t(`common:agePet.${age}`)}</p>
         </div>
         <div>
           <div className="flex gap-2 justify-between">
@@ -38,4 +41,4 @@ export const PetCard: FC<IPetCardProps> = ({
       </div>
     </div>
   </div>
-)
+)}

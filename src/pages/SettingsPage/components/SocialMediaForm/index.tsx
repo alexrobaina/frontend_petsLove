@@ -1,4 +1,5 @@
 import { FormikErrors, FormikValues } from 'formik'
+import { t } from 'i18next'
 import { FC } from 'react'
 
 import { BaseButton } from '../../../../components/common/BaseButton'
@@ -25,11 +26,10 @@ export const SocialMediaForm: FC<Props> = ({
     <div className="flex pr-5 md:pr-12 gap-10">
       <div className="w-[50%]">
         <h2 className="text-base font-semibold leading-7 text-primary-950">
-          Social Media and contacts
+          {t('settings:socialMediaAndContacts')}
         </h2>
         <p className="mt-1 text-sm leading-6 text-gray-400">
-          The social media you want to share with the community, it's important
-          to have a way to contact you.
+          {t('settings:socialMediaAndContactsDescription')}
         </p>
       </div>
       <div className="w-full">
@@ -40,7 +40,7 @@ export const SocialMediaForm: FC<Props> = ({
               handleChange={handleChange}
               name="socialMedia.instagram"
               value={values?.socialMedia?.instagram}
-              placeholder={user?.socialMedia?.instagram || 'Add your username'}
+              placeholder={user?.socialMedia?.instagram || t('settings:instagramPlaceholder')}
             />
           </div>
           <div className="sm:col-span-3">
@@ -58,13 +58,13 @@ export const SocialMediaForm: FC<Props> = ({
           </div>
           <div className="sm:col-span-3">
             <BasePhoneInput
+              country={'ar'}
               label="Whatsapp"
               name="socialMedia.whatsapp"
               setFieldValue={setFieldValue}
-              placeholder={user?.socialMedia?.whatsapp || ''}
               value={values?.socialMedia?.whatsapp}
               error={errors?.socialMedia?.whatsapp}
-              country={'ar'}
+              placeholder={user?.socialMedia?.whatsapp || ''}
             />
           </div>
           <div className="sm:col-span-3">
@@ -72,14 +72,14 @@ export const SocialMediaForm: FC<Props> = ({
               label="Telegram"
               name="socialMedia.telegram"
               handleChange={handleChange}
-              placeholder={user?.socialMedia?.telegram || 'Add your username'}
+              placeholder={user?.socialMedia?.telegram || t('settings:telegramPlaceholder')}
               error={errors?.socialMedia?.telegram}
               value={values?.socialMedia?.telegram}
             />
           </div>
         </div>
         <div className="mt-8 flex">
-          <BaseButton type="submit" text="Save" />
+          <BaseButton type="submit" text={t('common:save') } />
         </div>
       </div>
     </div>

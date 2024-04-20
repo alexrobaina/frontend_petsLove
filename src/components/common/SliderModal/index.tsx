@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FC, ReactNode, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { SLIDER_VARIANTS } from '../../../constants/animations'
 import { toggleBodyScroll } from '../../../utils/toggleBodyScroll'
@@ -21,6 +22,8 @@ export const SliderModal: FC<Props> = ({
   handleSubmit,
   children = null,
 }) => {
+  const { t } = useTranslation(['common'])
+  
   useEffect(() => {
     toggleBodyScroll(isOpen)
   }, [isOpen])
@@ -55,12 +58,12 @@ export const SliderModal: FC<Props> = ({
             "
               >
                 <BaseButton
-                  text="Cancel"
+                  text={t('common:cancel')}
                   style="secondary"
                   onClick={closeSlider}
                 />
                 <BaseButton
-                  text="Save"
+                  text={t('common:save')}
                   style="primary"
                   onClick={() => {
                     handleSubmit && handleSubmit()

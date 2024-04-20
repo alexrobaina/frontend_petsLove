@@ -1,5 +1,6 @@
 import { FormikErrors, FormikValues } from 'formik'
 import { ChangeEvent, FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { MultiValue } from 'react-select'
 
 import MidDog from '../../../../assets/images/mid-dog.png'
@@ -33,6 +34,7 @@ export const PersonalInformationForm: FC<Props> = ({
   handleChange,
   setFieldValue,
 }) => {
+  const { t } = useTranslation(['common', 'settings'])
   const [previewURL, setPreviewURL] = useState('')
 
   const handleChangeLocation = (result: LocationResult) => {
@@ -89,10 +91,10 @@ export const PersonalInformationForm: FC<Props> = ({
       <div className="flex pr-5 md:pr-12 gap-10">
         <div className="w-[50%]">
           <h2 className="text-base font-semibold leading-7 text-primary-950">
-            Personal Information
+            {t('settings:personalInformation')}
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-400">
-            Use a permanent address where you can receive mail.
+            {t('settings:personalInformationDescription')}
           </p>
         </div>
         <div className="w-full">
@@ -110,7 +112,7 @@ export const PersonalInformationForm: FC<Props> = ({
                     htmlFor="file"
                     className="sm:w-auto w-full rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
                   >
-                    Select a file
+                    {t('common:selectImages')}
                   </label>
                   <input
                     id="file"
@@ -121,94 +123,96 @@ export const PersonalInformationForm: FC<Props> = ({
                   />
                 </div>
                 <p className="mt-2 text-xs leading-5 text-gray-400">
-                  JPG, GIF or PNG. 1.5MB max.
+                  {t('common:selectImagesInfo')}
                 </p>
               </div>
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="firstName"
-                label="First name"
                 error={errors?.firstName}
                 value={values?.firstName}
                 handleChange={handleChange}
-                placeholder={user?.firstName || 'First name'}
+                label={t('settings:firstName')}
+                placeholder={user?.firstName || t('settings:firstName')}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="lastName"
-                label="Last name"
                 error={errors?.lastName}
                 value={values?.lastName}
                 handleChange={handleChange}
-                placeholder={user?.lastName || 'Last name'}
+                label={t('settings:lastName')}
+                placeholder={user?.lastName || t('settings:lastName')}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseInput
                 name="username"
-                label="Username"
                 error={errors?.username}
                 value={values?.username}
                 handleChange={handleChange}
-                placeholder={user?.username || 'Username'}
+                label={t('settings:username')}
+                placeholder={user?.username || t('settings:username')}
               />
             </div>
             <div className="sm:col-span-3">
               <BaseSelect
                 name="role"
-                label="Role"
+                translation
                 options={options}
+                isCreatable={false}
                 error={errors?.role}
+                value={values?.role}
+                label={t('common:role')}
                 setFieldValue={setFieldValue}
-                value={values?.role || user?.role}
+                placeholder={t('settings:selectRole')}
               />
             </div>
             <div className="col-span-full">
               <BaseInput
                 isdisabled
                 value={values?.email}
-                label="Email address"
-                placeholder={user?.email || 'Email address'}
+                label={t('settings:email')}
+                placeholder={user?.email || t('settings:email')}
               />
             </div>
             <div className="col-span-full">
               <BaseTextArea
                 height={100}
-                name="description"
                 value={values?.description}
                 handleChange={handleChange}
                 error={errors?.description}
-                placeholder={user?.description || 'Add a description about you'}
+                name={t('settings:description')}
+                placeholder={user?.description || t('settings:addDescriptionAboutYou')}
               />
             </div>
           </div>
           <div className="mt-8 flex">
-            <BaseButton type="submit" text="Save" />
+            <BaseButton type="submit" text={t('common:save')} />
           </div>
         </div>
       </div>
       <div className="flex pr-5 md:pr-12 gap-10 mt-14">
         <div className="w-[50%]">
           <h2 className="text-base font-semibold leading-7 text-primary-950">
-            Location
+            {t('common:location')}
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-400">
-            If you are a shelter, please add your location. it is important to
-            be able to locate you.
+            {t('settings:locationDescription')}
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
           <div className="col-span-full">
             <GoogleAutocomplete
-              label="Location"
+              label={t('common:location')}
               setLocation={handleChangeLocation}
-              placeholder={user?.location?.address || 'Search by location'}
+              placeholder={user?.location?.address || t('common:searchByLocation')}
             />
           </div>
           <div className="mt-8 flex">
-            <BaseButton type="submit" text="Save" />
+            <BaseButton type="submit" text={t('common:save')} />
           </div>
         </div>
       </div>

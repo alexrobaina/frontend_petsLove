@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   group: {
@@ -14,6 +15,8 @@ export const BaseButtonGroups: FC<Props> = ({
   buttonSelected,
   handleSelectButtonGroup,
 }) => {
+  const { t } = useTranslation(['common'])
+
   return (
     <span className="isolate inline-flex rounded-md">
       {group.map((item, index) => {
@@ -45,7 +48,7 @@ export const BaseButtonGroups: FC<Props> = ({
               handleSelectButtonGroup && handleSelectButtonGroup(item.path)
             }
           >
-            {item.name}
+            {t(`common:${item.name}`)}
           </button>
         )
       })}

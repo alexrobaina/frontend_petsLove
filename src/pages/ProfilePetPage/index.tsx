@@ -1,4 +1,5 @@
 import { FC, useCallback, useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
@@ -30,6 +31,7 @@ interface IVaccine {
 }
 
 export const ProfilePetPage: FC = () => {
+  const { t } = useTranslation('common')
   const { id } = useParams()
   const { mutate: deleteVaccine } = useDelecteVaccine()
   const context = useContext(AppContext)
@@ -106,7 +108,7 @@ export const ProfilePetPage: FC = () => {
         isOpen={isOpenDeleteVaccine}
         handleDelete={handleDeleteVaccine}
         handleClose={handleCloseDeleteVaccineModal}
-        title={`Are you sure you want to delete ${vaccine?.Vaccine?.name}?`}
+        title={`${t('common:areYouSureDelete')} ${vaccine?.Vaccine?.name}?`}
       />
     </>
   )

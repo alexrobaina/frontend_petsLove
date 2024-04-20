@@ -5,6 +5,6 @@ export const ROLES = {
 }
 
 export const TYPE_OF_COMMUNITY = [
-  { name: 'Shelters', path: ROLES.SHELTER },
-  { name: 'Veterinarians', path: ROLES.VET },
+  { name: 'shelters', path: ROLES.SHELTER },
+  { name: 'veterinarians', path: ROLES.VET },
 ]

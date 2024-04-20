@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { DeleteModal } from '../../../../components/common/DeleteModal'
@@ -29,6 +30,7 @@ export const HealthData: React.FC<Props> = ({
   checkIfUserIsOwner,
   handleOpenModalDeleteVaccine,
 }) => {
+  const { t } = useTranslation(['common', 'profilePet'])
   const [isOpenModalCreation, setIsOpenModalCreation] = useState(false)
   const [isOpenDeleteMedicalRecord, setIsOpenDeleteMedicalRecord] =
     useState(false)
@@ -62,12 +64,12 @@ export const HealthData: React.FC<Props> = ({
     <>
       <div className="mt-5 gap-6">
         <h2 className="mt-10 text-lg font-semibold text-primary-900">
-          Medical Record
+          {t('profilePet:medicalRecord')}
         </h2>
         {checkIfUserIsOwner() && (
           <div className="flex justify-end">
             <BaseButton
-              text="Add Medical Record"
+              text={t('profilePet:addMedicalRecord')}
               onClick={() => {
                 setIsOpenModalCreation(true)
               }}
@@ -80,7 +82,7 @@ export const HealthData: React.FC<Props> = ({
           handleDelete={handleDeleteMedicalRecord}
         />
       </div>
-      <h2 className="mt-10 text-lg font-semibold text-primary-900">Vaccines</h2>
+      <h2 className="mt-10 text-lg font-semibold text-primary-900">{t('profilePet:vaccine')}</h2>
       {pet?.PetVaccine && (
         <VaccinesTable
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -100,7 +102,7 @@ export const HealthData: React.FC<Props> = ({
         handleClose={() =>
           setIsOpenDeleteMedicalRecord(!isOpenDeleteMedicalRecord)
         }
-        title={`Are you sure you want to delete this medical Record?`}
+        title={`${t('common:areYouSureDelete')} ${t('profilePet:medicalRecord')}?`}
         handleDelete={deleteMedicalRecord}
       />
     </>
