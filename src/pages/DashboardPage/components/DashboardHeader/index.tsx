@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseButtonGroups } from '../../../../components/common/BaseButtonGroups'
 import { Header } from '../../../../components/common/Header'
@@ -26,17 +28,19 @@ export const DashboardHeader: React.FC<Props> = ({
   setIsAdopted,
   resetFilters,
 }) => {
+  const { t } = useTranslation(['dashboard', 'common'])
+
   return (
     <header className="flex lg:flex-row md:justify-between flex-col gap-5">
-      <Header title="Dashboard" />
+      <Header title={t('common:dashboard')} />
       <div className="flex gap-5 flex-col md:flex-row md:justify-between md:items-center">
         <div className="z-10">
           <BaseButton
             size="small"
             type="button"
             style="secondary"
-            text="Reset filters"
             onClick={resetFilters}
+            text={t('common:resetFilters')}
           />
         </div>
         <BaseButtonGroups

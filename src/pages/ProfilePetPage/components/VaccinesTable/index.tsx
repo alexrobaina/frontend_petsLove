@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { IconEdit } from '../../../../assets/icons'
@@ -29,6 +30,7 @@ export const VaccinesTable: React.FC<Props> = ({
   handleEditVaccine,
   // handleOpenModalDeleteVaccine,
 }) => {
+  const { t } = useTranslation(['common', 'profilePet', 'vaccine'])
   const context = useContext(AppContext)
   const { id } = useParams()
   const { data } = useGetPet(id)
@@ -54,19 +56,19 @@ export const VaccinesTable: React.FC<Props> = ({
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                     >
-                      Vaccine
+                      {t('profilePet:vaccine')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Status
+                      {t('common:status')}
                     </th>
                     <th
                       scope="col"
                       className="py-3.5 pl-4 pr-10 text-end text-sm font-semibold text-gray-900 sm:pl-6"
                     >
-                      Actions
+                      {t('common:actions')}
                     </th>
                   </tr>
                 </thead>
@@ -77,15 +79,15 @@ export const VaccinesTable: React.FC<Props> = ({
                       <tr key={item.id}>
                         <td className="flex flex-col py-4 pl-4 pr-3sm:pl-6">
                           <div className="text-sm font-medium text-gray-900 ">
-                            {item?.Vaccine.name}
+                            {t(`vaccine:${item?.Vaccine.name}`)}
                           </div>
                           <div className="text-gray-400 truncate w-[350px]">
-                            {item?.Vaccine?.description}
+                          {t(`vaccine:${item?.Vaccine.description}`)}
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           <BaseBadge
-                            text={item.status}
+                            text={t(`vaccine:${item.status}`)}
                             backgroundColor={
                               item.status === 'PENDING'
                                 ? 'bg-red-300'

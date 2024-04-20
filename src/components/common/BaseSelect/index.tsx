@@ -1,5 +1,6 @@
 import { CSSObject } from '@emotion/react'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import Select, { MultiValue, StylesConfig } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 
@@ -10,12 +11,13 @@ interface Option {
 
 interface Props {
   name: string
-  value: string | []
   label?: string
   error?: string
   options?: Option[]
+  value: string | []
   placeholder?: string
   isDisabled?: boolean
+  translation?: boolean
   isCreatable?: boolean
   isMulti?: boolean | false
   setFieldValue: (
@@ -30,17 +32,25 @@ export const BaseSelect: FC<Props> = ({
   label,
   options,
   isDisabled,
+  translation,
   placeholder,
   setFieldValue,
   isCreatable = false,
 }) => {
+  const { t } = useTranslation()
+
+  const translatedOptions = options?.map(option => ({
+    ...option,
+    label: translation ? t(`common:${option.label}`) : option.label,
+  }));
+
   const customStyles: StylesConfig<Option, false> = {
     menu: (provided: CSSObject) => ({
       ...provided,
       position: 'absolute',
       backgroundColor: 'white',
       zIndex: 98, // also ensuring z-index here as a safety
-    }),
+    }),                                   
     clearIndicator: (provided) => ({
       ...provided,
       zIndex: 99,
@@ -103,11 +113,11 @@ export const BaseSelect: FC<Props> = ({
         <Select
           isClearable
           isSearchable
-          options={options}
           styles={customStyles}
           isDisabled={isDisabled}
           placeholder={placeholder}
-          value={options && setValues(options, value)}
+          options={translatedOptions}
+          value={translatedOptions && setValues(translatedOptions, value)}
           onChange={(option) => {
             setFieldValue(name, option ? option.value : null)
           }}

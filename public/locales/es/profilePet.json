@@ -1,0 +1,19 @@
+{
+    "QRCode": "Código QR",
+    "QRCodeDescription": "Escanee el código QR con su dispositivo móvil para acceder a esta página",
+    "petGuardians": "Guardianes de mascotas",
+    "shelterDescription": "Regufio donde recide la mascota, Click para ir al refugio",
+    "adopterDescription": "Adoptante de la mascota, Click para su perfil",
+    "veterinarianDescription": "Veterinario de la mascota, Click para su perfil",
+    "medicalRecord": "Historial médico",
+    "addMedicalRecord": "Añadir historial médico",
+    "vaccine": "Vacuna",
+    "diagnosis": "Diagnóstico",
+    "treatment": "Tratamiento",
+    "clinicName": "Nombre de la clínica",
+    "attachments": "Adjuntos",
+    "medications": "Medicamentos",
+    "description": "Descripción",
+    "createdAt": "Creado el",
+    "last": "Last"
+}

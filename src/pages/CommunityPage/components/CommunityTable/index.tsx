@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
@@ -26,6 +28,7 @@ export const CommunityTable: React.FC<Props> = ({
   isLoading,
   goToUserProfile,
 }) => {
+  const { t } = useTranslation(['common'])
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement
     target.onerror = null // Prevents infinite loop if local image is also not found
@@ -44,26 +47,26 @@ export const CommunityTable: React.FC<Props> = ({
                     scope="col"
                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-4"
                   >
-                    Name
+                    {t('common:name')}
                   </th>
 
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Location
+                    {t('common:location')}
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Role
+                    {t('common:role')}
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Contact
+                    {t('common:contact')}
                   </th>
                 </tr>
               </thead>
@@ -103,7 +106,7 @@ export const CommunityTable: React.FC<Props> = ({
                       )}
                     </td>
                     <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                      {user.role}
+                      {t(`common:${user.role}`)}
                     </td>
                     <td>
                       <SocialMediaContact user={user} />

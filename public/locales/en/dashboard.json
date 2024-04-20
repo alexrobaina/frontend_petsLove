@@ -1,0 +1,15 @@
+{
+    "addPet": "Add pet",
+    "listOfPets": "A list of all the pets in your place.",
+    "petNotFound": "Pet not found",
+    "dontHavePets": "You don't have any pets yet. Click the button below to create your first pet.",
+    "ageIsRequired": "Age is required",
+    "nameIsRequired": "Name is required",
+    "unitsIsRequired": "Units is required",
+    "genderIsRequired": "Gender is required",
+    "weightIsRequired": "Weight is required",
+    "sizeIsRequired": "Size is required",
+    "descriptionIsRequired": "Description is required",
+    "categoryIsRequired": "Category is required",
+    "last": "Last"
+}

@@ -2,19 +2,19 @@ import * as Yup from 'yup'
 
 export const SIZE_PETS = [
   {
-    label: 'Small',
+    label: 'sizePet.small',
     value: 'small',
   },
   {
-    label: 'Medium',
+    label: 'sizePet.medium',
     value: 'medium',
   },
   {
-    label: 'Large',
+    label: 'sizePet.large',
     value: 'large',
   },
   {
-    label: 'Extra large',
+    label: 'sizePet.extraLarge',
     value: 'extraLarge',
   },
 ]
@@ -32,53 +32,53 @@ export const MASS_UNIT = [
 
 export const AGE_PETS = [
   {
-    label: 'Baby',
-    value: 'Baby',
+    label: 'agePet.baby',
+    value: 'baby',
   },
   {
-    label: 'Young',
+    label: 'agePet.young',
     value: 'young',
   },
   {
-    label: 'Adult',
+    label: 'agePet.adult',
     value: 'adult',
   },
   {
-    label: 'Senior',
+    label: 'agePet.senior',
     value: 'senior',
   },
 ]
 
 export const CATEGORY_PET = [
   {
-    label: 'Dog',
+    label: 'categoryPet.dog',
     value: 'dog',
   },
   {
-    label: 'Cat',
+    label: 'categoryPet.cat',
     value: 'cat',
   },
   {
-    label: 'Bird',
+    label: 'categoryPet.bird',
     value: 'bird',
   },
   {
-    label: 'Rabbit',
+    label: 'categoryPet.rabbit',
     value: 'rabbit',
   },
   {
-    label: 'Other',
-    value: 'other',
+    label: 'categoryPet.exotic',
+    value: 'exotic',
   },
 ]
 
 export const GENDER_PET = [
   {
-    label: 'Female',
+    label: 'genderPet.female',
     value: 'female',
   },
   {
-    label: 'Male',
+    label: 'genderPet.male',
     value: 'male',
   },
 ]
@@ -148,14 +148,14 @@ export const INITIAL_STATE = {
 }
 
 export const petSchema = Yup.object().shape({
-  age: Yup.string().required('Age is required'),
-  name: Yup.string().required('Name is required'),
-  units: Yup.string().required('Units are required'),
-  gender: Yup.string().required('Gender is required'),
-  weight: Yup.string().required('Weight is required'),
-  size: Yup.string().required('Size is required'),
-  description: Yup.string().required('Description is required'),
-  category: Yup.string().required('Category is required'),
+  age: Yup.string().required('ageIsRequired'),
+  name: Yup.string().required('nameIsRequired'),
+  units: Yup.string().required('unitsIsRequired'),
+  gender: Yup.string().required('genderIsRequired'),
+  weight: Yup.string().required('weightIsRequired'),
+  size: Yup.string().required('sizeIsRequired'),
+  description: Yup.string().required('descriptionIsRequired'),
+  category: Yup.string().required('categoryIsRequired'),
 })
 
 export type FileType = {

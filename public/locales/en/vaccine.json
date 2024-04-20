@@ -1,0 +1,66 @@
+{
+    "PENDING": "PENDING",
+    "DONE": "DONE",
+    "vaccine": {
+        "cat": {
+            "FVRCP": {
+                "name": "FVRCP",
+                "description": "Feline Viral Rhinotracheitis, Calicivirus, and Panleukopenia"
+            },
+            "rabies": {
+                "name": "Rabies",
+                "description": "Vaccine for Rabies virus"
+            },
+            "FeLV": {
+                "name": "Feline Leukemia (FeLV)",
+                "description": "Vaccine for Rabies virus"
+            },
+            "FIP": {
+                "name": "FIP",
+                "description": "Feline Infectious Peritonitis"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Vaccine for Bordetella bronchiseptica"
+            },
+            "chlamydophilaFelis": {
+                "name": "Chlamydophila Felis",
+                "description": "Vaccine for Chlamydophila (previously known as Chlamydia)"
+            },
+            "FIV": {
+                "name": "FIV",
+                "description": "Feline Immunodeficiency Virus (not always recommended)"
+            }
+        },
+        "dog": {
+            "DHPP": {
+                "name": "DHPP",
+                "description": "Moquillo, Hepatitis, Parainfluenza y Parvovirus"
+            },
+            "rabies": {
+                "name": "Rabia",
+                "description": "Vacuna contra el virus de la rabia"
+            },
+            "leptospirosis": {
+                "name": "Leptospirosis",
+                "description": "Vacuna contra la bacteria Leptospira"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Vacuna para la Tos de las Perreras o Bordetella bronchiseptica"
+            },
+            "lymeDisease": {
+                "name": "Enfermedad de Lyme",
+                "description": "Vacuna para Borrelia burgdorferi, que causa la enfermedad de Lyme"
+            },
+            "canineInfluenza": {
+                "name": "Influenza Canina",
+                "description": "Vacuna para la gripe canina"
+            },
+            "coronavirus": {
+                "name": "Coronavirus",
+                "description": "Vacuna para el coronavirus canino (no relacionado con COVID-19)"
+            }
+        }
+    }
+}

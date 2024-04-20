@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { BaseButton } from '../../components/common/BaseButton'
 import { BaseButtonGroups } from '../../components/common/BaseButtonGroups'
@@ -11,6 +12,7 @@ import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
 import { useGetPets } from '../../hooks/useGetPets'
 
 export const AdoptionPetPage: FC = () => {
+  const { t } = useTranslation(['common', 'searchPet'])
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
   const [page, setPage] = useState(1)
@@ -57,11 +59,11 @@ export const AdoptionPetPage: FC = () => {
   return (
     <div>
       <header className="flex justify-between flex-col md:flex-row gap-6">
-        <Header title="Search pet for Adoption" />
+        <Header title={t('searchPet:searchPetForAdoption')} />
         <div className="flex items-center gap-4">
           <BaseButton
             style="secondary"
-            text="Reset filters"
+            text={t('common:resetFilters')}
             onClick={handeResetFilters}
           />
           <BaseButtonGroups
@@ -78,8 +80,10 @@ export const AdoptionPetPage: FC = () => {
       </header>
       <div className="mt-10">
         <GoogleAutocomplete
+          label={t('common:location')}
           resetLocation={resetLocation}
           setLocation={handleChangeLocation}
+          placeholder={t('common:searchByLocation')}
         />
       </div>
       <PetList pets={data?.pets} isLoading={isLoading} />

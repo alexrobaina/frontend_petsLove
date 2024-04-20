@@ -1,5 +1,6 @@
 import { FormikErrors } from 'formik'
 import { ChangeEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { MultiValue } from 'react-select'
 
 import { BaseInput } from '../../../../components/common/BaseInput'
@@ -17,6 +18,8 @@ import {
 } from '../../constants'
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  touched: any
   values: ICreatePetForm
   errors: FormikErrors<{
     age: string
@@ -50,11 +53,13 @@ export const CreatePetForm: React.FC<Props> = ({
   errors,
   images,
   isEdit,
+  touched,
   handleChange,
   setFieldValue,
   handleNewImage,
   handleImageDeletion,
 }) => {
+  const { t } = useTranslation(['common', 'dashboard'])
   const { data: userListShelter } = useUserList({ role: 'SHELTER' })
   const { data: userListAdopter } = useUserList({ role: 'ADOPTER' })
   const { data: userListVet } = useUserList({ role: 'VET' })
@@ -97,7 +102,7 @@ export const CreatePetForm: React.FC<Props> = ({
                 htmlFor="file"
                 className="w-full rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
               >
-                Select a file
+                {t('common:selectImages')}
               </label>
               <input
                 multiple
@@ -109,7 +114,7 @@ export const CreatePetForm: React.FC<Props> = ({
               />
             </div>
             <p className="mt-2 text-xs leading-5 text-gray-400">
-              JPG, GIF or PNG. 1.5MB max.
+              {t('common:selectImagesInfo')}
             </p>
           </div>
         </div>
@@ -118,31 +123,33 @@ export const CreatePetForm: React.FC<Props> = ({
         <div className="sm:col-span-1 w-full">
           <BaseInput
             name="name"
-            label="Name"
-            error={errors?.name}
             value={values?.name}
-            placeholder="Name of pet"
+            label={t('common:name')}
             handleChange={handleChange}
+            placeholder={t('common:petName')}
+            error={touched.name && t(`dashboard:${errors.name}`)}
           />
         </div>
         <div className="sm:col-span-1 w-full">
           <BaseSelect
+            translation
             name="category"
-            label="Category"
             options={CATEGORY_PET}
-            error={errors.category}
             value={values?.category}
+            label={t('common:category')}
             setFieldValue={setFieldValue}
+            error={touched.category && t(`dashboard:${errors.category}`)}
           />
         </div>
         <div className="sm:col-span-1 w-full">
           <BaseSelect
+            translation
             name="gender"
-            label="Gender"
             options={GENDER_PET}
-            error={errors.gender}
             value={values.gender}
+            label={t('common:gender')}
             setFieldValue={setFieldValue}
+            error={touched.gender && t(`dashboard:${errors.gender}`)}
           />
         </div>
       </div>
@@ -150,21 +157,23 @@ export const CreatePetForm: React.FC<Props> = ({
         <div className="col-span-1/2">
           <BaseSelect
             name="age"
-            label="Age"
-            error={errors.age}
-            options={AGE_PETS}
+            translation
             value={values.age}
+            options={AGE_PETS}
+            label={t('common:age')}
             setFieldValue={setFieldValue}
+            error={touched.age && t(`dashboard:${errors.age}`)}
           />
         </div>
         <div className="col-span-1/2">
           <BaseSelect
             name="size"
-            label="Size"
+            translation
             options={SIZE_PETS}
             value={values?.size}
-            error={errors?.size}
+            label={t('common:size')}
             setFieldValue={setFieldValue}
+            error={touched.size && t(`dashboard:${errors.size}`)}
           />
         </div>
       </div>
@@ -172,31 +181,30 @@ export const CreatePetForm: React.FC<Props> = ({
         <div className="col-span-1/2">
           <BaseInput
             name="breed"
-            label="Breed"
-            error={errors?.breed}
             value={values?.breed}
-            placeholder="From street"
+            label={t('common:breed')}
             handleChange={handleChange}
+            placeholder={t('common:petBreed')}
           />
         </div>
         <div className="col-span-1/2">
           <div className="flex gap-2 md:gap-5 justify-between">
             <BaseInput
               name="weight"
-              label="Weight"
               placeholder="0.00"
-              error={errors?.weight}
               value={values?.weight}
+              label={t('common:weight')}
               handleChange={handleChange}
+              error={touched.weight && t(`dashboard:${errors.weight}`)}
             />
-            <div className="w-[150px]">
+            <div className="w-[185px]">
               <BaseSelect
                 name="units"
-                label="Mass units"
                 options={MASS_UNIT}
                 value={values?.units}
-                error={errors?.units}
+                label={t('common:massUnit')}
                 setFieldValue={setFieldValue}
+                error={touched.units && t(`dashboard:${errors.units}`)}
               />
             </div>
           </div>
@@ -206,21 +214,22 @@ export const CreatePetForm: React.FC<Props> = ({
         <BaseTextArea
           height={100}
           name="description"
-          label="Description"
-          error={errors.description}
           value={values?.description}
           handleChange={handleChange}
-          placeholder="Description of pet"
+          label={t('common:description')}
+          placeholder={t('common:petDescription')}
+          error={touched.description  && t(`dashboard:${errors?.description}`)}
         />
       </div>
       <div className="mt-6 flex flex-col ">
-        <h1 className="text-xl font-medium col-span-full">Pet Guardians</h1>
+        <h1 className="text-xl font-medium col-span-full">{t('common:petGuardians')}</h1>
         <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
-              label="Adopter"
               name="adoptedBy"
+              placeholder={t('common:selectAdopter')}
               value={values?.adoptedBy}
+              label={t('common:adoptedBy')}
               setFieldValue={setFieldValue}
               options={userListAdopter?.users.map(
                 (user: { email: string; id: string }) => ({
@@ -233,10 +242,11 @@ export const CreatePetForm: React.FC<Props> = ({
           <div className="w-full">
             <BaseSelect
               name="vetId"
-              label="Vet"
               error={errors.vetId}
               value={values?.vetId}
+              label={t('common:vet')}
               setFieldValue={setFieldValue}
+              placeholder={t('common:selectVeterinary')}
               options={userListVet?.users.map(
                 (user: { email: string; id: string }) => ({
                   value: user.id,
@@ -249,9 +259,10 @@ export const CreatePetForm: React.FC<Props> = ({
         {isEdit && (
           <div className="w-full mt-4">
             <BaseSelect
-              label="Shelter"
               name="shelterId"
+              placeholder={t('common:selectShelter')}
               value={values?.shelterId}
+              label={t('common:shelter')}
               setFieldValue={setFieldValue}
               options={userListShelter?.users.map(
                 (user: { email: string; id: string }) => ({

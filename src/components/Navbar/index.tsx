@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { BaseButton } from '../common/BaseButton'
@@ -6,6 +7,7 @@ import { BaseButton } from '../common/BaseButton'
 interface Props {}
 
 export const Navbar: FC<Props> = () => {
+  const { t } = useTranslation(['common'])
   const navigate = useNavigate()
 
   return (
@@ -17,17 +19,17 @@ export const Navbar: FC<Props> = () => {
               <div className="flex gap-4 items-center">
                 <BaseButton
                   style="secondary"
-                  text="Adopt pets"
+                  text={t('common:adoptPet')}
                   onClick={() => navigate('/adopt')}
                 />
                 <BaseButton
                   style="secondary"
-                  text="Community"
+                  text={t('common:community')}
                   onClick={() => navigate('/community')}
                 />
                 <div className="flex space-x-4">
                   <BaseButton
-                    text="Login"
+                    text={t('common:login')}
                     style="secondary"
                     onClick={() => navigate('/')}
                   />

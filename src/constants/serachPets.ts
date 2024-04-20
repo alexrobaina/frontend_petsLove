@@ -1,9 +1,9 @@
 export const TYPE_OF_PETS = [
-  { name: 'Dogs', path: 'dog' },
-  { name: 'Cats', path: 'cat' },
+  { name: 'dogs', path: 'dog' },
+  { name: 'cats', path: 'cat' },
 ]
 
 export const GENDER = [
-  { name: 'Female', path: 'female' },
-  { name: 'Male', path: 'male' },
+  { name: 'female', path: 'female' },
+  { name: 'male', path: 'male' },
 ]

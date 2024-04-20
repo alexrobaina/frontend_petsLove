@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFormik } from 'formik'
 import { FC, useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
 import { DeleteModal } from '../../components/common/DeleteModal'
@@ -26,6 +27,7 @@ export const DashboardPage: FC = () => {
         }
       }
     | any = useContext(AppContext)
+  const { t } = useTranslation(['common'])
   const [page, setPage] = useState(1)
   const [isAdopted, setIsAdopted] = useState('')
   const [gender, setGender] = useState('')
@@ -86,6 +88,7 @@ export const DashboardPage: FC = () => {
   const {
     values,
     errors,
+    touched,
     resetForm,
     handleChange,
     handleSubmit,
@@ -128,12 +131,12 @@ export const DashboardPage: FC = () => {
   ) => {
     setOpenModalCreation(true)
     e.stopPropagation()
-    setTitleForm('Edit pet')
+    setTitleForm(t('common:editPet'))
     setPetId(id)
   }
 
   const handleCreatePet = () => {
-    setTitleForm('Create pet')
+    setTitleForm(t('common:createPet'))
     setPetId('')
     resetForm({ values: INITIAL_STATE })
     setOpenModalCreation(true)
@@ -253,11 +256,12 @@ export const DashboardPage: FC = () => {
         closeSlider={closePetCreationSlider}
       >
         <CreatePetForm
-          isEdit={!!petId}
           errors={errors}
           values={values}
           images={images}
+          isEdit={!!petId}
           title={titleForm}
+          touched={touched}
           handleChange={handleChange}
           setFieldValue={setFieldValue}
           handleNewImage={handleNewImage}
@@ -271,7 +275,7 @@ export const DashboardPage: FC = () => {
           handleDeletePet(petDelete.petId)
           setDeleteModalPet(false)
         }}
-        title={`Are you sure you want to delete ${petDelete.petName}?`}
+        title={`${t('common:areYouSureDelete')} ${petDelete.petName}?`}
       />
     </>
   )
