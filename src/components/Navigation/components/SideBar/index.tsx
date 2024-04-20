@@ -42,7 +42,8 @@ export const SideBar: FC<Props> = ({
 
   const [lng, setLng] = useState({
     lng: 'en',
-    flag: <IconEnglishFlag />,
+    // @ts-expect-error-error 
+    flag: <IconEnglishFlag width={25} />,
   })
   const navigation = useNavigate()
   const context = useContext(AppContext)
