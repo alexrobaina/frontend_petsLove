@@ -1,6 +1,9 @@
 {
     "PENDING": "PENDIENTE",
     "DONE": "COMPLETADA",
+    "NOT_APPLICABLE": "NO APLICA",
+    "placeholderTheVaccineStatus": "Seleccione el estado de la vacuna",
+    "vaccineStatus": "Estado de la vacuna",
     "vaccine": {
         "cat": {
             "FVRCP": {

@@ -1,15 +1,15 @@
 export const setType = (type: string) => {
   switch (type) {
     case 'primary':
-      return 'w-full block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 iconPrimary'
+      return 'block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 iconPrimary'
     case 'secondary':
-      return 'w-full rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-100 iconSecondary'
+      return 'rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-100 iconSecondary'
     case 'tertiary':
-      return 'w-full bg-transparent hover:bg-primary-200 text-gray-600 hover:bg-primary-50 iconTertiary'
+      return 'bg-transparent hover:bg-primary-200 text-gray-600 hover:bg-primary-50 iconTertiary'
     case 'delete':
       return 'w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
     default:
-      return 'w-full block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
+      return 'block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
   }
 }
 

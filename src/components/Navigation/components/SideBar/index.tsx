@@ -9,7 +9,7 @@ import {
   IconSearch,
   IconSettings,
 } from '../../../../assets/icons'
-import { IconEnglishFlag, IconSpanishFlag, MidDog } from '../../../../assets/images'
+import { MidDog } from '../../../../assets/images'
 import i18n from '../../../../i18n'
 import { AppContext } from '../../../../services/AppContext'
 import { deleteCookie } from '../../../../utils/deleteCookie'
@@ -42,8 +42,7 @@ export const SideBar: FC<Props> = ({
 
   const [lng, setLng] = useState({
     lng: 'en',
-    // @ts-expect-error-error 
-    flag: <IconEnglishFlag width={25} />,
+    symbol: 'en',
   })
   const navigation = useNavigate()
   const context = useContext(AppContext)
@@ -68,10 +67,9 @@ export const SideBar: FC<Props> = ({
 
   const handleChangeLng = (e: MouseEvent<HTMLButtonElement>, lng: string) => {
     e.stopPropagation()
-    const flag = lng === 'en' ? <IconEnglishFlag /> : <IconSpanishFlag />
     setLng({
       lng: lng,
-      flag: flag,
+      symbol: lng
     })
     i18n.changeLanguage(lng)
     setIsOpenLngToggle(false)
@@ -92,15 +90,14 @@ export const SideBar: FC<Props> = ({
     useEffect(() => {
       setLng({
         lng: locale === 'en' ? 'English' : 'Español',
-        // @ts-expect-error-error
-      flag: locale === 'en' ? <IconEnglishFlag width={25} /> : <IconSpanishFlag width={25} />
+        symbol: locale
     })
   }, [locale])
 
   return (
-    <div className="flex relative overflow-hidden">
+    <div className="flex relative overflow-hidden z-2">
       {/* Fixed Sidebar */}
-      <div className="fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
+      <div className="z-20 fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
         <div
           onClick={handleMenuIsCollapsed}
           className={`${menuIsCollapsed ? 'min-w-[67px]' : 'min-w-[218px]'
@@ -159,27 +156,25 @@ export const SideBar: FC<Props> = ({
                 }}
               />
             ))}
-            <div className='relative'>
+            <div className='relative z-[999]'>
               <button
                 onClick={handleOpenLngToggle}
-                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-[11.5px]'} w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`} >
-                {lng.flag}
-                <p>{!menuIsCollapsed && <p>{lng.lng}</p>}</p>
+                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-[11.5px]'} w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100 uppercase`} >
+                {lng.symbol}
+                <p>{!menuIsCollapsed && <p className='flex justify-center items-center capitalize' >{lng.lng}</p>}</p>
               </button>
               {isOpenLngToggle &&
-                 <div className={`absolute w-[130px] -top-12 rounded-lg bg-white shadow-2xl flex-col gap-2 ${menuIsCollapsed ? 'left-16' : 'left-56'}`}>
+                 <div className={`absolute -top-[70px] z-99 rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}>
                     <button
-                      className='p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100'
+                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
                       onClick={(e) => handleChangeLng(e, 'es')}>
-                      {/* @ts-expect-error-error */}  
-                      <IconSpanishFlag width={25} />
+                      <p className='flex justify-center items-center capitalize' >ES</p>
                       <p>Español</p>
                     </button>
                     <button
-                      className='p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100'
+                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
                       onClick={(e) => handleChangeLng(e, 'en')}>
-                      {/* @ts-expect-error-error */}
-                      <IconEnglishFlag width={25} />
+                      <p className='flex justify-center items-center capitalize' >EN</p>
                       <p>English</p>
                     </button>
                   </div>

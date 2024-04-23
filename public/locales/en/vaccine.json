@@ -1,6 +1,9 @@
 {
     "PENDING": "PENDING",
     "DONE": "DONE",
+    "NOT_APPLICABLE": "Not applicable",
+    "placeholderTheVaccineStatus": "The vaccine status",
+    "vaccineStatus": "Vaccine status",
     "vaccine": {
         "cat": {
             "FVRCP": {

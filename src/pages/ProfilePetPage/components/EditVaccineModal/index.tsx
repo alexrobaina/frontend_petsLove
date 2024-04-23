@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
@@ -35,6 +36,7 @@ export const EditVaccineModal: FC<Props> = ({
   isOpenEditVaccine,
   setIsOpenEditVaccine,
 }) => {
+  const { t } = useTranslation(['common', 'vaccine'])
   const { mutate: updatePetVaccine } = useUpdatePetVaccine()
   const [files, setFiles] = useState<FileType[]>([])
 
@@ -120,24 +122,24 @@ export const EditVaccineModal: FC<Props> = ({
     <ReactModal
       buttonClose
       isOpen={isOpenEditVaccine}
-      title={vaccine?.Vaccine?.name}
+      title={t(`vaccine:${vaccine?.Vaccine?.name}`)}
       closeModal={handleCancelEditVaccine}
-      description={vaccine?.Vaccine.description}
+      description={t(`vaccine:${vaccine?.Vaccine?.description}`)}
     >
       <form onSubmit={handleSubmit}>
         <div className="flex gap-4 mt-2 flex-col"></div>
         <div className="flex justify-end w-full flex-col gap-5 mt-5">
           <BaseSelect
             name="status"
-            label="Vaccine status"
+            label={t('vaccine:vaccineStatus')}
             value={values?.status}
             error={errors?.status}
             setFieldValue={setFieldValue}
-            placeholder="Select the vaccine status"
+            placeholder={t('vaccine:placeholderTheVaccineStatus')}
             options={[
-              { value: 'PENDING', label: 'Pending' },
-              { value: 'DONE', label: 'Done' },
-              { value: 'NOT_APPLICABLE', label: 'Not Applicable' },
+              { value: 'PENDING', label: t('vaccine:PENDING') },
+              { value: 'DONE', label: t('vaccine:DONE') },
+              { value: 'NOT_APPLICABLE', label: t('vaccine:NOT_APPLICABLE') },
             ]}
           />
           <div className="flex justify-end flex-col mt-4">
@@ -172,7 +174,7 @@ export const EditVaccineModal: FC<Props> = ({
               htmlFor="file"
               className="sm:w-auto w-full rounded text-center cursor-pointer px-2 py-4 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
             >
-              Select a file
+              {t('common:selectImages')}
             </label>
             <input
               type="file"
@@ -182,18 +184,18 @@ export const EditVaccineModal: FC<Props> = ({
               onChange={handleNewImage}
             />
             <p className="mt-2 text-xs leading-5 text-gray-400">
-              JPG or PNG. 1.5MB max.
+              {t('common:selectImagesInfo')}
             </p>
           </div>
         </div>
         <div className="flex gap-5 justify-end ">
           <BaseButton
-            text="Cancel"
             style="secondary"
+            text={t('common:cancel')}
             onClick={handleCancelEditVaccine}
           />
           <BaseButton
-            text="Save"
+            text={t('common:save')}
             onClick={() => {
               setIsOpenEditVaccine(false)
               handleSubmit()

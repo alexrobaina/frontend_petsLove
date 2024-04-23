@@ -1,14 +1,46 @@
-import { FC } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useNavigate } from 'react-router-dom'
 
+import i18n from '../../i18n'
 import { BaseButton } from '../common/BaseButton'
 
 interface Props {}
 
 export const Navbar: FC<Props> = () => {
+  const [isOpenLngToggle, setIsOpenLngToggle] = useState(false)
+  const [lng, setLng] = useState({
+    lng: 'en',
+    symbol: 'en',
+  })
+  const locale = i18n.language
   const { t } = useTranslation(['common'])
   const navigate = useNavigate()
+
+  const handleOpenLngToggle = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    setIsOpenLngToggle(!isOpenLngToggle)
+  }
+
+  const handleChangeLng = (e: MouseEvent<HTMLButtonElement>, lng: string) => {
+    e.stopPropagation()
+    setLng({
+      lng: lng,
+      symbol: lng
+    })
+    i18n.changeLanguage(lng)
+    setIsOpenLngToggle(false)
+  }
+
+
+  useEffect(() => {
+    setLng({
+      lng: locale === 'en' ? 'English' : 'Español',
+      symbol: locale
+  })
+}, [locale])
+
+
 
   return (
     <>
@@ -35,6 +67,27 @@ export const Navbar: FC<Props> = () => {
                   />
                 </div>
               </div>
+            </div>
+          <div className='relative z-[999] left-4'>
+              <button
+                onClick={handleOpenLngToggle}
+                className={`flex justify-center w-full h-[34px] px-3 bg-primary-50 rounded-md items-center hover:bg-primary-100 uppercase`} >
+                {lng.symbol}
+              </button>
+              {isOpenLngToggle &&
+                 <div className={`absolute top-[60px] z-50 rounded-lg p-2 bg-white shadow-2xl flex-col `}>
+                    <button
+                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      onClick={(e) => handleChangeLng(e, 'es')}>
+                      <p className='flex justify-center items-center capitalize' >ES</p>
+                    </button>
+                    <button
+                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      onClick={(e) => handleChangeLng(e, 'en')}>
+                      <p className='flex justify-center items-center capitalize' >EN</p>
+                    </button>
+                  </div>
+              }
             </div>
           </div>
         </div>
