@@ -30,11 +30,11 @@ export const LoginGoogle: FC = () => {
   return (
     <div className="flex justify-center">
       <img
-        src={BackgroundLogin}
         alt="background"
-        className="absolute top-0 left-0 w-full opacity-70"
+        src={BackgroundLogin}
+        className="fixed top-0 left-0 h-full w-full bg-no-repeat bg-cover opacity-70 z-[-1]"
       />
-      <div className="z-10 flex min-h-full flex-col justify-center py-8 sm:px-6 lg:px-8">
+      <div className="z-1 flex min-h-full flex-col justify-center py-8 sm:px-6 lg:px-8">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-primary-300 shadow-2xl sm:rounded-lg p-8 sm:px-12 w-[400px]">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">

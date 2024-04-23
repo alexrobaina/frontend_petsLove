@@ -76,13 +76,13 @@ export const VaccinesTable: React.FC<Props> = ({
                   {vaccines &&
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     vaccines.map((item: IVaccine) => (
-                      <tr key={item.id}>
-                        <td className="flex flex-col py-4 pl-4 pr-3sm:pl-6">
+                      <tr className='hover:bg-primary-100' key={item.id}>
+                        <td className="flex flex-col py-2 pl-4 pr-3sm:pl-6">
                           <div className="text-sm font-medium text-gray-900 ">
                             {t(`vaccine:${item?.Vaccine.name}`)}
                           </div>
                           <div className="text-gray-400 truncate w-[350px]">
-                          {t(`vaccine:${item?.Vaccine.description}`)}
+                          {t(`vaccine:${item?.Vaccine.name}`)}
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -98,7 +98,7 @@ export const VaccinesTable: React.FC<Props> = ({
                           />
                         </td>
                         {checkIfUserIsOwner() && (
-                          <td className="whitespace-nowrap px-3 py-10 pr-14">
+                          <td className="whitespace-nowrap px-3 py- pr-14">
                             <div className="flex gap-2 justify-end">
                               <BaseButton
                                 style="tertiary"

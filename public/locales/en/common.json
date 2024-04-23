@@ -98,5 +98,7 @@
     "actions": "Actions",
     "adoptPet": "Adopt pet",
     "login": "Login",
+    "locationUnavailable": "Location unavailable",
+    "petAvailable": "Pet available",
     "last": "Last"
 }

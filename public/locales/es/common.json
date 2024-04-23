@@ -23,7 +23,7 @@
     "pets": "Mascotas",
     "areYouSureDelete": "Estas por eliminar a",
     "available": "Disponible",
-    "showing": "Mostrados",
+    "showing": "Mostrados del",
     "to": "a",
     "of": "de",
     "results": "resultados",
@@ -99,5 +99,7 @@
     "actions": "Acciones",
     "adoptPet": "Adoptar mascota",
     "login": "Iniciar sesión",
+    "locationUnavailable": "Ubicación no disponible",
+    "petAvailable": "Mascota disponible",
     "last": "Last"
 }

@@ -46,9 +46,8 @@ export const BaseButton: FC<Props> = ({
       onClick={onClick}
       disabled={isDisabled}
       style={{ backgroundColor }}
-      className={`flex items-center justify-center gap-3 ${wFull ? 'w-full': 'w-auto'} 
+      className={`flex items-center justify-center gap-3 ${setType(style)} ${setSize(size)} ${wFull ? 'w-full': 'w-auto'} 
     ${className ? className : ''} py-2 px-4 rounded 
-    ${setType(style)} ${setSize(size)} 
     ${
       shouldDisplayOnlyIcon(text, icon)
         ? 'w-[36px] h-[36px] md:w-[36px] md:h-[36px] py-0 px-0'

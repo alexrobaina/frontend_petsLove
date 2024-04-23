@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { PetCardType } from '../../../constants/types'
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const PetList: FC<Props> = ({ pets, isLoading }) => {
+  const { t } = useTranslation(['common'])
   const navigate = useNavigate()
 
   const goToProfilePet = (id: string) => {
@@ -25,7 +27,7 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
           <BaseLoading large />
         </div>
       )}
-      {pets?.length === 0 && <BaseAlert text="There are no pets available" />}
+      {pets?.length === 0 && <BaseAlert text={t('common:petAvailable')} />}
       {pets &&
         pets.map((pet: PetCardType) => (
           <PetCard
