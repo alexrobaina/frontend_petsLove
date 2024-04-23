@@ -88,6 +88,8 @@ export const SideBar: FC<Props> = ({
     : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
     useEffect(() => {
+      console.log(locale);
+      
       setLng({
         lng: locale === 'en' ? 'English' : 'Español',
         symbol: locale

@@ -12,7 +12,8 @@ i18n
     ns: ['common', 'dashboard', 'community', 'profilePet', 'settings', 'login', 'vaccine'],
     defaultNS: 'common',
     supportedLngs: ['en', 'es'],
-    debug: false,
+    debug: true,
+    fallbackLng: 'en',
     detection: {
       order: ['queryString', 'cookie'],
       caches: ['cookie']
