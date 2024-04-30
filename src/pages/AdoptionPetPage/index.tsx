@@ -60,11 +60,12 @@ export const AdoptionPetPage: FC = () => {
     <div>
       <header className="flex justify-between flex-col md:flex-row gap-6">
         <Header title={t('searchPet:searchPetForAdoption')} />
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row md:items-center gap-4">
           <BaseButton
             style="secondary"
-            text={t('common:resetFilters')}
+            className='w-full' 
             onClick={handeResetFilters}
+            text={t('common:resetFilters')}
           />
           <BaseButtonGroups
             group={TYPE_OF_PETS}

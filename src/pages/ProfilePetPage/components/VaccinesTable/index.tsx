@@ -64,12 +64,12 @@ export const VaccinesTable: React.FC<Props> = ({
                     >
                       {t('common:status')}
                     </th>
-                    <th
+                    {checkIfUserIsOwner() && <th
                       scope="col"
                       className="py-3.5 pl-4 pr-10 text-end text-sm font-semibold text-gray-900 sm:pl-6"
                     >
                       {t('common:actions')}
-                    </th>
+                    </th>}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -82,7 +82,7 @@ export const VaccinesTable: React.FC<Props> = ({
                             {t(`vaccine:${item?.Vaccine.name}`)}
                           </div>
                           <div className="text-gray-400 truncate w-[350px]">
-                          {t(`vaccine:${item?.Vaccine.name}`)}
+                            {t(`vaccine:${item?.Vaccine.name}`)}
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -92,8 +92,8 @@ export const VaccinesTable: React.FC<Props> = ({
                               item.status === 'PENDING'
                                 ? 'bg-red-300'
                                 : item.status === 'DONE'
-                                ? 'bg-green-300'
-                                : 'bg-yellow-300'
+                                  ? 'bg-green-300'
+                                  : 'bg-yellow-300'
                             }
                           />
                         </td>

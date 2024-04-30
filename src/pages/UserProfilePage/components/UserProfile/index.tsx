@@ -101,20 +101,20 @@ export const UserProfile: FC<Props> = ({ user }) => {
 
   return (
     <>
-      <div className="flex justify-between mb-6">
+      <div className="flex justify-between flex-col sm:flex-row mb-6">
         <header className="flex gap-5">
           <Header title={getName()} buttonBack />
         </header>
-        <div className="flex items-center gap-3">
-          <div className="bg-green-300 px-2 text-end py-1 rounded-2xl">
-            {t(`common:${user?.role}`)}
-          </div>
+        <div className="flex items-center gap-3 mt-5 sm:mt-0">
           <div className="h-14 w-14 max-sm:h-[58px] max-sm:w-[58px] rounded-full">
             <img
               onError={handleError}
-              className="rounded-full"
+              className="rounded-full object-cover h-full w-full"
               src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
             />
+          </div>
+          <div className="bg-green-300 px-2 text-end py-1 rounded-2xl">
+            {t(`common:${user?.role}`)}
           </div>
         </div>
       </div>
@@ -130,15 +130,15 @@ export const UserProfile: FC<Props> = ({ user }) => {
           <SocialMediaContact user={user} />
         </div>
       </div>
-      <div className="mt-5 mb-3 flex justify-between">
+      <div className="mt-5 mb-3 flex-col md:flex-row justify-between">
         <h2 className={h2Class}>{t('common:myPets')}</h2>
-        <div className="flex gap-4 h-9">
+        <div className="flex gap-4 h-9 mt-4 md:mt-4 flex-col md:flex-row">
           <BaseButton
             size="small"
             type="button"
             style="secondary"
-            text={t('common:resetFilters')}
             onClick={resetFiler}
+            text={t('common:resetFilters')}
           />
           <BaseButtonGroups
             group={petCategories}
@@ -157,7 +157,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
           />
         </div>
       </div>
-      <div className="my-5">
+      <div className="my-5 md:mt-0 mt-44 ">
         <BaseInput
           type="text"
           value={searchByName}

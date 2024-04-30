@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import {
+  IconChevronLeft,
+  IconChevronRight,
   IconHomeInfinity,
   IconListDetails,
   IconLogout,
@@ -88,8 +90,6 @@ export const SideBar: FC<Props> = ({
     : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
     useEffect(() => {
-      console.log(locale);
-      
       setLng({
         lng: locale === 'en' ? 'English' : 'Español',
         symbol: locale
@@ -100,10 +100,14 @@ export const SideBar: FC<Props> = ({
     <div className="flex relative overflow-hidden z-2">
       {/* Fixed Sidebar */}
       <div className="z-20 fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
+      <div className={`h-full ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}>
+        <div className='ring-2 flex justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]'>
+          {menuIsCollapsed ? <IconChevronRight width={20} /> : <IconChevronLeft width={20} />}
+        </div>
+      </div>
         <div
           onClick={handleMenuIsCollapsed}
-          className={`${menuIsCollapsed ? 'min-w-[67px]' : 'min-w-[218px]'
-            }  bg-primary-300 h-full cursor-pointer
+          className={`${menuIsCollapsed ? 'min-w-[67px]' : 'min-w-[218px]'} bg-primary-300 h-full cursor-pointer
            rounded-md flex flex-col justify-between items-center p-2`}
         >
           <div className="w-full flex flex-col gap-2">

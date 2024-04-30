@@ -115,8 +115,10 @@ export const EditVaccineModal: FC<Props> = ({
   }, [vaccine, isOpenEditVaccine, setFieldValue])
 
   useEffect(() => {
-    setFieldValue('status', vaccine?.status)
-  }, [vaccine, setFieldValue])
+    if (isOpenEditVaccine) setFieldValue('status', vaccine?.status)
+  }, [vaccine?.status, setFieldValue, isOpenEditVaccine])
+  
+  const disableImageInput = files[0]?.isDeleted ? false : true;
 
   return (
     <ReactModal
@@ -131,10 +133,11 @@ export const EditVaccineModal: FC<Props> = ({
         <div className="flex justify-end w-full flex-col gap-5 mt-5">
           <BaseSelect
             name="status"
-            label={t('vaccine:vaccineStatus')}
+            isClearable={false}
             value={values?.status}
             error={errors?.status}
             setFieldValue={setFieldValue}
+            label={t('vaccine:vaccineStatus')}
             placeholder={t('vaccine:placeholderTheVaccineStatus')}
             options={[
               { value: 'PENDING', label: t('vaccine:PENDING') },
@@ -153,7 +156,7 @@ export const EditVaccineModal: FC<Props> = ({
                         key={file.url}
                         alt="Pet vaccine file"
                         onClick={() => handleImageDeletion(file)}
-                        src={`${import.meta.env.VITE_BUCKET_NAME}${file.url}`}
+                        src={`${import.meta.env.VITE_BUCKET_NAME}vaccines/${file.url}`}
                         className="h-12 w-12 flex-none rounded-lg bg-gray-800 object-cover :hover:opacity-50 cursor-pointer"
                       />
                     ),
@@ -172,16 +175,17 @@ export const EditVaccineModal: FC<Props> = ({
             </div>
             <label
               htmlFor="file"
-              className="sm:w-auto w-full rounded text-center cursor-pointer px-2 py-4 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
+              className={`${!disableImageInput ? 'bg-slate-200 cursor-no-drop' : 'hover:bg-primary-300' } sm:w-auto w-full rounded text-center cursor-pointer px-2 py-4 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300`}
             >
               {t('common:selectImages')}
             </label>
             <input
-              type="file"
               id="file"
+              type="file"
               name="files"
               className="hidden"
               onChange={handleNewImage}
+              disabled={!disableImageInput}
             />
             <p className="mt-2 text-xs leading-5 text-gray-400">
               {t('common:selectImagesInfo')}

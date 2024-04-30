@@ -19,6 +19,7 @@ interface Props {
   isDisabled?: boolean
   translation?: boolean
   isCreatable?: boolean
+  isClearable?: boolean
   isMulti?: boolean | false
   setFieldValue: (
     field: string,
@@ -36,6 +37,7 @@ export const BaseSelect: FC<Props> = ({
   placeholder,
   setFieldValue,
   isCreatable = false,
+  isClearable = true,
 }) => {
   const { t } = useTranslation()
 
@@ -111,8 +113,8 @@ export const BaseSelect: FC<Props> = ({
         />
       ) : (
         <Select
-          isClearable
           isSearchable
+          isClearable={isClearable}
           styles={customStyles}
           isDisabled={isDisabled}
           placeholder={placeholder}

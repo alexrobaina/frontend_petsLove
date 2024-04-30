@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
+import { IconFacebook, IconInstagram, IconTelegram, IconWhatsapp } from '../../../../assets/icons'
 import { DetailCard } from '../DetailCard'
+
 
 interface Props {
   data: {
@@ -12,23 +14,86 @@ interface Props {
     qrCode: string
     category: string
     description: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    shelter?: any
   }
 }
 
+
+
 export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation(['common'])
+
+  const goToLink = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    link: string,
+  ) => {
+    e.stopPropagation()
+    window.open(link, '_blank')
+  }
+
   return (
     <>
       <div className="flex flex-wrap gap-4 lg:gap-x-0 justify-between mt-4 w-70 md:w-full lg:w-full">
         <DetailCard title={`${t('common:category')}:`} description={t(`common:categoryPet.${data.category}`)} />
         <DetailCard title={`${t('common:weight')}:`} description={t(data.weight)} />
-        <DetailCard title={`${t('common:breed')}:`} description={data.breed} />
+        {data?.breed && <DetailCard title={`${t('common:breed')}:`} description={data.breed} />}
         <DetailCard title={`${t('common:size')}:`} description={t(`common:sizePet.${data.size}`)} />
         <DetailCard title={`${t('common:gender')}:`} description={t(`common:genderPet.${data.gender}`)} />
         <DetailCard title={`${t('common:age')}:`} description={t(`common:agePet.${data.age}`)} />
       </div>
       <div className="flew-col gap-10 md:justify-between md:flex">
         <div className="mt-10 flex-col md:w-[50%]">
+           <div>
+            <h2 className="mt-10 text-lg font-semibold text-primary-900">
+              {t('common:contact')}:
+            </h2>
+            <div className="text-bas flex gap-10 leading-6 text-gray-500 w-full mt-4">
+              {data?.shelter.socialMedia?.instagram && (
+                <button
+                  className="cursor:pointer"
+                  onClick={(e) =>
+                    goToLink(
+                      e,
+                      `https://www.instagram.com/${data?.shelter?.socialMedia?.instagram}`,
+                    )
+                  }
+                >
+                  <IconInstagram />
+                </button>
+              )}
+              {data.shelter.socialMedia?.facebook && (
+                <button
+                  className="cursor:pointer"
+                  onClick={(e) =>
+                    goToLink(e, `https://www.facebook.com/${data?.shelter?.socialMedia?.facebook}`)
+                  }
+                >
+                  <IconFacebook />
+                </button>
+              )}
+              {data.shelter.socialMedia?.telegram && (
+                <button
+                className="cursor:pointer"
+                onClick={(e) =>
+                  goToLink(e, `https://telegram.me/${data?.shelter?.socialMedia?.telegram}`)
+                }
+                >
+                  <IconTelegram />
+                </button>
+              )}
+              {data.shelter.socialMedia?.whatsapp && (
+                <button
+                  className="cursor:pointer"
+                  onClick={(e) =>
+                    goToLink(e, `https://wa.me/${data?.shelter?.socialMedia?.whatsapp}`)
+                  }
+                >
+                  <IconWhatsapp />
+                </button>
+              )}
+            </div>
+          </div>
           <div>
             <h2 className="mt-10 text-lg font-semibold text-primary-900">
               {t('common:description')}:

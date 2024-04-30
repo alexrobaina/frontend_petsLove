@@ -5,6 +5,7 @@ export const updatePetVaccine = async (data: {
   status: string
   files: {
     isNew: boolean
+    isDeleted: boolean
     file: File | string
     url: string
   }[]
@@ -16,12 +17,12 @@ export const updatePetVaccine = async (data: {
     }
   })
 
+
   data.files.forEach((item) => {
     if (item.file === '') return
-    if (!item.isNew) formData.append(`oldFiles`, item.file)
+    if (item.isDeleted) formData.append(`deleteFile`, item.file)
     if (item.isNew) formData.append(`files`, item.file)
   })
-
   const response = await axios.put(
     `/api/v1/vaccines/petVaccine/${data.id}`,
     formData,

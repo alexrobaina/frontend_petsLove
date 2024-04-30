@@ -3,6 +3,13 @@
     "google": "Login with Google",
     "or": "Or continue with",
     "addEmail": "Add email",
-    "magicLink": "Magic link",
+    "magicLink": "Email login link",
+    "subject": "Login to your account ",
+    "hello": "Hello",
+    "welcome": "Welcome to our app",
+    "loginDescription": "Login to your account",
+    "warning": "If you didn't request this, please ignore this email.",
+    "thanks": "Thanks",
+    "emailSent": "Please check your email",
     "last": "Last"
 }
