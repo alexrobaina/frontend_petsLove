@@ -3,7 +3,13 @@
     "google": "Iniciar sesión con Google",
     "or": "O continua con",
     "addEmail": "Añadir correo electrónico",
-    "magicLink": "Inicio mágico",
+    "magicLink": "Iniciar de sesión",
+    "subject": "Iniciar sesión en ",
+    "hello": "Hola",
+    "welcome": "Bienvenido a",
+    "loginDescription": "Hemos recibido una solicitud para iniciar sesión en su cuenta. Si no ha solicitado iniciar sesión, ignore este correo electrónico.",
+    "warning": "Este enlace solo es válido por 15 minutos.",
+    "thanks": "Gracias",
+    "emailSent": "Revisa tu correo.",
     "last": "Last"
-
 }

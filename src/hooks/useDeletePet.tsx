@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 
@@ -8,16 +9,17 @@ interface UseDeletePetProps {
 }
 
 export const useDeletePet = () => {
+  const { t } = useTranslation(['common'])
   const queryClient = useQueryClient()
   const { mutate, isLoading } = useMutation<void, unknown, UseDeletePetProps>(
     (data) => deletePet(data.petId),
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries(['pets'])
-        toast.success('Pet deleted successfully')
+        toast.success(t('common:petDeleted'))
       },
       onError: () => {
-        toast.error('Error deleting pet')
+        toast.error(t('common:petNotDeleted'))
       },
     },
   )

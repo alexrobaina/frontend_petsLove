@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { action } from 'mobx'
-import { FC, useContext, useEffect, useState } from 'react'
+import { FC, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import FadeIn from '../../components/FadeIn'
@@ -19,13 +19,6 @@ export const SettingsPage: FC = () => {
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
   const { user, isLoading } = useUser(context?.user?.id)
-  const [deleteFiles, setDeleteFiles] = useState(user?.image)
-
-  useEffect(() => {
-    if (user?.image) {
-      setDeleteFiles(user?.image)
-    }
-  }, [user])
 
   const setUser = action((context: AppContextProps, user: User) => {
     if (!user) {
@@ -36,20 +29,14 @@ export const SettingsPage: FC = () => {
 
   const formik = useFormik({
     initialValues: INITIAL_STATE,
-    onSubmit: (values, actions) => {
-      if (values.image) {
-        values.deleteFiles = deleteFiles
-      }
-      actions.resetForm()
-
+    onSubmit: (values) => {
+      console.log(values);
+      
       mutate({
         ...values,
         id: context?.user?.id || '',
         locationId: user?.locationId || '',
       })
-    },
-    onReset: () => {
-      formik.setValues(INITIAL_STATE)
     },
   })
 
@@ -59,12 +46,26 @@ export const SettingsPage: FC = () => {
     }
   }, [user, context, setUser])
 
+  useEffect(() => {
+    if (user) {
+      formik.setValues({
+        ...user,
+        role: values.role || user.role,
+        firstName: values.firstName || user.firstName,
+        lastName: values.lastName || user.lastName,
+        username: values.username || user.username,
+        description: values.description || user.description,
+        image: values.image || user.image,
+      })
+    }
+  }, [user])
+
   const { handleChange, handleSubmit, setFieldValue, values, errors } = formik
 
   if (!context?.user?.id) {
     return <div>Somethink is wrong</div>
   }
-
+  
   if (isLoading || isLoadingUpdate) {
     return (
       <div className="mt-[20%]">

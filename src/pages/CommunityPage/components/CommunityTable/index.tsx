@@ -1,11 +1,9 @@
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
 import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
-import { AppContext } from '../../../../services/AppContext'
 import { User } from '../../../SettingsPage/constants'
 
 interface Data {
@@ -30,17 +28,12 @@ export const CommunityTable: React.FC<Props> = ({
   isLoading,
   goToUserProfile,
 }) => {
-  const context = useContext(AppContext)
-  const isGoogleAvatar = context?.user?.image?.includes('googleusercontent')
   const { t } = useTranslation(['common'])
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement
     target.onerror = null // Prevents infinite loop if local image is also not found
     target.src = MidDog
   }
-  const showImage: string = isGoogleAvatar
-    ? context?.user?.image || ''
-    : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
   return (
     <>
@@ -94,7 +87,7 @@ export const CommunityTable: React.FC<Props> = ({
                             alt="user"
                             onError={handleError}
                             className="h-11 w-11 rounded-full"
-                            src={showImage}
+                            src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
                           />
                         </div>
                         <div className="ml-4">

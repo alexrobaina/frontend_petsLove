@@ -71,7 +71,7 @@ export const DashboardTable: React.FC<Props> = ({
 
   return (
     <>
-      <div className="flex justify-between sm:items-center">
+      <div className="flex justify-between flex-col sm:flex-row sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900">
             {t('common:pets')}

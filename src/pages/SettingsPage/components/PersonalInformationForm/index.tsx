@@ -130,11 +130,11 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="sm:col-span-3">
               <BaseInput
                 name="firstName"
-                error={errors?.firstName}
                 value={values?.firstName}
+                error={errors?.firstName}
                 handleChange={handleChange}
                 label={t('settings:firstName')}
-                placeholder={user?.firstName || t('settings:firstName')}
+                placeholder={t('settings:firstName')}
               />
             </div>
             <div className="sm:col-span-3">
@@ -160,9 +160,8 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="sm:col-span-3">
               <BaseSelect
                 name="role"
-                translation
                 options={options}
-                isCreatable={false}
+                isClearable={false}
                 error={errors?.role}
                 value={values?.role}
                 label={t('common:role')}
@@ -181,10 +180,10 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="col-span-full">
               <BaseTextArea
                 height={100}
+                name="description"
                 value={values?.description}
                 handleChange={handleChange}
                 error={errors?.description}
-                name={t('settings:description')}
                 placeholder={user?.description || t('settings:addDescriptionAboutYou')}
               />
             </div>

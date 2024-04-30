@@ -44,11 +44,11 @@ export const Navbar: FC<Props> = () => {
 
   return (
     <>
-      <nav className="bg-primary-200 fixed top-0 left-0 w-full z-10">
+      <nav className="bg-primary-200 fixed md:px-0 px-1 top-0 left-0 w-full z-10">
         <div className="md:pl-20 md:pr-20">
-          <div className="relative flex h-16 items-center justify-center">
+          <div className="relative flex h-16 items-center justify-between md:justify-center">
             <div className="lg:block">
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-1 md:gap-4 items-center">
                 <BaseButton
                   style="secondary"
                   text={t('common:adoptPet')}
@@ -68,7 +68,7 @@ export const Navbar: FC<Props> = () => {
                 </div>
               </div>
             </div>
-          <div className='relative z-[999] left-4'>
+          <div className='relative z-[999] md:left-4'>
               <button
                 onClick={handleOpenLngToggle}
                 className={`flex justify-center w-full h-[34px] px-3 bg-primary-50 rounded-md items-center hover:bg-primary-100 uppercase`} >

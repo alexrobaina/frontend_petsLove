@@ -16,6 +16,10 @@ export type PetDetail = {
     image: string
     username: string
     firstName: string
+    location: {
+      city: string
+      country: string
+    }
   }
   Adopter: {
     id: string
@@ -30,11 +34,7 @@ export type PetDetail = {
     image: string
     username: string
     firstName: string
-  }
-  location: {
-    city: string
-    country: string
-  }
+  },
 }
 
 export interface IMedicalRecord {

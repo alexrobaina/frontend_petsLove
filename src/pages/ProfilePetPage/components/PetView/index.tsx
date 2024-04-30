@@ -38,7 +38,6 @@ export const PetView: React.FC<Props> = ({
     qrCode,
     Shelter,
     Adopter,
-    location,
     category,
     PetVaccine,
     description,
@@ -57,9 +56,10 @@ export const PetView: React.FC<Props> = ({
           qrCode,
           category,
           description,
+          shelter: Shelter,
         }}
       />
-      <Location city={location?.city} country={location?.country} />
+      {pet.Shelter?.location && <Location city={pet.Shelter?.location?.city} country={pet.Shelter?.location?.country} />}
       <div className="mt-10">
         <SwiperGallery slides={getImagesWithUrlBucket} />
       </div>

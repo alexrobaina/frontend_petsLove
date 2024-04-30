@@ -101,5 +101,8 @@
     "login": "Iniciar sesión",
     "locationUnavailable": "Ubicación no disponible",
     "petAvailable": "Mascota disponible",
+    "petDeleted": "Mascota eliminada",
+    "petNotDeleted": "Mascota no eliminada",
+    "emailInvalid": "Correo invalido",
     "last": "Last"
 }
