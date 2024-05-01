@@ -14,6 +14,12 @@ export const PetCard: FC<IPetCardProps> = ({
   goToProfile,
 }) => {
   const { t } = useTranslation(['common'])
+
+  const setImagesFromArrayOrString = (images: string | string[] | undefined) => {
+    if (Array.isArray(images)) return images[0]
+    return images
+  }
+
   return (
   <div
     onClick={() => goToProfile(id)}
@@ -27,7 +33,7 @@ export const PetCard: FC<IPetCardProps> = ({
             e.currentTarget.src = ImageNotFound
           }}
           className="md:w-[300px] h-[237px] object-cover rounded-xl"
-          src={`${import.meta.env.VITE_BUCKET_NAME}pets/${images}`}
+          src={`${import.meta.env.VITE_BUCKET_NAME}pets/${setImagesFromArrayOrString(images)}`}
         />
       </div>
       <div className="flex w-full flex-col pt-3 px-3 gap-1">

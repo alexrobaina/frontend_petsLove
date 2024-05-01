@@ -3,7 +3,7 @@ export interface IPetCardProps {
   age: string
   name: string
   city?: string
-  images?: string
+  images?: string | string[]
   category?: string
   country?: string
   goToProfile: (id: string) => void
@@ -18,6 +18,6 @@ export type PetCardType = {
     city?: string
     country?: string
   }
-  images: string
+  images: string | string[]
   goToProfile: (id: string) => void
 }
