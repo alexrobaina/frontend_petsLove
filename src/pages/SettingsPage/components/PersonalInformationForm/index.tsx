@@ -88,12 +88,12 @@ export const PersonalInformationForm: FC<Props> = ({
 
   return (
     <div className="divide-y mt-20 divide-white/5">
-      <div className="flex pr-5 md:pr-12 gap-10">
-        <div className="w-[50%]">
-          <h2 className="text-base font-semibold leading-7 text-primary-950">
+      <div className="flex-col flex md:flex-row pr-5 md:pr-12 gap-10">
+        <div className="w-[50%] md:mb-0 mb-2">
+          <h2 className="text-xl font-semibold leading-7 text-primary-950">
             {t('settings:personalInformation')}
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-400">
+          <p className="mt-1 text-sm leading-6 text-primary-500">
             {t('settings:personalInformationDescription')}
           </p>
         </div>
@@ -122,7 +122,7 @@ export const PersonalInformationForm: FC<Props> = ({
                     onChange={handleImageChange}
                   />
                 </div>
-                <p className="mt-2 text-xs leading-5 text-gray-400">
+                <p className="mt-2 text-xs leading-5 text-primary-500">
                   {t('common:selectImagesInfo')}
                 </p>
               </div>
@@ -193,12 +193,12 @@ export const PersonalInformationForm: FC<Props> = ({
           </div>
         </div>
       </div>
-      <div className="flex pr-5 md:pr-12 gap-10 mt-14">
-        <div className="w-[50%]">
-          <h2 className="text-base font-semibold leading-7 text-primary-950">
+      <div className="flex-col flex md:flex-row pr-5 md:pr-12 gap-10 mt-14">
+        <div className="w-[50%] md:mb-0 mb-2">
+          <h2 className="text-xl font-semibold leading-7 text-primary-950">
             {t('common:location')}
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-400">
+          <p className="mt-1 text-sm leading-6 text-primary-500">
             {t('settings:locationDescription')}
           </p>
         </div>

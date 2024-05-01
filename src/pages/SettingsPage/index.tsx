@@ -30,8 +30,6 @@ export const SettingsPage: FC = () => {
   const formik = useFormik({
     initialValues: INITIAL_STATE,
     onSubmit: (values) => {
-      console.log(values);
-      
       mutate({
         ...values,
         id: context?.user?.id || '',

@@ -40,37 +40,37 @@ export const CommunityTable: React.FC<Props> = ({
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="min-w-full divide-y divide-gray-300">
+            <table className="min-w-full">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-4"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-primary-950 sm:pl-2 bg-primary-100 rounded-tl-xl"
                   >
                     {t('common:name')}
                   </th>
 
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold bg-primary-100 text-gray-900"
                   >
                     {t('common:location')}
                   </th>
                   <th
                     scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    className="px-3 py-3.5 text-left text-sm font-semibold bg-primary-100 text-gray-900"
                   >
                     {t('common:role')}
                   </th>
                   <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    {t('common:contact')}
+                      scope="col"
+                      className="px-8 py-3.5 text-right bg-primary-100 text-sm font-semibold text-primary-950 rounded-tr-xl"
+                      >
+                      {t('common:contact')}
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
+              <tbody className="bg-white rounded-3xl">
                 {data?.users.map((user: User) => (
                   <tr
                     key={user.id}

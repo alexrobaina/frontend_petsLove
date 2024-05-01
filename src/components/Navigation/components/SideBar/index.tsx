@@ -62,6 +62,18 @@ export const SideBar: FC<Props> = ({
     window.location.reload()
   }
 
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (isOpenLngToggle) {
+        setIsOpenLngToggle(false)
+      }
+    }
+    window.addEventListener('click', handleClickOutside)
+    return () => {
+      window.removeEventListener('click', handleClickOutside)
+    }
+  }, [isOpenLngToggle])
+
   const handleOpenLngToggle = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     setIsOpenLngToggle(!isOpenLngToggle)
@@ -100,8 +112,8 @@ export const SideBar: FC<Props> = ({
     <div className="flex relative overflow-hidden z-2">
       {/* Fixed Sidebar */}
       <div className="z-20 fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
-      <div className={`h-full ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}>
-        <div className='ring-2 flex justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]'>
+      <div className={` ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}>
+        <div onClick={handleMenuIsCollapsed} className='ring-2 flex cursor-pointer justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]'>
           {menuIsCollapsed ? <IconChevronRight width={20} /> : <IconChevronLeft width={20} />}
         </div>
       </div>

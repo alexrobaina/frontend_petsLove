@@ -89,10 +89,10 @@ export const CommunityPage: FC = () => {
       <div className="shadow-lg rounded-md mt-16 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">
+            <h1 className="text-xl font-semibold leading-6 text-primary-950">
               {t('community:findProfessionals')}
             </h1>
-            <p className="mt-2 text-sm text-gray-700">
+            <p className="mt-2 text-sm text-primary-500">
               {t('community:findProfessionalDescription')}
             </p>
           </div>

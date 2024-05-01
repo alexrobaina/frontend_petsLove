@@ -6,6 +6,7 @@ import { DetailCard } from '../DetailCard'
 
 interface Props {
   data: {
+    id: string
     age: string
     size: string
     breed: string
@@ -13,13 +14,12 @@ interface Props {
     gender: string
     qrCode: string
     category: string
+    name: string
     description: string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     shelter?: any
   }
 }
-
-
 
 export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation(['common'])
@@ -46,7 +46,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
         <div className="mt-10 flex-col md:w-[50%]">
            <div>
             <h2 className="mt-10 text-lg font-semibold text-primary-900">
-              {t('common:contact')}:
+              {t('common:contactsForAdoption')}:
             </h2>
             <div className="text-bas flex gap-10 leading-6 text-gray-500 w-full mt-4">
               {data?.shelter.socialMedia?.instagram && (
@@ -66,7 +66,8 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
-                    goToLink(e, `https://www.facebook.com/${data?.shelter?.socialMedia?.facebook}`)
+                    goToLink(e, `https://www.facebook.com/${data?.shelter?.socialMedia?.facebook}} 
+                    ${import.meta.env.VITE_HOST}/pet/${data.id}`)
                   }
                 >
                   <IconFacebook />
@@ -86,7 +87,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
-                    goToLink(e, `https://wa.me/${data?.shelter?.socialMedia?.whatsapp}`)
+                    goToLink(e, `https://wa.me/${data?.shelter?.socialMedia?.whatsapp}?text=${t('common:wantAdoption')} 🐶 ${data.name} 😺 ${import.meta.env.VITE_HOST}pet/${data.id}`)
                   }
                 >
                   <IconWhatsapp />

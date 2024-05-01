@@ -120,7 +120,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
       </div>
       {user?.description && (
         <div className="my-2">
-          <h2 className={h2Class}>About Us</h2>
+          <h2 className={h2Class}>{t('aboutUs')}</h2>
           <p className="my-6">{user.description}</p>
         </div>
       )}

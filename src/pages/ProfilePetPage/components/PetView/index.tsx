@@ -30,6 +30,8 @@ export const PetView: React.FC<Props> = ({
 }) => {
   const {
     Vet,
+    id,
+    name,
     age,
     size,
     breed,
@@ -48,6 +50,8 @@ export const PetView: React.FC<Props> = ({
     <section className="mt-10">
       <GeneralPetInfo
         data={{
+          id,
+          name,
           age,
           size,
           breed,

@@ -1,4 +1,5 @@
 export type PetDetail = {
+  name: string
   id: string
   age: string
   size: string

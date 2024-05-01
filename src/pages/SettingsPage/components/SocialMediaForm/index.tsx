@@ -25,10 +25,10 @@ export const SocialMediaForm: FC<Props> = ({
   <div className="divide-y mt-14 divide-white/5">
     <div className="flex pr-5 md:pr-12 gap-10">
       <div className="w-[50%]">
-        <h2 className="text-base font-semibold leading-7 text-primary-950">
+        <h2 className="text-xl font-semibold leading-7 text-primary-950">
           {t('settings:socialMediaAndContacts')}
         </h2>
-        <p className="mt-1 text-sm leading-6 text-gray-400">
+        <p className="mt-1 text-sm leading-6 text-primary-500">
           {t('settings:socialMediaAndContactsDescription')}
         </p>
       </div>

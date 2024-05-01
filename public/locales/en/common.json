@@ -102,6 +102,9 @@
     "petAvailable": "Pet available",
     "petDeleted": "Pet deleted successfully",
     "petNotDeleted": "Pet not deleted",
+    "contactsForAdoption": "Contacts for adoption",
     "emailInvalid": "Email invalid",
+    "wantAdoption": "I want to adopt to",
+    "aboutUs": "About Us",
     "last": "Last"
 }

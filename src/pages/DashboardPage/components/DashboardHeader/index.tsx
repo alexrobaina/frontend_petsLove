@@ -31,9 +31,9 @@ export const DashboardHeader: React.FC<Props> = ({
   const { t } = useTranslation(['dashboard', 'common'])
 
   return (
-    <header className="flex lg:flex-row md:justify-between flex-col gap-5">
+    <header className="flex lg:flex-row xl:flex-row md:justify-between flex-col gap-5">
       <Header title={t('common:dashboard')} />
-      <div className="flex gap-5 flex-col md:flex-row md:justify-between md:items-center">
+      <div className="flex gap-5 flex-col lg:flex-row md:justify-between xl:items-center">
         <div className="z-10">
           <BaseButton
             size="small"

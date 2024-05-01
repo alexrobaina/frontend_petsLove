@@ -73,10 +73,10 @@ export const DashboardTable: React.FC<Props> = ({
     <>
       <div className="flex justify-between flex-col sm:flex-row sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
+          <h1 className="text-xl font-semibold leading-6 text-primary-950">
             {t('common:pets')}
           </h1>
-          <p className="mt-2 text-sm text-gray-700">
+          <p className="mt-2 text-sm text-primary-500">
             {t('dashboard:listOfPets')}
           </p>
         </div>
@@ -116,62 +116,62 @@ export const DashboardTable: React.FC<Props> = ({
         <div className="mt-8 flow-root">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table className="min-w-full divide-y divide-gray-300">
+              <table className="min-w-full">
                 <thead>
-                  <tr>
+                  <tr >
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-2"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-primary-950 sm:pl-2 bg-primary-100 rounded-tl-xl"
                     >
                       {t('common:name')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
                       {t('common:gender')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
                       {t('common:category')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
                       {t('common:age')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
                       {t('common:size')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
                       {t('common:status')}
                     </th>
                     <th
                       scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-0"
+                      className="px-8 py-3.5 text-right bg-primary-100 text-sm font-semibold text-primary-950 rounded-tr-xl"
                     >
-                      <span className="sr-only">{t('common:edit')}</span>
+                      {t('common:actions')}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white rounded-3xl">
+                <tbody className="bg-white rounded-3xl">
                   {data?.pets &&
-                    data?.pets.map((pet: Pet) => (
+                    data?.pets.map((pet: Pet, index: number) => (
                       <tr
                         key={pet.id}
                         onClick={() => goToPet(pet.id)}
-                        className="hover:bg-primary-100 cursor-pointer"
+                        className='hover:bg-primary-100 cursor-pointer'
                       >
-                        <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 rounded-s-xl">
+                        <td className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'}`}>
                           <div className="flex items-center">
                             <div className="h-11 w-11 flex-shrink-0">
                               <img
@@ -182,7 +182,7 @@ export const DashboardTable: React.FC<Props> = ({
                               />
                             </div>
                             <div className="ml-4">
-                              <div className="capitalize font-medium text-gray-900">
+                              <div className="capitalize font-medium text-primary-950">
                                 {pet.name}
                               </div>
                               <div className="truncate w-[250px] mt-1 text-gray-500">
@@ -214,7 +214,7 @@ export const DashboardTable: React.FC<Props> = ({
                             text={pet.adopted ? t('common:adopted') : t('common:available')}
                           />
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 rounded-e-xl">
+                        <td className={`whitespace-nowrap px-6 py-4 ${index === 0 ? 'rounded-br-xl' : 'rounded-e-xl'}`}>
                           <div className="flex gap-2 justify-end">
                             <BaseButton
                               style="tertiary"

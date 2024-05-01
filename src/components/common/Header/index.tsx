@@ -25,7 +25,7 @@ export const Header: FC<Props> = ({ buttonBack, title }) => {
           icon={<IconBack />}
         />
       )}
-      <h1 className="text-xl md:text-xl lg:text-3xl font-semibold">{title}</h1>
+      <h1 className="text-3xl font-semibold">{title}</h1>
     </div>
   )
 }
