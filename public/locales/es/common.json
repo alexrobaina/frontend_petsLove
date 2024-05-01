@@ -104,6 +104,7 @@
     "petDeleted": "Mascota eliminada",
     "petNotDeleted": "Mascota no eliminada",
     "emailInvalid": "Correo invalido",
+    "requiredField": "Campo requerido",
     "contactsForAdoption": "Contactos para adopctar",
     "wantAdoption": "Quiero adoptar a",
     "aboutUs": "Sobre nosotros",

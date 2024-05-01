@@ -27,7 +27,9 @@ export const LoginGoogle: FC = () => {
     setTimeout(() => setLoading(false), 500);
   }, [token]);
 
-
+  const loginSchema = Yup.object().shape({
+    email: Yup.string().email(t('common:emailInvalid')).required(t('common:requiredField')),
+  })
 
   const formik = useFormik({
     validationSchema: loginSchema,
@@ -136,7 +138,3 @@ export const LoginGoogle: FC = () => {
     </div>
   )
 }
-
-const loginSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
-})
