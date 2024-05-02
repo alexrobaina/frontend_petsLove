@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
 import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
+import { getUserImage, handleError } from '../../../../utils/images'
 import { User } from '../../../SettingsPage/constants'
 
 interface Data {
@@ -29,11 +29,6 @@ export const CommunityTable: React.FC<Props> = ({
   goToUserProfile,
 }) => {
   const { t } = useTranslation(['common'])
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement
-    target.onerror = null // Prevents infinite loop if local image is also not found
-    target.src = MidDog
-  }
 
   return (
     <>
@@ -86,8 +81,8 @@ export const CommunityTable: React.FC<Props> = ({
                           <img
                             alt="user"
                             onError={handleError}
-                            className="h-11 w-11 rounded-full"
-                            src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
+                            src={getUserImage(user)}
+                            className="h-11 w-11 object-cover rounded-full"
                           />
                         </div>
                         <div className="ml-4">

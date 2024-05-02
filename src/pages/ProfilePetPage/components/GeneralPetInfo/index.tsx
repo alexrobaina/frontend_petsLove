@@ -49,7 +49,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
               {t('common:contactsForAdoption')}:
             </h2>
             <div className="text-bas flex gap-10 leading-6 text-gray-500 w-full mt-4">
-              {data?.shelter.socialMedia?.instagram && (
+              {data?.shelter?.socialMedia?.instagram && (
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
@@ -62,7 +62,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                   <IconInstagram />
                 </button>
               )}
-              {data.shelter.socialMedia?.facebook && (
+              {data?.shelter?.socialMedia?.facebook && (
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
@@ -73,7 +73,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                   <IconFacebook />
                 </button>
               )}
-              {data.shelter.socialMedia?.telegram && (
+              {data?.shelter?.socialMedia?.telegram && (
                 <button
                 className="cursor:pointer"
                 onClick={(e) =>
@@ -83,7 +83,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                   <IconTelegram />
                 </button>
               )}
-              {data.shelter.socialMedia?.whatsapp && (
+              {data?.shelter?.socialMedia?.whatsapp && (
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>

@@ -63,7 +63,7 @@ export const PetView: React.FC<Props> = ({
           shelter: Shelter,
         }}
       />
-      {pet.Shelter?.location && <Location city={pet.Shelter?.location?.city} country={pet.Shelter?.location?.country} />}
+      {pet?.Shelter?.location && <Location city={pet.Shelter?.location?.city} country={pet.Shelter?.location?.country} />}
       <div className="mt-10">
         <SwiperGallery slides={getImagesWithUrlBucket} />
       </div>

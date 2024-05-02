@@ -177,7 +177,7 @@ export const DashboardTable: React.FC<Props> = ({
                               <img
                                 alt="pet-image"
                                 onError={handleError}
-                                className="h-11 w-11 rounded-full"
+                                className="h-11 w-11 object-cover rounded-full"
                                 src={`${import.meta.env.VITE_BUCKET_NAME}pets/${pet?.images[0]}`}
                               />
                             </div>

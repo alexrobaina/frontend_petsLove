@@ -151,7 +151,7 @@ export const SideBar: FC<Props> = ({
                   showImage ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
-                className="w-[42px] h-[42px] rounded-full"
+                className="w-[42px] h-[42px] object-cover rounded-full"
               />
               {!menuIsCollapsed && (
                 <div className="flex flex-col gap-0 truncate">

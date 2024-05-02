@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 
 import { IconGoogle } from '../../../assets/icons'
 import { BackgroundLogin } from '../../../assets/images'
+import { PetsLoveLogo } from '../../../assets/logos'
 import { BaseButton } from '../../../components/common/BaseButton'
 import { BaseInput } from '../../../components/common/BaseInput'
 import { BaseLoading } from '../../../components/common/BaseLoading'
@@ -95,8 +96,11 @@ export const LoginGoogle: FC = () => {
                 {t('login:emailSent')}
               </h2> :
               <>
-                <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                  <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-primary-900">
+                <div className="mb-4 flex-col gap-4">
+                  <div className='flex justify-center mb-2'>
+                    <PetsLoveLogo width={50} height={50} />
+                  </div>
+                  <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-primary-900">
                     Pet's Love
                   </h2>
                 </div>
