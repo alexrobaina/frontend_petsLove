@@ -99,6 +99,14 @@ export const UserProfile: FC<Props> = ({ user }) => {
     return ''
   }, [user])
 
+  const isGoogleAvatar =
+  user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
+
+const showImage = isGoogleAvatar
+  ? user?.image
+  : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`
+
+
   return (
     <>
       <div className="flex justify-between flex-col sm:flex-row mb-6">
@@ -110,7 +118,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
             <img
               onError={handleError}
               className="rounded-full object-cover h-full w-full"
-              src={`${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`}
+              src={showImage}
             />
           </div>
           <div className="bg-green-300 px-2 text-end py-1 rounded-2xl">

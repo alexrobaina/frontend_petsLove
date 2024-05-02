@@ -23,16 +23,16 @@ export const PetCard: FC<IPetCardProps> = ({
   return (
   <div
     onClick={() => goToProfile(id)}
-    className="rounded-xl pb-3 md:w-[236px] flex bg-primary-100 shadow-md cursor-pointer"
+    className="rounded-xl pb-3 sm:w-[236px] w-full flex bg-primary-100 shadow-md cursor-pointer"
   >
-    <div>
-      <div className='h-[237px] w-full' >  
+    <div className='w-full'>
+      <div className='w-full'>  
         <img
           alt="pet"
           onError={(e) => {
             e.currentTarget.src = ImageNotFound
           }}
-          className="md:w-[300px] h-[237px] object-cover rounded-xl"
+          className="w-full h-[237px] object-cover rounded-xl"
           src={`${import.meta.env.VITE_BUCKET_NAME}pets/${setImagesFromArrayOrString(images)}`}
         />
       </div>
