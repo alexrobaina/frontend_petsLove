@@ -33,7 +33,7 @@ async function main() {
       element: <Navbar />,
       children: [
         {
-          path: '/adopt',
+          path: '/searchPets',
           element: <AdoptionPetPage />,
         },
         {

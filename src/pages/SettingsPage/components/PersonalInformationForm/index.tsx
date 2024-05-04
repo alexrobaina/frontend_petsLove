@@ -144,7 +144,7 @@ export const PersonalInformationForm: FC<Props> = ({
                 value={values?.lastName}
                 handleChange={handleChange}
                 label={t('settings:lastName')}
-                placeholder={user?.lastName || t('settings:lastName')}
+                placeholder={t('settings:lastName')}
               />
             </div>
             <div className="sm:col-span-3">
@@ -154,7 +154,7 @@ export const PersonalInformationForm: FC<Props> = ({
                 value={values?.username}
                 handleChange={handleChange}
                 label={t('settings:username')}
-                placeholder={user?.username || t('settings:username')}
+                placeholder={t('settings:username')}
               />
             </div>
             <div className="sm:col-span-3">
@@ -184,7 +184,7 @@ export const PersonalInformationForm: FC<Props> = ({
                 value={values?.description}
                 handleChange={handleChange}
                 error={errors?.description}
-                placeholder={user?.description || t('settings:addDescriptionAboutYou')}
+                placeholder={t('settings:addDescriptionAboutYou')}
               />
             </div>
           </div>

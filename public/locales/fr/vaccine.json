@@ -1,0 +1,69 @@
+{
+    "PENDING": "EN ATTENTE",
+    "DONE": "FAIT",
+    "NOT_APPLICABLE": "Non applicable",
+    "placeholderTheVaccineStatus": "Le statut du vaccin",
+    "vaccineStatus": "Statut du vaccin",
+    "vaccine": {
+        "cat": {
+            "FVRCP": {
+                "name": "FVRCP",
+                "description": "Rhinite virale féline, Calicivirus et Panleucopénie"
+            },
+            "rabies": {
+                "name": "Rage",
+                "description": "Vaccin contre le virus de la rage"
+            },
+            "FeLV": {
+                "name": "Leucose Féline (FeLV)",
+                "description": "Vaccin contre le virus de la rage"
+            },
+            "FIP": {
+                "name": "FIP",
+                "description": "Péritonite Infectieuse Féline"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Vaccin contre Bordetella bronchiseptica"
+            },
+            "chlamydophilaFelis": {
+                "name": "Chlamydophila Felis",
+                "description": "Vaccin contre Chlamydophila (anciennement connue sous le nom de Chlamydia)"
+            },
+            "FIV": {
+                "name": "FIV",
+                "description": "Virus de l'Immunodéficience Féline (pas toujours recommandé)"
+            }
+        },
+        "dog": {
+            "DHPP": {
+                "name": "DHPP",
+                "description": "Distemper, Hépatite, Parainfluenza et Parvovirus"
+            },
+            "rabies": {
+                "name": "Rage",
+                "description": "Vaccin contre le virus de la rage"
+            },
+            "leptospirosis": {
+                "name": "Leptospirose",
+                "description": "Vaccin contre la bactérie Leptospira"
+            },
+            "bordetella": {
+                "name": "Bordetella",
+                "description": "Vaccin pour la toux du chenil ou Bordetella bronchiseptica"
+            },
+            "lymeDisease": {
+                "name": "Maladie de Lyme",
+                "description": "Vaccin pour Borrelia burgdorferi, qui cause la maladie de Lyme"
+            },
+            "canineInfluenza": {
+                "name": "Influenza Canine",
+                "description": "Vaccin pour la grippe canine"
+            },
+            "coronavirus": {
+                "name": "Coronavirus",
+                "description": "Vaccin pour le coronavirus canin (non lié à COVID-19)"
+            }
+        }
+    }
+}

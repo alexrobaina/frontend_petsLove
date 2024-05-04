@@ -27,7 +27,7 @@ export const PetList: FC<Props> = ({ pets, isLoading }) => {
           <BaseLoading large />
         </div>
       )}
-      {pets?.length === 0 && <BaseAlert text={t('common:petAvailable')} />}
+      {pets?.length === 0 && <BaseAlert text={t('common:petNotAvailable')} />}
       {pets &&
         pets.map((pet: PetCardType) => (
           <PetCard

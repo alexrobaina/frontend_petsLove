@@ -1,0 +1,15 @@
+{
+    "login": "Connexion",
+    "google": "Se connecter avec Google",
+    "or": "Ou continuer avec",
+    "addEmail": "Ajouter un courriel",
+    "magicLink": "Lien de connexion par courriel",
+    "subject": "Connexion à votre compte",
+    "hello": "Bonjour",
+    "welcome": "",
+    "loginDescription": "Connectez-vous à votre compte",
+    "warning": "Si vous n'avez pas demandé cela, veuillez ignorer cet e-mail.",
+    "thanks": "Merci",
+    "emailSent": "Veuillez vérifier votre courriel",
+    "last": "Dernier"
+}

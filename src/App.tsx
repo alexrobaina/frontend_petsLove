@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <ComponentsUiPage />,
       },
       {
-        path: '/search',
+        path: '/searchPets',
         element: <AdoptionPetPage />,
       },
       {

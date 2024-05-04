@@ -11,7 +11,7 @@ i18n
   .init({
     ns: ['common', 'dashboard', 'community', 'profilePet', 'settings', 'login', 'vaccine'],
     defaultNS: 'common',
-    supportedLngs: ['en', 'es'],
+    supportedLngs: ['en', 'es', 'fr'],
     debug: true,
     fallbackLng: 'en',
     detection: {
