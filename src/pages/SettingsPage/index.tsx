@@ -49,11 +49,11 @@ export const SettingsPage: FC = () => {
       formik.setValues({
         ...user,
         role: values.role || user.role,
-        firstName: values.firstName || user.firstName,
+        image: values.image || user.image,
         lastName: values.lastName || user.lastName,
         username: values.username || user.username,
-        description: values.description || user.description,
-        image: values.image || user.image,
+        firstName: values.firstName || user.firstName,
+        description: values.description || user.description || '',
       })
     }
   }, [user])

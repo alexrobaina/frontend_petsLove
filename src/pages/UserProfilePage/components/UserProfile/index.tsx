@@ -129,7 +129,7 @@ const showImage = isGoogleAvatar
       {user?.description && (
         <div className="my-2">
           <h2 className={h2Class}>{t('aboutUs')}</h2>
-          <p className="my-6">{user.description}</p>
+          <p className="my-6">{user?.description}</p>
         </div>
       )}
       <div className="my-2">

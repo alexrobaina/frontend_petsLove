@@ -1,0 +1,17 @@
+{
+    "personalInformation": "Informations personnelles",
+    "personalInformationDescription": "Ici, vous pouvez visualiser et modifier vos informations personnelles.",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "username": "Nom d'utilisateur",
+    "email": "Courriel",
+    "description": "Description",
+    "selectRole": "Sélectionnez un rôle",
+    "addDescriptionAboutYou": "Ajoutez une description à votre sujet",
+    "locationDescription": "Ici, vous pouvez visualiser et modifier votre emplacement.",
+    "socialMediaAndContacts": "Réseaux sociaux et contacts",
+    "socialMediaAndContactsDescription": "Les réseaux sociaux que vous souhaitez partager avec la communauté, il est important d'avoir un moyen de vous contacter.",
+    "instagramPlaceholder": "Votre nom d'utilisateur Instagram",
+    "telegramPlaceholder": "Votre nom d'utilisateur Telegram",
+    "last": "Dernier"
+    }

@@ -100,7 +100,7 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
               {t('common:description')}:
             </h2>
             <p className="text-base leading-6 text-gray-500 w-full mt-4">
-              {data.description}
+              {data?.description}
             </p>
           </div>
         </div>

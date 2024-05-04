@@ -16,7 +16,6 @@ interface Props {
 }
 
 export const SocialMediaForm: FC<Props> = ({
-  user,
   errors,
   values,
   handleChange,
@@ -40,7 +39,7 @@ export const SocialMediaForm: FC<Props> = ({
               handleChange={handleChange}
               name="socialMedia.instagram"
               value={values?.socialMedia?.instagram}
-              placeholder={user?.socialMedia?.instagram || t('settings:instagramPlaceholder')}
+              placeholder={t('settings:instagramPlaceholder')}
             />
           </div>
           <div className="sm:col-span-3">
@@ -49,22 +48,19 @@ export const SocialMediaForm: FC<Props> = ({
               name="socialMedia.facebook"
               handleChange={handleChange}
               error={errors?.socialMedia?.facebook || ''}
-              placeholder={
-                user?.socialMedia?.facebook ||
-                'https://www.facebook.com/refigyPaw/'
-              }
+              placeholder='https://www.facebook.com/refigyPaw/'
               value={values?.socialMedia?.facebook}
             />
           </div>
           <div className="sm:col-span-3">
             <BasePhoneInput
               country={'ar'}
+              placeholder=""
               label="Whatsapp"
               name="socialMedia.whatsapp"
               setFieldValue={setFieldValue}
               value={values?.socialMedia?.whatsapp}
               error={errors?.socialMedia?.whatsapp}
-              placeholder={user?.socialMedia?.whatsapp || ''}
             />
           </div>
           <div className="sm:col-span-3">
@@ -72,9 +68,9 @@ export const SocialMediaForm: FC<Props> = ({
               label="Telegram"
               name="socialMedia.telegram"
               handleChange={handleChange}
-              placeholder={user?.socialMedia?.telegram || t('settings:telegramPlaceholder')}
               error={errors?.socialMedia?.telegram}
               value={values?.socialMedia?.telegram}
+              placeholder={t('settings:telegramPlaceholder')}
             />
           </div>
         </div>

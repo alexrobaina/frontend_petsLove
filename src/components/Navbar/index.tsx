@@ -34,10 +34,17 @@ export const Navbar: FC<Props> = () => {
 
 
   useEffect(() => {
-    setLng({
-      lng: locale === 'en' ? 'English' : 'Español',
-      symbol: locale
-  })
+    if (locale === 'fr') {
+return       setLng({
+        lng: 'French',
+        symbol: locale
+    })
+  }
+  setLng({
+    lng: locale === 'en' ? 'English' : 'Español',
+    symbol: locale
+})
+
 }, [locale])
 
 
@@ -75,9 +82,9 @@ export const Navbar: FC<Props> = () => {
                 {lng.symbol}
               </button>
               {isOpenLngToggle &&
-                 <div className={`absolute top-[60px] z-50 rounded-lg p-2 bg-white shadow-2xl flex-col `}>
+                 <div className={`absolute top-[60px] z-50 rounded-lg p-2 bg-white shadow-2xl gap-1 flex flex-col `}>
                     <button
-                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
                       onClick={(e) => handleChangeLng(e, 'es')}>
                       <p className='flex justify-center items-center capitalize' >ES</p>
                     </button>
@@ -85,6 +92,11 @@ export const Navbar: FC<Props> = () => {
                       className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
                       onClick={(e) => handleChangeLng(e, 'en')}>
                       <p className='flex justify-center items-center capitalize' >EN</p>
+                    </button>
+                    <button
+                      className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      onClick={(e) => handleChangeLng(e, 'fr')}>
+                      <p className='flex justify-center items-center capitalize' >FR</p>
                     </button>
                   </div>
               }

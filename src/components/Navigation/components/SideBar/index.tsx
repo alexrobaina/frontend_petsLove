@@ -26,7 +26,7 @@ interface Props {
 const TOP_NAVIGATION = [
   { to: '/dashboard', icon: <IconHomeInfinity />, text: 'dashboard' },
   { to: '/community', icon: <IconListDetails />, text: 'community' },
-  { to: '/search', icon: <IconSearch />, text: 'searchPets' },
+  { to: '/searchPets', icon: <IconSearch />, text: 'searchPets' },
 ]
 
 const BOTTOM_NAVIGATION = [
@@ -108,6 +108,11 @@ export const SideBar: FC<Props> = ({
     })
   }, [locale])
 
+const isSelected = (path: string) => {
+  const pathname = window.location.pathname
+  return pathname.includes(path)
+}
+
   return (
     <div className="flex relative overflow-hidden z-2">
       {/* Fixed Sidebar */}
@@ -128,6 +133,7 @@ export const SideBar: FC<Props> = ({
                 key={index}
                 icon={item.icon}
                 text={t(item.text)}
+                isSelected={isSelected(item.text)}
                 menuIsCollapsed={menuIsCollapsed}
                 handleNavigation={(e: MouseEvent<HTMLButtonElement>) => {
                   e.stopPropagation()
@@ -168,6 +174,7 @@ export const SideBar: FC<Props> = ({
                 icon={item.icon}
                 text={t(`common:${item.text}`)}
                 menuIsCollapsed={menuIsCollapsed}
+                isSelected={isSelected(item.text)}
                 handleNavigation={(e: MouseEvent<HTMLButtonElement>) => {
                   e.stopPropagation()
                   navigation(item.to)
@@ -190,9 +197,15 @@ export const SideBar: FC<Props> = ({
                       <p>Español</p>
                     </button>
                     <button
-                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'en')}>
+                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      onClick={(e) => handleChangeLng(e, 'en')}>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                       <p className='flex justify-center items-center capitalize' >EN</p>
+                      <p>English</p>
+                    </button>
+                    <button
+                      className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                      onClick={(e) => handleChangeLng(e, 'en')}>
+                      <p className='flex justify-center items-center capitalize' >FR</p>
                       <p>English</p>
                     </button>
                   </div>

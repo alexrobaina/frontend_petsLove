@@ -1,0 +1,15 @@
+{
+    "addPet": "Ajouter un animal",
+    "listOfPets": "Une liste de tous les animaux à votre lieu.",
+    "petNotFound": "Animal non trouvé",
+    "dontHavePets": "Vous n'avez pas encore d'animaux. Cliquez sur le bouton ci-dessous pour créer votre premier animal.",
+    "ageIsRequired": "L'âge est requis",
+    "nameIsRequired": "Le nom est requis",
+    "unitsIsRequired": "Les unités sont requises",
+    "genderIsRequired": "Le genre est requis",
+    "weightIsRequired": "Le poids est requis",
+    "sizeIsRequired": "La taille est requise",
+    "descriptionIsRequired": "La description est requise",
+    "categoryIsRequired": "La catégorie est requise",
+    "last": "Dernier"
+}
