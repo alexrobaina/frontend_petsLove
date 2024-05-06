@@ -58,7 +58,7 @@ export const SideBar: FC<Props> = ({
   const handleLogout = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     deleteCookie('token')
-    navigation('/')
+    navigation('/login')
     window.location.reload()
   }
 
