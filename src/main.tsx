@@ -33,8 +33,8 @@ async function main() {
       element: <Navbar />,
       children: [
         {
-          path: '/searchPets',
-          element: <AdoptionPetPage />,
+          path: '/login',
+          element: <LoginPage />,
         },
         {
           path: '/pet/:id',
@@ -50,11 +50,11 @@ async function main() {
         },
         {
           path: '/',
-          element: <LoginPage />,
+          element: <AdoptionPetPage />,
         },
         {
           path: '*',
-          element: <LoginPage />,
+          element: <AdoptionPetPage />,
         },
       ],
     },

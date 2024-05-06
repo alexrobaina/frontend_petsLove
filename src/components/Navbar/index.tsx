@@ -59,7 +59,7 @@ return       setLng({
                 <BaseButton
                   style="secondary"
                   text={t('common:adoptPet')}
-                  onClick={() => navigate('/adopt')}
+                  onClick={() => navigate('/searchPets')}
                 />
                 <BaseButton
                   style="secondary"
@@ -70,7 +70,7 @@ return       setLng({
                   <BaseButton
                     text={t('common:login')}
                     style="secondary"
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/login')}
                   />
                 </div>
               </div>
