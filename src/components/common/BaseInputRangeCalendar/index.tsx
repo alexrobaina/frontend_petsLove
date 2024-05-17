@@ -63,7 +63,6 @@ export const BaseInputRangeCalendar: FC<Props> = ({
       endDate: ranges.selection.endDate ?? null,
       key: 'selection',
     }
-    console.log(2, newRange)
 
     setRangeSelected(newRange)
     handleChange(newRange)
