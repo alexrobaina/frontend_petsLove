@@ -3,10 +3,10 @@ import { FC, ReactNode } from 'react'
 import Modal from 'react-modal'
 
 import { IconClose } from '../../../assets/icons'
-import useScreenWidth from '../../../hooks/useScreenWidth'
+import useScreenWidth from '../../../hooks/ui/useScreenWidth'
 
 interface Props {
-  title?: string
+  title?: string | ReactNode
   isOpen: boolean
   children: ReactNode
   description?: string
@@ -84,7 +84,6 @@ export const ReactModal: FC<Props> = ({
               onClick={closeModal}
               className="text-primary-950"
             >
-
               <IconClose />
             </div>
           )}

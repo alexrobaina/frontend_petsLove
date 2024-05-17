@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
 import { FC, useEffect, useState } from 'react'
-import { createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Navigation from './components/Navigation'
@@ -12,6 +12,7 @@ import { DashboardPage } from './pages/DashboardPage'
 import { ProfilePetPage } from './pages/ProfilePetPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { UserProfilePage } from './pages/UserProfilePage'
+import { AppointmentsPage } from './pages/AppointmentsPage'
 import { AppContext, AppContextProps } from './services/AppContext'
 
 import './api/axiosInstance'
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/searchPets',
         element: <AdoptionPetPage />,
+      },
+      {
+        path: '/appointments',
+        element: <AppointmentsPage />,
       },
       {
         path: '/',
@@ -99,7 +104,7 @@ const App: FC<Props> = observer((props) => {
           location: {
             address: props?.appContext?.user?.address || '',
           },
-        }}      
+        }}
         isOpenRoleModal={isOpenRoleModal}
         setOpenRoleModal={setOpenRoleModal}
       />

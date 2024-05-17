@@ -6,12 +6,15 @@ import { useTranslation } from 'react-i18next'
 import { BaseLoading } from '../../components/common/BaseLoading'
 import { DeleteModal } from '../../components/common/DeleteModal'
 import { SliderModal } from '../../components/common/SliderModal'
-import { useCreatePet } from '../../hooks/useCreatePet'
-import { useDeletePet } from '../../hooks/useDeletePet'
-import { useGetPet } from '../../hooks/useGetPet'
-import { usePetUpdate } from '../../hooks/usePetUpdate'
-import { useUserPets } from '../../hooks/useUserPets'
+import { useCreatePet } from '../../hooks/pets/useCreatePet'
+import { useDeletePet } from '../../hooks/pets/useDeletePet'
+import { useGetPet } from '../../hooks/pets/useGetPet'
+import { usePetUpdate } from '../../hooks/pets/usePetUpdate'
+import { useUserPets } from '../../hooks/user/useUserPets'
 import { AppContext } from '../../services/AppContext'
+import { AppointmentForm } from '../AppointmentsPage/components/AppointmentForm'
+import { useAppointmentForm } from '../AppointmentsPage/hooks/useAppointmentForm'
+import { PetDetail } from '../ProfilePetPage/interfaces'
 
 import { CreatePetForm } from './components/CreatePetForm'
 import { DashboardHeader } from './components/DashboardHeader'
@@ -19,6 +22,7 @@ import { DashboardTable } from './components/DashboardTable/DashboardTable'
 import { INITIAL_STATE, FileType, petSchema } from './constants'
 
 export const DashboardPage: FC = () => {
+  const [isOpenappointment, setOpenappointment] = useState(false)
   const context:
     | {
         user: {
@@ -53,6 +57,10 @@ export const DashboardPage: FC = () => {
     return ''
   }
 
+  const { formik: appointmentFormik } = useAppointmentForm(() =>
+    setOpenappointment(false),
+  )
+
   const { data, isLoading } = useUserPets({
     id: context.user?.id,
     page,
@@ -70,7 +78,7 @@ export const DashboardPage: FC = () => {
       values.units = ''
 
       if (context?.user?.locationId) values.locationId = context.user.locationId
-      
+
       if (petId) {
         mutatePetUpdate({ ...values, id: petId })
       } else {
@@ -135,6 +143,25 @@ export const DashboardPage: FC = () => {
     setPetId(id)
   }
 
+  const handleOpenappointment = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string,
+  ) => {
+    setOpenappointment(true)
+    e.stopPropagation()
+    setTitleForm(t('common:appointment'))
+    appointmentFormik.setFieldValue('petId', id)
+    setPetId(id)
+  }
+
+  const handleCloseAppintmentForm = () => {
+    setOpenappointment(false)
+    appointmentFormik.resetForm()
+    appointmentFormik.setFieldValue('recipientId', '')
+    appointmentFormik.setFieldValue('petId', '')
+    setPetId('')
+  }
+
   const handleCreatePet = () => {
     setTitleForm(t('common:createPet'))
     setPetId('')
@@ -163,7 +190,7 @@ export const DashboardPage: FC = () => {
         .map((image) => {
           if (image === imageToDelete) {
             if (image.isNew) {
-              URL.revokeObjectURL(image.url) // Revoke the object URL to prevent memory leaks
+              URL.revokeObjectURL(image.url) // Revoke the object URL to prappointment memory leaks
               return null // Remove the image from the array
             }
             return { ...image, isDeleted: true }
@@ -184,7 +211,7 @@ export const DashboardPage: FC = () => {
         gender: petData?.pet?.gender || '',
         age: petData?.pet?.age || '',
         size: petData?.pet?.size || '',
-        locationId: petData?.pet?.locationId   || '',
+        locationId: petData?.pet?.locationId || '',
         breed: petData?.pet?.breed || '',
         images: images,
         description: petData?.pet?.description || '',
@@ -248,6 +275,7 @@ export const DashboardPage: FC = () => {
           handleDelete={handleDelete}
           handleCreatePet={handleCreatePet}
           updatePetLoading={updatePetLoading}
+          setOpenAttachment={handleOpenappointment}
         />
       </div>
       <SliderModal
@@ -277,6 +305,23 @@ export const DashboardPage: FC = () => {
         }}
         title={`${t('common:areYouSureDelete')} ${petDelete.petName}?`}
       />
+      <SliderModal
+        title={titleForm}
+        isOpen={isOpenappointment}
+        handleSubmit={appointmentFormik.handleSubmit}
+        closeSlider={handleCloseAppintmentForm}
+      >
+        <AppointmentForm
+          pets={data?.pets}
+          values={appointmentFormik.values}
+          errors={appointmentFormik.errors}
+          userId={context.user?.id}
+          handleChange={appointmentFormik.handleChange}
+          setFieldValue={appointmentFormik.setFieldValue}
+          closeModal={handleCloseAppintmentForm}
+          pet={data?.pets?.find((pet: PetDetail) => pet.id === petId)}
+        />
+      </SliderModal>
     </>
   )
 }

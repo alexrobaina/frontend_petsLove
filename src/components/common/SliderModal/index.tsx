@@ -11,7 +11,7 @@ interface Props {
   title?: string
   isOpen: boolean
   children?: ReactNode
-  closeSlider: () => void
+  closeSlider?: () => void
   handleSubmit?: () => void
 }
 
@@ -57,18 +57,18 @@ export const SliderModal: FC<Props> = ({
                flex gap-4 justify-end py-14 bg-primary-50
             "
               >
-                <BaseButton
+                {closeSlider && <BaseButton
                   text={t('common:cancel')}
                   style="secondary"
                   onClick={closeSlider}
-                />
-                <BaseButton
+                />}
+               {handleSubmit && <BaseButton
                   text={t('common:save')}
                   style="primary"
                   onClick={() => {
                     handleSubmit && handleSubmit()
                   }}
-                />
+                />}
               </div>
             </div>
           </motion.div>

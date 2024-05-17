@@ -1,4 +1,5 @@
 import IconBack from './iconBack.svg'
+import IconCalendarStats from './iconCalendarStats'
 import IconChevronLeft from './iconChevronLeft'
 import IconChevronRight from './iconChevronRight'
 import IconClose from './iconClose.svg'
@@ -20,6 +21,7 @@ import IconUser from './iconUser.svg'
 import IconWhatsapp from './iconWhatsapp.svg'
 
 export {
+  IconCalendarStats,
   IconEdit,
   IconTrash,
   IconChevronLeft,

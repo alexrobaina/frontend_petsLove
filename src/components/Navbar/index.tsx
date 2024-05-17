@@ -26,28 +26,24 @@ export const Navbar: FC<Props> = () => {
     e.stopPropagation()
     setLng({
       lng: lng,
-      symbol: lng
+      symbol: lng,
     })
     i18n.changeLanguage(lng)
     setIsOpenLngToggle(false)
   }
 
-
   useEffect(() => {
     if (locale === 'fr') {
-return       setLng({
+      return setLng({
         lng: 'French',
-        symbol: locale
+        symbol: locale,
+      })
+    }
+    setLng({
+      lng: locale === 'en' ? 'English' : 'Español',
+      symbol: locale,
     })
-  }
-  setLng({
-    lng: locale === 'en' ? 'English' : 'Español',
-    symbol: locale
-})
-
-}, [locale])
-
-
+  }, [locale])
 
   return (
     <>
@@ -75,31 +71,43 @@ return       setLng({
                 </div>
               </div>
             </div>
-          <div className='relative z-[999] md:left-4'>
+            <div className="relative z-[999] md:left-4">
               <button
                 onClick={handleOpenLngToggle}
-                className={`flex justify-center w-full h-[34px] px-3 bg-primary-50 rounded-md items-center hover:bg-primary-100 uppercase`} >
+                className={`flex justify-center w-full h-[34px] px-3 bg-primary-50 rounded-md items-center hover:bg-primary-100 uppercase`}
+              >
                 {lng.symbol}
               </button>
-              {isOpenLngToggle &&
-                 <div className={`absolute top-[60px] z-50 rounded-lg p-2 bg-white shadow-2xl gap-1 flex flex-col `}>
-                    <button
-                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'es')}>
-                      <p className='flex justify-center items-center capitalize' >ES</p>
-                    </button>
-                    <button
-                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'en')}>
-                      <p className='flex justify-center items-center capitalize' >EN</p>
-                    </button>
-                    <button
-                      className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'fr')}>
-                      <p className='flex justify-center items-center capitalize' >FR</p>
-                    </button>
-                  </div>
-              }
+              {isOpenLngToggle && (
+                <div
+                  className={`absolute top-[60px] z-50 rounded-lg p-2 bg-white shadow-2xl gap-1 flex flex-col `}
+                >
+                  <button
+                    className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'es')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      ES
+                    </p>
+                  </button>
+                  <button
+                    className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'en')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      EN
+                    </p>
+                  </button>
+                  <button
+                    className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'fr')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      FR
+                    </p>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

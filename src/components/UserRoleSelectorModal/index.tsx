@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 
 import { ROLES } from '../../constants/community'
 import { IAddressComponent, LocationResult } from '../../constants/interfaces'
-import { useUserUpdate } from '../../hooks/useUserUpdate'
+import { useUserUpdate } from '../../hooks/user/useUserUpdate'
 import { BaseButton } from '../common/BaseButton'
 import { BaseInput } from '../common/BaseInput'
 import { BaseSelect } from '../common/BaseSelect'

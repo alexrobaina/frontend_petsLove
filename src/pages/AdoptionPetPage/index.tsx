@@ -9,7 +9,7 @@ import { Pagination } from '../../components/common/Pagination'
 import { PetList } from '../../components/common/PetList/Index'
 import { IAddressComponent } from '../../constants/interfaces'
 import { GENDER, TYPE_OF_PETS } from '../../constants/serachPets'
-import { useGetPets } from '../../hooks/useGetPets'
+import { useGetPets } from '../../hooks/pets/useGetPets'
 
 export const AdoptionPetPage: FC = () => {
   const { t } = useTranslation(['common', 'searchPet'])

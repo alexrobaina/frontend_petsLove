@@ -1,0 +1,13 @@
+.calendarContainer {
+  z-index: 300;
+  position: relative;
+}
+
+.calendar {
+  position: absolute;
+  top: 45px;
+}
+
+.iconCalendar {
+  stroke: #fff;
+}

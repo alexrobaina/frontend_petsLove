@@ -7,7 +7,7 @@ import GoogleAutocomplete from '../../components/common/GoogleAutocomplete'
 import { Header } from '../../components/common/Header'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
 import { IAddressComponent } from '../../constants/interfaces'
-import useUserList from '../../hooks/useUserList'
+import useUserList from '../../hooks/user/useUserList'
 
 import { CommunityTable } from './components/CommunityTable'
 

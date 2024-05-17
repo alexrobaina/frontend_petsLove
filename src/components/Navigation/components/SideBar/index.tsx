@@ -1,8 +1,16 @@
-import { FC, ReactElement, MouseEvent, useContext, useState, useEffect } from 'react'
+import {
+  FC,
+  ReactElement,
+  MouseEvent,
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import {
+  IconCalendarStats,
   IconChevronLeft,
   IconChevronRight,
   IconHomeInfinity,
@@ -26,6 +34,11 @@ interface Props {
 const TOP_NAVIGATION = [
   { to: '/dashboard', icon: <IconHomeInfinity />, text: 'dashboard' },
   { to: '/community', icon: <IconListDetails />, text: 'community' },
+  {
+    to: '/appointments',
+    icon: <IconCalendarStats width={30} height={30} />,
+    text: 'appointments',
+  },
   { to: '/searchPets', icon: <IconSearch />, text: 'searchPets' },
 ]
 
@@ -39,7 +52,7 @@ export const SideBar: FC<Props> = ({
   setMenuIsCollapsed,
 }) => {
   const [isOpenLngToggle, setIsOpenLngToggle] = useState(false)
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common'])
   const locale = i18n.language
 
   const [lng, setLng] = useState({
@@ -51,7 +64,7 @@ export const SideBar: FC<Props> = ({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement
-    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.onerror = null // Prappointments infinite loop if local image is also not found
     target.src = MidDog
   }
 
@@ -83,7 +96,7 @@ export const SideBar: FC<Props> = ({
     e.stopPropagation()
     setLng({
       lng: lng,
-      symbol: lng
+      symbol: lng,
     })
     i18n.changeLanguage(lng)
     setIsOpenLngToggle(false)
@@ -101,27 +114,53 @@ export const SideBar: FC<Props> = ({
     ? context?.user?.image
     : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
-    useEffect(() => {
-      setLng({
-        lng: locale === 'en' ? 'English' : 'Español',
-        symbol: locale
+  useEffect(() => {
+    let getLng
+    if (locale === 'es') {
+      getLng = {
+        lng: 'es',
+        symbol: 'es',
+      }
+    } else if (locale === 'en') {
+      getLng = {
+        lng: 'en',
+        symbol: 'en',
+      }
+    } else {
+      getLng = {
+        lng: 'fr',
+        symbol: 'fr',
+      }
+    }
+    setLng({
+      lng: getLng,
+      symbol: locale,
     })
   }, [locale])
 
-const isSelected = (path: string) => {
-  const pathname = window.location.pathname
-  return pathname.includes(path)
-}
+  const isSelected = (path: string) => {
+    const pathname = window.location.pathname
+    return pathname.includes(path)
+  }
 
   return (
     <div className="flex relative overflow-hidden z-2">
       {/* Fixed Sidebar */}
       <div className="z-20 fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
-      <div className={` ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}>
-        <div onClick={handleMenuIsCollapsed} className='ring-2 flex cursor-pointer justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]'>
-          {menuIsCollapsed ? <IconChevronRight width={20} /> : <IconChevronLeft width={20} />}
+        <div
+          className={` ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}
+        >
+          <div
+            onClick={handleMenuIsCollapsed}
+            className="ring-2 flex cursor-pointer justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]"
+          >
+            {menuIsCollapsed ? (
+              <IconChevronRight width={20} />
+            ) : (
+              <IconChevronLeft width={20} />
+            )}
+          </div>
         </div>
-      </div>
         <div
           onClick={handleMenuIsCollapsed}
           className={`${menuIsCollapsed ? 'min-w-[67px]' : 'min-w-[218px]'} bg-primary-300 h-full cursor-pointer
@@ -181,41 +220,59 @@ const isSelected = (path: string) => {
                 }}
               />
             ))}
-            <div className='relative z-[999]'>
+            <div className="relative z-[999]">
               <button
                 onClick={handleOpenLngToggle}
-                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-[11.5px]'} w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100 uppercase`} >
+                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-[11.5px]'} w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100 uppercase`}
+              >
                 {lng.symbol}
-                <p>{!menuIsCollapsed && <p className='flex justify-center items-center capitalize' >{lng.lng}</p>}</p>
+                <p>
+                  {!menuIsCollapsed && (
+                    <p className="flex justify-center items-center capitalize">
+                      {lng.lng}
+                    </p>
+                  )}
+                </p>
               </button>
-              {isOpenLngToggle &&
-                 <div className={`absolute -top-[70px] z-99 rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}>
-                    <button
-                      className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'es')}>
-                      <p className='flex justify-center items-center capitalize' >ES</p>
-                      <p>Español</p>
-                    </button>
-                    <button
-                      className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'en')}>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                      <p className='flex justify-center items-center capitalize' >EN</p>
-                      <p>English</p>
-                    </button>
-                    <button
-                      className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                      onClick={(e) => handleChangeLng(e, 'en')}>
-                      <p className='flex justify-center items-center capitalize' >FR</p>
-                      <p>English</p>
-                    </button>
-                  </div>
-              }
+              {isOpenLngToggle && (
+                <div
+                  className={`absolute -top-[70px] z-99 rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}
+                >
+                  <button
+                    className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'es')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      ES
+                    </p>
+                    <p>Español</p>
+                  </button>
+                  <button
+                    className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'en')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      EN
+                    </p>
+                    <p>English</p>
+                  </button>
+                  <button
+                    className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+                    onClick={(e) => handleChangeLng(e, 'fr')}
+                  >
+                    <p className="flex justify-center items-center capitalize">
+                      FR
+                    </p>
+                    <p>French</p>
+                  </button>
+                </div>
+              )}
             </div>
             <button
               className={`flex justify-start gap-2 pl-3 w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
               onClick={handleLogout}
             >
-              <div className='flex justify-center w-[30px]'>
+              <div className="flex justify-center w-[30px]">
                 <IconLogout />
               </div>
               {!menuIsCollapsed && <p>{t('common:logout')}</p>}
@@ -225,8 +282,9 @@ const isSelected = (path: string) => {
       </div>
       {/* Main Content Area */}
       <div
-        className={`flex-1 ${menuIsCollapsed ? 'ml-[67px]' : 'ml-[218px]'
-          } p-2 overflow-y-auto`}
+        className={`flex-1 ${
+          menuIsCollapsed ? 'ml-[67px]' : 'ml-[218px]'
+        } p-2 overflow-y-auto`}
       >
         {children}
       </div>

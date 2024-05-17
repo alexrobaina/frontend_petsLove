@@ -48,7 +48,7 @@ export const SocialMediaForm: FC<Props> = ({
               name="socialMedia.facebook"
               handleChange={handleChange}
               error={errors?.socialMedia?.facebook || ''}
-              placeholder='https://www.facebook.com/refigyPaw/'
+              placeholder="https://www.facebook.com/refigyPaw/"
               value={values?.socialMedia?.facebook}
             />
           </div>
@@ -75,7 +75,7 @@ export const SocialMediaForm: FC<Props> = ({
           </div>
         </div>
         <div className="mt-8 flex">
-          <BaseButton type="submit" text={t('common:save') } />
+          <BaseButton type="submit" text={t('common:save')} />
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import { Header } from '../../../../components/common/Header'
 import { Pagination } from '../../../../components/common/Pagination'
 import { PetList } from '../../../../components/common/PetList/Index'
 import { SocialMediaContact } from '../../../../components/common/SocialMediaContact'
-import { useUserPets } from '../../../../hooks/useUserPets'
+import { useUserPets } from '../../../../hooks/user/useUserPets'
 
 type User = {
   id: string
@@ -84,9 +84,11 @@ export const UserProfile: FC<Props> = ({ user }) => {
     setGenderOption('')
   }
 
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleError = (
+    e: React.Syntheticappointment<HTMLImageElement, appointment>,
+  ) => {
     const target = e.target as HTMLImageElement
-    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.onerror = null // Prappointments infinite loop if local image is also not found
     target.src = MidDog
   }
 
@@ -100,12 +102,11 @@ export const UserProfile: FC<Props> = ({ user }) => {
   }, [user])
 
   const isGoogleAvatar =
-  user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
+    user?.image && user?.image?.includes('googleusercontent' || 'ggpht')
 
-const showImage = isGoogleAvatar
-  ? user?.image
-  : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`
-
+  const showImage = isGoogleAvatar
+    ? user?.image
+    : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`
 
   return (
     <>

@@ -41,10 +41,10 @@ export const BaseSelect: FC<Props> = ({
 }) => {
   const { t } = useTranslation()
 
-  const translatedOptions = options?.map(option => ({
+  const translatedOptions = options?.map((option) => ({
     ...option,
     label: translation ? t(`common:${option.label}`) : option.label,
-  }));
+  }))
 
   const customStyles: StylesConfig<Option, false> = {
     menu: (provided: CSSObject) => ({
@@ -52,7 +52,7 @@ export const BaseSelect: FC<Props> = ({
       position: 'absolute',
       backgroundColor: 'white',
       zIndex: 98, // also ensuring z-index here as a safety
-    }),                                   
+    }),
     clearIndicator: (provided) => ({
       ...provided,
       zIndex: 99,
@@ -77,8 +77,8 @@ export const BaseSelect: FC<Props> = ({
       backgroundColor: state.isSelected
         ? '#d6f1e9' // color when option is selected
         : state.isFocused
-        ? '#ace3d3' // color when option is focused
-        : '#fff', // default color
+          ? '#ace3d3' // color when option is focused
+          : '#fff', // default color
       color: state.isSelected ? '#0d2624' : '#0d2624', // text color
       '&:active': {
         backgroundColor: '#ace3d3',

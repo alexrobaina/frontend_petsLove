@@ -1,0 +1,91 @@
+.calendar {
+  background-color: var(--neutral-900) !important;
+  opacity: 1 !important;
+  border-radius: 5px !important;
+}
+
+.rdrDateDisplayWrapper {
+  background-color: var(--neutral-900) !important;
+}
+
+.rdrMonthAndYearWrapper {
+  margin-top: -10px;
+  height: 40px;
+  padding: 10px;
+  border-bottom: 1px solid var(--neutral-800) !important;
+}
+
+.rdrDateDisplayItem input {
+  background-color: var(--neutral-800);
+  color: #fff;
+  &:focus {
+    border: 1px solid var(--primary-300);
+  }
+}
+
+.rdrDateDisplayItem {
+  border: none !important;
+}
+
+.rdrDayPassive .rdrDayNumber span {
+  color: var(--neutral-600) !important;
+}
+
+.rdrSelected,
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge {
+  background-color: var(--primary-300) !important;
+}
+
+.rdrDayNumber span {
+  color: #fff;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  background-color: var(--neutral-300) !important;
+}
+
+.rdrDayToday .rdrDayNumber span {
+  color: var(--neutral-300) !important;
+}
+
+.rdrInRange span {
+  color: var(--neutral-1100) !important;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span {
+  color: red !important;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span {
+  color: var(--neutral-1100) !important;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span {
+  color: var(--neutral-1100) !important;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span {
+  color: var(--neutral-1100) !important;
+}
+
+.rdrNextPrevButton {
+  background-color: transparent !important;
+}
+
+.rdrPprevButton i {
+  border-color: transparent rgb(255 255 255) transparent transparent !important;
+}
+
+.rdrNextButton i {
+  border-color: transparent transparent transparent rgb(255 255 255) !important;
+}
+
+.rdrMonthPicker select {
+  color: var(--neutral-0) !important;
+}
+
+.rdrYearPicker select {
+  color: var(--neutral-0) !important;
+}

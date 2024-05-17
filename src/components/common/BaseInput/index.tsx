@@ -6,8 +6,8 @@ interface Props {
   type?: string
   error?: string
   label?: string
-  isdisabled?: boolean
   placeholder: string
+  isdisabled?: boolean
   value?: string | number
   iconLeft?: ReactElement
   iconRigth?: ReactElement
@@ -54,7 +54,7 @@ export const BaseInput: FC<Props> = (
       {iconLeft && <div className="icon absolute -mt-7 ml-2.5">{iconLeft}</div>}
       {iconRigth && <div className="icon absolute">{iconRigth}</div>}
       {error && (
-        <div className="pointer-events-none absolute right-0 top-8 flex items-center pr-3">
+        <div className="pointer-appointments-none absolute right-0 top-8 flex items-center pr-3">
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"

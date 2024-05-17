@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { useUser } from '../../hooks/useUser'
+import { useUser } from '../../hooks/user/useUser'
 
 import { UserProfile } from './components/UserProfile'
 
