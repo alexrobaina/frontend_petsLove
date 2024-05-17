@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
-import { IconFacebook, IconInstagram, IconTelegram, IconWhatsapp } from '../../../../assets/icons'
+import {
+  IconFacebook,
+  IconInstagram,
+  IconTelegram,
+  IconWhatsapp,
+} from '../../../../assets/icons'
 import { DetailCard } from '../DetailCard'
-
 
 interface Props {
   data: {
@@ -35,16 +39,36 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
   return (
     <>
       <div className="flex flex-wrap gap-4 lg:gap-x-0 justify-between mt-4 w-70 md:w-full lg:w-full">
-        <DetailCard title={`${t('common:category')}:`} description={t(`common:categoryPet.${data.category}`)} />
-        <DetailCard title={`${t('common:weight')}:`} description={t(data.weight)} />
-        {data?.breed && <DetailCard title={`${t('common:breed')}:`} description={data.breed} />}
-        <DetailCard title={`${t('common:size')}:`} description={t(`common:sizePet.${data.size}`)} />
-        <DetailCard title={`${t('common:gender')}:`} description={t(`common:genderPet.${data.gender}`)} />
-        <DetailCard title={`${t('common:age')}:`} description={t(`common:agePet.${data.age}`)} />
+        <DetailCard
+          title={`${t('common:category')}:`}
+          description={t(`common:categoryPet.${data.category}`)}
+        />
+        <DetailCard
+          title={`${t('common:weight')}:`}
+          description={t(data.weight)}
+        />
+        {data?.breed && (
+          <DetailCard
+            title={`${t('common:breed')}:`}
+            description={data.breed}
+          />
+        )}
+        <DetailCard
+          title={`${t('common:size')}:`}
+          description={t(`common:sizePet.${data.size}`)}
+        />
+        <DetailCard
+          title={`${t('common:gender')}:`}
+          description={t(`common:genderPet.${data.gender}`)}
+        />
+        <DetailCard
+          title={`${t('common:age')}:`}
+          description={t(`common:agePet.${data.age}`)}
+        />
       </div>
       <div className="flew-col gap-10 md:justify-between md:flex">
         <div className="mt-10 flex-col md:w-[50%]">
-           <div>
+          <div>
             <h2 className="mt-10 text-lg font-semibold text-primary-900">
               {t('common:contactsForAdoption')}:
             </h2>
@@ -66,8 +90,11 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
-                    goToLink(e, `https://www.facebook.com/${data?.shelter?.socialMedia?.facebook}} 
-                    ${import.meta.env.VITE_HOST}/pet/${data.id}`)
+                    goToLink(
+                      e,
+                      `https://www.facebook.com/${data?.shelter?.socialMedia?.facebook}} 
+                    ${import.meta.env.VITE_HOST}/pet/${data.id}`,
+                    )
                   }
                 >
                   <IconFacebook />
@@ -75,10 +102,13 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
               )}
               {data?.shelter?.socialMedia?.telegram && (
                 <button
-                className="cursor:pointer"
-                onClick={(e) =>
-                  goToLink(e, `https://telegram.me/${data?.shelter?.socialMedia?.telegram}`)
-                }
+                  className="cursor:pointer"
+                  onClick={(e) =>
+                    goToLink(
+                      e,
+                      `https://telegram.me/${data?.shelter?.socialMedia?.telegram}`,
+                    )
+                  }
                 >
                   <IconTelegram />
                 </button>
@@ -87,7 +117,10 @@ export const GeneralPetInfo: React.FC<Props> = ({ data }) => {
                 <button
                   className="cursor:pointer"
                   onClick={(e) =>
-                    goToLink(e, `https://wa.me/${data?.shelter?.socialMedia?.whatsapp}?text=${t('common:wantAdoption')} 🐶 ${data.name} 😺 ${import.meta.env.VITE_HOST}pet/${data.id}`)
+                    goToLink(
+                      e,
+                      `https://wa.me/${data?.shelter?.socialMedia?.whatsapp}?text=${t('common:wantAdoption')} 🐶 ${data.name} 😺 ${import.meta.env.VITE_HOST}pet/${data.id}`,
+                    )
                   }
                 >
                   <IconWhatsapp />

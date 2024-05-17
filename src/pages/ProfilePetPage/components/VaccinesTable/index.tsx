@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { IconEdit } from '../../../../assets/icons'
 import { BaseBadge } from '../../../../components/common/BaseBadge'
 import { BaseButton } from '../../../../components/common/BaseButton'
-import { useGetPet } from '../../../../hooks/useGetPet'
+import { useGetPet } from '../../../../hooks/pets/useGetPet'
 import { AppContext } from '../../../../services/AppContext'
 
 export interface IVaccine {

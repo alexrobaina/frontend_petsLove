@@ -7,7 +7,7 @@ export const setType = (type: string) => {
     case 'tertiary':
       return 'bg-transparent hover:bg-primary-200 text-gray-600 hover:bg-primary-50 iconTertiary'
     case 'delete':
-      return 'w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
+      return 'w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto'
     default:
       return 'block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
   }

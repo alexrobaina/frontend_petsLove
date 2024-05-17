@@ -6,9 +6,9 @@ import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
 import { BaseTextArea } from '../../../../components/common/BaseTextArea'
 import { SliderModal } from '../../../../components/common/SliderModal'
-import { useCreateMedicalRecord } from '../../../../hooks/useCreateMedicalRecord'
-import { useMedicalRecordUpdate } from '../../../../hooks/useMedicalRecordUpdate'
-import useUserList from '../../../../hooks/useUserList'
+import { useCreateMedicalRecord } from '../../../../hooks/medicalRecords/useCreateMedicalRecord'
+import { useMedicalRecordUpdate } from '../../../../hooks/medicalRecords/useMedicalRecordUpdate'
+import useUserList from '../../../../hooks/user/useUserList'
 import { FileType } from '../../../DashboardPage/constants'
 
 import { medicalRecordValidation } from './constants'
@@ -107,7 +107,7 @@ export const CreateMedicalRecord: FC<Props> = ({
         .map((attachment: FileType) => {
           if (attachment === attachmentToDelete) {
             if (attachment.isNew) {
-              URL.revokeObjectURL(attachment.url) // Revoke the object URL to prevent memory leaks
+              URL.revokeObjectURL(attachment.url) // Revoke the object URL to prappointment memory leaks
               return null // Remove the attachemnt from the array
             }
             return { ...attachment, isDeleted: true }

@@ -1,7 +1,7 @@
 import { expect, vi } from 'vitest'
 
 import { BaseButton } from '../../../components/common/BaseButton'
-import { render, screen, fireEvent } from '../../test-utils'
+import { render, screen, fireappointment } from '../../test-utils'
 
 describe('BaseButton Component', () => {
   test('renders with default props', () => {
@@ -24,10 +24,10 @@ describe('BaseButton Component', () => {
     expect(screen.getByTestId('loader')).toBeInTheDocument()
   })
 
-  test('fires onClick event', () => {
+  test('fires onClick appointment', () => {
     const handleClick = vi.fn()
     render(<BaseButton text="Click me" onClick={handleClick} />)
-    fireEvent.click(screen.getByText('Click me'))
+    fireappointment.click(screen.getByText('Click me'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
 })

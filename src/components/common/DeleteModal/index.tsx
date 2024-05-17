@@ -20,9 +20,17 @@ export const DeleteModal: FC<Props> = ({
   const { t } = useTranslation(['common'])
   return (
     <ReactModal title={title} closeModal={handleClose} isOpen={isOpen}>
-      <div className="flex justify-end mt-5 gap-2 md:gap-0">
-        <BaseButton text={t('common:cancel')} style="secondary" onClick={handleClose} />
-        <BaseButton text={t('common:delete')} style="delete" onClick={handleDelete} />
+      <div className="flex justify-end mt-5 gap-2">
+        <BaseButton
+          style="secondary"
+          onClick={handleClose}
+          text={t('common:cancel')}
+        />
+        <BaseButton
+          style="delete"
+          onClick={handleDelete}
+          text={t('common:delete')}
+        />
       </div>
     </ReactModal>
   )

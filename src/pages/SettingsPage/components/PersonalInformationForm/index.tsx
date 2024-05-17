@@ -80,9 +80,11 @@ export const PersonalInformationForm: FC<Props> = ({
     ? user?.image
     : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${user?.image}`
 
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleError = (
+    e: React.Syntheticappointment<HTMLImageElement, appointment>,
+  ) => {
     const target = e.target as HTMLImageElement
-    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.onerror = null // Prappointments infinite loop if local image is also not found
     target.src = MidDog
   }
 
@@ -207,7 +209,9 @@ export const PersonalInformationForm: FC<Props> = ({
             <GoogleAutocomplete
               label={t('common:location')}
               setLocation={handleChangeLocation}
-              placeholder={user?.location?.address || t('common:searchByLocation')}
+              placeholder={
+                user?.location?.address || t('common:searchByLocation')
+              }
             />
           </div>
           <div className="mt-8 flex">

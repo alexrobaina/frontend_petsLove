@@ -1,0 +1,45 @@
+.rbc-today {
+  background-color: #f3faf8 !important;
+  font-family: 'Lato', sans-serif;
+}
+
+.rbc-calendar {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif !important;
+}
+
+.rbc-event {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: medium;
+}
+
+.rbc-show-more {
+  color: #4fb29c;
+  font-family: 'Lato', sans-serif;
+}
+
+.rbc-btn-group {
+  background-color: transparent;
+}
+
+.rbc-btn-group button {
+  font-family: 'Lato', sans-serif !important;
+  color: #0d2624 !important;
+  &&:hover {
+    background: #d6f1e9 !important;
+  }
+  &&:focus {
+    background: #ace3d3 !important;
+  }
+  &&::active {
+    background: #369683 !important;
+  }
+  border-color: #4fb29c;
+  font-weight: medium;
+  font-size: 14px;
+}
+
+.rbc-off-range-bg {
+  background-color: #f3faf8;
+}

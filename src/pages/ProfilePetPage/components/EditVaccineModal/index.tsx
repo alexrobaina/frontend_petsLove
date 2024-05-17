@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
 import { ReactModal } from '../../../../components/common/ReactModal'
-import { useUpdatePetVaccine } from '../../../../hooks/useUpdatePetVaccine'
+import { useUpdatePetVaccine } from '../../../../hooks/vaccine/useUpdatePetVaccine'
 import { petVaccineSchema } from '../../validations'
 
 export type FileType = {
@@ -88,7 +88,7 @@ export const EditVaccineModal: FC<Props> = ({
         .map((file: FileType) => {
           if (file === imageToDelete) {
             if (file.isNew) {
-              URL.revokeObjectURL(file.url) // Revoke the object URL to prevent memory leaks
+              URL.revokeObjectURL(file.url) // Revoke the object URL to prappointment memory leaks
               return null // Remove the image from the array
             }
             return { ...file, isDeleted: true }
@@ -117,8 +117,8 @@ export const EditVaccineModal: FC<Props> = ({
   useEffect(() => {
     if (isOpenEditVaccine) setFieldValue('status', vaccine?.status)
   }, [vaccine?.status, setFieldValue, isOpenEditVaccine])
-  
-  const disableImageInput = files[0]?.isDeleted ? false : true;
+
+  const disableImageInput = files[0]?.isDeleted ? false : true
 
   return (
     <ReactModal
@@ -175,7 +175,7 @@ export const EditVaccineModal: FC<Props> = ({
             </div>
             <label
               htmlFor="file"
-              className={`${!disableImageInput ? 'bg-slate-200 cursor-no-drop' : 'hover:bg-primary-300' } sm:w-auto w-full rounded text-center cursor-pointer px-2 py-4 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300`}
+              className={`${!disableImageInput ? 'bg-slate-200 cursor-no-drop' : 'hover:bg-primary-300'} sm:w-auto w-full rounded text-center cursor-pointer px-2 py-4 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300`}
             >
               {t('common:selectImages')}
             </label>

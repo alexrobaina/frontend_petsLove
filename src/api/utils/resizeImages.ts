@@ -22,7 +22,7 @@ export const resizeImages = async (images: Image[]): Promise<File[]> => {
             'JPEG', // Image format
             100, // Quality
             0, // Rotation
-            (uri: string | Blob | File | ProgressEvent<FileReader>) => {
+            (uri: string | Blob | File | Progressappointment<FileReader>) => {
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               const byteString = atob(uri.split(',')[1])

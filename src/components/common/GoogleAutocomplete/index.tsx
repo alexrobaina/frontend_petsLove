@@ -95,7 +95,7 @@ const GoogleAutocomplete: FC<ExtendedProps> = ({
             {...getInputProps({ placeholder })}
           />
           {error && (
-            <div className="pointer-events-none absolute right-0 top-8 flex items-center pr-3">
+            <div className="pointer-appointments-none absolute right-0 top-8 flex items-center pr-3">
               <svg
                 viewBox="0 0 20 20"
                 fill="currentColor"

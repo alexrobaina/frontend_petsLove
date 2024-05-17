@@ -1,7 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { IconEdit, IconSearch, IconTrash } from '../../../../assets/icons'
+import {
+  IconCalendarStats,
+  IconEdit,
+  IconSearch,
+  IconTrash,
+} from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
 import { BaseBadge } from '../../../../components/common/BaseBadge'
 import { BaseButton } from '../../../../components/common/BaseButton'
@@ -29,6 +34,10 @@ interface Props {
     petName: string
   }): void
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setOpenAttachment: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string,
+  ) => void
 }
 
 interface Pet {
@@ -53,17 +62,20 @@ export const DashboardTable: React.FC<Props> = ({
   handleSearch,
   handleCreatePet,
   updatePetLoading,
+  setOpenAttachment,
 }) => {
   const { t } = useTranslation(['common', 'dashboard'])
   const navigate = useNavigate()
-
   const goToPet = (id: string) => {
     navigate(`/pet/${id}`)
   }
 
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleError = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    e: any,
+  ) => {
     const target = e.target as HTMLImageElement
-    target.onerror = null // Prevents infinite loop if local image is also not found
+    target.onerror = null // Prappointments infinite loop if local image is also not found
     target.src = MidDog
   }
 
@@ -85,8 +97,8 @@ export const DashboardTable: React.FC<Props> = ({
             size="small"
             type="button"
             style="primary"
-            text={t('dashboard:addPet')}
             onClick={handleCreatePet}
+            text={t('dashboard:addPet')}
           />
         </div>
       </div>
@@ -102,7 +114,9 @@ export const DashboardTable: React.FC<Props> = ({
       </div>
       {data?.total === 0 && (
         <div className="h-[550px] w-full flex flex-col gap-5 justify-center items-center">
-          <h1 className="text-3xl font-semibold">{t('dashboard:petNotFound')}</h1>
+          <h1 className="text-3xl font-semibold">
+            {t('dashboard:petNotFound')}
+          </h1>
           <h1>{t('dashboard:dontHavePets')}</h1>
           <BaseButton
             size="small"
@@ -118,7 +132,7 @@ export const DashboardTable: React.FC<Props> = ({
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full">
                 <thead>
-                  <tr >
+                  <tr>
                     <th
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-primary-950 sm:pl-2 bg-primary-100 rounded-tl-xl"
@@ -169,9 +183,11 @@ export const DashboardTable: React.FC<Props> = ({
                       <tr
                         key={pet.id}
                         onClick={() => goToPet(pet.id)}
-                        className='hover:bg-primary-100 cursor-pointer'
+                        className="hover:bg-primary-100 cursor-pointer"
                       >
-                        <td className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'}`}>
+                        <td
+                          className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'}`}
+                        >
                           <div className="flex items-center">
                             <div className="h-11 w-11 flex-shrink-0">
                               <img
@@ -195,13 +211,13 @@ export const DashboardTable: React.FC<Props> = ({
                           {`${t(`common:genderPet.${pet.gender}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                        {`${t(`common:categoryPet.${pet.category}`)}`}
+                          {`${t(`common:categoryPet.${pet.category}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                           {`${t(`common:agePet.${pet.age}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                        {`${t(`common:sizePet.${pet.size}`)}`}
+                          {`${t(`common:sizePet.${pet.size}`)}`}
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                           <BaseBadge
@@ -211,11 +227,24 @@ export const DashboardTable: React.FC<Props> = ({
                             backgroundColor={
                               pet.adopted ? 'bg-red-500' : 'bg-green-200'
                             }
-                            text={pet.adopted ? t('common:adopted') : t('common:available')}
+                            text={
+                              pet.adopted
+                                ? t('common:adopted')
+                                : t('common:available')
+                            }
                           />
                         </td>
-                        <td className={`whitespace-nowrap px-6 py-4 ${index === 0 ? 'rounded-br-xl' : 'rounded-e-xl'}`}>
+                        <td
+                          className={`whitespace-nowrap px-6 py-4 ${index === 0 ? 'rounded-br-xl' : 'rounded-e-xl'}`}
+                        >
                           <div className="flex gap-2 justify-end">
+                            <BaseButton
+                              style="tertiary"
+                              icon={
+                                <IconCalendarStats width={30} height={30} />
+                              }
+                              onClick={(e) => setOpenAttachment(e, pet.id)}
+                            />
                             <BaseButton
                               style="tertiary"
                               icon={<IconEdit />}

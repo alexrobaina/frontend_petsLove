@@ -6,7 +6,7 @@ import { MultiValue } from 'react-select'
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
 import { BaseTextArea } from '../../../../components/common/BaseTextArea'
-import useUserList from '../../../../hooks/useUserList'
+import useUserList from '../../../../hooks/user/useUserList'
 import {
   AGE_PETS,
   CATEGORY_PET,
@@ -218,11 +218,13 @@ export const CreatePetForm: React.FC<Props> = ({
           handleChange={handleChange}
           label={t('common:description')}
           placeholder={t('common:petDescription')}
-          error={touched.description  && t(`dashboard:${errors?.description}`)}
+          error={touched.description && t(`dashboard:${errors?.description}`)}
         />
       </div>
       <div className="mt-6 flex flex-col ">
-        <h1 className="text-xl font-medium col-span-full">{t('common:petGuardians')}</h1>
+        <h1 className="text-xl font-medium col-span-full">
+          {t('common:petGuardians')}
+        </h1>
         <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
