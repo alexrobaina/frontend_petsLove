@@ -3,15 +3,18 @@ import { action } from 'mobx'
 import { FC, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { BaseButton } from '../../components'
 import FadeIn from '../../components/FadeIn'
 import { BaseLoading } from '../../components/common/BaseLoading'
 import { Header } from '../../components/common/Header'
+import { useTeamList } from '../../hooks/teams/useTeamList'
 import { useUser } from '../../hooks/user/useUser'
 import { useUserUpdate } from '../../hooks/user/useUserUpdate'
 import { AppContext, AppContextProps, User } from '../../services/AppContext'
 
 import { PersonalInformationForm } from './components/PersonalInformationForm'
 import { SocialMediaForm } from './components/SocialMediaForm'
+import TeamCard from './components/TeamCard'
 import { INITIAL_STATE } from './constants'
 
 export const SettingsPage: FC = () => {
@@ -19,6 +22,7 @@ export const SettingsPage: FC = () => {
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
   const { user, isLoading } = useUser(context?.user?.id)
+  const { data: teams } = useTeamList()
 
   const setUser = action((context: AppContextProps, user: User) => {
     if (!user) {
@@ -63,7 +67,7 @@ export const SettingsPage: FC = () => {
   if (!context?.user?.id) {
     return <div>Somethink is wrong</div>
   }
-  
+
   if (isLoading || isLoadingUpdate) {
     return (
       <div className="mt-[20%]">
@@ -95,6 +99,27 @@ export const SettingsPage: FC = () => {
           />
         </form>
       </FadeIn>
+      <div className="mt-12 flex pr-5 md:pr-12 gap-10">
+        <div className="w-[50%]">
+          <h2 className="text-xl font-semibold leading-7 text-primary-950">
+            {'Teams'}
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-primary-500">
+            {'In this section you can manage your teams.'}
+          </p>
+        </div>
+        <div className="w-full">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
+            <div className="sm:col-span-3">
+              <BaseButton
+                text={'Create Team'}
+                onClick={() => console.log('Create Team')}
+              />
+            </div>
+          </div>
+          <TeamCard team={teams} />
+        </div>
+      </div>
     </div>
   )
 }
