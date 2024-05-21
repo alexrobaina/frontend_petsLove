@@ -14,7 +14,7 @@ import { AppContext, AppContextProps, User } from '../../services/AppContext'
 
 import { PersonalInformationForm } from './components/PersonalInformationForm'
 import { SocialMediaForm } from './components/SocialMediaForm'
-import TeamCard from './components/TeamCard'
+import TeamCard, { Team } from './components/TeamCard'
 import { INITIAL_STATE } from './constants'
 
 export const SettingsPage: FC = () => {
@@ -112,8 +112,8 @@ export const SettingsPage: FC = () => {
         </form>
       </FadeIn>
       {teams && (
-        <div className="mt-12 flex pr-5 md:pr-12 gap-10">
-          <div className="w-[50%]">
+        <div className="flex-col flex md:flex-row pr-5 md:pr-12 gap-10 mt-14">
+          <div className="md:w-[50%]">
             <h2 className="text-xl font-semibold leading-7 text-primary-950">
               {'Teams'}
             </h2>
@@ -122,32 +122,22 @@ export const SettingsPage: FC = () => {
             </p>
           </div>
           <div className="w-full">
-            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
+            <div className="flex justify-end gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
               <div className="sm:col-span-3">
                 <BaseButton
+                  isDisabled
                   text={'Create Team'}
                   onClick={() => console.log('Create Team')}
                 />
               </div>
             </div>
-            {teams.map(
-              (team: {
-                id: string
-                createdBy: string
-                members: {
-                  role: string
-                  user: { id: string }
-                  name: string
-                  email: string
-                }[]
-              }) => (
-                <TeamCard
-                  team={team}
-                  key={team.id}
-                  canManage={canManageTeam(team) || false}
-                />
-              ),
-            )}
+            {teams.map((team: Team) => (
+              <TeamCard
+                team={team}
+                key={team.id}
+                canManage={canManageTeam(team) || false}
+              />
+            ))}
           </div>
         </div>
       )}

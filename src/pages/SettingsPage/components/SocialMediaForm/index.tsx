@@ -22,8 +22,8 @@ export const SocialMediaForm: FC<Props> = ({
   setFieldValue,
 }) => (
   <div className="divide-y mt-14 divide-white/5">
-    <div className="flex pr-5 md:pr-12 gap-10">
-      <div className="w-[50%]">
+    <div className="flex-col flex md:flex-row pr-5 md:pr-12 gap-10 mt-14">
+      <div className="md:w-[50%]">
         <h2 className="text-xl font-semibold leading-7 text-primary-950">
           {t('settings:socialMediaAndContacts')}
         </h2>
