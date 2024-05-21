@@ -1,12 +1,8 @@
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
 
 import { IconEdit } from '../../../../assets/icons'
 import { BaseBadge } from '../../../../components/common/BaseBadge'
 import { BaseButton } from '../../../../components/common/BaseButton'
-import { useGetPet } from '../../../../hooks/pets/useGetPet'
-import { AppContext } from '../../../../services/AppContext'
 
 export interface IVaccine {
   status: string
@@ -20,28 +16,17 @@ export interface IVaccine {
   nextDueDate: string
 }
 interface Props {
+  checkIfUserIsOwner(): boolean
   vaccines?: IVaccine[] | undefined
   handleEditVaccine(data: IVaccine): void
-  // handleOpenModalDeleteVaccine(data: IVaccine): void
 }
 
 export const VaccinesTable: React.FC<Props> = ({
   vaccines,
   handleEditVaccine,
-  // handleOpenModalDeleteVaccine,
+  checkIfUserIsOwner,
 }) => {
   const { t } = useTranslation(['common', 'profilePet', 'vaccine'])
-  const context = useContext(AppContext)
-  const { id } = useParams()
-  const { data } = useGetPet(id)
-
-  const checkIfUserIsOwner = () => {
-    if (data.pet.createdBy === context?.user?.id) return true
-    if (data.pet.shelterId === context?.user?.id) return true
-    if (data.pet.adoptedBy === context?.user?.id) return true
-
-    return false
-  }
 
   return (
     <>
@@ -64,19 +49,21 @@ export const VaccinesTable: React.FC<Props> = ({
                     >
                       {t('common:status')}
                     </th>
-                    {checkIfUserIsOwner() && <th
-                      scope="col"
-                      className="py-3.5 pl-4 pr-10 text-end text-sm font-semibold text-gray-900 sm:pl-6"
-                    >
-                      {t('common:actions')}
-                    </th>}
+                    {checkIfUserIsOwner() && (
+                      <th
+                        scope="col"
+                        className="py-3.5 pl-4 pr-10 text-end text-sm font-semibold text-gray-900 sm:pl-6"
+                      >
+                        {t('common:actions')}
+                      </th>
+                    )}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {vaccines &&
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     vaccines.map((item: IVaccine) => (
-                      <tr className='hover:bg-primary-100' key={item.id}>
+                      <tr className="hover:bg-primary-100" key={item.id}>
                         <td className="flex flex-col py-2 pl-4 pr-3sm:pl-6">
                           <div className="text-sm font-medium text-gray-900 ">
                             {t(`vaccine:${item?.Vaccine.name}`)}

@@ -133,7 +133,7 @@ export const SideBar: FC<Props> = ({
       }
     }
     setLng({
-      lng: getLng,
+      lng: getLng.lng,
       symbol: locale,
     })
   }, [locale])

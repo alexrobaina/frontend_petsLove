@@ -5,7 +5,7 @@ import { IconBack } from '../../../assets/icons'
 import { BaseButton } from '../BaseButton'
 
 interface Props {
-  title: string
+  title?: string
   buttonBack?: boolean
 }
 

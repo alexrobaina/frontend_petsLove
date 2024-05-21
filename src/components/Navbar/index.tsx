@@ -112,7 +112,7 @@ export const Navbar: FC<Props> = () => {
           </div>
         </div>
       </nav>
-      <div className="p-5 md:ml-16 md:mr-16 pt-28">
+      <div className="p-5 md:ml-16 md:mr-16 pt-20">
         <Outlet />
       </div>
     </>
