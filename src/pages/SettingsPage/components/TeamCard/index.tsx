@@ -3,33 +3,28 @@ import { useNavigate } from 'react-router-dom'
 
 import { BaseButton } from '../../../../components'
 
-interface TeamMember {
+export interface Team {
   id: string
-  firstName: string
-  lastName: string
-  role: string
-  user: {
-    id: string
-    email: string
-    username: string
-    firstName: string
-    lastName: string
-  }
-}
-
-interface Team {
-  id: string
-  name: string
-  members: TeamMember[]
   createdBy: string
+  name: string
+  members: {
+    id: string
+    role: string
+    user: {
+      id: string
+      username: string
+      email: string
+    }
+    name: string
+    email: string
+  }[]
 }
-
-interface TeamCardProps {
+interface Props {
   team: Team
   canManage: boolean
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({ team, canManage }) => {
+const TeamCard: React.FC<Props> = ({ team, canManage }) => {
   const navigate = useNavigate()
   const gotToUser = (id: string) => {
     navigate(`/user/${id}`)
@@ -65,10 +60,12 @@ const TeamCard: React.FC<TeamCardProps> = ({ team, canManage }) => {
             {canManage && (
               <div className="flex gap-2 px-6 py-4">
                 <BaseButton
+                  isDisabled
                   text={'Edit Team'}
                   onClick={() => console.log('Edit Team')}
                 />
                 <BaseButton
+                  isDisabled
                   style="delete"
                   text={'Delete Team'}
                   onClick={() => console.log('Delete Team')}

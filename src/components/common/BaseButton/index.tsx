@@ -55,7 +55,7 @@ export const BaseButton: FC<Props> = ({
     }
     ${
       isDisabled
-        ? 'bg-gray-300 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
+        ? 'bg-gray-400 cursor-not-allowed hover:bg-gray-300 hover:shadow-none'
         : ''
     }
   `}

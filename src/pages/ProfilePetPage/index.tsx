@@ -1,4 +1,5 @@
 import { FC, useCallback, useContext, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Params, useNavigate, useParams } from 'react-router-dom'
 
@@ -94,6 +95,18 @@ export const ProfilePetPage: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{data?.pet?.name} - Pet Profile</title>
+        <meta name="description" content={data?.pet?.description} />
+        {data?.pet?.images?.length > 0 && (
+          <meta
+            property="og:image"
+            content={`${import.meta.env.VITE_BUCKET_NAME}pets/${data.pet.images[0]}`}
+          />
+        )}
+        <meta property="og:title" content={data?.pet?.name} />
+        <meta property="og:description" content={data?.pet?.description} />
+      </Helmet>
       <div className="flex justify-between">
         <div className="flex gap-5">
           <Header title={data?.pet?.name} buttonBack />
