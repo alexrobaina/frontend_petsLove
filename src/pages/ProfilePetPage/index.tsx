@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { Params, useNavigate, useParams } from 'react-router-dom'
 

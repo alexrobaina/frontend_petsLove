@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 
 import App from './App.tsx'
 import { Navbar } from './components/Navbar/index.tsx'
@@ -86,9 +87,11 @@ async function main() {
   } catch (_e) {
     ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
+        <HelmetProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </HelmetProvider>
       </React.StrictMode>,
     )
     return
@@ -96,7 +99,9 @@ async function main() {
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
-      <App appContext={appContext} />
+      <HelmetProvider>
+        <App appContext={appContext} />
+      </HelmetProvider>
     </QueryClientProvider>,
   )
 }
