@@ -97,6 +97,18 @@ export const UserProfile: FC<Props> = ({ user }) => {
   ) {
     return (
       <>
+        <Helment>
+          <title>{user?.username} - Pet Profile</title>
+          <meta name="description" content={user?.description} />
+          {user?.image && (
+            <meta
+              property="og:image"
+              content={`${import.meta.env.VITE_BUCKET_NAME}pets/${user?.image}`}
+            />
+          )}
+          <meta property="og:title" content={user?.username} />
+          <meta property="og:description" content={user?.description} />
+        </Helment>
         <div className="flex justify-between flex-col sm:flex-row mb-6">
           <header className="flex gap-5">
             <Header buttonBack />
