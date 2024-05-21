@@ -82,13 +82,16 @@ export const HealthData: React.FC<Props> = ({
           handleDelete={handleDeleteMedicalRecord}
         />
       </div>
-      <h2 className="mt-10 text-lg font-semibold text-primary-900">{t('profilePet:vaccine')}</h2>
+      <h2 className="mt-10 text-lg font-semibold text-primary-900">
+        {t('profilePet:vaccine')}
+      </h2>
       {pet?.PetVaccine && (
         <VaccinesTable
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           vaccines={pet.PetVaccine || []}
           handleEditVaccine={handleEditVaccine}
+          checkIfUserIsOwner={checkIfUserIsOwner}
           handleOpenModalDeleteVaccine={handleOpenModalDeleteVaccine}
         />
       )}

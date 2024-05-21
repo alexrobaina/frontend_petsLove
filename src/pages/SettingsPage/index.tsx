@@ -7,7 +7,7 @@ import { BaseButton } from '../../components'
 import FadeIn from '../../components/FadeIn'
 import { BaseLoading } from '../../components/common/BaseLoading'
 import { Header } from '../../components/common/Header'
-import { useTeamList } from '../../hooks/teams/useTeamList'
+import { useTeamsListByUser } from '../../hooks/teams/useTeamsListByUser'
 import { useUser } from '../../hooks/user/useUser'
 import { useUserUpdate } from '../../hooks/user/useUserUpdate'
 import { AppContext, AppContextProps, User } from '../../services/AppContext'
@@ -22,7 +22,7 @@ export const SettingsPage: FC = () => {
   const context = useContext(AppContext)
   const { mutate, isLoading: isLoadingUpdate } = useUserUpdate()
   const { user, isLoading } = useUser(context?.user?.id)
-  const { data: teams } = useTeamList()
+  const { data: teams } = useTeamsListByUser()
 
   const setUser = action((context: AppContextProps, user: User) => {
     if (!user) {
@@ -62,6 +62,18 @@ export const SettingsPage: FC = () => {
     }
   }, [user])
 
+  const canManageTeam = (team: {
+    createdBy: string
+    members: { role: string; user: { id: string } }[]
+  }) => {
+    const userId = context?.user?.id
+    if (team.createdBy === userId) {
+      return true
+    }
+    const userMember = team.members.find((member) => member.user.id === userId)
+    return userMember && userMember.role === 'ADMIN'
+  }
+
   const { handleChange, handleSubmit, setFieldValue, values, errors } = formik
 
   if (!context?.user?.id) {
@@ -99,27 +111,46 @@ export const SettingsPage: FC = () => {
           />
         </form>
       </FadeIn>
-      <div className="mt-12 flex pr-5 md:pr-12 gap-10">
-        <div className="w-[50%]">
-          <h2 className="text-xl font-semibold leading-7 text-primary-950">
-            {'Teams'}
-          </h2>
-          <p className="mt-1 text-sm leading-6 text-primary-500">
-            {'In this section you can manage your teams.'}
-          </p>
-        </div>
-        <div className="w-full">
-          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
-            <div className="sm:col-span-3">
-              <BaseButton
-                text={'Create Team'}
-                onClick={() => console.log('Create Team')}
-              />
-            </div>
+      {teams && (
+        <div className="mt-12 flex pr-5 md:pr-12 gap-10">
+          <div className="w-[50%]">
+            <h2 className="text-xl font-semibold leading-7 text-primary-950">
+              {'Teams'}
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-primary-500">
+              {'In this section you can manage your teams.'}
+            </p>
           </div>
-          <TeamCard team={teams} />
+          <div className="w-full">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full">
+              <div className="sm:col-span-3">
+                <BaseButton
+                  text={'Create Team'}
+                  onClick={() => console.log('Create Team')}
+                />
+              </div>
+            </div>
+            {teams.map(
+              (team: {
+                id: string
+                createdBy: string
+                members: {
+                  role: string
+                  user: { id: string }
+                  name: string
+                  email: string
+                }[]
+              }) => (
+                <TeamCard
+                  team={team}
+                  key={team.id}
+                  canManage={canManageTeam(team) || false}
+                />
+              ),
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

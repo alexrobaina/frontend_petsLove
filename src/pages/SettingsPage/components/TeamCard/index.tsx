@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { BaseButton } from '../../../../components'
 
@@ -7,65 +8,76 @@ interface TeamMember {
   firstName: string
   lastName: string
   role: string
-  email: string
+  user: {
+    id: string
+    email: string
+    username: string
+    firstName: string
+    lastName: string
+  }
 }
 
 interface Team {
   id: string
   name: string
   members: TeamMember[]
+  createdBy: string
 }
 
 interface TeamCardProps {
   team: Team
+  canManage: boolean
 }
 
-const TeamCard: FC<TeamCardProps> = ({ team }) => {
-  console.log(team)
+const TeamCard: React.FC<TeamCardProps> = ({ team, canManage }) => {
+  const navigate = useNavigate()
+  const gotToUser = (id: string) => {
+    navigate(`/user/${id}`)
+  }
 
   return (
-    <div className="grid grid-cols-1 gap-x-6 gap-y-8 w-full mt-8">
-      <div className="w-full rounded overflow-hidden shadow-lg bg-white border border-gray-200">
-        <div>{team.name}</div>
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2 text-primary-900">
-            {team?.name}
-          </div>
-          <div className="flex justify-between items-center border-b border-gray-200 last:border-0">
-            <p className="text-primary-900 text-base">Team Members:</p>
-            <BaseButton
-              text={'Add Member'}
-              onClick={() => console.log('add member')}
-            />
-          </div>
+    <div className="w-full mt-4 rounded overflow-hidden shadow-lg bg-white border border-gray-200">
+      <div
+        onClick={() => {
+          gotToUser(team.createdBy)
+        }}
+        className="px-6 py-4 hover:bg-primary-200 cursor-pointer"
+      >
+        <div className="font-bold text-xl mb-2 text-primary-700">
+          {team.name}
         </div>
-        <ul className="px-6 bg-primary-100">
-          {team?.members.map((member) => (
-            <li
-              key={member.id}
-              className="py-2 border-b flex justify-between items-center border-primary-200 last:border-0"
-            >
-              <div>
-                {member?.firstName && (
-                  <span className="font-semibold text-green-700">
-                    {member?.firstName} {member?.lastName}
-                  </span>
-                )}
-                <span className="text-gray-600"> - {member.role}</span>
-              </div>
-              <div>{member?.email}</div>
-              <div className="flex gap-2 mt-2 text-primary-500 cursor-pointer">
-                <BaseButton text={'Edit'} onClick={() => console.log('Edit')} />
+        <p className="text-gray-700 text-base">Team Members:</p>
+      </div>
+      <ul className="px-6 pb-2">
+        {team.members.map((member) => (
+          <li
+            key={member.id}
+            className="flex gap-4 items-center justify-between py-2 border-b border-gray-200 last:border-0"
+          >
+            <div>
+              <span className="font-semibold text-primary-700">
+                {member?.user?.email}
+              </span>
+            </div>
+            <div>
+              <span className="text-gray-600">{member.role}</span>
+            </div>
+            {canManage && (
+              <div className="flex gap-2 px-6 py-4">
+                <BaseButton
+                  text={'Edit Team'}
+                  onClick={() => console.log('Edit Team')}
+                />
                 <BaseButton
                   style="delete"
-                  text={'Remove'}
-                  onClick={() => console.log('Remove')}
+                  text={'Delete Team'}
+                  onClick={() => console.log('Delete Team')}
                 />
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

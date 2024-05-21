@@ -1,11 +1,12 @@
 import { FC, useCallback, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Params, useNavigate, useParams } from 'react-router-dom'
 
 import { BaseLoading } from '../../components/common/BaseLoading'
 import { DeleteModal } from '../../components/common/DeleteModal'
 import { Header } from '../../components/common/Header'
 import { useGetPet } from '../../hooks/pets/useGetPet'
+import { useCheckUserMembership } from '../../hooks/teams/useUserPartOfPetCreatorTeam'
 import { useDelecteVaccine } from '../../hooks/vaccine/useDelecteVaccine'
 import { AppContext } from '../../services/AppContext'
 
@@ -31,10 +32,13 @@ interface IVaccine {
 }
 
 export const ProfilePetPage: FC = () => {
-  const { t } = useTranslation('common')
-  const { id } = useParams()
-  const { mutate: deleteVaccine } = useDelecteVaccine()
   const context = useContext(AppContext)
+  const { t } = useTranslation('common')
+  const { id }: Params<string> = useParams()
+  const { mutate: deleteVaccine } = useDelecteVaccine()
+  const { data: isMember, isLoading: isLoadingMembership } =
+    useCheckUserMembership(id, context?.user?.id)
+
   const [isOpenDeleteVaccine, setIsOpenDeleteVaccine] = useState(false)
 
   const [vaccine, setVaccine] = useState<IVaccine>()
@@ -73,16 +77,20 @@ export const ProfilePetPage: FC = () => {
     return `${import.meta.env.VITE_BUCKET_NAME}pets/${image}`
   })
 
-  const checkIfUserIsOwner = () => {
+  const checkIfUserIsOwner = useCallback(() => {
     if (!context) return false
-    if (data.pet.createdBy === context.user?.id) return true
-    if (data.pet.shelterId === context.user?.id) return true
-    if (data.pet.adoptedBy === context.user?.id) return true
+    const userId = context.user?.id
 
-    return false
-  }
+    return (
+      data.pet.createdBy === userId ||
+      data.pet.shelterId === userId ||
+      data.pet.adoptedBy === userId ||
+      data.pet.vetId === userId ||
+      isMember
+    )
+  }, [context, data, isMember])
 
-  if (isLoading) return <BaseLoading large />
+  if (isLoading || isLoadingMembership) return <BaseLoading large />
 
   return (
     <>

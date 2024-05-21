@@ -24,6 +24,7 @@ In the backend you need run migrations with prisma
    git clone https://github.com/<your-username>/pets-love.git
    git clone https://github.com/<your-username>/api-pets-love.git
    ```
+
 4. Create docker-compose.yaml
 
 The structure of the folder is: 
@@ -51,7 +52,32 @@ volumes:
   pgdata:
 ```
 
+<<<<<<< Updated upstream
 Frontend env
+=======
+networks:
+  pets_love_network:
+    driver: bridge
+   ```
+
+
+
+4. Create .env
+   ```sh
+# backend
+DATABASE_URL
+PORT
+HOST
+
+BUCKET_NAME 
+DEV 
+
+GMAIL 
+PASS 
+GOOGLE_CLIENT_ID 
+GOOGLE_CLIENT_SECRET 
+
+>>>>>>> Stashed changes
 
 ```env
 # Frontend
@@ -73,6 +99,7 @@ PORT=3011
 HOST=http://localhost:3000
 UPLOAD_DIR=
 
+<<<<<<< Updated upstream
 DEV=true
 
 GMAIL=
@@ -81,6 +108,17 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
 ```
+=======
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+   ```
+   
+5. Run docker-compuse up build
+   ```sh
+   docker-compuse up build
+   ```
+>>>>>>> Stashed changes
 
 
 ## Coding Guidelines

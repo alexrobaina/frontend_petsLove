@@ -1,7 +1,12 @@
 import axios from 'axios'
 
 export const listTeams = async () => {
-  const response = await axios.get('/teams')
+  const response = await axios.get('/api/v1/teams/')
+  return response.data
+}
+
+export const listTeamsByUser = async () => {
+  const response = await axios.get('/api/v1/teamsByUser/')
   return response.data
 }
 
@@ -10,25 +15,25 @@ export const createTeam = async (teamData: {
   description: string
   members: string[]
 }) => {
-  const response = await axios.post('/teams', teamData)
+  const response = await axios.post('/api/v1/teams/', teamData)
   return response.data
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const updateTeam = async (teamData: any) => {
-  const response = await axios.put(`/teams/${teamData.id}`, teamData)
+  const response = await axios.put(`/api/v1/teams/${teamData.id}`, teamData)
   return response.data
 }
 
 export const getTeamById = async (id: string) => {
-  const response = await axios.get(`/teams/${id}`)
+  const response = await axios.get(`/api/v1/teams/${id}`)
   return response.data
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const addTeamMember = async (memberData: any) => {
   const response = await axios.post(
-    `/teams/${memberData.teamId}/members`,
+    `/api/v1/teams/${memberData.teamId}/members`,
     memberData,
   )
   return response.data
@@ -41,6 +46,15 @@ export const removeTeamMember = async ({
   teamId: string
   userId: string
 }) => {
-  const response = await axios.delete(`/teams/${teamId}/members/${userId}`)
+  const response = await axios.delete(
+    `/api/v1/teams/${teamId}/members/${userId}`,
+  )
   return response.data
+}
+
+export const checkUserMembership = async (petId?: string, userId?: string) => {
+  const response = await axios.get(
+    `/api/v1/teams/pet/${petId}/membership/${userId}`,
+  )
+  return response.data.isMember
 }
