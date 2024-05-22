@@ -80,7 +80,7 @@ const UserPetFilters: React.FC<UserPetFiltersProps> = ({
           />
         </div>
       </div>
-      <div className="my-5 md:mt-0 mt-42 ">
+      <div className="mt-[180px] md:mt-0 mt-42 ">
         <BaseInput
           type="text"
           value={searchByName}

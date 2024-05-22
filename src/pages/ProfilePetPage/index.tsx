@@ -97,6 +97,7 @@ export const ProfilePetPage: FC = () => {
     <>
       <Helmet>
         <title>{data?.pet?.name} - Pet Profile</title>
+        <link rel="canonical" href="https://petslove.app/" />
         <meta name="description" content={data?.pet?.description} />
         {data?.pet?.images?.length > 0 && (
           <meta

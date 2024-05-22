@@ -98,7 +98,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
   ) {
     return (
       <>
-        <Helment>
+        <Helmet>
           <title>{user?.username} - Pet Profile</title>
           <meta name="description" content={user?.description} />
           {user?.image && (
@@ -109,7 +109,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
           )}
           <meta property="og:title" content={user?.username} />
           <meta property="og:description" content={user?.description} />
-        </Helment>
+        </Helmet>
         <div className="flex justify-between flex-col sm:flex-row mb-6">
           <header className="flex gap-5">
             <Header buttonBack />
@@ -177,7 +177,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
             {`${t(`common:${user?.role}`)} ${getName()}`}
           </div>
         </div>
-        <div className="flex gap-20 mt-6">
+        <div className="flex md:gap-20 mt-6 flex-col md:flex-row gap-2">
           {user?.location && (
             <div className="my-2">
               <h2 className={h2Class}>{t('common:location')}</h2>
