@@ -10,6 +10,7 @@ import { useCreatePet } from '../../hooks/pets/useCreatePet'
 import { useDeletePet } from '../../hooks/pets/useDeletePet'
 import { useGetPet } from '../../hooks/pets/useGetPet'
 import { usePetUpdate } from '../../hooks/pets/usePetUpdate'
+import { usePetAnalytics } from '../../hooks/usePetAnalytics/usePetAnalytics'
 import { useUserPets } from '../../hooks/user/useUserPets'
 import { AppContext } from '../../services/AppContext'
 import { AppointmentForm } from '../AppointmentsPage/components/AppointmentForm'
@@ -24,20 +25,21 @@ import { INITIAL_STATE, FileType, petSchema } from './constants'
 export const DashboardPage: FC = () => {
   const [isOpenappointment, setOpenappointment] = useState(false)
   const context:
-    | {
-        user: {
-          role: string
-          id: string
-        }
-      }
-    | any = useContext(AppContext)
+  | {
+    user: {
+      role: string
+      id: string
+    }
+  }
+  | any = useContext(AppContext)
+  const { data: petAnalytics } = usePetAnalytics(context?.user?.id);
   const { t } = useTranslation(['common'])
   const [page, setPage] = useState(1)
   const [isAdopted, setIsAdopted] = useState('')
   const [gender, setGender] = useState('')
   const [category, setCategory] = useState('')
   const [searchByName, setSearchByName] = useState('')
-  const { mutate } = useCreatePet()
+  const { mutate, isLoading: isLoadingCreate } = useCreatePet()
   const { mutatePetUpdate, isLoading: updatePetLoading } = usePetUpdate()
   const [petId, setPetId] = useState('')
   const { handleDeletePet, isLoading: deletePetLoading } = useDeletePet()
@@ -248,8 +250,8 @@ export const DashboardPage: FC = () => {
     }
   }, [petData, setFieldValue])
 
-  if (isLoading || deletePetLoading || isLoadingGetPet)
-    <div className="mt-20">
+  if (isLoading || deletePetLoading || isLoadingGetPet || isLoadingCreate)
+    <div className="mt-20 h-[50%}">
       <BaseLoading large />
     </div>
 
@@ -263,6 +265,7 @@ export const DashboardPage: FC = () => {
         setCategory={setCategory}
         setIsAdopted={setIsAdopted}
         resetFilters={resetFilters}
+        petAnalytics={petAnalytics}
       />
       <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-16">
         <DashboardTable
