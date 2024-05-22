@@ -1,6 +1,6 @@
 import { type FC, useState, useCallback, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
 
 import { MidDog } from '../../../../assets/images'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
@@ -223,7 +223,7 @@ export const UserProfile: FC<Props> = ({ user }) => {
         page={page}
         take={take}
         setPage={setPage}
-        total={pets?.length}
+        total={pets?.total}
       />
     </>
   )
