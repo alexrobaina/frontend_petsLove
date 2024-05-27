@@ -25,14 +25,14 @@ import { INITIAL_STATE, FileType, petSchema } from './constants'
 export const DashboardPage: FC = () => {
   const [isOpenappointment, setOpenappointment] = useState(false)
   const context:
-  | {
-    user: {
-      role: string
-      id: string
-    }
-  }
-  | any = useContext(AppContext)
-  const { data: petAnalytics } = usePetAnalytics(context?.user?.id);
+    | {
+        user: {
+          role: string
+          id: string
+        }
+      }
+    | any = useContext(AppContext)
+  const { data: petAnalytics } = usePetAnalytics(context?.user?.id)
   const { t } = useTranslation(['common'])
   const [page, setPage] = useState(1)
   const [isAdopted, setIsAdopted] = useState('')
@@ -213,6 +213,7 @@ export const DashboardPage: FC = () => {
         gender: petData?.pet?.gender || '',
         age: petData?.pet?.age || '',
         size: petData?.pet?.size || '',
+        adopted: petData?.pet?.adopted,
         locationId: petData?.pet?.locationId || '',
         breed: petData?.pet?.breed || '',
         images: images,

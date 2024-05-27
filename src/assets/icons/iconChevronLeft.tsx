@@ -4,7 +4,7 @@ const IconChevronLeft = ({ width = 18, height = 18, color = '#2c3e50' }) => (
     height={height}
     stroke={color}
     viewBox="0 0 24 24"
-    stroke-width="3"
+    strokeWidth="3"
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
