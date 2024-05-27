@@ -83,23 +83,6 @@ export const GENDER_PET = [
   },
 ]
 
-export const INITIAL_VALUES_CREATE_PET = {
-  age: '',
-  name: '',
-  units: '',
-  gender: '',
-  weight: '',
-  size: '',
-  breed: '',
-  locationId: '',
-  description: '',
-  veterinaryId: '',
-  shelterId: '',
-  adopterId: '',
-  medication: [],
-  category: '',
-}
-
 export interface ICreatePetForm {
   age: string
   name: string
@@ -135,6 +118,7 @@ export const INITIAL_STATE = {
   name: '',
   units: '',
   gender: '',
+  adopted: 'false',
   weight: '',
   size: '',
   locationId: '',

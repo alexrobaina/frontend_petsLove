@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { BaseButton } from '../../../../components'
@@ -25,6 +26,7 @@ interface Props {
 }
 
 const TeamCard: React.FC<Props> = ({ team, canManage }) => {
+  const { t } = useTranslation(['settings'])
   const navigate = useNavigate()
   const gotToUser = (id: string) => {
     navigate(`/user/${id}`)
@@ -41,7 +43,7 @@ const TeamCard: React.FC<Props> = ({ team, canManage }) => {
         <div className="font-bold text-xl mb-2 text-primary-700">
           {team.name}
         </div>
-        <p className="text-gray-700 text-base">Team Members:</p>
+        <p className="text-gray-700 text-base">{`${t('settings:teamsMember')}: `}</p>
       </div>
       <ul className="px-6 pb-2">
         {team.members.map((member) => (
@@ -55,7 +57,9 @@ const TeamCard: React.FC<Props> = ({ team, canManage }) => {
               </span>
             </div>
             <div>
-              <span className="text-gray-600">{member.role}</span>
+              <span className="text-gray-600">
+                {t(t(`settings:${member.role}`))}
+              </span>
             </div>
             {canManage && (
               <div className="flex gap-2 px-6 py-4">

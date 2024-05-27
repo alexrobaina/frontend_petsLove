@@ -39,9 +39,10 @@ export const Pagination: FC<Props> = ({ page, take, total, setPage }) => {
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-          {t('common:showing')} <span className="font-medium">{page}</span> {t('common:to')}{' '}
-            <span className="font-medium">{take}</span> {t('common:of')}{' '}
-            <span className="font-medium">{total}</span> {t('common:results')}
+            {t('common:showing')} <span className="font-medium">{page}</span>{' '}
+            {t('common:to')} <span className="font-medium">{take}</span>{' '}
+            {t('common:of')} <span className="font-medium">{total}</span>{' '}
+            {t('common:results')}
           </p>
         </div>
         <div>
@@ -58,13 +59,15 @@ export const Pagination: FC<Props> = ({ page, take, total, setPage }) => {
                 <IconChevronLeft />
               </a>
               {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  aria-current="page"
-                  onClick={() => setPage(index + 1)}
-                  className={index + 1 === page ? activeStyle : neutralStyle}
-                >
-                  {index + 1}
-                </button>
+                <div key={index}>
+                  <button
+                    aria-current="page"
+                    onClick={() => setPage(index + 1)}
+                    className={index + 1 === page ? activeStyle : neutralStyle}
+                  >
+                    {index + 1}
+                  </button>
+                </div>
               ))}
               <a
                 onClick={() => (totalPages === page ? null : setPage(page + 1))}

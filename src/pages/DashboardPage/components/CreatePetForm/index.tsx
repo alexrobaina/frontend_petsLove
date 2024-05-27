@@ -1,8 +1,9 @@
 import { FormikErrors } from 'formik'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MultiValue } from 'react-select'
 
+import { BaseButtonSwitch } from '../../../../components/common/BaseButtonSwitch'
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseSelect } from '../../../../components/common/BaseSelect'
 import { BaseTextArea } from '../../../../components/common/BaseTextArea'
@@ -29,6 +30,7 @@ interface Props {
     weight: string
     size: string
     breed: string
+    adopted: boolean
     description: string
     shelterId: string
     adoptedBy: string
@@ -63,6 +65,26 @@ export const CreatePetForm: React.FC<Props> = ({
   const { data: userListShelter } = useUserList({ role: 'SHELTER' })
   const { data: userListAdopter } = useUserList({ role: 'ADOPTER' })
   const { data: userListVet } = useUserList({ role: 'VET' })
+  const [isAdopted, setIsAdopted] = useState<boolean>(values.adopted)
+
+  useEffect(() => {
+    if (values.adoptedBy !== null) {
+      setFieldValue('adopted', 'true')
+      setIsAdopted(true)
+    } else {
+      setFieldValue('adopted', 'false')
+      setIsAdopted(false)
+    }
+  }, [values.adoptedBy, setFieldValue, setIsAdopted])
+
+  const handleChangeIsAdopted = () => {
+    setIsAdopted((prev) => !prev)
+    setFieldValue('adopted', !isAdopted ? 'true' : 'false')
+  }
+
+  useEffect(() => {
+    setIsAdopted(values.adopted)
+  }, [values.adopted])
 
   return (
     <form>
@@ -225,14 +247,21 @@ export const CreatePetForm: React.FC<Props> = ({
         <h1 className="text-xl font-medium col-span-full">
           {t('common:petGuardians')}
         </h1>
+        <div className="mt-10">
+          <BaseButtonSwitch
+            isActive={isAdopted}
+            text={t('common:wasAdopted')}
+            onClick={handleChangeIsAdopted}
+          />
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
               name="adoptedBy"
-              placeholder={t('common:selectAdopter')}
               value={values?.adoptedBy}
               label={t('common:adoptedBy')}
               setFieldValue={setFieldValue}
+              placeholder={t('common:selectAdopter')}
               options={userListAdopter?.users.map(
                 (user: { email: string; id: string }) => ({
                   value: user.id,
