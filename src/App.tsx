@@ -6,13 +6,14 @@ import { ToastContainer } from 'react-toastify'
 import Navigation from './components/Navigation'
 import { UserRoleSelectorModal } from './components/UserRoleSelectorModal'
 import { AdoptionPetPage } from './pages/AdoptionPetPage'
+import { AppointmentsPage } from './pages/AppointmentsPage'
 import { CommunityPage } from './pages/CommunityPage'
 import { ComponentsUiPage } from './pages/ComponentsUiPage'
 import { DashboardPage } from './pages/DashboardPage'
+import { InventoryPage } from './pages/InventoryPage'
 import { ProfilePetPage } from './pages/ProfilePetPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { UserProfilePage } from './pages/UserProfilePage'
-import { AppointmentsPage } from './pages/AppointmentsPage'
 import { AppContext, AppContextProps } from './services/AppContext'
 
 import './api/axiosInstance'
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/appointments',
         element: <AppointmentsPage />,
+      },
+      {
+        path: '/inventory',
+        element: <InventoryPage />,
       },
       {
         path: '/',

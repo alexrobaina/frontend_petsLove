@@ -23,7 +23,7 @@ export const SliderModal: FC<Props> = ({
   children = null,
 }) => {
   const { t } = useTranslation(['common'])
-  
+
   useEffect(() => {
     toggleBodyScroll(isOpen)
   }, [isOpen])
@@ -43,7 +43,7 @@ export const SliderModal: FC<Props> = ({
           <motion.div
             initial="hidden"
             animate="visible"
-            className={`fixed overflow-auto overflow-x-hidden right-0 w-[60%] bg-primary-50 h-full top-0 z-40 transform ${
+            className={`fixed overflow-auto overflow-x-hidden right-0 w-full sm:w-[60%]  bg-primary-50 h-full top-0 z-40 transform ${
               isOpen ? 'translate-x-0' : 'translate-x-full'
             } t`}
             variants={SLIDER_VARIANTS}
@@ -57,18 +57,22 @@ export const SliderModal: FC<Props> = ({
                flex gap-4 justify-end py-14 bg-primary-50
             "
               >
-                {closeSlider && <BaseButton
-                  text={t('common:cancel')}
-                  style="secondary"
-                  onClick={closeSlider}
-                />}
-               {handleSubmit && <BaseButton
-                  text={t('common:save')}
-                  style="primary"
-                  onClick={() => {
-                    handleSubmit && handleSubmit()
-                  }}
-                />}
+                {closeSlider && (
+                  <BaseButton
+                    text={t('common:cancel')}
+                    style="secondary"
+                    onClick={closeSlider}
+                  />
+                )}
+                {handleSubmit && (
+                  <BaseButton
+                    text={t('common:save')}
+                    style="primary"
+                    onClick={() => {
+                      handleSubmit && handleSubmit()
+                    }}
+                  />
+                )}
               </div>
             </div>
           </motion.div>

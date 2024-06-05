@@ -14,7 +14,7 @@ const Layout: FC<Props> = ({ children }) => {
       animate="visible"
       variants={VARIANTS_OPACITY}
       transition={{ ease: 'easeOut', delay: 0.2 }}
-      className="flex flex-col w-full h-full py-2 pl-3 md:pl-6 md:pr-8"
+      className="flex flex-col w-full h-full py-20 pl-0 pr-0 sm:py-2 sm:pl-6 sm:pr-8"
     >
       {children}
     </motion.div>

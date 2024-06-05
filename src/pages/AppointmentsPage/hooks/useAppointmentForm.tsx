@@ -23,7 +23,6 @@ export function useAppointmentForm(onClose: () => void) {
     petId: string
     title: string
     endDate: string
-    adopted: boolean
     startDate: string
     recurring: boolean
     description: string
@@ -32,7 +31,6 @@ export function useAppointmentForm(onClose: () => void) {
     petId: '',
     title: '',
     endDate: '',
-    adopted: false,
     startDate: '',
     description: '',
     recipientId: '',

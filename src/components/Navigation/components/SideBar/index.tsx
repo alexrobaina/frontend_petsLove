@@ -10,14 +10,15 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import {
-  IconCalendarStats,
-  IconChevronLeft,
-  IconChevronRight,
-  IconHomeInfinity,
-  IconListDetails,
   IconLogout,
   IconSearch,
   IconSettings,
+  IconInventory,
+  IconListDetails,
+  IconChevronLeft,
+  IconChevronRight,
+  IconHomeInfinity,
+  IconCalendarStats,
 } from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
 import i18n from '../../../../i18n'
@@ -39,10 +40,11 @@ const TOP_NAVIGATION = [
     icon: <IconCalendarStats width={30} height={30} />,
     text: 'appointments',
   },
+  { to: '/inventory', icon: <IconInventory />, text: 'inventory' },
   { to: '/searchPets', icon: <IconSearch />, text: 'searchPets' },
 ]
 
-const BOTTOM_NAVIGATION = [
+const BUTTON_NAVIGATION = [
   { to: '/settings', text: 'settings', icon: <IconSettings /> },
 ]
 
@@ -57,7 +59,7 @@ export const SideBar: FC<Props> = ({
 
   const [lng, setLng] = useState({
     lng: 'en',
-    symbol: 'en',
+    symbol: 'English',
   })
   const navigation = useNavigate()
   const context = useContext(AppContext)
@@ -103,6 +105,9 @@ export const SideBar: FC<Props> = ({
   }
 
   const handleMenuIsCollapsed = () => {
+    if (window.innerWidth < 638) {
+      return setMenuIsCollapsed(true)
+    }
     setMenuIsCollapsed(!menuIsCollapsed)
   }
 
@@ -119,17 +124,17 @@ export const SideBar: FC<Props> = ({
     if (locale === 'es') {
       getLng = {
         lng: 'es',
-        symbol: 'es',
+        symbol: 'Español',
       }
     } else if (locale === 'en') {
       getLng = {
         lng: 'en',
-        symbol: 'en',
+        symbol: 'English',
       }
     } else {
       getLng = {
         lng: 'fr',
-        symbol: 'fr',
+        symbol: 'Français',
       }
     }
     setLng({
@@ -144,15 +149,15 @@ export const SideBar: FC<Props> = ({
   }
 
   return (
-    <div className="flex relative overflow-hidden z-2">
+    <div className="flex relative z-2">
       {/* Fixed Sidebar */}
-      <div className="z-20 fixed h-auto bottom-0 top-0 mt-2 mb-2 ml-2 flex flex-col bg-primary-300 rounded-md">
+      <div className="overflow-x-auto sm:overflow-hidden z-20 fixed h-[67px] w-screen sm:w-auto sm:h-auto bottom-0 top-0 mt-2 mb-2 ml-2 sm:flex sm:flex-col bg-primary-300 rounded-md">
         <div
-          className={` ${menuIsCollapsed ? 'left-[58px]' : 'left-[210px]'} top-[45%] absolute z-4`}
+          className={`${menuIsCollapsed ? 'left-[28px]' : 'left-[100px]'} opacity-[50%] top-[48%] absolute z-50`}
         >
           <div
             onClick={handleMenuIsCollapsed}
-            className="ring-2 flex cursor-pointer justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]"
+            className="hidden ring-2 sm:flex cursor-pointer justify-center items-center ring-primary-800 h-4 w-4 rounded-full bg-primary-200 opacity-[900%]"
           >
             {menuIsCollapsed ? (
               <IconChevronRight width={20} />
@@ -163,10 +168,10 @@ export const SideBar: FC<Props> = ({
         </div>
         <div
           onClick={handleMenuIsCollapsed}
-          className={`${menuIsCollapsed ? 'min-w-[67px]' : 'min-w-[218px]'} bg-primary-300 h-full cursor-pointer
-           rounded-md flex flex-col justify-between items-center p-2`}
+          className={`${menuIsCollapsed ? 'w-[67px]' : 'w-[218px]'} bg-primary-300 h-full cursor-pointer
+           rounded-md flex sm:flex-col justify-between gap-10 sm:gap-0 items-center p-2`}
         >
-          <div className="w-full flex flex-col gap-2">
+          <div className="sm:w-full flex sm:flex-col gap-2">
             {TOP_NAVIGATION.map((item, index) => (
               <ButtonNavigate
                 key={index}
@@ -181,7 +186,7 @@ export const SideBar: FC<Props> = ({
               />
             ))}
           </div>
-          <div className="w-full flex flex-col gap-2">
+          <div className="sm:w-full flex sm:flex-col gap-2 items-center">
             <button
               onClick={(e: MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation()
@@ -196,7 +201,7 @@ export const SideBar: FC<Props> = ({
                   showImage ||
                   'https://cdn.midjourney.com/362cb41d-fba2-4c78-b6a7-01cbbbc1fd72/0_1.png'
                 }
-                className="w-[42px] h-[42px] object-cover rounded-full"
+                className="min-w-[42px] min-h-[42px] max-w-[42px] max-h-[42px] object-cover rounded-full"
               />
               {!menuIsCollapsed && (
                 <div className="flex flex-col gap-0 truncate">
@@ -207,7 +212,7 @@ export const SideBar: FC<Props> = ({
                 </div>
               )}
             </button>
-            {BOTTOM_NAVIGATION.map((item, index) => (
+            {BUTTON_NAVIGATION.map((item, index) => (
               <ButtonNavigate
                 key={index}
                 icon={item.icon}
@@ -220,10 +225,10 @@ export const SideBar: FC<Props> = ({
                 }}
               />
             ))}
-            <div className="relative z-[999]">
+            <div className="relative z-50 w-full">
               <button
                 onClick={handleOpenLngToggle}
-                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-[11.5px]'} w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100 uppercase`}
+                className={`flex ${menuIsCollapsed ? 'justify-center' : 'gap-3 pl-3'} w-[48px] sm:w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100 uppercase`}
               >
                 {lng.symbol}
                 <p>
@@ -234,9 +239,9 @@ export const SideBar: FC<Props> = ({
                   )}
                 </p>
               </button>
-              {isOpenLngToggle && (
+              {true && (
                 <div
-                  className={`absolute -top-[70px] z-99 rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}
+                  className={`absolute top-[70px] rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}
                 >
                   <button
                     className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
@@ -269,10 +274,10 @@ export const SideBar: FC<Props> = ({
               )}
             </div>
             <button
-              className={`flex justify-start gap-2 pl-3 w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
+              className={`flex justify-start gap-2 pl-3 pr-3 w-[48px] sm:w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}
               onClick={handleLogout}
             >
-              <div className="flex justify-center w-[30px]">
+              <div className="flex justify-center">
                 <IconLogout />
               </div>
               {!menuIsCollapsed && <p>{t('common:logout')}</p>}
@@ -283,7 +288,7 @@ export const SideBar: FC<Props> = ({
       {/* Main Content Area */}
       <div
         className={`flex-1 ${
-          menuIsCollapsed ? 'ml-[67px]' : 'ml-[218px]'
+          menuIsCollapsed ? 'ml-[2px] sm:ml-[67px]' : 'ml-[218px]'
         } p-2 overflow-y-auto`}
       >
         {children}

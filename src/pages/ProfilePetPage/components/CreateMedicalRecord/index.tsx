@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { BaseInput } from '../../../../components/common/BaseInput'
@@ -25,6 +26,7 @@ export const CreateMedicalRecord: FC<Props> = ({
   isOpenModalCreation,
   toggleCreateMedicalRecord,
 }) => {
+  const { t } = useTranslation(['common', 'profilePet'])
   const { id = '' } = useParams<{ id: string }>()
   const { data: userListVet } = useUserList({ role: 'VET' })
   const { mutate: createMedicalRecord } = useCreateMedicalRecord()
@@ -170,7 +172,7 @@ export const CreateMedicalRecord: FC<Props> = ({
                   htmlFor="file"
                   className="w-full rounded px-2 py-1 text-sm font-semibold text-primary-950 shadow-sm ring-1 ring-inset ring-primary-300 hover:bg-primary-300"
                 >
-                  Select a file
+                  {t('como:selectImages')}
                 </label>
                 <input
                   multiple
@@ -182,7 +184,7 @@ export const CreateMedicalRecord: FC<Props> = ({
                 />
               </div>
               <p className="mt-2 text-xs leading-5 text-gray-400">
-                JPG, GIF or PNG. 1.5MB max.
+                {t('common:selectImagesInfo')}
               </p>
             </div>
           </div>
@@ -191,11 +193,11 @@ export const CreateMedicalRecord: FC<Props> = ({
           <div className="sm:col-span-1 w-full">
             <BaseInput
               name="title"
-              label="Title"
               error={errors?.title}
               value={values?.title}
-              placeholder="Name of pet"
+              label={t('common:title')}
               handleChange={handleChange}
+              placeholder={t('common:placeholderTitle')}
             />
           </div>
           <div className="sm:col-span-1 w-full">
@@ -212,9 +214,9 @@ export const CreateMedicalRecord: FC<Props> = ({
         <div className="grid grid-cols-1 gap-2 md:gap-8 w-full mt-5">
           <div className="col-span-1 w-full">
             <BaseSelect
-              label="Vet"
               name="vetId"
               error={errors.vetId}
+              label={t('common:vet')}
               value={values?.vetId || ''}
               setFieldValue={setFieldValue}
               options={userListVet?.users.map(
@@ -230,12 +232,12 @@ export const CreateMedicalRecord: FC<Props> = ({
           <div className="col-span-1">
             <BaseTextArea
               height={100}
-              name="description"
-              label="Description"
+              name="{description"
               error={errors.description}
               value={values?.description}
               handleChange={handleChange}
-              placeholder="Add a description"
+              label={t('common:description')}
+              placeholder={t('common:placeholderDescription')}
             />
           </div>
         </div>
@@ -243,21 +245,21 @@ export const CreateMedicalRecord: FC<Props> = ({
           <div className="sm:col-span-1 w-full">
             <BaseInput
               name="diagnosis"
-              label="Diagnosis"
               error={errors?.diagnosis}
               value={values?.diagnosis}
-              placeholder="Add diagnosis"
               handleChange={handleChange}
+              label={t('profilePet:diagnosis')}
+              placeholder={t('profilePet:diagnosisPlaceholder')}
             />
           </div>
           <div className="sm:col-span-1/2 w-full">
             <BaseInput
               name="treatment"
-              label="Treatment"
               error={errors?.treatment}
               value={values?.treatment}
               handleChange={handleChange}
-              placeholder="Add a treatment"
+              label={t('profilePet:treatment')}
+              placeholder={t('profilePet:treatmentPlaceholder')}
             />
           </div>
         </div>
@@ -266,11 +268,11 @@ export const CreateMedicalRecord: FC<Props> = ({
             <BaseTextArea
               height={80}
               name="notes"
-              label="Notes"
-              placeholder="Add notes"
               error={errors.notes}
               value={values?.notes}
+              label={t('common:notes')}
               handleChange={handleChange}
+              placeholder={t('common:placeholderNotes')}
             />
           </div>
         </div>

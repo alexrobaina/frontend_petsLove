@@ -3,9 +3,18 @@ import axios from 'axios'
 
 const API_URL = '/api/v1/appointments'
 
-export const createAppointment = async (data: unknown) => {
+export const createAppointment = async (data: any) => {
   try {
-    const response = await axios.post(API_URL, data)
+    let formattedData = {}
+    Object.entries(data).map(([key, value]) => {
+      if (value === '' || value === null) return null
+      formattedData = {
+        ...formattedData,
+        [key]: value,
+      }
+    })
+
+    const response = await axios.post(API_URL, formattedData)
     return response.data
   } catch (error) {
     return error

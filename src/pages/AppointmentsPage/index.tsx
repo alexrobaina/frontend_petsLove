@@ -63,7 +63,7 @@ export const AppointmentsPage: FC = () => {
   return (
     <>
       <Header title={t('common:appointments')} />
-      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-16">
+      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-6 sm:mt-16">
         <div className="flex justify-between flex-col sm:flex-row sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold leading-6 text-primary-950">
