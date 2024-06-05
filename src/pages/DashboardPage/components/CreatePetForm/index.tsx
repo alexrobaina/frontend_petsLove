@@ -254,7 +254,7 @@ export const CreatePetForm: React.FC<Props> = ({
             onClick={handleChangeIsAdopted}
           />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 w-full mt-5 gap-5">
           <div className="w-full ">
             <BaseSelect
               name="adoptedBy"

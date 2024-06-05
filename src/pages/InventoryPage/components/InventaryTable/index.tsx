@@ -1,73 +1,65 @@
+import { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import {
-  IconCalendarStats,
-  IconEdit,
-  IconSearch,
-  IconTrash,
-} from '../../../../assets/icons'
+import { IconEdit, IconTrash } from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
-import { BaseBadge } from '../../../../components/common/BaseBadge'
+import { BaseSelect } from '../../../../components'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { BaseLoading } from '../../../../components/common/BaseLoading'
 import { Pagination } from '../../../../components/common/Pagination'
+import { INVENTORY_TYPES } from '../../constants'
 
 interface Props {
-  data: { pets: Pet[] | undefined; total: number | undefined }
+  data: {
+    data: Inventory[] | undefined
+    total: number
+  }
   page: number
-  searchByName: string
-  updatePetLoading: boolean
+  name: string
+  updateInventoryLoading: boolean
+  quantity: string
   setPage(skip: number): void
-  handleCreatePet: () => void
-  handleEdit(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string,
-  ): void
-  handleDelete({
-    e,
-    petId,
-  }: {
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    petId: string
-    petName: string
-  }): void
-  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
-  setOpenAttachment: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string,
-  ) => void
+  handleCreateInventory: () => void
+  handleEdit(e: React.MouseEvent<HTMLButtonElement>, id: string): void
+  handleDelete: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void
+  inventoryType: string
+  handleNameChange: (e: ChangeEvent<HTMLInputElement>) => void
+  handleQuantityChange: (e: ChangeEvent<HTMLInputElement>) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleInventoryTypeChange: (type: string, value: any) => void
 }
 
-interface Pet {
-  id: string // or number, if the ID is numeric
-  age: string // or number, depending on the data type you're using for age
+interface Inventory {
+  id: string
   name: string
-  size: string
-  gender: string
-  category: string
-  images: string[] // An array of image URLs (strings)
-  adopted: boolean
+  type: string
+  price: number
+  images: string[]
+  quantity: string
   description: string
 }
 
-export const DashboardTable: React.FC<Props> = ({
+export const InventoryTable: React.FC<Props> = ({
   data,
   page,
+  name,
   setPage,
+  quantity,
   handleEdit,
   handleDelete,
-  searchByName,
-  handleSearch,
-  handleCreatePet,
-  updatePetLoading,
-  setOpenAttachment,
+  inventoryType,
+  handleNameChange,
+  handleQuantityChange,
+  handleCreateInventory,
+  updateInventoryLoading,
+  handleInventoryTypeChange,
 }) => {
-  const { t } = useTranslation(['common', 'dashboard'])
+  const { t } = useTranslation(['common', 'inventory'])
   const navigate = useNavigate()
-  const goToPet = (id: string) => {
-    navigate(`/pet/${id}`)
+  const goToInventory = (id: string) => {
+    navigate(`/inventory/${id}`)
   }
 
   const handleError = (
@@ -75,21 +67,21 @@ export const DashboardTable: React.FC<Props> = ({
     e: any,
   ) => {
     const target = e.target as HTMLImageElement
-    target.onerror = null // Prappointments infinite loop if local image is also not found
+    target.onerror = null // Prevent infinite loop if local image is also not found
     target.src = MidDog
   }
 
-  if (updatePetLoading) return <BaseLoading />
+  if (updateInventoryLoading) return <BaseLoading />
 
   return (
     <>
       <div className="flex justify-between flex-col sm:flex-row sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold leading-6 text-primary-950">
-            {t('common:pets')}
+            {t('common:inventory')}
           </h1>
           <p className="mt-2 text-sm text-primary-500">
-            {t('dashboard:listOfPets')}
+            {t('inventory:listOfInventory')}
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -97,32 +89,46 @@ export const DashboardTable: React.FC<Props> = ({
             size="small"
             type="button"
             style="primary"
-            onClick={handleCreatePet}
-            text={t('dashboard:addPet')}
+            onClick={handleCreateInventory}
+            text={t('inventory:addInventory')}
           />
         </div>
       </div>
-      <div className="mt-5">
+      <div className="grid grid-cols-3 gap-5 mt-5">
         <BaseInput
           type="text"
-          value={searchByName}
-          iconLeft={<IconSearch />}
-          handleChange={handleSearch}
-          placeholder={t('searchPets')}
-          label={t('common:searchByName')}
+          value={name}
+          label={t('common:name')}
+          handleChange={handleNameChange}
+          placeholder={t('inventory:filterByName')}
+        />
+        <BaseSelect
+          translation
+          name="type"
+          value={inventoryType}
+          label={t('common:type')}
+          options={INVENTORY_TYPES}
+          setFieldValue={handleInventoryTypeChange}
+        />
+        <BaseInput
+          type="number"
+          value={quantity}
+          handleChange={handleQuantityChange}
+          label={t('inventory:quantity')}
+          placeholder={t('inventory:filterByQuantity')}
         />
       </div>
       {data?.total === 0 && (
         <div className="h-[550px] w-full flex flex-col gap-5 justify-center items-center">
           <h1 className="text-xl sm:text-3xl font-semibold">
-            {t('dashboard:petNotFound')}
+            {t('inventory:inventoryNotFound')}
           </h1>
-          <h1>{t('dashboard:dontHavePets')}</h1>
+          <h1>{t('inventory:dontHaveInventory')}</h1>
           <BaseButton
             size="small"
             type="button"
-            onClick={handleCreatePet}
-            text={t('dashboard:addPet')}
+            onClick={handleCreateInventory}
+            text={t('inventory:addInventory')}
           />
         </div>
       )}
@@ -143,31 +149,25 @@ export const DashboardTable: React.FC<Props> = ({
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:gender')}
+                      {t('common:type')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:category')}
+                      {t('common:description')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:age')}
+                      {t('common:quantity')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:size')}
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
-                    >
-                      {t('common:status')}
+                      {t('common:price')}
                     </th>
                     <th
                       scope="col"
@@ -178,87 +178,63 @@ export const DashboardTable: React.FC<Props> = ({
                   </tr>
                 </thead>
                 <tbody className="bg-white rounded-3xl">
-                  {data?.pets &&
-                    data?.pets.map((pet: Pet, index: number) => (
+                  {data?.data &&
+                    data.data.map((item: Inventory, index: number) => (
                       <tr
-                        key={pet.id}
-                        onClick={() => goToPet(pet.id)}
+                        key={item.id}
+                        onClick={() => goToInventory(item.id)}
                         className="hover:bg-primary-100 cursor-pointer"
                       >
                         <td
-                          className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'}`}
+                          className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${
+                            index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'
+                          }`}
                         >
                           <div className="flex items-center">
                             <div className="h-11 w-11 flex-shrink-0">
                               <img
-                                alt="pet-image"
+                                alt="inventory-image"
                                 onError={handleError}
                                 className="h-11 w-11 object-cover rounded-full"
-                                src={`${import.meta.env.VITE_BUCKET_NAME}pets/${pet?.images[0]}`}
+                                src={`${import.meta.env.VITE_BUCKET_NAME}inventory/${item?.images[0]}`}
                               />
                             </div>
                             <div className="ml-4">
                               <div className="capitalize font-medium text-primary-950">
-                                {pet.name}
+                                {item.name}
                               </div>
                               <div className="truncate w-[250px] mt-1 text-gray-500">
-                                {pet.description}
+                                {item.description}
                               </div>
                             </div>
                           </div>
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {`${t(`common:genderPet.${pet.gender}`)}`}
+                          {`${t(`inventory:inventoryType.${item.type}`)}`}
                         </td>
-                        <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {`${t(`common:categoryPet.${pet.category}`)}`}
+                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                          {item.description}
                         </td>
-                        <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {`${t(`common:agePet.${pet.age}`)}`}
+                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                          {item.quantity}
                         </td>
-                        <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {`${t(`common:sizePet.${pet.size}`)}`}
-                        </td>
-                        <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          <BaseBadge
-                            color={
-                              pet.adopted ? 'text-green-50' : 'bg-green-200'
-                            }
-                            backgroundColor={
-                              pet.adopted ? 'bg-red-500' : 'bg-green-200'
-                            }
-                            text={
-                              pet.adopted
-                                ? t('common:adopted')
-                                : t('common:available')
-                            }
-                          />
+                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                          {item.price}
                         </td>
                         <td
-                          className={`whitespace-nowrap px-6 py-4 ${index === 0 ? 'rounded-br-xl' : 'rounded-e-xl'}`}
+                          className={`whitespace-nowrap px-6 py-4 ${
+                            index === 0 ? 'rounded-br-xl' : 'rounded-e-xl'
+                          }`}
                         >
                           <div className="flex gap-2 justify-end">
                             <BaseButton
                               style="tertiary"
-                              icon={
-                                <IconCalendarStats width={30} height={30} />
-                              }
-                              onClick={(e) => setOpenAttachment(e, pet.id)}
-                            />
-                            <BaseButton
-                              style="tertiary"
                               icon={<IconEdit />}
-                              onClick={(e) => handleEdit(e, pet.id)}
+                              onClick={(e) => handleEdit(e, item.id)}
                             />
                             <BaseButton
                               style="tertiary"
-                              onClick={(e) =>
-                                handleDelete({
-                                  e,
-                                  petId: pet.id,
-                                  petName: pet.name,
-                                })
-                              }
+                              onClick={(e) => handleDelete(e, item.id)}
                               icon={<IconTrash />}
                             />
                           </div>

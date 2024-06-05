@@ -8,6 +8,7 @@ import IconFacebook from './iconFacebook.svg'
 import IconGoogle from './iconGoogle.svg'
 import IconHomeInfinity from './iconHomeInfinity.svg'
 import IconInstagram from './iconInstagram.svg'
+import IconInventory from './iconInventory.svg'
 import IconListDetails from './iconListDetails.svg'
 import IconLocation from './iconLocation.svg'
 import IconLogout from './iconLogout.svg'
@@ -22,6 +23,7 @@ import IconWhatsapp from './iconWhatsapp.svg'
 
 export {
   IconCalendarStats,
+  IconInventory,
   IconEdit,
   IconTrash,
   IconChevronLeft,

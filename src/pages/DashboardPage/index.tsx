@@ -268,7 +268,7 @@ export const DashboardPage: FC = () => {
         resetFilters={resetFilters}
         petAnalytics={petAnalytics}
       />
-      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-16">
+      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-6 sm:mt-16">
         <DashboardTable
           page={page}
           data={data}

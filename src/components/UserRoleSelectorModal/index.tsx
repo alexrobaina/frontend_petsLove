@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
 
 import { ROLES } from '../../constants/community'
@@ -32,18 +33,18 @@ interface Props {
       lat?: number
       lng?: number
     }
-  }  
+  }
 }
 
 export const userUpdateValidation = Yup.object().shape({
-  role: Yup.string().required('Role is required'),
-  username: Yup.string().required('Username is required'),
+  role: Yup.string().required('isRequired'),
+  username: Yup.string().required('isRequired'),
   location: Yup.object().shape({
-    country: Yup.string().required('Country is required'),
-    city: Yup.string().required('City is required'),
-    address: Yup.string().required('Address is required'),
-    lat: Yup.number().required('Lat is required'),
-    lng: Yup.number().required('Lng is required'),
+    country: Yup.string().required('isRequired'),
+    city: Yup.string().required('isRequired'),
+    address: Yup.string().required('isRequired'),
+    lat: Yup.number().required('isRequired'),
+    lng: Yup.number().required('isRequired'),
   }),
 })
 
@@ -52,6 +53,7 @@ export const UserRoleSelectorModal: FC<Props> = ({
   isOpenRoleModal,
   setOpenRoleModal,
 }) => {
+  const { t } = useTranslation('common')
   const { mutate } = useUserUpdate()
   const formik = useFormik({
     initialValues: {
@@ -106,19 +108,17 @@ export const UserRoleSelectorModal: FC<Props> = ({
     <ReactModal
       height="auto"
       isOpen={isOpenRoleModal}
-      title="Welcome to Pets Love!"
-      description="This information will be used to provide you with the best experience"
+      title={t('welcome')}
+      description={t('welcomeDescription')}
     >
       <div className="flex flex-col gap-4">
         <div className="col-span-full mt-8">
           <GoogleAutocomplete
             label="Location"
             error={
-              errors?.location &&
-              !values?.location?.country &&
-              'Location is required'
+              errors?.location && !values?.location?.country && t('isRequired')
             }
-            placeholder="Search by location"
+            placeholder={t('searchByLocation')}
             setLocation={handleChangeLocation}
           />
         </div>
@@ -127,7 +127,7 @@ export const UserRoleSelectorModal: FC<Props> = ({
             name="role"
             value={values.role}
             error={errors?.role}
-            label="Select your role"
+            label={t('selectTole')}
             setFieldValue={setFieldValue}
             options={[
               { value: ROLES.ADOPTER, label: ROLES.ADOPTER },
@@ -138,14 +138,14 @@ export const UserRoleSelectorModal: FC<Props> = ({
         </div>
         <BaseInput
           name="username"
-          label="Username"
+          label={t('username')}
           handleChange={handleChange}
-          placeholder="Add an username"
+          placeholder={t('username')}
           error={errors?.username || ''}
         />
       </div>
       <div className="flex gap-2 mt-5 justify-end">
-        <BaseButton text="Save" style="primary" onClick={handleSubmit} />
+        <BaseButton text={t('save')} style="primary" onClick={handleSubmit} />
       </div>
     </ReactModal>
   )

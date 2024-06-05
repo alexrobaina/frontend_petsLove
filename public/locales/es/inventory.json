@@ -1,0 +1,30 @@
+{
+  "inventoryName": "Nombre del Inventario",
+  "quantity": "Cantidad",
+  "price": "Precio",
+  "addInventory": "Agregar Producto",
+  "editInventory": "Editar Producto",
+  "itemName": "Nombre del Artículo",
+  "inventoryNotFound": "Producto No Encontrado",
+  "listOfInventory": "Lista de Artículos del Inventario",
+  "selectType": "Seleccionar Tipo",
+  "dontHaveInventory": "No tienes inventario",
+  "itemQuantity": "Cantidad de Artículos",
+  "filterByName": "Filtrar por Nombre",
+  "filterByType": "Filtrar por Tipo",
+  "filterByQuantity": "Filtrar por Cantidad",
+  "itemPrice": "Precio del Artículo",
+  "inventoryType": {
+    "MEDICINE": "Medicina",
+    "FOOD": "Comida",
+    "TOYS": "Juguetes",
+    "ACCESSORIES": "Accesorios",
+    "HEALTH_WELLNESS": "Salud y Bienestar",
+    "HOUSING": "Vivienda",
+    "LITTER_WASTE_MANAGEMENT": "Arena y Gestión de Residuos",
+    "APPAREL": "Ropa",
+    "FEEDING_SUPPLIES": "Suministros de Alimentación",
+    "TRAVEL_OUTDOOR": "Viajes y Aire Libre",
+    "TRAINING_BEHAVIOR": "Entrenamiento y Comportamiento"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "inventoryName": "Product name",
+  "createInventory": "Create Product",
+  "inventory": "Inventory",
+  "quantity": "Quantity",
+  "addInventory": "Add Product",
+  "editInventory": "Edit Product",
+  "inventoryNotFound": "Product not found",
+  "listOfInventory": "List of Products",
+  "dontHaveInventory": "You don't have any products",
+  "itemQuantity": "Product Quantity",
+  "itemPrice": "Product Price",
+  "filterByName": "Filter by Product Name",
+  "filterByType": "Filter by Product Type",
+  "filterByQuantity": "Filter by Product Quantity",
+  "itemName": "Product Name",
+  "inventoryType": {
+    "MEDICINE": "Medicine",
+    "FOOD": "Food",
+    "TOYS": "Toys",
+    "ACCESSORIES": "Accessories",
+    "HEALTH_WELLNESS": "Health & Wellness",
+    "HOUSING": "Housing",
+    "LITTER_WASTE_MANAGEMENT": "Litter & Waste Management",
+    "APPAREL": "Apparel",
+    "FEEDING_SUPPLIES": "Feeding Supplies",
+    "TRAVEL_OUTDOOR": "Travel & Outdoor",
+    "TRAINING_BEHAVIOR": "Training & Behavior"
+  }
+}
