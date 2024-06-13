@@ -14,22 +14,26 @@ export const AnalyticsCard: FC<Props> = ({ analytics }) => {
       <h2 className="text-lg font-bold capitalize">{t('common:analytics')}</h2>
       {analytics && (
         <div className="flex flex-wrap md:flex-nowrap justify-start items-center gap-5 ">
-          <div className="flex flex-col gap-1 w-full sm:w-[172px] justify-center items-center bg-primary-200 rounded-md p-4">
-            <span className="text-sm  text-primary-800">
-              {t('expense:totalIncome')}
-            </span>
-            <span className="text-lg font-bold text-gray-800">
-              {`${analytics.totalIncome}`}
-            </span>
-          </div>
-          <div className="flex flex-col gap-1 w-full sm:w-[172px] justify-center items-center bg-red-100 rounded-md p-4">
-            <span className="text-sm text-primary-800">
-              {t('expense:totalExpense')}
-            </span>
-            <span className="text-lg font-bold text-gray-800">
-              {analytics.totalExpense}
-            </span>
-          </div>
+          {analytics?.totalIncome && (
+            <div className="flex flex-col gap-1 w-full sm:w-[172px] justify-center items-center bg-primary-200 rounded-md p-4">
+              <span className="text-sm  text-primary-800">
+                {t('expense:totalIncome')}
+              </span>
+              <span className="text-lg font-bold text-gray-800">
+                {`${analytics.totalIncome}`}
+              </span>
+            </div>
+          )}
+          {analytics?.totalExpense && (
+            <div className="flex flex-col gap-1 w-full sm:w-[172px] justify-center items-center bg-red-100 rounded-md p-4">
+              <span className="text-sm text-primary-800">
+                {t('expense:totalExpense')}
+              </span>
+              <span className="text-lg font-bold text-gray-800">
+                {analytics.totalExpense}
+              </span>
+            </div>
+          )}
         </div>
       )}
     </div>
