@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   FC,
   ReactElement,
@@ -19,6 +20,7 @@ import {
   IconChevronRight,
   IconHomeInfinity,
   IconCalendarStats,
+  IconBuildingStore,
 } from '../../../../assets/icons'
 import { MidDog } from '../../../../assets/images'
 import i18n from '../../../../i18n'
@@ -41,12 +43,19 @@ const TOP_NAVIGATION = [
     text: 'appointments',
   },
   { to: '/inventory', icon: <IconInventory />, text: 'inventory' },
+  { to: '/expense', icon: <IconBuildingStore />, text: 'expense' },
   { to: '/searchPets', icon: <IconSearch />, text: 'searchPets' },
 ]
 
 const BUTTON_NAVIGATION = [
   { to: '/settings', text: 'settings', icon: <IconSettings /> },
 ]
+
+const Lng: any = {
+  es: 'Español',
+  en: 'English',
+  fr: 'Français',
+}
 
 export const SideBar: FC<Props> = ({
   children,
@@ -58,8 +67,8 @@ export const SideBar: FC<Props> = ({
   const locale = i18n.language
 
   const [lng, setLng] = useState({
-    lng: 'en',
-    symbol: 'English',
+    lng: 'es',
+    symbol: 'Español',
   })
   const navigation = useNavigate()
   const context = useContext(AppContext)
@@ -97,7 +106,7 @@ export const SideBar: FC<Props> = ({
   const handleChangeLng = (e: MouseEvent<HTMLButtonElement>, lng: string) => {
     e.stopPropagation()
     setLng({
-      lng: lng,
+      lng: Lng[lng],
       symbol: lng,
     })
     i18n.changeLanguage(lng)
@@ -120,25 +129,8 @@ export const SideBar: FC<Props> = ({
     : `${import.meta.env.VITE_BUCKET_NAME}users/avatar/${context?.user?.image}`
 
   useEffect(() => {
-    let getLng
-    if (locale === 'es') {
-      getLng = {
-        lng: 'es',
-        symbol: 'Español',
-      }
-    } else if (locale === 'en') {
-      getLng = {
-        lng: 'en',
-        symbol: 'English',
-      }
-    } else {
-      getLng = {
-        lng: 'fr',
-        symbol: 'Français',
-      }
-    }
     setLng({
-      lng: getLng.lng,
+      lng: Lng[locale],
       symbol: locale,
     })
   }, [locale])
@@ -150,7 +142,33 @@ export const SideBar: FC<Props> = ({
 
   return (
     <div className="flex relative z-2">
-      {/* Fixed Sidebar */}
+      {isOpenLngToggle && (
+        <div
+          className={`fixed w-[140px] h-[180px] rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'right-3 top-[80px] sm:top-auto sm:bottom-2 sm:left-20' : 'right-3 top-[80px] sm:top-auto sm:bottom-2 left-60'}`}
+        >
+          <button
+            className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+            onClick={(e) => handleChangeLng(e, 'es')}
+          >
+            <p className="flex justify-center items-center capitalize">ES</p>
+            <p>Español</p>
+          </button>
+          <button
+            className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+            onClick={(e) => handleChangeLng(e, 'en')}
+          >
+            <p className="flex justify-center items-center capitalize">EN</p>
+            <p>English</p>
+          </button>
+          <button
+            className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
+            onClick={(e) => handleChangeLng(e, 'fr')}
+          >
+            <p className="flex justify-center items-center capitalize">FR</p>
+            <p>French</p>
+          </button>
+        </div>
+      )}
       <div className="overflow-x-auto sm:overflow-hidden z-20 fixed h-[67px] w-screen sm:w-auto sm:h-auto bottom-0 top-0 mt-2 mb-2 ml-2 sm:flex sm:flex-col bg-primary-300 rounded-md">
         <div
           className={`${menuIsCollapsed ? 'left-[28px]' : 'left-[100px]'} opacity-[50%] top-[48%] absolute z-50`}
@@ -239,39 +257,6 @@ export const SideBar: FC<Props> = ({
                   )}
                 </p>
               </button>
-              {true && (
-                <div
-                  className={`absolute top-[70px] rounded-lg p-2 bg-white shadow-2xl flex-col ${menuIsCollapsed ? 'left-16' : 'left-56'}`}
-                >
-                  <button
-                    className={`${lng.symbol === 'es' ? 'bg-primary-200' : ''} rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                    onClick={(e) => handleChangeLng(e, 'es')}
-                  >
-                    <p className="flex justify-center items-center capitalize">
-                      ES
-                    </p>
-                    <p>Español</p>
-                  </button>
-                  <button
-                    className={`${lng.symbol === 'en' ? 'bg-primary-200' : ''}  rounded-md p-3 mb-2 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                    onClick={(e) => handleChangeLng(e, 'en')}
-                  >
-                    <p className="flex justify-center items-center capitalize">
-                      EN
-                    </p>
-                    <p>English</p>
-                  </button>
-                  <button
-                    className={`${lng.symbol === 'fr' ? 'bg-primary-200' : ''}  rounded-md p-3 flex w-full justify-start px-4 items-center gap-3 hover:bg-primary-100`}
-                    onClick={(e) => handleChangeLng(e, 'fr')}
-                  >
-                    <p className="flex justify-center items-center capitalize">
-                      FR
-                    </p>
-                    <p>French</p>
-                  </button>
-                </div>
-              )}
             </div>
             <button
               className={`flex justify-start gap-2 pl-3 pr-3 w-[48px] sm:w-full h-[48px] bg-primary-200 rounded-md items-center hover:bg-primary-100`}

@@ -20,6 +20,26 @@
   "exotics": "Exoticos",
   "males": "Machos",
   "females": "Hembras",
+  "analytics": "Analiticas",
+  "items": "Items",
+  "amount": "Cantidad",
+  "expenses": "Gastos",
+  "expenseType": {
+    "INCOME": "Ingreso",
+    "EXPENSE": "Gasto"
+  },
+  "expenseCategory": {
+    "SUPPLIES": "Suministros",
+    "EQUIPMENT": "Equipo",
+    "RENT": "Renta",
+    "UTILITIES": "Servicios",
+    "INSURANCE": "Seguro",
+    "VEHICLE": "Vehículo",
+    "INVENTORY": "Inventario",
+    "SALARIES": "Salarios",
+    "SERVICES": "Servicios",
+    "OTHERS": "Otros"
+  },
   "inventoryType": {
     "MEDICINE": "Medicina",
     "FOOD": "Comida",
@@ -33,6 +53,10 @@
     "TRAVEL_OUTDOOR": "Viajes y Aire Libre",
     "TRAINING_BEHAVIOR": "Entrenamiento y Comportamiento"
   },
+  "quantity": "Cantidad",
+  "areYouSureDeleteProduct": "Estas por eliminar el producto",
+  "expense": "Gasto",
+  "income": "Ingreso",
   "dog": "Perro",
   "cat": "Gato",
   "exotic": "Exotico",
@@ -112,7 +136,7 @@
   "veterinarians": "Veterinarios",
   "veterinarian": "Veterinaria",
   "shelters": "Refugios",
-  "role": "Role",
+  "role": "Rol del usuario",
   "myPets": "Mis mascotas",
   "start": "Start",
   "end": "End",

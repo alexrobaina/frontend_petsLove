@@ -39,7 +39,7 @@ export const BaseSelect: FC<Props> = ({
   isCreatable = false,
   isClearable = true,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation(['common'])
 
   const translatedOptions = options?.map((option) => ({
     ...option,

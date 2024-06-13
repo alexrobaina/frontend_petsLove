@@ -53,9 +53,9 @@ export const SettingsPage: FC = () => {
         ...user,
         role: values.role || user.role,
         image: values.image || user.image,
-        lastName: values.lastName || user.lastName,
-        username: values.username || user.username,
-        firstName: values.firstName || user.firstName,
+        lastName: values.lastName || user?.lastName || '',
+        username: values.username || user?.username || '',
+        firstName: values.firstName || user.firstName || '',
         description: values.description || user.description || '',
       })
     }

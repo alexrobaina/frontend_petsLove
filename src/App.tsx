@@ -17,6 +17,7 @@ import { UserProfilePage } from './pages/UserProfilePage'
 import { AppContext, AppContextProps } from './services/AppContext'
 
 import './api/axiosInstance'
+import { ExpensePage } from './pages/ExpensePage'
 
 interface Props {
   appContext: AppContextProps
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: '/inventory',
         element: <InventoryPage />,
+      },
+      {
+        path: '/expense',
+        element: <ExpensePage />,
       },
       {
         path: '/',

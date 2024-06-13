@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { BaseButton, BaseLoading, Header, SliderModal } from '../../components'
+import { BaseButton, BaseLoading, SliderModal } from '../../components'
 import { AppointmentsCalendar } from '../../components/AppointmentsCalendar'
 import { useAppointmentList } from '../../hooks/appointments/useAppointmentList'
 import { useUserPets } from '../../hooks/user/useUserPets'
@@ -9,6 +9,7 @@ import { AppContext } from '../../services/AppContext'
 import { PetDetail } from '../ProfilePetPage/interfaces'
 
 import { AppointmentForm } from './components/AppointmentForm'
+import { AppointmentHeader } from './components/AppointmentHeader'
 import { useAppointmentForm } from './hooks/useAppointmentForm'
 
 export const AppointmentsPage: FC = () => {
@@ -62,8 +63,8 @@ export const AppointmentsPage: FC = () => {
 
   return (
     <>
-      <Header title={t('common:appointments')} />
-      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-6 sm:mt-16">
+      <AppointmentHeader />
+      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-4">
         <div className="flex justify-between flex-col sm:flex-row sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold leading-6 text-primary-950">

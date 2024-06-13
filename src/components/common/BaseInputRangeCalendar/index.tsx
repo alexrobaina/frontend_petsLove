@@ -40,18 +40,29 @@ export const BaseInputRangeCalendar: FC<Props> = ({
   mode = 'single',
   setShowCalendar,
   marginRightCalendarBox = 0,
-  textButtonDate = 'Select Date',
 }) => {
   const [rangeSelected, setRangeSelected] = useState<DateRangeType>(rangeDate)
+  const setButtonText = () => {
+    if (values.startDate === 'Invalid date') {
+      return 'Select Date'
+    }
+
+    return `${moment(values.startDate).format('YYYY-MM-DD')} ${
+      values.endDate !== 'Invalid date'
+        ? `- ${moment(values.endDate).format('YYYY-MM-DD')}`
+        : ''
+    }`
+  }
 
   const selectDate = (ranges: RangeKeyDict) => {
     if (mode === 'single') {
       const newRange: DateRangeType = {
         ...ranges.selection,
-        endDate: ranges.selection.startDate || null,
+        endDate: ranges.selection.endDate || null,
         startDate: ranges.selection.startDate || null, // Add this line to assign a value of type Date or null to startDate
         key: 'selection',
       }
+
       setRangeSelected(newRange)
       handleChange(newRange)
 
@@ -72,11 +83,7 @@ export const BaseInputRangeCalendar: FC<Props> = ({
     <div className="relative">
       <BaseButton
         wFull
-        text={
-          values.startDate
-            ? moment(values.startDate).format('YYYY-MM-DD')
-            : textButtonDate
-        }
+        text={setButtonText()}
         onClick={() => {
           closeFilters()
           setShowCalendar(!open)

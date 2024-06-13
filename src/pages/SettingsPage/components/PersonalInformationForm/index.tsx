@@ -162,6 +162,7 @@ export const PersonalInformationForm: FC<Props> = ({
             <div className="sm:col-span-3">
               <BaseSelect
                 name="role"
+                translation
                 options={options}
                 isClearable={false}
                 error={errors?.role}

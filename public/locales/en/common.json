@@ -22,6 +22,12 @@
   "exotics": "Exotics",
   "males": "Males",
   "females": "Females",
+  "quantity": "Quantity",
+  "areYouSureDeleteProduct": "Are you sure you want to delete this product?",
+  "expense": "Expense",
+  "income": "Income",
+  "items": "Items",
+  "amount": "Amount",
   "dog": "Dog",
   "itemName": "Item name",
   "itemDescription": "Item description",
@@ -36,6 +42,24 @@
   "category": "Categoría",
   "gender": "Gender",
   "age": "Age",
+  "analytics": "Analytics",
+  "expenses": "Expenses",
+  "expenseType": {
+    "INCOME": "Income",
+    "EXPENSE": "Expense"
+  },
+  "expenseCategory": {
+    "SUPPLIES": "Supplies",
+    "EQUIPMENT": "Equipment",
+    "RENT": "Rent",
+    "UTILITIES": "Utilities",
+    "INSURANCE": "Insurance",
+    "VEHICLE": "Vehicle",
+    "SERVICES": "Services",
+    "INVENTORY": "Inventory",
+    "SALARIES": "Salaries",
+    "OTHERS": "Others"
+  },
   "inventoryType": {
     "MEDICINE": "Medicine",
     "FOOD": "Food",
