@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { BaseButtonGroups } from '../../components/common/BaseButtonGroups'
 import GoogleAutocomplete from '../../components/common/GoogleAutocomplete'
-import { Header } from '../../components/common/Header'
 import { ROLES, TYPE_OF_COMMUNITY } from '../../constants/community'
 import { IAddressComponent } from '../../constants/interfaces'
 import useUserList from '../../hooks/user/useUserList'
 
 import { CommunityTable } from './components/CommunityTable'
+import { CommunityHeader } from './components/CommunityTable/CommunityHeader'
 
 interface IResults {
   results: {
@@ -27,7 +27,7 @@ interface IResults {
 }
 
 export const CommunityPage: FC = () => {
-  const { t } = useTranslation(["community", "common"])
+  const { t } = useTranslation(['community', 'common'])
   const navigation = useNavigate()
   const [role, setRole] = useState(ROLES.SHELTER)
   const [country, setCountry] = useState('')
@@ -77,7 +77,7 @@ export const CommunityPage: FC = () => {
   return (
     <>
       <header className="flex md:justify-between md:flex-row flex-col items-start">
-        <Header title={t('common:community')} />
+        <CommunityHeader />
         <div className="flex items-center gap-4 mt-10 md:mt-0 justify-center">
           <BaseButtonGroups
             buttonSelected={role}
@@ -86,7 +86,7 @@ export const CommunityPage: FC = () => {
           />
         </div>
       </header>
-      <div className="shadow-lg rounded-md mt-16 px-4 sm:px-6 lg:px-8">
+      <div className="shadow-lg rounded-md mt-4 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold leading-6 text-primary-950">

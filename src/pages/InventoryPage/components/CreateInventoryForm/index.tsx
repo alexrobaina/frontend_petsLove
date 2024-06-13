@@ -119,6 +119,7 @@ export const CreateInventoryForm: React.FC<Props> = ({
             label={t('common:type')}
             options={INVENTORY_TYPES}
             setFieldValue={setFieldValue}
+            placeholder={t('inventory:filterByType')}
             error={touched.type && t(`inventory:${errors.type}`)}
           />
         </div>
@@ -128,7 +129,7 @@ export const CreateInventoryForm: React.FC<Props> = ({
             name="quantity"
             handleChange={handleChange}
             value={values.quantity || ''}
-            label={t('inventory:quantity')}
+            label={t('common:quantity')}
             placeholder={t('inventory:itemQuantity')}
             error={touched.quantity && t(`inventory:${errors.quantity}`)}
           />

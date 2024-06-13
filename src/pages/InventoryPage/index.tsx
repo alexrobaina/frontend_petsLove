@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { BaseLoading, SliderModal } from '../../components'
+import { DeleteModal } from '../../components/common/DeleteModal'
 import { useDeleteInventory } from '../../hooks/inventory/useDeleteInventory'
 import { useGetInventory } from '../../hooks/inventory/useGetInventory'
 import { useGetInventoryList } from '../../hooks/inventory/useInventoryList'
@@ -25,9 +26,9 @@ const initialValues: ICreateInventoryForm = {
 export const InventoryPage: FC = () => {
   const [isOpenModalCreation, setIsOpenModalCreation] = useState(false)
   const [page, setPage] = useState(1)
-
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
   const [inventoryId, setInventoryId] = useState('')
-  const { t } = useTranslation(['inventory'])
+  const { t } = useTranslation(['inventory', 'common'])
   const { mutate: deleteInventory } = useDeleteInventory()
   const { data: inventory, isLoading: isLoadingGetInventory } =
     useGetInventory(inventoryId)
@@ -57,7 +58,10 @@ export const InventoryPage: FC = () => {
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.preventDefault()
     e.stopPropagation()
-    deleteInventory(id)
+
+    setInventoryId(id)
+
+    setIsOpenDeleteModal(true)
   }
 
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
@@ -123,23 +127,21 @@ export const InventoryPage: FC = () => {
   return (
     <>
       <InventoryHeader />
-      <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-6 sm:mt-16">
-        <InventoryTable
-          name={name}
-          page={page}
-          setPage={setPage}
-          quantity={quantity}
-          data={inventoryList}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-          inventoryType={inventoryType}
-          handleNameChange={handleNameChange}
-          handleQuantityChange={handleQuantityChange}
-          handleCreateInventory={handleCreateInventory}
-          handleInventoryTypeChange={handleInventoryTypeChange}
-          updateInventoryLoading={false} // Add the missing property
-        />
-      </div>
+      <InventoryTable
+        name={name}
+        page={page}
+        setPage={setPage}
+        quantity={quantity}
+        data={inventoryList}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        inventoryType={inventoryType}
+        handleNameChange={handleNameChange}
+        handleQuantityChange={handleQuantityChange}
+        handleCreateInventory={handleCreateInventory}
+        handleInventoryTypeChange={handleInventoryTypeChange}
+        updateInventoryLoading={false} // Add the missing property
+      />
       <SliderModal
         handleSubmit={submit}
         isOpen={isOpenModalCreation}
@@ -160,32 +162,15 @@ export const InventoryPage: FC = () => {
           }
         />
       </SliderModal>
-      {/* <DeleteModal
-        isOpen={deleteModalPet}
-        handleClose={() => setDeleteModalPet(false)}
+      <DeleteModal
+        isOpen={isOpenDeleteModal}
+        handleClose={() => setIsOpenDeleteModal(false)}
         handleDelete={() => {
-          handleDeletePet(petDelete.petId)
-          setDeleteModalPet(false)
+          deleteInventory(inventoryId)
+          setIsOpenDeleteModal(false)
         }}
-        title={`${t('common:areYouSureDelete')} ${petDelete.petName}?`}
+        title={`${t('common:areYouSureDeleteProduct')}?`}
       />
-      <SliderModal
-        title={titleForm}
-        isOpen={isOpenappointment}
-        handleSubmit={appointmentFormik.handleSubmit}
-        closeSlider={handleCloseAppintmentForm}
-      >
-        <AppointmentForm
-          pets={data?.pets}
-          values={appointmentFormik.values}
-          errors={appointmentFormik.errors}
-          userId={context.user?.id}
-          handleChange={appointmentFormik.handleChange}
-          setFieldValue={appointmentFormik.setFieldValue}
-          closeModal={handleCloseAppintmentForm}
-          pet={data?.pets?.find((pet: PetDetail) => pet.id === petId)}
-        />
-      </SliderModal> */}
     </>
   )
 }

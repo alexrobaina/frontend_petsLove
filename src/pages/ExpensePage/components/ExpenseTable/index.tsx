@@ -1,79 +1,91 @@
-import { ChangeEvent, MouseEvent } from 'react'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import moment from 'moment'
+import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MultiValue } from 'react-select'
 
-import { IconEdit, IconTrash } from '../../../../assets/icons'
-import { MidDog } from '../../../../assets/images'
+import {
+  IconCoin,
+  IconEdit,
+  IconMoneyBag,
+  IconTrash,
+} from '../../../../assets/icons'
 import { BaseSelect } from '../../../../components'
 import { BaseButton } from '../../../../components/common/BaseButton'
 import { BaseInput } from '../../../../components/common/BaseInput'
-import { BaseLoading } from '../../../../components/common/BaseLoading'
+import { BaseInputRangeCalendar } from '../../../../components/common/BaseInputRangeCalendar'
 import { Pagination } from '../../../../components/common/Pagination'
-import { INVENTORY_TYPES } from '../../constants'
+import { EXPENSE_TYPES, EXPENSE_CATEGORIES } from '../../constants'
 
 interface Props {
   data: {
-    data: Inventory[] | undefined
+    data: Expense[] | undefined
     total: number
   }
   page: number
-  name: string
-  updateInventoryLoading: boolean
-  quantity: string
   setPage(skip: number): void
-  handleCreateInventory: () => void
+  handleCreateExpense: () => void
+  handleTitleChange: (value: ChangeEvent<HTMLInputElement>) => void
+  handleTypeChange: (
+    field: string,
+    value: string | number | File | null | MultiValue<unknown>,
+  ) => void
+  handleCategoryChange: (
+    field: string,
+    value: string | number | File | null | MultiValue<unknown>,
+  ) => void
   handleEdit(e: React.MouseEvent<HTMLButtonElement>, id: string): void
   handleDelete: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void
-  inventoryType: string
-  handleNameChange: (e: ChangeEvent<HTMLInputElement>) => void
-  handleQuantityChange: (e: ChangeEvent<HTMLInputElement>) => void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleInventoryTypeChange: (type: string, value: any) => void
+  dateRange: {
+    startDate: string
+    endDate: string
+  }
+  handleChangeDate: (date: { startDate: string; endDate: string }) => void
+  filters: {
+    type: string
+    title: string
+    category: string
+  }
+  resetFilters: () => void
 }
 
-interface Inventory {
+interface Expense {
   id: string
-  name: string
+  title: string
   type: string
-  price: number
-  images: string[]
-  quantity: string
+  totalAmount: number
+  date: string
+  category: string
   description: string
 }
 
-export const InventoryTable: React.FC<Props> = ({
+export const ExpenseTable: React.FC<Props> = ({
   data,
   page,
-  name,
+  filters,
   setPage,
-  quantity,
+  dateRange,
   handleEdit,
   handleDelete,
-  inventoryType,
-  handleNameChange,
-  handleQuantityChange,
-  handleCreateInventory,
-  updateInventoryLoading,
-  handleInventoryTypeChange,
+  resetFilters,
+  handleTypeChange,
+  handleChangeDate,
+  handleTitleChange,
+  handleCreateExpense,
+  handleCategoryChange,
 }) => {
-  const { t } = useTranslation(['common', 'inventory'])
-
-  const handleError = (e: MouseEvent<HTMLImageElement>) => {
-    const target = e.target as HTMLImageElement
-    target.onerror = null // Prevent infinite loop if local image is also not found
-    target.src = MidDog
-  }
-
-  if (updateInventoryLoading) return <BaseLoading />
+  const { t } = useTranslation(['common', 'expense'])
+  const [showCalendarInput, setShowCalendarInput] = useState(false)
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg sm:mt-4">
+    <div className="px-4 sm:px-6 lg:px-8 shadow-md rounded-lg mt-4 sm:mt-10">
       <div className="flex justify-between flex-col sm:flex-row sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold leading-6 text-primary-950">
-            {t('common:inventory')}
+            {t('expense:expensesSubtitle')}
           </h1>
           <p className="mt-2 text-sm text-primary-500">
-            {t('inventory:listOfInventory')}
+            {t('expense:expensesDescription')}
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -81,47 +93,77 @@ export const InventoryTable: React.FC<Props> = ({
             size="small"
             type="button"
             style="primary"
-            onClick={handleCreateInventory}
-            text={t('inventory:addInventory')}
+            onClick={handleCreateExpense}
+            text={t('expense:addExpense')}
           />
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
         <BaseInput
           type="text"
-          value={name}
-          label={t('common:name')}
-          handleChange={handleNameChange}
-          placeholder={t('inventory:filterByName')}
+          name="title"
+          value={filters.title}
+          label={t('common:title')}
+          handleChange={handleTitleChange}
+          placeholder={t('expense:titlePlaceholder')}
         />
         <BaseSelect
           translation
           name="type"
-          value={inventoryType}
+          value={filters.type}
+          options={EXPENSE_TYPES}
           label={t('common:type')}
-          options={INVENTORY_TYPES}
-          placeholder={t('inventory:filterByType')}
-          setFieldValue={handleInventoryTypeChange}
+          setFieldValue={handleTypeChange}
+          placeholder={t('expense:typePlaceholder')}
         />
-        <BaseInput
-          type="number"
-          value={quantity}
-          handleChange={handleQuantityChange}
-          label={t('inventory:quantity')}
-          placeholder={t('inventory:filterByQuantity')}
+        <BaseSelect
+          translation
+          name="category"
+          value={filters.category}
+          label={t('common:category')}
+          options={EXPENSE_CATEGORIES}
+          setFieldValue={handleCategoryChange}
+          placeholder={t('expense:categoryPlaceholder')}
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-5 mt-5">
+        <BaseButton
+          size="small"
+          type="button"
+          style="primary"
+          onClick={resetFilters}
+          text={t('common:resetFilters')}
+        />
+        <BaseInputRangeCalendar
+          values={{
+            startDate: moment(dateRange.startDate).format('YYYY-MM-DD'),
+            endDate: moment(dateRange.endDate).format('YYYY-MM-DD'),
+          }}
+          open={showCalendarInput}
+          mode="range"
+          handleChange={handleChangeDate}
+          textButtonDate={t('common:selectDate')}
+          setShowCalendar={setShowCalendarInput}
+          closeFilters={() => setShowCalendarInput(false)}
+          rangeDate={{
+            startDate: dateRange.startDate,
+            endDate: dateRange.endDate,
+            key: 'selection',
+          }}
+          error={''}
         />
       </div>
       {data?.total === 0 && (
         <div className="h-[550px] w-full flex flex-col gap-5 justify-center items-center">
           <h1 className="text-xl sm:text-3xl font-semibold">
-            {t('inventory:inventoryNotFound')}
+            {t('expense:expenseNotFound')}
           </h1>
-          <h1>{t('inventory:dontHaveInventory')}</h1>
+          <h1>{t('expense:dontHaveExpense')}</h1>
           <BaseButton
             size="small"
             type="button"
-            onClick={handleCreateInventory}
-            text={t('inventory:addInventory')}
+            onClick={handleCreateExpense}
+            text={t('expense:addExpense')}
           />
         </div>
       )}
@@ -136,7 +178,7 @@ export const InventoryTable: React.FC<Props> = ({
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-primary-950 sm:pl-2 bg-primary-100 rounded-tl-xl"
                     >
-                      {t('common:name')}
+                      {t('common:title')}
                     </th>
                     <th
                       scope="col"
@@ -148,19 +190,19 @@ export const InventoryTable: React.FC<Props> = ({
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:description')}
+                      {t('common:category')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:quantity')}
+                      {t('expense:totalAmount')}
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"
                     >
-                      {t('common:price')}
+                      {t('common:date')}
                     </th>
                     <th
                       scope="col"
@@ -172,47 +214,47 @@ export const InventoryTable: React.FC<Props> = ({
                 </thead>
                 <tbody className="bg-white rounded-3xl">
                   {data?.data &&
-                    data.data.map((item: Inventory, index: number) => (
+                    data.data.map((item: Expense, index: number) => (
                       <tr
                         key={item.id}
-                        // onClick={() => goToInventory(item.id)}
-                        className="hover:bg-primary-100 cursor-pointer"
+                        className={`hover:bg-primary-100 cursor-pointer ${
+                          item.type === 'EXPENSE' ? 'bg-red-50' : ''
+                        }`}
                       >
                         <td
                           className={`whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-6 ${
-                            index === 0 ? 'rounded-tx-none' : 'rounded-s-xl'
+                            index === 0
+                              ? 'rounded-tx-none rounded-bl-xl'
+                              : 'rounded-s-xl'
                           }`}
                         >
                           <div className="flex items-center">
-                            <div className="h-11 w-11 flex-shrink-0">
-                              <img
-                                alt="inventory-image"
-                                onError={handleError}
-                                className="h-11 w-11 object-cover rounded-full"
-                                src={`${import.meta.env.VITE_BUCKET_NAME}inventory/${item?.images[0]}`}
-                              />
+                            <div>
+                              {/* @ts-ignore */}
+                              <IconMoneyBag width={24} />
                             </div>
                             <div className="ml-4">
                               <div className="capitalize font-medium text-primary-950">
-                                {item.name}
-                              </div>
-                              <div className="truncate w-[250px] mt-1 text-gray-500">
-                                {item.description}
+                                {item.title}
                               </div>
                             </div>
                           </div>
                         </td>
                         <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {`${t(`inventory:inventoryType.${item.type}`)}`}
+                          {`${t(`common:expenseType.${item.type}`)}`}
+                        </td>
+                        <td className="capitalize whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                          {`${t(`common:expenseCategory.${item.category}`)}`}
+                        </td>
+                        <td className="flex gap-2 items-center whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                          {`${
+                            item.type === 'EXPENSE' ? `- ` : ''
+                          } ${item.totalAmount}`}
+                          {/* @ts-ignore */}
+                          <IconCoin width={22} />
                         </td>
                         <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {item.description}
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {item.quantity}
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                          {item.price}
+                          {moment(item.date).format('DD/MM/YYYY')}
                         </td>
                         <td
                           className={`whitespace-nowrap px-6 py-4 ${
