@@ -27,7 +27,6 @@ export const useExpenseForm = (
       totalAmount: Yup.number().required(t('common:isRequired')),
       type: Yup.string().required(t('common:isRequired')),
       category: Yup.string().required(t('common:isRequired')),
-      title: Yup.string().required(t('common:isRequired')),
       description: Yup.string().optional(),
       items: Yup.array()
         .of(

@@ -12,13 +12,13 @@ export enum InventoryType {
   TRAINING_BEHAVIOR = 'inventoryType.TRAINING_BEHAVIOR',
 }
 
+export const INVENTORY_TYPES = Object.keys(InventoryType).map((key) => ({
+  value: key.toUpperCase(),
+  label: InventoryType[key as keyof typeof InventoryType],
+}))
+
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1)
-
-export const INVENTORY_TYPES = Object.values(InventoryType).map((type) => ({
-  value: type.toUpperCase(),
-  label: type,
-}))
 
 export interface ICreateInventoryForm {
   id?: string

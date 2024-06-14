@@ -177,9 +177,7 @@ export const ExpenseTable: React.FC<Props> = ({
                     <th
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-primary-950 sm:pl-2 bg-primary-100 rounded-tl-xl"
-                    >
-                      {t('common:title')}
-                    </th>
+                    ></th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left bg-primary-100 text-sm font-semibold text-primary-950"

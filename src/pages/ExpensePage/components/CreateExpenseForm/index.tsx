@@ -69,9 +69,10 @@ export const CreateExpenseForm: React.FC<Props> = ({
     // Transform the inventory list to the desired format
     if (!inventoryList?.data) return
     const formattedOptions = inventoryList.data.map(
-      (item: { name: string; id: string }) => ({
+      (item: { name: string; id: string; price: number }) => ({
         label: item.name,
         value: item.id,
+        price: item.price, // Add the price here
       }),
     )
     setInventoryOptions(formattedOptions)
@@ -81,16 +82,6 @@ export const CreateExpenseForm: React.FC<Props> = ({
     <form>
       <h1 className="text-2xl font-medium col-span-full">{title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-1 gap-5 w-full mt-5">
-        <div className="sm:col-span-1 w-full">
-          <BaseInput
-            name="title"
-            label={t('expense:title')}
-            handleChange={handleChange}
-            value={values?.title || ''}
-            error={errors?.title && errors.title}
-            placeholder={t('expense:titlePlaceholder')}
-          />
-        </div>
         <div className="grid grid-cols-2 gap-5">
           <div className="sm:col-span-1 w-full">
             <BaseSelect
@@ -172,10 +163,30 @@ export const CreateExpenseForm: React.FC<Props> = ({
                   <BaseSelect
                     options={inventoryOptions}
                     label={t('common:inventory')}
-                    setFieldValue={setFieldValue}
                     name={`items[${index}].inventoryId`}
                     value={values?.items[index]?.inventoryId || ''}
                     placeholder={t('expense:inventoryPlaceholder')}
+                    setFieldValue={(field, value) => {
+                      setFieldValue(field, value)
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      const selectedItem: any = inventoryOptions.find(
+                        (option: {
+                          label: string
+                          value: string
+                          price: number
+                        }) => option.value === value,
+                      )
+                      if (selectedItem) {
+                        setFieldValue(
+                          `items[${index}].price`,
+                          selectedItem.price,
+                        )
+                        setFieldValue(
+                          `items[${index}].title`,
+                          selectedItem.label,
+                        )
+                      }
+                    }}
                   />
                 </div>
               </div>

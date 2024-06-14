@@ -46,7 +46,7 @@ export const EXPENSE_CATEGORIES = [
   },
   {
     label: 'expenseCategory.INVENTORY',
-    value: 'EQUIPMENT',
+    value: 'INVENTORY',
   },
   {
     label: 'expenseCategory.SERVICES',
