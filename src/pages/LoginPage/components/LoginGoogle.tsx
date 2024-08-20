@@ -12,24 +12,26 @@ import { BaseInput } from '../../../components/common/BaseInput'
 import { BaseLoading } from '../../../components/common/BaseLoading'
 
 export const LoginGoogle: FC = () => {
-  const [successEmailLogin, setSuccessEmailLogin] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('token');
-  const { t } = useTranslation(['common', 'login']);
+  const [successEmailLogin, setSuccessEmailLogin] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const urlParams = new URLSearchParams(window.location.search)
+  const token = urlParams.get('token')
+  const { t } = useTranslation(['common', 'login'])
 
   useEffect(() => {
-    setSuccessEmailLogin(false);
+    setSuccessEmailLogin(false)
     if (token) {
-      setLoading(true);
-      document.cookie = `token=${token}; path=/`;
-      window.location.href = '/dashboard';
+      setLoading(true)
+      document.cookie = `token=${token}; path=/`
+      window.location.href = '/dashboard'
     }
-    setTimeout(() => setLoading(false), 500);
-  }, [token]);
+    setTimeout(() => setLoading(false), 500)
+  }, [token])
 
   const loginSchema = Yup.object().shape({
-    email: Yup.string().email(t('common:emailInvalid')).required(t('common:requiredField')),
+    email: Yup.string()
+      .email(t('common:emailInvalid'))
+      .required(t('common:requiredField')),
   })
 
   const formik = useFormik({
@@ -48,10 +50,9 @@ export const LoginGoogle: FC = () => {
     location.href = data?.location
   }
 
-
   const loginEmailCallback = async (email: string) => {
     try {
-      setLoading(true);
+      setLoading(true)
       await axios.post('/api/auth/email/', {
         email: email,
         texts: {
@@ -63,13 +64,13 @@ export const LoginGoogle: FC = () => {
           thanks: t('login:thanks'),
           welcome: t('login:welcome'),
         },
-      });
-      setSuccessEmailLogin(true);
-      setLoading(false);
+      })
+      setSuccessEmailLogin(true)
+      setLoading(false)
     } catch (error) {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const { values, errors, handleSubmit, handleChange } = formik
 
@@ -78,7 +79,7 @@ export const LoginGoogle: FC = () => {
       <div className="flex justify-center">
         <BaseLoading large />
       </div>
-    );
+    )
   }
 
   return (
@@ -91,13 +92,14 @@ export const LoginGoogle: FC = () => {
       <div className="z-1 flex min-h-full flex-col justify-center py-8 sm:px-6 lg:px-8">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-primary-300 shadow-2xl sm:rounded-lg p-8 sm:px-12 w-[400px]">
-            {successEmailLogin ?
+            {successEmailLogin ? (
               <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-primary-900">
                 {t('login:emailSent')}
-              </h2> :
+              </h2>
+            ) : (
               <>
                 <div className="mb-4 flex-col gap-4">
-                  <div className='flex justify-center mb-2'>
+                  <div className="flex justify-center mb-2">
                     <PetsLoveLogo width={50} height={50} />
                   </div>
                   <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-primary-900">
@@ -130,12 +132,24 @@ export const LoginGoogle: FC = () => {
                       />
                     </div>
                     <div className="mt-6 w-full">
-                      <BaseButton onClick={handleSubmit} wFull text={t('login:magicLink')} />
+                      <BaseButton
+                        onClick={handleSubmit}
+                        wFull
+                        text={t('login:magicLink')}
+                      />
+                    </div>
+                    <div className="mt-6">
+                      <a
+                        href="/terms"
+                        className="cursor-pointer text-center text-sm text-primary-900"
+                      >
+                        {t('login:terms')}
+                      </a>
                     </div>
                   </div>
                 </div>
               </>
-            }
+            )}
           </div>
         </div>
       </div>

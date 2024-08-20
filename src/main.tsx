@@ -12,6 +12,7 @@ import { AdoptionPetPage } from './pages/AdoptionPetPage/index.tsx'
 import { CommunityPage } from './pages/CommunityPage/index.tsx'
 import { LoginPage } from './pages/LoginPage/index.tsx'
 import { ProfilePetPage } from './pages/ProfilePetPage/index.tsx'
+import { TermsPage } from './pages/Terms/index.tsx'
 import { UserProfilePage } from './pages/UserProfilePage/index.tsx'
 import { AppContextProps } from './services/AppContext.tsx'
 import { getCookie } from './utils/getCookie.ts'
@@ -50,6 +51,10 @@ async function main() {
           element: <CommunityPage />,
         },
         {
+          path: '/terms',
+          element: <TermsPage />,
+        },
+        {
           path: '/',
           element: <AdoptionPetPage />,
         },
@@ -85,7 +90,9 @@ async function main() {
       throw new Error('User not signed in')
     }
   } catch (_e) {
-    ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    return ReactDOM.createRoot(
+      document.getElementById('root') as HTMLElement,
+    ).render(
       <React.StrictMode>
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
@@ -94,7 +101,6 @@ async function main() {
         </HelmetProvider>
       </React.StrictMode>,
     )
-    return
   }
 
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

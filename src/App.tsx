@@ -18,6 +18,7 @@ import { AppContext, AppContextProps } from './services/AppContext'
 
 import './api/axiosInstance'
 import { ExpensePage } from './pages/ExpensePage'
+import { TermsPage } from './pages/Terms'
 
 interface Props {
   appContext: AppContextProps
