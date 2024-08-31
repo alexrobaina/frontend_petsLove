@@ -12,6 +12,7 @@ import { Props } from './types'
 export const AppointmentForm: React.FC<Props> = ({
   pet,
   pets,
+  title,
   values,
   errors,
   handleChange,
@@ -31,7 +32,9 @@ export const AppointmentForm: React.FC<Props> = ({
 
   return (
     <form>
-      <h3>{t('appointments:createAppointmentForPets')}</h3>
+      <h1 className="text-2xl font-medium col-span-full">
+        {t('common:createAppointment')}
+      </h1>
       <div className="grid mt-4 md:mt-10 grid-cols-1 sm:grid-cols-2 w-full gap-4">
         <div className="sm:col-span-1 w-full">
           <BaseInput

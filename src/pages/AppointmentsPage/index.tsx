@@ -93,7 +93,6 @@ export const AppointmentsPage: FC = () => {
         </div>
       </div>
       <SliderModal
-        title={titleForm}
         isOpen={isOpenAppointmentForm}
         handleSubmit={formik.handleSubmit}
         closeSlider={handleCloseAppintmentForm}

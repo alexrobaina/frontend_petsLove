@@ -32,15 +32,15 @@ export const BaseAccordeon: FC<Props> = ({
         }
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-2">
-          <div className="w-[50px] iconTitle">{icon}</div>
+        <div className="flex flex-col items-center gap-2 sm:flex-row">
+          <div className="w-[50px] iconTitle hidden sm:block">{icon}</div>
           <h4 className="text-xs md:text-sm font-bold leading-6 text-primary-950 ">
             {title}
           </h4>
         </div>
         <div className="flex items-center gap-5">
           <motion.svg
-            className="w-3 h-3 shrink-0 mr-4 "
+            className="w-3 h-3 shrink-0 mr-4 hidden md:block"
             initial={false}
             animate={isOpen ? { rotate: 0 } : { rotate: 180 }}
             transition={{ duration: 0.3 }}
