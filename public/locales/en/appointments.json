@@ -1,7 +1,7 @@
 {
-  "createAppointmentForPets": "Create Appointment for Pets",
-  "selectAdopterOrShelter": "Select Adopter or Shelter",
-  "addAppointment": "Add Appointment",
-  "organizeYourAppointments": "Organize your appointments",
-  "calendarDescription": "Here you can see all the appointments you have created for your pets. You can view them by day, week or month."
+    "createAppointment": "Create Appointment",
+    "selectAdopterOrShelter": "Select Adopter or Shelter",
+    "addAppointment": "Add Appointment",
+    "organizeYourAppointments": "Organize your appointments",
+    "calendarDescription": "Here you can see all the appointments you have created for your pets. You can view them by day, week or month."
 }

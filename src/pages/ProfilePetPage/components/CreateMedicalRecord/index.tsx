@@ -232,7 +232,7 @@ export const CreateMedicalRecord: FC<Props> = ({
           <div className="col-span-1">
             <BaseTextArea
               height={100}
-              name="{description"
+              name="description"
               error={errors.description}
               value={values?.description}
               handleChange={handleChange}
